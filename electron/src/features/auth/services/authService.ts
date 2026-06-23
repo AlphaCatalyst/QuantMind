@@ -427,13 +427,17 @@ class AuthService {
     const startTime = Date.now();
     try {
       const tenantId = (userData.tenant_id || this.getTenantId()).trim();
-      // 统一注册路径：手机号 + 短信验证码注册（阿里云短信）
-      const response = await this.postWithFallback(['/auth/register/phone'], {
+      const email = userData.email.trim();
+      const usernameBase = (email.split('@')[0] || 'user').replace(/[^a-zA-Z0-9]/g, '');
+      const username = usernameBase.length >= 3 ? usernameBase : `user${Date.now()}`;
+
+      // OSS 版本开放邮箱/用户名注册，手机短信注册属于非 OSS 高级功能。
+      const response = await this.postWithFallback(['/auth/register'], {
         tenant_id: tenantId,
-        phone: userData.phone,
-        code: userData.sms_verification_code,
+        username,
+        email,
         password: userData.password,
-        username: userData.full_name,
+        full_name: userData.full_name,
       });
       const endTime = Date.now();
 

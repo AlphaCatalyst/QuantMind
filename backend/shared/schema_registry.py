@@ -9,10 +9,9 @@ Unified SQLAlchemy schema registry for backend/services.
 
 from __future__ import annotations
 
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
 from importlib import import_module
-from typing import Dict, List
-from collections.abc import Iterable, Sequence
 
 from sqlalchemy import MetaData
 from sqlalchemy.ext.asyncio import AsyncEngine
@@ -53,12 +52,9 @@ SCHEMA_SPECS: tuple[SchemaSpec, ...] = (
             "backend.services.api.user_app.models.subscription",
             "backend.services.api.user_app.models.oauth",
             "backend.services.api.user_app.models.payment",
-            "backend.services.api.user_app.models.sms",
             "backend.services.api.user_app.models.notification",
             "backend.services.api.user_app.models.kyc",
             "backend.services.api.user_app.models.rbac",
-            "backend.services.api.user_app.models.data_download",
-            "backend.services.api.user_app.models.data_update",
         ),
     ),
     SchemaSpec(
@@ -176,4 +172,8 @@ async def create_registered_tables(
 ) -> None:
     for schema in load_registered_schemas(schema_keys):
         async with engine.begin() as conn:
-            await conn.run_sync(lambda sync_conn: schema.metadata.create_all(sync_conn, checkfirst=checkfirst))
+            await conn.run_sync(
+                lambda sync_conn, metadata=schema.metadata: metadata.create_all(
+                    sync_conn, checkfirst=checkfirst
+                )
+            )

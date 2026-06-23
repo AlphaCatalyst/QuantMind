@@ -59,6 +59,13 @@ async def lifespan(app: FastAPI):
         from backend.shared.database_manager_v2 import init_database
 
         await init_database()
+        from backend.shared.database_manager_v2 import get_db_manager
+        from backend.shared.schema_registry import create_registered_tables
+
+        db_manager = get_db_manager()
+        if db_manager._master_engine is None:
+            raise RuntimeError("database master engine is not initialized")
+        await create_registered_tables(db_manager._master_engine, ["api.user"])
 
         from backend.services.api.routers.admin.model_management import (
             ensure_admin_tables,

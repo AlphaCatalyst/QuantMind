@@ -225,7 +225,7 @@ class AuthService:
                 select(User).where(
                     User.user_id == user_id,
                     User.tenant_id == tenant_id,
-                    User.is_deleted == False,
+                    User.is_deleted.is_(False),
                 )
             )
             user = result.scalar_one_or_none()
@@ -484,11 +484,14 @@ class AuthService:
                 username=user_data.username,
                 email=user_data.email,
                 password_hash=self._hash_password(user_data.password),
-                full_name=user_data.full_name,
             )
             session.add(user)
 
-            profile = UserProfile(user_id=user_id, tenant_id=user_data.tenant_id)
+            profile = UserProfile(
+                user_id=user_id,
+                tenant_id=user_data.tenant_id,
+                display_name=user_data.full_name,
+            )
             session.add(profile)
 
             await session.commit()
@@ -549,7 +552,7 @@ class AuthService:
                         | (User.email == credentials.username)
                     )
                     .where(User.tenant_id == tenant_id)
-                    .where(User.is_deleted == False)
+                    .where(User.is_deleted.is_(False))
                 )
                 user = result.scalar_one_or_none()
 
@@ -629,7 +632,7 @@ class AuthService:
                 select(User)
                 .where(User.username == credentials.username)
                 .where(User.tenant_id == credentials.tenant_id)
-                .where(User.is_deleted == False)
+                .where(User.is_deleted.is_(False))
             )
             user = result.scalar_one_or_none()
 
@@ -688,8 +691,8 @@ class AuthService:
                 algorithms=[settings.ALGORITHM],
                 options={"verify_exp": True},
             )
-        except JWTError:
-            raise ValueError("刷新令牌无效或已过期")
+        except JWTError as exc:
+            raise ValueError("刷新令牌无效或已过期") from exc
 
         if payload.get("type") != "refresh":
             raise ValueError("刷新令牌类型错误")
