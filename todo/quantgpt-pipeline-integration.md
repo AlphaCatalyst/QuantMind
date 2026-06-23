@@ -12,8 +12,10 @@
   - `backend/services/engine/research/factor_promotion.py`
   - `backend/services/engine/research/factor_signal_adapter.py`
 - 已完成前端入口：
-  - `electron/src/features/research/components/QuantGptFactorLab.tsx`
-  - 投研平台 `QuantGPT` tab
+  - 底部导航新增 `因子研究`，路由为 `/factor-research`
+  - 页面文件：`electron/src/pages/FactorResearchPage.tsx`
+  - 工作台组件：`electron/src/features/research/components/FactorResearchWorkbench.tsx`
+  - 投研平台已移除旧 `QuantGPT` tab，避免把因子研究误放进候选池流程。
 - 已完成基础测试：
   - `backend/services/tests/test_quantgpt_client.py`
   - `backend/services/tests/test_quantgpt_factor_mapping.py`
@@ -32,7 +34,7 @@
   - [ ] `GET /api/v1/research/factors/candidates`
   - [ ] `POST /api/v1/research/factors/candidates/{candidate_id}/evaluate`
   - [ ] `GET /api/v1/research/factors/runs/{run_id}`
-- [ ] 前端 QuantGPT tab 接入真实 API。
+- [ ] 前端 `因子研究` 工作台接入真实 API。
 - [ ] 增加 API contract tests。
 - [ ] 增加 fresh-db smoke test。
 
@@ -88,4 +90,4 @@
 - [ ] 真实数据 repeated-run 可复现性。
 - [ ] Feature promotion 去重和回滚。
 - [ ] Shadow signal 不绕过风控。
-- [ ] Playwright：投研平台 QuantGPT tab 创建和轮询任务。
+- [ ] Playwright：底部导航进入 `因子研究`，创建和轮询任务。

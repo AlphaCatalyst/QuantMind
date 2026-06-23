@@ -40,6 +40,7 @@ const QuantBotPage = lazy(() => import('./features/quantbot/pages/QuantBotPage')
 const AIIDEPage = lazy(() => import('./pages/AIIDEPage'));
 const ModelTrainingPage = lazy(() => import('./pages/ModelTrainingPage'));
 const ModelRegistryPage = lazy(() => import('./pages/ModelRegistryPage'));
+const FactorResearchPage = lazy(() => import('./pages/FactorResearchPage'));
 const ResearchPlatformPage = lazy(() => import('./pages/ResearchPlatformPage').then(m => ({ default: m.default || m.ResearchPlatformPage })));
 const RealTradingPage = lazy(() => import('./pages/trading/RealTradingPage'));
 const AdminPage = lazy(() => import('./features/admin/AdminPage'));
@@ -112,6 +113,7 @@ export default function App() {
       'ai-ide': '/ai-ide',
       'model-training': '/model-training',
       'model-registry': '/model-registry',
+      'factor-research': '/factor-research',
       'research': '/research',
       'trading': '/trading',
       'profile': '/user-center',
@@ -147,6 +149,8 @@ export default function App() {
       dispatch(setCurrentTab('model-training' as DashboardTab));
     } else if (location.pathname.startsWith('/model-registry')) {
       dispatch(setCurrentTab('model-registry' as DashboardTab));
+    } else if (location.pathname.startsWith('/factor-research')) {
+      dispatch(setCurrentTab('factor-research' as DashboardTab));
     } else if (location.pathname.startsWith('/research')) {
       dispatch(setCurrentTab('research' as DashboardTab));
     } else if (location.pathname.startsWith('/trading')) {
@@ -454,6 +458,14 @@ export default function App() {
                     element={
                       <ProtectedRoute>
                         <ModelRegistryPage />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route
+                    path="/factor-research"
+                    element={
+                      <ProtectedRoute>
+                        <FactorResearchPage />
                       </ProtectedRoute>
                     }
                   />

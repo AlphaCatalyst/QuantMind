@@ -78,7 +78,7 @@ const workflowSteps = [
   { icon: ShieldCheck, title: '灰度信号', value: 'Sim only', tone: 'amber' },
 ];
 
-export const QuantGptFactorLab: React.FC = () => {
+export const FactorResearchWorkbench: React.FC = () => {
   const [mode, setMode] = React.useState<LabMode>('evaluate');
   const [expression, setExpression] = React.useState(FACTOR_TEMPLATES[0].expression);
   const [universe, setUniverse] = React.useState('hs300');
@@ -166,8 +166,8 @@ export const QuantGptFactorLab: React.FC = () => {
                 <FlaskConical className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="m-0 text-base font-black text-slate-900">QuantGPT 因子实验室</h2>
-                <p className="m-0 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Factor Research Sidecar</p>
+                <h2 className="m-0 text-base font-black text-slate-900">因子研究工作台</h2>
+                <p className="m-0 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Cross-module Factor Pipeline</p>
               </div>
             </div>
             <Segmented
@@ -261,12 +261,12 @@ export const QuantGptFactorLab: React.FC = () => {
 
           <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3">
             <div className="flex flex-wrap items-center gap-2">
-              <Tag color="success" className="m-0 rounded-full font-bold">Adapter ready</Tag>
-              <Tag color="success" className="m-0 rounded-full font-bold">Real-data smoke passed</Tag>
-              <Tag color="processing" className="m-0 rounded-full font-bold">API router pending</Tag>
+              <Tag color="success" className="m-0 rounded-full font-bold">挖掘引擎适配器已就绪</Tag>
+              <Tag color="success" className="m-0 rounded-full font-bold">真实数据 Smoke 通过</Tag>
+              <Tag color="processing" className="m-0 rounded-full font-bold">任务 API 待接入</Tag>
               {selectedTemplate && <Tag className="m-0 rounded-full bg-white font-bold">{selectedTemplate.label}</Tag>}
             </div>
-            <Tooltip title="后端 research router 固化后启用">
+            <Tooltip title="因子研究任务 API 固化后启用">
               <Button type="primary" icon={<Play className="h-4 w-4" />} disabled className="rounded-xl font-black">
                 提交评估
               </Button>
@@ -278,20 +278,40 @@ export const QuantGptFactorLab: React.FC = () => {
           <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
             <div className="mb-4 flex items-center gap-2">
               <Sparkles className="h-4 w-4 text-blue-500" />
-              <Text className="text-sm font-black text-slate-800">接入状态</Text>
+              <Text className="text-sm font-black text-slate-800">能力状态</Text>
             </div>
             <div className="space-y-3">
               {[
-                ['QuantGPT client', '已完成'],
-                ['Payload mapping', '已完成'],
-                ['Signal adapter', '已完成'],
+                ['挖掘引擎适配器', '已完成'],
+                ['表达式契约映射', '已完成'],
+                ['信号适配器', '已完成'],
                 ['真实数据 smoke', '已通过'],
-                ['Research API', '待挂载'],
+                ['因子研究 API', '待挂载'],
                 ['前端任务流', '待联调'],
               ].map(([label, value]) => (
                 <div key={label} className="flex items-center justify-between rounded-xl bg-slate-50 px-3 py-2">
                   <span className="text-xs font-bold text-slate-500">{label}</span>
                   <span className={`text-xs font-black ${value === '已完成' || value === '已通过' ? 'text-emerald-600' : 'text-amber-600'}`}>{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
+            <div className="mb-4 flex items-center gap-2">
+              <GitBranch className="h-4 w-4 text-teal-500" />
+              <Text className="text-sm font-black text-slate-800">产物去向</Text>
+            </div>
+            <div className="space-y-2">
+              {[
+                ['模型训练', '晋升为训练特征'],
+                ['模型管理', '进入因子贡献与版本追踪'],
+                ['智能策略', '转成可引用信号模板'],
+                ['回测中心', '验证分组收益与换手成本'],
+              ].map(([target, usage]) => (
+                <div key={target} className="rounded-xl border border-slate-100 bg-slate-50 px-3 py-2">
+                  <div className="text-xs font-black text-slate-800">{target}</div>
+                  <div className="mt-0.5 text-[11px] font-bold text-slate-500">{usage}</div>
                 </div>
               ))}
             </div>
@@ -340,4 +360,4 @@ export const QuantGptFactorLab: React.FC = () => {
   );
 };
 
-export default QuantGptFactorLab;
+export default FactorResearchWorkbench;

@@ -67,7 +67,6 @@ import {
   normalizeYiValue,
   safeNum,
 } from '../features/research/utils/formatters';
-import QuantGptFactorLab from '../features/research/components/QuantGptFactorLab';
 import '../styles/research-next-theme.css';
 
 const { Text, Title, Paragraph } = Typography;
@@ -2327,12 +2326,10 @@ export const ResearchPlatformPage: React.FC = () => {
                         options={[
                           { label: <div className="flex items-center gap-2 px-2"><LibraryBig className="h-3.5 w-3.5" />候选池 ({filteredRows.length})</div>, value: 'candidates' },
                           { label: <div className="flex items-center gap-2 px-2"><Quote className="h-3.5 w-3.5" />自选 ({watchlistTotal})</div>, value: 'watchlist' },
-                          { label: <div className="flex items-center gap-2 px-2"><Microscope className="h-3.5 w-3.5" />研究池 ({poolTotal})</div>, value: 'pool' },
-                          { label: <div className="flex items-center gap-2 px-2"><Sparkles className="h-3.5 w-3.5" />QuantGPT</div>, value: 'quantgpt' }
+                          { label: <div className="flex items-center gap-2 px-2"><Microscope className="h-3.5 w-3.5" />研究池 ({poolTotal})</div>, value: 'pool' }
                         ]}
                         className="research-next-segmented p-1.5"
                       />
-                      {activeDataSource !== 'quantgpt' && (
                       <div className="flex items-center gap-3">
                         {activeDataSource === 'candidates' && (
                           <div className="flex items-center rounded-[18px] border border-slate-200 bg-slate-50/50 p-1 gap-1">
@@ -2364,14 +2361,10 @@ export const ResearchPlatformPage: React.FC = () => {
                           onChange={e => setKeyword(e.target.value)}
                         />
                       </div>
-                      )}
                     </div>
 
                     <div className="flex flex-col flex-1">
                       <div className="flex-1">
-                        {activeDataSource === 'quantgpt' && (
-                          <QuantGptFactorLab />
-                        )}
                         {activeDataSource === 'candidates' && (
                           <Table<ResearchStockRow>
                             className={FIELD_STYLES.table}

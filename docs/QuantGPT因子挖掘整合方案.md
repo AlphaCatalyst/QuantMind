@@ -2,14 +2,14 @@
 
 ## 定位
 
-QuantGPT 在 QuantMind 中定位为因子研究与因子进化引擎，不替代 QuantMind 的训练、模型注册、推理、回测和交易执行主链路。
+QuantMind 对外暴露的是独立的“因子研究”能力；QuantGPT 在其中定位为当前可接入的因子研究与因子进化引擎，不替代 QuantMind 的训练、模型注册、推理、回测和交易执行主链路。
 
 目标是把 QuantGPT 的表达式解析、因子分组回测、反过拟合验证、滚动验证、因子评分和进化搜索能力，收敛到 QuantMind 的投研、训练、信号和风控体系内。
 
 当前状态：
 
 - 已落地：`backend/services/engine/research/` 中的 QuantGPT adapter、payload mapping、promotion gate、signal adapter。
-- 已落地：投研平台 `QuantGPT` tab，前端入口为 `electron/src/features/research/components/QuantGptFactorLab.tsx`。
+- 已落地：底部导航 `因子研究` 入口，路由为 `/factor-research`，前端工作台为 `electron/src/features/research/components/FactorResearchWorkbench.tsx`。
 - 已落地：adapter 单元测试和真实数据只读 smoke 脚本。
 - 未完成：候选因子持久化、后端 research factor API、异步任务、feature catalog 晋升、真实 signal 写入、可点击闭环。
 
@@ -301,8 +301,11 @@ Campaign 输出：
 
 现有入口：
 
-- 投研平台 `QuantGPT` tab。
-- 文件：`electron/src/features/research/components/QuantGptFactorLab.tsx`。
+- 底部导航 `因子研究`。
+- 路由：`/factor-research`。
+- 页面：`electron/src/pages/FactorResearchPage.tsx`。
+- 工作台组件：`electron/src/features/research/components/FactorResearchWorkbench.tsx`。
+- 投研平台保留为候选池、自选、研究池工作台，不承载因子挖掘任务。
 
 需要补齐：
 
@@ -401,7 +404,7 @@ curl http://127.0.0.1:8000/health
 
 需要 Playwright 覆盖：
 
-- 登录后进入投研平台 QuantGPT tab。
+- 登录后从底部导航进入 `因子研究`。
 - 创建候选因子。
 - 看到 pending/running/completed 状态。
 - 评估完成后看到指标。
@@ -461,7 +464,7 @@ curl http://127.0.0.1:8000/health
 
 1. 建表：`qm_factor_candidates`、`qm_factor_candidate_runs`。
 2. API：`POST /api/v1/research/factors/candidates`、`POST /evaluate`、`GET /runs/{run_id}`。
-3. 前端：QuantGPT tab 接真实 API。
+3. 前端：`因子研究` 工作台接真实 API。
 4. 测试：fresh-db + API contract + Playwright 基础流。
 
 完成 Phase 1 后，再做自动挖掘 campaign。否则直接做 campaign 会缺持久化、状态管理和验收口径。

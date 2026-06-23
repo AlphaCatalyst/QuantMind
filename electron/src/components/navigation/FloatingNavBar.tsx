@@ -2,6 +2,7 @@ import React from 'react';
 import {
   ArrowLeftRight,
   Boxes,
+  Beaker,
   Layers,
   CircleUserRound,
   FlaskConical,
@@ -38,6 +39,7 @@ export const FloatingNavBar: React.FC<FloatingNavBarProps> = ({ current, onChang
     { id: 'agent', label: 'QuantBot', icon: Orbit },
     { id: 'model-training', label: '模型训练', icon: Layers },
     { id: 'model-registry', label: '模型管理', icon: Boxes },
+    { id: 'factor-research', label: '因子研究', icon: Beaker },
     { id: 'research', label: '投研平台', icon: Search },
     { id: 'trading', label: '实盘交易', icon: ArrowLeftRight },
     { id: 'profile', label: '个人中心', icon: CircleUserRound }
@@ -49,7 +51,7 @@ export const FloatingNavBar: React.FC<FloatingNavBarProps> = ({ current, onChang
 
   const groupedNavItems: NavItemConfig[][] = [
     navItems.filter((item) => ['dashboard', 'strategy', 'ai-ide', 'backtest', 'agent'].includes(item.id)),
-    navItems.filter((item) => ['model-training', 'model-registry', 'research', 'trading'].includes(item.id)),
+    navItems.filter((item) => ['model-training', 'model-registry', 'factor-research', 'research', 'trading'].includes(item.id)),
     navItems.filter((item) => ['profile', 'admin'].includes(item.id))
   ].filter((group) => group.length > 0);
 
