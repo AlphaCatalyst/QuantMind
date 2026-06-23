@@ -22,7 +22,7 @@ import os
 import time
 from contextlib import contextmanager
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional
+from typing import Any
 from uuid import uuid4
 
 from sqlalchemy import create_engine, text
@@ -84,6 +84,47 @@ def get_db():  # type: ignore[override]
         session.close()
 
 
+def ensure_strategy_storage_tables() -> None:
+    """Ensure strategy storage tables exist for fresh OSS databases."""
+    ddl = """
+        CREATE TABLE IF NOT EXISTS strategies (
+            id SERIAL PRIMARY KEY,
+            user_id VARCHAR(64) NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            description TEXT,
+            strategy_type VARCHAR(64) NOT NULL DEFAULT 'CUSTOM',
+            status VARCHAR(32) NOT NULL DEFAULT 'DRAFT',
+            config JSONB NOT NULL DEFAULT '{}'::jsonb,
+            parameters JSONB NOT NULL DEFAULT '{}'::jsonb,
+            execution_config JSONB NOT NULL DEFAULT '{}'::jsonb,
+            code TEXT,
+            cos_url TEXT,
+            cos_key TEXT,
+            code_hash VARCHAR(64),
+            file_size INTEGER,
+            tags TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+            is_public BOOLEAN NOT NULL DEFAULT FALSE,
+            shared_users JSONB NOT NULL DEFAULT '[]'::jsonb,
+            backtest_count INTEGER NOT NULL DEFAULT 0,
+            view_count INTEGER NOT NULL DEFAULT 0,
+            like_count INTEGER NOT NULL DEFAULT 0,
+            version INTEGER NOT NULL DEFAULT 1,
+            is_verified BOOLEAN NOT NULL DEFAULT FALSE,
+            created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )
+    """
+    index_statements = (
+        "CREATE INDEX IF NOT EXISTS idx_strategies_user_status ON strategies (user_id, status)",
+        "CREATE INDEX IF NOT EXISTS idx_strategies_code_hash ON strategies (code_hash)",
+        "CREATE INDEX IF NOT EXISTS idx_strategies_updated_at ON strategies (updated_at)",
+    )
+    with get_db() as session:
+        session.execute(text(ddl))
+        for stmt in index_statements:
+            session.execute(text(stmt))
+
+
 # ---------------------------------------------------------------------------
 # COS 服务（共享层，已有 TencentCOSService）
 # ---------------------------------------------------------------------------
@@ -127,8 +168,8 @@ def _ensure_int_user_id(user_id: str) -> int:
     if get_db is None:
         try:
             return int(user_id)
-        except ValueError:
-            raise ValueError(f"无法解析 user_id={user_id!r} 为整数，且数据库不可用")
+        except ValueError as exc:
+            raise ValueError(f"无法解析 user_id={user_id!r} 为整数，且数据库不可用") from exc
 
     try:
         with get_db() as session:
@@ -153,8 +194,8 @@ def _ensure_int_user_id(user_id: str) -> int:
     # 3. 最后尝试直接转换
     try:
         return int(user_id)
-    except ValueError:
-        raise ValueError(f"user_id={user_id!r} 无法解析为整数且在数据库中不存在")
+    except ValueError as exc:
+        raise ValueError(f"user_id={user_id!r} 无法解析为整数且在数据库中不存在") from exc
 
 
 def _parse_tags(raw: Any) -> list[str]:
@@ -370,7 +411,7 @@ class StrategyStorageService:
                 sql = f"""
                     INSERT INTO strategies (
                         user_id, name, description, strategy_type, status,
-                        config, parameters, execution_config, code, cos_url, 
+                        config, parameters, execution_config, code, cos_url,
                         { "cos_key," if has_cos_key else "" }
                         code_hash, file_size,
                         tags, is_public, shared_users,
@@ -453,7 +494,7 @@ class StrategyStorageService:
             cos_key_expr = "cos_key" if has_cos_key else "NULL::text as cos_key"
             sql = f"""
                 SELECT id, user_id, name, description, strategy_type, status,
-                       config, parameters, code, cos_url, {cos_key_expr}, 
+                       config, parameters, code, cos_url, {cos_key_expr},
                        code_hash, file_size, tags, is_public, created_at, updated_at,
                        is_verified, execution_config
                 FROM strategies

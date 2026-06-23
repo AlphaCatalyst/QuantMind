@@ -44,6 +44,7 @@ async def lifespan(app: FastAPI):
 
     try:
         init_sync_db_pool(pool_size=20, max_overflow=10)
+        _ensure_engine_storage_tables()
     except Exception as e:
         app.state.startup_healthy = False
         logger.error(f"❌ Sync database pool init failed: {e}")
@@ -128,6 +129,19 @@ async def _bootstrap_qlib_runtime() -> None:
     await asyncio.to_thread(qlib_service.initialize)
     await BacktestPersistence().ensure_tables()
     await OptimizationPersistence().ensure_tables()
+
+
+def _ensure_engine_storage_tables() -> None:
+    """Ensure sync-backed engine storage tables exist on fresh OSS databases."""
+    from backend.shared.database_pool import get_db
+    from backend.shared.strategy_storage import ensure_strategy_storage_tables
+    from backend.services.engine.ai_strategy.models.stock_pool_file import (
+        Base as StockPoolFileBase,
+    )
+
+    ensure_strategy_storage_tables()
+    with get_db() as session:
+        StockPoolFileBase.metadata.create_all(bind=session.get_bind(), checkfirst=True)
 
 
 app = FastAPI(

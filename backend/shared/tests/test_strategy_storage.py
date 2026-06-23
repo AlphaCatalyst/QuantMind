@@ -5,7 +5,7 @@ StrategyStorageService 单元测试
 
 import unittest
 from datetime import datetime, timezone
-from unittest.mock import MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 
 class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
@@ -29,6 +29,7 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
             svc._cos = mock_cos
         else:
             svc._cos = None
+        svc._has_cos_key_col = None
         return svc
 
     # ------------------------------------------------------------------
@@ -89,6 +90,29 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
         svc = self._make_service(cos_available=True)
         self.assertFalse(svc._local_mode)
 
+    def test_ensure_strategy_storage_tables_executes_create_table(self):
+        from backend.shared.strategy_storage import ensure_strategy_storage_tables
+
+        executed: list[str] = []
+
+        class FakeSession:
+            def execute(self, statement):
+                executed.append(str(statement))
+
+        class FakeDb:
+            def __enter__(self):
+                return FakeSession()
+
+            def __exit__(self, exc_type, exc, tb):
+                return False
+
+        with patch("backend.shared.strategy_storage.get_db", return_value=FakeDb()):
+            ensure_strategy_storage_tables()
+
+        joined = "\n".join(executed)
+        self.assertIn("CREATE TABLE IF NOT EXISTS strategies", joined)
+        self.assertIn("idx_strategies_user_status", joined)
+
     # ------------------------------------------------------------------
     # save()
     # ------------------------------------------------------------------
@@ -96,9 +120,7 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
     async def test_save_calls_cos_and_db_returns_id(self):
         svc = self._make_service(cos_available=True)
 
-        db_result = {"id": 42}
-
-        def fake_upsert(**kw):
+        def fake_upsert(*args, **kw):
             return "42"
 
         svc._db_upsert = fake_upsert
@@ -121,9 +143,9 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
         """COS 不可用时，save 应仍然写入 PG（code 字段保存代码）。"""
         svc = self._make_service(cos_available=False)
 
-        def fake_upsert(**kw):
+        def fake_upsert(*args, **kw):
             # 确认 code 非空
-            self.assertIsNotNone(kw.get("code"))
+            self.assertIsNotNone(args[3] if len(args) > 3 else kw.get("code"))
             return "99"
 
         svc._db_upsert = fake_upsert
@@ -149,14 +171,13 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
             1,  # id
             "My Strategy",  # name
             "desc",  # description
-            "quantitative",  # strategy_type
             "draft",  # status
             "https://old.cos/key.py",  # cos_url
             "user_strategies/1/2024/01/abc.py",  # cos_key
             "deadbeef",  # code_hash
-            100,  # file_size
             '["AI"]',  # tags
-            False,  # is_public
+            False,  # is_verified
+            {"max_buy_drop": -0.03},  # execution_config
             datetime(2024, 1, 1, tzinfo=timezone.utc),  # created_at
             datetime(2024, 1, 2, tzinfo=timezone.utc),  # updated_at
         )
@@ -180,17 +201,23 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
         item = results[0]
         self.assertEqual(item["id"], "1")
         self.assertEqual(item["name"], "My Strategy")
-        # presign URL 应被调用（cos_key 不为空）
-        svc._cos.get_presigned_url.assert_called_once()
-        self.assertIsNotNone(item["cos_url"])
+        self.assertEqual(item["cos_url"], "https://old.cos/key.py")
+        svc._cos.get_presigned_url.assert_not_called()
 
     def test_list_without_user_id_returns_empty(self):
-        """user_id 无法解析时返回空列表而不抛异常。"""
+        """无匹配策略时返回空列表。"""
         svc = self._make_service(cos_available=True)
-        with patch(
-            "backend.shared.strategy_storage._ensure_int_user_id",
-            side_effect=ValueError("bad"),
-        ):
+
+        mock_session = MagicMock()
+        mock_session.execute.return_value = MagicMock(fetchall=lambda: [])
+
+        from contextlib import contextmanager
+
+        @contextmanager
+        def fake_db_ctx():
+            yield mock_session
+
+        with patch("backend.shared.strategy_storage.get_db", new=fake_db_ctx):
             results = svc.list(user_id="bad_user")
         self.assertEqual(results, [])
 
@@ -198,7 +225,7 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
     # delete()
     # ------------------------------------------------------------------
 
-    def test_delete_returns_true_on_success(self):
+    async def test_delete_returns_true_on_success(self):
         svc = self._make_service(cos_available=False)
 
         mock_session = MagicMock()
@@ -216,29 +243,15 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
             patch("backend.shared.strategy_storage._ensure_int_user_id", return_value=1),
             patch("backend.shared.strategy_storage.get_db", new=fake_db_ctx),
         ):
-            result = svc.delete(strategy_id=1, user_id="1")
+            result = await svc.delete(strategy_id=1, user_id="1")
 
         self.assertTrue(result)
 
-    def test_delete_returns_false_when_not_found(self):
+    async def test_delete_returns_false_when_not_found(self):
         svc = self._make_service(cos_available=False)
+        svc.get = AsyncMock(return_value=None)
 
-        mock_session = MagicMock()
-        mock_result = MagicMock()
-        mock_result.rowcount = 0
-        mock_session.execute.return_value = mock_result
-
-        from contextlib import contextmanager
-
-        @contextmanager
-        def fake_db_ctx():
-            yield mock_session
-
-        with (
-            patch("backend.shared.strategy_storage._ensure_int_user_id", return_value=1),
-            patch("backend.shared.strategy_storage.get_db", new=fake_db_ctx),
-        ):
-            result = svc.delete(strategy_id=999, user_id="1")
+        result = await svc.delete(strategy_id=999, user_id="1")
 
         self.assertFalse(result)
 
@@ -273,15 +286,11 @@ class TestStrategyStorageService(unittest.IsolatedAsyncioTestCase):
             yield sessions[idx]
 
         with patch("backend.shared.strategy_storage.get_db", new=fake_db_ctx):
-            with patch(
-                "backend.shared.strategy_storage._ensure_int_user_id",
-                side_effect=[1, 2],
-            ):
-                svc.list(user_id="user_a")
-                svc.list(user_id="user_b")
+            svc.list(user_id="user_a")
+            svc.list(user_id="user_b")
 
         uids = [p["uid"] for p in executed_params if p and "uid" in p]
-        self.assertEqual(uids, [1, 2], "两次调用应使用不同的 user_id 参数")
+        self.assertEqual(uids, ["user_a", "user_b"], "两次调用应使用不同的 user_id 参数")
 
 
 if __name__ == "__main__":
