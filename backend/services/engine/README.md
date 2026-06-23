@@ -2,6 +2,22 @@
 
 本服务是 QuantMind 的核心计算中枢，整合了 AI 策略生成、模型推理、高性能 Qlib 回测及深度投研分析功能。
 
+## QuantGPT 因子挖掘整合
+
+QuantGPT 因子挖掘整合的正式设计文档见：
+
+- [`docs/QuantGPT因子挖掘整合方案.md`](../../../docs/QuantGPT因子挖掘整合方案.md)
+
+当前 engine 侧已落地只读适配层：
+
+- `backend/services/engine/research/quantgpt_client.py`：QuantGPT sidecar HTTP client。
+- `backend/services/engine/research/quantgpt_mapping.py`：QuantGPT payload 解析与股票代码前缀化。
+- `backend/services/engine/research/factor_promotion.py`：候选因子晋升阈值判定。
+- `backend/services/engine/research/factor_signal_adapter.py`：因子值到 QuantMind signal event 的转换。
+- `backend/services/engine/scripts/quantgpt_real_data_smoke.py`：真实数据只读 smoke test。
+
+尚未完成的闭环包括：候选因子持久化表、`/api/v1/research/factors/*` API、异步 evaluation task、feature catalog 晋升、shadow signal 写入和前端可点击任务流。
+
 ## 修复记录（2026-06-02，策略列表模式隔离）
 
 - `/api/v1/strategies` 新增 `trading_mode=REAL|SHADOW|SIMULATION` 查询参数透传到 trade 状态接口。

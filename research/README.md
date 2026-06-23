@@ -17,10 +17,23 @@
 ### 3. [Factors](./factors/) (Alpha Research)
 存放活跃的研究因子脚本，如基于 DeepSeek 的因子生成逻辑。
 
-### 4. [Notebooks](./notebooks/) (Exploratory Analysis)
+### 4. QuantGPT 因子挖掘整合
+QuantGPT 将作为 QuantMind 的因子研究与因子进化引擎接入，负责候选因子表达式生成、分组回测、反过拟合验证、滚动验证、评分和自动迭代。
+
+正式整合方案见：
+
+- [`docs/QuantGPT因子挖掘整合方案.md`](../docs/QuantGPT因子挖掘整合方案.md)
+
+当前已落地点：
+
+- 后端 adapter：`backend/services/engine/research/`
+- 前端入口：投研平台 `QuantGPT` tab
+- 只读真实数据 smoke：`backend/services/engine/scripts/quantgpt_real_data_smoke.py`
+
+### 5. [Notebooks](./notebooks/) (Exploratory Analysis)
 存放 Jupyter Notebooks，用于探索性数据分析 (EDA) 和模型可视化。
 
-### 5. [Scripts](./scripts/) (Utilities)
+### 6. [Scripts](./scripts/) (Utilities)
 用于模型上线推送 (`promote_model.py`) 等生产辅助脚本。
 
 ---
