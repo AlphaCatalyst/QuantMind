@@ -1,12 +1,15 @@
 import React from 'react';
 import { Button } from 'antd';
-import { Download, FlaskConical, RefreshCw } from 'lucide-react';
+import { FlaskConical, Layers, RefreshCw } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { PAGE_LAYOUT } from '../config/pageLayout';
 import { BUTTON_STYLES } from '../features/research/constants';
 import FactorResearchWorkbench from '../features/research/components/FactorResearchWorkbench';
 import '../styles/research-next-theme.css';
 
 const FactorResearchPage: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={`${PAGE_LAYOUT.outerClass} research-platform-page`}>
       <div className={`${PAGE_LAYOUT.frameClass} overflow-y-auto custom-scrollbar`}>
@@ -24,8 +27,12 @@ const FactorResearchPage: React.FC = () => {
             <Button icon={<RefreshCw className="h-4 w-4" />} className={BUTTON_STYLES.headerRefresh}>
               刷新状态
             </Button>
-            <Button icon={<Download className="h-4 w-4" />} className={BUTTON_STYLES.headerSave} disabled>
-              导出因子
+            <Button
+              icon={<Layers className="h-4 w-4" />}
+              className={BUTTON_STYLES.headerSave}
+              onClick={() => navigate('/model-training')}
+            >
+              进入模型训练
             </Button>
           </div>
         </header>

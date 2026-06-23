@@ -5,7 +5,7 @@
 ## 说明
 - 归属路径：electron\src\components\navigation
 - 修改本目录代码后请同步更新本 README
-- `FloatingNavBar.tsx` 新增 `因子研究` 导航项（`id=factor-research`），路由到 `/factor-research`，作为模型训练、模型管理、投研平台、回测中心可共同消费的独立因子研究入口。
+- `FloatingNavBar.tsx` 新增 `因子研究` 导航项（`id=factor-research`），路由到 `/factor-research`，并固定放在 `模型训练` 之前，作为模型训练、模型管理、投研平台、回测中心可共同消费的上游因子研究入口。
 - `FloatingNavBar.tsx` 已移除开发期 `console` 调试输出，点击逻辑简化为直接触发 `onChange`。
 - `FloatingNavBar.tsx` 已移除独立 `通知中心` 导航项（`id=notifications`）；通知入口保留在仪表盘通知卡片内。
 - `FloatingNavBar.tsx` 已将主导航图标统一替换为更克制的终端风格线性图标：仪表盘/趋势线/终端/脑回路/回测实验/智能中枢/模块盒组/交易双向/社区消息/用户轮廓，降低原有图标语义混杂感。

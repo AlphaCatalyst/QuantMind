@@ -71,11 +71,71 @@ const statusTag = (status: GateRow['status']) => {
   return <Tag color="processing" className="m-0 rounded-full font-bold">待跑数</Tag>;
 };
 
-const workflowSteps = [
-  { icon: Beaker, title: '表达式评估', value: 'Phase 1', tone: 'blue' },
-  { icon: Database, title: '真实数据 Smoke', value: 'Passed', tone: 'emerald' },
-  { icon: GitBranch, title: 'Feature 晋升', value: 'Shadow', tone: 'violet' },
-  { icon: ShieldCheck, title: '灰度信号', value: 'Sim only', tone: 'amber' },
+const PIPELINE_STEPS = [
+  {
+    icon: Beaker,
+    title: '因子构思',
+    value: 'Seed',
+    description: '手动表达式、模板、自动挖掘 campaign',
+    output: '候选表达式',
+    tone: 'blue',
+  },
+  {
+    icon: Database,
+    title: '数据准备',
+    value: 'Data',
+    description: '股票池、窗口、OHLCV、特征快照',
+    output: '标准输入集',
+    tone: 'emerald',
+  },
+  {
+    icon: FlaskConical,
+    title: '计算评估',
+    value: 'Eval',
+    description: '因子值、分组收益、IC、换手',
+    output: '评估 run',
+    tone: 'violet',
+  },
+  {
+    icon: ShieldCheck,
+    title: '研究门禁',
+    value: 'Gate',
+    description: '反过拟合、滚动验证、覆盖率、成本',
+    output: '通过/阻断',
+    tone: 'amber',
+  },
+  {
+    icon: GitBranch,
+    title: '入库版本',
+    value: 'Catalog',
+    description: '候选、run、factor values 可追溯',
+    output: 'Factor Catalog',
+    tone: 'blue',
+  },
+  {
+    icon: Sparkles,
+    title: '晋升训练',
+    value: 'Train',
+    description: '生成 shadow feature set，再交给模型训练',
+    output: '训练特征',
+    tone: 'emerald',
+  },
+  {
+    icon: Activity,
+    title: '信号灰度',
+    value: 'Signal',
+    description: '转为 shadow signal，供回测和模拟盘验证',
+    output: '信号流',
+    tone: 'violet',
+  },
+  {
+    icon: CheckCircle2,
+    title: '监控回滚',
+    value: 'Ops',
+    description: '表现监控、版本回退、审计记录',
+    output: '生产门禁',
+    tone: 'amber',
+  },
 ];
 
 export const FactorResearchWorkbench: React.FC = () => {
@@ -132,30 +192,53 @@ export const FactorResearchWorkbench: React.FC = () => {
 
   return (
     <div className="space-y-5 pb-2">
-      <div className="grid gap-3 md:grid-cols-4">
-        {workflowSteps.map((step) => {
-          const Icon = step.icon;
-          const toneClass = step.tone === 'emerald'
-            ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
-            : step.tone === 'violet'
-              ? 'bg-violet-50 text-violet-700 border-violet-100'
-              : step.tone === 'amber'
-                ? 'bg-amber-50 text-amber-700 border-amber-100'
-                : 'bg-blue-50 text-blue-700 border-blue-100';
-          return (
-            <div key={step.title} className="rounded-2xl border border-slate-100 bg-white/80 p-4 shadow-sm">
-              <div className="mb-3 flex items-center justify-between">
-                <span className={`flex h-9 w-9 items-center justify-center rounded-xl border ${toneClass}`}>
-                  <Icon className="h-4 w-4" />
-                </span>
-                <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-slate-500">
-                  {step.value}
-                </span>
+      <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
+        <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <div className="mb-1 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Pre-training Pipeline</div>
+            <h2 className="m-0 text-lg font-black text-slate-900">因子研究是模型训练的前置流水线</h2>
+            <p className="m-0 mt-1 text-xs font-medium leading-6 text-slate-500">
+              只有通过研究门禁并晋升为 shadow feature set 的因子，才进入模型训练的特征选择；未通过的表达式保留为候选或归档。
+            </p>
+          </div>
+          <div className="flex items-center gap-2 rounded-2xl border border-slate-100 bg-slate-50 px-3 py-2 text-xs font-black text-slate-600">
+            <Beaker className="h-4 w-4 text-emerald-500" />
+            因子研究
+            <span className="text-slate-300">/</span>
+            <span className="text-blue-600">模型训练</span>
+            <span className="text-slate-300">/</span>
+            模型管理
+          </div>
+        </div>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {PIPELINE_STEPS.map((step, index) => {
+            const Icon = step.icon;
+            const toneClass = step.tone === 'emerald'
+              ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+              : step.tone === 'violet'
+                ? 'bg-violet-50 text-violet-700 border-violet-100'
+                : step.tone === 'amber'
+                  ? 'bg-amber-50 text-amber-700 border-amber-100'
+                  : 'bg-blue-50 text-blue-700 border-blue-100';
+            return (
+              <div key={step.title} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className={`flex h-9 w-9 items-center justify-center rounded-xl border ${toneClass}`}>
+                    <Icon className="h-4 w-4" />
+                  </span>
+                  <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-slate-500">
+                    {String(index + 1).padStart(2, '0')} · {step.value}
+                  </span>
+                </div>
+                <div className="text-sm font-black text-slate-900">{step.title}</div>
+                <div className="mt-1 min-h-[36px] text-xs font-medium leading-5 text-slate-500">{step.description}</div>
+                <div className="mt-3 rounded-xl bg-white px-3 py-2 text-[11px] font-black text-slate-600">
+                  产物：{step.output}
+                </div>
               </div>
-              <div className="text-sm font-black text-slate-900">{step.title}</div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">

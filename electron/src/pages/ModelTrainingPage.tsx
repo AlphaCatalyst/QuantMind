@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { 
-  Brain, ChevronRight, Play, Settings2, BarChart, Database, 
+  Beaker, Brain, ChevronRight, Play, Settings2, BarChart, Database, 
   Copy, Sparkles, RefreshCcw, Target 
 } from 'lucide-react';
 import { 
@@ -316,6 +316,25 @@ export const ModelTrainingPage: React.FC = () => {
             <div className="flex-1 py-4 overflow-y-auto custom-scrollbar">
               <div className="px-6 mb-2">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">训练步骤</p>
+              </div>
+              <div className="px-4 mb-3">
+                <button
+                  type="button"
+                  onClick={() => navigate('/factor-research')}
+                  className="w-full rounded-2xl border border-emerald-100 bg-emerald-50/70 p-3 text-left transition-all hover:border-emerald-200 hover:bg-emerald-50"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-white text-emerald-600 shadow-sm">
+                      <Beaker className="h-4 w-4" />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-xs font-black text-slate-800">上游：因子研究</div>
+                      <div className="mt-0.5 truncate text-[10px] font-medium text-slate-500">
+                        通过门禁后再进入训练特征集
+                      </div>
+                    </div>
+                  </div>
+                </button>
               </div>
               <div className="space-y-1">
                 {TRAINING_MODULES.map((m, i) => (

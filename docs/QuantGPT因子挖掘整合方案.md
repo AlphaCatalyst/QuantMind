@@ -9,7 +9,7 @@ QuantMind 对外暴露的是独立的“因子研究”能力；QuantGPT 在其�
 当前状态：
 
 - 已落地：`backend/services/engine/research/` 中的 QuantGPT adapter、payload mapping、promotion gate、signal adapter。
-- 已落地：底部导航 `因子研究` 入口，路由为 `/factor-research`，前端工作台为 `electron/src/features/research/components/FactorResearchWorkbench.tsx`。
+- 已落地：底部导航 `因子研究` 入口，路由为 `/factor-research`，位置在 `模型训练` 之前；前端工作台为 `electron/src/features/research/components/FactorResearchWorkbench.tsx`。
 - 已落地：adapter 单元测试和真实数据只读 smoke 脚本。
 - 未完成：候选因子持久化、后端 research factor API、异步任务、feature catalog 晋升、真实 signal 写入、可点击闭环。
 
@@ -29,15 +29,31 @@ QuantMind 对外暴露的是独立的“因子研究”能力；QuantGPT 在其�
 ## 总体架构
 
 ```text
-QuantMind Web / AI-IDE
+QuantMind Web / AI-IDE / 因子研究
   -> quantmind-api /api/v1/research/factors/*
   -> quantmind-engine research service
   -> QuantGPT sidecar or embedded runner
   -> QuantMind local data adapter
   -> qm_factor_candidates / qm_factor_candidate_runs / qm_factor_values
-  -> feature catalog promotion OR shadow signal publication
-  -> model training / model registry / inference / simulation trading
+  -> feature catalog promotion
+  -> model training / model registry / inference
+  -> shadow signal publication / backtest / simulation trading
 ```
+
+## 端到端 Pipeline
+
+因子研究是模型训练的上游，不应作为投研平台或模型训练页内部的附属 tab。完整流水线应固定为：
+
+1. 因子构思：手动表达式、模板库、AI 生成、QuantGPT campaign seed。
+2. 数据准备：股票池、时间窗口、OHLCV、feature snapshot，全部使用 QuantMind 数据口径。
+3. 计算评估：生成 factor values、分组收益、Rank IC、IC IR、turnover、monotonicity。
+4. 研究门禁：反过拟合、滚动验证、覆盖率、方向稳定性、成本敏感性。
+5. 入库版本：写入 candidate、run、factor values，形成可追溯 Factor Catalog。
+6. 晋升训练：通过门禁的因子生成 shadow feature set，进入模型训练的特征选择。
+7. 灰度信号：可选转为 shadow signal，供回测中心、模拟盘和 shadow runner 消费。
+8. 监控回滚：跟踪线上/离线衰减，支持版本回退、审计和权限审批。
+
+模型训练页的“特征选择”只消费已存在或已晋升的 feature；它不负责发现、验证和进化因子。
 
 ### 部署边界
 
@@ -302,6 +318,7 @@ Campaign 输出：
 现有入口：
 
 - 底部导航 `因子研究`。
+- 导航顺序必须在 `模型训练` 之前，表达“因子研究 -> 模型训练 -> 模型管理”的上游关系。
 - 路由：`/factor-research`。
 - 页面：`electron/src/pages/FactorResearchPage.tsx`。
 - 工作台组件：`electron/src/features/research/components/FactorResearchWorkbench.tsx`。

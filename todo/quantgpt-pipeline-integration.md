@@ -13,8 +13,10 @@
   - `backend/services/engine/research/factor_signal_adapter.py`
 - 已完成前端入口：
   - 底部导航新增 `因子研究`，路由为 `/factor-research`
+  - 导航顺序已调整为 `因子研究 -> 模型训练 -> 模型管理`
   - 页面文件：`electron/src/pages/FactorResearchPage.tsx`
   - 工作台组件：`electron/src/features/research/components/FactorResearchWorkbench.tsx`
+  - 工作台顶部已展示完整前置 pipeline：因子构思、数据准备、计算评估、研究门禁、入库版本、晋升训练、信号灰度、监控回滚。
   - 投研平台已移除旧 `QuantGPT` tab，避免把因子研究误放进候选池流程。
 - 已完成基础测试：
   - `backend/services/tests/test_quantgpt_client.py`
@@ -27,6 +29,7 @@
 
 - [ ] 新增 `qm_factor_candidates` 表。
 - [ ] 新增 `qm_factor_candidate_runs` 表。
+- [ ] 明确 candidate -> run -> factor values -> feature promotion 的状态机。
 - [ ] 新增 `backend/services/engine/research/factor_candidate_service.py`。
 - [ ] 新增 `backend/services/engine/routers/research_factors.py`。
 - [ ] 新增 API：
@@ -61,6 +64,7 @@
 - [ ] 新增 `qm_factor_feature_promotions` 表。
 - [ ] 新增 factor value store。
 - [ ] 生成 shadow feature set version。
+- [ ] 在模型训练 feature catalog 中展示通过晋升的因子，并标记来源 run。
 - [ ] 回填历史 factor values。
 - [ ] 调用 `/api/v1/models/run-training`。
 - [ ] 保存 baseline vs promoted model 对比结果。

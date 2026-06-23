@@ -5,7 +5,8 @@
 ## 说明
 - 归属路径：electron\src\pages
 - 修改本目录代码后请同步更新本 README
-- `FactorResearchPage.tsx` 新增独立“因子研究”页面，路由为 `/factor-research`，用于承载候选因子评估、晋升、信号灰度等横向能力；投研平台不再承载旧 `QuantGPT` 子入口。
+- `FactorResearchPage.tsx` 新增独立“因子研究”页面，路由为 `/factor-research`，用于承载候选因子评估、晋升、信号灰度等训练前置能力；投研平台不再承载旧 `QuantGPT` 子入口。
+- `ModelTrainingPage.tsx` 左侧步骤区新增“上游：因子研究”入口，强调训练页第一步只消费已存在或已晋升的训练特征。
 - `ResearchPlatformPage.tsx` 已接入真实投研聚合接口 `GET /api/v1/research/overview`：模型/批次/候选/摘要/行业概念筛选项均由后端返回，页面保留本地 mock 作为接口异常时的降级兜底；同时候选列表已按后端 `pagination` 元信息展示总量与返回条数。
 - `ResearchPlatformPage.tsx` 模型下拉已对齐模型管理数据源：优先使用用户模型元数据中的 `display_name/model_name` 显示友好名称，不再直接展示 `mdl_train_*` 原始模型 ID。
 - `ResearchPlatformPage.tsx` 的“行情量能”筛选区间已收敛为：`成交额 0-10 亿`、`换手率 0-30%`；对应快速模板中的区间参数也已同步压缩到同一范围内，避免模板切换后出现越界值。
