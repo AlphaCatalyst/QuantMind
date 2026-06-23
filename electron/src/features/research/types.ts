@@ -8,7 +8,7 @@ export type FilterSectionKey =
   | 'fundamental'
   | 'technical'
   | 'advanced';
-export type DataSourceTab = 'candidates' | 'watchlist' | 'pool';
+export type DataSourceTab = 'candidates' | 'watchlist' | 'pool' | 'quantgpt';
 
 export interface ResearchModelOption {
   modelId: string;

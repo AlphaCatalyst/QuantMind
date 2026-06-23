@@ -302,6 +302,32 @@ QuantMind 生产约束：
 - `backend/services/tests/test_quantgpt_signal_adapter.py`
 - `backend/services/tests/test_quantgpt_client.py`
 
+前端已融合入口：
+
+- `electron/src/features/research/components/QuantGptFactorLab.tsx`
+  - 将 QuantGPT 的因子表达式输入、候选模板、评估参数、晋升门禁、灰度信号门禁融合为 QuantMind 投研页内的工作台。
+  - 当前保持只读/待接入状态，不直接调用未挂载的后端 research API。
+- `electron/src/pages/ResearchPlatformPage.tsx`
+  - 在投研平台 Segmented 数据源中新增 `QuantGPT` tab。
+  - 现有候选池、自选、研究池逻辑保持不变。
+- `electron/src/features/research/types.ts`
+  - 扩展 `DataSourceTab`，增加 `quantgpt`。
+
+前端验证：
+
+```bash
+cd electron
+npm run lint -- --quiet src/features/research/components/QuantGptFactorLab.tsx src/pages/ResearchPlatformPage.tsx src/features/research/types.ts src/pages/modelRegistryPanels.tsx
+npm run typecheck
+PATH=/usr/local/lib/nodejs/node-v22.22.0-linux-x64/bin:$PATH npm run dev:react -- --host 0.0.0.0
+```
+
+说明：
+
+- `npm ci` 已执行；当前 shell 默认 Node 是 `v18.20.8`，Vite 7 需要 Node 20.19+ 或 22.12+，因此启动 dev server 时显式使用本机 Node 22。
+- Playwright 访问 `http://localhost:3000/#/research` 被认证守卫重定向到 `/auth/login`；前端 shell 加载正常，控制台无 error。
+- `modelRegistryPanels.tsx` 中一个既有 typecheck 阻断点已做最小修复：调度记录展开状态改为显式布尔切换。
+
 已验证命令：
 
 ```bash

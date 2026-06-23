@@ -67,6 +67,7 @@ import {
   normalizeYiValue,
   safeNum,
 } from '../features/research/utils/formatters';
+import QuantGptFactorLab from '../features/research/components/QuantGptFactorLab';
 import '../styles/research-next-theme.css';
 
 const { Text, Title, Paragraph } = Typography;
@@ -1011,7 +1012,7 @@ export const ResearchPlatformPage: React.FC = () => {
           const d = klineData[idx];
           if (!d) return '';
           
-          let html = `
+          const html = `
             <div style="font-size: 11px;">
               <div style="font-weight: bold; margin-bottom: 4px;">${d.date} ${d.date === predictionDate ? '<span style="color: #3b82f6;">[预测基准]</span>' : ''}</div>
               <div style="display: grid; grid-template-cols: 1fr 1fr; gap: 8px;">
@@ -2326,10 +2327,12 @@ export const ResearchPlatformPage: React.FC = () => {
                         options={[
                           { label: <div className="flex items-center gap-2 px-2"><LibraryBig className="h-3.5 w-3.5" />候选池 ({filteredRows.length})</div>, value: 'candidates' },
                           { label: <div className="flex items-center gap-2 px-2"><Quote className="h-3.5 w-3.5" />自选 ({watchlistTotal})</div>, value: 'watchlist' },
-                          { label: <div className="flex items-center gap-2 px-2"><Microscope className="h-3.5 w-3.5" />研究池 ({poolTotal})</div>, value: 'pool' }
+                          { label: <div className="flex items-center gap-2 px-2"><Microscope className="h-3.5 w-3.5" />研究池 ({poolTotal})</div>, value: 'pool' },
+                          { label: <div className="flex items-center gap-2 px-2"><Sparkles className="h-3.5 w-3.5" />QuantGPT</div>, value: 'quantgpt' }
                         ]}
                         className="research-next-segmented p-1.5"
                       />
+                      {activeDataSource !== 'quantgpt' && (
                       <div className="flex items-center gap-3">
                         {activeDataSource === 'candidates' && (
                           <div className="flex items-center rounded-[18px] border border-slate-200 bg-slate-50/50 p-1 gap-1">
@@ -2361,10 +2364,14 @@ export const ResearchPlatformPage: React.FC = () => {
                           onChange={e => setKeyword(e.target.value)}
                         />
                       </div>
+                      )}
                     </div>
 
                     <div className="flex flex-col flex-1">
                       <div className="flex-1">
+                        {activeDataSource === 'quantgpt' && (
+                          <QuantGptFactorLab />
+                        )}
                         {activeDataSource === 'candidates' && (
                           <Table<ResearchStockRow>
                             className={FIELD_STYLES.table}
