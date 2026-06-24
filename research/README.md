@@ -27,7 +27,7 @@ QuantGPT 将作为 QuantMind 的因子研究与因子进化引擎接入，负责
 当前已落地点：
 
 - 后端 adapter：`backend/services/engine/research/`
-- 前端入口：投研平台 `QuantGPT` tab
+- 前端入口：独立 `因子研究` 页面，路由 `/factor-research`，位于 `模型训练` 之前
 - 只读真实数据 smoke：`backend/services/engine/scripts/quantgpt_real_data_smoke.py`
 
 ### 5. [Notebooks](./notebooks/) (Exploratory Analysis)

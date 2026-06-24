@@ -8,15 +8,19 @@ QuantGPT 因子挖掘整合的正式设计文档见：
 
 - [`docs/QuantGPT因子挖掘整合方案.md`](../../../docs/QuantGPT因子挖掘整合方案.md)
 
-当前 engine 侧已落地只读适配层：
+当前 engine/API 侧已落地的核心适配与闭环：
 
 - `backend/services/engine/research/quantgpt_client.py`：QuantGPT sidecar HTTP client。
 - `backend/services/engine/research/quantgpt_mapping.py`：QuantGPT payload 解析与股票代码前缀化。
 - `backend/services/engine/research/factor_promotion.py`：候选因子晋升阈值判定。
 - `backend/services/engine/research/factor_signal_adapter.py`：因子值到 QuantMind signal event 的转换。
 - `backend/services/engine/scripts/quantgpt_real_data_smoke.py`：真实数据只读 smoke test。
+- `backend/services/api/routers/research_factor_service.py`：候选、evaluation run、factor values、feature promotion、campaign、training bridge、approval、shadow signal 和 rollback 的主服务。
+- `/api/v1/research/factors/*`：候选创建、同步本地评估、factor values 查询、bounded campaign、feature catalog 晋升/物化、Shadow Signal 发布、Shadow 训练提交、默认模型审批/审批队列、健康摘要和回滚。
+- 前端 `因子研究` 工作台已接入真实 API，可从独立入口执行候选评估、Campaign、Shadow 特征登记、训练快照物化、Shadow Signal 发布、Shadow 训练、审批请求和回滚。
+- 模型训练页通过 `/api/v1/models/feature-catalog` 读取当前 active `qm_feature_set_*`，可消费因子研究物化后的 `factor_research` 特征分类；模型管理页可展示因子研究来源和 SHAP 贡献。
 
-尚未完成的闭环包括：候选因子持久化表、`/api/v1/research/factors/*` API、异步 evaluation task、feature catalog 晋升、shadow signal 写入和前端可点击任务流。
+仍作为后续增强的能力包括：完整 QuantGPT mutation/crossover/meta-evolution 引擎、跨 campaign 异步并发调度、factor value store 下沉为独立 engine 批量回填服务、shadow runner 订单/持仓结果回流 E2E、容量测试与 Prometheus/SLO 告警面板。
 
 ## 修复记录（2026-06-02，策略列表模式隔离）
 

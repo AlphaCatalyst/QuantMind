@@ -14,7 +14,7 @@
 - `backtestService.ts`: 回测任务提交、状态轮询、增量日志拉取、任务停止、报告导出与参数优化（Qlib）。
 - `refreshOrchestrator.ts`: 统一模块刷新协调器（按模块节流、并发去重、全局触发）。
 - `websocketService.ts`: 全局 WebSocket 连接管理（行情/交易/通知订阅、心跳、断线重连）。
-- `researchService.ts`: 投研聚合接口服务，封装 `/api/v1/research/overview` 参数构建、鉴权头透传与用户态租户头透传。
+- `researchService.ts`: 投研聚合与因子研究接口服务，封装 `/api/v1/research/overview`、`/api/v1/research/factors/*` 参数构建、鉴权头透传、用户态租户头透传，以及因子审批 UI 所需的 `/api/v1/rbac/check-permission` 权限检查。
 
 ## 新增服务说明
 

@@ -19,6 +19,14 @@
 - `research_service.get_research_universe` 已新增 Redis 快路径：当批次 `data_trade_date` 属于 2026 年且缓存可用时，直接用 Redis 快照补齐候选特征，减少高并发下重复联表压力。
 - 股票索引接口 `GET /api/v1/stocks/index` 现统一从数据库 `stock_daily_latest` 最新交易日读取，不再依赖本地 JSON 或硬编码股票数量；前端策略向导与回测页共用同一数据源。
 
+## 因子研究更新（2026-06-24）
+- `quantmind-api` 新增 `/api/v1/research/factors/*`，承载因子研究的候选因子与评估 run 基础闭环。
+- 启动时会确保 `qm_factor_candidates`、`qm_factor_candidate_runs` 存在，避免 fresh DB 下因子研究页面无法创建任务。
+- 启动时会幂等确保 `factor.approve` 权限存在并挂到 admin 角色；因子默认模型审批、审批请求审核和 tenant 级审批队列查看均使用该权限或管理员身份。
+- 新增 tenant 级审批策略接口 `GET/PUT /api/v1/research/factors/approval-policy`，用于配置是否允许直接审批、自审和最少审批人数；审批请求会保存策略快照，审核时按快照执行门禁。
+- 因子默认模型审批已接入统一通知发布器：提交审批请求会通知请求人和审批人，审核通过/拒绝后通知请求人；通知失败不阻断审批主链路。
+- 当前 API 创建的是可追踪 `pending` run，不伪造评估指标；后续由 QuantGPT sidecar 或本地 evaluator 消费 run 并回写 metrics、gate decision 与 factor values。
+
 ## 模块边界（P1）
 - `api` 仅负责统一入口与横切能力：鉴权、限流、审计、路由聚合、服务代理。
 - `api` 自有业务域：`/api/v1/auth/*`、`/api/v1/users/*`、`/api/v1/profiles/*`、`/api/v1/admin/*`、`/api/v1/inquiry`、`/api/v1/files|execute|ai|config/*`（AI-IDE 代理）。

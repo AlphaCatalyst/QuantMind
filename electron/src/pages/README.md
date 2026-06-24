@@ -6,6 +6,7 @@
 - 归属路径：electron\src\pages
 - 修改本目录代码后请同步更新本 README
 - `FactorResearchPage.tsx` 新增独立“因子研究”页面，路由为 `/factor-research`，用于承载候选因子评估、晋升、信号灰度等训练前置能力；投研平台不再承载旧 `QuantGPT` 子入口。
+- `FactorResearchPage.tsx` 的 Feature 晋升面板已展示默认模型审批策略；拥有 `factor.approve` 或管理员权限的用户可配置直接审批、自审和最少审批人数，策略会影响 `审批为默认模型` 与 `提交审批请求` 的可用路径。
 - `ModelTrainingPage.tsx` 左侧步骤区新增“上游：因子研究”入口，强调训练页第一步只消费已存在或已晋升的训练特征。
 - `ResearchPlatformPage.tsx` 已接入真实投研聚合接口 `GET /api/v1/research/overview`：模型/批次/候选/摘要/行业概念筛选项均由后端返回，页面保留本地 mock 作为接口异常时的降级兜底；同时候选列表已按后端 `pagination` 元信息展示总量与返回条数。
 - `ResearchPlatformPage.tsx` 模型下拉已对齐模型管理数据源：优先使用用户模型元数据中的 `display_name/model_name` 显示友好名称，不再直接展示 `mdl_train_*` 原始模型 ID。

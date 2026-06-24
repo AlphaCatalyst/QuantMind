@@ -16,82 +16,380 @@
   - 导航顺序已调整为 `因子研究 -> 模型训练 -> 模型管理`
   - 页面文件：`electron/src/pages/FactorResearchPage.tsx`
   - 工作台组件：`electron/src/features/research/components/FactorResearchWorkbench.tsx`
+  - 工作台默认进入 `挖掘` 模式，优先暴露自动因子 Campaign；手动评估、晋升和信号发布保留为同页正交操作。
   - 工作台顶部已展示完整前置 pipeline：因子构思、数据准备、计算评估、研究门禁、入库版本、晋升训练、信号灰度、监控回滚。
+  - completed evaluation run 会读取 `GET /api/v1/research/factors/runs/{run_id}/values`，展示 factor values 总量、覆盖日期数、股票数和样本值，方便在进入训练/信号前核对产物。
   - 投研平台已移除旧 `QuantGPT` tab，避免把因子研究误放进候选池流程。
+- 已完成本地 evaluator 基础闭环：
+  - 新增 `qm_factor_values` 表。
+  - `POST /api/v1/research/factors/candidates/{candidate_id}/evaluate` 默认同步执行本地评估。
+  - 当前支持白名单模板：
+    - `rank(close / ts_mean(close, 20))`
+    - `rank(ts_delta(close, 5) / ts_shift(close, 5))`
+  - 本地行情表缺失、表达式不支持、或无因子值时，run 进入 `failed`，candidate 进入 `rejected`，前端展示阻断原因。
+- 已完成 Feature promotion 基础闭环：
+  - 新增 `qm_factor_feature_promotions` 表。
+  - 新增 `POST /api/v1/research/factors/candidates/{candidate_id}/promote`。
+  - 新增 `GET /api/v1/research/factors/promotions`。
+  - promotion 会生成 shadow feature set version；只有训练快照已物化该 feature 列时才进入 active catalog。
+  - 当前环境缺 `db/feature_snapshots/model_features_*.parquet` 且无法从本地行情补齐 OHLCV 时，promotion 状态为 `pending_materialization`，不会伪装成可训练特征。
+  - 新增 `POST /api/v1/research/factors/promotions/{promotion_id}/materialize`，可将 factor values 原子 merge 到已有训练快照；缺年份快照时会从本地 `stock_daily_latest` OHLCV 生成 baseline `model_features_YYYY.parquet`。
+- 已完成 Shadow Signal 基础闭环：
+  - 新增 `qm_factor_signal_runs`、`engine_feature_runs`、`engine_signal_scores` 表。
+  - 新增 `GET /api/v1/research/factors/signals`。
+  - 新增 `POST /api/v1/research/factors/candidates/{candidate_id}/publish-shadow-signal`。
+  - 默认只写入 shadow signal 产物表，`publish_stream=false`，不会自动写 Redis latest/stream。
+  - `publish_stream=true` 必须同时提供 `allow_shadow_stream=true`，避免 shadow signal 无意进入 stream 消费链路。
+  - trade runner Redis stream 消费侧已增加 `allow_factor_shadow_signals` 显式门禁；未授权 `factor_shadow` 消息会被跳过并 ack。
+  - 自动托管执行从 `engine_signal_scores` 读库时也会拒绝未授权 `factor_shadow` 信号，避免因子研究信号绕过策略/训练/投研验证链路。
+  - 前端因子研究工作台已展示 `Shadow Signal 状态`，并可从 latest completed run 发布 shadow signal。
+- 已完成 Campaign 基础闭环：
+  - 新增 `qm_factor_campaigns`、`qm_factor_campaign_items` 表。
+  - 新增 `POST /api/v1/research/factors/campaigns`。
+  - 新增 `GET /api/v1/research/factors/campaigns`、`GET /api/v1/research/factors/campaigns/{campaign_id}`。
+  - 当前默认采用 QuantMind 本地安全 `mutation_crossover`，也可显式切换为兼容 `template_mutation`。`mutation_crossover` 会对安全白名单表达式做窗口突变，并生成 hybrid crossover 表达式交叉组合均线相对价格与动量信号，逐个复用 candidate/run/evaluator；已支持 bounded 多代 generation，下一代从上一代最高分表达式继续进化。
+  - 新增 campaign 资源配额门禁：`QUANTMIND_FACTOR_CAMPAIGN_MAX_CANDIDATES`、`QUANTMIND_FACTOR_CAMPAIGN_MAX_ACTIVE_PER_USER`、`QUANTMIND_FACTOR_CAMPAIGN_DAILY_CANDIDATE_BUDGET`，默认单次最多 20 个候选、每用户最多 1 个活动 campaign、每日最多 100 个候选。
+  - campaign metadata 会记录当次 quota policy/usage，便于审计和排障。
+  - 前端因子研究工作台已支持异步启动 Campaign，并展示当前选中 Campaign 状态、代际进度、generation summary、最佳表达式、Campaign 历史和候选历史。
+  - Playwright 已覆盖默认挖掘模式下启动 bounded Campaign，校验 `max_generations`/metadata payload、detail 读取、generation summary、Campaign 历史切换和候选历史展示。
+  - 当前选中 campaign 的 best candidate 可直接从工作台触发 Shadow Feature 晋升，复用现有 promote API，并在 metadata 中保留 campaign 来源。
+  - 候选历史已展示 `run_id`、`candidate_id`、RankIC/ICIR/Turnover、失败/淘汰原因、进化算子、parent expressions 和 evolution reason，便于排障和复现实验。
+  - 新增 `POST /api/v1/research/factors/campaigns/{campaign_id}/cancel`；active campaign 可在前端 `Campaign 状态` 卡片中取消，取消后写入 summary/metadata 并释放 active 配额。
+- 已完成训练桥接基础闭环：
+  - 新增 `qm_factor_training_runs` 表。
+  - 新增 `GET /api/v1/research/factors/trainings`。
+  - 新增 `POST /api/v1/research/factors/promotions/{promotion_id}/train`。
+  - 仅允许 `materialized` 且已进入 active feature catalog 的 promotion 发起训练。
+  - `GET /api/v1/research/factors/trainings` 已从 `admin_training_jobs` 同步训练 `status/progress/result`，并回填到 `qm_factor_training_runs`。
+  - 前端 Feature 晋升面板新增 `发起 Shadow 训练`、刷新训练和最近训练 run 状态/进度/结果摘要展示。
+  - 前端已对活动中的 campaign/training run 增加 5 秒自动刷新。
+  - 训练结果回流已生成 promoted vs baseline 对比摘要；支持显式 `baseline_metrics` 或 `baseline_training_run_id`。
+  - 未显式提供 baseline 时，`POST /train` 默认先提交去掉 promoted factor 的 baseline 训练，再提交 promoted shadow 训练，并自动关联 baseline run id。
+  - promoted vs baseline 对比会生成 `trainingGate` 建议：可审批晋升、继续观察、建议回滚或证据不足；只有 completed 且门禁允许的训练，才能通过显式审批设置默认模型，不自动修改交易配置。
+  - 新增 `POST /api/v1/research/factors/trainings/{training_id}/approve`，把因子训练候选接入模型管理默认模型设置。
+  - 新增 `qm_factor_approval_audit` 和 `GET /api/v1/research/factors/approvals`，正常审批和幂等重试都会留下独立审计记录。
+  - 新增 `qm_factor_approval_policies` 和 `GET/PUT /api/v1/research/factors/approval-policy`，可按 tenant 配置是否允许直接审批、自审和最少审批人数。
+- 已完成生产回滚工具：
+  - `backend/services/engine/scripts/factor_research_rollback_tool.py`
+  - 默认 dry-run：先检查 `/health`、登录或使用 token、列出当前用户 promotion、输出将回滚的 feature/version，不调用回滚 API。
+  - 显式 `--execute` 后调用 `POST /api/v1/research/factors/promotions/{promotion_id}/rollback`，并校验返回的 `status/materializationStatus` 均为 `rolled_back`。
+- 已完成基础运行健康摘要：
+  - 新增 `GET /api/v1/research/factors/health`，汇总 candidate/run/promotion/campaign/training/signal/approval request 状态。
+  - 健康摘要返回最近窗口内失败 run、长时间未完成 run、待物化特征、活跃 campaign、worker event/失败数、待审请求、shadow stream 写入和 SLO 等指标。
+  - SLO 覆盖 run/campaign 成功率、campaign P95 耗时、pending/stale campaign 和 backfill failed jobs。
+  - 告警覆盖 stale run、recent failed run、campaign worker 失败、campaign 配额占满、pending materialization 和 shadow signal stream published。
+  - 前端因子研究工作台已展示 `运行健康` 与 `SLO` 面板，主流程 Playwright E2E 覆盖该面板和 worker/SLO 指标。
+- 已完成前端产物核对：
+  - 因子研究工作台展示最新 completed run 的 factor values 预览，包含总量、日期覆盖、股票覆盖、空值数、异常股票代码数、source 分布和样本值。
+  - `GET /api/v1/research/factors/runs/{run_id}/values` 返回质量摘要：`nullValueCount`、`invalidSymbolCount`、`sourceCount`、`invalidSymbolSamples`、`sourceDistribution`、`recentDateDistribution`。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖该预览接口调用和 UI 回显；live smoke 覆盖真实 API 上的 source/date distribution 和股票代码格式摘要。
+- 已完成外部提交默认关闭门禁：
+  - `backend/services/engine/research/external_submit_guard.py`
+  - `QUANTMIND_FACTOR_RESEARCH_ALLOW_EXTERNAL_SUBMIT` 默认未开启；即使环境存在 `WQ_BRAIN_EMAIL/WQ_BRAIN_PASSWORD`，因子研究也不会允许 WQ BRAIN / Cloud submit。
+  - `QuantGPTClient` 已接入 endpoint guard，当前只允许 health、auto_backtest、factor_values、tasks 等研究评估端点；`/wq-brain/submit`、`submit-alpha` 和 cloud submit 路径默认阻断。
 - 已完成基础测试：
   - `backend/services/tests/test_quantgpt_client.py`
   - `backend/services/tests/test_quantgpt_factor_mapping.py`
   - `backend/services/tests/test_quantgpt_signal_adapter.py`
+  - `backend/services/tests/test_research_factor_service.py`
 - 已完成只读真实数据 smoke：
   - `backend/services/engine/scripts/quantgpt_real_data_smoke.py`
+  - 支持 `--repeat` 重复读取同一真实 K 线窗口，并对标准化 OHLCV 指纹做一致性校验。
+- 已完成运行中 API + 本地真实数据 live smoke：
+  - `backend/services/engine/scripts/factor_research_live_api_smoke.py`
+  - 支持 `--bootstrap-from-westock` 从公开 K 线补充项目本地 `stock_daily_latest` 最小 OHLCV 样本，再通过当前运行中 API 完成注册、策略列表、AI-IDE 文件列表、候选创建、真实 evaluator、promotion、materialize 和 DB-only shadow signal。
+  - 支持 `--include-slo-health-flow` 验证运行健康返回 SLO 状态、关键指标和 breach summary；`--full-profile` 会自动包含该检查。
+  - 支持 `--include-factor-value-backfill-flow` 创建 factor value backfill job，运行 backfill worker 领取执行，并验证 completed job/event 与 processed run 结果；`--full-profile` 会自动包含该检查。
+- 已完成 feature snapshot 输入兜底：
+  - 当 `stock_daily_latest` 或 `FACTOR_RESEARCH_DATA_TABLE` 缺失时，本地 evaluator 会尝试读取 `TRAINING_LOCAL_DATA_PATH/model_features_*.parquet` 中的 OHLCV。
+  - 快照输入会复用同一白名单表达式计算、Rank IC 统计、promotion gate 和 `qm_factor_values` 入库 contract。
+  - 入库 symbol 仍统一为 `SH600000` / `SZ000001` 前缀格式；快照内 6 位 symbol 会标准化后写入因子值表。
 
 ## Phase 1：候选因子评估闭环
 
-- [ ] 新增 `qm_factor_candidates` 表。
-- [ ] 新增 `qm_factor_candidate_runs` 表。
-- [ ] 明确 candidate -> run -> factor values -> feature promotion 的状态机。
-- [ ] 新增 `backend/services/engine/research/factor_candidate_service.py`。
-- [ ] 新增 `backend/services/engine/routers/research_factors.py`。
-- [ ] 新增 API：
-  - [ ] `POST /api/v1/research/factors/candidates`
-  - [ ] `GET /api/v1/research/factors/candidates`
-  - [ ] `POST /api/v1/research/factors/candidates/{candidate_id}/evaluate`
-  - [ ] `GET /api/v1/research/factors/runs/{run_id}`
-- [ ] 前端 `因子研究` 工作台接入真实 API。
-- [ ] 增加 API contract tests。
-- [ ] 增加 fresh-db smoke test。
+- [x] 新增 `qm_factor_candidates` 表。
+- [x] 新增 `qm_factor_candidate_runs` 表。
+- [x] 新增 `qm_factor_values` 表。
+- [x] 明确 candidate -> run -> factor values -> feature promotion 的状态机；当前已落地 candidate -> run -> factor values -> shadow feature promotion。
+- [x] 新增 `backend/services/api/routers/research_factor_service.py`。
+- [x] 新增 API：
+  - [x] `POST /api/v1/research/factors/candidates`
+  - [x] `GET /api/v1/research/factors/candidates`
+  - [x] `POST /api/v1/research/factors/candidates/{candidate_id}/evaluate`
+  - [x] `GET /api/v1/research/factors/runs/{run_id}`
+  - [x] `GET /api/v1/research/factors/runs/{run_id}/values`
+  - [x] `POST /api/v1/research/factors/candidates/{candidate_id}/promote`
+  - [x] `GET /api/v1/research/factors/promotions`
+  - [x] `POST /api/v1/research/factors/promotions/{promotion_id}/materialize`
+  - [x] `GET /api/v1/research/factors/signals`
+  - [x] `POST /api/v1/research/factors/candidates/{candidate_id}/publish-shadow-signal`
+- [x] 前端 `因子研究` 工作台接入真实 API。
+- [x] 前端队列展示 run 完成/失败状态、阻断原因和基础指标摘要。
+- [x] 前端展示 Feature 晋升状态，并区分 `pending_materialization` / `materialized`。
+- [x] 前端支持触发训练快照物化，并在未物化时保留明确原因。
+- [x] 增加基础 service/API contract tests。
+- [x] 增加运行中数据库 smoke：注册用户、创建候选、创建 run、列表回显 latestRun。
 
 ## Phase 2：QuantMind 数据口径接入
 
-- [ ] 新增 QuantMind local market data adapter。
-- [ ] 支持从 `stock_daily_latest` 导出 QuantGPT 所需 OHLCV schema。
-- [ ] 支持从 feature snapshot / Qlib 数据补充计算输入。
-- [ ] 禁止生产路径使用 QuantGPT 外部抓数。
-- [ ] 固定 symbol 前缀格式验收。
+- [x] 新增 QuantMind local market data adapter。
+- [x] 支持从 `stock_daily_latest` 读取本地 evaluator 所需 OHLCV schema。
+- [x] 支持从 `stock_daily_latest` 导出完整 QuantGPT runner 所需 OHLCV schema。
+- [x] 支持从 feature snapshot Parquet 数据补充 evaluator 计算输入。
+- [x] 支持从 Qlib provider 数据补充 evaluator 计算输入。
+  - 本地行情表缺失且 feature snapshot 不可用时，evaluator 会从 `FACTOR_RESEARCH_QLIB_PROVIDER_URI` / `QLIB_PROVIDER_URI` / `db/qlib_data` 读取 `$open/$high/$low/$close/$volume`，source 标记为 `qlib_provider`。
+- [x] 支持从 Qlib 数据补充完整 QuantGPT runner 计算输入。
+  - `_load_qlib_quantgpt_runner_input()` 复用 Qlib provider OHLCV，转换为 QuantGPT `run_factor_backtest` 所需 `trade_date/stock_code/open/high/low/close/volume/amount/pct_change`，其中 `stock_code` 使用 `sh.600000` / `sz.000001`，`amount` 和 `pct_change` 从 QuantMind OHLCV 派生。
+- [x] 禁止生产路径使用 QuantGPT 外部抓数。
+- [x] 固定 symbol 前缀格式验收。
 
 ## Phase 3：自动因子挖掘 Campaign
 
-- [ ] 新增 `qm_factor_campaigns` 表。
-- [ ] 新增 `backend/services/engine/research/factor_campaign_service.py`。
-- [ ] 接入 QuantGPT mutation / crossover / evolution。
-- [ ] 记录每代候选表达式、评分、淘汰原因。
-- [ ] 增加 campaign 并发和资源配额。
-- [ ] 前端新增 campaign 状态面板。
+- [x] 新增 `qm_factor_campaigns` 表。
+- [x] 新增 `qm_factor_campaign_items` 表。
+- [x] 新增 Campaign API：创建、列表、详情。
+- [x] 接入 QuantMind 本地安全 mutation/crossover campaign，批量生成候选并复用 evaluator。
+- [x] 支持 hybrid crossover 表达式：`rank((close / ts_mean(close, W1)) * (ts_delta(close, W2) / ts_shift(close, W2)))` 已接入 SQL、训练快照和 Qlib 兜底 evaluator。
+- [x] 增加 Campaign 策略选择：默认 `mutation_crossover`，可切换到兼容 `template_mutation`；Playwright 覆盖请求预览和 POST payload。
+- [x] 支持本地 bounded 多代 generation：`max_generations` 控制代数，quota 按 `n_candidates * max_generations` 计入单次和每日预算，summary 返回 `generationStats`。
+  - `factor_research_live_api_smoke.py --include-campaign-flow` 覆盖运行中 API：创建 `max_generations=2` campaign，验证 create/detail 的 generation history；最近实测 `campaign_flow_completed_generations=2`、`campaign_flow_total_candidates=4`、`campaign_flow_item_count=4`。
+- [x] 记录每代候选表达式、评分、淘汰原因、candidate_id、run_id。
+- [x] 前端新增 campaign 启动按钮、状态面板、Campaign 历史列表和选中 campaign 候选历史展示。
+- [x] 前端候选历史展示基础 run 明细：`run_id`、`candidate_id`、RankIC/ICIR/Turnover、失败/淘汰原因、进化算子、parent expressions 和 evolution reason。
+- [x] 前端支持将当前选中 campaign best candidate 直接晋升为 Shadow Feature。
+- [x] 增加 campaign 资源配额：单次候选数、每用户活动 campaign 数、每日候选预算，并把 quota policy/usage 写入 campaign metadata。
+- [x] 新增 Campaign 取消 API 和前端操作：`POST /api/v1/research/factors/campaigns/{campaign_id}/cancel`，支持取消 active campaign 并释放配额占用。
+- [x] 增加 campaign 异步调度基础闭环：`run_async=true` 创建 pending campaign，后台 task/worker 入口执行并回写 completed/failed，前端默认异步启动并复用轮询刷新结果。
+  - `claim_next_pending_factor_campaign()` 使用 `FOR UPDATE SKIP LOCKED` 原子领取 pending campaign，避免多 worker 重复执行。
+  - `backend/services/engine/scripts/factor_campaign_worker.py --once` 可独立处理一条 pending campaign；循环模式可作为后续 engine worker/cron 的落点。
+  - worker 每轮先调用 `recover_stale_running_factor_campaigns()`，将超过 `QUANTMIND_FACTOR_CAMPAIGN_STALE_RUNNING_MINUTES` 的 running campaign 重新置为 pending，避免进程异常后永久占用 active 配额。
+  - `qm_factor_campaign_worker_events` 记录 recovered/processed/idle/failed 事件；`GET /api/v1/research/factors/campaign-worker-events` 可查询最近 worker 事件，健康摘要和前端 `运行健康` 面板展示 worker 最近事件数、失败数和最近事件明细。
+  - 已新增 engine-side `factor_campaign_service.py` 作为 worker 调度入口，worker 不再直接导入 API router service。
+  - 已扩展 worker event schema：`worker_id`、`attempt_no`、`duration_ms`、`heartbeat_at`，并支持按 `worker_id` 查询。
+  - `factor_campaign_worker.py` 已支持 `--worker-id`、`--max-claims`、`--concurrency`、`--heartbeat-interval`、`--lease-seconds`，前端运行健康面板展示 worker、attempt、耗时和 heartbeat 时间。
+  - Campaign create contract 已支持 `worker_policy`、`retry_policy`、`execution_lease`，服务端按 env 上限裁剪后写入 metadata/params，前端异步 Campaign 默认传保守策略。
+  - 已支持 `worker_policy.external_worker=true` 创建只由外部 worker 领取的 pending campaign；worker claim 会按 `workerPolicy.workerId` 隔离，避免串扰其他 worker 的 pending 任务。
+  - 真实 API smoke 已新增 `--include-campaign-worker-flow`：会创建两个不同 `worker_id` 的 external-worker campaign，在默认每用户 1 个 active campaign 配额下分两轮并发运行两个 worker，验证每轮只有匹配 worker 领取目标 campaign，两个 campaign 均完成且 worker event 按 worker_id 分布。
+  - claim、recover、worker event 记录和 worker event 查询的真实 SQL 实现已迁入 `backend/services/engine/research/factor_campaign_service.py`；API service 只保留兼容 wrapper，API route 直接复用 engine service 查询入口。
+  - claimed campaign 执行编排、按 payload 多代执行、失败状态回写和 campaign summary 更新已迁入 engine service；API service 只保留兼容 wrapper。
+  - `retryPolicy.maxAttempts/retryFailedAfterMinutes` 已生效：worker recover 阶段会把未超过最大尝试次数、达到 retry 间隔的 failed campaign 重新置为 pending。
+  - worker run 日志流已增加 `started/stopped` 事件，记录 worker 参数、停止原因和处理数量。
+- [x] 将 campaign service 完整下沉为 engine service 并支持多 worker 并发调度。
+- [x] 接入 QuantGPT meta-evolution 基座与受 evaluator 白名单保护的 `quantgpt_meta_evolution`、`quantgpt_crossover_only` 策略；完整任意表达式执行器和更丰富遗传算子继续跟进。
+- [x] 增加跨 campaign generation 历史查看：前端展示 Campaign 历史，选择任一 campaign 后按需加载详情并展示 generation summary 与候选明细。
+- [x] 增加 campaign 多 worker 并发调度能力和基础 worker run 日志流；worker event 表、查询 API、健康指标和面板展示已落地。
+- Post-MVP：增加更细粒度 campaign 策略参数、worker timeline 可视化和更完整的运行日志检索。
 
 ## Phase 4：Feature Catalog 晋升
 
-- [ ] 新增 `qm_factor_values` 表。
-- [ ] 新增 `qm_factor_feature_promotions` 表。
-- [ ] 新增 factor value store。
-- [ ] 生成 shadow feature set version。
-- [ ] 在模型训练 feature catalog 中展示通过晋升的因子，并标记来源 run。
-- [ ] 回填历史 factor values。
-- [ ] 调用 `/api/v1/models/run-training`。
-- [ ] 保存 baseline vs promoted model 对比结果。
-- [ ] 前端增加 promotion review。
+- [x] 新增 `qm_factor_values` 表。
+- [x] 新增 `qm_factor_feature_promotions` 表。
+- [x] 新增基础 factor value store。
+- [x] 新增 factor run values 预览 API，支持分页抽样、覆盖日期数、symbol 数和 factor value 范围，用于训练/信号/投研联调核对。
+- [x] factor value store 读侧已下沉到 engine service：`backend/services/engine/research/factor_value_store.py` 承载 run values 分页查询、覆盖日期/symbol 摘要、invalid symbol 样本、source 分布和最近日期分布；API service 只保留兼容 wrapper，API route 直接复用 engine store。
+- [x] factor value store 写侧已下沉到 engine service：本地 SQL evaluator、feature snapshot/Qlib 兜底 evaluator 统一复用 `upsert_factor_values()` / `upsert_factor_values_from_select()`，并保留 symbol 标准化、invalid symbol 过滤和 `ON CONFLICT (run_id, trade_date, symbol)` 幂等 upsert。
+- [x] 新增 backfill job 基座：`backend/services/engine/research/factor_value_backfill.py` 和 `backend/services/engine/scripts/factor_value_backfill_job.py` 支持按 run/candidate/promotion、日期区间、universe、holding period 规划或执行因子值回填。
+- [x] 新增持久化 backfill job 表和 API：`qm_factor_value_backfill_jobs`、`POST/GET /api/v1/research/factors/value-backfills`、`POST /api/v1/research/factors/value-backfills/{job_id}/run`，记录 target/params/result/error/worker_id 和 pending/running/completed/failed 状态。
+- [x] 前端因子研究工作台已展示最近 backfill job，并可对最新 completed run 创建 dry-run backfill job 后立即执行。
+- [x] 新增 backfill worker claim/event/cancel 基座：`qm_factor_value_backfill_events`、`GET /value-backfill-events`、`POST /value-backfills/{job_id}/cancel` 和 `factor_value_backfill_worker.py`，worker 用 `FOR UPDATE SKIP LOCKED` 领取 pending job 并写入 claimed/started/completed/failed/heartbeat/idle/stopped 事件。
+- [x] 前端因子研究工作台已展示 backfill worker/event 状态，并支持取消活跃回填任务。
+- Post-MVP：补齐 backfill 覆盖率、失败原因细节、可训练状态联动和更完整的 worker 运行编排。
+- [x] 生成 shadow feature set version。
+- [x] 检查训练快照是否已物化 feature 列，未物化时保持 shadow/pending，避免训练脚本静默忽略。
+- [x] 在已有训练快照上物化 factor values 后，切换 active feature set 并允许模型训练 feature catalog 消费。
+- [x] 回填历史 factor values 到已有 `model_features_YYYY.parquet`。
+- [x] 缺少训练快照文件时自动生成/补齐完整 baseline snapshot。
+  - `materialize` 会按 factor values 的 `(trade_date, symbol)` 优先从本地 `FACTOR_RESEARCH_DATA_TABLE`（默认 `stock_daily_latest`）只读 OHLCV；本地行情不可用时从 `FACTOR_RESEARCH_QLIB_PROVIDER_URI` / `QLIB_PROVIDER_URI` / `db/qlib_data` 指向的 Qlib provider 读取 OHLCV，生成训练脚本可消费的 `trade_date/symbol/open/high/low/close/volume/<feature>` parquet。
+  - 股票代码查询使用 `SH600000` 前缀口径，写入训练 snapshot 时沿用现有 6 位 symbol 口径。
+  - 如果本地行情表和 Qlib provider 都缺失、行情行缺失或 OHLCV 不完整，仍保持 `pending_materialization` 并在 metadata 中记录原因。
+- [x] 调用 `/api/v1/models/run-training` 对应的现有训练提交链路。
+- [x] 从 materialized promotion 调用现有训练提交链路，创建 shadow training run。
+- [x] 新增因子 promotion -> training run 关联记录。
+- [x] 同步现有训练任务 `status/progress/result` 到因子训练关联记录。
+- [x] 未提供 baseline 时自动提交同窗口 baseline 训练，并将 baseline training run id 写入 promoted training payload。
+- [x] 新增 `POST /api/v1/research/factors/promotions/{promotion_id}/rollback`，支持从 active feature catalog 软回滚因子。
+- [x] 保存 baseline vs promoted model 对比结果。
+- [x] 将 promoted vs baseline 结果转成训练门禁建议 contract。
+- [x] 增加因子训练审批 API；门禁通过且训练结果含 ready 注册模型 id 后，显式设置用户默认模型。
+- [x] 因子训练审批 API 支持同一 training/model 的幂等重试：当审批记录和模型管理当前默认模型一致时，不重复设置默认模型、不刷新审批时间。
+- [x] 默认模型审批写入独立审计表 `qm_factor_approval_audit`；正常审批记录为 `approved`，幂等重试记录为 `idempotent_replay`。
+- [x] 新增审批审计查询 API：`GET /api/v1/research/factors/approvals`，支持按 training/model/status 过滤。
+- [x] 新增因子研究健康摘要 API：`GET /api/v1/research/factors/health`，支持运行状态、关键指标、配额策略和告警列表。
+- [x] 新增默认模型审批请求队列：普通用户通过 `POST /api/v1/research/factors/trainings/{training_id}/approval-requests` 提交请求，管理员通过 `POST /api/v1/research/factors/approval-requests/{request_id}/review` 审核通过/拒绝。
+- [x] 新增审批请求查询 API：`GET /api/v1/research/factors/approval-requests`；管理员可看 tenant 内请求，普通用户只能看自己的请求。
+- [x] 默认模型审批接入细粒度 RBAC：`factor.approve` 可授权非管理员审批人查看 tenant 内审批请求、审核请求或直接设置默认模型；API 启动时会幂等确保该权限存在并挂到 admin 角色，前端通过 `/api/v1/rbac/check-permission` 控制审批按钮。
+- [x] 新增组织级审批流配置：`qm_factor_approval_policies` 保存 tenant 级策略，审批请求会记录策略快照，直接审批和审核审批请求均执行 `allow_direct_approval`、`allow_self_approval`、`min_approvals` 门禁。
+- [x] 模型注册 metadata 保留 `factor_research` 上下文，模型管理可追踪 promoted factor key、表达式、feature set version 和 baseline run。
+- [x] 模型管理归因分析页展示因子研究来源上下文，并与 SHAP 贡献榜同屏查看。
+- [x] 前端增加 promotion review 基础状态。
+- [x] 前端增加 `回滚特征` 操作。
+- [x] 前端增加 `审批为默认模型` 操作，作为因子研究产物进入模型管理的显式桥接动作。
+- [x] 前端增加 `提交审批请求` 操作和最近审批请求展示；普通用户走队列，管理员保留直接审批入口，并可在审批请求卡片中通过/拒绝 pending 请求。
+- [x] 审批成功后提示继续到模型管理生成默认模型生产批次，避免误认为默认模型切换后即可被自动托管消费。
+- [x] 前端 Feature 晋升面板展示最近审批审计状态、模型 id、原因和幂等重放标记。
 
 ## Phase 5：Shadow Signal 发布
 
-- [ ] 新增 `qm_factor_signal_runs` 表。
-- [ ] 将 factor values 转为 `engine_signal_scores`。
-- [ ] 发布 `qm:signal:stream:{tenant}`。
-- [ ] 更新 `qm:signal:latest:{tenant}:{user}`。
-- [ ] 接入模拟盘 / shadow runner。
-- [ ] 增加风控和 latest-run 门禁测试。
+- [x] 新增 `qm_factor_signal_runs` 表。
+- [x] 将 factor values 转为 `engine_signal_scores`。
+- [x] 新增 DB-only shadow signal 发布 API，默认 `publish_stream=false`。
+- [x] 前端新增 `发布 Shadow Signal` 和 `Shadow Signal 状态`。
+- [x] 增加 `publish_stream=true` 的 Redis stream/latest 单元测试。
+- [x] 发布 `qm:signal:stream:{tenant}`。
+- [x] 更新 `qm:signal:latest:{tenant}:{user}`。
+- [x] 增加 `allow_shadow_stream=true` 二次确认门禁，避免误写 stream。
+- [x] 增加 trade runner 消费侧 `factor_shadow` 门禁测试，默认拒绝，显式 `allow_factor_shadow_signals=true` 才允许消费。
+- [x] 增加自动托管执行读库侧 `factor_shadow` 门禁测试，未授权时拒绝创建 hosted task。
+- [x] 接入模拟盘 hosted task 门禁：显式授权后的 `factor_shadow` 只能以 `SIMULATION` 任务进入自动托管预案，默认未授权路径返回 409。
+- [x] 增加模拟盘 hosted task service-level live smoke：临时写入策略、`qm_model_inference_runs`、`engine_signal_scores` 和 Redis 模拟账户快照，验证未授权拒绝、授权后创建 `SIMULATION` hosted task，并清理所有种子数据。
+- [x] 增加 factor shadow 模拟成交结果回归：`test_internal_strategy_order_factor_shadow_simulation_returns_fill_result` 覆盖 `SIMULATION` 分支使用 `SimulationOrderSubmissionService` 后返回 `simulation_filled`、`order_id/trade_id/fill_price/filled_quantity`，并保留 `signal_source=factor_shadow` 审计备注。
+- [x] 增加后台 hosted runner 调度桥接回归：`process_cycle` 创建 hosted task 时会透传 `SIMULATION`、`allow_factor_shadow_signals=true`，并在 `trigger_context` 标记 `source=hosted_runner`、`signal_input=engine_signal_scores`、`signal_source_policy=factor_shadow_allowed`，方便后续任务、审计和结果回流串联。
+- [x] 增加 hosted task 执行回流回归：`test_process_hosted_factor_shadow_simulation_task_persists_result_context` 覆盖 queued hosted task 进入 `process_task` 后派发 `SIMULATION` 订单、在 `remarks` 保留 `signal_source=factor_shadow`、并把 completed `result_payload` 写回任务。
+- [x] 增加后台 shadow runner 实际执行订单、持仓重算与结果回流 E2E：`factor_research_live_api_smoke.py --include-shadow-simulation-flow` 已扩展为执行授权 hosted task，并断言 `trade_manual_execution_tasks.status=completed`、`simulation_orders > 0`、`simulation_fills > 0`、`simulation_position_lots > 0`、`simulation_cash_ledger > 0`。
 
 ## Phase 6：生产门禁
 
-- [ ] 增加权限、审计、审批。
-- [ ] 增加 rollback 工具。
-- [ ] 增加容量测试。
-- [ ] 增加监控和告警。
-- [ ] 默认关闭 WQ BRAIN / Cloud submit。
+- [x] 默认模型审批审计基座：独立表、查询 API、前端最近审计展示、live smoke 路由契约。
+- [x] 审批队列基座：独立表、提交 API、管理员审核 API、前端最近请求展示、前端管理员审核操作、live smoke 路由契约。
+- [x] 审批队列真实 DB/service smoke：`factor_research_live_api_smoke.py --include-approval-flow` 覆盖 approval request、幂等重放、admin approve/reject review、default model、audit、审批通知落库，并默认清理种子数据。
+- [x] 增加细粒度 RBAC：`factor.approve` 支持非管理员审批人查看 tenant 审批队列、审核请求和直接审批默认模型；前端按权限展示审批控件。
+- [x] 增加审批通知：提交审批请求时通知请求人和 tenant 内 admin/`factor.approve` 审批人，审核通过/拒绝后通知请求人；通知走统一 `notifications`/Redis Stream 发布器，失败不阻断审批主链路。
+- [x] 增加组织级审批流配置：后端 `GET/PUT /api/v1/research/factors/approval-policy`，前端 Feature 晋升面板可配置直接审批、自审和最少审批人数，Playwright 覆盖策略变更后操作路径切换。
+- [x] 增加 rollback 工具：`factor_research_rollback_tool.py` 支持 `--promotion-id`/`--latest-active`、默认 dry-run、`--execute` 正式回滚、已回滚对象跳过和结构化 JSON 输出。
+- [x] 增加基础运行健康摘要：后端 `GET /api/v1/research/factors/health`、前端 `运行健康` 面板、service/route/live smoke/Playwright 覆盖。
+- [x] 增加基础 SLO 健康摘要：health API 返回 SLO status/objectives/metrics/breaches，前端展示 SLO 面板，live smoke 支持 `--include-slo-health-flow`，Playwright 主流程覆盖 SLO 回显。
+- [x] 增加基础容量治理测试：campaign 单次/每日/active quota 边界、bounded 多代候选计数、每日预算 health warning/critical 告警。
+- [x] 增加 Prometheus 基础指标：`/metrics` 暴露因子研究 health status、alert count、indicator 和 quota policy gauge。
+- [x] 增加 Campaign worker 基础可观测性：`qm_factor_campaign_worker_events` 记录 recovered/processed/idle/failed，`/campaign-worker-events` 查询 API、健康摘要和前端面板展示最近事件与失败数。
+- Post-MVP：增加完整监控和告警，包括通知策略、告警静默/升级和大规模压测指标面板。
+- [x] 默认关闭 WQ BRAIN / Cloud submit：新增 `external_submit_guard.py`，凭证存在不代表允许提交，必须显式设置 `QUANTMIND_FACTOR_RESEARCH_ALLOW_EXTERNAL_SUBMIT=true` 才会放行外部提交目标。
+
+## 最终闭环一次性交付拆解
+
+> 详细方案见 `docs/QuantGPT因子挖掘整合方案.md` 的“最终闭环一次性交付计划”。这里保留可执行 TODO，用于连续推进到最终闭环。
+
+- [x] Workstream A：Campaign 引擎下沉和多 worker 调度。
+  - [x] 新增 engine-side worker 调度入口，worker 改为依赖 `backend/services/engine/research/factor_campaign_service.py`。
+  - [x] worker event 扩展 `worker_id / attempt_no / duration_ms / heartbeat_at`，并提供 `worker_id` 查询过滤。
+  - [x] worker CLI 支持 `worker_id`、并发 claim、max claims、heartbeat interval 和 execution lease。
+  - [x] Campaign payload 支持 `worker_policy / retry_policy / execution_lease`，并由服务端 quota 上限约束后写入 campaign metadata。
+  - [x] 支持 external-worker pending campaign、按 `worker_id` 隔离 claim，并用 live API smoke 分两轮验证 2 个 external worker 分别完成 2 条 campaign。
+  - [x] claim、recover、worker event 写入/查询已迁入 engine service，API service 保留兼容 wrapper。
+  - [x] claimed campaign 执行编排和 payload 多代执行已迁入 engine service，API service 保留兼容 wrapper。
+  - [x] `retryPolicy` 已接入 failed campaign 重试入队语义，worker run 日志流补齐 started/stopped。
+  - [x] API router 只负责校验和响应包装，claim、执行、恢复、retry、event 写入下沉到 engine research service。
+  - [x] worker 支持 `worker_id`、并发度、heartbeat、lease、失败重试和基础 worker run 日志流。
+  - [x] 验收：worker_id 隔离 claim 不串扰；crash 后 stale running 可恢复；真实 smoke 覆盖两个 external worker 分轮并发 claim 并完成多 campaign。
+- [x] Workstream C：Factor value store 下沉和异步批量回填。
+  - [x] 新增 engine-side `factor_value_store.py`，承载 run values 查询和质量摘要。
+  - [x] engine 统一负责 factor values 写入、分页查询、质量摘要、source 分布、异常 symbol 和幂等处理。
+  - [x] 新增 backfill job CLI 基座，支持按 candidate/run/promotion、日期区间和 universe 规划或执行回填。
+  - [x] 新增持久化 backfill job 表和 API 基座，支持创建、列表和 API 立即执行。
+  - [x] 前端已接入最近 backfill job 状态和最新 completed run 回填操作。
+  - [x] 新增 backfill worker claim/event/cancel 基座和前端 worker/event 状态展示。
+  - [x] live smoke 支持 `--include-factor-value-backfill-flow`，覆盖 job 创建、worker claim/execute、completed event 和 processed run 结果。
+  - Post-MVP：新增覆盖率/失败详情、可训练状态展示和更完整的 worker 运行编排。
+  - 验收：重复回填幂等、worker 执行、completed event 和 processed run 已由 live smoke 覆盖；更细可训练状态展示列入 Post-MVP。
+- [x] Workstream B：QuantGPT meta-evolution 和表达式执行器接入。
+  - [x] 新增 `quantgpt_evolution_adapter.py` 和 `quantgpt_expression_guard.py`，本地加载 QuantGPT `meta_evolution/trajectory_analyzer/mutation_engine`，输出必须通过 QuantMind evaluator 白名单。
+  - [x] 支持 `quantgpt_meta_evolution`、`quantgpt_crossover_only` 等策略，并保留默认安全策略和外部提交门禁。
+  - [x] live API smoke 增加 `--include-meta-evolution-flow`，覆盖小规模 meta-evolution campaign 创建、评估和入库。
+  - [x] 表达式执行器扩展：SQL path、feature snapshot/Qlib pandas path、guard 和 adapter 已支持成交量均值偏离、amount/vwap 均值偏离、价量滚动相关、波动率、tanh 动量、ts_rank、decay_linear、rolling zscore、cross-sectional scale/zscore 和固定 where 均值突破模板。
+  - Post-MVP：完整 QuantGPT 任意表达式 AST 执行器，让更复杂的嵌套 AST、行业/市值中性算子、group/rank 组合、signedpower、winsorize、更多 where 条件和非白名单字段不再只能被 guard 拒绝。
+  - [x] campaign item metadata 增加 parent lineage、mutation/crossover/evolution operator、QuantGPT strategy、evolution score 和 evolution reason，并在前端候选历史展示。
+  - [x] campaign summary 顶层聚合 `operatorStats`、`reasonStats` 和轻量 `lineageEdges`，前端展示进化摘要和 lineage edge 数。
+- [x] Workstream D：跨模块消费和解释闭环。
+  - [x] 模型训练、模型管理、投研平台和模拟盘统一消费 factor research provenance；shadow signal 到 hosted task、订单、成交、持仓和现金流水保留 `factor_shadow` 上下文。
+  - [x] 模型管理归因页展示 factor research 来源上下文，并与 SHAP 贡献同屏。
+  - [x] Playwright 跨模块 E2E 和 live smoke 覆盖 `promotion_id/candidate_id/run_id` 可追溯主链路；回测中心更细 feature set 选择列入 Post-MVP。
+- [x] Workstream E：生产门禁、SLO 和容量压测。
+  - [x] 增加 SLO health、Prometheus 基础指标、健康告警、运行健康面板和 full-profile smoke。
+  - [x] SLO/告警单测通过；full profile smoke 覆盖 meta-evolution、backfill、SLO health。
+  - Post-MVP：告警静默/升级策略、Alertmanager 规则文档和大规模容量压测 JSON 报告。
 
 ## 必须补的测试
 
-- [ ] Fresh DB E2E：注册、策略列表、AI-IDE 文件列表、research factor API。
-- [ ] QuantGPT contract mismatch。
-- [ ] 真实数据 repeated-run 可复现性。
-- [ ] Feature promotion 去重和回滚。
-- [ ] Shadow signal 不绕过风控。
-- [ ] Playwright：底部导航进入 `因子研究`，创建和轮询任务。
+- [x] Fresh DB bootstrap / route contract：注册、策略列表、AI-IDE 文件列表、research factor API。
+  - `backend/services/tests/test_fresh_db_api_bootstrap.py` 覆盖 API startup 在 fresh DB 下会创建 `api.user`、`strategies`、admin/model、research factor 表，并确认 `/auth/register`、`/strategies`、`/ai-ide/*`、`/research/factors/*` 路由面存在。
+  - API lifespan 已补 `ensure_strategy_storage_tables()`，避免 API 进程先于 engine 处理策略列表时 fresh DB 缺 `strategies` 表。
+- [x] Live fresh PostgreSQL E2E：真实注册、策略列表、AI-IDE 文件列表、research factor API。
+  - [x] Research factor API live smoke：`factor_research_live_api_smoke.py --bootstrap-from-westock --include-materialize` 已在运行中服务验证真实注册、真实行情 evaluator、promotion、materialize 和 shadow signal。
+  - [x] 策略列表、AI-IDE 文件列表的运行中服务 live smoke：同一脚本默认检查 `/api/v1/strategies` 和 `/api/v1/ai-ide/files/list`。
+- [x] QuantGPT contract mismatch。
+  - `parse_factor_values_payload` 已兼容 QuantGPT `/factor_values` 的 `data[].values` 结构，以及 `/tasks/{id}` completed result 中的 `stock_factor_data.stocks` 结构。
+  - `test_parse_factor_values_payload_accepts_task_stock_factor_data_contract` 覆盖 `stock_code -> SH/SZ/BJ` 前缀标准化、非法 symbol 计数、`result.params` 元数据透传。
+- [x] QuantGPT 外部提交默认关闭。
+  - `test_quantgpt_external_submit_guard.py` 覆盖默认关闭、WQ 凭证存在仍关闭、显式 QuantMind allow flag 后才允许，以及研究评估端点默认可用。
+  - `test_quantgpt_client_blocks_external_submit_endpoint_by_default` 覆盖 QuantGPT adapter 层默认阻断 `/api/v1/wq-brain/submit`。
+- [x] 真实数据 repeated-run 可复现性。
+- [x] Local market data adapter contract：`stock_daily_latest` -> local-only OHLCV schema，suffix code -> prefix code。
+- [x] Campaign DB smoke：临时真实行情表 -> 3 个候选 -> 3 个 completed run -> factor values -> campaign summary。
+- [x] Campaign async live smoke：`run_async=true` -> pending/running -> detail polling -> completed items。
+- [x] Campaign 资源配额门禁。
+  - `test_campaign_quota_policy_defaults_are_conservative` 覆盖默认单次候选数、活动 campaign 数和每日候选预算。
+  - `test_validate_campaign_requested_candidates_rejects_above_quota` 覆盖超过单次候选上限直接拒绝。
+  - `test_validate_campaign_requested_candidates_counts_generations` 覆盖 bounded 多代 campaign 的 quota 口径为 `n_candidates * max_generations`。
+  - `test_enforce_factor_campaign_quota_rejects_active_campaign` 和 `test_enforce_factor_campaign_quota_rejects_daily_candidate_budget` 覆盖 running campaign 与每日预算阻断。
+  - `test_validate_campaign_requested_candidates_allows_exact_quota_boundary` 和 `test_enforce_factor_campaign_quota_allows_exact_daily_budget_boundary` 覆盖单次候选数、每日候选预算刚好到上限时允许通过，并返回 quota usage 审计快照。
+- [x] Campaign 容量健康告警。
+  - 每日候选预算统计已统一为 `n_candidates * max_generations`，避免多代 campaign 低估容量占用。
+  - `test_factor_research_health_alerts_report_daily_campaign_capacity` 覆盖每日预算 90% warning 和 100% critical 告警。
+  - `test_factor_research_health_alerts_report_stale_campaigns` 覆盖 stale running campaign 告警。
+- [x] Campaign worker event 和健康告警。
+  - `test_record_factor_campaign_worker_event_persists_payload` 覆盖 worker event 结构化落库。
+  - `test_list_factor_campaign_worker_events_filters_scope_and_campaign` 覆盖 worker event 查询 API 的 tenant/user/global scope、campaign/event/status 过滤和分页上限。
+  - `test_factor_research_health_alerts_report_worker_failures` 覆盖 worker failed event 进入健康告警。
+  - `test_factor_campaign_worker_records_processed_campaign` / `test_factor_campaign_worker_records_claim_failure` 覆盖 worker 处理成功和 claim 异常时写 event。
+- [x] Feature promotion 基础去重、pending materialization 和 materialized active smoke。
+- [x] Training bridge smoke：materialized promotion -> fake submit training -> `qm_factor_training_runs`。
+- [x] Training status sync unit：`admin_training_jobs` snapshot -> factor training run `status/progress/result`。
+- [x] Feature promotion 回滚。
+- [x] Feature promotion 回滚运维工具。
+  - `DEBUG=false pytest --no-cov backend/services/tests/test_factor_research_rollback_tool.py -q` 覆盖 dry-run 不调用回滚 API、`--execute` 正式调用并校验 `rolled_back` 状态、已回滚 promotion 默认跳过。
+- [x] Shadow signal DB-only smoke：候选 -> 评估 -> factor values -> `engine_signal_scores`。
+- [x] Shadow signal 写 Redis stream 需要显式二次确认。
+- [x] Shadow signal runner/hosted-task 消费侧默认拒绝 `factor_shadow`，需要 `allow_factor_shadow_signals=true`。
+- [x] Shadow signal 接入模拟盘 / shadow runner 后不绕过风控。
+  - `test_create_hosted_task_allows_factor_shadow_only_with_simulation_audit_context` 覆盖显式授权后仅以 `SIMULATION` hosted task 入队，并保留 `signal_source=factor_shadow` 与 `simulation_hosted_scheduler` 审计上下文。
+  - `test_runner_passes_factor_shadow_simulation_policy_to_hosted_task` 覆盖后台 hosted runner 调度时透传 `SIMULATION`、`allow_factor_shadow_signals=true`，并写入 `source=hosted_runner` / `signal_input=engine_signal_scores` / `signal_source_policy=factor_shadow_allowed` 触发上下文。
+  - `test_process_hosted_factor_shadow_simulation_task_persists_result_context` 覆盖 hosted task 实际处理时派发模拟订单、订单备注保留 `signal_source=factor_shadow`、任务结果回写 completed。
+  - `test_internal_strategy_order_simulation_uses_submission_service_rejection` 覆盖模拟盘下单必须进入 `SimulationOrderSubmissionService`，资金不足等模拟执行风控返回 `simulation_rejected`，不会直接成功。
+  - `factor_research_live_api_smoke.py --include-shadow-simulation-flow` 覆盖运行中服务的真实 DB/Redis 链路：seed `qm_model_inference_runs`、`engine_signal_scores`、临时策略和 Redis 模拟账户快照，未授权 `factor_shadow` 返回 409，显式授权后创建并执行 `SIMULATION` hosted task，完成后断言 `simulation_orders/simulation_fills/simulation_position_lots/simulation_cash_ledger` 均有落库。
+- [x] Full live smoke profile：因子研究主链路 + feature materialize + bounded campaign + backfill worker + 审批流 + shadow simulation 门禁 + SLO health。
+  - 容器内命令：`docker exec quantmind sh -lc 'DEBUG=false python backend/services/engine/scripts/factor_research_live_api_smoke.py --base-url http://127.0.0.1:8000 --full-profile --timeout-seconds 120'`
+  - `--full-profile` 等价于 `--include-materialize --include-campaign-flow --include-campaign-worker-flow --include-factor-value-backfill-flow --include-approval-flow --include-shadow-simulation-flow --include-slo-health-flow`。
+  - 最近实测 `status=passed`，`materialization_status=materialized`，`campaign_flow_completed_generations=2`，`approval_flow_review_status=approved`，`approval_flow_reject_status=rejected`，`shadow_simulation_unauthorized_status=409`，`shadow_simulation_authorized_trading_mode=SIMULATION`，`shadow_simulation_executed_task_status=completed`，`shadow_simulation_execution_order_count=1`，`shadow_simulation_execution_fill_count=1`，`shadow_simulation_position_lot_count=1`，`shadow_simulation_cash_ledger_count=3`，`stream_published_count=0`。
+- [x] Playwright：底部导航进入 `因子研究`，确认前置 pipeline 和 shadow signal 面板。
+- [x] Playwright：创建和轮询任务。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖 `/factor-research` 独立入口、创建候选因子、创建 evaluation run、从 `running` 自动轮询到 `completed`。
+  - `electron/playwright.config.ts` 默认使用独立 3100 端口启动 Vite Web，避免复用人工预览服务导致认证和环境变量污染。
+- [x] Playwright：启动 bounded Campaign。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖默认挖掘模式、`Campaign 策略` 切换、`Campaign 代数` 输入、`POST /api/v1/research/factors/campaigns` 的 strategy/max_generations/metadata payload、latest campaign detail 读取、generation summary 展示、Campaign 历史切换、历史 campaign 详情读取和 run 明细字段展示。
+- [x] Playwright live browser E2E：浏览器真实连接运行中 API。
+  - `LIVE_FACTOR_RESEARCH_E2E=1 VITE_API_BASE_URL=http://127.0.0.1:8000 npm --prefix electron run test:e2e -- factor-research-live.spec.ts --reporter=line` 覆盖真实注册、`/factor-research` 页面提交候选、真实 evaluator 完成 run、候选队列回显。
+  - `LIVE_FACTOR_RESEARCH_E2E=1 LIVE_FACTOR_RESEARCH_FULL_E2E=1 VITE_API_BASE_URL=http://127.0.0.1:8000 npx playwright test tests/e2e/factor-research-live.spec.ts --project=chromium` 覆盖真实浏览器点击提交评估、登记 Shadow 特征、晋升即物化/手动物化两类可训练分支，以及发布 Shadow Signal；最近实测 `2 passed`。
+  - 后端开发 CORS 默认白名单已加入 `http://127.0.0.1:3100` / `http://localhost:3100`，匹配 Playwright 默认 Vite 端口。
+- [x] Playwright：模型训练消费因子研究 feature catalog。
+  - `electron/tests/e2e/model-training-factor-catalog.spec.ts` 覆盖 `/model-training` 读取 `/api/v1/models/feature-catalog` 后展示 `factor_research` 分类和晋升因子，确认因子研究物化产物可进入训练页第一步特征选择。
+- [x] Playwright：因子研究到模型训练、模型管理的连续跨模块验收。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 的 Shadow 训练用例已扩展为同一浏览器路径：`/factor-research` 发起 Shadow 训练并审批为默认模型后，继续进入 `/model-training` 验证 `factor_research` feature catalog，再进入 `/model-registry` 验证因子研究来源上下文、promoted factor key 和 baseline run。
+- [x] Live API smoke：真实 DB/service 层默认模型审批流。
+  - `docker compose exec -T quantmind python backend/services/engine/scripts/factor_research_live_api_smoke.py --base-url http://127.0.0.1:8000 --include-approval-flow` 覆盖种子 completed factor training、ready user model、审批策略读写、提交审批请求、重复提交幂等、管理员审核通过、管理员拒绝、默认模型设置、审批审计落库、审批通知落库和默认种子数据清理。
+- [x] Live API smoke：真实 DB/Redis/service 层 Shadow Signal 模拟盘门禁。
+  - `docker compose exec -T quantmind python backend/services/engine/scripts/factor_research_live_api_smoke.py --base-url http://127.0.0.1:8000 --include-shadow-simulation-flow` 覆盖 `factor_shadow` 未授权拒绝、显式授权后 `SIMULATION` hosted task 创建、策略/推理/信号/模拟账户快照读取和默认种子数据清理。
+- [x] Playwright：已物化因子发起 Shadow 训练。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖 Feature 晋升面板加载 `materialized` promotion、点击 `发起 Shadow 训练`，并断言请求 payload 包含 `auto_baseline=true`、`baseline_display_name` 和 factor research metadata。
+- [x] Playwright：训练门禁通过后审批为默认模型。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖点击 `审批为默认模型`，断言审批 payload 包含 `set_default_model=true`，并展示已设置的默认模型 id。
+- [x] Playwright：Feature 晋升面板展示审批请求区。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖训练门禁通过后的审批请求卡片，避免前端只有直审入口。
+- [x] Playwright：普通用户提交默认模型审批请求。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖非管理员用户下 `审批为默认模型` 禁用、`提交审批请求` 可用，并断言 approval request payload。
+- [x] Playwright：管理员审核默认模型审批请求。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖管理员点击 `通过请求`，断言 review payload 包含 `approve=true`、`decision=approve` 和 factor research review metadata。
+- [x] Playwright：非管理员审批人审核默认模型审批请求。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖 `/api/v1/rbac/check-permission?permission_code=factor.approve` 返回 true 后，非管理员用户禁用 `提交审批请求`、展示 `通过请求`，并可提交 review payload。
+- [x] Playwright：审批策略影响默认模型晋升路径。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖前端读取/保存 approval policy；当关闭直接审批后，`审批为默认模型` 被禁用，审批人改走 `提交审批请求`。
+- [x] Playwright：因子研究运行健康面板。
+  - `electron/tests/e2e/factor-research-flow.spec.ts` 覆盖前端读取 `/api/v1/research/factors/health` 和 `/api/v1/research/factors/campaign-worker-events`，展示 `运行健康`、失败 run、待物化、活跃 campaign、worker 事件明细和告警摘要。
