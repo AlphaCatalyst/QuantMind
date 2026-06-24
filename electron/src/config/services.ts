@@ -70,7 +70,11 @@ export async function initDynamicServerUrl(): Promise<void> {
 
   if (isElectronEnv()) {
     try {
-      const url = await (window as any).electronAPI.getServerUrl();
+      const getServerUrl = (window as any).electronAPI?.getServerUrl;
+      if (typeof getServerUrl !== 'function') {
+        return;
+      }
+      const url = await getServerUrl();
       if (url && typeof url === 'string') {
         dynamicServerUrl = url.replace(/\/+$/, '');
         persistServerUrl(dynamicServerUrl);

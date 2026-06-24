@@ -466,6 +466,14 @@ export const AttributionAnalysisPanel: React.FC<{
 }> = ({ model, shapSummary, loading, error, featureLabelMap = {}, onRefresh }) => {
   const meta = getMeta(model);
   const shapMeta = meta.shap && typeof meta.shap === 'object' ? meta.shap as Record<string, any> : {};
+  const factorResearch = meta.factor_research && typeof meta.factor_research === 'object'
+    ? meta.factor_research as Record<string, any>
+    : null;
+  const promotedFactorKey = String(meta.promoted_factor_key || factorResearch?.feature_key || '').trim();
+  const promotedFactorExpression = String(meta.promoted_factor_expression || factorResearch?.expression || '').trim();
+  const featureSetVersionId = String(meta.feature_set_version_id || factorResearch?.feature_set_version_id || '').trim();
+  const baselineRunId = String(factorResearch?.baseline_training_run_id || '').trim();
+  const sourcePipeline = String(meta.source_pipeline || factorResearch?.pipeline_stage || '').trim();
   
   const rows = (shapSummary?.items || shapMeta.items || []) as ModelShapSummaryItem[];
   const status = String(shapSummary?.status || shapMeta.status || 'missing').toLowerCase();
@@ -531,6 +539,37 @@ export const AttributionAnalysisPanel: React.FC<{
           <Button onClick={handleExport} icon={<Download size={14} />} size="small" className="rounded-full h-8 text-[11px] font-bold border-slate-300 px-6 hover:border-blue-400 hover:text-blue-600 transition-all">数据导出</Button>
         </Space>
       </div>
+
+      {factorResearch && (
+        <div className="rounded-2xl border border-emerald-100 bg-emerald-50/70 px-4 py-3 shadow-sm shrink-0">
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div className="min-w-0">
+              <div className="mb-1 flex flex-wrap items-center gap-2">
+                <Text className="text-[11px] font-black text-emerald-800 uppercase tracking-widest">因子研究来源</Text>
+                {sourcePipeline && <Tag color="green" className="m-0 rounded-full text-[9px] font-black">{sourcePipeline}</Tag>}
+              </div>
+              <div className="break-all font-mono text-[11px] font-bold text-emerald-900">
+                {promotedFactorKey || 'factor_research'}
+              </div>
+              {promotedFactorExpression && (
+                <div className="mt-1 break-all font-mono text-[10px] text-emerald-700">
+                  {promotedFactorExpression}
+                </div>
+              )}
+            </div>
+            <div className="grid min-w-[260px] grid-cols-2 gap-2 text-[10px] font-bold text-emerald-700">
+              <div>
+                <span className="text-emerald-500">Feature Set</span>
+                <div className="break-all font-mono text-emerald-900">{featureSetVersionId || '—'}</div>
+              </div>
+              <div>
+                <span className="text-emerald-500">Baseline Run</span>
+                <div className="break-all font-mono text-emerald-900">{baselineRunId || '—'}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 核心内容区 */}
       <div className="glass-panel rounded-2xl p-5 border border-slate-200 bg-white shadow-sm flex flex-col flex-1 overflow-hidden">

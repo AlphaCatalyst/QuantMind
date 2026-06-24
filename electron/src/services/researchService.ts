@@ -66,6 +66,536 @@ export interface ResearchOverviewQuery {
   offset?: number;
 }
 
+export interface FactorCandidate {
+  id: string;
+  name: string;
+  expression: string;
+  expressionHash: string;
+  description?: string | null;
+  source: string;
+  family?: string | null;
+  status: 'draft' | 'evaluating' | 'validated' | 'rejected' | 'promoted' | 'archived';
+  tags: string[];
+  metadata: Record<string, any>;
+  latestRun?: FactorEvaluationRun | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorEvaluationRun {
+  id: string;
+  candidateId: string;
+  status: 'pending' | 'running' | 'completed' | 'failed' | string;
+  params: Record<string, any>;
+  metrics?: Record<string, any> | null;
+  gateDecision: {
+    eligible?: boolean;
+    reasons?: string[];
+    [key: string]: any;
+  };
+  reportUrl?: string | null;
+  errorMessage?: string | null;
+  startedAt?: string | null;
+  completedAt?: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorValueItem {
+  candidateId: string;
+  runId: string;
+  tradeDate: string | null;
+  symbol: string;
+  factorValue: number | null;
+  source: string;
+  createdAt: string | null;
+}
+
+export interface FactorRunValuesResult {
+  run: FactorEvaluationRun;
+  summary: {
+    total: number;
+    tradeDateCount: number;
+    symbolCount: number;
+    minTradeDate: string | null;
+    maxTradeDate: string | null;
+    minFactorValue: number | null;
+    maxFactorValue: number | null;
+    nullValueCount?: number;
+    invalidSymbolCount?: number;
+    sourceCount?: number;
+    invalidSymbolSamples?: string[];
+    sourceDistribution?: Array<{ source: string; count: number }>;
+    recentDateDistribution?: Array<{ tradeDate: string | null; count: number }>;
+  };
+  items: FactorValueItem[];
+  pagination: {
+    limit: number;
+    offset: number;
+    returned: number;
+    hasMore: boolean;
+  };
+}
+
+export interface FactorFeaturePromotion {
+  id: string;
+  candidateId: string;
+  runId: string;
+  featureKey: string;
+  featureId: string;
+  versionId?: string | null;
+  status: 'materialized' | 'pending_materialization' | 'unknown' | string;
+  materializationStatus: 'materialized' | 'pending_materialization' | 'unknown' | string;
+  metadata: Record<string, any>;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorSignalRun {
+  id: string;
+  candidateId: string;
+  factorRunId: string;
+  tradeDate: string | null;
+  status: string;
+  topN: number;
+  bottomN: number;
+  longShort: boolean;
+  publishStream: boolean;
+  signalCount: number;
+  streamPublishedCount: number;
+  metadata: Record<string, any>;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorCampaignItem {
+  campaignId: string;
+  candidateId?: string | null;
+  runId?: string | null;
+  generation: number;
+  rankNo: number;
+  expression: string;
+  status: string;
+  score?: number | null;
+  reason?: string | null;
+  metrics?: Record<string, any> | null;
+  metadata?: Record<string, any> | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorCampaign {
+  id: string;
+  name: string;
+  strategy: string;
+  status: string;
+  seedExpression?: string | null;
+  params: Record<string, any>;
+  summary: Record<string, any>;
+  metadata: Record<string, any>;
+  items: FactorCampaignItem[];
+  startedAt?: string | null;
+  completedAt?: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorCampaignWorkerEvent {
+  id: string;
+  eventType: string;
+  campaignId?: string | null;
+  tenantId?: string | null;
+  userId?: string | null;
+  workerId?: string | null;
+  attemptNo?: number | null;
+  durationMs?: number | null;
+  heartbeatAt?: string | null;
+  status: string;
+  details: Record<string, any>;
+  createdAt: string | null;
+}
+
+export interface FactorValueBackfillJob {
+  id: string;
+  tenantId: string;
+  userId: string;
+  status: 'pending' | 'running' | 'completed' | 'failed' | string;
+  target: {
+    runIds?: string[];
+    candidateIds?: string[];
+    promotionIds?: string[];
+    [key: string]: any;
+  };
+  params: Record<string, any>;
+  result?: Record<string, any> | null;
+  errorMessage?: string | null;
+  workerId?: string | null;
+  startedAt?: string | null;
+  completedAt?: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorValueBackfillEvent {
+  id: string;
+  jobId?: string | null;
+  tenantId?: string | null;
+  userId?: string | null;
+  workerId?: string | null;
+  eventType: string;
+  status: string;
+  details: Record<string, any>;
+  createdAt: string | null;
+}
+
+export interface FactorTrainingRun {
+  id: string;
+  promotionId: string;
+  candidateId: string;
+  factorRunId: string;
+  trainingRunId?: string | null;
+  status: string;
+  trainingStatus?: string | null;
+  trainingProgress?: number | null;
+  trainingResult?: Record<string, any>;
+  trainingComparison?: Record<string, any>;
+  trainingGate?: Record<string, any>;
+  featureKey: string;
+  featureSetVersionId?: string | null;
+  requestPayload: Record<string, any>;
+  response: Record<string, any>;
+  metadata: Record<string, any>;
+  createdAt: string | null;
+  updatedAt: string | null;
+}
+
+export interface FactorApprovalAudit {
+  id: string;
+  tenantId: string;
+  userId: string;
+  trainingId: string;
+  factorRunId?: string | null;
+  promotionId?: string | null;
+  candidateId?: string | null;
+  modelId: string;
+  action: string;
+  status: string;
+  reason?: string | null;
+  idempotent: boolean;
+  requestMetadata: Record<string, any>;
+  approval: Record<string, any>;
+  defaultModel: Record<string, any>;
+  gate: Record<string, any>;
+  createdAt: string | null;
+}
+
+export interface FactorApprovalRequest {
+  id: string;
+  tenantId: string;
+  userId: string;
+  trainingId: string;
+  modelId: string;
+  status: string;
+  requestedBy?: string | null;
+  requestReason?: string | null;
+  requestMetadata: Record<string, any>;
+  reviewerUserId?: string | null;
+  reviewerNote?: string | null;
+  decision: Record<string, any>;
+  reviewedAt?: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+  idempotent?: boolean;
+}
+
+export interface FactorApprovalPolicy {
+  tenantId: string;
+  enabled: boolean;
+  allowDirectApproval: boolean;
+  allowSelfApproval: boolean;
+  minApprovals: number;
+  reviewerPermission: string;
+  metadata: Record<string, any>;
+  updatedBy?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+}
+
+export interface FactorHealthAlert {
+  level: 'critical' | 'warning' | 'info' | string;
+  code: string;
+  message: string;
+  count?: number;
+  [key: string]: any;
+}
+
+export interface FactorResearchHealth {
+  tenantId: string;
+  userId: string;
+  windowHours: number;
+  status: 'healthy' | 'warning' | 'critical' | string;
+  statusCounts: Record<string, Record<string, number>>;
+  indicators: Record<string, number>;
+  slo?: {
+    status?: 'met' | 'breached' | string;
+    metrics?: Record<string, number | null>;
+    objectives?: Record<string, number>;
+    breaches?: string[];
+    windowHours?: number;
+  };
+  quotaPolicy: Record<string, number | string | boolean | null>;
+  alerts: FactorHealthAlert[];
+  generatedAt: string | null;
+}
+
+interface FactorCandidatesResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorCandidate[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorCandidateResponse {
+  code: number;
+  message: string;
+  data: {
+    candidate: FactorCandidate;
+  };
+}
+
+interface FactorRunResponse {
+  code: number;
+  message: string;
+  data: {
+    run: FactorEvaluationRun;
+  };
+}
+
+interface FactorRunValuesResponse {
+  code: number;
+  message: string;
+  data: FactorRunValuesResult;
+}
+
+interface FactorPromotionResponse {
+  code: number;
+  message: string;
+  data: {
+    promotion: FactorFeaturePromotion;
+  };
+}
+
+interface FactorPromotionsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorFeaturePromotion[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorSignalRunResponse {
+  code: number;
+  message: string;
+  data: {
+    signalRun: FactorSignalRun;
+  };
+}
+
+interface FactorSignalRunsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorSignalRun[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorCampaignResponse {
+  code: number;
+  message: string;
+  data: {
+    campaign: FactorCampaign;
+  };
+}
+
+interface FactorCampaignsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorCampaign[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorCampaignWorkerEventsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorCampaignWorkerEvent[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorValueBackfillJobResponse {
+  code: number;
+  message: string;
+  data: {
+    job: FactorValueBackfillJob;
+  };
+}
+
+interface FactorValueBackfillJobsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorValueBackfillJob[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorValueBackfillEventsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorValueBackfillEvent[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorTrainingRunResponse {
+  code: number;
+  message: string;
+  data: {
+    training: FactorTrainingRun;
+    approval?: Record<string, any>;
+    defaultModel?: Record<string, any>;
+  };
+}
+
+interface FactorTrainingRunsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorTrainingRun[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorApprovalAuditsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorApprovalAudit[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorApprovalRequestResponse {
+  code: number;
+  message: string;
+  data: {
+    request: FactorApprovalRequest;
+    approvalResult?: Record<string, any> | null;
+  };
+}
+
+interface FactorApprovalRequestsResponse {
+  code: number;
+  message: string;
+  data: {
+    items: FactorApprovalRequest[];
+    total: number;
+    pagination: {
+      limit: number;
+      offset: number;
+      returned: number;
+      hasMore: boolean;
+    };
+  };
+}
+
+interface FactorApprovalPolicyResponse {
+  code: number;
+  message: string;
+  data: {
+    policy: FactorApprovalPolicy;
+  };
+}
+
+interface FactorResearchHealthResponse {
+  code: number;
+  message: string;
+  data: {
+    health: FactorResearchHealth;
+  };
+}
+
+interface PermissionCheckResponse {
+  code: number;
+  message: string;
+  data: {
+    has_permission: boolean;
+    permission_code: string;
+  };
+}
+
 interface ResearchOverviewResponse {
   code: number;
   message: string;
@@ -274,6 +804,438 @@ class ResearchService {
       candidates: data.items || [],
       summary: data.summary || { total: 0, avgScore: 0, highConfidenceCount: 0, strongCount: 0, lastUpdatedAt: null }
     };
+  }
+
+  async checkPermission(permissionCode: string): Promise<boolean> {
+    try {
+      const params = new URLSearchParams({ permission_code: permissionCode });
+      const resp = await this.client.get<PermissionCheckResponse>(`/rbac/check-permission?${params.toString()}`);
+      return Boolean(resp.data?.data?.has_permission);
+    } catch (error) {
+      console.error('[ResearchService] checkPermission failed:', error);
+      return false;
+    }
+  }
+
+  // ============ 因子研究接口 ============
+
+  async listFactorCandidates(options?: { status?: string; limit?: number; offset?: number }): Promise<{
+    items: FactorCandidate[];
+    total: number;
+    pagination: FactorCandidatesResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    if (options?.status) params.append('status', options.status);
+    params.append('limit', String(options?.limit ?? 50));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorCandidatesResponse>(`/research/factors/candidates?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async getFactorResearchHealth(windowHours = 24): Promise<FactorResearchHealth> {
+    const params = new URLSearchParams({ window_hours: String(windowHours) });
+    const resp = await this.client.get<FactorResearchHealthResponse>(`/research/factors/health?${params.toString()}`);
+    return resp.data.data.health;
+  }
+
+  async createFactorCandidate(payload: {
+    name?: string;
+    expression: string;
+    description?: string;
+    source?: string;
+    family?: string;
+    tags?: string[];
+    metadata?: Record<string, any>;
+  }): Promise<FactorCandidate> {
+    const resp = await this.client.post<FactorCandidateResponse>('/research/factors/candidates', payload);
+    return resp.data.data.candidate;
+  }
+
+  async evaluateFactorCandidate(candidateId: string, payload: {
+    universe: string;
+    start_date: string;
+    end_date: string;
+    n_groups: number;
+    holding_period: number;
+    neutralize_industry: boolean;
+    neutralize_cap: boolean;
+    validation_profile?: string;
+    metadata?: Record<string, any>;
+  }): Promise<FactorEvaluationRun> {
+    const resp = await this.client.post<FactorRunResponse>(
+      `/research/factors/candidates/${candidateId}/evaluate`,
+      payload
+    );
+    return resp.data.data.run;
+  }
+
+  async getFactorEvaluationRun(runId: string): Promise<FactorEvaluationRun> {
+    const resp = await this.client.get<FactorRunResponse>(`/research/factors/runs/${runId}`);
+    return resp.data.data.run;
+  }
+
+  async listFactorRunValues(runId: string, options?: { limit?: number; offset?: number }): Promise<FactorRunValuesResult> {
+    const params = new URLSearchParams();
+    params.append('limit', String(options?.limit ?? 100));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorRunValuesResponse>(`/research/factors/runs/${runId}/values?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async createFactorValueBackfillJob(payload: {
+    run_ids?: string[];
+    candidate_ids?: string[];
+    promotion_ids?: string[];
+    start_date?: string;
+    end_date?: string;
+    universe?: string;
+    holding_period?: number;
+    dry_run?: boolean;
+    max_runs?: number;
+    metadata?: Record<string, any>;
+  }): Promise<FactorValueBackfillJob> {
+    const resp = await this.client.post<FactorValueBackfillJobResponse>(
+      '/research/factors/value-backfills',
+      payload
+    );
+    return resp.data.data.job;
+  }
+
+  async listFactorValueBackfillJobs(options?: { status?: string; limit?: number; offset?: number }): Promise<{
+    items: FactorValueBackfillJob[];
+    total: number;
+    pagination: FactorValueBackfillJobsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    if (options?.status) params.append('status', options.status);
+    params.append('limit', String(options?.limit ?? 10));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorValueBackfillJobsResponse>(`/research/factors/value-backfills?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async runFactorValueBackfillJob(jobId: string): Promise<FactorValueBackfillJob> {
+    const resp = await this.client.post<FactorValueBackfillJobResponse>(
+      `/research/factors/value-backfills/${jobId}/run`,
+      {}
+    );
+    return resp.data.data.job;
+  }
+
+  async cancelFactorValueBackfillJob(jobId: string, reason = 'manual_cancel'): Promise<FactorValueBackfillJob> {
+    const params = new URLSearchParams();
+    params.append('reason', reason);
+    const resp = await this.client.post<FactorValueBackfillJobResponse>(
+      `/research/factors/value-backfills/${jobId}/cancel?${params.toString()}`,
+      {}
+    );
+    return resp.data.data.job;
+  }
+
+  async listFactorValueBackfillEvents(options?: {
+    jobId?: string;
+    workerId?: string;
+    eventType?: string;
+    status?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    items: FactorValueBackfillEvent[];
+    total: number;
+    pagination: FactorValueBackfillEventsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    if (options?.jobId) params.append('job_id', options.jobId);
+    if (options?.workerId) params.append('worker_id', options.workerId);
+    if (options?.eventType) params.append('event_type', options.eventType);
+    if (options?.status) params.append('status', options.status);
+    params.append('limit', String(options?.limit ?? 10));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorValueBackfillEventsResponse>(`/research/factors/value-backfill-events?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async promoteFactorCandidate(candidateId: string, payload?: {
+    run_id?: string;
+    feature_key?: string;
+    feature_name?: string;
+    force_shadow?: boolean;
+    metadata?: Record<string, any>;
+  }): Promise<FactorFeaturePromotion> {
+    const resp = await this.client.post<FactorPromotionResponse>(
+      `/research/factors/candidates/${candidateId}/promote`,
+      payload || {}
+    );
+    return resp.data.data.promotion;
+  }
+
+  async listFactorPromotions(options?: { limit?: number; offset?: number }): Promise<{
+    items: FactorFeaturePromotion[];
+    total: number;
+    pagination: FactorPromotionsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    params.append('limit', String(options?.limit ?? 20));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorPromotionsResponse>(`/research/factors/promotions?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async materializeFactorPromotion(promotionId: string): Promise<FactorFeaturePromotion> {
+    const resp = await this.client.post<FactorPromotionResponse>(
+      `/research/factors/promotions/${promotionId}/materialize`,
+      {}
+    );
+    return resp.data.data.promotion;
+  }
+
+  async rollbackFactorPromotion(promotionId: string, reason = 'manual_rollback'): Promise<FactorFeaturePromotion> {
+    const resp = await this.client.post<FactorPromotionResponse>(
+      `/research/factors/promotions/${promotionId}/rollback`,
+      { reason }
+    );
+    return resp.data.data.promotion;
+  }
+
+  async publishFactorShadowSignal(candidateId: string, payload?: {
+    run_id?: string;
+    trade_date?: string;
+    top_n?: number;
+    bottom_n?: number;
+    long_short?: boolean;
+    quantity?: number;
+    publish_stream?: boolean;
+    allow_shadow_stream?: boolean;
+    metadata?: Record<string, any>;
+  }): Promise<FactorSignalRun> {
+    const resp = await this.client.post<FactorSignalRunResponse>(
+      `/research/factors/candidates/${candidateId}/publish-shadow-signal`,
+      payload || {}
+    );
+    return resp.data.data.signalRun;
+  }
+
+  async listFactorSignalRuns(options?: { limit?: number; offset?: number }): Promise<{
+    items: FactorSignalRun[];
+    total: number;
+    pagination: FactorSignalRunsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    params.append('limit', String(options?.limit ?? 20));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorSignalRunsResponse>(`/research/factors/signals?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async createFactorCampaign(payload: {
+    name?: string;
+    strategy?: string;
+    seed_expression?: string;
+    seed_expressions?: string[];
+    n_candidates?: number;
+    max_generations?: number;
+    run_async?: boolean;
+    universe: string;
+    start_date: string;
+    end_date: string;
+    n_groups: number;
+    holding_period: number;
+    neutralize_industry: boolean;
+    neutralize_cap: boolean;
+    validation_profile?: string;
+    worker_policy?: Record<string, any>;
+    retry_policy?: Record<string, any>;
+    execution_lease?: Record<string, any>;
+    metadata?: Record<string, any>;
+  }): Promise<FactorCampaign> {
+    const resp = await this.client.post<FactorCampaignResponse>('/research/factors/campaigns', payload);
+    return resp.data.data.campaign;
+  }
+
+  async listFactorCampaigns(options?: { limit?: number; offset?: number }): Promise<{
+    items: FactorCampaign[];
+    total: number;
+    pagination: FactorCampaignsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    params.append('limit', String(options?.limit ?? 20));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorCampaignsResponse>(`/research/factors/campaigns?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async getFactorCampaign(campaignId: string): Promise<FactorCampaign> {
+    const resp = await this.client.get<FactorCampaignResponse>(`/research/factors/campaigns/${campaignId}`);
+    return resp.data.data.campaign;
+  }
+
+  async listFactorCampaignWorkerEvents(options?: {
+    campaignId?: string;
+    workerId?: string;
+    eventType?: string;
+    status?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    items: FactorCampaignWorkerEvent[];
+    total: number;
+    pagination: FactorCampaignWorkerEventsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    params.append('limit', String(options?.limit ?? 10));
+    params.append('offset', String(options?.offset ?? 0));
+    if (options?.campaignId) params.append('campaign_id', options.campaignId);
+    if (options?.workerId) params.append('worker_id', options.workerId);
+    if (options?.eventType) params.append('event_type', options.eventType);
+    if (options?.status) params.append('status', options.status);
+    const resp = await this.client.get<FactorCampaignWorkerEventsResponse>(
+      `/research/factors/campaign-worker-events?${params.toString()}`
+    );
+    return resp.data.data;
+  }
+
+  async cancelFactorCampaign(campaignId: string, reason = 'manual_cancel'): Promise<FactorCampaign> {
+    const params = new URLSearchParams({ reason });
+    const resp = await this.client.post<FactorCampaignResponse>(
+      `/research/factors/campaigns/${campaignId}/cancel?${params.toString()}`,
+      {}
+    );
+    return resp.data.data.campaign;
+  }
+
+  async launchFactorPromotionTraining(promotionId: string, payload?: {
+    display_name?: string;
+    baseline_display_name?: string;
+    auto_baseline?: boolean;
+    train_start?: string;
+    train_end?: string;
+    valid_start?: string;
+    valid_end?: string;
+    test_start?: string;
+    test_end?: string;
+    target_horizon_days?: number;
+    target_mode?: string;
+    label_formula?: string;
+    num_boost_round?: number;
+    early_stopping_rounds?: number;
+    context?: Record<string, any>;
+    lgb_params?: Record<string, any>;
+    baseline_training_run_id?: string;
+    baseline_metrics?: Record<string, any>;
+    metadata?: Record<string, any>;
+  }): Promise<FactorTrainingRun> {
+    const resp = await this.client.post<FactorTrainingRunResponse>(
+      `/research/factors/promotions/${promotionId}/train`,
+      payload || {}
+    );
+    return resp.data.data.training;
+  }
+
+  async listFactorTrainingRuns(options?: { limit?: number; offset?: number }): Promise<{
+    items: FactorTrainingRun[];
+    total: number;
+    pagination: FactorTrainingRunsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    params.append('limit', String(options?.limit ?? 20));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorTrainingRunsResponse>(`/research/factors/trainings?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async listFactorApprovalAudits(options?: {
+    trainingId?: string;
+    modelId?: string;
+    status?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    items: FactorApprovalAudit[];
+    total: number;
+    pagination: FactorApprovalAuditsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    if (options?.trainingId) params.append('training_id', options.trainingId);
+    if (options?.modelId) params.append('model_id', options.modelId);
+    if (options?.status) params.append('status', options.status);
+    params.append('limit', String(options?.limit ?? 20));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorApprovalAuditsResponse>(`/research/factors/approvals?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async getFactorApprovalPolicy(): Promise<FactorApprovalPolicy> {
+    const resp = await this.client.get<FactorApprovalPolicyResponse>('/research/factors/approval-policy');
+    return resp.data.data.policy;
+  }
+
+  async updateFactorApprovalPolicy(payload: {
+    allow_direct_approval?: boolean;
+    allow_self_approval?: boolean;
+    min_approvals?: number;
+    reviewer_permission?: string;
+    metadata?: Record<string, any>;
+  }): Promise<FactorApprovalPolicy> {
+    const resp = await this.client.put<FactorApprovalPolicyResponse>(
+      '/research/factors/approval-policy',
+      payload
+    );
+    return resp.data.data.policy;
+  }
+
+  async requestFactorTrainingApproval(trainingId: string, payload?: {
+    reason?: string;
+    metadata?: Record<string, any>;
+  }): Promise<FactorApprovalRequest> {
+    const resp = await this.client.post<FactorApprovalRequestResponse>(
+      `/research/factors/trainings/${trainingId}/approval-requests`,
+      payload || {}
+    );
+    return resp.data.data.request;
+  }
+
+  async listFactorApprovalRequests(options?: {
+    status?: string;
+    limit?: number;
+    offset?: number;
+  }): Promise<{
+    items: FactorApprovalRequest[];
+    total: number;
+    pagination: FactorApprovalRequestsResponse['data']['pagination'];
+  }> {
+    const params = new URLSearchParams();
+    if (options?.status) params.append('status', options.status);
+    params.append('limit', String(options?.limit ?? 20));
+    params.append('offset', String(options?.offset ?? 0));
+    const resp = await this.client.get<FactorApprovalRequestsResponse>(`/research/factors/approval-requests?${params.toString()}`);
+    return resp.data.data;
+  }
+
+  async reviewFactorApprovalRequest(requestId: string, payload?: {
+    approve?: boolean;
+    decision?: string;
+    reason?: string;
+    reviewer_note?: string;
+    metadata?: Record<string, any>;
+  }): Promise<FactorApprovalRequestResponse['data']> {
+    const resp = await this.client.post<FactorApprovalRequestResponse>(
+      `/research/factors/approval-requests/${requestId}/review`,
+      payload || {}
+    );
+    return resp.data.data;
+  }
+
+  async approveFactorTraining(trainingId: string, payload?: {
+    set_default_model?: boolean;
+    approve_default_model?: boolean;
+    reason?: string;
+    metadata?: Record<string, any>;
+  }): Promise<FactorTrainingRun> {
+    const resp = await this.client.post<FactorTrainingRunResponse>(
+      `/research/factors/trainings/${trainingId}/approve`,
+      payload || {}
+    );
+    return resp.data.data.training;
   }
 }
 
