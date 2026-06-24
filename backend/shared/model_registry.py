@@ -1210,25 +1210,24 @@ class ModelRegistryService:
         normalized = normalized[:88].strip("_") or "train_run"
         return f"mdl_{normalized}_{digest}"
 
-    async def register_model_from_training_run(
+    def _build_training_run_model_metadata(
         self,
         *,
-        tenant_id: str,
-        user_id: str,
         run_id: str,
         request_payload: dict[str, Any],
         result_payload: dict[str, Any],
     ) -> dict[str, Any]:
-        tenant, user = self._normalize_owner(tenant_id=tenant_id, user_id=user_id)
-        await self.ensure_tables()
-        model_id = self.build_model_id_from_run(run_id)
-        now = datetime.now(timezone.utc)
-        model_dir = self.user_models_root / tenant / user / model_id
-        model_dir.mkdir(parents=True, exist_ok=True)
-
-        metrics = result_payload.get("metrics") if isinstance(result_payload.get("metrics"), dict) else {}
-        metadata = result_payload.get("metadata") if isinstance(result_payload.get("metadata"), dict) else {}
-        metadata = {
+        metadata = (
+            dict(result_payload.get("metadata"))
+            if isinstance(result_payload.get("metadata"), dict)
+            else {}
+        )
+        factor_research = (
+            dict(request_payload.get("factor_research"))
+            if isinstance(request_payload.get("factor_research"), dict)
+            else None
+        )
+        built = {
             **metadata,
             "display_name": str(
                 request_payload.get("display_name")
@@ -1247,6 +1246,40 @@ class ModelRegistryService:
             "label_formula": request_payload.get("label_formula"),
             "training_window": request_payload.get("training_window"),
         }
+        if factor_research:
+            built["factor_research"] = factor_research
+            built["source_pipeline"] = str(
+                factor_research.get("pipeline_stage") or "factor_research"
+            )
+            built["promoted_factor_key"] = factor_research.get("feature_key")
+            built["promoted_factor_expression"] = factor_research.get("expression")
+            built["feature_set_version_id"] = factor_research.get(
+                "feature_set_version_id"
+            )
+        return built
+
+    async def register_model_from_training_run(
+        self,
+        *,
+        tenant_id: str,
+        user_id: str,
+        run_id: str,
+        request_payload: dict[str, Any],
+        result_payload: dict[str, Any],
+    ) -> dict[str, Any]:
+        tenant, user = self._normalize_owner(tenant_id=tenant_id, user_id=user_id)
+        await self.ensure_tables()
+        model_id = self.build_model_id_from_run(run_id)
+        now = datetime.now(timezone.utc)
+        model_dir = self.user_models_root / tenant / user / model_id
+        model_dir.mkdir(parents=True, exist_ok=True)
+
+        metrics = result_payload.get("metrics") if isinstance(result_payload.get("metrics"), dict) else {}
+        metadata = self._build_training_run_model_metadata(
+            run_id=run_id,
+            request_payload=request_payload,
+            result_payload=result_payload,
+        )
 
         async with get_session() as session:
             await session.execute(

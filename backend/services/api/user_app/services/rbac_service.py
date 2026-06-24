@@ -3,8 +3,6 @@ Role-Based Access Control Service
 角色权限控制服务
 """
 
-from typing import List, Optional, Set
-
 from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -31,7 +29,7 @@ class RBACService:
             select(Role)
             .join(user_roles)
             .where(user_roles.c.user_id == user_id)
-            .where(Role.is_active == True)
+            .where(Role.is_active.is_(True))
             .order_by(Role.priority.desc())
         )
         result = await self.db.execute(stmt)
@@ -57,7 +55,7 @@ class RBACService:
             select(Permission)
             .join(role_permissions)
             .where(role_permissions.c.role_id.in_(role_ids))
-            .where(Permission.is_active == True)
+            .where(Permission.is_active.is_(True))
         )
         result = await self.db.execute(stmt)
         permissions = result.scalars().all()
@@ -229,6 +227,14 @@ async def init_default_roles_and_permissions(db: AsyncSession):
         ("更新策略", "strategy.update", "strategy", "update", "更新策略"),
         ("删除策略", "strategy.delete", "strategy", "delete", "删除策略"),
         ("执行策略", "strategy.execute", "strategy", "execute", "执行策略"),
+        # 因子研究权限
+        (
+            "审批因子模型",
+            "factor.approve",
+            "factor",
+            "approve",
+            "审批因子训练默认模型和审批请求",
+        ),
         # 投资组合权限
         ("查看组合", "portfolio.read", "portfolio", "read", "查看投资组合"),
         ("创建组合", "portfolio.create", "portfolio", "create", "创建投资组合"),
@@ -256,7 +262,13 @@ async def init_default_roles_and_permissions(db: AsyncSession):
 
     created_permissions = {}
     for name, code, resource, action, desc in permissions:
-        perm = await rbac_service.create_permission(name, code, resource, action, desc)
+        stmt = select(Permission).where(Permission.code == code)
+        result = await db.execute(stmt)
+        perm = result.scalar_one_or_none()
+        if perm is None:
+            perm = await rbac_service.create_permission(
+                name, code, resource, action, desc
+            )
         created_permissions[code] = perm
 
         # 给管理员分配所有权限
@@ -294,3 +306,44 @@ async def init_default_roles_and_permissions(db: AsyncSession):
             await rbac_service.add_permission_to_role(trader_role.id, perm.id)
 
     print("✅ 默认角色和权限初始化完成")
+
+
+async def ensure_factor_approval_permission(db: AsyncSession) -> Permission:
+    """Ensure the factor model approval permission exists for existing DBs."""
+    rbac_service = RBACService(db)
+    stmt = select(Permission).where(Permission.code == "factor.approve")
+    result = await db.execute(stmt)
+    permission = result.scalar_one_or_none()
+
+    if permission is None:
+        permission = Permission(
+            name="审批因子模型",
+            code="factor.approve",
+            resource="factor",
+            action="approve",
+            description="审批因子训练默认模型和审批请求",
+            is_active=True,
+        )
+        db.add(permission)
+        await db.commit()
+        await db.refresh(permission)
+
+    admin_role = await rbac_service.get_role_by_code("admin")
+    if admin_role is not None:
+        link_stmt = select(role_permissions.c.role_id).where(
+            and_(
+                role_permissions.c.role_id == admin_role.id,
+                role_permissions.c.permission_id == permission.id,
+            )
+        )
+        link_result = await db.execute(link_stmt)
+        if link_result.first() is None:
+            await db.execute(
+                role_permissions.insert().values(
+                    role_id=admin_role.id,
+                    permission_id=permission.id,
+                )
+            )
+            await db.commit()
+
+    return permission

@@ -130,7 +130,21 @@ def _parse_iso_date(value: Any) -> date:
     except Exception as exc:
         raise HTTPException(
             status_code=400, detail=f"prediction_trade_date 非法: {exc}"
-        )
+        ) from exc
+
+
+def _parse_iso_datetime(value: Any) -> datetime | None:
+    if value is None:
+        return None
+    if isinstance(value, datetime):
+        return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
+    text_value = str(value or "").strip()
+    if not text_value:
+        return None
+    if text_value.endswith("Z"):
+        text_value = f"{text_value[:-1]}+00:00"
+    parsed = datetime.fromisoformat(text_value)
+    return parsed if parsed.tzinfo else parsed.replace(tzinfo=timezone.utc)
 
 
 def _normalize_trading_mode(value: Any) -> str:
@@ -178,17 +192,17 @@ def _manual_task_wait_next_account_timeout_seconds() -> int:
         os.getenv("MANUAL_TASK_WAIT_NEXT_ACCOUNT_TIMEOUT_SECONDS"),
         120,
     )
-    return max(10, min(raw, 1800))
+    return max(1, min(raw, 1800))
 
 
 def _manual_task_account_poll_interval_seconds() -> int:
     raw = _to_int(os.getenv("MANUAL_TASK_ACCOUNT_POLL_INTERVAL_SECONDS"), 3)
-    return max(1, min(raw, 30))
+    return max(1, min(raw, 10))
 
 
 def _manual_task_buy_cancel_timeout_seconds() -> int:
     raw = _to_int(os.getenv("MANUAL_TASK_BUY_CANCEL_TIMEOUT_SECONDS"), 300)
-    return max(10, min(raw, 3600))
+    return max(1, min(raw, 3600))
 
 
 def _parse_snapshot_at(value: Any) -> datetime | None:
@@ -208,6 +222,10 @@ def _parse_snapshot_at(value: Any) -> datetime | None:
 def _is_cancelable_buy_status(value: Any) -> bool:
     status = str(getattr(value, "value", value) or "").strip().lower()
     return status in {"submitted", "partially_filled"}
+
+
+def _should_request_cancel_for_buy_status(value: Any) -> bool:
+    return _is_cancelable_buy_status(value)
 
 
 def _rebuild_buy_orders_by_available_cash(
@@ -300,6 +318,20 @@ def _rebuild_buy_orders_by_available_cash(
     return rebuilt, skipped, round(remaining_cash, 2)
 
 
+def _rebuild_buy_orders_with_budget(
+    buy_orders: list[dict[str, Any]],
+    *,
+    buy_budget: float,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], float]:
+    rebuilt, skipped, remaining_cash = _rebuild_buy_orders_by_available_cash(
+        buy_orders,
+        available_cash=buy_budget,
+    )
+    for row in rebuilt:
+        row["reason"] = "按账户快照资金重算买单"
+    return rebuilt, skipped, remaining_cash
+
+
 def _rebuild_buy_orders_for_simulation_cash(
     buy_orders: list[dict[str, Any]],
     *,
@@ -325,7 +357,9 @@ def _rebuild_buy_orders_for_simulation_cash(
         reference_price = realtime_price if realtime_price > 0 else plan_reference_price
         drift_ratio = 0.0
         if plan_reference_price > 0 and realtime_price > 0:
-            drift_ratio = abs(realtime_price - plan_reference_price) / plan_reference_price
+            drift_ratio = (
+                abs(realtime_price - plan_reference_price) / plan_reference_price
+            )
             if drift_ratio >= price_drift_threshold:
                 reference_price = realtime_price
         if reference_price <= 0:
@@ -359,7 +393,9 @@ def _rebuild_buy_orders_for_simulation_cash(
         symbol = str(row.get("symbol") or "").strip().upper()
         reference_price = _to_float(row.get("reference_price"), 0.0)
         lot_size = _resolve_board_lot_size(symbol)
-        quantity = _floor_board_lot(alloc_budget / max(reference_price, 1e-12), lot_size)
+        quantity = _floor_board_lot(
+            alloc_budget / max(reference_price, 1e-12), lot_size
+        )
         if quantity <= 0:
             skipped.append(
                 {
@@ -749,11 +785,15 @@ def _build_execution_plan_from_signals(
     strategy_params: dict[str, Any],
     account_snapshot: dict[str, Any],
     prediction_trade_date: date | None = None,
+    trade_date: date | None = None,
 ) -> dict[str, Any]:
-    constrained_rows, fundamental_filtered_count = _apply_fundamental_constraints_to_signal_rows(
-        signal_rows,
-        strategy_params=strategy_params,
-        trade_date=prediction_trade_date,
+    effective_trade_date = prediction_trade_date or trade_date
+    constrained_rows, fundamental_filtered_count = (
+        _apply_fundamental_constraints_to_signal_rows(
+            signal_rows,
+            strategy_params=strategy_params,
+            trade_date=effective_trade_date,
+        )
     )
     positions = _normalize_positions((account_snapshot or {}).get("positions"))
     cash = _to_float(
@@ -810,6 +850,7 @@ def _build_execution_plan_from_signals(
                 ),
                 "reason": str(row.get("reason") or "卖出信号触发调仓"),
                 "fusion_score": _to_float(row.get("fusion_score"), 0.0),
+                "signal_source": _signal_row_source(row) or None,
             }
         )
 
@@ -843,9 +884,7 @@ def _build_execution_plan_from_signals(
         )
 
     per_order_budget = (
-        (sequential_budget / len(valid_candidates))
-        if valid_candidates
-        else 0.0
+        (sequential_budget / len(valid_candidates)) if valid_candidates else 0.0
     )
 
     for row in valid_candidates:
@@ -889,6 +928,7 @@ def _build_execution_plan_from_signals(
                 "current_market_value": 0.0,
                 "reason": reason,
                 "fusion_score": _to_float(row.get("fusion_score"), 0.0),
+                "signal_source": _signal_row_source(row) or None,
             }
         )
 
@@ -923,18 +963,19 @@ def _build_execution_plan_from_signals(
     }
 
 
-def _normalize_hosted_signal_rows(raw_signals: list[dict[str, Any]]) -> list[dict[str, Any]]:
+def _normalize_hosted_signal_rows(
+    raw_signals: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
     normalized: list[dict[str, Any]] = []
     for item in raw_signals or []:
         if not isinstance(item, dict):
             continue
         symbol = _normalize_to_broker_symbol(item.get("symbol"))
-        side = str(
-            item.get("action")
-            or item.get("side")
-            or item.get("signal_side")
-            or ""
-        ).strip().upper()
+        side = (
+            str(item.get("action") or item.get("side") or item.get("signal_side") or "")
+            .strip()
+            .upper()
+        )
         if not symbol or side not in {"BUY", "SELL"}:
             continue
         normalized.append(
@@ -948,6 +989,7 @@ def _normalize_hosted_signal_rows(raw_signals: list[dict[str, Any]]) -> list[dic
                     item.get("fusion_score") or item.get("score"), 0.0
                 ),
                 "reason": str(item.get("reason") or item.get("remark") or "").strip(),
+                "signal_source": _signal_row_source(item) or None,
                 "trade_action": str(item.get("trade_action") or "").strip().upper(),
                 "position_side": str(item.get("position_side") or "").strip().upper(),
                 "is_margin_trade": bool(item.get("is_margin_trade")),
@@ -955,6 +997,67 @@ def _normalize_hosted_signal_rows(raw_signals: list[dict[str, Any]]) -> list[dic
             }
         )
     return normalized
+
+
+def _is_truthy_flag(value: Any) -> bool:
+    if isinstance(value, bool):
+        return value
+    return str(value or "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _allow_factor_shadow_signal_execution(
+    *,
+    execution_config: dict[str, Any] | None,
+    live_trade_config: dict[str, Any] | None,
+) -> bool:
+    return _is_truthy_flag(
+        (execution_config or {}).get("allow_factor_shadow_signals")
+    ) or _is_truthy_flag((live_trade_config or {}).get("allow_factor_shadow_signals"))
+
+
+def _signal_row_source(row: dict[str, Any]) -> str:
+    quality = row.get("quality")
+    if isinstance(quality, str):
+        try:
+            quality = json.loads(quality)
+        except Exception:
+            quality = {}
+    if isinstance(quality, dict):
+        source = quality.get("signal_source") or quality.get("source")
+        if source:
+            return str(source).strip().lower()
+    return (
+        str(
+            row.get("signal_source")
+            or row.get("model_version")
+            or row.get("universe_tag")
+            or ""
+        )
+        .strip()
+        .lower()
+    )
+
+
+def _reject_unauthorized_factor_shadow_signals(
+    *,
+    signal_rows: list[dict[str, Any]],
+    execution_config: dict[str, Any] | None,
+    live_trade_config: dict[str, Any] | None,
+) -> None:
+    if _allow_factor_shadow_signal_execution(
+        execution_config=execution_config,
+        live_trade_config=live_trade_config,
+    ):
+        return
+    if any(
+        _signal_row_source(row) == "factor_shadow"
+        for row in signal_rows
+        if isinstance(row, dict)
+    ):
+        raise HTTPException(
+            status_code=409,
+            detail="检测到 factor_shadow 因子研究信号，需显式开启 allow_factor_shadow_signals 后才允许自动托管执行",
+        )
 
 
 def _stage_label(stage: str) -> str:
@@ -1003,7 +1106,11 @@ class ManualExecutionService:
 
     @staticmethod
     def _build_task_label(task_type: str) -> str:
-        return "自动托管任务" if str(task_type or "").strip().lower() == "hosted" else "手动执行任务"
+        return (
+            "自动托管任务"
+            if str(task_type or "").strip().lower() == "hosted"
+            else "手动执行任务"
+        )
 
     @staticmethod
     def _build_strategy_snapshot(
@@ -1116,9 +1223,10 @@ class ManualExecutionService:
     ) -> dict[str, Any] | None:
         async with get_session(read_only=True) as session:
             row = (
-                await session.execute(
-                    text(
-                        """
+                (
+                    await session.execute(
+                        text(
+                            """
                         SELECT model_id, metadata_json, status, activated_at, updated_at
                         FROM qm_user_models
                         WHERE tenant_id = :tenant_id
@@ -1128,10 +1236,13 @@ class ManualExecutionService:
                         ORDER BY activated_at DESC NULLS LAST, updated_at DESC
                         LIMIT 1
                         """
-                    ),
-                    {"tenant_id": tenant_id, "user_id": user_id},
+                        ),
+                        {"tenant_id": tenant_id, "user_id": user_id},
+                    )
                 )
-            ).mappings().first()
+                .mappings()
+                .first()
+            )
         return dict(row) if row else None
 
     async def _load_latest_default_model_inference_run(
@@ -1139,9 +1250,10 @@ class ManualExecutionService:
     ) -> dict[str, Any] | None:
         async with get_session(read_only=True) as session:
             row = (
-                await session.execute(
-                    text(
-                        """
+                (
+                    await session.execute(
+                        text(
+                            """
                         SELECT *
                         FROM qm_model_inference_runs
                         WHERE tenant_id = :tenant_id
@@ -1151,10 +1263,17 @@ class ManualExecutionService:
                         ORDER BY prediction_trade_date DESC, created_at DESC
                         LIMIT 1
                         """
-                    ),
-                    {"tenant_id": tenant_id, "user_id": user_id, "model_id": model_id},
+                        ),
+                        {
+                            "tenant_id": tenant_id,
+                            "user_id": user_id,
+                            "model_id": model_id,
+                        },
+                    )
                 )
-            ).mappings().first()
+                .mappings()
+                .first()
+            )
         return dict(row) if row else None
 
     async def _load_latest_strategy_inference_run(
@@ -1162,9 +1281,10 @@ class ManualExecutionService:
     ) -> dict[str, Any] | None:
         async with get_session(read_only=True) as session:
             row = (
-                await session.execute(
-                    text(
-                        """
+                (
+                    await session.execute(
+                        text(
+                            """
                         SELECT *
                         FROM qm_model_inference_runs
                         WHERE tenant_id = :tenant_id
@@ -1174,14 +1294,17 @@ class ManualExecutionService:
                         ORDER BY prediction_trade_date DESC, created_at DESC
                         LIMIT 1
                         """
-                    ),
-                    {
-                        "tenant_id": tenant_id,
-                        "user_id": user_id,
-                        "strategy_id": strategy_id,
-                    },
+                        ),
+                        {
+                            "tenant_id": tenant_id,
+                            "user_id": user_id,
+                            "strategy_id": strategy_id,
+                        },
+                    )
                 )
-            ).mappings().first()
+                .mappings()
+                .first()
+            )
         return dict(row) if row else None
 
     def _resolve_hosted_execution_window(
@@ -1240,12 +1363,20 @@ class ManualExecutionService:
                 stage=stage,
                 progress=progress,
                 signal_count=_to_int((initial_summary or {}).get("signal_count"), 0),
-                order_count=_to_int(
-                    (initial_summary or {}).get("sell_order_count"), 0
-                )
+                order_count=_to_int((initial_summary or {}).get("sell_order_count"), 0)
                 + _to_int((initial_summary or {}).get("buy_order_count"), 0),
-                success_count=_to_int(result_payload.get("success_count") if isinstance(result_payload, dict) else 0, 0),
-                failed_count=_to_int(result_payload.get("failed_count") if isinstance(result_payload, dict) else 0, 0),
+                success_count=_to_int(
+                    result_payload.get("success_count")
+                    if isinstance(result_payload, dict)
+                    else 0,
+                    0,
+                ),
+                failed_count=_to_int(
+                    result_payload.get("failed_count")
+                    if isinstance(result_payload, dict)
+                    else 0,
+                    0,
+                ),
                 result_payload=result_payload,
             )
         manual_execution_log_stream.update_state(
@@ -1259,17 +1390,25 @@ class ManualExecutionService:
             order_count=_to_int((initial_summary or {}).get("sell_order_count"), 0)
             + _to_int((initial_summary or {}).get("buy_order_count"), 0),
             success_count=_to_int(
-                result_payload.get("success_count") if isinstance(result_payload, dict) else 0,
+                result_payload.get("success_count")
+                if isinstance(result_payload, dict)
+                else 0,
                 0,
             ),
             failed_count=_to_int(
-                result_payload.get("failed_count") if isinstance(result_payload, dict) else 0,
+                result_payload.get("failed_count")
+                if isinstance(result_payload, dict)
+                else 0,
                 0,
             ),
             summary=initial_summary or {},
             last_line=initial_line,
-            error_stage=result_payload.get("error_stage") if isinstance(result_payload, dict) else None,
-            error_message=result_payload.get("error") if isinstance(result_payload, dict) else None,
+            error_stage=result_payload.get("error_stage")
+            if isinstance(result_payload, dict)
+            else None,
+            error_message=result_payload.get("error")
+            if isinstance(result_payload, dict)
+            else None,
         )
         if initial_line:
             manual_execution_log_stream.append_log(
@@ -1324,6 +1463,13 @@ class ManualExecutionService:
             tenant_id=tenant, user_id=uid
         )
         if not default_model:
+            from backend.shared.model_registry import model_registry_service
+
+            default_model = await model_registry_service.get_default_model(
+                tenant_id=tenant,
+                user_id=uid,
+            )
+        if not default_model:
             return {
                 "available": False,
                 "source": "missing",
@@ -1343,7 +1489,9 @@ class ManualExecutionService:
         else:
             model_meta = {}
         target_horizon_days = _to_int(
-            model_meta.get("target_horizon_days") if isinstance(model_meta, dict) else None,
+            model_meta.get("target_horizon_days")
+            if isinstance(model_meta, dict)
+            else None,
             5,
         )
         if target_horizon_days <= 0:
@@ -1372,7 +1520,9 @@ class ManualExecutionService:
                 "latest_run_id": str(latest_run.get("run_id") or "").strip() or None,
                 "target_horizon_days": target_horizon_days,
                 "data_trade_date": str(latest_run.get("data_trade_date") or ""),
-                "prediction_trade_date": str(latest_run.get("prediction_trade_date") or ""),
+                "prediction_trade_date": str(
+                    latest_run.get("prediction_trade_date") or ""
+                ),
             }
         latest_model_source = str(latest_run.get("model_source") or "").strip()
         allowed_sources = {"user_default", "explicit_system_model"}
@@ -1386,7 +1536,9 @@ class ManualExecutionService:
                 "latest_run_id": str(latest_run.get("run_id") or "").strip() or None,
                 "target_horizon_days": target_horizon_days,
                 "data_trade_date": str(latest_run.get("data_trade_date") or ""),
-                "prediction_trade_date": str(latest_run.get("prediction_trade_date") or ""),
+                "prediction_trade_date": str(
+                    latest_run.get("prediction_trade_date") or ""
+                ),
             }
 
         data_trade_date = _parse_iso_date(latest_run.get("data_trade_date"))
@@ -1484,7 +1636,9 @@ class ManualExecutionService:
                 "strategy_id": sid,
                 "latest_run_id": str(latest_run.get("run_id") or "").strip() or None,
                 "data_trade_date": str(latest_run.get("data_trade_date") or ""),
-                "prediction_trade_date": str(latest_run.get("prediction_trade_date") or ""),
+                "prediction_trade_date": str(
+                    latest_run.get("prediction_trade_date") or ""
+                ),
             }
 
         target_horizon_days = _resolve_run_target_horizon_days(latest_run)
@@ -1562,7 +1716,8 @@ class ManualExecutionService:
                         text(
                             """
                         SELECT symbol, fusion_score, light_score, tft_score, score_rank,
-                               signal_side, expected_price, quality, created_at
+                               signal_side, expected_price, quality, model_version,
+                               feature_version, universe_tag, created_at
                         FROM engine_signal_scores
                         WHERE run_id = :run_id
                           AND tenant_id = :tenant_id
@@ -1626,7 +1781,7 @@ class ManualExecutionService:
             Portfolio.tenant_id == tenant_id,
             Portfolio.user_id == user_id_int,
             Portfolio.status == "active",
-            Portfolio.is_deleted == False,
+            Portfolio.is_deleted.is_(False),
             Portfolio.trading_mode == "REAL",
         ]
         strategy_id_text = str(strategy_id or "").strip()
@@ -1882,7 +2037,8 @@ class ManualExecutionService:
         active_task_id = str(active_task.get("task_id") or "").strip()
         same_execution = (
             str(active_task.get("run_id") or "").strip() == prepared.run_id
-            and str(active_task.get("strategy_id") or "").strip() == prepared.strategy_id
+            and str(active_task.get("strategy_id") or "").strip()
+            == prepared.strategy_id
         )
         if same_execution:
             return {
@@ -2235,7 +2391,9 @@ class ManualExecutionService:
         mode = _normalize_trading_mode(trading_mode)
         provided_task_id = str(task_id or "").strip()
         if provided_task_id:
-            existing_task = await manual_execution_persistence.get_task_any(provided_task_id)
+            existing_task = await manual_execution_persistence.get_task_any(
+                provided_task_id
+            )
             if existing_task:
                 return {
                     "task_id": provided_task_id,
@@ -2252,7 +2410,6 @@ class ManualExecutionService:
         )
         if (
             not bool(hosted_status.get("available"))
-            and mode == "SIMULATION"
             and hosted_status.get("reason_code") == "missing_strategy_latest_run"
         ):
             hosted_status = await self.get_default_model_hosted_status(
@@ -2263,17 +2420,20 @@ class ManualExecutionService:
         if not bool(hosted_status.get("available")):
             raise HTTPException(
                 status_code=409,
-                detail=str(hosted_status.get("message") or "当前策略最新推理不可用于自动托管"),
+                detail=str(
+                    hosted_status.get("message") or "当前策略最新推理不可用于自动托管"
+                ),
             )
 
         latest_model_id = str(hosted_status.get("latest_model_id") or "").strip()
         target_horizon_days = _to_int(hosted_status.get("target_horizon_days"), 5)
-        data_trade_date = _parse_iso_date(hosted_status.get("data_trade_date"))
-        prediction_trade_date = _parse_iso_date(hosted_status.get("prediction_trade_date"))
         generation_start = _parse_iso_date(hosted_status.get("execution_window_start"))
         execution_deadline = _parse_iso_date(hosted_status.get("execution_window_end"))
         latest_run_id = str(hosted_status.get("latest_run_id") or "").strip()
-        task_id = provided_task_id or f"hosted_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}_{uuid4().hex[:8]}"
+        task_id = (
+            provided_task_id
+            or f"hosted_{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}_{uuid4().hex[:8]}"
+        )
 
         prepared = await self.prepare_manual_execution(
             tenant_id=tenant,
@@ -2304,6 +2464,11 @@ class ManualExecutionService:
             user_id=prepared.user_id,
             run_id=prepared.run_id,
         )
+        _reject_unauthorized_factor_shadow_signals(
+            signal_rows=normalized_signals,
+            execution_config=execution_config,
+            live_trade_config=live_trade_config,
+        )
         strategy_params = _normalize_strategy_params(prepared.strategy)
         _require_strict_hosted_signal_context(
             strategy_params=strategy_params,
@@ -2313,7 +2478,7 @@ class ManualExecutionService:
             signal_rows=normalized_signals,
             strategy_params=strategy_params,
             account_snapshot=latest_snapshot,
-            prediction_trade_date=prepared.prediction_trade_date,
+            trade_date=prepared.prediction_trade_date,
         )
         created_at = datetime.now(timezone.utc)
         plan_summary = execution_plan.get("summary") or {}
@@ -2350,7 +2515,9 @@ class ManualExecutionService:
             "trading_mode": prepared.trading_mode,
             "trigger_context": trigger_context or {},
             "preview_summary": plan_summary,
-            "signal_count": _to_int(plan_summary.get("signal_count"), len(normalized_signals)),
+            "signal_count": _to_int(
+                plan_summary.get("signal_count"), len(normalized_signals)
+            ),
             "buy_order_count": _to_int(plan_summary.get("buy_order_count"), 0),
             "sell_order_count": _to_int(plan_summary.get("sell_order_count"), 0),
             "skipped_count": _to_int(plan_summary.get("skipped_count"), 0),
@@ -2369,7 +2536,9 @@ class ManualExecutionService:
                 "strategy_name": prepared.strategy_name,
                 "prediction_trade_date": prepared.prediction_trade_date.isoformat(),
                 "trading_mode": prepared.trading_mode,
-                "signal_count": _to_int(plan_summary.get("signal_count"), len(normalized_signals)),
+                "signal_count": _to_int(
+                    plan_summary.get("signal_count"), len(normalized_signals)
+                ),
                 "order_count": 0,
                 "success_count": 0,
                 "failed_count": 0,
@@ -2398,7 +2567,12 @@ class ManualExecutionService:
                 result_payload=result_payload,
                 progress=100,
             )
-            return {"task_id": task_id, "status": "completed", "task": task, "noop": True}
+            return {
+                "task_id": task_id,
+                "status": "completed",
+                "task": task,
+                "noop": True,
+            }
 
         task = await self._persist_task(
             prepared=prepared,
@@ -2575,7 +2749,9 @@ class ManualExecutionService:
                     strategy_name=prepared.strategy_name,
                 )
                 if not portfolio:
-                    error_msg = "当前未发现可用的实盘组合，请先启动实盘策略或完成组合初始化"
+                    error_msg = (
+                        "当前未发现可用的实盘组合，请先启动实盘策略或完成组合初始化"
+                    )
                     manual_execution_log_stream.append_log(
                         task_id=task_id,
                         tenant_id=tenant_id,
@@ -2850,15 +3026,16 @@ class ManualExecutionService:
                                 f"(timeout={wait_snapshot_timeout}s, poll={wait_snapshot_poll_interval}s)"
                             ),
                         )
-                        next_snapshot, snapshot_wait_seconds = (
-                            await self._wait_for_next_account_snapshot(
-                                tenant_id=tenant_id,
-                                user_id=user_id,
-                                trading_mode=trading_mode,
-                                baseline_snapshot_at=baseline_snapshot_at,
-                                timeout_seconds=wait_snapshot_timeout,
-                                poll_interval_seconds=wait_snapshot_poll_interval,
-                            )
+                        (
+                            next_snapshot,
+                            snapshot_wait_seconds,
+                        ) = await self._wait_for_next_account_snapshot(
+                            tenant_id=tenant_id,
+                            user_id=user_id,
+                            trading_mode=trading_mode,
+                            baseline_snapshot_at=baseline_snapshot_at,
+                            timeout_seconds=wait_snapshot_timeout,
+                            poll_interval_seconds=wait_snapshot_poll_interval,
                         )
                         if not next_snapshot:
                             error_msg = (
@@ -2887,10 +3064,13 @@ class ManualExecutionService:
                             )
                             return
                     else:
-                        next_snapshot = baseline_snapshot or await self._load_latest_account_snapshot(
-                            tenant_id=tenant_id,
-                            user_id=user_id,
-                            trading_mode=trading_mode,
+                        next_snapshot = (
+                            baseline_snapshot
+                            or await self._load_latest_account_snapshot(
+                                tenant_id=tenant_id,
+                                user_id=user_id,
+                                trading_mode=trading_mode,
+                            )
                         )
                         if trading_mode == "SIMULATION":
                             manual_execution_log_stream.append_log(
@@ -2964,7 +3144,9 @@ class ManualExecutionService:
                     fusion_score = _to_float(row.get("fusion_score"), 0.0)
                     expected_price = _to_float(row.get("price"), 0.0)
                     reference_price = _to_float(row.get("reference_price"), 0.0)
-                    preview_price = expected_price if expected_price > 0 else reference_price
+                    preview_price = (
+                        expected_price if expected_price > 0 else reference_price
+                    )
                     side = str(row.get("side") or "").strip().upper()
                     trade_action = (
                         str(
@@ -2976,6 +3158,10 @@ class ManualExecutionService:
                     )
                     order_type = "MARKET"
                     quantity = _to_int(row.get("quantity"), 0)
+                    signal_source = str(row.get("signal_source") or "").strip()
+                    signal_source_remark = (
+                        f" signal_source={signal_source}" if signal_source else ""
+                    )
 
                     order_payload = {
                         "symbol": symbol,
@@ -2991,6 +3177,7 @@ class ManualExecutionService:
                             f"order_type=MARKET "
                             f"preview_price={preview_price:.4f} "
                             f"reason={str(row.get('reason') or '').strip()}"
+                            f"{signal_source_remark}"
                         ),
                         "strategy_id": strategy_id,
                         "trade_action": trade_action,
@@ -3048,13 +3235,17 @@ class ManualExecutionService:
                             level = "info"
                             if phase_name == "BUY":
                                 try:
-                                    buy_submitted_order_ids.append(str(uuid_lib.UUID(str(order_id))))
+                                    buy_submitted_order_ids.append(
+                                        str(uuid_lib.UUID(str(order_id)))
+                                    )
                                 except Exception:
                                     pass
                         elif result.get("status") == "rejected":
                             failed_count += 1
                             violations = result.get("violations", [])
-                            line = f"  >> [拦截] 风控拒绝: {symbol} | 原因: {violations}"
+                            line = (
+                                f"  >> [拦截] 风控拒绝: {symbol} | 原因: {violations}"
+                            )
                             level = "warning"
                             if not first_error:
                                 first_error = f"{symbol}: 风控拦截({violations})"
@@ -3065,7 +3256,9 @@ class ManualExecutionService:
                                 or result.get("detail")
                                 or "柜台拒绝或连接断开"
                             )
-                            line = f"  >> [失败] 执行异常: {symbol} | 详情: {error_detail}"
+                            line = (
+                                f"  >> [失败] 执行异常: {symbol} | 详情: {error_detail}"
+                            )
                             level = "error"
                             if not first_error:
                                 first_error = f"{symbol}: {error_detail}"
@@ -3138,22 +3331,19 @@ class ManualExecutionService:
 
                 if parsed_ids:
                     engine = TradingEngine(db, get_redis())
-                    buy_orders_stmt = (
-                        select(Order)
-                        .where(
-                            and_(
-                                Order.tenant_id == tenant_id,
-                                Order.user_id == int(user_id),
-                                Order.order_id.in_(parsed_ids),
-                            )
+                    buy_orders_stmt = select(Order).where(
+                        and_(
+                            Order.tenant_id == tenant_id,
+                            Order.user_id == int(user_id),
+                            Order.order_id.in_(parsed_ids),
                         )
                     )
-                    buy_order_rows = (
-                        (await db.execute(buy_orders_stmt)).scalars().all()
-                    )
+                    buy_order_rows = (await db.execute(buy_orders_stmt)).scalars().all()
                     for submitted_order in buy_order_rows:
                         current_status = str(
-                            getattr(submitted_order.status, "value", submitted_order.status)
+                            getattr(
+                                submitted_order.status, "value", submitted_order.status
+                            )
                             or ""
                         )
                         cancel_requested = False

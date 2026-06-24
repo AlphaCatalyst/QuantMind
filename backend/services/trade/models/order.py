@@ -63,7 +63,11 @@ class Order(Base, TimestampMixin):
         index=True,
     )
     status = Column(
-        Enum(OrderStatus, values_callable=lambda x: [e.value for e in x]),
+        Enum(
+            OrderStatus,
+            values_callable=lambda x: [e.value for e in x],
+            omit_aliases=True,
+        ),
         nullable=False,
         default=OrderStatus.PENDING,
         index=True,

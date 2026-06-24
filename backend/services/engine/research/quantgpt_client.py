@@ -4,6 +4,9 @@ from typing import Any
 
 import requests
 
+from backend.services.engine.research.external_submit_guard import (
+    assert_quantgpt_endpoint_allowed,
+)
 from backend.services.engine.research.quantgpt_mapping import (
     parse_evaluation_payload,
     parse_factor_values_payload,
@@ -22,9 +25,13 @@ class QuantGPTClient:
         self.base_url = base_url.rstrip("/")
         self.timeout_seconds = timeout_seconds
 
+    def _url(self, path: str) -> str:
+        assert_quantgpt_endpoint_allowed(path)
+        return f"{self.base_url}/{path.lstrip('/')}"
+
     def health(self) -> dict[str, Any]:
         response = requests.get(
-            f"{self.base_url}/api/v1/health",
+            self._url("/api/v1/health"),
             timeout=self.timeout_seconds,
         )
         response.raise_for_status()
@@ -32,7 +39,7 @@ class QuantGPTClient:
 
     def submit_evaluation(self, request: QuantGPTEvaluationRequest) -> str:
         response = requests.post(
-            f"{self.base_url}/api/v1/auto_backtest",
+            self._url("/api/v1/auto_backtest"),
             json={
                 "prompt": request.expression,
                 "universe": request.universe,
@@ -54,7 +61,7 @@ class QuantGPTClient:
 
     def get_evaluation(self, task_id: str) -> QuantGPTEvaluation:
         response = requests.get(
-            f"{self.base_url}/api/v1/tasks/{task_id}",
+            self._url(f"/api/v1/tasks/{task_id}"),
             timeout=self.timeout_seconds,
         )
         response.raise_for_status()
@@ -65,7 +72,7 @@ class QuantGPTClient:
         request: QuantGPTEvaluationRequest,
     ) -> FactorValuesParseResult:
         response = requests.post(
-            f"{self.base_url}/api/v1/factor_values",
+            self._url("/api/v1/factor_values"),
             json={
                 "expression": request.expression,
                 "universe": request.universe,

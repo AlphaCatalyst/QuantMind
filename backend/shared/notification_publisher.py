@@ -128,9 +128,15 @@ def _safe_level(value: str) -> str:
     return text_value if text_value in _ALLOWED_LEVELS else "info"
 
 
-def _looks_like_missing_table_error(error: ProgrammingError) -> bool:
-    msg = str(error).lower()
-    return "notifications" in msg and ("undefinedtable" in msg or "does not exist" in msg or "relation" in msg)
+def _looks_like_missing_table_error(exc: Exception) -> bool:
+    msg = str(exc).lower()
+    if "column" in msg and "of relation" in msg:
+        return False
+    return (
+        "undefinedtable" in msg
+        or 'relation "notifications" does not exist' in msg
+        or "relation notifications does not exist" in msg
+    )
 
 
 def _looks_like_user_fk_violation(error: IntegrityError) -> bool:
@@ -182,7 +188,7 @@ def publish_notification(
 
     sql = text("""
         INSERT INTO notifications (
-            user_id, tenant_id, title, content, type, level, action_url, expires_at
+            user_id, tenant_id, title, content, notification_type, level, action_url, expires_at
         )
         VALUES (
             :user_id, :tenant_id, :title, :content, :type, :level, :action_url, :expires_at

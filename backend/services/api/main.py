@@ -66,6 +66,16 @@ async def lifespan(app: FastAPI):
         if db_manager._master_engine is None:
             raise RuntimeError("database master engine is not initialized")
         await create_registered_tables(db_manager._master_engine, ["api.user"])
+        from backend.services.api.user_app.services.rbac_service import (
+            ensure_factor_approval_permission,
+        )
+        from backend.shared.database_manager_v2 import get_session
+
+        async with get_session(read_only=False) as session:
+            await ensure_factor_approval_permission(session)
+        from backend.shared.strategy_storage import ensure_strategy_storage_tables
+
+        ensure_strategy_storage_tables()
 
         from backend.services.api.routers.admin.model_management import (
             ensure_admin_tables,
@@ -80,8 +90,11 @@ async def lifespan(app: FastAPI):
         )
 
         await model_inference_persistence.ensure_tables()
-        # from backend.services.api.routers.research import ensure_research_tables
-        # await ensure_research_tables()
+        from backend.services.api.routers.research_factor_service import (
+            ensure_research_factor_tables,
+        )
+
+        await ensure_research_factor_tables()
 
         # 预加载股票名称映射到内存
         from backend.shared.stock_name_mapper import get_stock_name_mapper
