@@ -1,5 +1,10 @@
 from typing import Any
 
+import pytest
+
+from backend.services.engine.research.external_submit_guard import (
+    ExternalSubmitDisabledError,
+)
 from backend.services.engine.research.quantgpt_client import QuantGPTClient
 from backend.services.engine.research.schemas import QuantGPTEvaluationRequest
 
@@ -65,3 +70,14 @@ def test_quantgpt_client_factor_values_parses_contract(monkeypatch):
 
     assert len(result.rows) == 1
     assert result.rows[0].symbol == "SH600519"
+
+
+def test_quantgpt_client_blocks_external_submit_endpoint_by_default(monkeypatch):
+    monkeypatch.setenv("WQ_BRAIN_EMAIL", "configured@example.com")
+    monkeypatch.setenv("WQ_BRAIN_PASSWORD", "secret")
+    monkeypatch.delenv("QUANTMIND_FACTOR_RESEARCH_ALLOW_EXTERNAL_SUBMIT", raising=False)
+
+    client = QuantGPTClient("http://quantgpt-research:8013")
+
+    with pytest.raises(ExternalSubmitDisabledError):
+        client._url("/api/v1/wq-brain/submit")

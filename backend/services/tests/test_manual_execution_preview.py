@@ -20,21 +20,50 @@ from backend.services.trade.services.manual_execution_service import (
     _resolve_board_lot_size,
     _should_request_cancel_for_buy_status,
 )
-from backend.services.trade.services.manual_execution_persistence import manual_execution_persistence
+from backend.services.trade.services.manual_execution_persistence import (
+    manual_execution_persistence,
+)
 
 
 def test_build_execution_plan_from_signals_generates_sell_and_buy_orders():
     account_snapshot = {
         "available_cash": 50_000.0,
         "positions": [
-            {"symbol": "600001.SH", "available_volume": 500, "volume": 500, "last_price": 10.0, "market_value": 5_000.0},
-            {"symbol": "600002.SH", "available_volume": 400, "volume": 400, "last_price": 8.0, "market_value": 3_200.0},
+            {
+                "symbol": "600001.SH",
+                "available_volume": 500,
+                "volume": 500,
+                "last_price": 10.0,
+                "market_value": 5_000.0,
+            },
+            {
+                "symbol": "600002.SH",
+                "available_volume": 400,
+                "volume": 400,
+                "last_price": 8.0,
+                "market_value": 3_200.0,
+            },
         ],
     }
     signal_rows = [
-        {"symbol": "600010.SH", "fusion_score": 0.98, "signal_side": None, "expected_price": 12.5},
-        {"symbol": "600011.SH", "fusion_score": 0.95, "signal_side": None, "expected_price": 10.0},
-        {"symbol": "600012.SH", "fusion_score": 0.90, "signal_side": None, "expected_price": 8.0},
+        {
+            "symbol": "600010.SH",
+            "fusion_score": 0.98,
+            "signal_side": None,
+            "expected_price": 12.5,
+        },
+        {
+            "symbol": "600011.SH",
+            "fusion_score": 0.95,
+            "signal_side": None,
+            "expected_price": 10.0,
+        },
+        {
+            "symbol": "600012.SH",
+            "fusion_score": 0.90,
+            "signal_side": None,
+            "expected_price": 8.0,
+        },
     ]
     plan = _build_execution_plan_from_signals(
         signal_rows=signal_rows,
@@ -54,8 +83,18 @@ def test_build_execution_plan_from_signals_generates_sell_and_buy_orders():
 def test_build_execution_plan_from_signals_marks_unexecutable_items_as_skipped():
     account_snapshot = {"available_cash": 20_000.0, "positions": []}
     signal_rows = [
-        {"symbol": "600100.SH", "fusion_score": 0.90, "signal_side": "sell", "expected_price": 12.0},
-        {"symbol": "600101.SH", "fusion_score": 0.88, "signal_side": "buy", "expected_price": 0.0},
+        {
+            "symbol": "600100.SH",
+            "fusion_score": 0.90,
+            "signal_side": "sell",
+            "expected_price": 12.0,
+        },
+        {
+            "symbol": "600101.SH",
+            "fusion_score": 0.88,
+            "signal_side": "buy",
+            "expected_price": 0.0,
+        },
     ]
 
     plan = _build_execution_plan_from_signals(
@@ -68,7 +107,9 @@ def test_build_execution_plan_from_signals_marks_unexecutable_items_as_skipped()
     assert {item["symbol"] for item in plan["skipped_items"]} >= {"600100.SH"}
 
 
-def test_build_execution_plan_applies_fundamental_constraints_and_keeps_explicit_sell(monkeypatch):
+def test_build_execution_plan_applies_fundamental_constraints_and_keeps_explicit_sell(
+    monkeypatch,
+):
     account_snapshot = {
         "available_cash": 20_000.0,
         "positions": [
@@ -82,8 +123,18 @@ def test_build_execution_plan_applies_fundamental_constraints_and_keeps_explicit
         ],
     }
     signal_rows = [
-        {"symbol": "600001.SH", "fusion_score": 0.92, "signal_side": "buy", "expected_price": 10.0},
-        {"symbol": "600002.SH", "fusion_score": 0.90, "signal_side": "buy", "expected_price": 10.0},
+        {
+            "symbol": "600001.SH",
+            "fusion_score": 0.92,
+            "signal_side": "buy",
+            "expected_price": 10.0,
+        },
+        {
+            "symbol": "600002.SH",
+            "fusion_score": 0.90,
+            "signal_side": "buy",
+            "expected_price": 10.0,
+        },
         {"symbol": "600300.SH", "fusion_score": 0.20, "signal_side": "sell"},
     ]
 
@@ -94,7 +145,11 @@ def test_build_execution_plan_applies_fundamental_constraints_and_keeps_explicit
 
     plan = _build_execution_plan_from_signals(
         signal_rows=signal_rows,
-        strategy_params={"strategy_type": "alpha_cross_section", "topk": 2, "f_pe_ttm_max": 25},
+        strategy_params={
+            "strategy_type": "alpha_cross_section",
+            "topk": 2,
+            "f_pe_ttm_max": 25,
+        },
         account_snapshot=account_snapshot,
         trade_date=date(2026, 4, 1),
     )
@@ -111,13 +166,15 @@ def test_build_execution_plan_applies_fundamental_constraints_and_keeps_explicit
 @pytest.mark.asyncio
 async def test_submit_execution_plan_rejects_mismatched_preview_hash():
     service = ManualExecutionService()
-    service.build_execution_preview = AsyncMock(return_value={  # type: ignore[method-assign]
-        "preview_hash": "expected-hash",
-        "summary": {},
-        "sell_orders": [],
-        "buy_orders": [],
-        "skipped_items": [],
-    })
+    service.build_execution_preview = AsyncMock(
+        return_value={  # type: ignore[method-assign]
+            "preview_hash": "expected-hash",
+            "summary": {},
+            "sell_orders": [],
+            "buy_orders": [],
+            "skipped_items": [],
+        }
+    )
 
     with pytest.raises(HTTPException) as exc_info:
         await service.submit_execution_plan(
@@ -299,7 +356,9 @@ def test_preview_hash_is_stable_for_same_payload():
 
 
 @pytest.mark.asyncio
-async def test_create_hosted_task_uses_latest_default_model_run_and_db_signals(monkeypatch):
+async def test_create_hosted_task_uses_latest_default_model_run_and_db_signals(
+    monkeypatch,
+):
     service = ManualExecutionService()
     latest_run = {
         "run_id": "run_latest_default",
@@ -309,6 +368,16 @@ async def test_create_hosted_task_uses_latest_default_model_run_and_db_signals(m
         "model_source": "user_default",
     }
 
+    monkeypatch.setattr(
+        service,
+        "get_strategy_hosted_status",
+        AsyncMock(
+            return_value={
+                "available": False,
+                "reason_code": "missing_strategy_latest_run",
+            }
+        ),
+    )
     monkeypatch.setattr(
         service,
         "get_default_model_hosted_status",
@@ -341,7 +410,12 @@ async def test_create_hosted_task_uses_latest_default_model_run_and_db_signals(m
                 trading_mode="REAL",
                 request_payload={"strategy_id": "48", "run_id": "run_latest_default"},
                 run=latest_run,
-                strategy={"id": "48", "name": "测试策略", "is_verified": True, "parameters": {"strategy_type": "TopkDropout"}},
+                strategy={
+                    "id": "48",
+                    "name": "测试策略",
+                    "is_verified": True,
+                    "parameters": {"strategy_type": "TopkDropout"},
+                },
             )
         ),
     )
@@ -394,7 +468,11 @@ async def test_create_hosted_task_uses_latest_default_model_run_and_db_signals(m
         "backend.services.trade.services.manual_execution_service._build_execution_plan_from_signals",
         _fake_plan,
     )
-    monkeypatch.setattr(service, "_persist_task", AsyncMock(return_value={"task_id": "hosted_1", "status": "queued"}))
+    monkeypatch.setattr(
+        service,
+        "_persist_task",
+        AsyncMock(return_value={"task_id": "hosted_1", "status": "queued"}),
+    )
 
     result = await service.create_hosted_task(
         tenant_id="default",
@@ -419,9 +497,403 @@ async def test_create_hosted_task_uses_latest_default_model_run_and_db_signals(m
 
 
 @pytest.mark.asyncio
+async def test_create_hosted_task_rejects_factor_shadow_signals_without_explicit_allow(
+    monkeypatch,
+):
+    service = ManualExecutionService()
+    latest_run = {
+        "run_id": "run_factor_shadow",
+        "data_trade_date": date(2026, 4, 13),
+        "prediction_trade_date": date(2026, 4, 14),
+        "fallback_used": False,
+    }
+
+    monkeypatch.setattr(
+        service,
+        "get_strategy_hosted_status",
+        AsyncMock(
+            return_value={
+                "available": True,
+                "latest_model_id": "factor_shadow",
+                "latest_run_id": "run_factor_shadow",
+                "prediction_trade_date": "2026-04-14",
+                "execution_window_start": "2026-04-14",
+                "execution_window_end": "2026-04-19",
+                "target_horizon_days": 5,
+            }
+        ),
+    )
+    monkeypatch.setattr(
+        service,
+        "prepare_manual_execution",
+        AsyncMock(
+            return_value=PreparedManualExecution(
+                task_id="",
+                tenant_id="default",
+                user_id="79311845",
+                strategy_id="48",
+                strategy_name="测试策略",
+                run_id="run_factor_shadow",
+                model_id="factor_shadow",
+                prediction_trade_date=date(2026, 4, 14),
+                trading_mode="REAL",
+                request_payload={"strategy_id": "48", "run_id": "run_factor_shadow"},
+                run=latest_run,
+                strategy={
+                    "id": "48",
+                    "name": "测试策略",
+                    "is_verified": True,
+                    "parameters": {"strategy_type": "TopkDropout"},
+                },
+            )
+        ),
+    )
+    monkeypatch.setattr(
+        service,
+        "_load_latest_account_snapshot",
+        AsyncMock(return_value={"available_cash": 100000, "positions": []}),
+    )
+    monkeypatch.setattr(
+        service,
+        "_load_signal_rows",
+        AsyncMock(
+            return_value=[
+                {
+                    "symbol": "SH600519",
+                    "fusion_score": 0.95,
+                    "signal_side": "BUY",
+                    "expected_price": 1500.0,
+                    "model_version": "factor_shadow",
+                    "quality": {"signal_source": "factor_shadow"},
+                }
+            ]
+        ),
+    )
+    monkeypatch.setattr(service, "_persist_task", AsyncMock())
+
+    with pytest.raises(HTTPException) as exc_info:
+        await service.create_hosted_task(
+            tenant_id="default",
+            user_id="79311845",
+            strategy_id="48",
+            trading_mode="REAL",
+            execution_config={"trading_mode": "REAL"},
+            live_trade_config={"schedule_type": "interval", "rebalance_days": 5},
+            trigger_context={"source": "runner"},
+        )
+
+    assert exc_info.value.status_code == 409
+    assert "allow_factor_shadow_signals" in str(exc_info.value.detail)
+    service._persist_task.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_create_hosted_task_allows_factor_shadow_only_with_simulation_audit_context(
+    monkeypatch,
+):
+    service = ManualExecutionService()
+    latest_run = {
+        "run_id": "run_factor_shadow",
+        "data_trade_date": date(2026, 4, 13),
+        "prediction_trade_date": date(2026, 4, 14),
+        "fallback_used": False,
+    }
+
+    monkeypatch.setattr(
+        service,
+        "get_strategy_hosted_status",
+        AsyncMock(
+            return_value={
+                "available": True,
+                "latest_model_id": "factor_shadow",
+                "latest_run_id": "run_factor_shadow",
+                "prediction_trade_date": "2026-04-14",
+                "execution_window_start": "2026-04-14",
+                "execution_window_end": "2026-04-19",
+                "target_horizon_days": 5,
+            }
+        ),
+    )
+    monkeypatch.setattr(
+        service,
+        "prepare_manual_execution",
+        AsyncMock(
+            return_value=PreparedManualExecution(
+                task_id="",
+                tenant_id="default",
+                user_id="79311845",
+                strategy_id="48",
+                strategy_name="测试策略",
+                run_id="run_factor_shadow",
+                model_id="factor_shadow",
+                prediction_trade_date=date(2026, 4, 14),
+                trading_mode="SIMULATION",
+                request_payload={"strategy_id": "48", "run_id": "run_factor_shadow"},
+                run=latest_run,
+                strategy={
+                    "id": "48",
+                    "name": "测试策略",
+                    "is_verified": True,
+                    "parameters": {"strategy_type": "TopkDropout"},
+                },
+            )
+        ),
+    )
+    monkeypatch.setattr(
+        service,
+        "_load_latest_account_snapshot",
+        AsyncMock(return_value={"available_cash": 100000, "positions": []}),
+    )
+    monkeypatch.setattr(
+        service,
+        "_load_signal_rows",
+        AsyncMock(
+            return_value=[
+                {
+                    "symbol": "SH600519",
+                    "fusion_score": 0.95,
+                    "signal_side": "BUY",
+                    "expected_price": 1500.0,
+                    "model_version": "factor_shadow",
+                    "quality": {"signal_source": "factor_shadow"},
+                }
+            ]
+        ),
+    )
+
+    def _fake_plan(*, signal_rows, strategy_params, account_snapshot, trade_date=None):
+        _ = (strategy_params, account_snapshot, trade_date)
+        return {
+            "sell_orders": [],
+            "buy_orders": [
+                {
+                    "symbol": signal_rows[0]["symbol"],
+                    "side": "BUY",
+                    "quantity": 100,
+                    "price": signal_rows[0]["expected_price"],
+                    "fusion_score": signal_rows[0]["fusion_score"],
+                    "reason": "factor_shadow_authorized_simulation",
+                    "signal_source": "factor_shadow",
+                }
+            ],
+            "skipped_items": [],
+            "summary": {
+                "signal_count": 1,
+                "buy_order_count": 1,
+                "sell_order_count": 0,
+                "skipped_count": 0,
+            },
+        }
+
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service._build_execution_plan_from_signals",
+        _fake_plan,
+    )
+    monkeypatch.setattr(
+        service,
+        "_persist_task",
+        AsyncMock(return_value={"task_id": "hosted_shadow_sim", "status": "queued"}),
+    )
+
+    result = await service.create_hosted_task(
+        tenant_id="default",
+        user_id="79311845",
+        strategy_id="48",
+        trading_mode="SIMULATION",
+        execution_config={
+            "trading_mode": "SIMULATION",
+            "allow_factor_shadow_signals": True,
+        },
+        live_trade_config={"schedule_type": "interval", "rebalance_days": 5},
+        trigger_context={
+            "source": "simulation_hosted_scheduler",
+            "runner_mode": "SIMULATION",
+        },
+    )
+
+    assert result["status"] == "queued"
+    persist_call = service._persist_task.call_args.kwargs
+    assert persist_call["prepared"].trading_mode == "SIMULATION"
+    assert persist_call["initial_summary"]["trading_mode"] == "SIMULATION"
+    assert persist_call["initial_summary"]["latest_model_id"] == "factor_shadow"
+    assert (
+        persist_call["request_payload"]["signals"][0]["quality"]["signal_source"]
+        == "factor_shadow"
+    )
+    assert (
+        persist_call["request_payload"]["trigger_context"]["source"]
+        == "simulation_hosted_scheduler"
+    )
+    assert (
+        persist_call["request_payload"]["trigger_context"]["runner_mode"]
+        == "SIMULATION"
+    )
+    assert persist_call["request_payload"]["execution_plan"]["buy_orders"][0][
+        "reason"
+    ] == "factor_shadow_authorized_simulation"
+    assert persist_call["request_payload"]["execution_plan"]["buy_orders"][0][
+        "signal_source"
+    ] == "factor_shadow"
+
+
+@pytest.mark.asyncio
+async def test_process_hosted_factor_shadow_simulation_task_persists_result_context(
+    monkeypatch,
+):
+    service = ManualExecutionService()
+    prepared = PreparedManualExecution(
+        task_id="hosted_shadow_exec",
+        tenant_id="default",
+        user_id="79311845",
+        strategy_id="48",
+        strategy_name="因子研究 Shadow 策略",
+        run_id="run_factor_shadow",
+        model_id="factor_shadow",
+        prediction_trade_date=date(2026, 4, 14),
+        trading_mode="SIMULATION",
+        request_payload={"strategy_id": "48", "run_id": "run_factor_shadow"},
+        run={},
+        strategy={"id": "48", "name": "因子研究 Shadow 策略"},
+    )
+    task = {
+        "task_id": "hosted_shadow_exec",
+        "tenant_id": "default",
+        "user_id": "79311845",
+        "status": "queued",
+        "stage": "queued",
+        "task_type": "hosted",
+        "trading_mode": "SIMULATION",
+        "run_id": "run_factor_shadow",
+        "strategy_id": "48",
+        "request_json": {
+            "run_id": "run_factor_shadow",
+            "strategy_id": "48",
+            "trading_mode": "SIMULATION",
+            "trigger_context": {
+                "source": "hosted_runner",
+                "signal_input": "engine_signal_scores",
+                "signal_source_policy": "factor_shadow_allowed",
+            },
+            "execution_plan": {
+                "sell_orders": [],
+                "buy_orders": [
+                    {
+                        "symbol": "SH600519",
+                        "side": "BUY",
+                        "trade_action": "BUY_TO_OPEN",
+                        "quantity": 100,
+                        "price": 1500.0,
+                        "reference_price": 1500.0,
+                        "fusion_score": 0.95,
+                        "reason": "factor_shadow_authorized_simulation",
+                        "signal_source": "factor_shadow",
+                    }
+                ],
+                "skipped_items": [],
+                "summary": {
+                    "signal_count": 1,
+                    "buy_order_count": 1,
+                    "sell_order_count": 0,
+                    "skipped_count": 0,
+                },
+            },
+        },
+    }
+    update_calls: list[dict[str, object]] = []
+    dispatched_orders: list[dict[str, object]] = []
+
+    class _FakeSessionCtx:
+        async def __aenter__(self):
+            return object()
+
+        async def __aexit__(self, exc_type, exc, tb):
+            return False
+
+    async def _fake_update_task(**kwargs):
+        update_calls.append(kwargs)
+        return kwargs
+
+    async def _fake_dispatch(order_data, user_id, tenant_id, redis, db):
+        _ = (user_id, tenant_id, redis, db)
+        dispatched_orders.append(order_data)
+        return {
+            "status": "success",
+            "execution": "simulation_filled",
+            "order_id": "sim-shadow-order",
+            "result": {"success": True, "order_id": "sim-shadow-order"},
+        }
+
+    monkeypatch.setattr(
+        service,
+        "prepare_manual_execution",
+        AsyncMock(return_value=prepared),
+    )
+    monkeypatch.setattr(
+        service,
+        "_load_latest_account_snapshot",
+        AsyncMock(return_value={"available_cash": 200000.0, "positions": []}),
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service.get_session",
+        lambda *args, **kwargs: _FakeSessionCtx(),
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service.get_redis",
+        lambda: object(),
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service.manual_execution_log_stream.append_log",
+        lambda *args, **kwargs: None,
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service.manual_execution_log_stream.update_state",
+        lambda *args, **kwargs: None,
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service.manual_execution_persistence.update_task",
+        _fake_update_task,
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.manual_execution_service.asyncio.sleep",
+        AsyncMock(return_value=None),
+    )
+    monkeypatch.setattr(
+        "backend.services.trade.services.internal_strategy_dispatcher.dispatch_internal_strategy_order",
+        _fake_dispatch,
+    )
+
+    await service.process_task(task)
+
+    assert len(dispatched_orders) == 1
+    order = dispatched_orders[0]
+    assert order["trading_mode"] == "SIMULATION"
+    assert order["strategy_id"] == "48"
+    assert "signal_source=factor_shadow" in str(order["remarks"])
+    completed_update = update_calls[-1]
+    assert completed_update["status"] == "completed"
+    assert completed_update["stage"] == "completed"
+    assert completed_update["success_count"] == 1
+    assert completed_update["failed_count"] == 0
+    result_payload = completed_update["result_payload"]
+    assert result_payload["task_type"] == "hosted"
+    assert result_payload["trading_mode"] == "SIMULATION"
+    assert result_payload["success"] is True
+
+
+@pytest.mark.asyncio
 async def test_create_hosted_task_rejects_expired_default_model_run(monkeypatch):
     service = ManualExecutionService()
 
+    monkeypatch.setattr(
+        service,
+        "get_strategy_hosted_status",
+        AsyncMock(
+            return_value={
+                "available": False,
+                "reason_code": "missing_strategy_latest_run",
+            }
+        ),
+    )
     monkeypatch.setattr(
         service,
         "_load_user_default_model_record",
@@ -466,18 +938,30 @@ async def test_create_hosted_task_rejects_expired_default_model_run(monkeypatch)
 
 
 @pytest.mark.asyncio
-async def test_create_hosted_task_returns_existing_task_when_duplicate_task_id(monkeypatch):
+async def test_create_hosted_task_returns_existing_task_when_duplicate_task_id(
+    monkeypatch,
+):
     service = ManualExecutionService()
 
     monkeypatch.setattr(
         manual_execution_persistence,
         "get_task_any",
-        AsyncMock(return_value={"task_id": "hosted_dup", "status": "completed", "result_json": {}}),
+        AsyncMock(
+            return_value={
+                "task_id": "hosted_dup",
+                "status": "completed",
+                "result_json": {},
+            }
+        ),
     )
     monkeypatch.setattr(
         service,
         "_load_user_default_model_record",
-        AsyncMock(side_effect=AssertionError("duplicate task should short-circuit before model lookup")),
+        AsyncMock(
+            side_effect=AssertionError(
+                "duplicate task should short-circuit before model lookup"
+            )
+        ),
     )
 
     result = await service.create_hosted_task(
@@ -499,7 +983,9 @@ async def test_create_hosted_task_returns_existing_task_when_duplicate_task_id(m
 
 
 @pytest.mark.asyncio
-async def test_get_default_model_hosted_status_distinguishes_latest_run_reasons(monkeypatch):
+async def test_get_default_model_hosted_status_distinguishes_latest_run_reasons(
+    monkeypatch,
+):
     service = ManualExecutionService()
 
     monkeypatch.setattr(
@@ -551,7 +1037,9 @@ async def test_get_default_model_hosted_status_distinguishes_latest_run_reasons(
 
 
 @pytest.mark.asyncio
-async def test_get_default_model_hosted_status_accepts_explicit_system_model(monkeypatch):
+async def test_get_default_model_hosted_status_accepts_explicit_system_model(
+    monkeypatch,
+):
     service = ManualExecutionService()
 
     monkeypatch.setattr(
@@ -602,7 +1090,9 @@ async def test_get_default_model_hosted_status_accepts_explicit_system_model(mon
 
 
 @pytest.mark.asyncio
-async def test_get_default_model_hosted_status_accepts_system_default_when_latest_run_ready(monkeypatch):
+async def test_get_default_model_hosted_status_accepts_system_default_when_latest_run_ready(
+    monkeypatch,
+):
     service = ManualExecutionService()
 
     monkeypatch.setattr(

@@ -103,6 +103,53 @@ def test_parse_factor_values_payload_flattens_date_grouped_values():
     assert parsed.rows[1].factor_value == -0.5
 
 
+def test_parse_factor_values_payload_accepts_task_stock_factor_data_contract():
+    payload = {
+        "task_id": "task-1",
+        "status": "completed",
+        "result": {
+            "stock_factor_data": {
+                "rebalance_date": "2025-12-15",
+                "flipped": False,
+                "total_stock_count": 3,
+                "stocks": [
+                    {
+                        "stock_code": "sh.600519",
+                        "factor_value": 1.05,
+                        "factor_rank": 0.98,
+                        "group": 4,
+                        "group_label": "G5",
+                        "period_return": 0.12,
+                    },
+                    {"stock_code": "000001.SZ", "factor_value": "-0.33"},
+                    {"stock_code": "BAD", "factor_value": 2.0},
+                    {"stock_code": "sz.000002", "factor_value": "nan"},
+                ],
+            },
+            "params": {
+                "expression": "rank(close/ts_mean(close, 20))",
+                "universe": "hs300",
+                "start_date": "2023-01-01",
+                "end_date": "2025-12-31",
+            },
+        },
+    }
+
+    parsed = parse_factor_values_payload(payload)
+
+    assert parsed.expression == "rank(close/ts_mean(close, 20))"
+    assert parsed.universe == "hs300"
+    assert parsed.start_date == "2023-01-01"
+    assert parsed.end_date == "2025-12-31"
+    assert parsed.invalid_symbol_count == 1
+    assert len(parsed.rows) == 2
+    assert parsed.rows[0].trade_date == date(2025, 12, 15)
+    assert parsed.rows[0].symbol == "SH600519"
+    assert parsed.rows[0].factor_value == 1.05
+    assert parsed.rows[1].symbol == "SZ000001"
+    assert parsed.rows[1].factor_value == -0.33
+
+
 def test_promotion_policy_accepts_good_candidate_and_rejects_high_turnover():
     good = QuantGPTCandidateMetrics(
         score=72.0,

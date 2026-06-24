@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const port = Number(process.env.PLAYWRIGHT_PORT || process.env.VITE_PORT || 3100);
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || `http://127.0.0.1:${port}`;
+const apiBaseURL = process.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+
 /**
  * Playwright配置文件
  * 用于端到端测试配置
@@ -32,7 +36,7 @@ export default defineConfig({
   // 全局配置
   use: {
     // 基础URL
-    baseURL: 'http://localhost:5173',
+    baseURL,
 
     // 追踪配置
     trace: 'on-first-retry',
@@ -76,8 +80,8 @@ export default defineConfig({
 
   // Web服务器配置
   webServer: {
-    command: 'npm run dev',
-    port: 5173,
+    command: `npx cross-env VITE_PORT=${port} VITE_API_BASE_URL=${apiBaseURL} VITE_DISABLE_AUTH=true npm run dev:react -- --host 127.0.0.1`,
+    port,
     timeout: 120 * 1000,
     reuseExistingServer: !process.env.CI,
   },

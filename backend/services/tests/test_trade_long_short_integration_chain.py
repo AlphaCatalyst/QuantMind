@@ -208,6 +208,176 @@ async def test_internal_strategy_order_sell_to_open_rejected_by_risk(monkeypatch
 
 
 @pytest.mark.asyncio
+async def test_internal_strategy_order_simulation_uses_submission_service_rejection(
+    monkeypatch,
+):
+    captured = {}
+
+    class _ForbiddenRealEngine:
+        def __init__(self, *_args, **_kwargs):
+            raise AssertionError("simulation dispatch must not instantiate real engine")
+
+    class _FakeSimulationManager:
+        def __init__(self, redis):
+            captured["redis"] = redis
+
+    class _FakeSimulationSubmissionService:
+        def __init__(self, db, sim_manager):
+            captured["db"] = db
+            captured["sim_manager"] = sim_manager
+
+        async def submit_and_fill(self, **kwargs):
+            captured["submission_kwargs"] = kwargs
+            return SimpleNamespace(
+                success=False,
+                order_id=uuid.uuid4(),
+                message="Insufficient cash for buy order",
+            )
+
+    monkeypatch.setattr(
+        internal_strategy_dispatcher,
+        "TradingEngine",
+        _ForbiddenRealEngine,
+    )
+    monkeypatch.setattr(
+        internal_strategy_dispatcher,
+        "SimulationAccountManager",
+        _FakeSimulationManager,
+    )
+    monkeypatch.setattr(
+        internal_strategy_dispatcher,
+        "SimulationOrderSubmissionService",
+        _FakeSimulationSubmissionService,
+    )
+
+    res = await internal_strategy_dispatcher.dispatch_internal_strategy_order(
+        order_data={
+            "trading_mode": "SIMULATION",
+            "portfolio_id": 88,
+            "strategy_id": "48",
+            "symbol": "SH600519",
+            "side": "BUY",
+            "quantity": 100,
+            "price": 0,
+            "order_type": "MARKET",
+            "trade_action": "buy_to_open",
+            "position_side": "long",
+            "client_order_id": "factor-shadow-sim-risk",
+            "remarks": "signal_source=factor_shadow",
+        },
+        user_id="1001",
+        tenant_id="default",
+        redis=_DummyRedis(),
+        db=_SequenceDb([]),
+    )
+
+    assert res["status"] == "failed"
+    assert res["execution"] == "simulation_rejected"
+    assert res["reason"] == "Insufficient cash for buy order"
+    assert captured["submission_kwargs"]["trigger_source"] == "strategy_dispatch"
+    assert captured["submission_kwargs"]["tenant_id"] == "default"
+    assert captured["submission_kwargs"]["user_id"] == 1001
+    assert captured["submission_kwargs"]["portfolio_id"] == 88
+    assert captured["submission_kwargs"]["symbol"] == "SH600519"
+    assert captured["submission_kwargs"]["trade_action"] == "buy_to_open"
+    assert captured["submission_kwargs"]["client_order_id"] == "factor-shadow-sim-risk"
+
+
+@pytest.mark.asyncio
+async def test_internal_strategy_order_factor_shadow_simulation_returns_fill_result(
+    monkeypatch,
+):
+    captured = {}
+    order_id = uuid.uuid4()
+    trade_id = uuid.uuid4()
+
+    class _ForbiddenRealEngine:
+        def __init__(self, *_args, **_kwargs):
+            raise AssertionError("SIMULATION factor_shadow must not use real engine")
+
+    class _FakeSimulationManager:
+        def __init__(self, redis):
+            captured["redis"] = redis
+
+    class _FakeSimulationSubmissionService:
+        def __init__(self, db, sim_manager):
+            captured["db"] = db
+            captured["sim_manager"] = sim_manager
+
+        async def submit_and_fill(self, **kwargs):
+            captured["submission_kwargs"] = kwargs
+            return SimpleNamespace(
+                success=True,
+                order_id=order_id,
+                trade_id=trade_id,
+                client_order_id=kwargs["client_order_id"],
+                fill_price=18.88,
+                price_source="market_latest",
+                filled_quantity=200,
+                commission=1.2,
+                message="filled",
+            )
+
+    monkeypatch.setattr(
+        internal_strategy_dispatcher,
+        "TradingEngine",
+        _ForbiddenRealEngine,
+    )
+    monkeypatch.setattr(
+        internal_strategy_dispatcher,
+        "SimulationAccountManager",
+        _FakeSimulationManager,
+    )
+    monkeypatch.setattr(
+        internal_strategy_dispatcher,
+        "SimulationOrderSubmissionService",
+        _FakeSimulationSubmissionService,
+    )
+
+    res = await internal_strategy_dispatcher.dispatch_internal_strategy_order(
+        order_data={
+            "trading_mode": "SIMULATION",
+            "portfolio_id": 88,
+            "strategy_id": "48",
+            "symbol": "SH600000",
+            "side": "BUY",
+            "quantity": 200,
+            "price": 0,
+            "order_type": "MARKET",
+            "trade_action": "buy_to_open",
+            "position_side": "long",
+            "client_order_id": "factor-shadow-sim-fill",
+            "remarks": "signal_source=factor_shadow",
+        },
+        user_id="1001",
+        tenant_id="default",
+        redis=_DummyRedis(),
+        db=_SequenceDb([]),
+    )
+
+    assert res == {
+        "status": "success",
+        "execution": "simulation_filled",
+        "order_id": str(order_id),
+        "trade_id": str(trade_id),
+        "client_order_id": "factor-shadow-sim-fill",
+        "fill_price": 18.88,
+        "price_source": "market_latest",
+        "filled_quantity": 200,
+        "commission": 1.2,
+    }
+    assert captured["submission_kwargs"]["remarks"] == "signal_source=factor_shadow"
+    assert captured["submission_kwargs"]["trigger_source"] == "strategy_dispatch"
+    assert captured["submission_kwargs"]["tenant_id"] == "default"
+    assert captured["submission_kwargs"]["user_id"] == 1001
+    assert captured["submission_kwargs"]["portfolio_id"] == 88
+    assert captured["submission_kwargs"]["symbol"] == "SH600000"
+    assert captured["submission_kwargs"]["price"] is None
+    assert captured["submission_kwargs"]["trade_action"] == "buy_to_open"
+    assert captured["submission_kwargs"]["position_side"] == "long"
+
+
+@pytest.mark.asyncio
 async def test_internal_strategy_order_buy_to_close_success(monkeypatch):
     captured = {}
 
