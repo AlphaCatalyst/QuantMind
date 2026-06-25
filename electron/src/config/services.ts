@@ -31,6 +31,7 @@ const SERVER_URL_STORAGE_KEY = 'quantmind_server_url';
 
 function readPersistedServerUrl(): string | null {
   if (typeof window === 'undefined') return null;
+  if (!isElectronEnv()) return null;
   try {
     return localStorage.getItem(SERVER_URL_STORAGE_KEY)?.trim() || null;
   } catch {
@@ -40,6 +41,7 @@ function readPersistedServerUrl(): string | null {
 
 function persistServerUrl(url: string | null): void {
   if (typeof window === 'undefined') return;
+  if (!isElectronEnv()) return;
   try {
     if (url) {
       localStorage.setItem(SERVER_URL_STORAGE_KEY, url);
