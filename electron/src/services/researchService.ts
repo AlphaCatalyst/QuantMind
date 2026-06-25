@@ -812,6 +812,9 @@ class ResearchService {
       const resp = await this.client.get<PermissionCheckResponse>(`/rbac/check-permission?${params.toString()}`);
       return Boolean(resp.data?.data?.has_permission);
     } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 404) {
+        return false;
+      }
       console.error('[ResearchService] checkPermission failed:', error);
       return false;
     }

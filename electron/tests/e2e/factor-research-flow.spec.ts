@@ -1032,15 +1032,21 @@ test('factor research starts bounded campaign and shows generation summary', asy
   await expect(page.getByText('Campaign 状态')).toBeVisible();
   await expect(page.getByText('最近 24 小时无运行告警')).toBeVisible();
 
+  await expect(page.getByText('任务摘要')).toBeVisible();
+  await expect(page.getByText('Campaign', { exact: true })).toBeVisible();
+  await expect(page.getByText('mutation_crossover · G1')).toBeVisible();
+  await page.getByText('高级：查看请求契约').click();
   await expect(page.getByText('"strategy": "mutation_crossover"')).toBeVisible();
+  await page.locator('.ant-modal-close').click();
+  await expect(page.getByText('因子研究请求契约')).not.toBeVisible();
   await expect(page.getByText('因子进化')).toBeVisible();
   await expect(page.getByText('因子交叉')).toBeVisible();
   await page.getByText('因子进化').click();
-  await expect(page.getByText('"strategy": "quantgpt_meta_evolution"')).toBeVisible();
+  await expect(page.getByText('quantgpt_meta_evolution · G1')).toBeVisible();
   await page.getByText('仅突变').click();
-  await expect(page.getByText('"strategy": "template_mutation"')).toBeVisible();
+  await expect(page.getByText('template_mutation · G1')).toBeVisible();
   await page.getByLabel('Campaign 代数').fill('2');
-  await expect(page.getByText('"max_generations": 2')).toBeVisible();
+  await expect(page.getByText('template_mutation · G2')).toBeVisible();
   await page.getByRole('button', { name: /启动 Campaign/ }).click();
 
   await expect.poll(() => campaignPayload, { timeout: 5000 }).not.toBeNull();

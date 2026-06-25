@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, DatePicker, Input, InputNumber, Select, Segmented, Switch, Table, Tag, Tooltip, Typography, message } from 'antd';
+import { Button, DatePicker, Input, InputNumber, Modal, Select, Segmented, Switch, Table, Tag, Tooltip, Typography, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
@@ -439,6 +439,7 @@ export const FactorResearchWorkbench: React.FC = () => {
   const [holdingPeriod, setHoldingPeriod] = React.useState(5);
   const [campaignGenerations, setCampaignGenerations] = React.useState(1);
   const [campaignStrategy, setCampaignStrategy] = React.useState<CampaignStrategy>('mutation_crossover');
+  const [requestContractOpen, setRequestContractOpen] = React.useState(false);
   const [candidates, setCandidates] = React.useState<FactorCandidate[]>([]);
   const [candidateTotal, setCandidateTotal] = React.useState(0);
   const [campaigns, setCampaigns] = React.useState<FactorCampaign[]>([]);
@@ -1173,110 +1174,115 @@ export const FactorResearchWorkbench: React.FC = () => {
   ], []);
 
   return (
-    <div className="space-y-5 pb-2">
-      <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-        <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-end lg:justify-between">
+    <div className="space-y-4 pb-28">
+      <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <div className="mb-1 text-[10px] font-black uppercase tracking-[0.22em] text-slate-400">Pre-training Pipeline</div>
-            <h2 className="m-0 text-lg font-black text-slate-900">因子研究是模型训练的前置流水线</h2>
-            <p className="m-0 mt-1 text-xs font-medium leading-6 text-slate-500">
+            <h2 className="m-0 text-base font-black text-slate-900">因子研究是模型训练的前置流水线</h2>
+            <p className="m-0 mt-1 text-xs font-medium leading-5 text-slate-500">
               只有通过研究门禁并晋升为 shadow feature set 的因子，才进入模型训练的特征选择；未通过的表达式保留为候选或归档。
             </p>
           </div>
-          <div className="flex items-center gap-2 rounded-2xl border border-slate-100 bg-slate-50 px-3 py-2 text-xs font-black text-slate-600">
-            <Beaker className="h-4 w-4 text-emerald-500" />
-            因子研究
-            <span className="text-slate-300">/</span>
-            <span className="text-blue-600">模型训练</span>
-            <span className="text-slate-300">/</span>
-            模型管理
+          <div className="grid min-w-[460px] max-w-full grid-cols-3 gap-2 rounded-2xl border border-slate-100 bg-slate-50 p-2 text-center text-[11px] font-black text-slate-500">
+            <span className="rounded-xl bg-white px-3 py-2 text-emerald-700 shadow-sm">因子研究</span>
+            <span className="rounded-xl px-3 py-2 text-blue-600">模型训练</span>
+            <span className="rounded-xl px-3 py-2">模型管理</span>
           </div>
         </div>
-        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-          {PIPELINE_STEPS.map((step, index) => {
-            const Icon = step.icon;
-            const toneClass = step.tone === 'emerald'
-              ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
-              : step.tone === 'violet'
-                ? 'bg-violet-50 text-violet-700 border-violet-100'
-                : step.tone === 'amber'
-                  ? 'bg-amber-50 text-amber-700 border-amber-100'
-                  : 'bg-blue-50 text-blue-700 border-blue-100';
-            return (
-              <div key={step.title} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-4">
-                <div className="mb-3 flex items-center justify-between">
-                  <span className={`flex h-9 w-9 items-center justify-center rounded-xl border ${toneClass}`}>
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-slate-500">
-                    {String(index + 1).padStart(2, '0')} · {step.value}
-                  </span>
+        <details className="mt-3 group">
+          <summary className="flex cursor-pointer list-none items-center justify-between rounded-2xl border border-slate-100 bg-slate-50 px-4 py-2.5 text-xs font-black text-slate-600">
+            <span>查看完整 8 步流水线</span>
+            <span className="text-slate-400 group-open:hidden">展开</span>
+            <span className="hidden text-slate-400 group-open:inline">收起</span>
+          </summary>
+          <div className="mt-3 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {PIPELINE_STEPS.map((step, index) => {
+              const Icon = step.icon;
+              const toneClass = step.tone === 'emerald'
+                ? 'bg-emerald-50 text-emerald-700 border-emerald-100'
+                : step.tone === 'violet'
+                  ? 'bg-violet-50 text-violet-700 border-violet-100'
+                  : step.tone === 'amber'
+                    ? 'bg-amber-50 text-amber-700 border-amber-100'
+                    : 'bg-blue-50 text-blue-700 border-blue-100';
+              return (
+                <div key={step.title} className="rounded-2xl border border-slate-100 bg-slate-50/60 p-4">
+                  <div className="mb-3 flex items-center justify-between">
+                    <span className={`flex h-9 w-9 items-center justify-center rounded-xl border ${toneClass}`}>
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-slate-500">
+                      {String(index + 1).padStart(2, '0')} · {step.value}
+                    </span>
+                  </div>
+                  <div className="text-sm font-black text-slate-900">{step.title}</div>
+                  <div className="mt-1 min-h-[36px] text-xs font-medium leading-5 text-slate-500">{step.description}</div>
+                  <div className="mt-3 rounded-xl bg-white px-3 py-2 text-[11px] font-black text-slate-600">
+                    产物：{step.output}
+                  </div>
                 </div>
-                <div className="text-sm font-black text-slate-900">{step.title}</div>
-                <div className="mt-1 min-h-[36px] text-xs font-medium leading-5 text-slate-500">{step.description}</div>
-                <div className="mt-3 rounded-xl bg-white px-3 py-2 text-[11px] font-black text-slate-600">
-                  产物：{step.output}
-                </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        </details>
       </div>
 
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
-        <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-          <div className="mb-5 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-300/50">
-                <FlaskConical className="h-5 w-5" />
-              </div>
-              <div>
-                <h2 className="m-0 text-base font-black text-slate-900">因子研究工作台</h2>
-                <p className="m-0 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Cross-module Factor Pipeline</p>
-              </div>
-            </div>
-            <Segmented
-              value={mode}
-              onChange={(value) => setMode(value as LabMode)}
-              options={[
-                { label: '挖掘', value: 'campaign' },
-                { label: '评估', value: 'evaluate' },
-                { label: '晋升', value: 'promote' },
-                { label: '信号', value: 'signal' },
-              ]}
-              className="research-next-segmented p-1"
-            />
-          </div>
-
-          <div className="mb-4 grid gap-3 lg:grid-cols-3">
-            {FACTOR_TEMPLATES.map((item) => (
-              <button
-                key={item.key}
-                type="button"
-                onClick={() => setExpression(item.expression)}
-                className={`rounded-2xl border p-4 text-left transition-all ${expression === item.expression
-                  ? 'border-blue-200 bg-blue-50 shadow-md shadow-blue-100/70'
-                  : 'border-slate-100 bg-slate-50/60 hover:border-slate-200 hover:bg-white'
-                  }`}
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-sm font-black text-slate-800">{item.label}</span>
-                  <Tag className="m-0 rounded-full border-none bg-white text-[10px] font-bold text-slate-500">{item.family}</Tag>
+      <div className="grid items-start gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="space-y-4">
+          <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
+            <div className="mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-300/50">
+                  <FlaskConical className="h-5 w-5" />
                 </div>
-                <div className="font-mono text-[11px] leading-5 text-slate-500">{item.expression}</div>
-              </button>
-            ))}
-          </div>
+                <div>
+                  <h2 className="m-0 text-base font-black text-slate-900">因子研究工作台</h2>
+                  <p className="m-0 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Cross-module Factor Pipeline</p>
+                </div>
+              </div>
+              <Segmented
+                value={mode}
+                onChange={(value) => setMode(value as LabMode)}
+                options={[
+                  { label: '挖掘', value: 'campaign' },
+                  { label: '评估', value: 'evaluate' },
+                  { label: '晋升', value: 'promote' },
+                  { label: '信号', value: 'signal' },
+                ]}
+                className="research-next-segmented p-1"
+              />
+            </div>
 
-          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_240px]">
+            <div className="mb-3 grid gap-3 lg:grid-cols-3">
+              {FACTOR_TEMPLATES.map((item) => (
+                <button
+                  key={item.key}
+                  type="button"
+                  onClick={() => setExpression(item.expression)}
+                  className={`rounded-2xl border p-4 text-left transition-all ${expression === item.expression
+                    ? 'border-blue-200 bg-blue-50 shadow-md shadow-blue-100/70'
+                    : 'border-slate-100 bg-slate-50/60 hover:border-slate-200 hover:bg-white'
+                    }`}
+                >
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-sm font-black text-slate-800">{item.label}</span>
+                    <Tag className="m-0 rounded-full border-none bg-white text-[10px] font-bold text-slate-500">{item.family}</Tag>
+                  </div>
+                  <div className="font-mono text-[11px] leading-5 text-slate-500">{item.expression}</div>
+                </button>
+              ))}
+            </div>
+
+          <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_240px]">
             <div className="space-y-3">
               <Input.TextArea
                 value={expression}
                 onChange={(event) => setExpression(event.target.value)}
-                autoSize={{ minRows: 4, maxRows: 6 }}
+                autoSize={{ minRows: 3, maxRows: 5 }}
                 className="rounded-2xl border-slate-200 font-mono text-sm"
               />
-              <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+              <div className="grid gap-3 md:grid-cols-2 2xl:grid-cols-4">
                 <Select
                   value={universe}
                   onChange={setUniverse}
@@ -1321,19 +1327,22 @@ export const FactorResearchWorkbench: React.FC = () => {
                 </div>
                 {mode === 'campaign' && (
                   <>
-                    <Segmented
-                      aria-label="Campaign 策略"
-                      value={campaignStrategy}
-                      onChange={(value) => setCampaignStrategy(value as CampaignStrategy)}
-                      options={[
-                        { label: '突变+交叉', value: 'mutation_crossover' },
-                        { label: '因子进化', value: 'quantgpt_meta_evolution' },
-                        { label: '因子交叉', value: 'quantgpt_crossover_only' },
-                        { label: '仅突变', value: 'template_mutation' },
-                      ]}
-                      className="bg-white"
-                    />
-                    <div className="flex h-8 items-center rounded-md border border-slate-200 bg-white">
+                    <div className="min-w-0 md:col-span-2 2xl:col-span-3">
+                      <Segmented
+                        aria-label="Campaign 策略"
+                        value={campaignStrategy}
+                        onChange={(value) => setCampaignStrategy(value as CampaignStrategy)}
+                        options={[
+                          { label: '突变+交叉', value: 'mutation_crossover' },
+                          { label: '因子进化', value: 'quantgpt_meta_evolution' },
+                          { label: '因子交叉', value: 'quantgpt_crossover_only' },
+                          { label: '仅突变', value: 'template_mutation' },
+                        ]}
+                        block
+                        className="w-full bg-white"
+                      />
+                    </div>
+                    <div className="flex h-8 items-center rounded-md border border-slate-200 bg-white md:col-span-2 2xl:col-span-1">
                       <span className="shrink-0 border-r border-slate-200 px-3 text-xs font-bold text-slate-500">代数</span>
                       <InputNumber
                         aria-label="Campaign 代数"
@@ -1353,68 +1362,149 @@ export const FactorResearchWorkbench: React.FC = () => {
             <div className="rounded-2xl border border-slate-100 bg-slate-50 p-4">
               <div className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.18em] text-slate-400">
                 <Activity className="h-3.5 w-3.5" />
-                请求契约
+                任务摘要
               </div>
-              <pre className="max-h-[178px] overflow-auto rounded-xl bg-slate-950 p-3 text-[10px] leading-5 text-slate-100">
-                {JSON.stringify(requestPreview, null, 2)}
-              </pre>
+              <div className="space-y-2 text-xs font-bold leading-6 text-slate-600">
+                <div className="flex justify-between gap-3"><span>股票池</span><span className="font-mono text-slate-800">{universe}</span></div>
+                <div className="flex justify-between gap-3"><span>区间</span><span className="font-mono text-slate-800">{requestPreview.start_date} ~ {requestPreview.end_date}</span></div>
+                <div className="flex justify-between gap-3"><span>分组 / 持有</span><span className="font-mono text-slate-800">{groups} / T+{holdingPeriod}</span></div>
+                {mode === 'campaign' && (
+                  <div className="flex justify-between gap-3"><span>Campaign</span><span className="font-mono text-slate-800">{campaignStrategy} · G{campaignGenerations}</span></div>
+                )}
+              </div>
+              <Button
+                size="small"
+                type="link"
+                onClick={() => setRequestContractOpen(true)}
+                className="mt-3 h-auto p-0 text-[11px] font-black text-slate-400"
+              >
+                高级：查看请求契约
+              </Button>
             </div>
           </div>
 
-          <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3">
+          <div className="mt-4 space-y-3 rounded-2xl border border-slate-100 bg-slate-50/80 px-4 py-3">
             <div className="flex flex-wrap items-center gap-2">
               <Tag color="success" className="m-0 rounded-full font-bold">本地 Evaluator 已接入</Tag>
               <Tag color="success" className="m-0 rounded-full font-bold">因子值落库已接入</Tag>
               <Tag color="success" className="m-0 rounded-full font-bold">任务 API 已接入</Tag>
               {selectedTemplate && <Tag className="m-0 rounded-full bg-white font-bold">{selectedTemplate.label}</Tag>}
             </div>
-            <Tooltip title="创建候选因子并生成可追踪评估 run">
-              <Button
-                type="primary"
-                icon={<Play className="h-4 w-4" />}
-                loading={submitting}
-                onClick={handleSubmitEvaluation}
-                className="rounded-xl font-black"
-              >
-                提交评估
+            <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
+              <Tooltip title="创建候选因子并生成可追踪评估 run">
+                <Button
+                  type="primary"
+                  icon={<Play className="h-4 w-4" />}
+                  loading={submitting}
+                  onClick={handleSubmitEvaluation}
+                  className="w-full rounded-xl font-black"
+                >
+                  提交评估
+                </Button>
+              </Tooltip>
+              <Tooltip title="基于当前表达式启动本地 mutation/crossover campaign，批量生成候选并逐个评估">
+                <Button
+                  icon={<Sparkles className="h-4 w-4" />}
+                  loading={miningCampaign}
+                  onClick={handleStartCampaign}
+                  className="w-full rounded-xl font-black"
+                >
+                  启动 Campaign
+                </Button>
+              </Tooltip>
+              <Tooltip title="把最新 completed run 登记为 shadow feature；未物化前不会进入模型训练 active catalog">
+                <Button
+                  icon={<GitBranch className="h-4 w-4" />}
+                  loading={promoting}
+                  disabled={latestRun?.status !== 'completed'}
+                  onClick={handlePromoteLatest}
+                  className="w-full rounded-xl font-black"
+                >
+                  登记 Shadow 特征
+                </Button>
+              </Tooltip>
+              <Tooltip title="将最新 completed run 的截面因子值写入 shadow signal 表；默认不写 Redis latest key">
+                <Button
+                  icon={<Radio className="h-4 w-4" />}
+                  loading={publishingSignal}
+                  disabled={latestRun?.status !== 'completed'}
+                  onClick={handlePublishShadowSignal}
+                  className="w-full rounded-xl font-black"
+                >
+                  发布 Shadow Signal
+                </Button>
+              </Tooltip>
+            </div>
+          </div>
+          </div>
+
+          <div className="rounded-3xl border border-slate-100 bg-white p-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <Text className="block text-sm font-black text-slate-900">候选因子队列</Text>
+                <Text className="text-xs text-slate-400">
+                  已入库 {candidateTotal} 个候选；评估产物统一写入候选、run、factor values，后续供模型训练和信号灰度消费。
+                </Text>
+              </div>
+              <Button size="small" onClick={() => void loadCandidates()} loading={loadingCandidates} className="rounded-xl font-bold">
+                刷新
               </Button>
-            </Tooltip>
-            <Tooltip title="基于当前表达式启动本地 mutation/crossover campaign，批量生成候选并逐个评估">
-              <Button
-                icon={<Sparkles className="h-4 w-4" />}
-                loading={miningCampaign}
-                onClick={handleStartCampaign}
-                className="rounded-xl font-black"
-              >
-                启动 Campaign
-              </Button>
-            </Tooltip>
-            <Tooltip title="把最新 completed run 登记为 shadow feature；未物化前不会进入模型训练 active catalog">
-              <Button
-                icon={<GitBranch className="h-4 w-4" />}
-                loading={promoting}
-                disabled={latestRun?.status !== 'completed'}
-                onClick={handlePromoteLatest}
-                className="rounded-xl font-black"
-              >
-                登记 Shadow 特征
-              </Button>
-            </Tooltip>
-            <Tooltip title="将最新 completed run 的截面因子值写入 shadow signal 表；默认不写 Redis latest key">
-              <Button
-                icon={<Radio className="h-4 w-4" />}
-                loading={publishingSignal}
-                disabled={latestRun?.status !== 'completed'}
-                onClick={handlePublishShadowSignal}
-                className="rounded-xl font-black"
-              >
-                发布 Shadow Signal
-              </Button>
-            </Tooltip>
+            </div>
+            <Table<FactorCandidate>
+              rowKey="id"
+              columns={candidateColumns}
+              dataSource={candidates}
+              loading={loadingCandidates}
+              pagination={false}
+              size="small"
+              className="research-table"
+            />
+          </div>
+
+          <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
+            <div className="mb-4 flex items-center justify-between gap-3">
+              <div>
+                <Text className="block text-sm font-black text-slate-900">
+                  {mode === 'campaign'
+                    ? 'Campaign 评估门禁'
+                    : mode === 'evaluate'
+                      ? '候选因子门禁'
+                      : mode === 'promote'
+                        ? 'Feature 晋升门禁'
+                        : '灰度信号门禁'}
+                </Text>
+                <Text className="text-xs text-slate-400">
+                  {mode === 'campaign'
+                    ? '每个候选都会复用同一套候选评估和晋升门禁'
+                    : mode === 'evaluate'
+                    ? '与后端 factor_promotion.py 阈值保持一致'
+                    : mode === 'promote'
+                      ? '只允许进入 shadow feature set'
+                      : '只允许模拟盘或 shadow runner 消费'}
+                </Text>
+              </div>
+              <Tag color="blue" className="m-0 rounded-full px-3 py-1 font-black">
+                {mode === 'campaign'
+                  ? 'Batch eval'
+                  : mode === 'evaluate'
+                    ? 'Contract-first'
+                    : mode === 'promote'
+                      ? 'Shadow only'
+                      : 'Sim only'}
+              </Tag>
+            </div>
+            <Table<GateRow>
+              rowKey="key"
+              columns={gateColumns}
+              dataSource={dynamicGateRows}
+              pagination={false}
+              size="small"
+              className="research-table"
+            />
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 xl:sticky xl:top-4 xl:max-h-[calc(100vh-430px)] xl:overflow-y-auto xl:pr-1 custom-scrollbar">
           <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
             <div className="mb-4 flex items-center justify-between gap-2">
               <div className="flex items-center gap-2">
@@ -2133,70 +2223,19 @@ export const FactorResearchWorkbench: React.FC = () => {
         </div>
       </div>
 
-      <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <div>
-            <Text className="block text-sm font-black text-slate-900">候选因子队列</Text>
-            <Text className="text-xs text-slate-400">
-              已入库 {candidateTotal} 个候选；评估产物统一写入候选、run、factor values，后续供模型训练和信号灰度消费。
-            </Text>
-          </div>
-          <Button size="small" onClick={() => void loadCandidates()} loading={loadingCandidates} className="rounded-xl font-bold">
-            刷新
-          </Button>
-        </div>
-        <Table<FactorCandidate>
-          rowKey="id"
-          columns={candidateColumns}
-          dataSource={candidates}
-          loading={loadingCandidates}
-          pagination={false}
-          size="small"
-          className="research-table"
-        />
-      </div>
+      <Modal
+        title="因子研究请求契约"
+        open={requestContractOpen}
+        onCancel={() => setRequestContractOpen(false)}
+        footer={null}
+        width={720}
+        zIndex={10000}
+      >
+        <pre className="max-h-[60vh] overflow-auto rounded-xl bg-slate-950 p-4 text-[11px] leading-5 text-slate-100">
+          {JSON.stringify(requestPreview, null, 2)}
+        </pre>
+      </Modal>
 
-      <div className="rounded-3xl border border-slate-100 bg-white p-5 shadow-sm">
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <div>
-            <Text className="block text-sm font-black text-slate-900">
-              {mode === 'campaign'
-                ? 'Campaign 评估门禁'
-                : mode === 'evaluate'
-                  ? '候选因子门禁'
-                  : mode === 'promote'
-                    ? 'Feature 晋升门禁'
-                    : '灰度信号门禁'}
-            </Text>
-            <Text className="text-xs text-slate-400">
-              {mode === 'campaign'
-                ? '每个候选都会复用同一套候选评估和晋升门禁'
-                : mode === 'evaluate'
-                ? '与后端 factor_promotion.py 阈值保持一致'
-                : mode === 'promote'
-                  ? '只允许进入 shadow feature set'
-                  : '只允许模拟盘或 shadow runner 消费'}
-            </Text>
-          </div>
-          <Tag color="blue" className="m-0 rounded-full px-3 py-1 font-black">
-            {mode === 'campaign'
-              ? 'Batch eval'
-              : mode === 'evaluate'
-                ? 'Contract-first'
-                : mode === 'promote'
-                  ? 'Shadow only'
-                  : 'Sim only'}
-          </Tag>
-        </div>
-        <Table<GateRow>
-          rowKey="key"
-          columns={gateColumns}
-          dataSource={dynamicGateRows}
-          pagination={false}
-          size="small"
-          className="research-table"
-        />
-      </div>
     </div>
   );
 };

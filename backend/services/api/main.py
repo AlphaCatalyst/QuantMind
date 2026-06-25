@@ -28,6 +28,7 @@ from backend.services.api.routers.trade_proxy import router as trade_proxy_route
 from backend.services.api.routers.public_sync import router as public_sync_router
 from backend.services.api.routers.ws_proxy import router as ws_proxy_router
 from backend.services.api.user_app.api.v1.api_keys import router as api_keys_router
+from backend.services.api.user_app.api.v1.rbac import router as rbac_router
 from backend.services.api.user_app.api.v1.subscriptions import (
     router as subscriptions_router,
 )
@@ -145,6 +146,7 @@ app.include_router(research_router)
 app.include_router(stocks_search_router)
 app.include_router(trading_calendar.router)
 app.include_router(api_keys_router, prefix="/api/v1")
+app.include_router(rbac_router, prefix="/api/v1", tags=["RBAC"])
 app.include_router(asset_router, prefix="/api/v1/asset", tags=["Asset"])
 app.include_router(
     subscriptions_router, prefix="/api/v1/subscription", tags=["Subscriptions"]
