@@ -141,7 +141,9 @@ const LoginPage: React.FC = () => {
   useEffect(() => {
     if (autoLoginAttempted.current) return;
     const disabled =
-      String((import.meta as any).env?.VITE_DISABLE_AUTH || '').toLowerCase() === 'true';
+      String(
+        (import.meta as any).env?.VITE_DISABLE_AUTH ?? ((import.meta as any).env?.DEV ? 'true' : '')
+      ).toLowerCase() === 'true';
     if (!disabled) return;
 
     autoLoginAttempted.current = true;

@@ -142,6 +142,8 @@ services:
       # 调试配置
       - DEBUG=false
       - LOG_LEVEL=INFO
+      # OSS 演示/本地开发默认免登录；生产部署请设置 DISABLE_AUTH=false
+      - DISABLE_AUTH=${DISABLE_AUTH:-true}
 
       # 策略模板目录
       - STRATEGY_TEMPLATES_DIR=/app/strategy_templates

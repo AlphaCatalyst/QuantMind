@@ -61,7 +61,6 @@ class BaseApiClient {
         // 添加请求ID用于追踪
         config.headers['X-Request-ID'] = this.generateRequestId();
 
-        console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`, config.data);
         return config;
       },
       (error) => {
@@ -73,7 +72,6 @@ class BaseApiClient {
     // 响应拦截器
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
-        console.log(`[API Response] ${response.config.url}`, response.data);
         const data = response.data as any;
         if (data && typeof data === 'object' && 'code' in data && 'data' in data) {
           response.data = data.data;

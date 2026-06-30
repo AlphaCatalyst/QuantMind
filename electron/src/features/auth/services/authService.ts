@@ -37,7 +37,9 @@ class AuthService {
   private refreshInFlight: Promise<string> | null = null;
 
   constructor() {
-    this.disableAuth = String((import.meta as any).env?.VITE_DISABLE_AUTH || '').toLowerCase() === 'true';
+    this.disableAuth = String(
+      (import.meta as any).env?.VITE_DISABLE_AUTH ?? ((import.meta as any).env?.DEV ? 'true' : '')
+    ).toLowerCase() === 'true';
     const { baseURL, apiPrefix } = this.normalizeBaseURL(this.rawBaseURL);
     this.baseURL = baseURL;
     this.apiPrefix = apiPrefix;
@@ -60,11 +62,14 @@ class AuthService {
       if (!existingUser) {
         const now = new Date().toISOString();
         const devAdmin = {
-          id: 1,
+          id: 'dev-admin',
+          user_id: 'dev-admin',
+          tenant_id: 'default',
           username: 'admin',
           email: 'admin@example.com',
           full_name: 'Administrator',
           is_active: true,
+          is_verified: true,
           is_admin: true,
           created_at: now,
           updated_at: now,
@@ -204,7 +209,6 @@ class AuthService {
     // 请求拦截器
     this.axiosInstance.interceptors.request.use(
       (config) => {
-        console.log(`[Auth Request] ${config.method?.toUpperCase()} ${config.url}`, config.data);
         return config;
       },
       (error) => {
@@ -216,7 +220,6 @@ class AuthService {
     // 响应拦截器
     this.axiosInstance.interceptors.response.use(
       (response: AxiosResponse) => {
-        console.log(`[Auth Response] ${response.config.url}`, response.data);
         return response;
       },
       async (error) => {
@@ -261,7 +264,6 @@ class AuthService {
           if (config.headers) {
             config.headers.Authorization = `Bearer ${newToken}`;
           }
-          console.log(`[Auth] Token刷新成功，重试请求: ${config.url}`);
           return axiosInstance.request(config);
         } catch (refreshError) {
           console.error('[Auth] 自动重试过程中令牌刷新失败:', refreshError);
@@ -506,16 +508,19 @@ class AuthService {
     try {
       if (this.disableAuth) {
         const now = new Date().toISOString();
-        const devAdmin: User = {
-          id: 1,
+        const devAdmin = {
+          id: 'dev-admin',
+          user_id: 'dev-admin',
+          tenant_id: 'default',
           username: 'admin',
           email: 'admin@example.com',
           full_name: 'Administrator',
           is_active: true,
+          is_verified: true,
           is_admin: true,
           created_at: now,
           updated_at: now,
-        };
+        } as User;
         const tokenData: TokenResponse = {
           access_token: 'dev-admin-token',
           refresh_token: '',
@@ -631,7 +636,6 @@ class AuthService {
       // 如果后端返回了新的刷新令牌（令牌轮换），也进行保存
       if (data.refresh_token) {
         localStorage.setItem('refresh_token', data.refresh_token);
-        console.log('[Auth] Refresh token rotated');
       }
 
       return data.access_token;

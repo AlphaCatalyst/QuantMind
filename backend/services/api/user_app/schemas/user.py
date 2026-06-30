@@ -7,6 +7,8 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Literal, Optional
 
+import re
+
 from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
 # ============ 请求模型 ============
@@ -15,7 +17,7 @@ from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 class UserRegister(BaseModel):
     """用户注册"""
 
-    tenant_id: str = Field(..., min_length=1, max_length=64, description="租户ID")
+    tenant_id: str = Field("default", min_length=1, max_length=64, description="租户ID")
     username: str = Field(..., min_length=3, max_length=128, description="用户名")
     email: EmailStr = Field(..., description="邮箱")
     password: str = Field(..., min_length=8, max_length=128, description="密码")
@@ -24,17 +26,28 @@ class UserRegister(BaseModel):
     @field_validator("username")
     @classmethod
     def username_alphanumeric(cls, v: str) -> str:
-        if not v.isalnum():
-            raise ValueError("用户名只能包含字母和数字")
+        if not re.fullmatch(r"[A-Za-z0-9_]{3,20}", v):
+            raise ValueError("用户名只能包含字母、数字和下划线，长度 3-20")
+        if v.isdigit():
+            raise ValueError("用户名不能为纯数字")
+        if v.startswith("_") or v.endswith("_"):
+            raise ValueError("用户名不能以下划线开头或结尾")
         return v
 
 
 class UserLogin(BaseModel):
     """用户登录"""
 
-    tenant_id: str = Field(..., min_length=1, max_length=64, description="租户ID")
-    username: str = Field(..., description="用户名或邮箱")
+    tenant_id: str = Field("default", min_length=1, max_length=64, description="租户ID")
+    username: str | None = Field(None, description="用户名或邮箱")
+    email_or_username: str | None = Field(None, description="用户名或邮箱（前端兼容字段）")
+    email: str | None = Field(None, description="邮箱（兼容字段）")
+    login: str | None = Field(None, description="登录名（兼容字段）")
     password: str = Field(..., description="密码")
+
+    def login_identifier(self) -> str:
+        identifier = self.username or self.email_or_username or self.email or self.login or ""
+        return str(identifier).strip()
 
 
 class AdminLogin(BaseModel):

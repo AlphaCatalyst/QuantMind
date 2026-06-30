@@ -122,6 +122,23 @@ async def get_current_user_info(
     """
     获取当前登录用户信息
     """
+    if current_user.get("user_id") == "dev-admin":
+        return {
+            "code": 200,
+            "message": "success",
+            "data": {
+                "user_id": "dev-admin",
+                "tenant_id": current_user.get("tenant_id", "default"),
+                "username": "admin",
+                "email": "admin@example.com",
+                "is_active": True,
+                "is_verified": True,
+                "is_admin": True,
+                "created_at": None,
+                "last_login_at": None,
+            },
+        }
+
     user = await user_service.get_user_by_id(
         current_user["user_id"], current_user["tenant_id"]
     )

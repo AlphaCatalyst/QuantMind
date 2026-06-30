@@ -8,6 +8,7 @@ import logging
 from typing import Any
 
 from fastapi import FastAPI, Request
+from fastapi.encoders import jsonable_encoder
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
@@ -78,7 +79,7 @@ def _build_error_payload(
         payload["detail"] = detail
     if errors:
         payload["errors"] = errors
-    return payload
+    return jsonable_encoder(payload)
 
 
 def install_error_contract_handlers(app: FastAPI) -> None:

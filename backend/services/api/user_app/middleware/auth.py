@@ -4,6 +4,7 @@ Authentication Middleware
 """
 
 import logging
+import os
 from typing import List, Optional
 
 from fastapi import Depends, HTTPException, Request, status
@@ -17,6 +18,22 @@ from backend.services.api.user_app.services.rbac_service import RBACService
 logger = logging.getLogger(__name__)
 
 security = HTTPBearer(auto_error=False)
+
+
+def _auth_disabled() -> bool:
+    return os.getenv("DISABLE_AUTH", "").strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _dev_admin_user() -> dict:
+    return {
+        "user_id": "dev-admin",
+        "tenant_id": os.getenv("VITE_TENANT_ID", "default") or "default",
+        "username": "admin",
+        "email": "admin@example.com",
+        "is_admin": True,
+        "roles": ["admin"],
+        "jti": None,
+    }
 
 
 def _get_internal_user_from_headers(request: Request) -> dict | None:
@@ -56,7 +73,8 @@ async def get_current_user(
         return internal_user
 
     if not credentials:
-        print(f"DEBUG: get_current_user Missing authentication token for {request.url.path}")
+        if _auth_disabled():
+            return _dev_admin_user()
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Missing authentication token",
@@ -64,11 +82,13 @@ async def get_current_user(
         )
 
     token = credentials.credentials
+    if _auth_disabled() and token == "dev-admin-token":
+        return _dev_admin_user()
+
     auth_service = AuthService()
     payload = await auth_service.verify_token(token)
 
     if not payload:
-        print(f"DEBUG: get_current_user Invalid token for {request.url.path}")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="无效的Token或Token已过期",

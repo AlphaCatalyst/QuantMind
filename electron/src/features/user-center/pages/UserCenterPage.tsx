@@ -24,7 +24,9 @@ const UserCenterPage: React.FC = () => {
   // 获取认证用户信息（已由ProtectedRoute保证认证）
   const { user, isAuthenticated, isLoading: authLoading, isInitialized } = useAuth();
   const isDev = (import.meta as any).env?.MODE === 'development';
-  const disabledAuth = isDev || String((import.meta as any).env?.VITE_DISABLE_AUTH || '').toLowerCase() === 'true';
+  const disabledAuth = isDev || String(
+    (import.meta as any).env?.VITE_DISABLE_AUTH ?? ((import.meta as any).env?.DEV ? 'true' : '')
+  ).toLowerCase() === 'true';
 
   // 未登录或无用户ID时阻断渲染并跳转登录
   useEffect(() => {

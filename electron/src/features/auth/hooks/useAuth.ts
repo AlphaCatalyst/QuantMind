@@ -34,17 +34,9 @@ export const useAuth = () => {
 
   const authState = useAppSelector((state) => state.auth);
 
-  console.log('[useAuth] 当前认证状态:', {
-    isAuthenticated: authState.isAuthenticated,
-    isLoading: authState.isLoading,
-    hasUser: !!authState.user,
-    hasError: !!authState.error
-  });
-
   // 初始化认证状态
   useEffect(() => {
     if (!authState.isInitialized) {
-      console.log('[useAuth] 开始初始化认证状态');
       dispatch(initializeAuth());
     }
   }, [dispatch, authState.isInitialized]);

@@ -13,8 +13,6 @@ import MFAVerificationPage from './components/MFAVerificationPage';
 import MFASetupPage from './components/MFASetupPage';
 
 const AppRoutes: React.FC = () => {
-  console.log('AppRoutes: 组件渲染，当前路径:', window.location.pathname);
-
   return (
     <Routes>
       {/* 公开认证路由 */}
