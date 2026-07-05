@@ -201,7 +201,7 @@ class BasicRiskService:
         annual_freq = 252
 
         total_ret = (1 + returns).prod() - 1
-        
+
         if trading_days > 0:
             annualized_return = (1 + total_ret) ** (annual_freq / trading_days) - 1
         else:
@@ -224,7 +224,7 @@ class BasicRiskService:
             res_dict = qlib_result["risk"].to_dict()
 
             max_drawdown = res_dict.get("max_drawdown", max_drawdown)
-            
+
             # 使用原生结果中更精确的标准差，但统一用 252 交易日年化
             std = res_dict.get("std")
             if std is not None:

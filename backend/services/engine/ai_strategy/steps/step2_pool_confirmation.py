@@ -417,20 +417,20 @@ def _query_stock_pool(
             for row in result:
                 # 使用 row_dict 确保字段取值稳健，不受列顺序影响
                 row_dict = row._asdict() if hasattr(row, "_asdict") else None
-                
+
                 if row_dict:
                     symbol = str(row_dict.get("symbol") or "")
                     name = row_dict.get("name")
-                    
+
                     # 兼容不同可能的字段名
                     market_cap = row_dict.get("market_cap")
                     if market_cap is None:
                         market_cap = row_dict.get("total_mv")
-                        
+
                     pe = row_dict.get("pe_ratio")
                     if pe is None:
                         pe = row_dict.get("pe_ttm")
-                        
+
                     pb = row_dict.get("pb_ratio")
                     if pb is None:
                         pb = row_dict.get("pb")
@@ -453,7 +453,7 @@ def _query_stock_pool(
                         "pb": float(row[4] or 0) if len(row) > 4 else 0,
                         "close": float(row[5] or 0) if len(row) > 5 else 0,
                     }
-                    
+
                 items.append(PoolItem(symbol=symbol, name=name, metrics=metrics))
             return items, as_of_date
     except Exception as e:

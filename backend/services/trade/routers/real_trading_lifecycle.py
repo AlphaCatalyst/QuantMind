@@ -609,7 +609,7 @@ async def stop_trading(
                 portfolio.updated_at = datetime.utcnow()
                 await db.commit()
                 logger.info(
-                    f"Updated portfolio %d run_status: %s -> stopped",
+                    "Updated portfolio %d run_status: %s -> stopped",
                     portfolio.id,
                     old_status,
                 )

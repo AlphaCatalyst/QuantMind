@@ -785,7 +785,7 @@ async def run_model_inference(
     current_user: dict[str, Any] = Depends(get_current_user),
 ):
     tenant_id, user_id = _owner_scope(current_user)
-    
+
     # 1. 额度检查 (Quota Check)
     async with get_session() as session:
         usage_service = UsageService(session)
@@ -793,7 +793,7 @@ async def run_model_inference(
         if not is_allowed:
             logger.warning(f"[QUOTA] Blocking inference run for {user_id}: {reason}. info={quota_info}")
             raise HTTPException(
-                status_code=403, 
+                status_code=403,
                 detail=f"配额不足: {'额度已用尽' if reason == 'quota_exceeded' else '无有效套餐'}。当前推理次数: {quota_info.get('used', 0)}/{quota_info.get('limit', 0)}"
             )
 

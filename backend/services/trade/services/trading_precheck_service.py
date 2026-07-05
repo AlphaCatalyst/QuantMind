@@ -365,7 +365,7 @@ def _check_stream_series_freshness(redis_client) -> tuple[bool, str]:
             candidates = []
             for s in test_symbols:
                 candidates.extend([f"market:series:{s}", f"market:snapshot:{s}", f"stock:{s}"])
-            
+
             for key in candidates:
                 ktype = str(stream_redis.type(key) or "none").lower()
                 if ktype == "none": continue
@@ -406,7 +406,7 @@ def _check_stream_series_freshness(redis_client) -> tuple[bool, str]:
                     if score_raw:
                         try: score = float(score_raw)
                         except: pass
-                
+
                 if score is not None:
                     latest_age_sec = max(0, int(time.time() - float(score)))
                     if latest_age_sec <= series_threshold_sec:
@@ -417,7 +417,7 @@ def _check_stream_series_freshness(redis_client) -> tuple[bool, str]:
         # 第三阶段：连接正常但未获取到数据
         if not is_trading:
             return True, "非交易时间 (Redis已连接，待行情启动)"
-        
+
         return False, "未获取到实时行情数据，请确认行情推送已启动"
 
     except Exception as exc:
@@ -566,7 +566,7 @@ def _is_trading_session_now() -> bool:
     # 周六周日直接返回 False
     if now.weekday() >= 5:
         return False
-    
+
     # 尝试确认是否为交易日
     try:
         import exchange_calendars as xcals
@@ -584,7 +584,7 @@ def _is_trading_session_now() -> bool:
     # 13:00 - 15:00
     if curr >= time_obj(13, 0) and curr <= time_obj(15, 0):
         return True
-    
+
     return False
 
 

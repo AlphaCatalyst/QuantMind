@@ -568,7 +568,7 @@ class RedisRiskGuardTopkStrategy(DynamicRiskMixin, FundamentalFilterMixin, TopkD
                 desired_buy_count,
             )
         else:
-            raise NotImplementedError(f"This type of input is not supported")
+            raise NotImplementedError("This type of input is not supported")
 
         comb = pred_score.reindex(last.union(pd.Index(today))).sort_values(ascending=False).index
 
@@ -581,7 +581,7 @@ class RedisRiskGuardTopkStrategy(DynamicRiskMixin, FundamentalFilterMixin, TopkD
             except ValueError:
                 sell = candi
         else:
-            raise NotImplementedError(f"This type of input is not supported")
+            raise NotImplementedError("This type of input is not supported")
 
         buy = today[: max(0, len(sell) + self.topk - len(last))]
         for code in current_stock_list:

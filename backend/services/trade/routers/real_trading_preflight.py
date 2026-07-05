@@ -143,7 +143,7 @@ async def preflight_check(
         )
     except Exception as exc:
         permission_ok, permission_message = False, f"用户权限检测失败: {exc}"
-    
+
     permission_required = (mode != "SIMULATION")
     if not permission_required:
         permission_ok = True

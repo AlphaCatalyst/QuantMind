@@ -236,7 +236,7 @@ def _repair_cost_fallback_positions(
     return repaired, repaired_count
 
 
-async def _resolve_symbol_by_name(name: str) -> Optional[str]:
+async def _resolve_symbol_by_name(name: str) -> str | None:
     """
     通过股票名称反查标准 Prefix 代码
     """
@@ -269,7 +269,7 @@ async def _build_realtime_positions_from_db(
     *,
     tenant_id: str,
     user_id: int,
-    since_at: Optional[datetime] = None,
+    since_at: datetime | None = None,
 ) -> tuple[dict[str, dict[str, float]], float]:
     """[DEPRECATED] 从 sim_trades 聚合当前持仓，并用最新行情重算持仓市值。支持多空双向。
     此函数仅用于审计兼容（account-audit 的 legacy_trade_aggregate 对照源），
@@ -407,7 +407,7 @@ async def _build_realtime_positions_from_trade_history(
     *,
     tenant_id: str,
     user_id: str,
-    since_at: Optional[datetime] = None,
+    since_at: datetime | None = None,
     allow_legacy_fallback: bool = False,
 ) -> tuple[dict[str, dict[str, float]], float, str]:
     """优先从 simulation_fills 聚合当前持仓；默认不再隐式回退 legacy sim_trades。"""
@@ -983,12 +983,12 @@ class AccountResetRequest(BaseModel):
 class HoldingItem(BaseModel):
     symbol: str
     quantity: float
-    name: Optional[str] = None
+    name: str | None = None
 
 
 class SyncHoldingsRequest(BaseModel):
-    holdings: List[HoldingItem]
-    available_cash: Optional[float] = None
+    holdings: list[HoldingItem]
+    available_cash: float | None = None
 
 
 # SimulationSettingsRequest removed as it is deprecated.
@@ -2063,7 +2063,7 @@ async def list_simulation_cash_ledger(
 
 @router.post("/sync/ocr")
 async def ocr_sync_holdings(
-    images: List[UploadFile] = File(...),
+    images: list[UploadFile] = File(...),
     auth: AuthContext = Depends(get_auth_context),
     redis: RedisClient = Depends(get_redis),
 ):

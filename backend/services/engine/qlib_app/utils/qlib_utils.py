@@ -20,7 +20,7 @@ def apply_qlib_loose_patches():
         import qlib.utils.resam as resam
         from qlib.data import D
         from qlib.utils.time import Freq
-        
+
         # 1. 禁用 get_higher_eq_freq_feature 的 1min 回退逻辑
         # 原逻辑在失败时会强行试 1min，导致没有分钟数据时崩溃
         original_get_higher = resam.get_higher_eq_freq_feature
@@ -46,7 +46,7 @@ def apply_qlib_loose_patches():
                 logger.warning(f"Qlib Patch: Unsupported freq '{freq}' detected, defaulting to 'day'")
                 return 1, "day"
         Freq.parse = patched_freq_parse
-        
+
         logger.info("✅ Qlib 宽松逻辑补丁已注入 (已禁用 1min 回退并软化频率校验)")
     except Exception as e:
         logger.error(f"❌ 注入 Qlib 补丁失败: {e}")

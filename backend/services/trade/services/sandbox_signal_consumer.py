@@ -194,7 +194,7 @@ class SandboxSignalConsumer:
         tenant_id = signal.get("tenant_id", "default")
         user_id = self._to_int(signal.get("user_id"))
         strategy_id = self._to_int(signal.get("strategy_id"))
-        
+
         if user_id is None:
             logger.error("[SandboxSignalConsumer] 信号缺失 user_id: %s", signal)
             return
@@ -250,7 +250,7 @@ class SandboxSignalConsumer:
                 logger.error("[SandboxSignalConsumer] 执行下单链路失败: %s", e, exc_info=True)
 
     @staticmethod
-    def _to_int(val: Any) -> Optional[int]:
+    def _to_int(val: Any) -> int | None:
         """类型转换辅助"""
         if val is None or val == "":
             return None

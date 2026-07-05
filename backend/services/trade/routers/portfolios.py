@@ -178,10 +178,10 @@ async def get_all_portfolios_distribution(
                 )
             )
         )
-        
+
         if trading_mode:
             stmt = stmt.where(Portfolio.trading_mode == trading_mode.upper())
-            
+
         result = await db.execute(stmt)
         positions = result.scalars().all()
         logger.info(
@@ -259,7 +259,7 @@ async def get_all_portfolios_performance(
                 Portfolio.user_id == user_id,
             )
         )
-        
+
         if trading_mode:
             stmt = stmt.where(Portfolio.trading_mode == trading_mode.upper())
 

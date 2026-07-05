@@ -41,7 +41,7 @@ class StockNameMapper:
         for path in _FALLBACK_PATHS:
             if path.exists():
                 try:
-                    with open(path, "r", encoding="utf-8") as f:
+                    with open(path, encoding="utf-8") as f:
                         data = json.load(f)
                     items = data.get("items", [])
                     for item in items:
@@ -99,7 +99,7 @@ class StockNameMapper:
 
 
 # 全局单例
-_mapper: Optional[StockNameMapper] = None
+_mapper: StockNameMapper | None = None
 
 
 def get_stock_name_mapper() -> StockNameMapper:

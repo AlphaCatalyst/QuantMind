@@ -945,7 +945,7 @@ class InferenceScriptRunner:
                     if symbol.isdigit() and len(symbol) == 6:
                         if symbol.startswith("900") or symbol.startswith("200"):
                             continue
-                    
+
                     # 2. 排除北交所: BJ 前缀或 .BJ 后缀，或数字开头 (43, 83, 87, 88)
                     if symbol.startswith("BJ") or ".BJ" in symbol:
                         continue

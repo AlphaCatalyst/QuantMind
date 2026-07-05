@@ -63,7 +63,7 @@ class SimOrder(Base, TimestampMixin):
     portfolio_id: Mapped[int] = mapped_column(
         Integer, nullable=False, index=True, default=0
     )
-    strategy_id: Mapped[Optional[int]] = mapped_column(
+    strategy_id: Mapped[int | None] = mapped_column(
         Integer, nullable=True, index=True
     )
 
@@ -92,13 +92,13 @@ class SimOrder(Base, TimestampMixin):
     quantity: Mapped[float] = mapped_column(Float, nullable=False)
     filled_quantity: Mapped[float] = mapped_column(
         Float, nullable=False, default=0.0)
-    price: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
-    average_price: Mapped[Optional[float]
+    price: Mapped[float | None] = mapped_column(Float, nullable=True)
+    average_price: Mapped[float | None
                           ] = mapped_column(Float, nullable=True)
 
     # 多空/融券字段（nullable 以兼容历史存量数据）
-    trade_action: Mapped[Optional[str]] = mapped_column(String(32), nullable=True)
-    position_side: Mapped[Optional[str]] = mapped_column(String(16), nullable=True, default="long")
+    trade_action: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    position_side: Mapped[str | None] = mapped_column(String(16), nullable=True, default="long")
     is_margin_trade: Mapped[bool] = mapped_column(Integer, nullable=False, default=0)
 
     order_value: Mapped[float] = mapped_column(
@@ -108,19 +108,19 @@ class SimOrder(Base, TimestampMixin):
     commission: Mapped[float] = mapped_column(
         Float, nullable=False, default=0.0)
 
-    submitted_at: Mapped[Optional[datetime]
+    submitted_at: Mapped[datetime | None
                          ] = mapped_column(DateTime, nullable=True)
-    filled_at: Mapped[Optional[datetime]] = mapped_column(
+    filled_at: Mapped[datetime | None] = mapped_column(
         DateTime, nullable=True)
-    cancelled_at: Mapped[Optional[datetime]
+    cancelled_at: Mapped[datetime | None
                          ] = mapped_column(DateTime, nullable=True)
 
     execution_model: Mapped[str] = mapped_column(
         String(32), nullable=False, default="synthetic_price"
     )
-    price_source: Mapped[Optional[str]] = mapped_column(
+    price_source: Mapped[str | None] = mapped_column(
         String(64), nullable=True)
-    remarks: Mapped[Optional[str]] = mapped_column(String(500), nullable=True)
+    remarks: Mapped[str | None] = mapped_column(String(500), nullable=True)
     version: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     total_fee: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
 

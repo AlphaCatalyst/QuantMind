@@ -85,14 +85,14 @@ class StrategyBuilder(ABC):
             raw_val = kwargs.pop(raw_key, None)
             if raw_val is not None and normalized_key not in kwargs:
                 kwargs[normalized_key] = raw_val
-        
+
         # Override signal if necessary (signal_data is handled separately or we pass "<PRED>")
         # The base dict already contains 'signal': '<PRED>' from the default
-        
+
         # Merge fundamental filter explicitly if the strategy needs it handled (usually it is dumped directly now)
-        # We can just keep the ones dumped from model_dump, so _get_fundamental_filter_kwargs is redundant for built-in, 
+        # We can just keep the ones dumped from model_dump, so _get_fundamental_filter_kwargs is redundant for built-in,
         # but let's just make sure.
-        
+
         # Remove any n_drop=0 special logic if needed, or handle it here
         if kwargs.get('n_drop') == 0:
             kwargs['n_drop'] = kwargs.get('topk', 50)
@@ -212,9 +212,9 @@ class AdaptiveDriftBuilder(StrategyBuilder):
         logger.info("build_adaptive_drift", "Building AdaptiveDrift strategy")
         if not market_state_kwargs:
             market_state_kwargs = {"dynamic_position": True}
-            
+
         kwargs = self._get_strategy_kwargs(request, market_state_kwargs, backtest_id)
-        
+
         strategy = {
             "class": "RedisRecordingStrategy",
             "module_path": "backend.services.engine.qlib_app.utils.recording_strategy",
@@ -331,7 +331,7 @@ class CustomStrategyBuilder(StrategyBuilder):
                             val = request.strategy_params.get(key)
                         else:
                             val = None
-                        
+
                         if val is not None:
                             if (
                                 key in explicit_params
@@ -341,7 +341,7 @@ class CustomStrategyBuilder(StrategyBuilder):
                                 # 特殊处理：n_drop=0 表示不限调仓即全速调仓
                                 if key == "n_drop" and val == 0:
                                     if hasattr(request.strategy_params, "topk"):
-                                        val = getattr(request.strategy_params, "topk")
+                                        val = request.strategy_params.topk
                                     elif isinstance(request.strategy_params, dict):
                                         val = request.strategy_params.get("topk", 50)
                                     else:
@@ -734,7 +734,7 @@ class RiskGuardTopkBuilder(StrategyBuilder):
             kwargs["market_state_symbol"] = request.market_state_symbol
         if request.market_state_window:
             kwargs["market_state_window"] = request.market_state_window
-            
+
         strategy = {
             "class": "RedisRiskGuardTopkStrategy",
             "module_path": "backend.services.engine.qlib_app.utils.extended_strategies",
