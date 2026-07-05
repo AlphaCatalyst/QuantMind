@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 import pytest
+import pandas as pd
 
 project_root = os.path.join(os.path.dirname(__file__), "../../")
 sys.path.append(project_root)

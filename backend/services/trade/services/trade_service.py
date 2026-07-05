@@ -45,57 +45,6 @@ class TradeService:
         await self.redis.delete_pattern(pattern)
         logger.debug(f"Invalidated all trade caches for user {user_id}")
 
-    async def list_trades(self, query: TradeListQuery) -> List[Trade]:
-        """List trades with aggressive Redis caching"""
-        # Try cache for standard list queries (no specific symbol/date filters)
-        cache_key = None
-        if not (query.start_date or query.end_date or query.symbol):
-            # We always have user_id from AuthContext
-            cache_key = self._get_trade_list_cache_key(query.user_id, query.portfolio_id, query.trading_mode)
-            # Add paging info to key
-            cache_key += f":limit:{query.limit}:offset:{query.offset}"
-            
-            cached_data = await self.redis.get(cache_key)
-            if cached_data:
-                logger.info(f"Cache hit for trade list: {cache_key}")
-                return cached_data
-
-        # Build query (filters and stmt remain the same...)
-        filters = [
-            Trade.tenant_id == query.tenant_id,
-            Trade.user_id == query.user_id if query.user_id else True,
-            Trade.portfolio_id == query.portfolio_id if query.portfolio_id else True,
-            Trade.symbol == query.symbol if query.symbol else True,
-            Trade.executed_at >= query.start_date if query.start_date else True,
-            Trade.executed_at <= query.end_date if query.end_date else True,
-        ]
-
-        if query.trading_mode:
-            filters.append(Trade.trading_mode == query.trading_mode)
-
-        stmt = select(Trade).where(and_(*filters)).order_by(Trade.executed_at.desc())
-        
-        if query.limit:
-            stmt = stmt.limit(query.limit)
-        if query.offset:
-            stmt = stmt.offset(query.offset)
-
-        result = await self.db.execute(stmt)
-        trades = result.scalars().all()
-
-        # Update cache if applicable
-        if cache_key and trades:
-            trade_dicts = []
-            for t in trades:
-                d = {c.name: getattr(t, c.name) for c in t.__table__.columns}
-                for k, v in d.items():
-                    if isinstance(v, (datetime, UUID, Decimal)):
-                        d[k] = str(v)
-                trade_dicts.append(d)
-            
-            await self.redis.set(cache_key, json.dumps(trade_dicts), expire=settings.CACHE_TTL_TRADE)
-
-        return trades
     async def create_trade(
         self,
         order: Order,
@@ -368,8 +317,3 @@ class TradeService:
             "buy_trades": int(summary_row.buy_trades or 0),
             "sell_trades": int(summary_row.sell_trades or 0),
         }
-
-    def _invalidate_trade_cache(self, user_id: int, portfolio_id: int):
-        """Invalidate trade-related cache"""
-        self.redis.delete(f"trades:user:{user_id}")
-        self.redis.delete(f"trades:portfolio:{portfolio_id}")

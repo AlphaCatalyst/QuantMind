@@ -577,6 +577,9 @@ def run_strategy_backtest_loop(
 
         request = StrategyBacktestLoopRequest(**request_payload)
 
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=730)
+
         def _progress_callback(
             iteration: int, stage: Any, progress: float, best_score: float
         ) -> None:
@@ -616,8 +619,6 @@ def run_strategy_backtest_loop(
         )
 
         market_data_service = MarketDataService()
-        end_date = datetime.now()
-        start_date = end_date - timedelta(days=730)
         market_data = await market_data_service.get_market_data(
             symbols=request.target_assets or ["SZ000001"],
             start_date=start_date,
