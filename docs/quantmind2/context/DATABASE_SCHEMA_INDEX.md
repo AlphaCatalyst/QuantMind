@@ -1,6 +1,6 @@
 # Database Schema Index
 
-Status: planned; persistence mechanism audited
+Status: partial static mapping; no deployed schema or migration
 
 QM2-P0-001 introduces no database migration or table. Future schema versions
 will be indexed here with migration IDs, owning component, rollback status, and
@@ -20,7 +20,7 @@ QM2-P0-002A1a confirmed that the repository currently combines:
 The audit recommends a future versioned PostgreSQL migration in an explicit
 `quantmind2` schema, reconciled with fresh-install bootstrap, and prohibits
 runtime DDL as the new Ledger migration authority. This is a selection only:
-no `quantmind2` schema, Ledger table, migration file, model, or API exists.
+no `quantmind2` schema, deployed Ledger table, migration file, or API exists.
 
 Authority: Git Implementation Runs remain immutable facts; future PostgreSQL
 objects will be derived/query indexes, not replacements for Git history.
@@ -36,4 +36,17 @@ index therefore remains `planned`.
 QM2-P0-002A1b2 adds Repository behavior contracts and a process-local in-memory
 test double only. It creates no SQLAlchemy metadata, PostgreSQL object,
 `quantmind2` schema, migration, Session, Unit of Work, database transaction, or
-runtime DDL. The schema index remains `planned` for A2.
+runtime DDL.
+
+QM2-P0-002A2a1 registers three static mappings on the selected API Base:
+
+- `quantmind2.implementation_tasks`;
+- `quantmind2.implementation_runs`;
+- `quantmind2.implementation_run_relationships`.
+
+These are metadata targets only. Dialect-only compilation verifies the intended
+PostgreSQL DDL shape, but no Engine, Connection, Session, credentials,
+`CREATE SCHEMA`, `CREATE TABLE`, migration, or PostgreSQL server was used.
+Detail tables and domain mappers are deferred to A2a2; deployment remains
+deferred to a separate migration task. Git Implementation Runs remain the
+authority.

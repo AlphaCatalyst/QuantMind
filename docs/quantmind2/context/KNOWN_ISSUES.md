@@ -19,6 +19,8 @@
 | QM2-KI-015 | high | open | Shared async session contexts auto-commit, while many services also commit internally, so transaction ownership is inconsistent for future atomic Ledger indexing. |
 | QM2-KI-016 | high | open | Database configuration contains credential-bearing defaults in several files, and shared async engine initialization may log the complete database URL. |
 | QM2-KI-017 | medium | open | No shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed; SQLite and mocked Session tests do not prove PostgreSQL schema, JSONB, concurrency, or transaction behavior. |
-| QM2-KI-018 | medium | open | Context schema v1 cannot encode fine-grained task IDs such as `QM2-P0-002A2`; machine-readable task lists temporarily use parent `QM2-P0-002`. |
+| QM2-KI-018 | medium | open | Context schema v1 cannot encode fine-grained task IDs such as `QM2-P0-002A2a2`; machine-readable next-task lists temporarily use parent `QM2-P0-002`. |
 | QM2-KI-019 | medium | open | Manifest v1 cannot directly represent rich file/symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1. |
 | QM2-KI-020 | medium | open | The in-memory Ledger Repository is a contract test double only: it has no durability, cross-process concurrency, database isolation, crash recovery, or PostgreSQL constraint evidence. |
+| QM2-KI-021 | medium | open | Core Ledger ORM metadata exists only for Task, Run, and RunRelationship; detail mappings, domain mappers, migration, schema deployment, production Repository, UoW, and PostgreSQL integration evidence are absent. |
+| QM2-KI-022 | low | open | Static DDL verification used an existing SQLAlchemy 2.0.51 environment while production requirements pin 2.0.25; pinned-runtime and real PostgreSQL verification remain outstanding. |

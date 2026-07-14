@@ -27,8 +27,11 @@ RESEARCH_DECISION_EXAMPLE = QM2 / "architecture" / "examples" / "research_decisi
 PERSISTENCE_REALITY_AUDIT = QM2 / "implementation" / "LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md"
 LEDGER_DOMAIN_CONTRACT = QM2 / "implementation" / "LEDGER_DOMAIN_MODEL_V1.md"
 LEDGER_REPOSITORY_CONTRACT = QM2 / "implementation" / "LEDGER_REPOSITORY_CONTRACT_V1.md"
+LEDGER_CORE_ORM_CONTRACT = QM2 / "implementation" / "LEDGER_CORE_ORM_MAPPING_V1.md"
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
+LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
+LEDGER_ORM_ROOT = LEDGER_API_ROOT / "persistence"
 LEGACY_FACTOR_LAB_PATH = (
     "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/"
     "backend/services/engine/factor_lab"
@@ -396,8 +399,56 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
             lowered = source.lower()
             if "sqlalchemy" in lowered or "fastapi" in lowered:
                 raise ValidationError(f"Ledger contract has forbidden framework import: {path}")
+    required_orm_files = {"__init__.py", "orm_models.py", "orm_types.py"}
+    if not LEDGER_CORE_ORM_CONTRACT.is_file():
+        raise ValidationError("Ledger core ORM contract is missing")
+    orm_contract_text = LEDGER_CORE_ORM_CONTRACT.read_text(encoding="utf-8")
+    required_orm_markers = {
+        "Domain vs ORM Boundary",
+        "implementation_tasks",
+        "implementation_runs",
+        "implementation_run_relationships",
+        "Static DDL Verification",
+        "QM2-P0-002A2a2",
+    }
+    missing_orm_markers = sorted(
+        marker for marker in required_orm_markers if marker not in orm_contract_text
+    )
+    if missing_orm_markers:
+        raise ValidationError(f"Ledger core ORM contract is missing markers: {missing_orm_markers}")
+    if not LEDGER_API_ROOT.is_dir() or not (LEDGER_API_ROOT / "__init__.py").is_file():
+        raise ValidationError("Ledger API-side persistence boundary is missing")
+    if not LEDGER_ORM_ROOT.is_dir() or {
+        path.name for path in LEDGER_ORM_ROOT.glob("*.py")
+    } != required_orm_files:
+        raise ValidationError("Ledger core ORM package is incomplete or expanded beyond A2a1")
+    orm_source = (LEDGER_ORM_ROOT / "orm_models.py").read_text(encoding="utf-8")
+    required_orm_source_markers = {
+        "from backend.services.api.models.base import Base",
+        'SCHEMA_NAME = "quantmind2"',
+        'TASK_TABLE_NAME = "implementation_tasks"',
+        'RUN_TABLE_NAME = "implementation_runs"',
+        'RELATIONSHIP_TABLE_NAME = "implementation_run_relationships"',
+        'ondelete="RESTRICT"',
+    }
+    missing_orm_source = sorted(
+        marker for marker in required_orm_source_markers if marker not in orm_source
+    )
+    if missing_orm_source:
+        raise ValidationError(f"Ledger core ORM mapping is missing markers: {missing_orm_source}")
+    forbidden_runtime_markers = (
+        "create_engine(",
+        "create_async_engine(",
+        "sessionmaker(",
+        "create_all(",
+        "drop_all(",
+        ".execute(",
+        ".commit(",
+        ".rollback(",
+    )
+    if any(marker in orm_source for marker in forbidden_runtime_markers):
+        raise ValidationError("Ledger core ORM mapping contains forbidden runtime database behavior")
     forbidden_project_knowledge_paths = (
-        ROOT / "backend" / "services" / "api" / "project_knowledge",
         LEDGER_DOMAIN_ROOT.parent / "repository.py",
         LEDGER_DOMAIN_ROOT.parent / "repositories.py",
         LEDGER_DOMAIN_ROOT.parent / "api.py",
@@ -424,6 +475,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     checks.append("ledger_domain_scope_boundary")
     checks.append("ledger_repository_contract")
     checks.append("ledger_in_memory_test_double_boundary")
+    checks.append("ledger_core_orm_mapping")
+    checks.append("ledger_core_orm_runtime_boundary")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -443,8 +496,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A2 — Ledger ORM Models and Database Migration" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A2 next task")
+    if "QM2-P0-002A2a2 — Ledger Detail ORM Mapping and Domain Mappers" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-002"]:
         raise ValidationError("machine handoff must use legal non-inflated P0-002 parent task")
     checks.append("handoff_links")

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T15:51:51Z",
-  "source_commit": "200665bd9eb5d9393011f8c3d9a3c31001b8cf15",
+  "generated_at": "2026-07-14T16:15:50Z",
+  "source_commit": "6a624a1dbaa8ba02073f3a5fc5b41805fc7481f0",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -24,8 +24,10 @@
     {"issue_id": "QM2-KI-015", "severity": "high", "status": "open", "summary": "Shared async contexts auto-commit while many services also commit internally, leaving transaction ownership inconsistent for atomic Ledger indexing."},
     {"issue_id": "QM2-KI-016", "severity": "high", "status": "open", "summary": "Credential-bearing database defaults exist and shared async engine initialization may log the complete database URL."},
     {"issue_id": "QM2-KI-017", "severity": "medium", "status": "open", "summary": "No shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed."},
-    {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A2, so machine-readable task lists use parent QM2-P0-002."},
+    {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A2a2, so machine-readable next-task lists use parent QM2-P0-002."},
     {"issue_id": "QM2-KI-019", "severity": "medium", "status": "open", "summary": "Manifest v1 cannot directly represent rich file and symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1."},
-    {"issue_id": "QM2-KI-020", "severity": "medium", "status": "open", "summary": "The in-memory Ledger Repository is a contract test double without durability, cross-process concurrency, database isolation, crash recovery, or PostgreSQL constraint evidence."}
+    {"issue_id": "QM2-KI-020", "severity": "medium", "status": "open", "summary": "The in-memory Ledger Repository is a contract test double without durability, cross-process concurrency, database isolation, crash recovery, or PostgreSQL constraint evidence."},
+    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "open", "summary": "Core Ledger ORM metadata covers only Task, Run, and RunRelationship; detail mappings, domain mappers, migration, schema deployment, production Repository, UoW, and PostgreSQL integration evidence are absent."},
+    {"issue_id": "QM2-KI-022", "severity": "low", "status": "open", "summary": "Static DDL verification used SQLAlchemy 2.0.51 while production requirements pin 2.0.25; pinned-runtime and real PostgreSQL verification remain outstanding."}
   ]
 }

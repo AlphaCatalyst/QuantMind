@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T15:51:51Z",
-  "source_commit": "200665bd9eb5d9393011f8c3d9a3c31001b8cf15",
+  "generated_at": "2026-07-14T16:15:50Z",
+  "source_commit": "6a624a1dbaa8ba02073f3a5fc5b41805fc7481f0",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "200665bd9eb5d9393011f8c3d9a3c31001b8cf15",
+  "base_commit": "6a624a1dbaa8ba02073f3a5fc5b41805fc7481f0",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-002A1b2",
+  "current_task": "QM2-P0-002A2a1",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-002A1b2-20260714T155151Z-200665b",
+  "latest_implementation_run": "QM2-P0-002A2a1-20260714T161550Z-6a624a1",
   "next_recommended_tasks": ["QM2-P0-002"],
   "unconfirmed_facts": [
     "Concrete TongDaXin Provider implementation and capability contract.",
@@ -39,7 +39,8 @@
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
     "Manifest v1 mapping for general Run relationships, logical repository identity, and richer domain enums.",
-    "PostgreSQL realization of Repository uniqueness, expected versions, DAG checks, and atomic batch behavior."
+    "PostgreSQL realization of Repository uniqueness, expected versions, DAG checks, and atomic batch behavior.",
+    "SQLAlchemy 2.0.25 pinned-runtime DDL compilation and real PostgreSQL behavior; A2a1 used an existing SQLAlchemy 2.0.51 environment."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

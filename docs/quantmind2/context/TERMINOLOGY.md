@@ -20,6 +20,10 @@
   content; it returns the existing object and does not increment a version.
 - **Expected version**: caller-supplied optimistic concurrency token checked by
   mutation methods; the in-memory check is contract evidence, not a database lock.
+- **Core Ledger ORM Mapping**: API-Base SQLAlchemy persistence shape for only
+  ImplementationTask, ImplementationRun, and RunRelationship. It registers
+  schema-qualified metadata and is not a migration, deployed table, domain
+  mapper, Repository, Session, or transaction implementation.
 
 - **Factor Definition**: stable economic identity and family of a factor.
 - **Factor Template**: parameterized Canonical DSL AST.

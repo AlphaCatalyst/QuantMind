@@ -11,6 +11,7 @@ from tools.quantmind2.validate_context_bootstrap import (
     ACCEPTED_ADR_HASHES,
     PERSISTENCE_AUDIT_EVIDENCE_PATHS,
     PERSISTENCE_REALITY_AUDIT,
+    LEDGER_CORE_ORM_CONTRACT,
     RESEARCH_DECISION_CONTRACT,
     RESEARCH_DECISION_EXAMPLE,
     RESEARCH_DECISION_SCHEMA,
@@ -107,25 +108,34 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertTrue((root / path).is_file(), path)
             self.assertIn(path, text)
 
-    def test_ledger_persistence_remains_unimplemented(self):
+    def test_ledger_core_orm_is_bounded_and_persistence_remains_undeployed(self):
         state = load_json(QM2 / "context" / "current_state.json")
         self.assertNotIn(
             "quantmind2.project_knowledge",
             state["components_by_status"]["implemented"],
         )
         root = Path(__file__).resolve().parents[3]
-        self.assertFalse((root / "backend/services/api/project_knowledge").exists())
+        api_root = root / "backend/services/api/project_knowledge"
+        self.assertTrue((api_root / "__init__.py").is_file())
+        orm_root = api_root / "persistence"
+        self.assertEqual(
+            {path.name for path in orm_root.glob("*.py")},
+            {"__init__.py", "orm_models.py", "orm_types.py"},
+        )
+        self.assertTrue(LEDGER_CORE_ORM_CONTRACT.is_file())
         domain_root = root / "backend/services/engine/project_knowledge/domain"
         self.assertTrue(domain_root.is_dir())
         self.assertTrue((domain_root / "repositories.py").is_file())
         for forbidden in ("repository.py", "orm.py", "api.py"):
             self.assertFalse((domain_root / forbidden).exists())
         self.assertFalse(list((root / "data/migrations").glob("*ledger*")))
+        self.assertFalse((api_root / "repository.py").exists())
+        self.assertFalse((api_root / "api.py").exists())
 
-    def test_handoff_names_exact_a2_and_machine_state_uses_legal_parent(self):
+    def test_handoff_names_exact_a2a2_and_machine_state_uses_legal_parent(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002A2 — Ledger ORM Models and Database Migration",
+            "QM2-P0-002A2a2 — Ledger Detail ORM Mapping and Domain Mappers",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")

@@ -600,8 +600,19 @@ class ContractScopeTests(unittest.TestCase):
         for forbidden in ("open(", "Path(", "sqlite", "postgres", "create_engine", "AsyncSession"):
             self.assertNotIn(forbidden, text)
 
-    def test_no_ledger_migration_or_api_added(self):
-        self.assertFalse((REPO_ROOT / "backend/services/api/project_knowledge").exists())
+    def test_core_orm_does_not_add_repository_api_or_migration(self):
+        api_root = REPO_ROOT / "backend/services/api/project_knowledge"
+        self.assertEqual(
+            {path.relative_to(api_root).as_posix() for path in api_root.rglob("*.py")},
+            {
+                "__init__.py",
+                "persistence/__init__.py",
+                "persistence/orm_models.py",
+                "persistence/orm_types.py",
+            },
+        )
+        for forbidden in ("repository.py", "api.py", "session.py", "unit_of_work.py"):
+            self.assertFalse((api_root / forbidden).exists())
         self.assertFalse(list((REPO_ROOT / "data/migrations").glob("*ledger*")))
 
     def test_no_unit_of_work_implementation(self):
