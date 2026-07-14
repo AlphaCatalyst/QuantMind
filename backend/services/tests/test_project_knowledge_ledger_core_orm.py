@@ -62,6 +62,10 @@ AUTHORIZED_REFERENCE_TABLE_KEYS = {
     "quantmind2.implementation_component_references",
     "quantmind2.implementation_adr_references",
 }
+AUTHORIZED_ANNOTATION_TABLE_KEYS = {
+    "quantmind2.implementation_limitations",
+    "quantmind2.implementation_recommended_tasks",
+}
 
 
 def constraints(table, kind):  # noqa: ANN001
@@ -96,11 +100,14 @@ class LedgerCoreOrmImportAndBaseTests(unittest.TestCase):
         actual = {key for key, table in Base.metadata.tables.items() if table.schema == "quantmind2"}
         self.assertTrue(CORE_TABLE_KEYS.issubset(actual))
 
-    def test_only_authorized_core_detail_and_reference_tables_are_registered(self):
+    def test_only_authorized_ledger_tables_are_registered(self):
         actual = {key for key, table in Base.metadata.tables.items() if table.schema == "quantmind2"}
         self.assertEqual(
             actual,
-            CORE_TABLE_KEYS | AUTHORIZED_DETAIL_TABLE_KEYS | AUTHORIZED_REFERENCE_TABLE_KEYS,
+            CORE_TABLE_KEYS
+            | AUTHORIZED_DETAIL_TABLE_KEYS
+            | AUTHORIZED_REFERENCE_TABLE_KEYS
+            | AUTHORIZED_ANNOTATION_TABLE_KEYS,
         )
 
     def test_module_has_no_engine_session_or_runtime_ddl_calls(self):

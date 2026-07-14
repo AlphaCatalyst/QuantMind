@@ -1,0 +1,188 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A2a2b2-20260714T175052Z-646c4db",
+  "task_id": "QM2-P0-002A2a2b2",
+  "parent_task_id": "QM2-P0-002A2a2b",
+  "title": "Ledger Limitation and Recommended Task ORM Mapping",
+  "objective": "Map Limitation and RecommendedTask to the shared API SQLAlchemy Base with stable identities, restrictive Run ownership, domain-derived checks, and static PostgreSQL verification without database operations.",
+  "scope": [
+    "Exactly two API-Base annotation ORM records in the explicit quantmind2 schema.",
+    "Stable global primary IDs, explicit A1b2 Run/object uniqueness, restrictive Run foreign keys, domain-derived enum checks, content checks, and query indexes.",
+    "Dialect-only PostgreSQL DDL compilation, targeted tests, annotation ORM contract, Project Memory updates, and one independent local commit."
+  ],
+  "explicit_non_goals": [
+    "No Component Catalog or future Task foreign key, relationship collection, status update, automatic Task creation/execution, upsert, merge, or overwrite behavior.",
+    "No Domain-to-ORM mapper, production Repository, Session, Unit of Work, transaction, database connection, credentials, migration, schema/table creation, or executed DDL.",
+    "No Manifest Parser/Indexer, Git consistency service, API, UI, TDX, Dataset Snapshot, Factor DSL, Optimization, Validation runtime, Registry, LightGBM, or Qlib change.",
+    "No Factor Lab, dependency, lockfile, runtime configuration, accepted ADR, historical Implementation Run, or A2a2c change."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "646c4dbbaa0d179673f3d849e47fd8b29eb45f07",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "3ab7f37007106f5d49799aaedefb861bf39494e6fd0dfa752186c4219ec1d39b",
+  "git_diff_hash": "3ab7f37007106f5d49799aaedefb861bf39494e6fd0dfa752186c4219ec1d39b",
+  "started_at": "2026-07-14T17:39:00Z",
+  "completed_at": "2026-07-14T17:54:56Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/api/project_knowledge/persistence/__init__.py",
+    "backend/services/api/project_knowledge/persistence/orm_annotation_models.py",
+    "backend/services/api/project_knowledge/persistence/orm_types.py",
+    "backend/services/tests/test_project_knowledge_ledger_annotation_orm.py",
+    "backend/services/tests/test_project_knowledge_ledger_core_orm.py",
+    "backend/services/tests/test_project_knowledge_ledger_detail_orm.py",
+    "backend/services/tests/test_project_knowledge_ledger_reference_orm.py",
+    "backend/services/tests/test_project_knowledge_ledger_repository_contract.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/TERMINOLOGY.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_ANNOTATION_ORM_MAPPING_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/report.md",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "backend/services/api/project_knowledge/persistence/orm_annotation_models.py",
+    "backend/services/tests/test_project_knowledge_ledger_annotation_orm.py",
+    "docs/quantmind2/implementation/LEDGER_ANNOTATION_ORM_MAPPING_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "backend.services.api.project_knowledge.persistence.orm_annotation_models.LimitationRecord",
+    "backend.services.api.project_knowledge.persistence.orm_annotation_models.RecommendedTaskRecord",
+    "backend.services.api.project_knowledge.persistence.orm_types.LIMITATION_SEVERITY_VALUES",
+    "backend.services.api.project_knowledge.persistence.orm_types.LIMITATION_STATUS_VALUES",
+    "backend.services.api.project_knowledge.persistence.orm_types.RECOMMENDATION_PRIORITY_VALUES",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/.venv/bin/python -m unittest annotation_orm reference_orm detail_orm core_orm",
+      "scope": "Two annotation mappings and all prior ORM regressions: Base, exact tables, identities, foreign keys, checks, indexes, enum drift, restrictive deletes, forbidden runtime behavior, and dialect-only DDL.",
+      "status": "passed", "passed": 108, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 108 ORM tests passed under SQLAlchemy 2.0.51: 22 annotation plus 86 prior ORM tests."
+    },
+    {
+      "command": "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/.venv/bin/python -m unittest domain repository_contract context_bootstrap",
+      "scope": "A1b1 domain, A1b2 Repository/test-double, and Context regressions with exact A2a2b2 boundaries.",
+      "status": "passed", "passed": 154, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 154 tests passed: 76 domain, 60 Repository, and 18 Context."
+    },
+    {
+      "command": "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/.venv/bin/python tools/quantmind2/validate_context_bootstrap.py",
+      "scope": "Context schemas/references, exact core/detail/reference/annotation ORM source and contract boundaries, handoff, Runs, accepted ADRs, and official Factor Lab source.",
+      "status": "passed", "passed": 27, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "The bounded validator returned passed with 27 named checks."
+    },
+    {
+      "command": "Existing SQLAlchemy Python py_compile over six persistence modules and four ORM tests",
+      "scope": "Targeted Python syntax compilation.",
+      "status": "passed", "passed": 10, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All ten targeted Python files compiled without output."
+    },
+    {
+      "command": "Existing Python JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All QuantMind 2.0 machine-readable documents before this Run was added.",
+      "status": "passed", "passed": 24, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 24 existing JSON documents parsed; final validation also parses this Manifest."
+    },
+    {
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "scope": "Initial interpreter discovery attempt.",
+      "status": "failed", "passed": 0, "failed": 1, "skipped": 0, "not_run": 0,
+      "evidence": "The shell had no bare python command; the identical validation was rerun with the existing approved venv and passed."
+    },
+    {
+      "command": "Existing Python actual Manifest schema, report hash, and canonical payload hash validation",
+      "scope": "This Run Manifest against Implementation Manifest v1 and its adjacent Report/hash contract.",
+      "status": "passed", "passed": 3, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Schema validation, Report SHA-256, and canonical JSON payload SHA-256 passed after generation."
+    },
+    {
+      "command": "git diff --check plus changed-path dependency/migration/business scope guards",
+      "scope": "Whitespace and bounded task scope.",
+      "status": "passed", "passed": 3, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Diff whitespace, forbidden runtime paths, and dependency/lockfile guards were clean."
+    },
+    {
+      "command": "git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 rev-parse HEAD && git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 status --short",
+      "scope": "Official Factor Lab identity and read-only cleanliness.",
+      "status": "passed", "passed": 2, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "HEAD remained c83192c2278767e03f008bc39197b1ba33bfb6a9 and status was empty."
+    },
+    {
+      "command": "Real PostgreSQL integration",
+      "scope": "Migration, schema privileges, server DDL, transactions, and concurrency.",
+      "status": "not_run", "passed": 0, "failed": 0, "skipped": 0, "not_run": 1,
+      "evidence": "Database access and DDL execution are explicitly outside and prohibited by this task."
+    }
+  ],
+  "test_results": {"status": "passed", "passed": 331, "failed": 1, "skipped": 0, "not_run": 1},
+  "artifacts": [
+    {"artifact_type": "ledger_annotation_orm_contract", "path": "docs/quantmind2/implementation/LEDGER_ANNOTATION_ORM_MAPPING_V1.md", "hash": "d0f7793241ede7d4b4ed9b09ad76775677095cba073ee0cbf98fe4e0dfda822c"},
+    {"artifact_type": "implementation_report", "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/report.md", "hash": "211fe4fe95c5098153322037d7e01ec78d8606232714e84521c8ac3e281026c7"}
+  ],
+  "architecture_decision_refs": ["ADR-0005", "ADR-0007"],
+  "component_refs": ["quantmind2.project_knowledge"],
+  "known_limitations": [
+    "No Domain/ORM mapper, migration, schema/table creation, live PostgreSQL, production Repository, Session, Unit of Work, transaction, Parser/Indexer, Git consistency service, API, or UI exists.",
+    "Component Catalog membership and future Task existence are intentionally not database-validated.",
+    "Static DDL compilation used SQLAlchemy 2.0.51 while production requirements pin 2.0.25.",
+    "ORM metadata alone cannot prevent privileged direct UPDATE or enforce Repository exact replay and immutable conflict.",
+    "Context and Manifest schema v1 cannot encode exact next task QM2-P0-002A2a2c in machine recommended-task arrays, so legal parents QM2-P0-002 and QM2-P0-002A2 are used there.",
+    "The containing commit cannot be embedded self-referentially; Git history resolves it after commit."
+  ],
+  "unresolved_questions": [
+    "How should A2a2c represent logical repository identity while retaining globally stable annotation IDs?",
+    "How will a future Repository distinguish exact replay from immutable conflict without an unsafe upsert?",
+    "How will pinned SQLAlchemy 2.0.25 and an isolated PostgreSQL fixture be supplied?"
+  ],
+  "next_recommended_tasks": ["QM2-P0-002A2"],
+  "rollback_information": "Revert the single containing commit. No database, schema, migration, data, API, runtime, model, Qlib, UI, dependency, lockfile, configuration, accepted ADR, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "ORM metadata contains no credentials and import performs no filesystem, environment, network, Git, engine, session, connection, or DDL operation; domain secret validation remains authoritative.",
+  "data_lineage_impact": "No research or annotation data changed; two metadata targets prepare a future derived Ledger query index while Git Reports, Manifests, ADRs, and Implementation Runs remain authoritative.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/report.md",
+  "report_hash": "211fe4fe95c5098153322037d7e01ec78d8606232714e84521c8ac3e281026c7",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2b2-20260714T175052Z-646c4db/manifest.json",
+  "manifest_payload_hash": "34c5b326c5656a01cd4bb6011639f6f4e0c3ef1e3be7fc34094712999fd498b3",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "ledger_domain_model": "v1",
+    "ledger_repository_contract": "v1",
+    "ledger_core_orm_mapping": "v1",
+    "ledger_core_detail_orm_mapping": "v1",
+    "ledger_reference_orm_mapping": "v1",
+    "ledger_annotation_orm_mapping": "v1",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

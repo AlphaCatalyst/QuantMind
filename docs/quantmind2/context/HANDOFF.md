@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A2a2b1: `4dbb6eb4aa5a3c9f22d8a590cb6c9539f411330a`
+- Base before QM2-P0-002A2a2b2: `646c4dbbaa0d179673f3d849e47fd8b29eb45f07`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A2a2b1: no
+- Dirty before QM2-P0-002A2a2b2: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A2a2b1.
+- It remained read-only and clean during QM2-P0-002A2a2b2.
 
 ## Current position
 
@@ -27,9 +27,9 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A2a2b1`, completed as a static Component/ADR reference ORM mapping
-  increment.
-- Latest run: `QM2-P0-002A2a2b1-20260714T173524Z-4dbb6eb` under
+- Current task: `QM2-P0-002A2a2b2`, completed as the static Limitation and
+  RecommendedTask ORM mapping increment.
+- Latest run: `QM2-P0-002A2a2b2-20260714T175052Z-646c4db` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -46,13 +46,16 @@
   persistence or an implementation fact source.
 - API-Base static ORM records now map Task, Run, RunRelationship, ChangedFile,
   ChangedSymbol, TestExecution, ImplementationArtifact, ComponentReference,
-  and ArchitectureDecisionReference to nine explicit
+  ArchitectureDecisionReference, Limitation, and RecommendedTask to eleven explicit
   `quantmind2` table shapes. PostgreSQL DDL compiles without a database connection.
-- Limitation/RecommendedTask ORM records, domain mappers,
-  PostgreSQL Repository, actual tables and
+- All current target ORM mappings exist. Domain mappers, PostgreSQL Repository,
+  actual tables and
   schema, migration, database transaction code, Manifest Parser/Indexer, Git
   consistency service, API, and UI do not exist.
-- Recommended next task: `QM2-P0-002A2a2b2 — Ledger Limitation and Recommended Task ORM Mapping`;
+- Limitation does not foreign-key Component Catalog; RecommendedTask does not
+  foreign-key, create, or execute a future Task. Neither historical annotation
+  has an ORM update method, and no annotation data was written.
+- Recommended next task: `QM2-P0-002A2a2c — Ledger Domain-to-ORM Mappers`;
   it has not started. Machine-readable task lists use parent
   `QM2-P0-002` due to the current schema pattern.
 
@@ -72,7 +75,8 @@
 - PostgreSQL realization of Repository uniqueness, expected versions, DAG
   checks, and atomic batch behavior.
 - SQLAlchemy 2.0.25 pinned-runtime DDL compilation and real PostgreSQL behavior;
-  A2a1/A2a2a/A2a2b1 static verification used an existing SQLAlchemy 2.0.51 environment.
+  A2a1/A2a2a/A2a2b1/A2a2b2 static verification used an existing SQLAlchemy
+  2.0.51 environment.
 
 ## Constraints that must not be broken
 

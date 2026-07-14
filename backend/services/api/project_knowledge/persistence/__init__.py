@@ -15,6 +15,7 @@ from .orm_reference_models import (
     ArchitectureDecisionReferenceRecord,
     ComponentReferenceRecord,
 )
+from .orm_annotation_models import LimitationRecord, RecommendedTaskRecord
 
 __all__ = (
     "ArchitectureDecisionReferenceRecord",
@@ -24,6 +25,8 @@ __all__ = (
     "ImplementationArtifactRecord",
     "ImplementationRunRecord",
     "ImplementationTaskRecord",
+    "LimitationRecord",
+    "RecommendedTaskRecord",
     "RunRelationshipRecord",
     "TestExecutionRecord",
 )

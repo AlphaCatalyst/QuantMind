@@ -42,11 +42,16 @@ QM2-P0-002A2a2a adds API-Base SQLAlchemy mappings for ChangedFile,
 ChangedSymbol, TestExecution, and ImplementationArtifact. Their technical IDs,
 A1b2 natural unique keys, restrictive Run FKs, enum-derived checks, cross-field
 checks, and indexes are static metadata only. ComponentReference,
-ArchitectureDecisionReference, Limitation, RecommendedTask, domain mappers, migration, production
-Repository, Session/UoW, API, and UI remain planned.
+ArchitectureDecisionReference, Limitation, and RecommendedTask now complete the
+eleven static target mappings. Domain mappers, migration, production Repository,
+Session/UoW, API, and UI remain planned.
 
 QM2-P0-002A2a2b1 adds static composite-primary-key mappings for
 ComponentReference and ArchitectureDecisionReference. The only foreign keys
 point restrictively to Run; Component Catalog and ADR Index remain Git-derived
-facts rather than database FK authorities. Limitation, RecommendedTask,
-mappers, migration, deployed schema/tables, Repository, API, and UI remain planned.
+facts rather than database FK authorities.
+
+QM2-P0-002A2a2b2 adds Limitation and RecommendedTask mappings. They use stable
+global IDs, restrictive Run FKs, Domain-enum-derived checks, and no Component
+or future Task FK. No annotation row, schema, or table was created. Mappers,
+migration, deployed schema/tables, Repository, API, and UI remain planned.

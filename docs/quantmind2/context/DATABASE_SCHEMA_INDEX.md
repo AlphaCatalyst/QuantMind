@@ -59,8 +59,8 @@ QM2-P0-002A2a2a additionally registers four static metadata targets:
 - `quantmind2.implementation_artifacts`.
 
 The same undeployed boundary applies. No schema/table was created, no migration
-was added, and no database was connected. Component/ADR references,
-limitations, recommendations, and all Domain/ORM mappers remain deferred.
+was added, and no database was connected. Component/ADR references and all
+Domain/ORM mappers remained deferred at that increment.
 
 QM2-P0-002A2a2b1 adds two more static metadata targets:
 
@@ -70,4 +70,18 @@ QM2-P0-002A2a2b1 adds two more static metadata targets:
 Each uses its Run/object natural identity as a composite primary key and only a
 restrictive Run FK. No Component Catalog or ADR entity FK exists because Git
 remains authoritative. The schema and tables were not created; Limitation,
-RecommendedTask, mappers, migration, and database integration remain deferred.
+RecommendedTask, mappers, migration, and database integration remained deferred
+at that increment.
+
+QM2-P0-002A2a2b2 completes the current static metadata target set with:
+
+- `quantmind2.implementation_limitations`;
+- `quantmind2.implementation_recommended_tasks`.
+
+Both bind restrictively to Run. Limitation does not foreign-key Component
+Catalog, and RecommendedTask does not foreign-key or create a future Task.
+Their primary IDs are globally unique, while named Run/ID unique constraints
+record the A1b2 repository identity. All eleven current Ledger target mappings
+now exist in metadata. The `quantmind2` schema and tables were not created, no
+database was connected, and mapper, migration, Repository, Session/UoW, API,
+and UI remain deferred.

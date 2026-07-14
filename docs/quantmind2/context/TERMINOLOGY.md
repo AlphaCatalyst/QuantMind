@@ -32,6 +32,10 @@
   ComponentReference and ArchitectureDecisionReference using Run/object
   composite primary keys. Component Catalog and ADR Index remain Git-derived
   facts; this metadata is not a deployed table or authority transfer.
+- **Ledger Annotation ORM Mapping**: API-Base persistence shape for Limitation
+  and RecommendedTask. Stable IDs identify historical Run observations and
+  advice; no Component/Task FK, update behavior, or automatic execution is
+  implied, and the metadata is not a deployed database.
 
 - **Factor Definition**: stable economic identity and family of a factor.
 - **Factor Template**: parameterized Canonical DSL AST.

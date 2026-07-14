@@ -149,22 +149,28 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A2a2a-20260714T164637Z-53efb74`.
 
-## Implementation Ledger reference ORM mapping
+## Implementation Ledger ORM mapping
 
 - `QM2-P0-002A2a2b1 — Ledger Component and ADR Reference ORM Mapping`
   maps ComponentReference and ArchitectureDecisionReference on the shared API
   Base using their A1b2 natural identities as composite primary keys.
 - Both tables have only a restrictive Run FK. Component Catalog and ADR Index
   remain Git-derived facts and are not database foreign-key targets.
-- This is static metadata only. Limitation and RecommendedTask ORM records,
-  Domain mappers, migration, schema/table creation, PostgreSQL Repository,
-  database access, Indexer, API, and UI remain unimplemented.
+- `QM2-P0-002A2a2b2 — Ledger Limitation and Recommended Task ORM Mapping`
+  maps the two remaining annotation objects. Both use globally unique domain
+  IDs as primary keys, restrictive Run FKs, enum-derived checks, and explicit
+  indexes; the A1b2 Run/object identities are also recorded as named unique
+  constraints.
+- All eleven currently targeted Ledger objects now have static ORM mappings.
+  This is metadata only: Domain mappers, migration, `quantmind2` schema/table
+  creation, PostgreSQL Repository, database access, Indexer, API, and UI remain
+  unimplemented. No annotation row has been written.
 - Latest Implementation Run:
-  `QM2-P0-002A2a2b1-20260714T173524Z-4dbb6eb`.
+  `QM2-P0-002A2a2b2-20260714T175052Z-646c4db`.
 
 ## Next task
 
-`QM2-P0-002A2a2b2 — Ledger Limitation and Recommended Task ORM Mapping` is the only
-recommended next task and has not started. Machine-readable next-task fields
+`QM2-P0-002A2a2c — Ledger Domain-to-ORM Mappers` is the only recommended next
+task and has not started. Machine-readable next-task fields
 use legal parent `QM2-P0-002` because context schema v1 does not admit the
-fine-grained `A2a2b2` identifier.
+fine-grained `A2a2c` identifier.

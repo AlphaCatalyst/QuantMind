@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T17:35:24Z",
-  "source_commit": "4dbb6eb4aa5a3c9f22d8a590cb6c9539f411330a",
+  "generated_at": "2026-07-14T17:50:52Z",
+  "source_commit": "646c4dbbaa0d179673f3d849e47fd8b29eb45f07",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -64,9 +64,9 @@
       "component_id": "quantmind2.project_knowledge", "name": "Project Knowledge", "status": "partial",
       "responsibility": "Provide repository context, ADRs, implementation contracts, validation, and later API/web indexes.",
       "source_path": "backend/services/engine/project_knowledge/domain", "target_path": "backend/services/api/project_knowledge",
-      "key_symbols": ["ImplementationTask", "ImplementationRun", "LedgerRepository", "TaskQuery", "RunQuery", "HistoryQuery", "InMemoryLedgerRepository", "validate_direct_relationship", "ImplementationTaskRecord", "ImplementationRunRecord", "RunRelationshipRecord", "ChangedFileRecord", "ChangedSymbolRecord", "TestExecutionRecord", "ImplementationArtifactRecord", "ComponentReferenceRecord", "ArchitectureDecisionReferenceRecord"], "dependencies": [],
-      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007", "ADR-0009"], "current_limitations": ["Pure domain and Repository contracts, an in-memory test double, three core, four core-detail, and two reference static ORM mappings exist, but Limitation and RecommendedTask ORM tables, domain mappers, SQLAlchemy Repository, deployed PostgreSQL schema/tables, migration, Manifest Indexer, Git consistency service, API, and web UI remain planned.", "The in-memory test double is process-local, non-durable, non-concurrent, and cannot certify PostgreSQL transactions.", "The mappings compile PostgreSQL DDL only; no schema/table was created and no database was connected.", "Static DDL verification used an existing SQLAlchemy 2.0.51 environment while production requirements pin 2.0.25.", "Context schema v1 cannot represent exact next task QM2-P0-002A2a2b2 and retains parent QM2-P0-002 in machine-readable task lists."],
-      "last_verified_commit": "4dbb6eb4aa5a3c9f22d8a590cb6c9539f411330a", "evidence_level": "code_confirmed"
+      "key_symbols": ["ImplementationTask", "ImplementationRun", "LedgerRepository", "TaskQuery", "RunQuery", "HistoryQuery", "InMemoryLedgerRepository", "validate_direct_relationship", "ImplementationTaskRecord", "ImplementationRunRecord", "RunRelationshipRecord", "ChangedFileRecord", "ChangedSymbolRecord", "TestExecutionRecord", "ImplementationArtifactRecord", "ComponentReferenceRecord", "ArchitectureDecisionReferenceRecord", "LimitationRecord", "RecommendedTaskRecord"], "dependencies": [],
+      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007", "ADR-0009"], "current_limitations": ["Pure domain and Repository contracts, an in-memory test double, and all eleven currently targeted static ORM mappings exist, but domain mappers, SQLAlchemy Repository, deployed PostgreSQL schema/tables, migration, Manifest Indexer, Git consistency service, API, and web UI remain planned.", "The in-memory test double is process-local, non-durable, non-concurrent, and cannot certify PostgreSQL transactions.", "The mappings compile PostgreSQL DDL only; no schema/table was created, no annotation row was written, and no database was connected.", "Static DDL verification used an existing SQLAlchemy 2.0.51 environment while production requirements pin 2.0.25.", "Context schema v1 cannot represent exact next task QM2-P0-002A2a2c and retains parent QM2-P0-002 in machine-readable task lists."],
+      "last_verified_commit": "646c4dbbaa0d179673f3d849e47fd8b29eb45f07", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.research_skill", "name": "Research Skill", "status": "planned",

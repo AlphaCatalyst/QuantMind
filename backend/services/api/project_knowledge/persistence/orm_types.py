@@ -14,6 +14,9 @@ from backend.services.engine.project_knowledge.domain.enums import (
     ImplementationRunStatus,
     ImplementationTaskStatus,
     ImpactType,
+    LimitationSeverity,
+    LimitationStatus,
+    RecommendationPriority,
     RunRelationshipType,
     SymbolChangeType,
     SymbolType,
@@ -52,3 +55,6 @@ SYMBOL_CHANGE_TYPE_VALUES = enum_values(SymbolChangeType)
 TEST_EXECUTION_STATUS_VALUES = enum_values(TestExecutionStatus)
 IMPACT_TYPE_VALUES = enum_values(ImpactType)
 ADR_REFERENCE_RELATION_VALUES = enum_values(ADRReferenceRelation)
+LIMITATION_SEVERITY_VALUES = enum_values(LimitationSeverity)
+LIMITATION_STATUS_VALUES = enum_values(LimitationStatus)
+RECOMMENDATION_PRIORITY_VALUES = enum_values(RecommendationPriority)
