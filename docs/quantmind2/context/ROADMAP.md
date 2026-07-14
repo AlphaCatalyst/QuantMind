@@ -2,7 +2,9 @@
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
-| QM2-P0-001 Context Bootstrap and Implementation Contract | completed_uncommitted | P0 | none | Establish repository context, ADR, report, manifest, handoff, validation | No business code, DB, API | Machine and human bootstrap validates and records itself |
+| QM2-P0-001 Context Bootstrap and Implementation Contract | completed_committed | P0 | none | Establish repository context, ADR, report, manifest, handoff, validation | No business code, DB, API | Machine and human bootstrap validates and records itself |
+| QM2-P0-001G Formalize Decision-Control-Execution Separation | completed_committed | P0 | 001 | Accept the three-layer authority model and ResearchDecision contract | No runtime, DB, API, Skill, orchestration, DSL, model, or backtest code | ADR-0009, contract, schema, example, context, tests, and immutable Run are committed |
+| QM2-P0-002A1 Ledger Persistence Mechanism Audit and Domain Contract | planned | P0 | 001G | Audit persistence mechanisms and define Ledger domain contract | No database implementation or Project Knowledge API | Persistence facts, authority boundaries, identities, and open choices are evidence-backed |
 | QM2-P0-002 Ledger Persistence and Project Knowledge API Foundation | planned | P0 | 001 | Index immutable Git implementation runs and expose read APIs | No web UI or business domains | Git/hash conflicts are visible and queryable |
 | QM2-P0-003 TDX Provider Capability Verification | planned | P0 | 001 | Verify concrete provider and capability schemas | No dependency selection without approval; no ingestion | Every capability has verified evidence or explicit unavailable status |
 | QM2-P0-004 Collection Control Plane and Raw Store | planned | P0 | 003 | Full/incremental collection, retry, checkpoint, immutable raw partitions | No normalization or snapshot publish | Partial failure preserves committed raw partitions and correct checkpoint |

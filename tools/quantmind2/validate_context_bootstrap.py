@@ -21,6 +21,9 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 QM2 = ROOT / "docs" / "quantmind2"
 SCHEMAS = QM2 / "implementation" / "schemas"
+RESEARCH_DECISION_CONTRACT = QM2 / "architecture" / "RESEARCH_DECISION_CONTRACT_V1.md"
+RESEARCH_DECISION_SCHEMA = QM2 / "architecture" / "schemas" / "research_decision_v1.schema.json"
+RESEARCH_DECISION_EXAMPLE = QM2 / "architecture" / "examples" / "research_decision_v1.example.json"
 LEGACY_FACTOR_LAB_PATH = (
     "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/"
     "backend/services/engine/factor_lab"
@@ -239,6 +242,34 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
         if record.get("status") != "accepted":
             raise ValidationError(f"initial ADR is not accepted: {record.get('adr_id')}")
     checks.append("adr_index")
+
+    adr_0009 = next(
+        (record for record in adr_index.get("adrs", []) if record.get("adr_id") == "ADR-0009"),
+        None,
+    )
+    if adr_0009 is None or adr_0009.get("status") != "accepted":
+        raise ValidationError("ADR-0009 is missing or not accepted")
+    architecture_path = QM2 / "architecture" / "QUANTMIND_2_ARCHITECTURE_V1.md"
+    architecture_text = architecture_path.read_text(encoding="utf-8")
+    required_architecture_markers = {
+        "ADR-0009",
+        "## Decision Layer",
+        "## Control Layer",
+        "## Execution Layer",
+        "ResearchDecision",
+        "Bounded Code Orchestrator",
+    }
+    missing_markers = sorted(required_architecture_markers - set(
+        marker for marker in required_architecture_markers if marker in architecture_text
+    ))
+    if missing_markers:
+        raise ValidationError(f"Architecture v1 is missing decision-control-execution markers: {missing_markers}")
+    if not RESEARCH_DECISION_CONTRACT.is_file():
+        raise ValidationError("Research Decision Contract v1 is missing")
+    checks.append("decision_control_execution_architecture")
+
+    validate_file(RESEARCH_DECISION_EXAMPLE, RESEARCH_DECISION_SCHEMA)
+    checks.append("research_decision_contract")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}

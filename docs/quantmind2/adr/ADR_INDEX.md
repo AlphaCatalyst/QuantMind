@@ -13,3 +13,4 @@ superseded record and its approval status; do not overwrite an accepted ADR.
 | [ADR-0006](ADR-0006-frozen-test-and-official-backtest-governance.md) | accepted | Frozen Test and official backtest governance |
 | [ADR-0007](ADR-0007-immutable-research-identities-and-lineage.md) | accepted | Immutable research identities and lineage |
 | [ADR-0008](ADR-0008-layered-optimization-boundaries.md) | accepted | Factor, Model, Portfolio optimization separation |
+| [ADR-0009](ADR-0009-decision-control-execution-separation.md) | accepted | Research decision, code control, and deterministic execution separation |

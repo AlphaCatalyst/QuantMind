@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/research_decision_v1.schema.json",
+  "title": "ResearchDecision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_id",
+    "decision_schema_version",
+    "campaign_id",
+    "experiment_id",
+    "round_id",
+    "actor_type",
+    "action",
+    "target_type",
+    "target_id",
+    "rationale",
+    "evidence_refs",
+    "requested_parameters",
+    "requested_budget",
+    "expected_outcome",
+    "created_at"
+  ],
+  "properties": {
+    "decision_id": {"type": "string", "pattern": "^decision-[A-Za-z0-9._-]+$"},
+    "decision_schema_version": {"const": "1.0.0"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "experiment_id": {"type": "string", "minLength": 1},
+    "round_id": {"type": "string", "minLength": 1},
+    "actor_type": {"enum": ["research_skill", "campaign_orchestrator_skill", "research_agent"]},
+    "action": {"enum": ["CREATE_TEMPLATE", "REVISE_TEMPLATE", "REQUEST_OPTIMIZATION", "REQUEST_VALIDATION", "ARCHIVE_TEMPLATE", "STOP_FAMILY", "STOP_CAMPAIGN"]},
+    "target_type": {"enum": ["campaign", "factor_family", "factor_template", "factor_instance"]},
+    "target_id": {"type": ["string", "null"]},
+    "rationale": {"type": "string", "minLength": 1},
+    "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "requested_parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "template_proposal_ref": {"type": "string", "minLength": 1},
+        "parent_template_id": {"type": "string", "minLength": 1},
+        "revision_proposal_ref": {"type": "string", "minLength": 1},
+        "parameter_roles": {"type": "array", "items": {"enum": ["window", "factor_internal_weight", "signal_threshold"]}, "uniqueItems": true},
+        "range_suggestions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "window": {"$ref": "#/$defs/numericRange"},
+            "factor_internal_weight": {"$ref": "#/$defs/numericRange"},
+            "signal_threshold": {"$ref": "#/$defs/numericRange"}
+          }
+        },
+        "validation_stage": {"enum": ["train", "validation", "frozen_test_request"]},
+        "stop_reason_code": {"type": "string", "minLength": 1}
+      }
+    },
+    "requested_budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_trials", "max_wall_clock_seconds", "max_compute_units"],
+      "properties": {
+        "max_trials": {"type": "integer", "minimum": 0},
+        "max_wall_clock_seconds": {"type": "integer", "minimum": 0},
+        "max_compute_units": {"type": "integer", "minimum": 0}
+      }
+    },
+    "expected_outcome": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "numericRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lower", "upper"],
+      "properties": {
+        "lower": {"type": "number"},
+        "upper": {"type": "number"}
+      }
+    }
+  }
+}

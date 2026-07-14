@@ -8,6 +8,6 @@
     "freshness_status": {"enum": ["current_at_base_commit", "stale", "unknown"]}, "verification_status": {"enum": ["verified", "partial", "unverified"]},
     "architecture_version": {"const": "v1"}, "current_task": {"type": "string"}, "latest_implementation_run": {"type": "string"},
     "components_by_status": {"type": "object", "required": ["implemented", "partial", "planned", "not_implemented", "deprecated", "blocked"], "additionalProperties": false, "properties": {"implemented": {"type": "array", "items": {"type": "string"}}, "partial": {"type": "array", "items": {"type": "string"}}, "planned": {"type": "array", "items": {"type": "string"}}, "not_implemented": {"type": "array", "items": {"type": "string"}}, "deprecated": {"type": "array", "items": {"type": "string"}}, "blocked": {"type": "array", "items": {"type": "string"}}}},
-    "next_task_candidates": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-003"]}}
+    "next_task_candidates": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-003"]}}
   }
 }

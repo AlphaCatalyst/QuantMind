@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-13T18:36:14Z",
-  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "generated_at": "2026-07-14T14:25:14Z",
+  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -18,6 +18,7 @@
     {"issue_id": "QM2-KI-009", "severity": "high", "status": "open", "summary": "Official Factor Lab source under /tmp has durability risk."},
     {"issue_id": "QM2-KI-010", "severity": "medium", "status": "open", "summary": "Project Knowledge Center API and UI do not exist."},
     {"issue_id": "QM2-KI-011", "severity": "medium", "status": "open", "summary": "Implementation Ledger database index does not exist."},
-    {"issue_id": "QM2-KI-012", "severity": "high", "status": "open", "summary": "Formal Factor Optimization does not exist."}
+    {"issue_id": "QM2-KI-012", "severity": "high", "status": "open", "summary": "Formal Factor Optimization does not exist."},
+    {"issue_id": "QM2-KI-013", "severity": "high", "status": "open", "summary": "V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision and Decision Validator boundary."}
   ]
 }

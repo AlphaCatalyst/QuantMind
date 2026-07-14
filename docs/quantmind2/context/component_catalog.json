@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-13T18:36:14Z",
-  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "generated_at": "2026-07-14T14:25:14Z",
+  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -56,8 +56,8 @@
       "responsibility": "Read-only donor for Agent, Candidate, Docker sandbox, validation, campaign, and Research Memory capabilities.",
       "source_path": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/", "target_path": "backend/services/engine/factor_research",
       "key_symbols": ["FactorSpec", "CodexRunner", "CandidateManifest", "ExecutionBackendGateway", "DockerSandboxBackend", "AntiOverfitEvaluator", "MemoryStore"],
-      "dependencies": ["quantmind.qlib_backtest"], "architecture_decision_refs": ["ADR-0001", "ADR-0002", "ADR-0005", "ADR-0006"],
-      "current_limitations": ["Python-first candidate contract.", "JSON registry is replaceable.", "Source resides under /tmp.", "No target Factor Optimization or Frozen Test isolation."],
+      "dependencies": ["quantmind.qlib_backtest"], "architecture_decision_refs": ["ADR-0001", "ADR-0002", "ADR-0005", "ADR-0006", "ADR-0009"],
+      "current_limitations": ["Python-first candidate contract.", "Agent selects structure and concrete parameters together.", "No formal ResearchDecision or Decision Validator boundary.", "Campaign and research drivers combine decision, loop-control, dispatch, and feedback roles.", "JSON registry is replaceable.", "Source resides under /tmp.", "No target Factor Optimization or Frozen Test isolation."],
       "last_verified_commit": "c83192c2278767e03f008bc39197b1ba33bfb6a9", "evidence_level": "code_confirmed"
     },
     {
@@ -67,6 +67,33 @@
       "key_symbols": ["validate_bootstrap", "validate_instance"], "dependencies": [],
       "architecture_decision_refs": ["ADR-0001", "ADR-0005"], "current_limitations": ["File bootstrap exists in QM2-P0-001; PostgreSQL index, API, and web UI remain planned."],
       "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "documented"
+    },
+    {
+      "component_id": "quantmind2.research_skill", "name": "Research Skill", "status": "planned",
+      "responsibility": "Apply research method and economic reasoning to visible evidence and emit ResearchDecision proposals.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/skills",
+      "key_symbols": [], "dependencies": ["quantmind2.decision_validator"],
+      "architecture_decision_refs": ["ADR-0005", "ADR-0006", "ADR-0009"],
+      "current_limitations": ["Architecture contract only; no Skill runtime, prompt package, permission identity, or execution integration is implemented."],
+      "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.decision_validator", "name": "Decision Validator", "status": "planned",
+      "responsibility": "Validate ResearchDecision schema, permission, state, budget, duplication, evidence visibility, and Frozen Test restrictions before Run creation.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/control/decision_validator",
+      "key_symbols": [], "dependencies": ["quantmind2.experiment_manager"],
+      "architecture_decision_refs": ["ADR-0006", "ADR-0007", "ADR-0009"],
+      "current_limitations": ["JSON Schema and architecture contract exist; no executable validator, policy store, or permission enforcement is implemented."],
+      "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.code_orchestrator", "name": "Bounded Code Orchestrator", "status": "planned",
+      "responsibility": "Own persistent loop state, permissions, budgets, idempotency, concurrency, Run/Artifact coordination, deterministic dispatch, retries, timeouts, and recovery.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/control/orchestrator",
+      "key_symbols": [], "dependencies": ["quantmind2.decision_validator", "quantmind2.experiment_manager"],
+      "architecture_decision_refs": ["ADR-0007", "ADR-0008", "ADR-0009"],
+      "current_limitations": ["Target responsibilities are accepted but no QuantMind 2.0 runtime implementation exists; V7 BoundedCampaignRunner and BoundedV7SessionOrchestrator are donor evidence, not compliant implementation."],
+      "last_verified_commit": null, "evidence_level": "planned"
     },
     {
       "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "planned", "responsibility": "TongDaXin ingestion, immutable raw data, normalization, quality, Dataset Snapshot, and consumer views.",

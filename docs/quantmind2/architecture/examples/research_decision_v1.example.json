@@ -1,0 +1,30 @@
+{
+  "decision_id": "decision-campaign-001-round-02-optimize-template-007",
+  "decision_schema_version": "1.0.0",
+  "campaign_id": "campaign-001",
+  "experiment_id": "experiment-001",
+  "round_id": "round-02",
+  "actor_type": "research_agent",
+  "action": "REQUEST_OPTIMIZATION",
+  "target_type": "factor_template",
+  "target_id": "factor-template-007-v2",
+  "rationale": "Validation-visible evidence supports the structure, while window sensitivity remains unresolved within economically defensible horizons.",
+  "evidence_refs": [
+    "artifact://validation-visible-summary/summary-007-v1",
+    "artifact://candidate-rationale/rationale-007-v2"
+  ],
+  "requested_parameters": {
+    "parameter_roles": ["window", "factor_internal_weight"],
+    "range_suggestions": {
+      "window": {"lower": 5, "upper": 60},
+      "factor_internal_weight": {"lower": 0.1, "upper": 1.0}
+    }
+  },
+  "requested_budget": {
+    "max_trials": 40,
+    "max_wall_clock_seconds": 3600,
+    "max_compute_units": 40
+  },
+  "expected_outcome": "Identify whether the admitted structure has a stable validation-visible parameter region without changing its AST.",
+  "created_at": "2026-07-14T00:00:00Z"
+}

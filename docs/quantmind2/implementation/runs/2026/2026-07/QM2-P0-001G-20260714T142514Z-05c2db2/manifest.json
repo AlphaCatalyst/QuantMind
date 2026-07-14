@@ -1,0 +1,206 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-001G-20260714T142514Z-05c2db2",
+  "task_id": "QM2-P0-001G",
+  "parent_task_id": "QM2-P0-001",
+  "title": "Formalize Decision-Control-Execution Separation",
+  "objective": "Accept the three-layer authority model, define Research Decision Contract v1, record code-confirmed V7 gaps, update project memory, and validate the architecture contract without implementing runtime services.",
+  "scope": [
+    "Accepted ADR-0009 for Decision-Control-Execution separation.",
+    "ResearchDecision v1 contract, bounded JSON Schema, and valid example.",
+    "Architecture v1, ADR indexes, terminology, component, issue, roadmap, state, and handoff updates.",
+    "Bounded validator and targeted positive/negative document-contract tests.",
+    "One immutable Implementation Run and one local commit."
+  ],
+  "explicit_non_goals": [
+    "No Skill runtime, Decision Validator code, Code Orchestrator v2, state machine, permission service, or budget service.",
+    "No database, API, DSL, Optimization, Validation, Registry, TDX, LightGBM, Qlib, Risk, UI, or other business implementation.",
+    "No Factor Lab modification, dependency installation, lockfile change, configuration change, or push.",
+    "No implementation of QM2-P0-002A1."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "7ec97bb4711bb5dbcee09a9193f514cc2201b16ee5cb9f90dace07edf28ae5fc",
+  "git_diff_hash": "7ec97bb4711bb5dbcee09a9193f514cc2201b16ee5cb9f90dace07edf28ae5fc",
+  "started_at": "2026-07-14T14:25:14Z",
+  "completed_at": "2026-07-14T14:35:31Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/adr/ADR-0009-decision-control-execution-separation.md",
+    "docs/quantmind2/adr/ADR_INDEX.md",
+    "docs/quantmind2/adr/adr_index.json",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+    "docs/quantmind2/architecture/RESEARCH_DECISION_CONTRACT_V1.md",
+    "docs/quantmind2/architecture/examples/research_decision_v1.example.json",
+    "docs/quantmind2/architecture/schemas/research_decision_v1.schema.json",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/TERMINOLOGY.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/report.md",
+    "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/implementation_manifest_v1.schema.json",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "docs/quantmind2/adr/ADR-0009-decision-control-execution-separation.md",
+    "docs/quantmind2/architecture/RESEARCH_DECISION_CONTRACT_V1.md",
+    "docs/quantmind2/architecture/examples/research_decision_v1.example.json",
+    "docs/quantmind2/architecture/schemas/research_decision_v1.schema.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "tools.quantmind2.validate_context_bootstrap.RESEARCH_DECISION_CONTRACT",
+    "tools.quantmind2.validate_context_bootstrap.RESEARCH_DECISION_SCHEMA",
+    "tools.quantmind2.validate_context_bootstrap.RESEARCH_DECISION_EXAMPLE",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap",
+    "backend.services.tests.test_quantmind2_context_bootstrap.QuantMind2ContextBootstrapTests"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [
+    "docs/quantmind2/architecture/schemas/research_decision_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/implementation_manifest_v1.schema.json"
+  ],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py --json",
+      "scope": "Context schemas, references, ADR-0009, three-layer architecture markers, ResearchDecision example, component truth, runs, and official Factor Lab source boundary.",
+      "status": "passed",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "The bounded validator returned status passed with 13 named checks."
+    },
+    {
+      "command": "python3 -m unittest backend.services.tests.test_quantmind2_context_bootstrap -v",
+      "scope": "Targeted context and ResearchDecision positive/negative contract tests.",
+      "status": "passed",
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Thirteen tests passed, including invalid action, missing rationale, and prohibited Frozen Test field rejection."
+    },
+    {
+      "command": "python3 JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All machine-readable QuantMind 2.0 documents present before this Run manifest.",
+      "status": "passed",
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 17 JSON files parsed successfully."
+    },
+    {
+      "command": "git diff --check",
+      "scope": "Task working-tree whitespace/error check.",
+      "status": "passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Command completed with no output."
+    },
+    {
+      "command": "git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 rev-parse HEAD && git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 status --short",
+      "scope": "Read-only official Factor Lab identity and cleanliness.",
+      "status": "passed",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "HEAD was c83192c2278767e03f008bc39197b1ba33bfb6a9 and status was empty."
+    }
+  ],
+  "test_results": {
+    "status": "passed",
+    "passed": 46,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "artifacts": [
+    {
+      "artifact_type": "implementation_report",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/report.md",
+      "hash": "a6f7e1f10b5c107ed09da7289b2f782e1cec166169214e589f8a6b9fedcbdb3b"
+    }
+  ],
+  "architecture_decision_refs": [
+    "ADR-0005",
+    "ADR-0006",
+    "ADR-0007",
+    "ADR-0008",
+    "ADR-0009"
+  ],
+  "component_refs": [
+    "factor_lab.official_v7_source",
+    "quantmind2.research_skill",
+    "quantmind2.decision_validator",
+    "quantmind2.code_orchestrator",
+    "quantmind2.experiment_manager",
+    "quantmind2.factor_optimization",
+    "quantmind2.factor_validation"
+  ],
+  "known_limitations": [
+    "This task creates architecture contracts only; no ResearchDecision domain model or runtime service exists.",
+    "Decision Validator, actor permission policy, Frozen Test enforcement, Skill runtime, and Code Orchestrator v2 are unimplemented.",
+    "Official V7 Factor Lab remains Python-first and does not consume ResearchDecision.",
+    "Runtime state, budget, idempotency, concurrency, retry, and recovery controls remain future implementation work.",
+    "The zero-dependency validator implements only the JSON Schema keywords used by local contracts and does not semantically validate date-time format.",
+    "The containing commit cannot be embedded self-referentially; Git history resolves it after commit."
+  ],
+  "unresolved_questions": [
+    "What actor identity, authentication, delegation, and permission model will govern ResearchDecision?",
+    "What semantic fingerprint and persistent uniqueness rules will distinguish exact Decision replay from conflict?",
+    "Which visible-summary redaction policy will apply to restricted validation stages?",
+    "Which V7 donor capabilities will migrate behind the target control boundary and in what durable source location?"
+  ],
+  "next_recommended_tasks": [
+    "QM2-P0-002A1"
+  ],
+  "rollback_information": "Revert the single containing commit. No database, data, API, runtime, model, Qlib, UI, dependency, lockfile, configuration, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "The contract explicitly denies Agent direct execution, Registry mutation, budget expansion, and Frozen Test access; runtime enforcement remains unimplemented.",
+  "data_lineage_impact": "No data changed; future Decision, Run, Result, visible summary, and memory identities are required to remain separate and lineage-bound.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/report.md",
+  "report_hash": "a6f7e1f10b5c107ed09da7289b2f782e1cec166169214e589f8a6b9fedcbdb3b",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-001G-20260714T142514Z-05c2db2/manifest.json",
+  "manifest_payload_hash": "f1f007714a14feed28ab96bcb0b54e47bb2386346fcead6cbe6b41f56618e668",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "research_decision_contract": "1.0.0",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

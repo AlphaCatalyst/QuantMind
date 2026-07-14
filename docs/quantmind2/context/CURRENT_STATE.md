@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-14
-Verified source commit: `5504bdb94ddf817976f74a09e323cf8fb1eacf4a`
+Verified source commit before this task: `05c2db2b0797c6c173b4916d7f70dc97853dc5ec`
 
 ## Implemented in existing systems
 
@@ -29,6 +29,9 @@ Verified source commit: `5504bdb94ddf817976f74a09e323cf8fb1eacf4a`
 
 ## Not implemented
 
+- Research Skill runtime
+- executable ResearchDecision model and Decision Validator
+- QuantMind 2.0 Bounded Code Orchestrator
 - Factor DSL / Canonical AST
 - Factor Optimization
 - immutable Factor Registry
@@ -61,9 +64,25 @@ Verified source commit: `5504bdb94ddf817976f74a09e323cf8fb1eacf4a`
 
 No business-domain implementation was introduced by either task.
 
+## Accepted decision-control-execution architecture
+
+- `ADR-0009 — Decision–Control–Execution Separation` is accepted.
+- `RESEARCH_DECISION_CONTRACT_V1.md` and its JSON Schema/example define the
+  Decision Layer proposal boundary.
+- These are architecture contracts only. Research Skill, executable Decision
+  Validator, permission/state/budget/idempotency controls, and Code
+  Orchestrator v2 remain planned and unimplemented.
+- Official V7 Factor Lab remains partial donor evidence: it has bounded loops,
+  checkpoints, budget checks, Docker gateway, validation, and memory, but its
+  Candidate is Python-first and its drivers do not use a formal
+  ResearchDecision/Decision Validator boundary.
+- Latest Implementation Run:
+  `QM2-P0-001G-20260714T142514Z-05c2db2`.
+- The commit containing this state is resolved with
+  `git log -1 --format=%H -- docs/quantmind2/context/CURRENT_STATE.md` because a
+  commit cannot embed its own hash.
+
 ## Next task
 
-`QM2-P0-002A — Ledger Domain and Persistence Foundation` is recommended and
-has not started. The v1 machine-readable schema can encode only its parent
-roadmap task, `QM2-P0-002`; this subtask precision is authoritative here and in
-the Finalization Report until the Ledger schema is extended by a later task.
+`QM2-P0-002A1 — Ledger Persistence Mechanism Audit and Domain Contract` is the
+only recommended next task and has not started.

@@ -12,4 +12,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
 | `quantmind2.project_knowledge` | partial | File bootstrap in QM2-P0-001; API/UI/index DB not implemented |
+| `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
+| `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
+| `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
 | Remaining QuantMind 2.0 research/data components | planned | Frozen architecture only |

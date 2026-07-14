@@ -14,3 +14,4 @@
 | QM2-KI-010 | medium | open | Project Knowledge Center API and UI do not exist. |
 | QM2-KI-011 | medium | open | Implementation Ledger database index does not exist. |
 | QM2-KI-012 | high | open | Formal Factor Optimization does not exist. |
+| QM2-KI-013 | high | open | V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision/Decision Validator boundary. |

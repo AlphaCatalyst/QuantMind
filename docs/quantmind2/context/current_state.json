@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:02:45Z",
-  "source_commit": "5504bdb94ddf817976f74a09e323cf8fb1eacf4a",
+  "generated_at": "2026-07-14T14:25:14Z",
+  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-001F",
-  "latest_implementation_run": "QM2-P0-001F-20260714T140245Z-5504bdb",
+  "current_task": "QM2-P0-001G",
+  "latest_implementation_run": "QM2-P0-001G-20260714T142514Z-05c2db2",
   "components_by_status": {
     "implemented": [
       "quantmind.training",
@@ -34,11 +34,14 @@
       "quantmind2.factor_validation",
       "quantmind2.factor_registry",
       "quantmind2.experiment_manager",
-      "quantmind2.signal_service"
+      "quantmind2.signal_service",
+      "quantmind2.research_skill",
+      "quantmind2.decision_validator",
+      "quantmind2.code_orchestrator"
     ],
     "not_implemented": [],
     "deprecated": [],
     "blocked": []
   },
-  "next_task_candidates": ["QM2-P0-002"]
+  "next_task_candidates": ["QM2-P0-002A1"]
 }
