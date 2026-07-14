@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/implementation_manifest_v1.schema.json",
+  "title": "QuantMind 2.0 Implementation Manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "manifest_schema_version", "implementation_run_id", "task_id", "parent_task_id",
+    "title", "objective", "scope", "explicit_non_goals", "repository",
+    "repository_root", "branch", "base_commit", "result_commit",
+    "workspace_dirty_before", "workspace_dirty_after", "unrelated_dirty_files",
+    "source_bundle_hash", "git_diff_hash", "started_at", "completed_at", "agent_type",
+    "task_status", "completion_level", "verification_level", "changed_files",
+    "added_files", "deleted_files", "changed_symbols", "database_migrations",
+    "api_endpoints", "schemas_changed", "config_changed", "dependencies_changed",
+    "tests_executed", "test_results", "artifacts", "architecture_decision_refs",
+    "component_refs", "known_limitations", "unresolved_questions",
+    "next_recommended_tasks", "rollback_information", "frozen_architecture_compliance",
+    "security_impact", "data_lineage_impact", "report_path", "report_hash",
+    "manifest_path", "manifest_payload_hash", "generated_context_versions", "corrects_run_id"
+  ],
+  "properties": {
+    "manifest_schema_version": {"const": "1.0.0"},
+    "implementation_run_id": {"type": "string", "pattern": "^QM2-[A-Z0-9-]+-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{7,12}$"},
+    "task_id": {"type": "string", "minLength": 1},
+    "parent_task_id": {"type": ["string", "null"]},
+    "title": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "scope": {"$ref": "#/$defs/stringArray"},
+    "explicit_non_goals": {"$ref": "#/$defs/stringArray"},
+    "repository": {"type": "string", "minLength": 1},
+    "repository_root": {"type": "string", "minLength": 1},
+    "branch": {"type": "string", "minLength": 1},
+    "base_commit": {"$ref": "#/$defs/gitCommit"},
+    "result_commit": {"anyOf": [{"$ref": "#/$defs/gitCommit"}, {"type": "null"}]},
+    "workspace_dirty_before": {"type": "boolean"},
+    "workspace_dirty_after": {"type": "boolean"},
+    "unrelated_dirty_files": {"$ref": "#/$defs/pathArray"},
+    "source_bundle_hash": {"$ref": "#/$defs/sha256"},
+    "git_diff_hash": {"$ref": "#/$defs/sha256"},
+    "started_at": {"type": "string", "format": "date-time"},
+    "completed_at": {"type": ["string", "null"], "format": "date-time"},
+    "agent_type": {"type": "string", "enum": ["codex", "human", "ci", "other"]},
+    "task_status": {"type": "string", "enum": ["in_progress", "completed_uncommitted", "partial_uncommitted", "completed_committed", "failed", "blocked"]},
+    "completion_level": {"type": "string", "enum": ["complete", "partial", "none"]},
+    "verification_level": {"type": "string", "enum": ["not_run", "structural", "targeted_tests", "integration", "full_suite"]},
+    "changed_files": {"$ref": "#/$defs/pathArray"},
+    "added_files": {"$ref": "#/$defs/pathArray"},
+    "deleted_files": {"$ref": "#/$defs/pathArray"},
+    "changed_symbols": {"$ref": "#/$defs/stringArray"},
+    "database_migrations": {"$ref": "#/$defs/stringArray"},
+    "api_endpoints": {"$ref": "#/$defs/stringArray"},
+    "schemas_changed": {"$ref": "#/$defs/pathArray"},
+    "config_changed": {"$ref": "#/$defs/pathArray"},
+    "dependencies_changed": {"type": "boolean"},
+    "tests_executed": {"type": "array", "items": {"$ref": "#/$defs/testExecution"}},
+    "test_results": {"$ref": "#/$defs/testSummary"},
+    "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+    "architecture_decision_refs": {"type": "array", "items": {"type": "string", "pattern": "^ADR-[0-9]{4}$"}, "uniqueItems": true},
+    "component_refs": {"$ref": "#/$defs/stringArray"},
+    "known_limitations": {"$ref": "#/$defs/stringArray"},
+    "unresolved_questions": {"$ref": "#/$defs/stringArray"},
+    "next_recommended_tasks": {"type": "array", "items": {"type": "string", "pattern": "^QM2-P[0-2]-[0-9]{3}$"}, "uniqueItems": true},
+    "rollback_information": {"type": "string", "minLength": 1},
+    "frozen_architecture_compliance": {"type": "string", "enum": ["compliant", "exception_approved", "non_compliant"]},
+    "security_impact": {"type": "string", "minLength": 1},
+    "data_lineage_impact": {"type": "string", "minLength": 1},
+    "report_path": {"$ref": "#/$defs/repoPath"},
+    "report_hash": {"$ref": "#/$defs/sha256"},
+    "manifest_path": {"$ref": "#/$defs/repoPath"},
+    "manifest_payload_hash": {"$ref": "#/$defs/sha256"},
+    "generated_context_versions": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+    "corrects_run_id": {"type": ["string", "null"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"result_commit": {"type": "null"}}, "required": ["result_commit"]},
+      "then": {"properties": {"task_status": {"enum": ["in_progress", "completed_uncommitted", "partial_uncommitted", "failed", "blocked"]}}}
+    }
+  ],
+  "$defs": {
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repoPath": {"type": "string", "minLength": 1, "pattern": "^(?!/)(?!.*\\.\\./).+$"},
+    "pathArray": {"type": "array", "items": {"$ref": "#/$defs/repoPath"}, "uniqueItems": true},
+    "stringArray": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "testExecution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["command", "scope", "status", "passed", "failed", "skipped", "not_run", "evidence"],
+      "properties": {
+        "command": {"type": "string", "minLength": 1}, "scope": {"type": "string", "minLength": 1},
+        "status": {"enum": ["passed", "failed", "skipped", "not_run"]},
+        "passed": {"type": "integer", "minimum": 0}, "failed": {"type": "integer", "minimum": 0},
+        "skipped": {"type": "integer", "minimum": 0}, "not_run": {"type": "integer", "minimum": 0},
+        "evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "testSummary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "passed", "failed", "skipped", "not_run"],
+      "properties": {
+        "status": {"enum": ["passed", "failed", "partial", "not_run"]},
+        "passed": {"type": "integer", "minimum": 0}, "failed": {"type": "integer", "minimum": 0},
+        "skipped": {"type": "integer", "minimum": 0}, "not_run": {"type": "integer", "minimum": 0}
+      }
+    },
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact_type", "path", "hash"],
+      "properties": {"artifact_type": {"type": "string", "minLength": 1}, "path": {"$ref": "#/$defs/repoPath"}, "hash": {"$ref": "#/$defs/sha256"}}
+    }
+  }
+}

@@ -136,3 +136,43 @@ ssh quant-server "cd /opt/quantmind && git pull && docker-compose restart"
 - `backend/run_tests.py` - Test runner with multiple modes
 - `backend/shared/` - Shared modules across services
 - `docker-compose.yml` - Local deployment configuration
+
+## QuantMind 2.0 Project Context Protocol
+
+The authoritative QuantMind 2.0 bootstrap entry is
+`docs/quantmind2/context/CONTEXT_INDEX.md`. For every QuantMind 2.0 task, read
+the following in order before changing code:
+
+1. `docs/quantmind2/context/CONTEXT_INDEX.md`
+2. `docs/quantmind2/context/PROJECT_CHARTER.md`
+3. `docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md`
+4. `docs/quantmind2/context/CURRENT_STATE.md`
+5. `docs/quantmind2/context/HANDOFF.md`
+6. ADRs related to the current task
+7. Component Catalog entries related to the current task
+8. The most recent relevant Implementation Run
+9. Current code, Git state, and relevant tests
+
+At task start, record the repository, branch, base commit, dirty state, and
+unrelated dirty files. Never reset, stash, discard, stage, commit, push, or
+overwrite unrelated work unless the user explicitly authorizes it.
+
+At task end, create a human-readable Implementation Report and a
+machine-readable Implementation Manifest under
+`docs/quantmind2/implementation/runs/`. Record the exact tests executed,
+results, known limitations, Git/workspace state, and recommended next task.
+
+Ordinary implementation tasks must not:
+
+- silently modify an accepted or frozen ADR;
+- mark a dirty or uncommitted run as canonical;
+- modify files outside the authorized task scope;
+- hide mock, fixture, stub, fallback, skipped, or not-run evidence;
+- describe an unexecuted test as passed or a plan as implemented;
+- promote a Factor or implementation state to production automatically;
+- resolve Git conflicts automatically;
+- push a remote repository.
+
+Implementation conclusions must use one of these states consistently:
+`implemented`, `partial`, `planned`, `not_implemented`, `deprecated`, or
+`blocked`.

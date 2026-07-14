@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-13T18:36:14Z",
+  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
+  "authority_level": "approved_initial_roadmap",
+  "freshness_status": "current_at_base_commit",
+  "verification_status": "verified",
+  "items": [
+    {"task_id": "QM2-P0-001", "status": "completed_uncommitted", "priority": "P0", "dependencies": [], "objective": "Establish Context Bootstrap and implementation contracts.", "explicit_non_goals": ["No business code, database, or API."], "acceptance_summary": "Bootstrap validates and records its own run."},
+    {"task_id": "QM2-P0-002", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Index Git implementation runs and expose Project Knowledge APIs.", "explicit_non_goals": ["No web UI or research business domain."], "acceptance_summary": "Git and manifest consistency is queryable."},
+    {"task_id": "QM2-P0-003", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Verify TongDaXin Provider capabilities.", "explicit_non_goals": ["No unapproved dependency selection or ingestion."], "acceptance_summary": "Every capability is evidenced or explicitly unavailable."},
+    {"task_id": "QM2-P0-004", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-003"], "objective": "Create collection control and immutable Raw Store.", "explicit_non_goals": ["No normalization or snapshot publishing."], "acceptance_summary": "Checkpoint follows committed raw partitions."},
+    {"task_id": "QM2-P0-005", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-004"], "objective": "Normalize market data and enforce quality.", "explicit_non_goals": ["No factor computation."], "acceptance_summary": "Critical quality failures block publish readiness."},
+    {"task_id": "QM2-P0-006", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-005"], "objective": "Publish Dataset Snapshots and atomic Qlib views.", "explicit_non_goals": ["No research or model implementation."], "acceptance_summary": "Only published snapshots are consumable."},
+    {"task_id": "QM2-P0-007", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Create immutable research-domain identities.", "explicit_non_goals": ["No DSL execution or validation algorithms."], "acceptance_summary": "Research identities are separate and versioned."},
+    {"task_id": "QM2-P0-008", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-007"], "objective": "Create DSL v1 and Agent DSL output contract.", "explicit_non_goals": ["No structure evolution or Python main path."], "acceptance_summary": "DSL candidates validate and hash canonically."},
+    {"task_id": "QM2-P0-009", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-006", "QM2-P0-008"], "objective": "Compute DSL factors and immutable materializations.", "explicit_non_goals": ["No optimization or official backtest."], "acceptance_summary": "Cache identity binds DSL, parameters, snapshot, and engine."},
+    {"task_id": "QM2-P0-010", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-009"], "objective": "Random search for window, weight, and threshold.", "explicit_non_goals": ["No Bayesian, structure, model, or portfolio search."], "acceptance_summary": "Trials are reproducible, immutable, deduplicated, and Frozen-Test-free."}
+  ]
+}

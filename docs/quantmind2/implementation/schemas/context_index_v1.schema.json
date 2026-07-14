@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/context_index_v1.schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "source_commit", "source_paths", "authority_level", "freshness_status", "verification_status", "project_id", "repository", "architecture_version", "indexed_commit", "authoritative_documents", "derived_documents", "source_repositories", "mandatory_read_order", "current_state_ref", "handoff_ref", "adr_index_ref", "implementation_runs_ref", "consistency_status"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "generated_at": {"type": "string"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "source_paths": {"type": "array", "items": {"type": "string"}},
+    "authority_level": {"const": "bootstrap_index"}, "freshness_status": {"enum": ["current_at_base_commit", "stale", "unknown"]},
+    "verification_status": {"enum": ["verified", "partial", "unverified"]}, "project_id": {"const": "quantmind2"},
+    "repository": {"type": "string"}, "architecture_version": {"const": "v1"}, "indexed_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "authoritative_documents": {"type": "array", "items": {"type": "string"}}, "derived_documents": {"type": "array", "items": {"type": "string"}},
+    "source_repositories": {"type": "array", "items": {"type": "object", "required": ["role", "root", "commit", "read_only"], "properties": {"role": {"type": "string"}, "root": {"type": "string"}, "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "read_only": {"type": "boolean"}}, "additionalProperties": false}},
+    "mandatory_read_order": {"type": "array", "minItems": 8, "items": {"type": "string"}}, "current_state_ref": {"type": "string"},
+    "handoff_ref": {"type": "string"}, "adr_index_ref": {"type": "string"}, "implementation_runs_ref": {"type": "string"},
+    "consistency_status": {"enum": ["consistent", "inconsistent", "unknown"]}
+  }
+}

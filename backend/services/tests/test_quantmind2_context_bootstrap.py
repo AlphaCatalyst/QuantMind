@@ -1,0 +1,89 @@
+from __future__ import annotations
+
+import copy
+import json
+import unittest
+from pathlib import Path
+from unittest import mock
+
+from tools.quantmind2.validate_context_bootstrap import (
+    QM2,
+    SCHEMAS,
+    ValidationError,
+    load_json,
+    validate_bootstrap,
+    validate_instance,
+)
+
+
+MANIFEST_SCHEMA = SCHEMAS / "implementation_manifest_v1.schema.json"
+MANIFEST_EXAMPLE = (
+    QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
+)
+
+
+class QuantMind2ContextBootstrapTests(unittest.TestCase):
+    def test_context_bootstrap_is_consistent(self):
+        checks = validate_bootstrap()
+        self.assertIn("context_paths", checks)
+        self.assertIn("adr_index", checks)
+        self.assertIn("implementation_runs", checks)
+
+    def test_implementation_manifest_positive_example(self):
+        validate_instance(load_json(MANIFEST_EXAMPLE), load_json(MANIFEST_SCHEMA))
+
+    def test_implementation_manifest_missing_required_field_is_rejected(self):
+        payload = load_json(MANIFEST_EXAMPLE)
+        payload.pop("task_id")
+        with self.assertRaisesRegex(ValidationError, "missing required"):
+            validate_instance(payload, load_json(MANIFEST_SCHEMA))
+
+    def test_implementation_manifest_invalid_enum_is_rejected(self):
+        payload = load_json(MANIFEST_EXAMPLE)
+        payload["task_status"] = "canonical"
+        with self.assertRaisesRegex(ValidationError, "not in"):
+            validate_instance(payload, load_json(MANIFEST_SCHEMA))
+
+    def test_nonexistent_context_reference_is_rejected(self):
+        original = load_json(QM2 / "context" / "context_index.json")
+        modified = copy.deepcopy(original)
+        modified["mandatory_read_order"].append(
+            "docs/quantmind2/does-not-exist.md"
+        )
+        context_path = QM2 / "context" / "context_index.json"
+        real_read_text = Path.read_text
+
+        def fake_read_text(path, *args, **kwargs):
+            if path.resolve() == context_path.resolve():
+                return json.dumps(modified)
+            return real_read_text(path, *args, **kwargs)
+
+        with mock.patch.object(Path, "read_text", fake_read_text):
+            with self.assertRaisesRegex(
+                ValidationError, "mandatory read path does not exist"
+            ):
+                validate_bootstrap()
+
+    def test_adr_index_references_are_complete(self):
+        index = load_json(QM2 / "adr" / "adr_index.json")
+        self.assertEqual(len(index["adrs"]), 8)
+        root = Path(__file__).resolve().parents[3]
+        for adr in index["adrs"]:
+            self.assertTrue((root / adr["path"]).is_file())
+
+    def test_mandatory_read_order_is_complete(self):
+        index = load_json(QM2 / "context" / "context_index.json")
+        self.assertGreaterEqual(len(index["mandatory_read_order"]), 8)
+        root = Path(__file__).resolve().parents[3]
+        for path in index["mandatory_read_order"]:
+            self.assertTrue((root / path).exists())
+
+    def test_all_quantmind2_json_files_parse(self):
+        files = sorted(QM2.rglob("*.json"))
+        self.assertTrue(files)
+        for path in files:
+            load_json(path)
+
+
+if __name__ == "__main__":
+    unittest.main()

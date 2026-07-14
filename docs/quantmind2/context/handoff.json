@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-13T18:36:14Z",
+  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "source_paths": [
+    "docs/quantmind2/context/CONTEXT_INDEX.md",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/HANDOFF.md"
+  ],
+  "authority_level": "derived_handoff",
+  "freshness_status": "current_at_base_commit",
+  "verification_status": "verified",
+  "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "workspace_dirty": true,
+  "unrelated_dirty_files": [],
+  "factor_lab_source": {
+    "root": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/",
+    "source_path": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/",
+    "branch": "factor-lab/real-bounded-v7-orchestrator-v1",
+    "commit": "c83192c2278767e03f008bc39197b1ba33bfb6a9",
+    "read_only": true
+  },
+  "architecture_version": "v1",
+  "current_task": "QM2-P0-001",
+  "completion_status": "completed_uncommitted",
+  "latest_implementation_run": "QM2-P0-001-20260713T183614Z-e9b0c7d",
+  "next_recommended_tasks": ["QM2-P0-002", "QM2-P0-003"],
+  "unconfirmed_facts": [
+    "Concrete TongDaXin Provider implementation and capability contract.",
+    "Durable long-term location for the official Factor Lab source.",
+    "Unified QuantMind 2.0 database migration mechanism.",
+    "Storage backend for large snapshot and ledger artifacts."
+  ],
+  "protected_constraints": [
+    "Do not replace existing LightGBM or Qlib.",
+    "Do not use Python factor_impl.py in the v1 standard factor path.",
+    "Keep Factor, Model, and Portfolio optimization separate.",
+    "Keep Research Memory, Project Architecture Memory, and Implementation Ledger separate.",
+    "Do not expose Frozen Test to Agent, Optimizer, or Campaign Memory.",
+    "Do not silently modify accepted ADRs."
+  ],
+  "mandatory_read_order": [
+    "docs/quantmind2/context/CONTEXT_INDEX.md",
+    "docs/quantmind2/context/PROJECT_CHARTER.md",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/adr/ADR_INDEX.md",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/implementation/README.md"
+  ],
+  "uncommitted_work": true
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-13T18:36:14Z",
+  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "source_paths": [
+    "docs/quantmind2/context/CONTEXT_INDEX.md",
+    "docs/quantmind2/context/PROJECT_CHARTER.md",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+    "docs/quantmind2/adr/ADR_INDEX.md"
+  ],
+  "authority_level": "bootstrap_index",
+  "freshness_status": "current_at_base_commit",
+  "verification_status": "verified",
+  "project_id": "quantmind2",
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "architecture_version": "v1",
+  "indexed_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "authoritative_documents": [
+    "docs/quantmind2/context/PROJECT_CHARTER.md",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+    "docs/quantmind2/adr/ADR_INDEX.md",
+    "docs/quantmind2/context/DATA_SEMANTICS.md"
+  ],
+  "derived_documents": [
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/HANDOFF.md"
+  ],
+  "source_repositories": [
+    {
+      "role": "target_host",
+      "root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+      "commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+      "read_only": false
+    },
+    {
+      "role": "official_factor_lab_donor",
+      "root": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/",
+      "commit": "c83192c2278767e03f008bc39197b1ba33bfb6a9",
+      "read_only": true
+    }
+  ],
+  "mandatory_read_order": [
+    "docs/quantmind2/context/CONTEXT_INDEX.md",
+    "docs/quantmind2/context/PROJECT_CHARTER.md",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/adr/ADR_INDEX.md",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/implementation/README.md"
+  ],
+  "current_state_ref": "docs/quantmind2/context/current_state.json",
+  "handoff_ref": "docs/quantmind2/context/handoff.json",
+  "adr_index_ref": "docs/quantmind2/adr/adr_index.json",
+  "implementation_runs_ref": "docs/quantmind2/implementation/runs",
+  "consistency_status": "consistent"
+}

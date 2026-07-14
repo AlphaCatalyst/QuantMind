@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema", "$id": "https://quantmind.local/schemas/component_catalog_v1.schema.json",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "generated_at", "source_commit", "source_paths", "authority_level", "freshness_status", "verification_status", "components"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"}, "generated_at": {"type": "string"}, "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "source_paths": {"type": "array", "items": {"type": "string"}}, "authority_level": {"const": "derived_catalog"},
+    "freshness_status": {"enum": ["current_at_base_commit", "stale", "unknown"]}, "verification_status": {"enum": ["verified", "partial", "unverified"]},
+    "components": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["component_id", "name", "status", "responsibility", "source_path", "target_path", "key_symbols", "dependencies", "architecture_decision_refs", "current_limitations", "last_verified_commit", "evidence_level"], "properties": {
+      "component_id": {"type": "string"}, "name": {"type": "string"}, "status": {"enum": ["implemented", "partial", "planned", "not_implemented", "deprecated", "blocked"]},
+      "responsibility": {"type": "string"}, "source_path": {"type": ["string", "null"]}, "target_path": {"type": ["string", "null"]},
+      "key_symbols": {"type": "array", "items": {"type": "string"}}, "dependencies": {"type": "array", "items": {"type": "string"}},
+      "architecture_decision_refs": {"type": "array", "items": {"type": "string"}}, "current_limitations": {"type": "array", "items": {"type": "string"}},
+      "last_verified_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"}, "evidence_level": {"enum": ["code_confirmed", "documented", "planned", "unverified"]}
+    }}}
+  }
+}

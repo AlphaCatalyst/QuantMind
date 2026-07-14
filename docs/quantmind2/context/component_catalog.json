@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-13T18:36:14Z",
+  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "source_paths": [
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
+  ],
+  "authority_level": "derived_catalog",
+  "freshness_status": "current_at_base_commit",
+  "verification_status": "verified",
+  "components": [
+    {
+      "component_id": "quantmind.training", "name": "Existing LightGBM Training", "status": "implemented",
+      "responsibility": "Build LightGBM training configuration, run containerized training, and emit model artifacts.",
+      "source_path": "backend/services/engine/training", "target_path": "backend/services/engine/training",
+      "key_symbols": ["LocalDockerOrchestrator", "load_data", "train_model"], "dependencies": ["quantmind.feature_snapshots"],
+      "architecture_decision_refs": ["ADR-0004", "ADR-0007", "ADR-0008"],
+      "current_limitations": ["Model metadata does not lock QuantMind 2.0 Factor Instance and Materialization identities.", "Declared label_formula does not control the actual label implementation."],
+      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind.inference", "name": "Existing Model Inference", "status": "implemented",
+      "responsibility": "Load registered models and produce predictions from prepared features.",
+      "source_path": "backend/services/engine/inference", "target_path": "backend/services/engine/inference",
+      "key_symbols": ["ModelLoader", "DataAdapter", "InferenceService"], "dependencies": ["quantmind.training"],
+      "architecture_decision_refs": ["ADR-0004", "ADR-0007"], "current_limitations": ["Unified Signal Artifact integration is not implemented."],
+      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest", "name": "Existing Qlib Backtest", "status": "implemented",
+      "responsibility": "Execute official Qlib strategies, exchange simulation, portfolio backtest, and persistence.",
+      "source_path": "backend/services/engine/qlib_app", "target_path": "backend/services/engine/qlib_app",
+      "key_symbols": ["QlibBacktestService", "QlibBacktestServiceRuntimeMixin", "StrategyFactory"], "dependencies": ["quantmind2.signal_service"],
+      "architecture_decision_refs": ["ADR-0004", "ADR-0006"], "current_limitations": ["Dataset Snapshot and Unified Signal lineage are not yet first-class inputs."],
+      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind.risk", "name": "Existing Risk Analysis", "status": "implemented",
+      "responsibility": "Analyze official Qlib portfolio and trade results.",
+      "source_path": "backend/services/engine/qlib_app/services/risk_analyzer.py", "target_path": "backend/services/engine/qlib_app/services/risk_analyzer.py",
+      "key_symbols": ["RiskAnalyzer"], "dependencies": ["quantmind.qlib_backtest"],
+      "architecture_decision_refs": ["ADR-0004", "ADR-0006"], "current_limitations": ["QuantMind 2.0 Experiment lineage is not recorded."],
+      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind.feature_snapshots", "name": "Feature Snapshots", "status": "partial",
+      "responsibility": "Produce annual Parquet matrices consumed by existing training.",
+      "source_path": "scripts/data/rebuild_v2/build_feature_snapshots.py", "target_path": "backend/services/engine/factor_research/features",
+      "key_symbols": ["add_daily_technical_features"], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_registry"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0007"], "current_limitations": ["No immutable Dataset Snapshot or Factor Registry lineage."],
+      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source", "name": "Official V7 Factor Lab Source", "status": "partial",
+      "responsibility": "Read-only donor for Agent, Candidate, Docker sandbox, validation, campaign, and Research Memory capabilities.",
+      "source_path": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/", "target_path": "backend/services/engine/factor_research",
+      "key_symbols": ["FactorSpec", "CodexRunner", "CandidateManifest", "ExecutionBackendGateway", "DockerSandboxBackend", "AntiOverfitEvaluator", "MemoryStore"],
+      "dependencies": ["quantmind.qlib_backtest"], "architecture_decision_refs": ["ADR-0001", "ADR-0002", "ADR-0005", "ADR-0006"],
+      "current_limitations": ["Python-first candidate contract.", "JSON registry is replaceable.", "Source resides under /tmp.", "No target Factor Optimization or Frozen Test isolation."],
+      "last_verified_commit": "c83192c2278767e03f008bc39197b1ba33bfb6a9", "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge", "name": "Project Knowledge", "status": "partial",
+      "responsibility": "Provide repository context, ADRs, implementation contracts, validation, and later API/web indexes.",
+      "source_path": "docs/quantmind2", "target_path": "backend/services/engine/project_knowledge",
+      "key_symbols": ["validate_bootstrap", "validate_instance"], "dependencies": [],
+      "architecture_decision_refs": ["ADR-0001", "ADR-0005"], "current_limitations": ["File bootstrap exists in QM2-P0-001; PostgreSQL index, API, and web UI remain planned."],
+      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "documented"
+    },
+    {
+      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "planned", "responsibility": "TongDaXin ingestion, immutable raw data, normalization, quality, Dataset Snapshot, and consumer views.",
+      "source_path": null, "target_path": "backend/services/engine/data_foundation", "key_symbols": [], "dependencies": [], "architecture_decision_refs": ["ADR-0003"],
+      "current_limitations": ["Not implemented; concrete TongDaXin provider is unverified."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "planned", "responsibility": "Canonical AST, parameter nodes, validation, canonicalization, and hashing.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/dsl", "key_symbols": [], "dependencies": ["quantmind2.factor_registry"], "architecture_decision_refs": ["ADR-0002", "ADR-0007"],
+      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.factor_compute", "name": "Factor Compute", "status": "planned", "responsibility": "Evaluate DSL Factor Instances against published Dataset Snapshots and materialize Parquet values.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/compute", "key_symbols": [], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
+      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization", "name": "Factor Optimization", "status": "planned", "responsibility": "Search window, factor-internal weight, and signal threshold under explicit budgets.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/optimization", "key_symbols": [], "dependencies": ["quantmind2.factor_compute"], "architecture_decision_refs": ["ADR-0006", "ADR-0008"],
+      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.factor_validation", "name": "Factor Validation", "status": "planned", "responsibility": "Produce versioned train, validation, and access-isolated Frozen Test evidence.",
+      "source_path": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/evaluation/", "target_path": "backend/services/engine/factor_research/validation", "key_symbols": ["AntiOverfitEvaluator", "HardenedEvaluator"],
+      "dependencies": ["quantmind2.factor_compute"], "architecture_decision_refs": ["ADR-0006", "ADR-0007"], "current_limitations": ["Target service and Frozen Test isolation are not implemented; donor algorithms require adaptation."],
+      "last_verified_commit": "c83192c2278767e03f008bc39197b1ba33bfb6a9", "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.factor_registry", "name": "Factor Registry", "status": "planned", "responsibility": "Own immutable factor definitions, templates, instances, materializations, validation references, and lifecycle state.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/registry", "key_symbols": [], "dependencies": [], "architecture_decision_refs": ["ADR-0007"],
+      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.experiment_manager", "name": "Experiment Manager", "status": "planned", "responsibility": "Bind Agent, trials, validation, model, signal, backtest, artifacts, data, code, environment, and seed lineage.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/experiment", "key_symbols": [], "dependencies": ["quantmind2.factor_registry"], "architecture_decision_refs": ["ADR-0007"],
+      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.signal_service", "name": "Unified Signal Service", "status": "planned", "responsibility": "Create immutable direction-, transform-, lag-, threshold-, and universe-aware signals for Qlib.",
+      "source_path": null, "target_path": "backend/services/engine/factor_research/signals", "key_symbols": [], "dependencies": ["quantmind2.factor_registry", "quantmind.inference"], "architecture_decision_refs": ["ADR-0004", "ADR-0007"],
+      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    }
+  ]
+}
