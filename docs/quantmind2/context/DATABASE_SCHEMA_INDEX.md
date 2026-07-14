@@ -27,3 +27,8 @@ objects will be derived/query indexes, not replacements for Git history.
 
 Evidence:
 `docs/quantmind2/implementation/LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md`.
+
+QM2-P0-002A1b1 adds only persistence-agnostic frozen dataclasses, enums,
+errors, and validators. It creates no ORM metadata, SQL, table, schema,
+migration, index, Session, transaction, or database constraint. The schema
+index therefore remains `planned`.

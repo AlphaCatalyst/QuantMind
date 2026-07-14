@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:53:25Z",
-  "source_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa",
+  "generated_at": "2026-07-14T15:24:20Z",
+  "source_commit": "6ec76c05591fd85489df87df985be28ba3fe5bc4",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -24,6 +24,7 @@
     {"issue_id": "QM2-KI-015", "severity": "high", "status": "open", "summary": "Shared async contexts auto-commit while many services also commit internally, leaving transaction ownership inconsistent for atomic Ledger indexing."},
     {"issue_id": "QM2-KI-016", "severity": "high", "status": "open", "summary": "Credential-bearing database defaults exist and shared async engine initialization may log the complete database URL."},
     {"issue_id": "QM2-KI-017", "severity": "medium", "status": "open", "summary": "No shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed."},
-    {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode exact next task QM2-P0-002A1b, so machine-readable task lists use parent QM2-P0-002A1."}
+    {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A1b2, so machine-readable task lists use parent QM2-P0-002A1."},
+    {"issue_id": "QM2-KI-019", "severity": "medium", "status": "open", "summary": "Manifest v1 cannot directly represent rich file and symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1."}
   ]
 }

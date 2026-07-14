@@ -25,6 +25,8 @@ RESEARCH_DECISION_CONTRACT = QM2 / "architecture" / "RESEARCH_DECISION_CONTRACT_
 RESEARCH_DECISION_SCHEMA = QM2 / "architecture" / "schemas" / "research_decision_v1.schema.json"
 RESEARCH_DECISION_EXAMPLE = QM2 / "architecture" / "examples" / "research_decision_v1.example.json"
 PERSISTENCE_REALITY_AUDIT = QM2 / "implementation" / "LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md"
+LEDGER_DOMAIN_CONTRACT = QM2 / "implementation" / "LEDGER_DOMAIN_MODEL_V1.md"
+LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEGACY_FACTOR_LAB_PATH = (
     "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/"
     "backend/services/engine/factor_lab"
@@ -332,14 +334,50 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
             raise ValidationError(f"accepted ADR changed during persistence audit: {path}")
     checks.append("persistence_audit_accepted_adrs")
 
-    prohibited_runtime_roots = (
-        ROOT / "backend" / "services" / "api" / "project_knowledge",
-        ROOT / "backend" / "services" / "engine" / "project_knowledge",
+    required_domain_files = {
+        "__init__.py",
+        "enums.py",
+        "errors.py",
+        "validators.py",
+        "models.py",
+        "relationships.py",
+    }
+    if not LEDGER_DOMAIN_CONTRACT.is_file():
+        raise ValidationError("Ledger domain model contract is missing")
+    domain_contract_text = LEDGER_DOMAIN_CONTRACT.read_text(encoding="utf-8")
+    required_domain_markers = {
+        "Domain vs Persistence Boundary",
+        "ImplementationRun Invariants",
+        "Manifest v1 Mapping",
+        "Rules Deferred to Repository Layer",
+        "QM2-P0-002A1b2",
+    }
+    missing_domain_markers = sorted(
+        marker for marker in required_domain_markers if marker not in domain_contract_text
     )
-    if any(path.exists() for path in prohibited_runtime_roots):
-        raise ValidationError("Project Knowledge runtime/API exists during audit-only task")
+    if missing_domain_markers:
+        raise ValidationError(f"Ledger domain contract is missing markers: {missing_domain_markers}")
+    if not LEDGER_DOMAIN_ROOT.is_dir():
+        raise ValidationError("Ledger domain package is missing")
+    actual_domain_files = {path.name for path in LEDGER_DOMAIN_ROOT.glob("*.py")}
+    if not required_domain_files.issubset(actual_domain_files):
+        raise ValidationError("Ledger domain package is incomplete")
+    for path in LEDGER_DOMAIN_ROOT.glob("*.py"):
+        source = path.read_text(encoding="utf-8")
+        lowered = source.lower()
+        if "sqlalchemy" in lowered or "fastapi" in lowered:
+            raise ValidationError(f"Ledger domain has forbidden framework import: {path}")
+    forbidden_project_knowledge_paths = (
+        ROOT / "backend" / "services" / "api" / "project_knowledge",
+        LEDGER_DOMAIN_ROOT.parent / "repository.py",
+        LEDGER_DOMAIN_ROOT.parent / "repositories.py",
+        LEDGER_DOMAIN_ROOT.parent / "api.py",
+        LEDGER_DOMAIN_ROOT.parent / "orm.py",
+    )
+    if any(path.exists() for path in forbidden_project_knowledge_paths):
+        raise ValidationError("Project Knowledge persistence, Repository, or API exists too early")
     if list((ROOT / "data" / "migrations").glob("*ledger*")):
-        raise ValidationError("Ledger migration exists during audit-only task")
+        raise ValidationError("Ledger migration exists before ORM/migration task")
     forbidden_ledger_markers = (
         "implementation_ledger",
         "CREATE SCHEMA quantmind2",
@@ -353,7 +391,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
             text = path.read_text(encoding="utf-8", errors="replace")
             if any(marker in text for marker in forbidden_ledger_markers):
                 raise ValidationError(f"Ledger persistence implementation exists: {path}")
-    checks.append("persistence_audit_no_runtime_implementation")
+    checks.append("ledger_domain_contract")
+    checks.append("ledger_domain_scope_boundary")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -373,8 +412,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A1b — Ledger Domain Objects and Repository Contract" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A1b next task")
+    if "QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A1b2 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-002A1"]:
         raise ValidationError("machine handoff must use legal non-inflated A1 parent task")
     checks.append("handoff_links")

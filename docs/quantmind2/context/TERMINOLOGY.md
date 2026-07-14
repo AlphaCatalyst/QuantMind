@@ -1,5 +1,17 @@
 # Terminology
 
+- **Implementation Task**: immutable description of one bounded engineering
+  objective; its completed state does not make any Run canonical.
+- **Implementation Run**: one execution record for a Task, with repository
+  identity, commits, workspace state, verification, and artifact references.
+- **Run Relationship**: directed immutable edge between Runs. `finalizes`,
+  `corrects`, `supersedes`, `depends_on`, `retries`, and `continues` remain
+  distinct. Domain v1 checks self-loops and direct reverse conflicts only.
+- **Canonical Run**: committed, complete, consistent Run with a result commit;
+  completed committed status alone is insufficient.
+- **Logical repository identity**: portable domain identifier, distinct from
+  an environment-specific absolute checkout path in a Manifest.
+
 - **Factor Definition**: stable economic identity and family of a factor.
 - **Factor Template**: parameterized Canonical DSL AST.
 - **Factor Instance**: immutable template plus bound parameters.

@@ -1,0 +1,243 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A1b1-20260714T152420Z-6ec76c0",
+  "task_id": "QM2-P0-002A1b1",
+  "parent_task_id": "QM2-P0-002A1",
+  "title": "Implementation Ledger Domain Model and Invariants",
+  "objective": "Implement persistence-agnostic Implementation Ledger domain objects, stable enums, structured errors, value validators, and local state invariants without implementing Repository or persistence concerns.",
+  "scope": [
+    "Pure frozen domain objects, enums, errors, validators, and direct relationship helpers.",
+    "Bounded domain and Context regression tests plus Context Bootstrap validation.",
+    "Domain contract, Project Memory updates, one immutable Implementation Run, and one local commit."
+  ],
+  "explicit_non_goals": [
+    "No Repository interface, in-memory Repository, full graph manager, SQLAlchemy ORM, PostgreSQL table or schema, migration, session, Unit of Work, or transaction code.",
+    "No Manifest Indexer, Git consistency service, API, UI, TDX, Dataset Snapshot, Factor DSL, Optimization, Validation runtime, Registry, LightGBM, or Qlib implementation.",
+    "No Factor Lab, accepted ADR, historical Run, dependency, lockfile, runtime configuration, or secret change.",
+    "No implementation of QM2-P0-002A1b2 or later tasks."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "6ec76c05591fd85489df87df985be28ba3fe5bc4",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "16a3cf2c2f088c96ddd53e6d499b4dce1dd20bda52ee161f4fabb52c653e489a",
+  "git_diff_hash": "16a3cf2c2f088c96ddd53e6d499b4dce1dd20bda52ee161f4fabb52c653e489a",
+  "started_at": "2026-07-14T15:24:20Z",
+  "completed_at": "2026-07-14T16:10:00Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/engine/project_knowledge/__init__.py",
+    "backend/services/engine/project_knowledge/domain/__init__.py",
+    "backend/services/engine/project_knowledge/domain/enums.py",
+    "backend/services/engine/project_knowledge/domain/errors.py",
+    "backend/services/engine/project_knowledge/domain/models.py",
+    "backend/services/engine/project_knowledge/domain/relationships.py",
+    "backend/services/engine/project_knowledge/domain/validators.py",
+    "backend/services/tests/test_project_knowledge_ledger_domain.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/TERMINOLOGY.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_DOMAIN_MODEL_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/report.md",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "backend/services/engine/project_knowledge/__init__.py",
+    "backend/services/engine/project_knowledge/domain/__init__.py",
+    "backend/services/engine/project_knowledge/domain/enums.py",
+    "backend/services/engine/project_knowledge/domain/errors.py",
+    "backend/services/engine/project_knowledge/domain/models.py",
+    "backend/services/engine/project_knowledge/domain/relationships.py",
+    "backend/services/engine/project_knowledge/domain/validators.py",
+    "backend/services/tests/test_project_knowledge_ledger_domain.py",
+    "docs/quantmind2/implementation/LEDGER_DOMAIN_MODEL_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "backend.services.engine.project_knowledge.domain.enums",
+    "backend.services.engine.project_knowledge.domain.errors.LedgerDomainError",
+    "backend.services.engine.project_knowledge.domain.validators",
+    "backend.services.engine.project_knowledge.domain.models.ImplementationTask",
+    "backend.services.engine.project_knowledge.domain.models.ImplementationRun",
+    "backend.services.engine.project_knowledge.domain.models.RunRelationship",
+    "backend.services.engine.project_knowledge.domain.models.ChangedFile",
+    "backend.services.engine.project_knowledge.domain.models.ChangedSymbol",
+    "backend.services.engine.project_knowledge.domain.models.TestExecution",
+    "backend.services.engine.project_knowledge.domain.models.ImplementationArtifact",
+    "backend.services.engine.project_knowledge.domain.models.ComponentReference",
+    "backend.services.engine.project_knowledge.domain.models.ArchitectureDecisionReference",
+    "backend.services.engine.project_knowledge.domain.models.Limitation",
+    "backend.services.engine.project_knowledge.domain.models.RecommendedTask",
+    "backend.services.engine.project_knowledge.domain.relationships.validate_direct_relationship",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "python3 -m unittest backend.services.tests.test_project_knowledge_ledger_domain -v",
+      "scope": "Enums, validators, immutable models, state matrix, relationships, edge cases, and forbidden-scope regressions.",
+      "status": "passed",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Final targeted domain suite ran 76 tests successfully. Earlier Python 3.9 slots and transitional Context-guard failures are documented in report.md."
+    },
+    {
+      "command": "python3 -m unittest backend.services.tests.test_quantmind2_context_bootstrap -v",
+      "scope": "Existing Context, schema, ADR, persistence-audit, domain-boundary, and handoff regressions.",
+      "status": "passed",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 18 Context tests passed."
+    },
+    {
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py",
+      "scope": "Context schemas/references, Ledger domain contract and scope boundary, runs, handoff, and official Factor Lab source.",
+      "status": "passed",
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Bounded validator returned passed with 17 named checks."
+    },
+    {
+      "command": "python3 -m py_compile backend/services/engine/project_knowledge/__init__.py backend/services/engine/project_knowledge/domain/*.py backend/services/tests/test_project_knowledge_ledger_domain.py",
+      "scope": "Python 3.9 syntax and import compilation for new domain code and tests.",
+      "status": "passed",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All targeted Python files compiled without output."
+    },
+    {
+      "command": "python3 JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All QuantMind 2.0 machine-readable documents including this Run manifest.",
+      "status": "passed",
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 20 JSON files parsed after adding this manifest."
+    },
+    {
+      "command": "python3 actual manifest schema, report hash, and canonical payload hash validation",
+      "scope": "This Run manifest against Implementation Manifest v1 and its immutable report/hash contract.",
+      "status": "passed",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Schema, report SHA-256, and canonical JSON payload SHA-256 passed."
+    },
+    {
+      "command": "Python AST import scan and forbidden-file/path checks",
+      "scope": "No SQLAlchemy, FastAPI, database imports/calls, Repository file/contract, migration, or endpoint in the domain increment.",
+      "status": "passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "AST imports and bounded forbidden paths were clean; documentation references to future Repository are not imports or contracts."
+    },
+    {
+      "command": "git diff --check and changed-path allowlist",
+      "scope": "Whitespace and final task-scope verification.",
+      "status": "passed",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "No diff errors; changes are limited to domain, targeted tests/tool, Project Memory, contract, and Run."
+    },
+    {
+      "command": "git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 rev-parse HEAD && git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 status --short",
+      "scope": "Official Factor Lab identity and read-only cleanliness.",
+      "status": "passed",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "HEAD remained c83192c2278767e03f008bc39197b1ba33bfb6a9 and status was empty."
+    }
+  ],
+  "test_results": {
+    "status": "passed",
+    "passed": 147,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "artifacts": [
+    {
+      "artifact_type": "ledger_domain_contract",
+      "path": "docs/quantmind2/implementation/LEDGER_DOMAIN_MODEL_V1.md",
+      "hash": "ea671d8c5f3335343e225a6f5b8db15e94d8aaed18ee97889e256e157bd62ba3"
+    },
+    {
+      "artifact_type": "implementation_report",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/report.md",
+      "hash": "56b20ae5b88deb9f2365156a8c242587ea8459f8cbb2ffce16cf179585bde6db"
+    }
+  ],
+  "architecture_decision_refs": ["ADR-0005", "ADR-0007", "ADR-0009"],
+  "component_refs": ["quantmind2.project_knowledge"],
+  "known_limitations": [
+    "No Repository, complete relationship graph cycle detection, ORM, migration, database uniqueness, concurrency control, Manifest v2, API, or UI exists.",
+    "Python 3.9 does not support dataclass slots; frozen semantics are used without slots.",
+    "Secret-like detection is conservative and is not a complete secret scanner.",
+    "Manifest v1 cannot represent arbitrary Run relationships, logical repository identity, or all domain enum vocabularies directly.",
+    "Context schema v1 cannot encode exact next task QM2-P0-002A1b2, so machine-readable task lists retain parent QM2-P0-002A1.",
+    "The containing commit cannot be embedded self-referentially; Git history resolves it after commit."
+  ],
+  "unresolved_questions": [
+    "Should future Run ID uniqueness be global or repository-scoped?",
+    "Which multiple relationship combinations are valid between the same two Runs?",
+    "How should Manifest v2 represent logical repository identity and arbitrary directed Run relationships?"
+  ],
+  "next_recommended_tasks": ["QM2-P0-002A1"],
+  "rollback_information": "Revert the single containing commit. No database, migration, data, API, runtime, model, Qlib, UI, dependency, lockfile, configuration, accepted ADR, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "Pure constructors conservatively reject obvious secret-like command, reason, limitation, and credential-bearing URI values without retaining rejected values; no runtime secret handling changed.",
+  "data_lineage_impact": "No research data changed; the domain types prepare future implementation-lineage indexing while Git and immutable Runs remain authoritative.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/report.md",
+  "report_hash": "56b20ae5b88deb9f2365156a8c242587ea8459f8cbb2ffce16cf179585bde6db",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b1-20260714T152420Z-6ec76c0/manifest.json",
+  "manifest_payload_hash": "3afbb36e446c482a56fb047e08f24f0c71c6947a2a5f1e88ce9397f301f77ef2",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "ledger_domain_model": "v1",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

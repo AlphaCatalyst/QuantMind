@@ -82,8 +82,6 @@ No business-domain implementation was introduced by either task.
   `git log -1 --format=%H -- docs/quantmind2/context/CURRENT_STATE.md` because a
   commit cannot embed its own hash.
 
-## Next task
-
 ## Persistence reality audit
 
 - `QM2-P0-002A1a — Persistence Mechanism Reality Audit` completed a static,
@@ -100,9 +98,24 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A1a-20260714T145325Z-8188a1e`.
 
+## Implementation Ledger domain model
+
+- `QM2-P0-002A1b1 — Implementation Ledger Domain Model and Invariants`
+  implements standard-library, frozen domain objects, stable enums, structured
+  errors, value validators, Run state invariants, and direct relationship
+  conflict checks.
+- The domain package is independent of SQLAlchemy, FastAPI, environment,
+  filesystem, network, Git commands, and databases.
+- Repository interfaces, in-memory Repository, full relationship graph checks,
+  ORM, PostgreSQL tables, `quantmind2` schema, migration, Unit of Work,
+  transaction code, Indexer, Git consistency service, API, and UI remain
+  unimplemented.
+- Latest Implementation Run:
+  `QM2-P0-002A1b1-20260714T152420Z-6ec76c0`.
+
 ## Next task
 
-`QM2-P0-002A1b — Ledger Domain Objects and Repository Contract` is the only
-recommended next task and has not started. Machine-readable task lists retain
-the legal parent identifier `QM2-P0-002A1` because the v1 schemas do not admit
-the finer `A1b` identifier.
+`QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double` is the
+only recommended next task and has not started. Machine-readable task lists use
+the legal parent `QM2-P0-002A1` because context schema v1 does not admit the
+finer `A1b2` identifier.

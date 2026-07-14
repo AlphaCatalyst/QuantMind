@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | File bootstrap and persistence reality audit exist; domain/Repository/API/UI/index DB not implemented |
+| `quantmind2.project_knowledge` | partial | File bootstrap, persistence audit, and pure Ledger domain model exist; Repository/ORM/API/UI/index DB not implemented |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -22,3 +22,9 @@ boundary but adds no runtime component: API control-plane ownership,
 `backend.shared.database_manager_v2` async PostgreSQL access, API model metadata,
 and a future explicit `quantmind2` PostgreSQL schema. See
 `docs/quantmind2/implementation/LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md`.
+
+QM2-P0-002A1b1 adds the pure domain package at
+`backend/services/engine/project_knowledge/domain/`: immutable Task, Run,
+relationship, change, test, artifact, reference, limitation, and recommendation
+objects plus enums/errors/validators. It is not persistence and does not change
+the future API control-plane Repository ownership selected by the audit.

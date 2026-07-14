@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:53:25Z",
-  "source_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa",
+  "generated_at": "2026-07-14T15:24:20Z",
+  "source_commit": "6ec76c05591fd85489df87df985be28ba3fe5bc4",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -63,10 +63,10 @@
     {
       "component_id": "quantmind2.project_knowledge", "name": "Project Knowledge", "status": "partial",
       "responsibility": "Provide repository context, ADRs, implementation contracts, validation, and later API/web indexes.",
-      "source_path": "docs/quantmind2", "target_path": "backend/services/api/project_knowledge",
-      "key_symbols": ["validate_bootstrap", "validate_instance"], "dependencies": [],
-      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007"], "current_limitations": ["File bootstrap and the QM2-P0-002A1a persistence reality audit exist; Ledger domain objects, Repository contract, ORM model, PostgreSQL schema/tables, migration, indexer, API, and web UI remain planned.", "The v1 context schemas cannot represent the exact QM2-P0-002A1b next-task identifier and retain its parent QM2-P0-002A1 in machine-readable task lists."],
-      "last_verified_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa", "evidence_level": "code_confirmed"
+      "source_path": "backend/services/engine/project_knowledge/domain", "target_path": "backend/services/api/project_knowledge",
+      "key_symbols": ["ImplementationTask", "ImplementationRun", "RunRelationship", "ChangedFile", "ChangedSymbol", "TestExecution", "ImplementationArtifact", "validate_identifier", "validate_repository_path", "validate_direct_relationship"], "dependencies": [],
+      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007", "ADR-0009"], "current_limitations": ["Pure domain objects and invariants exist, but Repository interface, in-memory test double, complete graph validation, ORM model, PostgreSQL schema/tables, migration, indexer, API, and web UI remain planned.", "Manifest v1 requires explicit mapping to richer domain records and has no general Run relationship representation.", "Context schema v1 cannot represent exact next task QM2-P0-002A1b2 and retains parent QM2-P0-002A1 in machine-readable task lists."],
+      "last_verified_commit": "6ec76c05591fd85489df87df985be28ba3fe5bc4", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.research_skill", "name": "Research Skill", "status": "planned",
