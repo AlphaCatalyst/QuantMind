@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:25:14Z",
-  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
+  "generated_at": "2026-07-14T14:53:25Z",
+  "source_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -63,10 +63,10 @@
     {
       "component_id": "quantmind2.project_knowledge", "name": "Project Knowledge", "status": "partial",
       "responsibility": "Provide repository context, ADRs, implementation contracts, validation, and later API/web indexes.",
-      "source_path": "docs/quantmind2", "target_path": "backend/services/engine/project_knowledge",
+      "source_path": "docs/quantmind2", "target_path": "backend/services/api/project_knowledge",
       "key_symbols": ["validate_bootstrap", "validate_instance"], "dependencies": [],
-      "architecture_decision_refs": ["ADR-0001", "ADR-0005"], "current_limitations": ["File bootstrap exists in QM2-P0-001; PostgreSQL index, API, and web UI remain planned."],
-      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "documented"
+      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007"], "current_limitations": ["File bootstrap and the QM2-P0-002A1a persistence reality audit exist; Ledger domain objects, Repository contract, ORM model, PostgreSQL schema/tables, migration, indexer, API, and web UI remain planned.", "The v1 context schemas cannot represent the exact QM2-P0-002A1b next-task identifier and retain its parent QM2-P0-002A1 in machine-readable task lists."],
+      "last_verified_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.research_skill", "name": "Research Skill", "status": "planned",

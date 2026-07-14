@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:25:14Z",
-  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
+  "generated_at": "2026-07-14T14:53:25Z",
+  "source_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -9,7 +9,7 @@
   "items": [
     {"task_id": "QM2-P0-001", "status": "completed_committed", "priority": "P0", "dependencies": [], "objective": "Establish Context Bootstrap and implementation contracts.", "explicit_non_goals": ["No business code, database, or API."], "acceptance_summary": "Bootstrap validates and records its own run."},
     {"task_id": "QM2-P0-001G", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Accept the Decision-Control-Execution authority model and ResearchDecision contract.", "explicit_non_goals": ["No runtime, database, API, Skill, orchestration, DSL, model, or backtest implementation."], "acceptance_summary": "ADR-0009, contract, schema, example, context, tests, and immutable Run are committed."},
-    {"task_id": "QM2-P0-002A1", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001G"], "objective": "Audit persistence mechanisms and define the Ledger domain contract.", "explicit_non_goals": ["No database implementation or Project Knowledge API."], "acceptance_summary": "Persistence facts, authority boundaries, identities, and open choices are evidence-backed."},
+    {"task_id": "QM2-P0-002A1", "status": "in_progress", "priority": "P0", "dependencies": ["QM2-P0-001G"], "objective": "Complete the Ledger persistence audit and domain/repository contract sequence; A1a audit is complete and A1b remains planned.", "explicit_non_goals": ["No ORM model, database table, migration, indexer, API, or UI in the A1a audit."], "acceptance_summary": "A1a persistence facts and selection are code-backed; A1b will separately define domain and Repository contracts."},
     {"task_id": "QM2-P0-002", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Index Git implementation runs and expose Project Knowledge APIs.", "explicit_non_goals": ["No web UI or research business domain."], "acceptance_summary": "Git and manifest consistency is queryable."},
     {"task_id": "QM2-P0-003", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Verify TongDaXin Provider capabilities.", "explicit_non_goals": ["No unapproved dependency selection or ingestion."], "acceptance_summary": "Every capability is evidenced or explicitly unavailable."},
     {"task_id": "QM2-P0-004", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-003"], "objective": "Create collection control and immutable Raw Store.", "explicit_non_goals": ["No normalization or snapshot publishing."], "acceptance_summary": "Checkpoint follows committed raw partitions."},

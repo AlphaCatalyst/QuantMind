@@ -24,6 +24,7 @@ SCHEMAS = QM2 / "implementation" / "schemas"
 RESEARCH_DECISION_CONTRACT = QM2 / "architecture" / "RESEARCH_DECISION_CONTRACT_V1.md"
 RESEARCH_DECISION_SCHEMA = QM2 / "architecture" / "schemas" / "research_decision_v1.schema.json"
 RESEARCH_DECISION_EXAMPLE = QM2 / "architecture" / "examples" / "research_decision_v1.example.json"
+PERSISTENCE_REALITY_AUDIT = QM2 / "implementation" / "LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md"
 LEGACY_FACTOR_LAB_PATH = (
     "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/"
     "backend/services/engine/factor_lab"
@@ -32,6 +33,36 @@ OFFICIAL_FACTOR_LAB_PATH = (
     "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/"
     "backend/services/engine/factor_lab/"
 )
+PERSISTENCE_AUDIT_EVIDENCE_PATHS = (
+    "backend/shared/database_manager_v2.py",
+    "backend/shared/database_pool.py",
+    "backend/shared/database.py",
+    "backend/shared/schema_registry.py",
+    "backend/services/api/models/base.py",
+    "backend/services/api/user_app/database.py",
+    "backend/services/api/main.py",
+    "backend/services/engine/main.py",
+    "backend/services/engine/tasks/celery_tasks.py",
+    "backend/services/trade/main.py",
+    "backend/services/trade/deps.py",
+    "backend/services/stream/market_app/database.py",
+    "data/quantmind_init.sql",
+    "data/upgrade_v1.1.0.sql",
+    "data/migrations/upgrade_v1.4.0_stock_tag.sql",
+    "deploy/deploy.sh",
+    "docker-compose.yml",
+    "requirements/production.txt",
+    "requirements/database.txt",
+    "backend/services/tests/conftest.py",
+)
+ACCEPTED_ADR_HASHES = {
+    "docs/quantmind2/adr/ADR-0005-memory-and-implementation-ledger-separation.md":
+        "e9c544ae846b3b92e2365a74a2c15a39dd7bb8f33628dbf0d7b856078a5aacb5",
+    "docs/quantmind2/adr/ADR-0007-immutable-research-identities-and-lineage.md":
+        "959abb4ae5498b64524c63cf33c98fc179fa5d5ee59712619f5475f68cdfe12d",
+    "docs/quantmind2/adr/ADR-0009-decision-control-execution-separation.md":
+        "38d80043864f943957d64657453d75fe54e2519a2739f3549e9df732a697f2f3",
+}
 
 
 class ValidationError(ValueError):
@@ -271,6 +302,59 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     validate_file(RESEARCH_DECISION_EXAMPLE, RESEARCH_DECISION_SCHEMA)
     checks.append("research_decision_contract")
 
+    if not PERSISTENCE_REALITY_AUDIT.is_file():
+        raise ValidationError("Ledger persistence reality audit is missing")
+    audit_text = PERSISTENCE_REALITY_AUDIT.read_text(encoding="utf-8")
+    required_audit_markers = {
+        "Recommended Ledger Persistence Mechanism",
+        "【代码确认】",
+        "【工程选择】",
+        "【尚未确认】",
+        "【阻断风险】",
+        "QM2-P0-002A1b",
+    }
+    missing_audit_markers = sorted(
+        marker for marker in required_audit_markers if marker not in audit_text
+    )
+    if missing_audit_markers:
+        raise ValidationError(
+            f"persistence reality audit is missing markers: {missing_audit_markers}"
+        )
+    for path in PERSISTENCE_AUDIT_EVIDENCE_PATHS:
+        if not _repo_path(path).is_file():
+            raise ValidationError(f"persistence audit evidence path does not exist: {path}")
+        if path not in audit_text:
+            raise ValidationError(f"persistence audit does not cite evidence path: {path}")
+    checks.append("persistence_reality_audit")
+
+    for path, expected_hash in ACCEPTED_ADR_HASHES.items():
+        if sha256_file(_repo_path(path)) != expected_hash:
+            raise ValidationError(f"accepted ADR changed during persistence audit: {path}")
+    checks.append("persistence_audit_accepted_adrs")
+
+    prohibited_runtime_roots = (
+        ROOT / "backend" / "services" / "api" / "project_knowledge",
+        ROOT / "backend" / "services" / "engine" / "project_knowledge",
+    )
+    if any(path.exists() for path in prohibited_runtime_roots):
+        raise ValidationError("Project Knowledge runtime/API exists during audit-only task")
+    if list((ROOT / "data" / "migrations").glob("*ledger*")):
+        raise ValidationError("Ledger migration exists during audit-only task")
+    forbidden_ledger_markers = (
+        "implementation_ledger",
+        "CREATE SCHEMA quantmind2",
+        'schema="quantmind2"',
+        "schema='quantmind2'",
+    )
+    for source_root in (ROOT / "backend", ROOT / "data"):
+        for path in source_root.rglob("*"):
+            if not path.is_file() or path.suffix not in {".py", ".sql"}:
+                continue
+            text = path.read_text(encoding="utf-8", errors="replace")
+            if any(marker in text for marker in forbidden_ledger_markers):
+                raise ValidationError(f"Ledger persistence implementation exists: {path}")
+    checks.append("persistence_audit_no_runtime_implementation")
+
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
     state = loaded["current_state"]
@@ -288,6 +372,11 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     }
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
+    handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
+    if "QM2-P0-002A1b — Ledger Domain Objects and Repository Contract" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A1b next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-002A1"]:
+        raise ValidationError("machine handoff must use legal non-inflated A1 parent task")
     checks.append("handoff_links")
 
     example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

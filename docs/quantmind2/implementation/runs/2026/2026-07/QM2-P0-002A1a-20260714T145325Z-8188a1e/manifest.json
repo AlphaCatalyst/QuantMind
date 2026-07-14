@@ -1,0 +1,212 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A1a-20260714T145325Z-8188a1e",
+  "task_id": "QM2-P0-002A1a",
+  "parent_task_id": "QM2-P0-002A1",
+  "title": "Persistence Mechanism Reality Audit",
+  "objective": "Statically audit QuantMind database, ORM, engine, session, transaction, migration, test database, configuration, and secret-handling reality; select the future Implementation Ledger persistence boundary without implementing it.",
+  "scope": [
+    "Code-backed persistence reality audit with formal, legacy, test, deprecated, and unconfirmed classification.",
+    "Explicit future Ledger persistence selection and A-E option comparison.",
+    "Project Memory updates that preserve unimplemented Ledger status.",
+    "Bounded validator and targeted tests for audit evidence, accepted ADR immutability, handoff, and absence of runtime implementation.",
+    "One immutable Implementation Run and one local commit."
+  ],
+  "explicit_non_goals": [
+    "No Ledger domain model, Repository interface, ORM model, database table, migration, Manifest Indexer, Git consistency service, API, or UI.",
+    "No TDX, Dataset Snapshot, Factor DSL, Optimization, Validation runtime, Registry, LightGBM, Qlib, Risk, or other business implementation.",
+    "No database connection, migration execution, service startup, Electron startup, model run, Qlib run, or Factor Lab campaign.",
+    "No accepted ADR, Factor Lab, dependency, lockfile, runtime configuration, or secret change.",
+    "No implementation of QM2-P0-002A1b or later tasks."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "5b6be455b1088eaa0659d6e7a853caa83a978517eda0b78ae19aa2e64cff50dc",
+  "git_diff_hash": "5b6be455b1088eaa0659d6e7a853caa83a978517eda0b78ae19aa2e64cff50dc",
+  "started_at": "2026-07-14T14:35:40Z",
+  "completed_at": "2026-07-14T14:58:35Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/report.md",
+    "docs/quantmind2/implementation/schemas/implementation_manifest_v1.schema.json",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "docs/quantmind2/implementation/LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "tools.quantmind2.validate_context_bootstrap.PERSISTENCE_REALITY_AUDIT",
+    "tools.quantmind2.validate_context_bootstrap.PERSISTENCE_AUDIT_EVIDENCE_PATHS",
+    "tools.quantmind2.validate_context_bootstrap.ACCEPTED_ADR_HASHES",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap",
+    "backend.services.tests.test_quantmind2_context_bootstrap.QuantMind2ContextBootstrapTests"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [
+    "docs/quantmind2/implementation/schemas/implementation_manifest_v1.schema.json"
+  ],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py --json",
+      "scope": "Context schemas/references, persistence audit evidence, accepted ADR hashes, absence of Ledger runtime, handoff, runs, and official Factor Lab source.",
+      "status": "passed",
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "The bounded validator returned passed with sixteen named checks, including three persistence-audit checks."
+    },
+    {
+      "command": "python3 -m unittest backend.services.tests.test_quantmind2_context_bootstrap",
+      "scope": "Targeted Context, ResearchDecision, persistence-audit, handoff, no-runtime, and accepted-ADR tests.",
+      "status": "passed",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Eighteen targeted tests passed."
+    },
+    {
+      "command": "python3 JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All QuantMind 2.0 machine-readable documents including this Run manifest.",
+      "status": "passed",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All nineteen JSON documents parsed successfully."
+    },
+    {
+      "command": "python3 manifest validation for QM2-P0-002A1a",
+      "scope": "Actual Run manifest against Implementation Manifest v1 plus report and payload hashes.",
+      "status": "passed",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Schema validation, report hash, and canonical payload hash passed."
+    },
+    {
+      "command": "git diff --check",
+      "scope": "Working-tree whitespace/error check.",
+      "status": "passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Command completed with no output."
+    },
+    {
+      "command": "git diff --name-only and static forbidden-scope assertions",
+      "scope": "Only project context, audit Run, validator, and targeted context test changed; no business, SQL migration, dependency, lockfile, config, or ADR file changed.",
+      "status": "passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All changed paths were within the task allowlist and no forbidden runtime marker was introduced."
+    },
+    {
+      "command": "git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 rev-parse HEAD && git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 status --short",
+      "scope": "Read-only official Factor Lab identity and cleanliness.",
+      "status": "passed",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "HEAD remained c83192c2278767e03f008bc39197b1ba33bfb6a9 and status remained empty."
+    }
+  ],
+  "test_results": {
+    "status": "passed",
+    "passed": 60,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 0
+  },
+  "artifacts": [
+    {
+      "artifact_type": "persistence_reality_audit",
+      "path": "docs/quantmind2/implementation/LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md",
+      "hash": "894b50fde501f9ebd8d8b25a99fc25245cfc62e1679aceed949e1893c5c7c269"
+    },
+    {
+      "artifact_type": "implementation_report",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/report.md",
+      "hash": "807ba9448ff8748099492cfa824317d1c90220e2719fca6e7887b76ec03e99e8"
+    }
+  ],
+  "architecture_decision_refs": [
+    "ADR-0005",
+    "ADR-0007",
+    "ADR-0009"
+  ],
+  "component_refs": [
+    "quantmind2.project_knowledge"
+  ],
+  "known_limitations": [
+    "Static audit cannot prove live topology, installed package versions, deployed schema, permissions, SSL, replica lag, or production call frequency.",
+    "Operational execution and ordering of manual SQL upgrades is unconfirmed; no ordered runner, applied-version ledger, checksum, or downgrade path is code-confirmed.",
+    "No database integration test ran and no shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed.",
+    "The explicit quantmind2 schema is an engineering choice whose privileges and operational approval remain unconfirmed.",
+    "Context schema v1 cannot encode exact next task QM2-P0-002A1b, so machine-readable task lists retain legal parent QM2-P0-002A1.",
+    "The bounded validator is not a general JSON Schema implementation.",
+    "The containing commit cannot be embedded self-referentially; Git history resolves it after commit."
+  ],
+  "unresolved_questions": [
+    "What controlled deployment command applies incremental migrations and records order/checksums?",
+    "Can the deployment role create and use the quantmind2 PostgreSQL schema?",
+    "What isolated PostgreSQL target and CI service will repository integration tests use?",
+    "What are the retention, rebuild SLA, backup, and disaster-recovery requirements for the derived Ledger index?",
+    "Does formalizing a migration-version mechanism require a later ADR or operations approval?"
+  ],
+  "next_recommended_tasks": [
+    "QM2-P0-002A1"
+  ],
+  "rollback_information": "Revert the single containing commit. No database, migration, data, API, runtime, model, Qlib, UI, dependency, lockfile, configuration, accepted ADR, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "No runtime changed; the audit records credential-bearing defaults and a possible full database URL log without reproducing secret values.",
+  "data_lineage_impact": "No data changed; Git Implementation Runs remain authoritative and PostgreSQL remains a planned rebuildable query index.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/report.md",
+  "report_hash": "807ba9448ff8748099492cfa824317d1c90220e2719fca6e7887b76ec03e99e8",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1a-20260714T145325Z-8188a1e/manifest.json",
+  "manifest_payload_hash": "c5345fa63dbd63440318a6271f5113c161460c3e6f6706c05c9734be9495f251",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "persistence_reality_audit": "v1",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

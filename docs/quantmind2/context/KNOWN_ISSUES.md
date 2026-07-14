@@ -15,3 +15,8 @@
 | QM2-KI-011 | medium | open | Implementation Ledger database index does not exist. |
 | QM2-KI-012 | high | open | Formal Factor Optimization does not exist. |
 | QM2-KI-013 | high | open | V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision/Decision Validator boundary. |
+| QM2-KI-014 | high | open | PostgreSQL schema change is fragmented across bootstrap SQL, manually documented upgrade SQL, runtime raw DDL, and metadata `create_all`; no operational Alembic or ordered applied-version runner is code-confirmed. |
+| QM2-KI-015 | high | open | Shared async session contexts auto-commit, while many services also commit internally, so transaction ownership is inconsistent for future atomic Ledger indexing. |
+| QM2-KI-016 | high | open | Database configuration contains credential-bearing defaults in several files, and shared async engine initialization may log the complete database URL. |
+| QM2-KI-017 | medium | open | No shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed; SQLite and mocked Session tests do not prove PostgreSQL schema, JSONB, concurrency, or transaction behavior. |
+| QM2-KI-018 | medium | open | Context schema v1 cannot encode the exact next task `QM2-P0-002A1b`; machine-readable task lists temporarily use parent `QM2-P0-002A1`. |

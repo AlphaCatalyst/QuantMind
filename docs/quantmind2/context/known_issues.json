@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:25:14Z",
-  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
+  "generated_at": "2026-07-14T14:53:25Z",
+  "source_commit": "8188a1e78f0ff74f7beb49d3522c417ed76194fa",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -19,6 +19,11 @@
     {"issue_id": "QM2-KI-010", "severity": "medium", "status": "open", "summary": "Project Knowledge Center API and UI do not exist."},
     {"issue_id": "QM2-KI-011", "severity": "medium", "status": "open", "summary": "Implementation Ledger database index does not exist."},
     {"issue_id": "QM2-KI-012", "severity": "high", "status": "open", "summary": "Formal Factor Optimization does not exist."},
-    {"issue_id": "QM2-KI-013", "severity": "high", "status": "open", "summary": "V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision and Decision Validator boundary."}
+    {"issue_id": "QM2-KI-013", "severity": "high", "status": "open", "summary": "V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision and Decision Validator boundary."},
+    {"issue_id": "QM2-KI-014", "severity": "high", "status": "open", "summary": "Schema change is fragmented across bootstrap SQL, manual upgrade SQL, runtime raw DDL, and metadata create_all; no operational Alembic or ordered applied-version runner is code-confirmed."},
+    {"issue_id": "QM2-KI-015", "severity": "high", "status": "open", "summary": "Shared async contexts auto-commit while many services also commit internally, leaving transaction ownership inconsistent for atomic Ledger indexing."},
+    {"issue_id": "QM2-KI-016", "severity": "high", "status": "open", "summary": "Credential-bearing database defaults exist and shared async engine initialization may log the complete database URL."},
+    {"issue_id": "QM2-KI-017", "severity": "medium", "status": "open", "summary": "No shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed."},
+    {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode exact next task QM2-P0-002A1b, so machine-readable task lists use parent QM2-P0-002A1."}
   ]
 }

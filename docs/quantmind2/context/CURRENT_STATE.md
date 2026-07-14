@@ -84,5 +84,25 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-002A1 — Ledger Persistence Mechanism Audit and Domain Contract` is the
-only recommended next task and has not started.
+## Persistence reality audit
+
+- `QM2-P0-002A1a — Persistence Mechanism Reality Audit` completed a static,
+  code-backed audit at base commit `8188a1e78f0ff74f7beb49d3522c417ed76194fa`.
+- The audit records that SQLAlchemy/PostgreSQL persistence is fragmented across
+  a shared async manager, sync compatibility pools, service-local engines,
+  runtime DDL, bootstrap SQL, and manually documented upgrade SQL.
+- The recommended future Ledger route is the shared async PostgreSQL manager,
+  API-owned SQLAlchemy metadata, transaction-neutral repository methods, and a
+  versioned SQL migration in an explicit `quantmind2` schema. This is an
+  engineering selection only, not an implemented persistence layer.
+- Ledger domain objects, Repository contract, ORM models, database tables,
+  migrations, indexer, consistency service, API, and UI remain unimplemented.
+- Latest Implementation Run:
+  `QM2-P0-002A1a-20260714T145325Z-8188a1e`.
+
+## Next task
+
+`QM2-P0-002A1b — Ledger Domain Objects and Repository Contract` is the only
+recommended next task and has not started. Machine-readable task lists retain
+the legal parent identifier `QM2-P0-002A1` because the v1 schemas do not admit
+the finer `A1b` identifier.
