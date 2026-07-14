@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-13T18:36:14Z",
-  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "generated_at": "2026-07-14T14:02:45Z",
+  "source_commit": "5504bdb94ddf817976f74a09e323cf8fb1eacf4a",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,8 +13,8 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
-  "workspace_dirty": true,
+  "base_commit": "5504bdb94ddf817976f74a09e323cf8fb1eacf4a",
+  "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
     "root": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/",
@@ -24,15 +24,17 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-001",
+  "current_task": "QM2-P0-001F",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-P0-001-20260713T183614Z-e9b0c7d",
-  "next_recommended_tasks": ["QM2-P0-002", "QM2-P0-003"],
+  "latest_implementation_run": "QM2-P0-001F-20260714T140245Z-5504bdb",
+  "next_recommended_tasks": ["QM2-P0-002"],
   "unconfirmed_facts": [
     "Concrete TongDaXin Provider implementation and capability contract.",
     "Durable long-term location for the official Factor Lab source.",
     "Unified QuantMind 2.0 database migration mechanism.",
-    "Storage backend for large snapshot and ledger artifacts."
+    "Storage backend for large snapshot and ledger artifacts.",
+    "Manifest v1 lacks a first-class non-correction related_run_id field.",
+    "Handoff v1 cannot encode completed_committed or the QM2-P0-002A subtask identifier; the human-readable handoff carries those precise facts."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",
@@ -52,5 +54,5 @@
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/implementation/README.md"
   ],
-  "uncommitted_work": true
+  "uncommitted_work": false
 }

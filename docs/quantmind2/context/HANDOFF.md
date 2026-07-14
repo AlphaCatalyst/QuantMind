@@ -4,10 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base commit: `e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08`
-- Dirty before QM2-P0-001: no
+- P0-001 commit: `5504bdb94ddf817976f74a09e323cf8fb1eacf4a`
+- Current latest commit: the commit containing this handoff; resolve it with
+  `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
+- Dirty before QM2-P0-001F: no, immediately after the P0-001 commit
 - Unrelated dirty files: none
-- Uncommitted work after task: yes, QM2-P0-001 files only
+- Uncommitted work after the finalization commit: no
 
 ## Official Factor Lab source
 
@@ -15,15 +17,21 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only during QM2-P0-001.
+- It remained read-only and clean during QM2-P0-001 and QM2-P0-001F.
 
 ## Current position
 
 - Architecture: QuantMind 2.0 Architecture v1, frozen.
-- Current task: `QM2-P0-001`.
-- Latest run: `QM2-P0-001-20260713T183614Z-e9b0c7d`.
-- Task status: completed_uncommitted after validation.
-- Recommended next tasks: QM2-P0-002 or QM2-P0-003 only.
+- `QM2-P0-001` is complete and committed at
+  `5504bdb94ddf817976f74a09e323cf8fb1eacf4a`.
+- Original immutable run: `QM2-P0-001-20260713T183614Z-e9b0c7d`, retaining
+  historical status `completed_uncommitted`.
+- Finalization task: `QM2-P0-001F`, complete.
+- Latest run: `QM2-P0-001F-20260714T140245Z-5504bdb`.
+- Recommended next task: `QM2-P0-002A — Ledger Domain and Persistence
+  Foundation`; it has not started.
+- The machine-readable v1 handoff records parent roadmap task `QM2-P0-002`
+  because its enum does not yet admit the `QM2-P0-002A` subtask identifier.
 
 ## Unconfirmed facts
 
@@ -31,6 +39,7 @@
 - Long-term durable location for the official Factor Lab source.
 - Unified database migration mechanism for QuantMind 2.0.
 - Final artifact storage backend for large snapshot and ledger artifacts.
+- A first-class Manifest field for non-correction relationships between runs.
 
 ## Constraints that must not be broken
 
