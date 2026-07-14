@@ -1,0 +1,262 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A1b2-20260714T155151Z-200665b",
+  "task_id": "QM2-P0-002A1b2",
+  "parent_task_id": "QM2-P0-002A1",
+  "title": "Ledger Repository Contract and In-memory Test Double",
+  "objective": "Define and verify persistence-independent Implementation Ledger Repository behavior, typed queries, stable errors, and an in-memory test double without implementing production persistence.",
+  "scope": [
+    "Synchronous Protocol contracts for Task, Run, Relationship, Detail, and aggregate Ledger repositories.",
+    "Immutable query and Page values plus stable Repository-layer errors.",
+    "Instance-local standard-library in-memory test double for identity, replay, conflict, version, cycle, query, append-only, and atomic-batch semantics.",
+    "Repository contract document, targeted tests, Project Memory updates, one immutable Implementation Run, and one local commit."
+  ],
+  "explicit_non_goals": [
+    "No SQLAlchemy ORM, PostgreSQL Repository or table, quantmind2 schema, migration, Session, production Unit of Work, or database transaction implementation.",
+    "No Manifest Parser, Manifest Indexer, Git consistency service, API, or UI.",
+    "No TDX, Dataset Snapshot, Factor DSL, Optimization, Validation runtime, Registry, LightGBM, Qlib, or other research business implementation.",
+    "No Factor Lab, accepted ADR, historical Run, dependency, lockfile, runtime configuration, or secret change.",
+    "No implementation of QM2-P0-002A2 or later tasks."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "200665bd9eb5d9393011f8c3d9a3c31001b8cf15",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "89d390ec8fa4e2612f991ffc9f70d15d5041e422f64899e047ac4efe74be9291",
+  "git_diff_hash": "89d390ec8fa4e2612f991ffc9f70d15d5041e422f64899e047ac4efe74be9291",
+  "started_at": "2026-07-14T15:51:51Z",
+  "completed_at": "2026-07-14T15:56:43Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/engine/project_knowledge/domain/__init__.py",
+    "backend/services/engine/project_knowledge/domain/repositories.py",
+    "backend/services/engine/project_knowledge/domain/repository_errors.py",
+    "backend/services/engine/project_knowledge/domain/repository_queries.py",
+    "backend/services/engine/project_knowledge/testing/__init__.py",
+    "backend/services/engine/project_knowledge/testing/in_memory_ledger_repository.py",
+    "backend/services/tests/test_project_knowledge_ledger_domain.py",
+    "backend/services/tests/test_project_knowledge_ledger_repository_contract.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/TERMINOLOGY.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_REPOSITORY_CONTRACT_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/report.md",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "backend/services/engine/project_knowledge/domain/repositories.py",
+    "backend/services/engine/project_knowledge/domain/repository_errors.py",
+    "backend/services/engine/project_knowledge/domain/repository_queries.py",
+    "backend/services/engine/project_knowledge/testing/__init__.py",
+    "backend/services/engine/project_knowledge/testing/in_memory_ledger_repository.py",
+    "backend/services/tests/test_project_knowledge_ledger_repository_contract.py",
+    "docs/quantmind2/implementation/LEDGER_REPOSITORY_CONTRACT_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "backend.services.engine.project_knowledge.domain.repository_errors",
+    "backend.services.engine.project_knowledge.domain.repository_queries.TaskQuery",
+    "backend.services.engine.project_knowledge.domain.repository_queries.RunQuery",
+    "backend.services.engine.project_knowledge.domain.repository_queries.HistoryQuery",
+    "backend.services.engine.project_knowledge.domain.repository_queries.Page",
+    "backend.services.engine.project_knowledge.domain.repositories.ImplementationTaskRepository",
+    "backend.services.engine.project_knowledge.domain.repositories.ImplementationRunRepository",
+    "backend.services.engine.project_knowledge.domain.repositories.RunRelationshipRepository",
+    "backend.services.engine.project_knowledge.domain.repositories.RunDetailRepository",
+    "backend.services.engine.project_knowledge.domain.repositories.LedgerRepository",
+    "backend.services.engine.project_knowledge.testing.in_memory_ledger_repository.InMemoryLedgerRepository",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "python3 -m unittest backend.services.tests.test_project_knowledge_ledger_repository_contract -v",
+      "scope": "Repository Protocol behavior, errors, queries, identity, replay, conflicts, versions, Run finalization, graph cycles, append-only children, history, and atomic batches.",
+      "status": "passed",
+      "passed": 60,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 60 new Repository contract tests passed."
+    },
+    {
+      "command": "python3 -m unittest backend.services.tests.test_project_knowledge_ledger_domain -v",
+      "scope": "A1b1 frozen domain objects and persistence-agnostic boundary regression.",
+      "status": "passed",
+      "passed": 76,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 76 A1b1 domain regression tests passed."
+    },
+    {
+      "command": "python3 -m unittest backend.services.tests.test_quantmind2_context_bootstrap -v",
+      "scope": "Context, schema, ADR, audit, Repository boundary, handoff, and run regression.",
+      "status": "passed",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 18 Context tests passed."
+    },
+    {
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py --json",
+      "scope": "Context schemas/references, domain and Repository contracts, test-double boundary, handoff, runs, accepted ADRs, and official Factor Lab source.",
+      "status": "passed",
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "The bounded validator returned passed with 19 named checks."
+    },
+    {
+      "command": "python3 -m py_compile backend/services/engine/project_knowledge/domain/*.py backend/services/engine/project_knowledge/testing/*.py backend/services/tests/test_project_knowledge_ledger_repository_contract.py",
+      "scope": "Python 3.9 compilation for domain contracts, test double, and new tests.",
+      "status": "passed",
+      "passed": 12,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 12 targeted Python files compiled without output."
+    },
+    {
+      "command": "python3 JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All QuantMind 2.0 machine-readable documents including this Run manifest.",
+      "status": "passed",
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "All 21 JSON documents parsed."
+    },
+    {
+      "command": "python3 actual manifest schema, report hash, and canonical payload hash validation",
+      "scope": "This Run manifest against Implementation Manifest v1 and its report/hash contract.",
+      "status": "passed",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "Schema, report SHA-256, and canonical JSON payload SHA-256 passed."
+    },
+    {
+      "command": "Python AST import and forbidden persistence scope checks",
+      "scope": "No SQLAlchemy, FastAPI, file/database I/O, Unit of Work, migration, or endpoint in Repository contract/test-double code.",
+      "status": "passed",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "AST imports and forbidden paths/calls were clean."
+    },
+    {
+      "command": "git diff --check and changed-path allowlist",
+      "scope": "Whitespace and task-scope verification.",
+      "status": "passed",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "No diff errors; all changed paths were authorized."
+    },
+    {
+      "command": "git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 rev-parse HEAD && git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 status --short",
+      "scope": "Official Factor Lab identity and read-only cleanliness.",
+      "status": "passed",
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 0,
+      "evidence": "HEAD remained c83192c2278767e03f008bc39197b1ba33bfb6a9 and status was empty."
+    },
+    {
+      "command": "ruff check targeted Repository files",
+      "scope": "Optional repository lint command.",
+      "status": "not_run",
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "not_run": 1,
+      "evidence": "ruff is not installed; no dependency was installed and no lockfile changed."
+    }
+  ],
+  "test_results": {
+    "status": "passed",
+    "passed": 214,
+    "failed": 0,
+    "skipped": 0,
+    "not_run": 1
+  },
+  "artifacts": [
+    {
+      "artifact_type": "ledger_repository_contract",
+      "path": "docs/quantmind2/implementation/LEDGER_REPOSITORY_CONTRACT_V1.md",
+      "hash": "6ce7c41e22e343f24830b33aff09c004acac755e36b261ec8407617dfdc5672f"
+    },
+    {
+      "artifact_type": "implementation_report",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/report.md",
+      "hash": "e416728ab0dfad06c2d99c77859f8750e0ff0391a5b8c971e5a49f2876a02807"
+    }
+  ],
+  "architecture_decision_refs": ["ADR-0005", "ADR-0007", "ADR-0009"],
+  "component_refs": ["quantmind2.project_knowledge"],
+  "known_limitations": [
+    "The in-memory Repository is process-local, non-durable, and does not support multi-process or real concurrent behavior.",
+    "Expected versions validate a contract only; they are not database locks or constraints.",
+    "No database transaction, SQLAlchemy ORM, PostgreSQL table/schema, migration, Manifest Indexer, Git consistency service, API, or UI exists.",
+    "Iterative DFS cycle checks are not optimized for a large relationship graph.",
+    "Context schema v1 cannot encode exact next task QM2-P0-002A2, so machine-readable context uses parent QM2-P0-002.",
+    "ruff was unavailable and was not installed.",
+    "The containing commit cannot be embedded self-referentially; Git history resolves it after commit."
+  ],
+  "unresolved_questions": [
+    "Should future Task and Run identity uniqueness be global or repository-scoped?",
+    "Which different relationship types may coexist for the same source and target pair?",
+    "How will PostgreSQL prevent relationship-cycle races under concurrency?",
+    "What canonical demotion transitions require additional authorization?"
+  ],
+  "next_recommended_tasks": ["QM2-P0-002A2"],
+  "rollback_information": "Revert the single containing commit. No database, migration, data, API, runtime, model, Qlib, UI, dependency, lockfile, configuration, accepted ADR, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "Repository errors expose validated IDs rather than stored object contents; the test double performs no file, environment, network, Git, or database access.",
+  "data_lineage_impact": "No research data changed; Repository contracts prepare a future derived Ledger index while Git Reports and Manifests remain authoritative.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/report.md",
+  "report_hash": "e416728ab0dfad06c2d99c77859f8750e0ff0391a5b8c971e5a49f2876a02807",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A1b2-20260714T155151Z-200665b/manifest.json",
+  "manifest_payload_hash": "8c8af400f3afad194e586ae9b257781ebda841ab7e8ab9941ea73031aa4c9197",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "ledger_domain_model": "v1",
+    "ledger_repository_contract": "v1",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | File bootstrap, persistence audit, and pure Ledger domain model exist; Repository/ORM/API/UI/index DB not implemented |
+| `quantmind2.project_knowledge` | partial | Bootstrap, audit, Ledger domain, Repository Protocols, and in-memory test double exist; production persistence/API/UI do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -28,3 +28,8 @@ QM2-P0-002A1b1 adds the pure domain package at
 relationship, change, test, artifact, reference, limitation, and recommendation
 objects plus enums/errors/validators. It is not persistence and does not change
 the future API control-plane Repository ownership selected by the audit.
+
+QM2-P0-002A1b2 adds persistence-independent Repository Protocols, query values,
+errors, and an `InMemoryLedgerRepository` contract test double. The test double
+is not a production adapter, durable store, database transaction, or source of
+truth. SQLAlchemy/PostgreSQL implementation remains planned for A2.

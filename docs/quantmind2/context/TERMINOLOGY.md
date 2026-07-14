@@ -11,6 +11,15 @@
   completed committed status alone is insufficient.
 - **Logical repository identity**: portable domain identifier, distinct from
   an environment-specific absolute checkout path in a Manifest.
+- **Ledger Repository Contract**: persistence-independent Protocols defining
+  Ledger identity, lookup, append-only history, query, version, transition,
+  relationship graph, and atomic-write semantics. It owns no transaction.
+- **In-memory Ledger Repository**: process-local, non-durable test double used
+  only to verify the Repository Contract; it is not production persistence.
+- **Exact replay**: a repeated write with the same identity and equal immutable
+  content; it returns the existing object and does not increment a version.
+- **Expected version**: caller-supplied optimistic concurrency token checked by
+  mutation methods; the in-memory check is contract evidence, not a database lock.
 
 - **Factor Definition**: stable economic identity and family of a factor.
 - **Factor Template**: parameterized Canonical DSL AST.

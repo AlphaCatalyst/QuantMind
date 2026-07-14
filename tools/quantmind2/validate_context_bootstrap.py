@@ -26,7 +26,9 @@ RESEARCH_DECISION_SCHEMA = QM2 / "architecture" / "schemas" / "research_decision
 RESEARCH_DECISION_EXAMPLE = QM2 / "architecture" / "examples" / "research_decision_v1.example.json"
 PERSISTENCE_REALITY_AUDIT = QM2 / "implementation" / "LEDGER_PERSISTENCE_REALITY_AUDIT_V1.md"
 LEDGER_DOMAIN_CONTRACT = QM2 / "implementation" / "LEDGER_DOMAIN_MODEL_V1.md"
+LEDGER_REPOSITORY_CONTRACT = QM2 / "implementation" / "LEDGER_REPOSITORY_CONTRACT_V1.md"
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
+LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEGACY_FACTOR_LAB_PATH = (
     "/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/"
     "backend/services/engine/factor_lab"
@@ -341,6 +343,9 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
         "validators.py",
         "models.py",
         "relationships.py",
+        "repositories.py",
+        "repository_errors.py",
+        "repository_queries.py",
     }
     if not LEDGER_DOMAIN_CONTRACT.is_file():
         raise ValidationError("Ledger domain model contract is missing")
@@ -362,11 +367,35 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     actual_domain_files = {path.name for path in LEDGER_DOMAIN_ROOT.glob("*.py")}
     if not required_domain_files.issubset(actual_domain_files):
         raise ValidationError("Ledger domain package is incomplete")
-    for path in LEDGER_DOMAIN_ROOT.glob("*.py"):
-        source = path.read_text(encoding="utf-8")
-        lowered = source.lower()
-        if "sqlalchemy" in lowered or "fastapi" in lowered:
-            raise ValidationError(f"Ledger domain has forbidden framework import: {path}")
+    if not LEDGER_REPOSITORY_CONTRACT.is_file():
+        raise ValidationError("Ledger Repository contract is missing")
+    repository_contract_text = LEDGER_REPOSITORY_CONTRACT.read_text(encoding="utf-8")
+    required_repository_markers = {
+        "Repository Interfaces",
+        "Exact Replay Semantics",
+        "Graph Cycle Detection",
+        "Atomic Batch Contract",
+        "In-memory Test Double Boundary",
+        "QM2-P0-002A2",
+    }
+    missing_repository_markers = sorted(
+        marker for marker in required_repository_markers if marker not in repository_contract_text
+    )
+    if missing_repository_markers:
+        raise ValidationError(
+            f"Ledger Repository contract is missing markers: {missing_repository_markers}"
+        )
+    required_testing_files = {"__init__.py", "in_memory_ledger_repository.py"}
+    if not LEDGER_TESTING_ROOT.is_dir() or not required_testing_files.issubset(
+        {path.name for path in LEDGER_TESTING_ROOT.glob("*.py")}
+    ):
+        raise ValidationError("Ledger in-memory test double is incomplete")
+    for source_root in (LEDGER_DOMAIN_ROOT, LEDGER_TESTING_ROOT):
+        for path in source_root.glob("*.py"):
+            source = path.read_text(encoding="utf-8")
+            lowered = source.lower()
+            if "sqlalchemy" in lowered or "fastapi" in lowered:
+                raise ValidationError(f"Ledger contract has forbidden framework import: {path}")
     forbidden_project_knowledge_paths = (
         ROOT / "backend" / "services" / "api" / "project_knowledge",
         LEDGER_DOMAIN_ROOT.parent / "repository.py",
@@ -393,6 +422,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
                 raise ValidationError(f"Ledger persistence implementation exists: {path}")
     checks.append("ledger_domain_contract")
     checks.append("ledger_domain_scope_boundary")
+    checks.append("ledger_repository_contract")
+    checks.append("ledger_in_memory_test_double_boundary")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -412,10 +443,10 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A1b2 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-002A1"]:
-        raise ValidationError("machine handoff must use legal non-inflated A1 parent task")
+    if "QM2-P0-002A2 — Ledger ORM Models and Database Migration" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A2 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-002"]:
+        raise ValidationError("machine handoff must use legal non-inflated P0-002 parent task")
     checks.append("handoff_links")
 
     example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

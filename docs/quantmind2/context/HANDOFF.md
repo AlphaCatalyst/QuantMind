@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A1b1: `6ec76c05591fd85489df87df985be28ba3fe5bc4`
+- Base before QM2-P0-002A1b2: `200665bd9eb5d9393011f8c3d9a3c31001b8cf15`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A1b1: no
+- Dirty before QM2-P0-002A1b2: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A1b1.
+- It remained read-only and clean during QM2-P0-002A1b2.
 
 ## Current position
 
@@ -27,8 +27,9 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A1b1`, completed as a pure domain-model increment.
-- Latest run: `QM2-P0-002A1b1-20260714T152420Z-6ec76c0`.
+- Current task: `QM2-P0-002A1b2`, completed as a Repository contract and
+  in-memory test-double increment.
+- Latest run: `QM2-P0-002A1b2-20260714T155151Z-200665b`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
   transaction-wrapped PostgreSQL SQL, and an explicit `quantmind2` schema.
@@ -37,12 +38,17 @@
 - Immutable Ledger domain objects, stable enums, structured errors,
   side-effect-free validators, Run state invariants, and direct relationship
   conflict checks now exist under `backend/services/engine/project_knowledge/domain/`.
-- Repository interface, in-memory Repository, full relationship graph checks,
-  ORM model, tables, schema, migration, transaction code, indexer, Git
-  consistency service, API, and UI do not exist.
-- Recommended next task: `QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double`;
-  it has not started. Machine-readable task lists use parent
-  `QM2-P0-002A1` due to the current schema enum.
+- Synchronous Repository Protocols, query objects, stable errors, full
+  in-memory graph-cycle checks, expected-version behavior, append-only details,
+  stable history queries, and atomic-batch contract tests now exist.
+- `InMemoryLedgerRepository` is a test double only; it is not production
+  persistence or an implementation fact source.
+- SQLAlchemy/PostgreSQL Repository, ORM model, tables, schema, migration,
+  database transaction code, Manifest Parser/Indexer, Git consistency service,
+  API, and UI do not exist.
+- Recommended next task: `QM2-P0-002A2 — Ledger ORM Models and Database Migration`;
+  it has not started. Machine-readable task lists use parent `QM2-P0-002` due
+  to the current schema enum.
 
 ## Unconfirmed facts
 
@@ -57,6 +63,8 @@
 - Persistent idempotency-key and semantic-duplicate policy.
 - Exact Manifest v1 mapping for general Run relationships, logical repository
   identity, and the richer domain enums.
+- PostgreSQL realization of Repository uniqueness, expected versions, DAG
+  checks, and atomic batch behavior.
 
 ## Constraints that must not be broken
 

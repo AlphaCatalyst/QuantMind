@@ -32,3 +32,8 @@ QM2-P0-002A1b1 adds only persistence-agnostic frozen dataclasses, enums,
 errors, and validators. It creates no ORM metadata, SQL, table, schema,
 migration, index, Session, transaction, or database constraint. The schema
 index therefore remains `planned`.
+
+QM2-P0-002A1b2 adds Repository behavior contracts and a process-local in-memory
+test double only. It creates no SQLAlchemy metadata, PostgreSQL object,
+`quantmind2` schema, migration, Session, Unit of Work, database transaction, or
+runtime DDL. The schema index remains `planned` for A2.

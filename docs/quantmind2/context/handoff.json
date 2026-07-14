@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T15:24:20Z",
-  "source_commit": "6ec76c05591fd85489df87df985be28ba3fe5bc4",
+  "generated_at": "2026-07-14T15:51:51Z",
+  "source_commit": "200665bd9eb5d9393011f8c3d9a3c31001b8cf15",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "6ec76c05591fd85489df87df985be28ba3fe5bc4",
+  "base_commit": "200665bd9eb5d9393011f8c3d9a3c31001b8cf15",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-002A1b1",
+  "current_task": "QM2-P0-002A1b2",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-002A1b1-20260714T152420Z-6ec76c0",
-  "next_recommended_tasks": ["QM2-P0-002A1"],
+  "latest_implementation_run": "QM2-P0-002A1b2-20260714T155151Z-200665b",
+  "next_recommended_tasks": ["QM2-P0-002"],
   "unconfirmed_facts": [
     "Concrete TongDaXin Provider implementation and capability contract.",
     "Durable long-term location for the official Factor Lab source.",
@@ -38,7 +38,8 @@
     "Manifest v1 lacks a first-class non-correction related_run_id field.",
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
-    "Manifest v1 mapping for general Run relationships, logical repository identity, and richer domain enums."
+    "Manifest v1 mapping for general Run relationships, logical repository identity, and richer domain enums.",
+    "PostgreSQL realization of Repository uniqueness, expected versions, DAG checks, and atomic batch behavior."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

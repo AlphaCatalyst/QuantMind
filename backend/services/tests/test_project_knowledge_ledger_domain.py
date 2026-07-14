@@ -482,12 +482,13 @@ class DomainScopeRegressionTests(unittest.TestCase):
             }
             self.assertFalse(calls & forbidden_calls, f"{path}: {calls & forbidden_calls}")
 
-    def test_no_repository_file_or_contract_exists(self):
-        names = {path.name for path in (DOMAIN.parent).rglob("*.py")}
-        self.assertNotIn("repository.py", names)
-        self.assertNotIn("repositories.py", names)
-        for path in DOMAIN.glob("*.py"):
-            self.assertNotIn("class Repository", path.read_text(encoding="utf-8"))
+    def test_repository_contract_remains_persistence_agnostic(self):
+        repository_contract = DOMAIN / "repositories.py"
+        self.assertTrue(repository_contract.is_file())
+        text = repository_contract.read_text(encoding="utf-8")
+        self.assertIn("Protocol", text)
+        self.assertNotIn("sqlalchemy", text.lower())
+        self.assertNotIn("AsyncSession", text)
 
     def test_no_ledger_migration_exists(self):
         self.assertFalse(list((ROOT / "data/migrations").glob("*ledger*")))

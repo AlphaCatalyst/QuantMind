@@ -93,8 +93,9 @@ No business-domain implementation was introduced by either task.
   API-owned SQLAlchemy metadata, transaction-neutral repository methods, and a
   versioned SQL migration in an explicit `quantmind2` schema. This is an
   engineering selection only, not an implemented persistence layer.
-- Ledger domain objects, Repository contract, ORM models, database tables,
-  migrations, indexer, consistency service, API, and UI remain unimplemented.
+- At the A1a audit point, Ledger domain and Repository code did not exist;
+  later A1b tasks now supersede that implementation-state observation while
+  preserving the audit's persistence findings.
 - Latest Implementation Run:
   `QM2-P0-002A1a-20260714T145325Z-8188a1e`.
 
@@ -106,16 +107,28 @@ No business-domain implementation was introduced by either task.
   conflict checks.
 - The domain package is independent of SQLAlchemy, FastAPI, environment,
   filesystem, network, Git commands, and databases.
-- Repository interfaces, in-memory Repository, full relationship graph checks,
-  ORM, PostgreSQL tables, `quantmind2` schema, migration, Unit of Work,
-  transaction code, Indexer, Git consistency service, API, and UI remain
-  unimplemented.
+- At the A1b1 point, Repository behavior was deferred; A1b2 now supplies its
+  Protocol and test-double contract without changing the frozen domain model.
 - Latest Implementation Run:
   `QM2-P0-002A1b1-20260714T152420Z-6ec76c0`.
 
+## Implementation Ledger Repository contract
+
+- `QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double`
+  implements synchronous `typing.Protocol` contracts, immutable query/page
+  values, stable Repository errors, full in-memory relationship cycle checks,
+  expected-version checks, append-only details, stable queries, and an atomic
+  batch test contract.
+- `InMemoryLedgerRepository` is a process-local test double only. It is not a
+  production Ledger or persistence authority.
+- SQLAlchemy Repository, ORM models, PostgreSQL schema/tables, migration,
+  database transactions, Manifest Parser/Indexer, Git consistency service,
+  API, and UI remain unimplemented.
+- Latest Implementation Run:
+  `QM2-P0-002A1b2-20260714T155151Z-200665b`.
+
 ## Next task
 
-`QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double` is the
-only recommended next task and has not started. Machine-readable task lists use
-the legal parent `QM2-P0-002A1` because context schema v1 does not admit the
-finer `A1b2` identifier.
+`QM2-P0-002A2 — Ledger ORM Models and Database Migration` is the only
+recommended next task and has not started. Machine-readable next-task fields
+use legal parent `QM2-P0-002` because context schema v1 does not admit `A2`.

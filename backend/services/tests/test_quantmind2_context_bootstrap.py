@@ -117,18 +117,19 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertFalse((root / "backend/services/api/project_knowledge").exists())
         domain_root = root / "backend/services/engine/project_knowledge/domain"
         self.assertTrue(domain_root.is_dir())
-        for forbidden in ("repository.py", "repositories.py", "orm.py", "api.py"):
+        self.assertTrue((domain_root / "repositories.py").is_file())
+        for forbidden in ("repository.py", "orm.py", "api.py"):
             self.assertFalse((domain_root / forbidden).exists())
         self.assertFalse(list((root / "data/migrations").glob("*ledger*")))
 
-    def test_handoff_names_exact_a1b2_and_machine_state_uses_legal_parent(self):
+    def test_handoff_names_exact_a2_and_machine_state_uses_legal_parent(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002A1b2 — Ledger Repository Contract and In-memory Test Double",
+            "QM2-P0-002A2 — Ledger ORM Models and Database Migration",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002A1"])
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]
