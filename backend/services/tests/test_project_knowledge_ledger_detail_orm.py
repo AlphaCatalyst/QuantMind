@@ -50,6 +50,10 @@ CORE_TABLE_KEYS = {
     "quantmind2.implementation_runs",
     "quantmind2.implementation_run_relationships",
 }
+REFERENCE_TABLE_KEYS = {
+    "quantmind2.implementation_component_references",
+    "quantmind2.implementation_adr_references",
+}
 
 
 def constraints(table, kind):  # noqa: ANN001
@@ -91,12 +95,14 @@ class LedgerDetailImportAndScopeTests(unittest.TestCase):
         actual = {
             key
             for key, table in Base.metadata.tables.items()
-            if table.schema == "quantmind2" and key not in CORE_TABLE_KEYS
+            if table.schema == "quantmind2"
+            and key not in CORE_TABLE_KEYS
+            and key not in REFERENCE_TABLE_KEYS
         }
         self.assertEqual(actual, DETAIL_TABLE_KEYS)
 
-    def test_no_reference_or_annotation_table_is_registered(self):
-        forbidden = ("component", "adr", "limitation", "recommendation", "manifest", "indexer")
+    def test_no_annotation_manifest_or_indexer_table_is_registered(self):
+        forbidden = ("limitation", "recommendation", "manifest", "indexer")
         actual = {key for key, table in Base.metadata.tables.items() if table.schema == "quantmind2"}
         self.assertFalse(any(marker in key for key in actual for marker in forbidden))
 

@@ -6,12 +6,14 @@ from enum import Enum
 from typing import Type
 
 from backend.services.engine.project_knowledge.domain.enums import (
+    ADRReferenceRelation,
     CanonicalStatus,
     CompletionLevel,
     ConsistencyStatus,
     FileChangeType,
     ImplementationRunStatus,
     ImplementationTaskStatus,
+    ImpactType,
     RunRelationshipType,
     SymbolChangeType,
     SymbolType,
@@ -48,3 +50,5 @@ FILE_CHANGE_TYPE_VALUES = enum_values(FileChangeType)
 SYMBOL_TYPE_VALUES = enum_values(SymbolType)
 SYMBOL_CHANGE_TYPE_VALUES = enum_values(SymbolChangeType)
 TEST_EXECUTION_STATUS_VALUES = enum_values(TestExecutionStatus)
+IMPACT_TYPE_VALUES = enum_values(ImpactType)
+ADR_REFERENCE_RELATION_VALUES = enum_values(ADRReferenceRelation)

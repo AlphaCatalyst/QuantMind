@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | Bootstrap, audit, Ledger domain, Repository Protocols, in-memory test double, three core and four core-detail static ORM mappings exist; reference/annotation mapping, migration, production persistence/API/UI do not |
+| `quantmind2.project_knowledge` | partial | Bootstrap, audit, Ledger domain, Repository Protocols, in-memory test double, three core, four core-detail, and two reference static ORM mappings exist; annotation mapping, migration, production persistence/API/UI do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -44,3 +44,9 @@ A1b2 natural unique keys, restrictive Run FKs, enum-derived checks, cross-field
 checks, and indexes are static metadata only. ComponentReference,
 ArchitectureDecisionReference, Limitation, RecommendedTask, domain mappers, migration, production
 Repository, Session/UoW, API, and UI remain planned.
+
+QM2-P0-002A2a2b1 adds static composite-primary-key mappings for
+ComponentReference and ArchitectureDecisionReference. The only foreign keys
+point restrictively to Run; Component Catalog and ADR Index remain Git-derived
+facts rather than database FK authorities. Limitation, RecommendedTask,
+mappers, migration, deployed schema/tables, Repository, API, and UI remain planned.

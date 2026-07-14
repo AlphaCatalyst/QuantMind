@@ -149,9 +149,22 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A2a2a-20260714T164637Z-53efb74`.
 
+## Implementation Ledger reference ORM mapping
+
+- `QM2-P0-002A2a2b1 — Ledger Component and ADR Reference ORM Mapping`
+  maps ComponentReference and ArchitectureDecisionReference on the shared API
+  Base using their A1b2 natural identities as composite primary keys.
+- Both tables have only a restrictive Run FK. Component Catalog and ADR Index
+  remain Git-derived facts and are not database foreign-key targets.
+- This is static metadata only. Limitation and RecommendedTask ORM records,
+  Domain mappers, migration, schema/table creation, PostgreSQL Repository,
+  database access, Indexer, API, and UI remain unimplemented.
+- Latest Implementation Run:
+  `QM2-P0-002A2a2b1-20260714T173524Z-4dbb6eb`.
+
 ## Next task
 
-`QM2-P0-002A2a2b — Ledger Reference and Annotation ORM Mapping` is the only
+`QM2-P0-002A2a2b2 — Ledger Limitation and Recommended Task ORM Mapping` is the only
 recommended next task and has not started. Machine-readable next-task fields
 use legal parent `QM2-P0-002` because context schema v1 does not admit the
-fine-grained `A2a2b` identifier.
+fine-grained `A2a2b2` identifier.

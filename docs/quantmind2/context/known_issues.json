@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T16:46:37Z",
-  "source_commit": "53efb7436b059acb93a23fdce9edb34014fd18ef",
+  "generated_at": "2026-07-14T17:35:24Z",
+  "source_commit": "4dbb6eb4aa5a3c9f22d8a590cb6c9539f411330a",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -27,7 +27,7 @@
     {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A2a2, so machine-readable next-task lists use parent QM2-P0-002."},
     {"issue_id": "QM2-KI-019", "severity": "medium", "status": "open", "summary": "Manifest v1 cannot directly represent rich file and symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1."},
     {"issue_id": "QM2-KI-020", "severity": "medium", "status": "open", "summary": "The in-memory Ledger Repository is a contract test double without durability, cross-process concurrency, database isolation, crash recovery, or PostgreSQL constraint evidence."},
-    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "open", "summary": "Core and core-detail Ledger ORM metadata now covers seven objects; reference and annotation mappings, domain mappers, migration, schema deployment, production Repository, UoW, and PostgreSQL integration evidence remain absent."},
+    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "open", "summary": "Ledger ORM metadata now covers nine objects including Component and ADR references; Limitation and RecommendedTask mappings, domain mappers, migration, schema deployment, production Repository, UoW, and PostgreSQL integration evidence remain absent."},
     {"issue_id": "QM2-KI-022", "severity": "low", "status": "open", "summary": "Static DDL verification used SQLAlchemy 2.0.51 while production requirements pin 2.0.25; pinned-runtime and real PostgreSQL verification remain outstanding."}
   ]
 }

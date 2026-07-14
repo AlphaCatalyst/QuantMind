@@ -11,10 +11,16 @@ from .orm_detail_models import (
     ImplementationArtifactRecord,
     TestExecutionRecord,
 )
+from .orm_reference_models import (
+    ArchitectureDecisionReferenceRecord,
+    ComponentReferenceRecord,
+)
 
 __all__ = (
+    "ArchitectureDecisionReferenceRecord",
     "ChangedFileRecord",
     "ChangedSymbolRecord",
+    "ComponentReferenceRecord",
     "ImplementationArtifactRecord",
     "ImplementationRunRecord",
     "ImplementationTaskRecord",

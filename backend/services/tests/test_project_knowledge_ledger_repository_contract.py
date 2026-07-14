@@ -609,6 +609,7 @@ class ContractScopeTests(unittest.TestCase):
                 "persistence/__init__.py",
                 "persistence/orm_detail_models.py",
                 "persistence/orm_models.py",
+                "persistence/orm_reference_models.py",
                 "persistence/orm_types.py",
             },
         )

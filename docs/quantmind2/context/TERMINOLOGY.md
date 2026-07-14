@@ -28,6 +28,10 @@
   ChangedFile, ChangedSymbol, TestExecution, and ImplementationArtifact. It
   preserves A1b2 natural keys and selected database checks but is not a Mapper,
   migration, deployed table, append-only enforcement, or Repository.
+- **Ledger Reference ORM Mapping**: API-Base persistence shape for
+  ComponentReference and ArchitectureDecisionReference using Run/object
+  composite primary keys. Component Catalog and ADR Index remain Git-derived
+  facts; this metadata is not a deployed table or authority transfer.
 
 - **Factor Definition**: stable economic identity and family of a factor.
 - **Factor Template**: parameterized Canonical DSL AST.

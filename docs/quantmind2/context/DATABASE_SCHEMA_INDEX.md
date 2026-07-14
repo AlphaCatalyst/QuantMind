@@ -61,3 +61,13 @@ QM2-P0-002A2a2a additionally registers four static metadata targets:
 The same undeployed boundary applies. No schema/table was created, no migration
 was added, and no database was connected. Component/ADR references,
 limitations, recommendations, and all Domain/ORM mappers remain deferred.
+
+QM2-P0-002A2a2b1 adds two more static metadata targets:
+
+- `quantmind2.implementation_component_references`;
+- `quantmind2.implementation_adr_references`.
+
+Each uses its Run/object natural identity as a composite primary key and only a
+restrictive Run FK. No Component Catalog or ADR entity FK exists because Git
+remains authoritative. The schema and tables were not created; Limitation,
+RecommendedTask, mappers, migration, and database integration remain deferred.
