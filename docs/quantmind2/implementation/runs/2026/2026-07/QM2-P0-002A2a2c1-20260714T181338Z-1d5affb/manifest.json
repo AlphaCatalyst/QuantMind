@@ -1,0 +1,175 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A2a2c1-20260714T181338Z-1d5affb",
+  "task_id": "QM2-P0-002A2a2c1",
+  "parent_task_id": "QM2-P0-002A2a2c",
+  "title": "Ledger Mapper Identity and Conversion Contract",
+  "objective": "Freeze pure Domain/ORM Mapper boundaries, logical repository identity, deterministic ChangedFile/ChangedSymbol technical IDs, conversion/error/version rules, and all-eleven-family round-trip requirements without implementing Mapper code.",
+  "scope": [
+    "Normative Mapper Contract v1 for all eleven frozen Ledger domain and ORM object families.",
+    "Machine-readable standard-library-recomputable ChangedFile and ChangedSymbol identity vectors.",
+    "Context validation, Project Memory, immutable Run, targeted regression tests, and one independent local commit."
+  ],
+  "explicit_non_goals": [
+    "No to_domain, from_domain, Mapper class, Mapper registry, mappers package, or production conversion function.",
+    "No Domain, ORM, Repository, Session, Unit of Work, migration, schema/table, database connection, Parser/Indexer, Git consistency, API, or UI implementation.",
+    "No accepted ADR, Manifest schema, dependency, lockfile, runtime configuration, business domain, Factor Lab, TDX, Dataset Snapshot, Factor DSL, Optimization, Validation, Registry, LightGBM, or Qlib change.",
+    "No A2a2c2 or later task implementation and no push."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "1d5affbb3361c60286028e569bb391f6955dc216",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "e455833344bb1cf06c62fe4fdba2578faec13cbcca5dc72a6286669c7a2c1813",
+  "git_diff_hash": "e455833344bb1cf06c62fe4fdba2578faec13cbcca5dc72a6286669c7a2c1813",
+  "started_at": "2026-07-14T18:03:00Z",
+  "completed_at": "2026-07-14T18:16:51Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/TERMINOLOGY.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_DOMAIN_ORM_MAPPER_CONTRACT_V1.md",
+    "docs/quantmind2/implementation/test_vectors/ledger_mapper_identity_v1.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/report.md",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "docs/quantmind2/implementation/LEDGER_DOMAIN_ORM_MAPPER_CONTRACT_V1.md",
+    "docs/quantmind2/implementation/test_vectors/ledger_mapper_identity_v1.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "tools.quantmind2.validate_context_bootstrap.validate_mapper_identity_vectors",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap",
+    "backend.services.tests.test_quantmind2_context_bootstrap.QuantMind2ContextBootstrapTests.test_mapper_contract_vectors_and_implementation_boundary"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "Existing SQLAlchemy Python -m unittest annotation_orm reference_orm detail_orm core_orm",
+      "scope": "All eleven static Ledger ORM table mappings and prior scope/DDL regressions.",
+      "status": "passed", "passed": 108, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 108 ORM tests passed."
+    },
+    {
+      "command": "Existing Python -m unittest ledger_domain ledger_repository_contract context_bootstrap",
+      "scope": "Frozen Domain, Repository/test-double, Mapper contract/vector/source boundary, and Context regression.",
+      "status": "passed", "passed": 155, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 155 tests passed: 76 Domain, 60 Repository, and 19 Context."
+    },
+    {
+      "command": "Existing Python tools/quantmind2/validate_context_bootstrap.py",
+      "scope": "Context schemas, contracts, Mapper vector recomputation, Mapper implementation absence, handoff, Runs, accepted ADRs, and Factor Lab source boundary.",
+      "status": "passed", "passed": 30, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "The bounded validator returned passed with 30 named checks."
+    },
+    {
+      "command": "Existing Python py_compile over validator and Context unittest",
+      "scope": "Changed Python syntax.",
+      "status": "passed", "passed": 2, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Both changed Python files compiled without output."
+    },
+    {
+      "command": "Existing Python JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All QuantMind 2.0 machine-readable documents before this Run was added.",
+      "status": "passed", "passed": 26, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 26 JSON documents parsed, including nine identity vectors."
+    },
+    {
+      "command": "Existing Python actual Manifest schema, report hash, and canonical payload hash validation",
+      "scope": "This Run Manifest and adjacent Report/hash contract.",
+      "status": "passed", "passed": 3, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Schema validation, Report SHA-256, and canonical JSON payload SHA-256 passed after generation."
+    },
+    {
+      "command": "git diff --check plus changed-path dependency/ORM/domain/repository/migration/business scope guards",
+      "scope": "Whitespace and bounded documentation-contract task scope.",
+      "status": "passed", "passed": 3, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Whitespace, forbidden implementation paths, and dependency/lockfile guards were clean."
+    },
+    {
+      "command": "git -C /tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1 rev-parse HEAD && status --short",
+      "scope": "Official Factor Lab identity and read-only cleanliness.",
+      "status": "passed", "passed": 2, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "HEAD remained c83192c2278767e03f008bc39197b1ba33bfb6a9 and status was empty."
+    },
+    {
+      "command": "Real PostgreSQL integration",
+      "scope": "Database, migration, server constraints, transactions, and concurrency.",
+      "status": "not_run", "passed": 0, "failed": 0, "skipped": 0, "not_run": 1,
+      "evidence": "Database access is explicitly outside and prohibited by this task."
+    }
+  ],
+  "test_results": {"status": "passed", "passed": 329, "failed": 0, "skipped": 0, "not_run": 1},
+  "artifacts": [
+    {"artifact_type": "ledger_mapper_contract", "path": "docs/quantmind2/implementation/LEDGER_DOMAIN_ORM_MAPPER_CONTRACT_V1.md", "hash": "ae4565f536b699019473dd73a30f27c613f2b3630168eb4e5cc13ffbd574cc37"},
+    {"artifact_type": "ledger_mapper_identity_vectors", "path": "docs/quantmind2/implementation/test_vectors/ledger_mapper_identity_v1.json", "hash": "43e9481a545de0cdd98bc23e811c50672152f8d668907d5de5c8148f3ad0b2ee"},
+    {"artifact_type": "implementation_report", "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/report.md", "hash": "f478182de792d4a161d00065f0ec995b5f80af4cfc5be1d762070ef34b6cce34"}
+  ],
+  "architecture_decision_refs": ["ADR-0005", "ADR-0007"],
+  "component_refs": ["quantmind2.project_knowledge"],
+  "known_limitations": [
+    "No Core, Detail, Reference, or Annotation Mapper Python implementation exists.",
+    "No database verification, Repository connection, Session, Unit of Work, migration, Parser/Indexer, API, or UI exists.",
+    "Frozen Domain/ORM repository_root naming is misleading and Manifest v1 lacks a separate logical repository identity.",
+    "ImplementationArtifact lacks explicit location_kind, although current Domain prefix semantics are deterministic.",
+    "Manifest v1 and current ORM do not persist Mapper or technical identity algorithm versions.",
+    "Context/Manifest schema v1 cannot encode exact next task QM2-P0-002A2a2c2 in machine arrays, so legal parent IDs are retained."
+  ],
+  "unresolved_questions": [
+    "When will a repository identity ADR approve repository_id/execution_repository_path naming and historical ingestion binding?",
+    "Will Manifest v2 add explicit artifact location_kind and Mapper/identity versions?",
+    "Where will identity algorithm versions be persisted before durable indexing?"
+  ],
+  "next_recommended_tasks": ["QM2-P0-002A2"],
+  "rollback_information": "Revert the single containing commit. No Mapper runtime, database, schema, migration, data, API, dependency, lockfile, configuration, accepted ADR, business service, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "Contract requires safe structured errors without full objects, commands, reasons, descriptions, credentials, database URLs, or machine-local paths; vectors contain no secret.",
+  "data_lineage_impact": "No data changed; deterministic versioned technical identities and explicit logical repository binding are now required for future derived Ledger indexing.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/report.md",
+  "report_hash": "f478182de792d4a161d00065f0ec995b5f80af4cfc5be1d762070ef34b6cce34",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c1-20260714T181338Z-1d5affb/manifest.json",
+  "manifest_payload_hash": "0537ce065b112ce586325b434bd50593def1d0e0875a664fa439ad264cd839b2",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "ledger_domain_model": "v1",
+    "ledger_repository_contract": "v1",
+    "ledger_core_orm_mapping": "v1",
+    "ledger_core_detail_orm_mapping": "v1",
+    "ledger_reference_orm_mapping": "v1",
+    "ledger_annotation_orm_mapping": "v1",
+    "ledger_mapper_contract": "1.0.0",
+    "changed_file_identity": "changed-file-v1",
+    "changed_symbol_identity": "changed-symbol-v1",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

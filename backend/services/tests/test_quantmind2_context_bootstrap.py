@@ -15,6 +15,8 @@ from tools.quantmind2.validate_context_bootstrap import (
     LEDGER_CORE_DETAIL_ORM_CONTRACT,
     LEDGER_REFERENCE_ORM_CONTRACT,
     LEDGER_ANNOTATION_ORM_CONTRACT,
+    LEDGER_MAPPER_CONTRACT,
+    LEDGER_MAPPER_IDENTITY_VECTORS,
     RESEARCH_DECISION_CONTRACT,
     RESEARCH_DECISION_EXAMPLE,
     RESEARCH_DECISION_SCHEMA,
@@ -23,6 +25,7 @@ from tools.quantmind2.validate_context_bootstrap import (
     load_json,
     validate_bootstrap,
     validate_instance,
+    validate_mapper_identity_vectors,
     sha256_file,
 )
 
@@ -145,10 +148,38 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertFalse((api_root / "repository.py").exists())
         self.assertFalse((api_root / "api.py").exists())
 
-    def test_handoff_names_exact_a2a2c_and_machine_state_uses_legal_parent(self):
+    def test_mapper_contract_vectors_and_implementation_boundary(self):
+        self.assertTrue(LEDGER_MAPPER_CONTRACT.is_file())
+        payload = load_json(LEDGER_MAPPER_IDENTITY_VECTORS)
+        validate_mapper_identity_vectors(payload)
+        vectors = {item["case"]: item for item in payload["vectors"]}
+        self.assertEqual(
+            vectors["changed_file_added"]["expected_id"],
+            vectors["changed_file_same_identity_different_hash"]["expected_id"],
+        )
+        self.assertEqual(
+            vectors["changed_symbol_method"]["expected_id"],
+            vectors["changed_symbol_same_identity_different_types"]["expected_id"],
+        )
+        self.assertNotEqual(
+            vectors["changed_file_added"]["expected_id"],
+            vectors["changed_file_case_preserved"]["expected_id"],
+        )
+        renamed = vectors["changed_file_renamed_previous_path_excluded"]
+        self.assertNotIn(renamed["input"]["previous_path"], renamed["canonical_payload"])
+        root = Path(__file__).resolve().parents[3]
+        persistence = root / "backend/services/api/project_knowledge/persistence"
+        self.assertFalse((persistence / "mappers").exists())
+        source = "\n".join(
+            path.read_text(encoding="utf-8") for path in persistence.glob("*.py")
+        ).lower()
+        self.assertNotIn("to_domain", source)
+        self.assertNotIn("from_domain", source)
+
+    def test_handoff_names_exact_a2a2c2_and_machine_state_uses_legal_parent(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002A2a2c — Ledger Domain-to-ORM Mappers",
+            "QM2-P0-002A2a2c2 — Core Task, Run and Relationship Mappers",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")

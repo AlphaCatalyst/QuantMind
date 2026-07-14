@@ -168,9 +168,24 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A2a2b2-20260714T175052Z-646c4db`.
 
+## Ledger Domain / ORM Mapper contract
+
+- `QM2-P0-002A2a2c1 — Ledger Mapper Identity and Conversion Contract` fixes
+  Mapper contract version 1.0.0, pure conversion boundaries, all eleven object
+  round trips, enum/time/JSON/null/error rules, and deterministic ChangedFile
+  and ChangedSymbol identity vectors.
+- Frozen Domain/ORM `ImplementationRun.repository_root` is interpreted as a
+  logical repository identity. Manifest v1's absolute path is execution context
+  and requires an explicit future Indexer binding; it is not directly copied.
+- This is a documentation and verification contract only. No Mapper Python,
+  Core/Detail/Reference/Annotation mapper, migration, schema/table, database
+  connection, Repository, Session/UoW, Indexer, API, or UI exists.
+- Latest Implementation Run:
+  `QM2-P0-002A2a2c1-20260714T181338Z-1d5affb`.
+
 ## Next task
 
-`QM2-P0-002A2a2c — Ledger Domain-to-ORM Mappers` is the only recommended next
+`QM2-P0-002A2a2c2 — Core Task, Run and Relationship Mappers` is the only recommended next
 task and has not started. Machine-readable next-task fields
 use legal parent `QM2-P0-002` because context schema v1 does not admit the
-fine-grained `A2a2c` identifier.
+fine-grained `A2a2c2` identifier.

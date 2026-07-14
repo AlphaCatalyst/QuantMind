@@ -55,3 +55,9 @@ QM2-P0-002A2a2b2 adds Limitation and RecommendedTask mappings. They use stable
 global IDs, restrictive Run FKs, Domain-enum-derived checks, and no Component
 or future Task FK. No annotation row, schema, or table was created. Mappers,
 migration, deployed schema/tables, Repository, API, and UI remain planned.
+
+QM2-P0-002A2a2c1 adds the Mapper Identity and Conversion Contract plus
+recomputable ChangedFile/ChangedSymbol identity vectors. It fixes pure
+conversion, logical repository identity, value/error/round-trip, and version
+rules for all eleven families. No Mapper module or function exists; Core,
+Detail, Reference, and Annotation mappers all remain planned.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T17:50:52Z",
-  "source_commit": "646c4dbbaa0d179673f3d849e47fd8b29eb45f07",
+  "generated_at": "2026-07-14T18:13:38Z",
+  "source_commit": "1d5affbb3361c60286028e569bb391f6955dc216",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -15,6 +15,8 @@
     {"task_id": "QM2-P0-002A2a2b1", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002A2a2a"], "objective": "Map ComponentReference and ArchitectureDecisionReference using natural composite identities.", "explicit_non_goals": ["No annotation records, mapper, migration, database connection, Repository, Session, UoW, API, UI, or deployment."], "acceptance_summary": "Two reference mappings compile static PostgreSQL DDL without changing Git authority."},
     {"task_id": "QM2-P0-002A2a2b2", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002A2a2b1"], "objective": "Map Limitation and RecommendedTask annotation records.", "explicit_non_goals": ["No domain mapper, migration, production Repository, Session, UoW, API, UI, or deployment."], "acceptance_summary": "Annotation persistence shapes preserve domain and Repository identity."},
     {"task_id": "QM2-P0-002A2a2c", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-002A2a2b2"], "objective": "Map all eleven frozen Ledger domain objects to and from ORM records.", "explicit_non_goals": ["No migration, database connection, production Repository, Session, UoW, API, UI, or deployment."], "acceptance_summary": "Round-trip mapping preserves identities, enums, values, and immutable semantics."},
+    {"task_id": "QM2-P0-002A2a2c1", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002A2a2b2"], "objective": "Freeze Mapper identity, conversion, error, round-trip, and version rules.", "explicit_non_goals": ["No Mapper Python, Repository, ORM change, migration, database, API, UI, or deployment."], "acceptance_summary": "Contract covers eleven families and identity vectors recompute exactly."},
+    {"task_id": "QM2-P0-002A2a2c2", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-002A2a2c1"], "objective": "Implement pure Task, Run, and RunRelationship conversions under contract v1.", "explicit_non_goals": ["No detail/reference/annotation mappers, Repository, Session, UoW, migration, database, API, UI, or deployment."], "acceptance_summary": "Core objects round-trip through real Domain constructors with safe structured errors."},
     {"task_id": "QM2-P0-002", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Index Git implementation runs and expose Project Knowledge APIs.", "explicit_non_goals": ["No web UI or research business domain."], "acceptance_summary": "Git and manifest consistency is queryable."},
     {"task_id": "QM2-P0-003", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Verify TongDaXin Provider capabilities.", "explicit_non_goals": ["No unapproved dependency selection or ingestion."], "acceptance_summary": "Every capability is evidenced or explicitly unavailable."},
     {"task_id": "QM2-P0-004", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-003"], "objective": "Create collection control and immutable Raw Store.", "explicit_non_goals": ["No normalization or snapshot publishing."], "acceptance_summary": "Checkpoint follows committed raw partitions."},

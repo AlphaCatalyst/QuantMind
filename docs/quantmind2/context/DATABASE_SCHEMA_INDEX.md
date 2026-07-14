@@ -85,3 +85,9 @@ record the A1b2 repository identity. All eleven current Ledger target mappings
 now exist in metadata. The `quantmind2` schema and tables were not created, no
 database was connected, and mapper, migration, Repository, Session/UoW, API,
 and UI remain deferred.
+
+QM2-P0-002A2a2c1 changes no ORM metadata or database target. It defines the
+future Mapper contract and technical-ID algorithms only. The current schema
+still has no Mapper/identity-version columns, no deployed `quantmind2` schema,
+no migration, and no database connection. Identity algorithm versions must be
+recorded by a future Indexer/migration contract before durable indexing.

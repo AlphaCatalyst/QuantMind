@@ -14,6 +14,7 @@ import hashlib
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 from typing import Any
 
@@ -36,6 +37,12 @@ LEDGER_REFERENCE_ORM_CONTRACT = (
 )
 LEDGER_ANNOTATION_ORM_CONTRACT = (
     QM2 / "implementation" / "LEDGER_ANNOTATION_ORM_MAPPING_V1.md"
+)
+LEDGER_MAPPER_CONTRACT = (
+    QM2 / "implementation" / "LEDGER_DOMAIN_ORM_MAPPER_CONTRACT_V1.md"
+)
+LEDGER_MAPPER_IDENTITY_VECTORS = (
+    QM2 / "implementation" / "test_vectors" / "ledger_mapper_identity_v1.json"
 )
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
@@ -83,6 +90,50 @@ ACCEPTED_ADR_HASHES = {
 
 class ValidationError(ValueError):
     """Raised when a document violates a local schema or bootstrap invariant."""
+
+
+def validate_mapper_identity_vectors(payload: dict[str, Any]) -> None:
+    """Recompute the documentation-only ChangedFile/Symbol identity vectors."""
+    if payload.get("mapper_contract_version") != "1.0.0":
+        raise ValidationError("unknown Ledger Mapper contract version")
+    vectors = payload.get("vectors")
+    if not isinstance(vectors, list) or not vectors:
+        raise ValidationError("Ledger Mapper identity vectors are missing")
+    for vector in vectors:
+        kind = vector.get("kind")
+        value = vector.get("input", {})
+        if kind == "changed_file":
+            version = "changed-file-v1"
+            prefix = "cf_"
+            fields = (
+                value.get("implementation_run_id"),
+                value.get("path"),
+                value.get("change_type"),
+            )
+        elif kind == "changed_symbol":
+            version = "changed-symbol-v1"
+            prefix = "cs_"
+            fields = (
+                value.get("implementation_run_id"),
+                value.get("file_path"),
+                value.get("qualified_name"),
+            )
+        else:
+            raise ValidationError(f"unsupported Mapper identity vector kind: {kind}")
+        if vector.get("identity_version") != version or not all(
+            isinstance(item, str) for item in fields
+        ):
+            raise ValidationError("invalid Mapper identity vector input/version")
+        canonical = "\n".join(
+            (version, *(unicodedata.normalize("NFC", item) for item in fields))
+        )
+        digest = hashlib.sha256(canonical.encode("utf-8")).hexdigest()
+        if vector.get("canonical_payload") != canonical:
+            raise ValidationError("Mapper identity canonical payload mismatch")
+        if vector.get("expected_sha256") != digest:
+            raise ValidationError("Mapper identity SHA-256 mismatch")
+        if vector.get("expected_id") != prefix + digest:
+            raise ValidationError("Mapper identity ID mismatch")
 
 
 def load_json(path: Path) -> Any:
@@ -600,6 +651,51 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
         raise ValidationError(
             "Ledger annotation ORM mapping contains forbidden runtime database behavior"
         )
+    if not LEDGER_MAPPER_CONTRACT.is_file():
+        raise ValidationError("Ledger Domain/ORM Mapper contract is missing")
+    mapper_contract_text = LEDGER_MAPPER_CONTRACT.read_text(encoding="utf-8")
+    required_mapper_contract_markers = {
+        "ImplementationTask",
+        "ImplementationRun",
+        "RunRelationship",
+        "ChangedFile",
+        "ChangedSymbol",
+        "TestExecution",
+        "ImplementationArtifact",
+        "ComponentReference",
+        "ArchitectureDecisionReference",
+        "Limitation",
+        "RecommendedTask",
+        'mapper_contract_version = "1.0.0"',
+        'changed_file_identity_version = "changed-file-v1"',
+        'changed_symbol_identity_version = "changed-symbol-v1"',
+        "Logical Repository Identity",
+        "Unicode NFC",
+        "naive values",
+        "INVALID_JSON_SHAPE",
+        "UNKNOWN_ENUM",
+        "AMBIGUOUS_ARTIFACT_LOCATION",
+        "QM2-P0-002A2a2c2",
+    }
+    missing_mapper_markers = sorted(
+        marker
+        for marker in required_mapper_contract_markers
+        if marker not in mapper_contract_text
+    )
+    if missing_mapper_markers:
+        raise ValidationError(
+            f"Ledger Mapper contract is missing markers: {missing_mapper_markers}"
+        )
+    if not LEDGER_MAPPER_IDENTITY_VECTORS.is_file():
+        raise ValidationError("Ledger Mapper identity vectors are missing")
+    validate_mapper_identity_vectors(load_json(LEDGER_MAPPER_IDENTITY_VECTORS))
+    mapper_root = LEDGER_ORM_ROOT / "mappers"
+    if mapper_root.exists():
+        raise ValidationError("Ledger Mapper Python implementation exists too early")
+    for path in LEDGER_ORM_ROOT.glob("*.py"):
+        source = path.read_text(encoding="utf-8").lower()
+        if "to_domain" in source or "from_domain" in source:
+            raise ValidationError(f"Ledger Mapper function exists too early: {path}")
     forbidden_project_knowledge_paths = (
         LEDGER_DOMAIN_ROOT.parent / "repository.py",
         LEDGER_DOMAIN_ROOT.parent / "repositories.py",
@@ -635,6 +731,9 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     checks.append("ledger_reference_orm_runtime_boundary")
     checks.append("ledger_annotation_orm_mapping")
     checks.append("ledger_annotation_orm_runtime_boundary")
+    checks.append("ledger_mapper_contract")
+    checks.append("ledger_mapper_identity_vectors")
+    checks.append("ledger_mapper_implementation_absent")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -654,8 +753,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A2a2c — Ledger Domain-to-ORM Mappers" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2c next task")
+    if "QM2-P0-002A2a2c2 — Core Task, Run and Relationship Mappers" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2c2 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-002"]:
         raise ValidationError("machine handoff must use legal non-inflated P0-002 parent task")
     checks.append("handoff_links")

@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0.0",
+  "mapper_contract_version": "1.0.0",
+  "encoding": "UTF-8",
+  "unicode_normalization": "NFC",
+  "separator": "LF",
+  "trailing_separator": false,
+  "case_folding": false,
+  "path_style": "repository-relative POSIX, case-preserving",
+  "vectors": [
+    {
+      "case": "changed_file_added",
+      "kind": "changed_file",
+      "identity_version": "changed-file-v1",
+      "input": {"implementation_run_id": "run-001", "path": "src/alpha.py", "change_type": "added", "before_hash": null, "after_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "previous_path": null},
+      "canonical_payload": "changed-file-v1\nrun-001\nsrc/alpha.py\nadded",
+      "expected_sha256": "5bbc308dad6a6ed0ddf766f1c584d1ff968ed9db42ddeb7f186203663d80e90a",
+      "expected_id": "cf_5bbc308dad6a6ed0ddf766f1c584d1ff968ed9db42ddeb7f186203663d80e90a"
+    },
+    {
+      "case": "changed_file_renamed_previous_path_excluded",
+      "kind": "changed_file",
+      "identity_version": "changed-file-v1",
+      "input": {"implementation_run_id": "run-001", "path": "src/new_name.py", "change_type": "renamed", "before_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "after_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "previous_path": "src/old_name.py"},
+      "canonical_payload": "changed-file-v1\nrun-001\nsrc/new_name.py\nrenamed",
+      "expected_sha256": "2303feb1d38248fe97db2cab87e8b30410179e3175f3b728b5e7756827658cd0",
+      "expected_id": "cf_2303feb1d38248fe97db2cab87e8b30410179e3175f3b728b5e7756827658cd0"
+    },
+    {
+      "case": "changed_file_same_identity_different_hash",
+      "kind": "changed_file",
+      "identity_version": "changed-file-v1",
+      "input": {"implementation_run_id": "run-001", "path": "src/alpha.py", "change_type": "added", "before_hash": null, "after_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "previous_path": null},
+      "canonical_payload": "changed-file-v1\nrun-001\nsrc/alpha.py\nadded",
+      "expected_sha256": "5bbc308dad6a6ed0ddf766f1c584d1ff968ed9db42ddeb7f186203663d80e90a",
+      "expected_id": "cf_5bbc308dad6a6ed0ddf766f1c584d1ff968ed9db42ddeb7f186203663d80e90a"
+    },
+    {
+      "case": "changed_file_unicode_path",
+      "kind": "changed_file",
+      "identity_version": "changed-file-v1",
+      "input": {"implementation_run_id": "run-001", "path": "docs/因子.md", "change_type": "modified", "before_hash": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd", "after_hash": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "previous_path": null},
+      "canonical_payload": "changed-file-v1\nrun-001\ndocs/因子.md\nmodified",
+      "expected_sha256": "8560d427e3f16cf58d0c19af2823de90ecef010eff5e81577beebb33e3303441",
+      "expected_id": "cf_8560d427e3f16cf58d0c19af2823de90ecef010eff5e81577beebb33e3303441"
+    },
+    {
+      "case": "changed_file_case_preserved",
+      "kind": "changed_file",
+      "identity_version": "changed-file-v1",
+      "input": {"implementation_run_id": "run-001", "path": "Src/alpha.py", "change_type": "added", "before_hash": null, "after_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "previous_path": null},
+      "canonical_payload": "changed-file-v1\nrun-001\nSrc/alpha.py\nadded",
+      "expected_sha256": "c7cbe436fbeb11d175a7b9266f4d76367618177ba2cbab8ff7ff8344f80fd1fe",
+      "expected_id": "cf_c7cbe436fbeb11d175a7b9266f4d76367618177ba2cbab8ff7ff8344f80fd1fe"
+    },
+    {
+      "case": "changed_symbol_module",
+      "kind": "changed_symbol",
+      "identity_version": "changed-symbol-v1",
+      "input": {"implementation_run_id": "run-001", "file_path": "src/module.py", "qualified_name": "module", "symbol_type": "module", "change_type": "added"},
+      "canonical_payload": "changed-symbol-v1\nrun-001\nsrc/module.py\nmodule",
+      "expected_sha256": "17f5fdb911e26ee2b5e904456935f9ef3be69d65fb84b19fc522b59171395d5d",
+      "expected_id": "cs_17f5fdb911e26ee2b5e904456935f9ef3be69d65fb84b19fc522b59171395d5d"
+    },
+    {
+      "case": "changed_symbol_method",
+      "kind": "changed_symbol",
+      "identity_version": "changed-symbol-v1",
+      "input": {"implementation_run_id": "run-001", "file_path": "src/service.py", "qualified_name": "Service.run", "symbol_type": "method", "change_type": "modified"},
+      "canonical_payload": "changed-symbol-v1\nrun-001\nsrc/service.py\nService.run",
+      "expected_sha256": "737ecde5e4f9c41c3fb5df1ba9772e418784f1241a8c64e444aa8b4d39f54767",
+      "expected_id": "cs_737ecde5e4f9c41c3fb5df1ba9772e418784f1241a8c64e444aa8b4d39f54767"
+    },
+    {
+      "case": "changed_symbol_unicode_name",
+      "kind": "changed_symbol",
+      "identity_version": "changed-symbol-v1",
+      "input": {"implementation_run_id": "run-001", "file_path": "src/因子.py", "qualified_name": "因子计算.运行", "symbol_type": "method", "change_type": "added"},
+      "canonical_payload": "changed-symbol-v1\nrun-001\nsrc/因子.py\n因子计算.运行",
+      "expected_sha256": "7d163947604e6a55df25d88fd7b3cfbf32db7e4f38d293663ce182f727ca48ef",
+      "expected_id": "cs_7d163947604e6a55df25d88fd7b3cfbf32db7e4f38d293663ce182f727ca48ef"
+    },
+    {
+      "case": "changed_symbol_same_identity_different_types",
+      "kind": "changed_symbol",
+      "identity_version": "changed-symbol-v1",
+      "input": {"implementation_run_id": "run-001", "file_path": "src/service.py", "qualified_name": "Service.run", "symbol_type": "function", "change_type": "deleted"},
+      "canonical_payload": "changed-symbol-v1\nrun-001\nsrc/service.py\nService.run",
+      "expected_sha256": "737ecde5e4f9c41c3fb5df1ba9772e418784f1241a8c64e444aa8b4d39f54767",
+      "expected_id": "cs_737ecde5e4f9c41c3fb5df1ba9772e418784f1241a8c64e444aa8b4d39f54767"
+    }
+  ]
+}

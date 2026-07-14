@@ -11,6 +11,14 @@
   completed committed status alone is insufficient.
 - **Logical repository identity**: portable domain identifier, distinct from
   an environment-specific absolute checkout path in a Manifest.
+- **Execution repository path**: environment-specific checkout path recorded
+  as Manifest/Execution Context evidence; it is not copied into logical
+  repository identity without an explicit trusted binding.
+- **Ledger Mapper Contract**: versioned pure-conversion contract between frozen
+  Domain values and ORM records. It defines identity and round trips but is not
+  a Mapper implementation, Repository, or persistence runtime.
+- **Mapper technical ID**: deterministic versioned SHA-256 identifier for a
+  ChangedFile or ChangedSymbol ORM row whose Domain object has no technical ID.
 - **Ledger Repository Contract**: persistence-independent Protocols defining
   Ledger identity, lookup, append-only history, query, version, transition,
   relationship graph, and atomic-write semantics. It owns no transaction.
