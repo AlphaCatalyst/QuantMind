@@ -47,6 +47,17 @@ QM2-P0-002A2a1 registers three static mappings on the selected API Base:
 These are metadata targets only. Dialect-only compilation verifies the intended
 PostgreSQL DDL shape, but no Engine, Connection, Session, credentials,
 `CREATE SCHEMA`, `CREATE TABLE`, migration, or PostgreSQL server was used.
-Detail tables and domain mappers are deferred to A2a2; deployment remains
+Core detail tables and domain mappers were deferred at A2a1; deployment remains
 deferred to a separate migration task. Git Implementation Runs remain the
 authority.
+
+QM2-P0-002A2a2a additionally registers four static metadata targets:
+
+- `quantmind2.implementation_changed_files`;
+- `quantmind2.implementation_changed_symbols`;
+- `quantmind2.implementation_test_executions`;
+- `quantmind2.implementation_artifacts`.
+
+The same undeployed boundary applies. No schema/table was created, no migration
+was added, and no database was connected. Component/ADR references,
+limitations, recommendations, and all Domain/ORM mappers remain deferred.

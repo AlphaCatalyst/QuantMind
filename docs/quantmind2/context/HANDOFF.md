@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A2a1: `6a624a1dbaa8ba02073f3a5fc5b41805fc7481f0`
+- Base before QM2-P0-002A2a2a: `53efb7436b059acb93a23fdce9edb34014fd18ef`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A2a1: no
+- Dirty before QM2-P0-002A2a2a: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A2a1.
+- It remained read-only and clean during QM2-P0-002A2a2a.
 
 ## Current position
 
@@ -27,9 +27,9 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A2a1`, completed as a static core ORM mapping
+- Current task: `QM2-P0-002A2a2a`, completed as a static core Run-detail ORM mapping
   increment.
-- Latest run: the immutable A2a1 run under
+- Latest run: `QM2-P0-002A2a2a-20260714T164637Z-53efb74` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -44,13 +44,14 @@
   stable history queries, and atomic-batch contract tests now exist.
 - `InMemoryLedgerRepository` is a test double only; it is not production
   persistence or an implementation fact source.
-- API-Base static ORM records now map only Task, Run, and RunRelationship to
-  three explicit `quantmind2` table shapes. PostgreSQL DDL compiles without a
-  database connection.
-- Detail ORM tables, domain mappers, PostgreSQL Repository, actual tables and
+- API-Base static ORM records now map Task, Run, RunRelationship, ChangedFile,
+  ChangedSymbol, TestExecution, and ImplementationArtifact to seven explicit
+  `quantmind2` table shapes. PostgreSQL DDL compiles without a database connection.
+- Component/ADR/Limitation/RecommendedTask ORM records, domain mappers,
+  PostgreSQL Repository, actual tables and
   schema, migration, database transaction code, Manifest Parser/Indexer, Git
   consistency service, API, and UI do not exist.
-- Recommended next task: `QM2-P0-002A2a2 — Ledger Detail ORM Mapping and Domain Mappers`;
+- Recommended next task: `QM2-P0-002A2a2b — Ledger Reference and Annotation ORM Mapping`;
   it has not started. Machine-readable task lists use parent
   `QM2-P0-002` due to the current schema pattern.
 
@@ -65,12 +66,12 @@
 - A first-class Manifest field for non-correction relationships between runs.
 - Concrete actor identity and permission policy for ResearchDecision.
 - Persistent idempotency-key and semantic-duplicate policy.
-- Exact Manifest v1 mapping for general Run relationships, logical repository
-  identity, and the richer domain enums.
+- Exact Manifest v1 mapping for reference/annotation records, general Run
+  relationships, logical repository identity, and the richer domain enums.
 - PostgreSQL realization of Repository uniqueness, expected versions, DAG
   checks, and atomic batch behavior.
 - SQLAlchemy 2.0.25 pinned-runtime DDL compilation and real PostgreSQL behavior;
-  A2a1 static verification used an existing SQLAlchemy 2.0.51 environment.
+  A2a1/A2a2a static verification used an existing SQLAlchemy 2.0.51 environment.
 
 ## Constraints that must not be broken
 

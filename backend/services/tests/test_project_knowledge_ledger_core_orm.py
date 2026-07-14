@@ -52,6 +52,12 @@ CORE_TABLE_KEYS = {
     "quantmind2.implementation_runs",
     "quantmind2.implementation_run_relationships",
 }
+AUTHORIZED_DETAIL_TABLE_KEYS = {
+    "quantmind2.implementation_changed_files",
+    "quantmind2.implementation_changed_symbols",
+    "quantmind2.implementation_test_executions",
+    "quantmind2.implementation_artifacts",
+}
 
 
 def constraints(table, kind):  # noqa: ANN001
@@ -82,13 +88,13 @@ class LedgerCoreOrmImportAndBaseTests(unittest.TestCase):
             self.assertIs(model.metadata, Base.metadata)
             self.assertIn(model.__table__.key, Base.metadata.tables)
 
-    def test_import_registers_exactly_three_quantmind2_tables(self):
+    def test_import_registers_all_three_core_quantmind2_tables(self):
         actual = {key for key, table in Base.metadata.tables.items() if table.schema == "quantmind2"}
-        self.assertEqual(actual, CORE_TABLE_KEYS)
+        self.assertTrue(CORE_TABLE_KEYS.issubset(actual))
 
-    def test_no_detail_table_is_registered(self):
-        forbidden = ("changed_files", "changed_symbols", "test_executions", "artifacts")
-        self.assertFalse(any(name in key for key in CORE_TABLE_KEYS for name in forbidden))
+    def test_only_authorized_core_and_detail_tables_are_registered(self):
+        actual = {key for key, table in Base.metadata.tables.items() if table.schema == "quantmind2"}
+        self.assertEqual(actual, CORE_TABLE_KEYS | AUTHORIZED_DETAIL_TABLE_KEYS)
 
     def test_module_has_no_engine_session_or_runtime_ddl_calls(self):
         tree = ast.parse(inspect.getsource(orm_models))

@@ -12,6 +12,7 @@ from tools.quantmind2.validate_context_bootstrap import (
     PERSISTENCE_AUDIT_EVIDENCE_PATHS,
     PERSISTENCE_REALITY_AUDIT,
     LEDGER_CORE_ORM_CONTRACT,
+    LEDGER_CORE_DETAIL_ORM_CONTRACT,
     RESEARCH_DECISION_CONTRACT,
     RESEARCH_DECISION_EXAMPLE,
     RESEARCH_DECISION_SCHEMA,
@@ -120,9 +121,10 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         orm_root = api_root / "persistence"
         self.assertEqual(
             {path.name for path in orm_root.glob("*.py")},
-            {"__init__.py", "orm_models.py", "orm_types.py"},
+            {"__init__.py", "orm_models.py", "orm_detail_models.py", "orm_types.py"},
         )
         self.assertTrue(LEDGER_CORE_ORM_CONTRACT.is_file())
+        self.assertTrue(LEDGER_CORE_DETAIL_ORM_CONTRACT.is_file())
         domain_root = root / "backend/services/engine/project_knowledge/domain"
         self.assertTrue(domain_root.is_dir())
         self.assertTrue((domain_root / "repositories.py").is_file())
@@ -132,10 +134,10 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertFalse((api_root / "repository.py").exists())
         self.assertFalse((api_root / "api.py").exists())
 
-    def test_handoff_names_exact_a2a2_and_machine_state_uses_legal_parent(self):
+    def test_handoff_names_exact_a2a2b_and_machine_state_uses_legal_parent(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002A2a2 — Ledger Detail ORM Mapping and Domain Mappers",
+            "QM2-P0-002A2a2b — Ledger Reference and Annotation ORM Mapping",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")

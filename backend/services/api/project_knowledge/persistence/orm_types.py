@@ -9,9 +9,13 @@ from backend.services.engine.project_knowledge.domain.enums import (
     CanonicalStatus,
     CompletionLevel,
     ConsistencyStatus,
+    FileChangeType,
     ImplementationRunStatus,
     ImplementationTaskStatus,
     RunRelationshipType,
+    SymbolChangeType,
+    SymbolType,
+    TestExecutionStatus,
     VerificationLevel,
 )
 
@@ -40,4 +44,7 @@ VERIFICATION_LEVEL_VALUES = enum_values(VerificationLevel)
 CONSISTENCY_STATUS_VALUES = enum_values(ConsistencyStatus)
 CANONICAL_STATUS_VALUES = enum_values(CanonicalStatus)
 RUN_RELATIONSHIP_TYPE_VALUES = enum_values(RunRelationshipType)
-
+FILE_CHANGE_TYPE_VALUES = enum_values(FileChangeType)
+SYMBOL_TYPE_VALUES = enum_values(SymbolType)
+SYMBOL_CHANGE_TYPE_VALUES = enum_values(SymbolChangeType)
+TEST_EXECUTION_STATUS_VALUES = enum_values(TestExecutionStatus)

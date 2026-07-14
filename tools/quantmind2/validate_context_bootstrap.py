@@ -28,6 +28,9 @@ PERSISTENCE_REALITY_AUDIT = QM2 / "implementation" / "LEDGER_PERSISTENCE_REALITY
 LEDGER_DOMAIN_CONTRACT = QM2 / "implementation" / "LEDGER_DOMAIN_MODEL_V1.md"
 LEDGER_REPOSITORY_CONTRACT = QM2 / "implementation" / "LEDGER_REPOSITORY_CONTRACT_V1.md"
 LEDGER_CORE_ORM_CONTRACT = QM2 / "implementation" / "LEDGER_CORE_ORM_MAPPING_V1.md"
+LEDGER_CORE_DETAIL_ORM_CONTRACT = (
+    QM2 / "implementation" / "LEDGER_CORE_DETAIL_ORM_MAPPING_V1.md"
+)
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -399,7 +402,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
             lowered = source.lower()
             if "sqlalchemy" in lowered or "fastapi" in lowered:
                 raise ValidationError(f"Ledger contract has forbidden framework import: {path}")
-    required_orm_files = {"__init__.py", "orm_models.py", "orm_types.py"}
+    required_orm_files = {
+        "__init__.py",
+        "orm_models.py",
+        "orm_detail_models.py",
+        "orm_types.py",
+    }
     if not LEDGER_CORE_ORM_CONTRACT.is_file():
         raise ValidationError("Ledger core ORM contract is missing")
     orm_contract_text = LEDGER_CORE_ORM_CONTRACT.read_text(encoding="utf-8")
@@ -421,7 +429,7 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not LEDGER_ORM_ROOT.is_dir() or {
         path.name for path in LEDGER_ORM_ROOT.glob("*.py")
     } != required_orm_files:
-        raise ValidationError("Ledger core ORM package is incomplete or expanded beyond A2a1")
+        raise ValidationError("Ledger ORM package is incomplete or expanded beyond A2a2a")
     orm_source = (LEDGER_ORM_ROOT / "orm_models.py").read_text(encoding="utf-8")
     required_orm_source_markers = {
         "from backend.services.api.models.base import Base",
@@ -448,6 +456,49 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     )
     if any(marker in orm_source for marker in forbidden_runtime_markers):
         raise ValidationError("Ledger core ORM mapping contains forbidden runtime database behavior")
+    if not LEDGER_CORE_DETAIL_ORM_CONTRACT.is_file():
+        raise ValidationError("Ledger core detail ORM contract is missing")
+    detail_contract_text = LEDGER_CORE_DETAIL_ORM_CONTRACT.read_text(encoding="utf-8")
+    required_detail_contract_markers = {
+        "ChangedFile Mapping",
+        "ChangedSymbol Mapping",
+        "TestExecution Mapping",
+        "ImplementationArtifact Mapping",
+        "Deferred Reference Tables",
+        "QM2-P0-002A2a2b",
+    }
+    missing_detail_contract_markers = sorted(
+        marker
+        for marker in required_detail_contract_markers
+        if marker not in detail_contract_text
+    )
+    if missing_detail_contract_markers:
+        raise ValidationError(
+            "Ledger core detail ORM contract is missing markers: "
+            f"{missing_detail_contract_markers}"
+        )
+    detail_orm_source = (LEDGER_ORM_ROOT / "orm_detail_models.py").read_text(
+        encoding="utf-8"
+    )
+    required_detail_source_markers = {
+        "from backend.services.api.models.base import Base",
+        'CHANGED_FILE_TABLE_NAME = "implementation_changed_files"',
+        'CHANGED_SYMBOL_TABLE_NAME = "implementation_changed_symbols"',
+        'TEST_EXECUTION_TABLE_NAME = "implementation_test_executions"',
+        'ARTIFACT_TABLE_NAME = "implementation_artifacts"',
+        'ondelete="RESTRICT"',
+    }
+    missing_detail_source = sorted(
+        marker for marker in required_detail_source_markers if marker not in detail_orm_source
+    )
+    if missing_detail_source:
+        raise ValidationError(
+            f"Ledger core detail ORM mapping is missing markers: {missing_detail_source}"
+        )
+    if any(marker in detail_orm_source for marker in forbidden_runtime_markers):
+        raise ValidationError(
+            "Ledger core detail ORM mapping contains forbidden runtime database behavior"
+        )
     forbidden_project_knowledge_paths = (
         LEDGER_DOMAIN_ROOT.parent / "repository.py",
         LEDGER_DOMAIN_ROOT.parent / "repositories.py",
@@ -477,6 +528,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     checks.append("ledger_in_memory_test_double_boundary")
     checks.append("ledger_core_orm_mapping")
     checks.append("ledger_core_orm_runtime_boundary")
+    checks.append("ledger_core_detail_orm_mapping")
+    checks.append("ledger_core_detail_orm_runtime_boundary")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -496,8 +549,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A2a2 — Ledger Detail ORM Mapping and Domain Mappers" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2 next task")
+    if "QM2-P0-002A2a2b — Ledger Reference and Annotation ORM Mapping" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2b next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-002"]:
         raise ValidationError("machine handoff must use legal non-inflated P0-002 parent task")
     checks.append("handoff_links")

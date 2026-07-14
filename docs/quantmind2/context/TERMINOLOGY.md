@@ -24,6 +24,10 @@
   ImplementationTask, ImplementationRun, and RunRelationship. It registers
   schema-qualified metadata and is not a migration, deployed table, domain
   mapper, Repository, Session, or transaction implementation.
+- **Core Run Detail ORM Mapping**: API-Base SQLAlchemy persistence shape for
+  ChangedFile, ChangedSymbol, TestExecution, and ImplementationArtifact. It
+  preserves A1b2 natural keys and selected database checks but is not a Mapper,
+  migration, deployed table, append-only enforcement, or Repository.
 
 - **Factor Definition**: stable economic identity and family of a factor.
 - **Factor Template**: parameterized Canonical DSL AST.
