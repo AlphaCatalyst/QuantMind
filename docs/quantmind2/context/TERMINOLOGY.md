@@ -22,6 +22,10 @@
 - **Task Mapper**: pure explicit conversion between ImplementationTask and a
   newly constructed ImplementationTaskRecord. It validates ORM-only version
   but is not an existing-record update, Repository, Session, or transaction.
+- **Run Mapper**: pure explicit conversion between ImplementationRun and a
+  newly constructed ImplementationRunRecord. It preserves an already supplied
+  logical repository identity, delegates state/canonical validity to Domain,
+  validates ORM-only version, and performs no Manifest binding or transition.
 - **Mapper Contract Version**: conversion-semantics version used by explicit
   mappers; current value is 1.0.0 and is not yet persisted in ORM tables.
 - **Ledger Repository Contract**: persistence-independent Protocols defining

@@ -183,7 +183,7 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A2a2c1-20260714T181338Z-1d5affb`.
 
-## Ledger Mapper foundation and Task mapper
+## Ledger Task and Run mappers
 
 - `QM2-P0-002A2a2c2a — Mapper Foundation and ImplementationTask Mapper`
   implements safe transport-neutral Mapper errors, contract version 1.0.0,
@@ -193,15 +193,20 @@ No business-domain implementation was introduced by either task.
   versions are validated but excluded from Domain. Existing-record updates,
   replay, conflict, optimistic concurrency, and transactions remain Repository
   responsibilities.
-- Only Task mapping exists. Run, Relationship, Detail, Reference, Annotation,
-  technical-ID and artifact-location mappers remain unimplemented. No migration,
+- `QM2-P0-002A2a2c2b — ImplementationRun Domain-to-ORM Mapper` adds pure
+  bidirectional Run conversion, exact five-Enum conversion, aware UTC times,
+  nullable commit/hash fields, logical repository identity preservation, and
+  ORM-only version handling. Domain construction remains state authority.
+- Task and Run mapping exist. Relationship, Detail, Reference, Annotation,
+  technical-ID, artifact-location, Manifest binding and repository-identity
+  resolver remain unimplemented. No migration,
   schema/table, database connection, Repository, Session/UoW, Indexer, API, or UI exists.
 - Latest Implementation Run:
-  `QM2-P0-002A2a2c2a-20260715T040847Z-d128759`.
+  `QM2-P0-002A2a2c2b-20260715T043224Z-5673010`.
 
 ## Next task
 
-`QM2-P0-002A2a2c2b — ImplementationRun Mapper` is the only recommended next
+`QM2-P0-002A2a2c2c — RunRelationship Mapper` is the only recommended next
 task and has not started. Machine-readable next-task fields
 use legal parent `QM2-P0-002` because context schema v1 does not admit the
-fine-grained `A2a2c2b` identifier.
+fine-grained `A2a2c2c` identifier.

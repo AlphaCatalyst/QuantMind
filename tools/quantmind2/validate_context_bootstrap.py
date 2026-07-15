@@ -45,6 +45,7 @@ LEDGER_MAPPER_IDENTITY_VECTORS = (
     QM2 / "implementation" / "test_vectors" / "ledger_mapper_identity_v1.json"
 )
 LEDGER_TASK_MAPPER_CONTRACT = QM2 / "implementation" / "LEDGER_TASK_MAPPER_V1.md"
+LEDGER_RUN_MAPPER_CONTRACT = QM2 / "implementation" / "LEDGER_RUN_MAPPER_V1.md"
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -691,11 +692,11 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
         raise ValidationError("Ledger Mapper identity vectors are missing")
     validate_mapper_identity_vectors(load_json(LEDGER_MAPPER_IDENTITY_VECTORS))
     mapper_root = LEDGER_ORM_ROOT / "mappers"
-    required_mapper_files = {"__init__.py", "errors.py", "common.py", "task.py"}
+    required_mapper_files = {"__init__.py", "errors.py", "common.py", "task.py", "run.py"}
     if not mapper_root.is_dir() or {
         path.name for path in mapper_root.glob("*.py")
     } != required_mapper_files:
-        raise ValidationError("Ledger Mapper package is incomplete or expanded beyond A2a2c2a")
+        raise ValidationError("Ledger Mapper package is incomplete or expanded beyond A2a2c2b")
     mapper_source = "\n".join(
         path.read_text(encoding="utf-8") for path in mapper_root.glob("*.py")
     )
@@ -711,6 +712,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
         "def json_array_to_string_tuple",
         "def implementation_task_to_record",
         "def implementation_task_from_record",
+        "def implementation_run_to_record",
+        "def implementation_run_from_record",
     }
     missing_task_mapper_markers = sorted(
         marker for marker in required_task_mapper_markers if marker not in mapper_source
@@ -720,8 +723,6 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
             f"Ledger Task Mapper is missing markers: {missing_task_mapper_markers}"
         )
     forbidden_mapper_markers = {
-        "implementation_run_to_record",
-        "implementation_run_from_record",
         "run_relationship_to_record",
         "run_relationship_from_record",
         "changed_file_to_record",
@@ -743,7 +744,7 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     )
     if unexpected_mapper_markers:
         raise ValidationError(
-            f"Ledger Mapper package expanded beyond Task scope: {unexpected_mapper_markers}"
+            f"Ledger Mapper package expanded beyond Task and Run scope: {unexpected_mapper_markers}"
         )
     if not LEDGER_TASK_MAPPER_CONTRACT.is_file():
         raise ValidationError("Ledger Task Mapper contract is missing")
@@ -769,6 +770,30 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if missing_task_contract_markers:
         raise ValidationError(
             f"Ledger Task Mapper contract is missing markers: {missing_task_contract_markers}"
+        )
+    if not LEDGER_RUN_MAPPER_CONTRACT.is_file():
+        raise ValidationError("Ledger Run Mapper contract is missing")
+    run_mapper_contract = LEDGER_RUN_MAPPER_CONTRACT.read_text(encoding="utf-8")
+    required_run_contract_markers = {
+        "Repository Identity Semantics",
+        "Domain-to-ORM Mapping",
+        "ORM-to-Domain Mapping",
+        "Enum Conversion",
+        "Commit and Hash Fields",
+        "Datetime Conversion",
+        "Version Field Boundary",
+        "Canonical and Consistency Boundary",
+        "Deferred Manifest Binding",
+        "Deferred Relationship Mapper",
+        "QM2-P0-002A2a2c2c",
+    }
+    missing_run_contract_markers = sorted(
+        marker for marker in required_run_contract_markers
+        if marker not in run_mapper_contract
+    )
+    if missing_run_contract_markers:
+        raise ValidationError(
+            f"Ledger Run Mapper contract is missing markers: {missing_run_contract_markers}"
         )
     forbidden_project_knowledge_paths = (
         LEDGER_DOMAIN_ROOT.parent / "repository.py",
@@ -809,6 +834,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     checks.append("ledger_mapper_identity_vectors")
     checks.append("ledger_task_mapper_foundation")
     checks.append("ledger_task_mapper_scope_boundary")
+    checks.append("ledger_run_mapper")
+    checks.append("ledger_run_mapper_scope_boundary")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -828,8 +855,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A2a2c2b — ImplementationRun Mapper" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2c2b next task")
+    if "QM2-P0-002A2a2c2c — RunRelationship Mapper" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A2a2c2c next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-002"]:
         raise ValidationError("machine handoff must use legal non-inflated P0-002 parent task")
     checks.append("handoff_links")

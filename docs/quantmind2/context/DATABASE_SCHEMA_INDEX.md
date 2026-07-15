@@ -97,3 +97,9 @@ conversion initializes the already-defined ORM `version` column to 1;
 record-to-Domain validates a positive version and excludes it from Domain.
 Updates and expected-version behavior remain future Repository work. No schema,
 table, migration, Session, database connection, or DDL execution was added.
+
+QM2-P0-002A2a2c2b likewise changes no metadata or database target. Run
+Domain-to-record conversion creates a new version-1 ORM instance, while
+record-to-Domain conversion reads only loaded state and invokes the frozen
+Domain constructor. No Manifest was parsed, no repository identity was
+resolved, no schema/table was created, and no database was connected.

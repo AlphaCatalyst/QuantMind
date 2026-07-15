@@ -18,6 +18,7 @@ from tools.quantmind2.validate_context_bootstrap import (
     LEDGER_MAPPER_CONTRACT,
     LEDGER_MAPPER_IDENTITY_VECTORS,
     LEDGER_TASK_MAPPER_CONTRACT,
+    LEDGER_RUN_MAPPER_CONTRACT,
     RESEARCH_DECISION_CONTRACT,
     RESEARCH_DECISION_EXAMPLE,
     RESEARCH_DECISION_SCHEMA,
@@ -149,7 +150,7 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertFalse((api_root / "repository.py").exists())
         self.assertFalse((api_root / "api.py").exists())
 
-    def test_mapper_contract_vectors_and_task_only_implementation_boundary(self):
+    def test_mapper_contract_vectors_and_task_run_only_implementation_boundary(self):
         self.assertTrue(LEDGER_MAPPER_CONTRACT.is_file())
         payload = load_json(LEDGER_MAPPER_IDENTITY_VECTORS)
         validate_mapper_identity_vectors(payload)
@@ -173,21 +174,23 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         mapper_root = persistence / "mappers"
         self.assertEqual(
             {path.name for path in mapper_root.glob("*.py")},
-            {"__init__.py", "errors.py", "common.py", "task.py"},
+            {"__init__.py", "errors.py", "common.py", "task.py", "run.py"},
         )
         self.assertTrue(LEDGER_TASK_MAPPER_CONTRACT.is_file())
+        self.assertTrue(LEDGER_RUN_MAPPER_CONTRACT.is_file())
         source = "\n".join(
             path.read_text(encoding="utf-8") for path in mapper_root.glob("*.py")
         )
         self.assertIn("implementation_task_to_record", source)
         self.assertIn("implementation_task_from_record", source)
-        self.assertNotIn("implementation_run_to_record", source)
+        self.assertIn("implementation_run_to_record", source)
+        self.assertIn("implementation_run_from_record", source)
         self.assertNotIn("run_relationship_to_record", source)
 
-    def test_handoff_names_exact_a2a2c2b_and_machine_state_uses_legal_parent(self):
+    def test_handoff_names_exact_a2a2c2c_and_machine_state_uses_legal_parent(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002A2a2c2b — ImplementationRun Mapper",
+            "QM2-P0-002A2a2c2c — RunRelationship Mapper",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")

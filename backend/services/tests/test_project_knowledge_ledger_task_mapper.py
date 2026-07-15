@@ -26,7 +26,7 @@ from backend.services.api.project_knowledge.persistence.mappers import (
     json_array_to_string_tuple,
     string_tuple_to_json_array,
 )
-from backend.services.api.project_knowledge.persistence.mappers import common, errors, task
+from backend.services.api.project_knowledge.persistence.mappers import common, errors, run, task
 from backend.services.api.project_knowledge.persistence.orm_models import (
     ImplementationTaskRecord,
 )
@@ -359,15 +359,13 @@ class MapperScopeAndPurityTests(unittest.TestCase):
         root = Path(common.__file__).resolve().parent
         self.assertEqual(
             {path.name for path in root.glob("*.py")},
-            {"__init__.py", "errors.py", "common.py", "task.py"},
+            {"__init__.py", "errors.py", "common.py", "task.py", "run.py"},
         )
 
     def test_no_other_mapper_symbols_exist(self):
         root = Path(common.__file__).resolve().parent
         source = "\n".join(path.read_text(encoding="utf-8") for path in root.glob("*.py"))
         forbidden = (
-            "implementation_run_to_record",
-            "implementation_run_from_record",
             "run_relationship_to_record",
             "run_relationship_from_record",
             "changed_file_to_record",
@@ -382,7 +380,7 @@ class MapperScopeAndPurityTests(unittest.TestCase):
             self.assertNotIn(marker, source)
 
     def test_mapper_source_has_no_io_runtime_or_database_behavior(self):
-        modules = (common, errors, task)
+        modules = (common, errors, task, run)
         forbidden_imports = {
             "asyncio",
             "git",

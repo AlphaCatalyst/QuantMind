@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T04:08:47Z",
-  "source_commit": "d128759188d4e255c6d58093bf59da78f722fe28",
+  "generated_at": "2026-07-15T04:32:24Z",
+  "source_commit": "56730109b71aedadd9e2975fcb0633b95b222860",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -64,9 +64,9 @@
       "component_id": "quantmind2.project_knowledge", "name": "Project Knowledge", "status": "partial",
       "responsibility": "Provide repository context, ADRs, implementation contracts, validation, and later API/web indexes.",
       "source_path": "backend/services/engine/project_knowledge/domain", "target_path": "backend/services/api/project_knowledge",
-      "key_symbols": ["ImplementationTask", "ImplementationRun", "LedgerRepository", "TaskQuery", "RunQuery", "HistoryQuery", "InMemoryLedgerRepository", "validate_direct_relationship", "ImplementationTaskRecord", "ImplementationRunRecord", "RunRelationshipRecord", "ChangedFileRecord", "ChangedSymbolRecord", "TestExecutionRecord", "ImplementationArtifactRecord", "ComponentReferenceRecord", "ArchitectureDecisionReferenceRecord", "LimitationRecord", "RecommendedTaskRecord", "LedgerMapperError", "implementation_task_to_record", "implementation_task_from_record"], "dependencies": [],
-      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007", "ADR-0009"], "current_limitations": ["Domain/Repository contracts, all eleven static ORM mappings, Mapper Contract v1, safe common conversion utilities, and Task bidirectional mapping exist, but the other ten object mappers, SQLAlchemy Repository, deployed PostgreSQL schema/tables, migration, Manifest Indexer, Git consistency service, API, and web UI do not.", "Manifest v1 stores an execution absolute repository path while Domain/ORM require logical repository identity; explicit future Indexer binding and a future ADR/Manifest v2 decision remain necessary.", "ImplementationArtifact has no explicit location-kind field; current Domain prefix semantics remain authoritative.", "Task mapping creates new version-1 records only; existing-record update and optimistic concurrency remain Repository work.", "No schema/table was created, no data was written, and no database was connected.", "Context schema v1 cannot represent exact next task QM2-P0-002A2a2c2b and retains parent QM2-P0-002 in machine-readable task lists."],
-      "last_verified_commit": "d128759188d4e255c6d58093bf59da78f722fe28", "evidence_level": "code_confirmed"
+      "key_symbols": ["ImplementationTask", "ImplementationRun", "LedgerRepository", "TaskQuery", "RunQuery", "HistoryQuery", "InMemoryLedgerRepository", "validate_direct_relationship", "ImplementationTaskRecord", "ImplementationRunRecord", "RunRelationshipRecord", "ChangedFileRecord", "ChangedSymbolRecord", "TestExecutionRecord", "ImplementationArtifactRecord", "ComponentReferenceRecord", "ArchitectureDecisionReferenceRecord", "LimitationRecord", "RecommendedTaskRecord", "LedgerMapperError", "implementation_task_to_record", "implementation_task_from_record", "implementation_run_to_record", "implementation_run_from_record"], "dependencies": [],
+      "architecture_decision_refs": ["ADR-0001", "ADR-0005", "ADR-0007", "ADR-0009"], "current_limitations": ["Domain/Repository contracts, all eleven static ORM mappings, Mapper Contract v1, safe common conversion utilities, and Task/Run bidirectional mapping exist, but the other nine object mappers, SQLAlchemy Repository, deployed PostgreSQL schema/tables, migration, Manifest Indexer, Git consistency service, API, and web UI do not.", "Manifest v1 stores an execution absolute repository path while Domain/ORM require logical repository identity; explicit future Indexer binding and a future ADR/Manifest v2 decision remain necessary.", "ImplementationArtifact has no explicit location-kind field; current Domain prefix semantics remain authoritative.", "Task and Run mapping create new version-1 records only; existing-record update and optimistic concurrency remain Repository work.", "No schema/table was created, no data was written, and no database was connected.", "Context schema v1 cannot represent exact next task QM2-P0-002A2a2c2c and retains parent QM2-P0-002 in machine-readable task lists."],
+      "last_verified_commit": "56730109b71aedadd9e2975fcb0633b95b222860", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.research_skill", "name": "Research Skill", "status": "planned",

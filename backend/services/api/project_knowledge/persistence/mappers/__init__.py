@@ -1,4 +1,4 @@
-"""Explicitly scoped Ledger Mapper foundation and Task conversion."""
+"""Explicitly scoped Ledger Mapper foundation, Task, and Run conversion."""
 
 from .common import (
     MAPPER_CONTRACT_VERSION,
@@ -17,6 +17,7 @@ from .errors import (
     RecordToDomainError,
     UnknownEnumValueError,
 )
+from .run import implementation_run_from_record, implementation_run_to_record
 from .task import implementation_task_from_record, implementation_task_to_record
 
 __all__ = (
@@ -33,6 +34,8 @@ __all__ = (
     "enum_to_storage",
     "implementation_task_from_record",
     "implementation_task_to_record",
+    "implementation_run_from_record",
+    "implementation_run_to_record",
     "json_array_to_string_tuple",
     "string_tuple_to_json_array",
 )

@@ -62,8 +62,11 @@ conversion, logical repository identity, value/error/round-trip, and version
 rules for all eleven families. No Mapper module or function exists; Core,
 Detail, Reference, and Annotation mappers all remain planned.
 
-QM2-P0-002A2a2c2a implements the API persistence Mapper foundation and only
-ImplementationTask bidirectional conversion. Common errors and Enum/datetime/
-JSON conversion utilities are reusable, but Run, Relationship, Detail,
-Reference, Annotation, technical-ID, Repository, migration, database and
-Indexer layers remain unimplemented.
+QM2-P0-002A2a2c2a implements the API persistence Mapper foundation and
+ImplementationTask bidirectional conversion. QM2-P0-002A2a2c2b adds
+ImplementationRun bidirectional conversion with explicit logical repository
+identity, five exact Enums, UTC-aware time, nullable commit/hash fields, Domain
+state validation, and ORM-only version handling. Relationship, Detail,
+Reference, Annotation, technical-ID, Manifest binding, repository identity
+resolution, Repository, migration, database and Indexer layers remain
+unimplemented.
