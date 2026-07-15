@@ -1,0 +1,191 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A2b-20260715T060812Z-7c83e36",
+  "task_id": "QM2-P0-002A2b",
+  "parent_task_id": "QM2-P0-002A2",
+  "title": "Versioned Ledger Migration and Isolated PostgreSQL Verification",
+  "objective": "Create the formal versioned Ledger SQL migration mechanism, realize the frozen eleven-table ORM shape, integrate fresh install, and verify up, parity, constraints, rollback, reapply, and cleanup in isolated PostgreSQL.",
+  "scope": [
+    "Explicit versioned PostgreSQL SQL, manifest, exact-byte checksums, migration history, ordered runner, transactions, advisory lock, guarded down, and fresh-install invocation.",
+    "Database-free contract tests plus disposable PostgreSQL 15 catalog parity, valid/invalid data, idempotency, checksum drift, rollback atomicity, reapply, and cleanup.",
+    "Migration contract, bounded Project Memory and context-schema updates, full relevant regression, immutable Implementation Run, and one local commit."
+  ],
+  "explicit_non_goals": [
+    "No PostgreSQL Repository, Repository adapter, business Session, Unit of Work, Manifest Parser, Indexer, identity resolver, Git consistency service, API, or UI.",
+    "No production database operation, broad privilege policy, new dependency, lockfile, accepted ADR, runtime configuration, Factor Lab, TDX, Dataset Snapshot, Factor DSL, Optimization, Validation, Registry, LightGBM, or Qlib change.",
+    "No push, amend, rebase, reset, stash, clean, or secret output."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "7c83e36e5e7088a2f4c6ebdc570364a8d437a5cf",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "b97f641124f7148cc21d6948ff921862f15f58b32c9587bd3a79cbcf3ac23f62",
+  "git_diff_hash": "b97f641124f7148cc21d6948ff921862f15f58b32c9587bd3a79cbcf3ac23f62",
+  "started_at": "2026-07-15T06:08:12Z",
+  "completed_at": "2026-07-15T06:19:37Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "integration",
+  "changed_files": [
+    "backend/services/tests/test_project_knowledge_ledger_domain.py",
+    "backend/services/tests/test_project_knowledge_ledger_migration_contract.py",
+    "backend/services/tests/test_project_knowledge_ledger_postgres_integration.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "data/migrations/quantmind2/0001_implementation_ledger.down.sql",
+    "data/migrations/quantmind2/0001_implementation_ledger.up.sql",
+    "data/migrations/quantmind2/README.md",
+    "data/migrations/quantmind2/manifest.json",
+    "deploy/deploy.sh",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_MIGRATION_AND_POSTGRESQL_V1.md",
+    "docs/quantmind2/implementation/README.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/report.md",
+    "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/implementation_manifest_v1.schema.json",
+    "tools/quantmind2/ledger_migrations.py",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "backend/services/tests/test_project_knowledge_ledger_migration_contract.py",
+    "backend/services/tests/test_project_knowledge_ledger_postgres_integration.py",
+    "data/migrations/quantmind2/0001_implementation_ledger.down.sql",
+    "data/migrations/quantmind2/0001_implementation_ledger.up.sql",
+    "data/migrations/quantmind2/README.md",
+    "data/migrations/quantmind2/manifest.json",
+    "docs/quantmind2/implementation/LEDGER_MIGRATION_AND_POSTGRESQL_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/report.md",
+    "tools/quantmind2/ledger_migrations.py"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "tools.quantmind2.ledger_migrations.LEDGER_MIGRATION_RUNNER_VERSION",
+    "tools.quantmind2.ledger_migrations.load_manifest",
+    "tools.quantmind2.ledger_migrations.exact_sha256",
+    "tools.quantmind2.ledger_migrations.run_psql",
+    "tools.quantmind2.ledger_migrations.applied_rows",
+    "tools.quantmind2.ledger_migrations.status",
+    "tools.quantmind2.ledger_migrations.up",
+    "tools.quantmind2.ledger_migrations.down",
+    "tools.quantmind2.ledger_migrations.main",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap",
+    "deploy.step10_init_database"
+  ],
+  "database_migrations": ["quantmind2/0001_implementation_ledger"],
+  "api_endpoints": [],
+  "schemas_changed": [
+    "data/migrations/quantmind2/manifest.json",
+    "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/implementation_manifest_v1.schema.json"
+  ],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "Existing SQLAlchemy Python -m pytest --no-cov -q backend/services/tests/test_project_knowledge_ledger_migration_contract.py",
+      "scope": "Manifest, exact checksums, ordering, pairing, path safety, UTF-8, SQL scope, plan, down gate, safe argv, and static ORM inventory.",
+      "status": "passed", "passed": 12, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "12 database-free migration contract tests passed."
+    },
+    {
+      "command": "Four initial opt-in PostgreSQL integration iterations",
+      "scope": "Exercise the new disposable PostgreSQL harness and catalog queries.",
+      "status": "failed", "passed": 0, "failed": 4, "skipped": 0, "not_run": 0,
+      "evidence": "The test harness exposed one runner-vs-psql database flag mismatch, one pg_catalog char cast ambiguity, and two concatenated-select ORDER BY errors; each harness defect was corrected before the successful full lifecycle."
+    },
+    {
+      "command": "QM2_LEDGER_POSTGRES_INTEGRATION=1 Existing SQLAlchemy Python -m pytest --no-cov -q -s backend/services/tests/test_project_knowledge_ledger_postgres_integration.py",
+      "scope": "Disposable PostgreSQL 15 initial state, up, parity, valid/18 invalid writes, RESTRICT, idempotency, drift, failed-down atomicity, down, reapply, and cleanup.",
+      "status": "passed", "passed": 1, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "The complete lifecycle passed in 2.61 seconds and the random-named no-volume container was removed."
+    },
+    {
+      "command": "First full relevant Ledger and Context regression after migration implementation",
+      "scope": "Domain, Repository contract, ORM, Mapper, migration, PostgreSQL, and Context behavior.",
+      "status": "failed", "passed": 333, "failed": 3, "skipped": 0, "not_run": 0,
+      "evidence": "Three stale pre-A2b guards still prohibited a migration or required A2b as the next task; they were updated to validate migration checksums while retaining Repository/API scope guards. 247 subtests passed."
+    },
+    {
+      "command": "QM2_LEDGER_POSTGRES_INTEGRATION=1 Existing SQLAlchemy Python -m pytest --no-cov -q all relevant Ledger Domain/Repository/ORM/Mapper/Migration/PostgreSQL/Context files",
+      "scope": "Full task-relevant regression including a fresh disposable PostgreSQL lifecycle.",
+      "status": "passed", "passed": 336, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Final regression passed 336 tests and 247 subtests in 2.81 seconds."
+    },
+    {
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py",
+      "scope": "Context schemas/paths/ADRs, Ledger contracts/mappings/migration checksums, Run pairs, exact A3 handoff, and official Factor Lab path.",
+      "status": "passed", "passed": 35, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Bounded bootstrap validator returned passed with 35 named checks."
+    },
+    {
+      "command": "python3 JSON parse, Python compile, migration validate/plan, git diff --check, scope, Docker cleanup, and Factor Lab cleanliness guards",
+      "scope": "Machine documents, changed Python syntax, migration bytes, whitespace/scope, no leftover container, and read-only donor.",
+      "status": "passed", "passed": 8, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All final structural and workspace guards passed; no dependency or lockfile changed."
+    }
+  ],
+  "test_results": {"status": "passed", "passed": 725, "failed": 7, "skipped": 0, "not_run": 0},
+  "artifacts": [
+    {"artifact_type": "ledger_migration_contract", "path": "docs/quantmind2/implementation/LEDGER_MIGRATION_AND_POSTGRESQL_V1.md", "hash": "9ceab30fe8fef7410560a8b172663eac72b43d2389cdea150e6f7d96135126d3"},
+    {"artifact_type": "ledger_migration_manifest", "path": "data/migrations/quantmind2/manifest.json", "hash": "5f739de4f0b303d2725a9dea41a0952c632467f5006e377bfcbe2b26cce28eaf"},
+    {"artifact_type": "ledger_migration_runner", "path": "tools/quantmind2/ledger_migrations.py", "hash": "fa8bd0ed3ef0650f03dcfa343a58b82586db9ca514ad82669557158623d51f4a"},
+    {"artifact_type": "implementation_report", "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/report.md", "hash": "70492f23f0386e85eb624bf2a7ab0b0081a74063609eace6cb59f14876068f43"}
+  ],
+  "architecture_decision_refs": ["ADR-0005", "ADR-0007"],
+  "component_refs": ["quantmind2.project_knowledge"],
+  "known_limitations": [
+    "No PostgreSQL Repository, business Session/Unit of Work, Manifest Parser/Indexer, identity resolver, Git consistency service, API, or UI exists.",
+    "No production database has been migrated; production execution-role/schema privilege policy is not frozen.",
+    "CI scheduling for the opt-in Docker PostgreSQL integration test is not configured.",
+    "Real PostgreSQL 15 parity used SQLAlchemy 2.0.51 expectations; pinned SQLAlchemy 2.0.25 parity remains unconfirmed.",
+    "Mapper and technical identity versions are not business-table columns, and database-level Repository concurrency behavior is unverified."
+  ],
+  "unresolved_questions": [
+    "Which production execution role will own or receive least-privilege access to quantmind2?",
+    "How will CI provide and schedule Docker or isolated PostgreSQL integration capability?",
+    "How will the PostgreSQL Repository implement optimistic versions, graph conflicts, atomic batch behavior, and transaction ownership without committing internally?",
+    "How will a future Indexer bind logical repository identity and persist Mapper/identity versions?"
+  ],
+  "next_recommended_tasks": ["QM2-P0-002A3"],
+  "rollback_information": "Revert the single containing commit. No production database was changed. For an explicitly migrated non-production database whose latest matching version is 0001, run down with --allow-destructive before reverting if schema removal is intended.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "Migration subprocesses use explicit argv and SQL stdin; passwords remain in PGPASSWORD and are redacted from errors. No database URL, password, broad grant, role change, production connection, or secret is stored or printed.",
+  "data_lineage_impact": "Git remains the Implementation Run authority and PostgreSQL remains a derived query index. _schema_migrations records database shape only. Disposable test rows were destroyed; no research or production data changed.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/report.md",
+  "report_hash": "70492f23f0386e85eb624bf2a7ab0b0081a74063609eace6cb59f14876068f43",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2b-20260715T060812Z-7c83e36/manifest.json",
+  "manifest_payload_hash": "d3e6fcf8e9af442ef55a44edcd0dfb318b4ed1876e0b6befc4e5335d1753fa41",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "ledger_domain_model": "v1",
+    "ledger_repository_contract": "v1",
+    "ledger_orm_mapping": "v1",
+    "ledger_mapper_contract": "1.0.0",
+    "ledger_migration_contract": "v1",
+    "ledger_migration_manifest": "1.0.0",
+    "ledger_migration_runner": "1.0.0",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

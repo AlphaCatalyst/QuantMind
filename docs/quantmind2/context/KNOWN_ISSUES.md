@@ -15,14 +15,14 @@
 | QM2-KI-011 | medium | open | Implementation Ledger database index does not exist. |
 | QM2-KI-012 | high | open | Formal Factor Optimization does not exist. |
 | QM2-KI-013 | high | open | V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision/Decision Validator boundary. |
-| QM2-KI-014 | high | open | PostgreSQL schema change is fragmented across bootstrap SQL, manually documented upgrade SQL, runtime raw DDL, and metadata `create_all`; no operational Alembic or ordered applied-version runner is code-confirmed. |
+| QM2-KI-014 | high | resolved | Ledger schema now has a dedicated ordered explicit-SQL runner with history, checksum, lock, up/down, and fresh-install integration; unrelated legacy schema paths remain outside this resolution. |
 | QM2-KI-015 | high | open | Shared async session contexts auto-commit, while many services also commit internally, so transaction ownership is inconsistent for future atomic Ledger indexing. |
 | QM2-KI-016 | high | open | Database configuration contains credential-bearing defaults in several files, and shared async engine initialization may log the complete database URL. |
-| QM2-KI-017 | medium | open | No shared isolated PostgreSQL fixture or CI PostgreSQL service is confirmed; SQLite and mocked Session tests do not prove PostgreSQL schema, JSONB, concurrency, or transaction behavior. |
+| QM2-KI-017 | medium | open | A disposable opt-in PostgreSQL integration test exists and passes locally; CI PostgreSQL capability and scheduling remain unconfirmed. |
 | QM2-KI-018 | medium | open | Context schema v1 cannot encode fine-grained task IDs such as `QM2-P0-002A2a2`; machine-readable next-task lists temporarily use parent `QM2-P0-002`. |
 | QM2-KI-019 | medium | open | Manifest v1 cannot directly represent rich file/symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1. |
 | QM2-KI-020 | medium | open | The in-memory Ledger Repository is a contract test double only: it has no durability, cross-process concurrency, database isolation, crash recovery, or PostgreSQL constraint evidence. |
-| QM2-KI-021 | medium | open | Ledger ORM metadata and all eleven bidirectional Mappers now exist, but migration, schema deployment, production Repository, UoW, and isolated PostgreSQL integration evidence remain absent. |
-| QM2-KI-022 | low | open | Static DDL verification used an existing SQLAlchemy 2.0.51 environment while production requirements pin 2.0.25; pinned-runtime and real PostgreSQL verification remain outstanding. |
+| QM2-KI-021 | medium | open | Ledger migration and isolated PostgreSQL parity now exist, but production migration, PostgreSQL Repository, business Session/UoW, and indexing remain absent. |
+| QM2-KI-022 | low | open | Real PostgreSQL 15 parity passed with SQLAlchemy 2.0.51 expectations; pinned SQLAlchemy 2.0.25 runtime parity remains outstanding. |
 | QM2-KI-023 | high | open | Manifest v1 `repository_root` is an execution absolute path while frozen Domain/ORM `repository_root` is now contractually a logical repository identity; future indexing requires explicit trusted binding and a future ADR/Manifest v2 decision. |
 | QM2-KI-024 | medium | open | ImplementationArtifact has one `path_or_uri` field and no explicit location kind; existing Domain prefix semantics are deterministic, but Manifest v2 should record producer intent. |

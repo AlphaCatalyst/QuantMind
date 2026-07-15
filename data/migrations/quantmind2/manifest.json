@@ -1,0 +1,17 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "runner_version": "1.0.0",
+  "schema": "quantmind2",
+  "history_table": "_schema_migrations",
+  "checksum_algorithm": "sha256-exact-file-bytes",
+  "migrations": [
+    {
+      "version": "0001",
+      "name": "implementation_ledger",
+      "up_path": "0001_implementation_ledger.up.sql",
+      "down_path": "0001_implementation_ledger.down.sql",
+      "up_checksum": "0b2e07f0a78bd6d964941b423c2a79d6400e6504275c8a56e38326a1ee89beda",
+      "down_checksum": "c66fdeeb0bb88fa52f5c1a9554916a01ecc2e69688a7634560d3dd0ad1ad8431"
+    }
+  ]
+}

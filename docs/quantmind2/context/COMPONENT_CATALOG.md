@@ -71,3 +71,12 @@ RunRelationship, Detail, Reference, and Annotation conversion plus frozen
 ChangedFile/ChangedSymbol technical IDs and drift verification. Manifest
 binding, repository identity resolution, production Repository, migration,
 database and Indexer layers remain unimplemented.
+
+QM2-P0-002A2b adds explicit versioned Ledger migration `0001`, a
+zero-dependency `psql` runner, fresh-install invocation, and opt-in disposable
+PostgreSQL verification. The migration creates and safely rolls back all eleven
+business tables; exact ORM/catalog parity, constraints, indexes, valid/invalid
+writes, idempotency, checksum drift, rollback atomicity, and reapply are
+verified. This does not add a PostgreSQL Repository, business Session/UoW,
+Manifest Parser/Indexer, Git consistency service, API, UI, or production
+deployment.

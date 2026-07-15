@@ -200,14 +200,18 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_names_exact_a2b_migration_task(self):
+    def test_handoff_records_a2b_and_names_exact_a3_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
             "QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification",
             text,
         )
+        self.assertIn(
+            "QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work",
+            text,
+        )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002A2b"])
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002A3"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

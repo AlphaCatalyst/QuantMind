@@ -208,12 +208,30 @@ No business-domain implementation was introduced by either task.
   Enum and invalid-record cases, field/inventory drift, safe-error behavior,
   and no-side-effect guards are verified.
 - Manifest Parser/Indexer, repository identity binding, PostgreSQL Repository,
-  Session/UoW, migration, real schema/table creation, and database verification
-  remain unimplemented.
+  and business Session/UoW remain unimplemented.
 - Latest Implementation Run:
   `QM2-P0-002A2a2c2c-20260715T050423Z-30edead`.
 
+## Ledger migration and isolated PostgreSQL verification
+
+- `QM2-P0-002A2b` adds explicit migration `0001`, exact-byte SHA-256
+  checksums, `_schema_migrations`, ordered plan/status/validate/up/down, one
+  transaction per migration, a stable advisory transaction lock, and guarded
+  rollback.
+- Fresh install now calls the same migration runner after base bootstrap;
+  Ledger DDL is not duplicated in `quantmind_init.sql`.
+- A disposable PostgreSQL 15 container verified the eleven business tables,
+  87 columns, 97 named constraints, 49 explicit indexes, exact ORM/catalog
+  parity, valid data, 18 invalid writes, `RESTRICT`, idempotent up, checksum
+  drift rejection, rollback atomicity, down, reapply, and cleanup.
+- This evidence is isolated verification only. No production database was
+  migrated. PostgreSQL Repository, business Session/UoW, Manifest
+  Parser/Indexer, Git consistency service, API, and UI remain unimplemented.
+- Latest Implementation Run:
+  `QM2-P0-002A2b-20260715T060812Z-7c83e36`.
+
 ## Next task
 
-`QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification` is the
-only recommended next task. The Mapper stage is complete.
+`QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work` is the only
+recommended next task. Mapper and migration/database-shape verification stages
+are complete.

@@ -26,3 +26,11 @@ zero-dependency subset of JSON Schema Draft 2020-12 covering only keywords used
 by the v1 repository schemas. It also checks repository paths, ADR references,
 status consistency, official Factor Lab source boundaries, run pairs, report
 hashes, and manifest payload hashes. It is not a general JSON Schema engine.
+
+## Ledger database migration
+
+The explicit versioned Ledger migration contract is
+`LEDGER_MIGRATION_AND_POSTGRESQL_V1.md`. Its SQL authority lives under
+`data/migrations/quantmind2/` and is coordinated by
+`tools/quantmind2/ledger_migrations.py`. ORM metadata remains the current shape
+contract; the migration is the only Ledger deployment DDL source.

@@ -110,3 +110,13 @@ are computed in memory from the frozen v1 payloads and validated during reverse
 mapping; no identity-version column was added. No migration ran, no schema or
 table was created, and no database was connected. Migration and isolated
 PostgreSQL verification remain the QM2-P0-002A2b boundary.
+
+QM2-P0-002A2b establishes the sole Ledger deployment DDL authority under
+`data/migrations/quantmind2/`. Migration `0001` creates the explicit
+`quantmind2` schema, eleven ORM-aligned business tables, and infrastructure-only
+`_schema_migrations`. The runner provides exact-byte SHA-256, ordered
+plan/status/validate/up/down, advisory transaction locking, atomic history,
+idempotent up, and guarded latest-only down. Disposable PostgreSQL 15 found no
+drift across 11 tables, 87 columns, 97 named constraints, and 49 explicit
+indexes. No production database has been migrated and no PostgreSQL Repository
+or business Unit of Work exists.

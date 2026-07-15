@@ -490,9 +490,11 @@ class DomainScopeRegressionTests(unittest.TestCase):
         self.assertNotIn("sqlalchemy", text.lower())
         self.assertNotIn("AsyncSession", text)
 
-    def test_no_ledger_migration_exists(self):
-        self.assertFalse(list((ROOT / "data/migrations").glob("*ledger*")))
-        self.assertFalse(list((ROOT / "data/migrations").glob("*project_knowledge*")))
+    def test_domain_remains_independent_of_the_versioned_ledger_migration(self):
+        migration_root = ROOT / "data/migrations/quantmind2"
+        self.assertTrue((migration_root / "manifest.json").is_file())
+        for path in DOMAIN.glob("*.py"):
+            self.assertNotIn("ledger_migrations", path.read_text(encoding="utf-8"))
 
     def test_no_api_endpoint_exists_in_domain(self):
         for path in DOMAIN.glob("*.py"):

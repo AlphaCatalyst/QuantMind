@@ -49,6 +49,10 @@ LEDGER_RUN_MAPPER_CONTRACT = QM2 / "implementation" / "LEDGER_RUN_MAPPER_V1.md"
 LEDGER_COMPLETE_MAPPER_CONTRACT = (
     QM2 / "implementation" / "LEDGER_COMPLETE_MAPPER_LAYER_V1.md"
 )
+LEDGER_MIGRATION_CONTRACT = QM2 / "implementation" / "LEDGER_MIGRATION_AND_POSTGRESQL_V1.md"
+LEDGER_MIGRATION_ROOT = ROOT / "data" / "migrations" / "quantmind2"
+LEDGER_MIGRATION_MANIFEST = LEDGER_MIGRATION_ROOT / "manifest.json"
+LEDGER_MIGRATION_RUNNER = ROOT / "tools" / "quantmind2" / "ledger_migrations.py"
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -846,21 +850,26 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     )
     if any(path.exists() for path in forbidden_project_knowledge_paths):
         raise ValidationError("Project Knowledge persistence, Repository, or API exists too early")
-    if list((ROOT / "data" / "migrations").glob("*ledger*")):
-        raise ValidationError("Ledger migration exists before ORM/migration task")
-    forbidden_ledger_markers = (
-        "implementation_ledger",
-        "CREATE SCHEMA quantmind2",
-        'schema="quantmind2"',
-        "schema='quantmind2'",
+    migration_paths = (
+        LEDGER_MIGRATION_CONTRACT,
+        LEDGER_MIGRATION_MANIFEST,
+        LEDGER_MIGRATION_ROOT / "0001_implementation_ledger.up.sql",
+        LEDGER_MIGRATION_ROOT / "0001_implementation_ledger.down.sql",
+        LEDGER_MIGRATION_RUNNER,
     )
-    for source_root in (ROOT / "backend", ROOT / "data"):
-        for path in source_root.rglob("*"):
-            if not path.is_file() or path.suffix not in {".py", ".sql"}:
-                continue
-            text = path.read_text(encoding="utf-8", errors="replace")
-            if any(marker in text for marker in forbidden_ledger_markers):
-                raise ValidationError(f"Ledger persistence implementation exists: {path}")
+    if not all(path.is_file() for path in migration_paths):
+        raise ValidationError("Ledger migration contract or implementation is incomplete")
+    migration_manifest = load_json(LEDGER_MIGRATION_MANIFEST)
+    if migration_manifest.get("manifest_schema_version") != "1.0.0":
+        raise ValidationError("Ledger migration manifest version is not recognized")
+    entries = migration_manifest.get("migrations")
+    if not isinstance(entries, list) or [item.get("version") for item in entries] != ["0001"]:
+        raise ValidationError("Ledger migration manifest does not contain ordered version 0001")
+    migration = entries[0]
+    for direction in ("up", "down"):
+        path = LEDGER_MIGRATION_ROOT / migration[f"{direction}_path"]
+        if sha256_file(path) != migration[f"{direction}_checksum"]:
+            raise ValidationError(f"Ledger {direction} migration checksum drift")
     checks.append("ledger_domain_contract")
     checks.append("ledger_domain_scope_boundary")
     checks.append("ledger_repository_contract")
@@ -879,6 +888,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     checks.append("ledger_complete_mapper_inventory")
     checks.append("ledger_run_mapper")
     checks.append("ledger_complete_mapper_contract")
+    checks.append("ledger_migration_contract")
+    checks.append("ledger_migration_checksums")
 
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
@@ -899,9 +910,11 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
     if "QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A2b next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-002A2b"]:
-        raise ValidationError("machine handoff must name the exact migration task")
+        raise ValidationError("human handoff does not name completed QM2-P0-002A2b task")
+    if "QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002A3 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-002A3"]:
+        raise ValidationError("machine handoff must name the exact Repository/UoW task")
     checks.append("handoff_links")
 
     example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

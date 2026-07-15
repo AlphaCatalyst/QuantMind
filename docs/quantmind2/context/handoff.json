@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T05:04:23Z",
-  "source_commit": "30edead1d4b8eeece2be2978d6d42c94576122cc",
+  "generated_at": "2026-07-15T06:08:12Z",
+  "source_commit": "7c83e36e5e7088a2f4c6ebdc570364a8d437a5cf",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "30edead1d4b8eeece2be2978d6d42c94576122cc",
+  "base_commit": "7c83e36e5e7088a2f4c6ebdc570364a8d437a5cf",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,23 +24,22 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-002A2a2c2c",
+  "current_task": "QM2-P0-002A2b",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-002A2a2c2c-20260715T050423Z-30edead",
-  "next_recommended_tasks": ["QM2-P0-002A2b"],
+  "latest_implementation_run": "QM2-P0-002A2b-20260715T060812Z-7c83e36",
+  "next_recommended_tasks": ["QM2-P0-002A3"],
   "unconfirmed_facts": [
     "Concrete TongDaXin Provider implementation and capability contract.",
     "Durable long-term location for the official Factor Lab source.",
-    "Operational invocation, order, and checksum tracking for incremental SQL migrations.",
-    "Permission and search-path support for an explicit quantmind2 PostgreSQL schema.",
-    "Isolated PostgreSQL fixture and CI PostgreSQL capability.",
+    "Production execution-role permission policy for the explicit quantmind2 PostgreSQL schema.",
+    "CI capability and scheduling for the opt-in disposable PostgreSQL integration test.",
     "Storage backend for large snapshot and ledger artifacts.",
     "Manifest v1 lacks a first-class non-correction related_run_id field.",
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
     "Future ADR and Manifest v2 fields separating logical repository identity from execution path, plus explicit artifact location kind and Mapper/identity versions.",
     "PostgreSQL realization of Repository uniqueness, expected versions, DAG checks, and atomic batch behavior.",
-    "SQLAlchemy 2.0.25 pinned-runtime DDL compilation and real PostgreSQL behavior; A2a1, A2a2a, A2a2b1, and A2a2b2 used an existing SQLAlchemy 2.0.51 environment."
+    "SQLAlchemy 2.0.25 pinned-runtime parity; isolated PostgreSQL 15 parity was verified with an existing SQLAlchemy 2.0.51 environment."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

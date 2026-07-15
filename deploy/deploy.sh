@@ -839,6 +839,19 @@ step10_init_database() {
         log_warn "未找到初始化 SQL: data/quantmind_init.sql"
     fi
 
+    # QuantMind 2.0 Ledger DDL has one authority: the versioned migration.
+    # Do not duplicate these tables in data/quantmind_init.sql.
+    log_info "应用 QuantMind 2.0 Ledger 数据库迁移..."
+    if python3 tools/quantmind2/ledger_migrations.py up \
+        --docker-container quantmind-db \
+        --database quantmind \
+        --username quantmind; then
+        log_info "QuantMind 2.0 Ledger 数据库迁移完成"
+    else
+        log_error "QuantMind 2.0 Ledger 数据库迁移失败，停止部署"
+        exit 1
+    fi
+
     # 创建默认管理员用户（如果不存在）
     log_info "创建默认管理员用户..."
     docker exec quantmind-db psql -U quantmind -d quantmind -c "
