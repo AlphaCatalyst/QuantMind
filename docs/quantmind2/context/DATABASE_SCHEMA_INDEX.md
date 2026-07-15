@@ -103,3 +103,10 @@ Domain-to-record conversion creates a new version-1 ORM instance, while
 record-to-Domain conversion reads only loaded state and invokes the frozen
 Domain constructor. No Manifest was parsed, no repository identity was
 resolved, no schema/table was created, and no database was connected.
+
+QM2-P0-002A2a2c2c completes the pure Mapper layer without changing ORM
+metadata, database targets, or DDL. ChangedFile and ChangedSymbol technical IDs
+are computed in memory from the frozen v1 payloads and validated during reverse
+mapping; no identity-version column was added. No migration ran, no schema or
+table was created, and no database was connected. Migration and isolated
+PostgreSQL verification remain the QM2-P0-002A2b boundary.

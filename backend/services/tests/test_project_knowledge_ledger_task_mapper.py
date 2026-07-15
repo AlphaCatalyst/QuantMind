@@ -359,28 +359,40 @@ class MapperScopeAndPurityTests(unittest.TestCase):
         root = Path(common.__file__).resolve().parent
         self.assertEqual(
             {path.name for path in root.glob("*.py")},
-            {"__init__.py", "errors.py", "common.py", "task.py", "run.py"},
+            {
+                "__init__.py", "errors.py", "common.py", "task.py", "run.py",
+                "identity.py", "relationship.py", "details.py", "references.py",
+                "annotations.py",
+            },
         )
 
-    def test_no_other_mapper_symbols_exist(self):
+    def test_complete_mapper_symbols_exist_without_runtime_layers(self):
         root = Path(common.__file__).resolve().parent
         source = "\n".join(path.read_text(encoding="utf-8") for path in root.glob("*.py"))
-        forbidden = (
+        required = (
             "run_relationship_to_record",
             "run_relationship_from_record",
             "changed_file_to_record",
             "changed_symbol_to_record",
-            "artifact_to_record",
+            "implementation_artifact_to_record",
             "limitation_to_record",
             "recommended_task_to_record",
             "component_reference_to_record",
-            "adr_reference_to_record",
+            "architecture_decision_reference_to_record",
         )
-        for marker in forbidden:
+        for marker in required:
+            self.assertIn(marker, source)
+        for marker in ("create_engine(", "sessionmaker(", "run_from_manifest"):
             self.assertNotIn(marker, source)
 
     def test_mapper_source_has_no_io_runtime_or_database_behavior(self):
-        modules = (common, errors, task, run)
+        from backend.services.api.project_knowledge.persistence.mappers import (
+            annotations, details, identity, references, relationship,
+        )
+        modules = (
+            common, errors, task, run, annotations, details, identity, references,
+            relationship,
+        )
         forbidden_imports = {
             "asyncio",
             "git",

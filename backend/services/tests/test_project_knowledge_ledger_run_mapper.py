@@ -409,25 +409,20 @@ class ImplementationRunRoundTripTests(unittest.TestCase):
 
 
 class ImplementationRunMapperScopeAndPurityTests(unittest.TestCase):
-    def test_exact_mapper_package_and_only_task_run_families(self):
+    def test_exact_complete_mapper_package_and_runtime_boundary(self):
         root = Path(common.__file__).resolve().parent
         self.assertEqual(
             {path.name for path in root.glob("*.py")},
-            {"__init__.py", "errors.py", "common.py", "task.py", "run.py"},
+            {
+                "__init__.py", "errors.py", "common.py", "task.py", "run.py",
+                "identity.py", "relationship.py", "details.py", "references.py",
+                "annotations.py",
+            },
         )
         source = "\n".join(path.read_text(encoding="utf-8") for path in root.glob("*.py"))
         self.assertIn("implementation_run_to_record", source)
         self.assertIn("implementation_run_from_record", source)
         for marker in (
-            "run_relationship_to_record",
-            "run_relationship_from_record",
-            "changed_file_to_record",
-            "changed_symbol_to_record",
-            "artifact_to_record",
-            "limitation_to_record",
-            "recommended_task_to_record",
-            "component_reference_to_record",
-            "adr_reference_to_record",
             "run_from_manifest",
             "manifest_to_run",
             "resolve_repository_identity",

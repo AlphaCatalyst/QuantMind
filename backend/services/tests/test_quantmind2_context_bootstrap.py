@@ -150,7 +150,7 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertFalse((api_root / "repository.py").exists())
         self.assertFalse((api_root / "api.py").exists())
 
-    def test_mapper_contract_vectors_and_task_run_only_implementation_boundary(self):
+    def test_mapper_contract_vectors_and_complete_implementation_boundary(self):
         self.assertTrue(LEDGER_MAPPER_CONTRACT.is_file())
         payload = load_json(LEDGER_MAPPER_IDENTITY_VECTORS)
         validate_mapper_identity_vectors(payload)
@@ -174,7 +174,11 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         mapper_root = persistence / "mappers"
         self.assertEqual(
             {path.name for path in mapper_root.glob("*.py")},
-            {"__init__.py", "errors.py", "common.py", "task.py", "run.py"},
+            {
+                "__init__.py", "errors.py", "common.py", "task.py", "run.py",
+                "identity.py", "relationship.py", "details.py", "references.py",
+                "annotations.py",
+            },
         )
         self.assertTrue(LEDGER_TASK_MAPPER_CONTRACT.is_file())
         self.assertTrue(LEDGER_RUN_MAPPER_CONTRACT.is_file())
@@ -185,16 +189,25 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertIn("implementation_task_from_record", source)
         self.assertIn("implementation_run_to_record", source)
         self.assertIn("implementation_run_from_record", source)
-        self.assertNotIn("run_relationship_to_record", source)
+        for marker in (
+            "run_relationship_to_record", "changed_file_record_id",
+            "changed_file_to_record", "changed_symbol_to_record",
+            "test_execution_to_record", "implementation_artifact_to_record",
+            "component_reference_to_record",
+            "architecture_decision_reference_to_record", "limitation_to_record",
+            "recommended_task_to_record",
+        ):
+            self.assertIn(marker, source)
+        self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_names_exact_a2a2c2c_and_machine_state_uses_legal_parent(self):
+    def test_handoff_names_exact_a2b_migration_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002A2a2c2c — RunRelationship Mapper",
+            "QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002"])
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002A2b"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A2a2c2b: `56730109b71aedadd9e2975fcb0633b95b222860`
+- Base before QM2-P0-002A2a2c2c: `30edead1d4b8eeece2be2978d6d42c94576122cc`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A2a2c2b: no
+- Dirty before QM2-P0-002A2a2c2c: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A2a2c2b.
+- It remained read-only and clean during QM2-P0-002A2a2c2c.
 
 ## Current position
 
@@ -27,9 +27,9 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A2a2c2b`, completed as the ImplementationRun-only
-  bidirectional Mapper increment.
-- Latest run: `QM2-P0-002A2a2c2b-20260715T043224Z-5673010` under
+- Current task: `QM2-P0-002A2a2c2c`, completed as the full eleven-object
+  Domain-to-ORM Mapper closure.
+- Latest run: `QM2-P0-002A2a2c2c-20260715T050423Z-30edead` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -48,29 +48,25 @@
   ChangedSymbol, TestExecution, ImplementationArtifact, ComponentReference,
   ArchitectureDecisionReference, Limitation, and RecommendedTask to eleven explicit
   `quantmind2` table shapes. PostgreSQL DDL compiles without a database connection.
-- All current target ORM mappings exist. Domain mappers, PostgreSQL Repository,
-  actual tables and
+- All current target ORM mappings and explicit bidirectional Domain mappers
+  exist. PostgreSQL Repository, actual tables and
   schema, migration, database transaction code, Manifest Parser/Indexer, Git
   consistency service, API, and UI do not exist.
 - Limitation does not foreign-key Component Catalog; RecommendedTask does not
   foreign-key, create, or execute a future Task. Neither historical annotation
   has an ORM update method, and no annotation data was written.
-- Mapper Contract v1 covers all eleven objects. It defines logical repository
-  identity, pure conversion, safe errors, round trips, and deterministic
-  `changed-file-v1` / `changed-symbol-v1` vectors. No `mappers/` package,
-  `to_domain`, `from_domain`, Mapper class, or database runtime exists.
+- Mapper Contract v1 covers all eleven objects. The complete explicit Mapper
+  package implements pure conversion, safe errors, round trips, and frozen
+  `changed-file-v1` / `changed-symbol-v1` identities. It has no database runtime.
 - Manifest v1 absolute `repository_root` is execution context and cannot be
   directly mapped to the logical Domain/ORM identity; future Indexer input must
   provide an explicit trusted binding. A future ADR/Manifest v2 is a candidate.
-- Mapper errors/common conversions plus Task and Run bidirectional conversion
-  are now implemented. New records use version 1; stored version is validated
-  but not part of Domain. Run Mapper copies only an existing logical repository
-  identity and performs no Manifest binding or identity resolution. No
-  Relationship, Detail, Reference, Annotation, technical identity,
-  Repository, Session/UoW, migration, database, Indexer, API, or UI exists.
-- Recommended next task: `QM2-P0-002A2a2c2c — RunRelationship Mapper`;
-  it has not started. Machine-readable task lists use parent
-  `QM2-P0-002` due to the current schema pattern.
+- All eleven objects now have explicit `to_record` and `from_record` functions.
+  Stored ChangedFile/Symbol technical IDs are recomputed and verified; explicit
+  parent Run IDs cannot disagree with Domain values. Task/Run version behavior
+  remains unchanged. No Repository, Session/UoW, migration, database, Manifest
+  Parser/Indexer, identity resolver, API, or UI exists.
+- Recommended next task: `QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification`.
 
 ## Unconfirmed facts
 
@@ -90,6 +86,8 @@
 - SQLAlchemy 2.0.25 pinned-runtime DDL compilation and real PostgreSQL behavior;
   A2a1/A2a2a/A2a2b1/A2a2b2 static verification used an existing SQLAlchemy
   2.0.51 environment.
+- Operational migration ordering, rollback, isolated PostgreSQL fixture, and
+  schema privilege behavior remain unverified until QM2-P0-002A2b.
 
 ## Constraints that must not be broken
 

@@ -18,7 +18,11 @@
   Domain values and ORM records. It defines identity and round trips but is not
   a Mapper implementation, Repository, or persistence runtime.
 - **Mapper technical ID**: deterministic versioned SHA-256 identifier for a
-  ChangedFile or ChangedSymbol ORM row whose Domain object has no technical ID.
+  ChangedFile or ChangedSymbol ORM row. The complete Mapper layer implements
+  the frozen NFC/UTF-8/LF algorithms and verifies stored IDs on reverse mapping.
+- **Complete Ledger Mapper Layer**: the eleven explicit Domain-to-ORM and
+  ORM-to-Domain conversion pairs. It includes safe errors, stable technical
+  IDs, parent Run validation, round-trip and drift guards, but no persistence.
 - **Task Mapper**: pure explicit conversion between ImplementationTask and a
   newly constructed ImplementationTaskRecord. It validates ORM-only version
   but is not an existing-record update, Repository, Session, or transaction.

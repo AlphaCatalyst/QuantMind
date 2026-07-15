@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-14
-Verified source commit before this task: `6a624a1dbaa8ba02073f3a5fc5b41805fc7481f0`
+Verified source commit before this task: `30edead1d4b8eeece2be2978d6d42c94576122cc`
 
 ## Implemented in existing systems
 
@@ -183,7 +183,7 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A2a2c1-20260714T181338Z-1d5affb`.
 
-## Ledger Task and Run mappers
+## Complete Ledger Mapper layer
 
 - `QM2-P0-002A2a2c2a — Mapper Foundation and ImplementationTask Mapper`
   implements safe transport-neutral Mapper errors, contract version 1.0.0,
@@ -197,16 +197,23 @@ No business-domain implementation was introduced by either task.
   bidirectional Run conversion, exact five-Enum conversion, aware UTC times,
   nullable commit/hash fields, logical repository identity preservation, and
   ORM-only version handling. Domain construction remains state authority.
-- Task and Run mapping exist. Relationship, Detail, Reference, Annotation,
-  technical-ID, artifact-location, Manifest binding and repository-identity
-  resolver remain unimplemented. No migration,
-  schema/table, database connection, Repository, Session/UoW, Indexer, API, or UI exists.
+- `QM2-P0-002A2a2c2c — Complete Remaining Ledger Domain-to-ORM Mappers`
+  completes explicit bidirectional mapping for all eleven Ledger Domain
+  objects. It adds RunRelationship, four Detail, two Reference, and two
+  Annotation mapper families while preserving the Task and Run contracts.
+- ChangedFile and ChangedSymbol technical IDs now use the frozen NFC/UTF-8/LF
+  SHA-256 algorithms. Reverse mapping recomputes and rejects mismatched stored
+  IDs. Parent Run context is explicit and must match each Domain object.
+- Full Domain and ORM business-field round trips, all nine identity vectors,
+  Enum and invalid-record cases, field/inventory drift, safe-error behavior,
+  and no-side-effect guards are verified.
+- Manifest Parser/Indexer, repository identity binding, PostgreSQL Repository,
+  Session/UoW, migration, real schema/table creation, and database verification
+  remain unimplemented.
 - Latest Implementation Run:
-  `QM2-P0-002A2a2c2b-20260715T043224Z-5673010`.
+  `QM2-P0-002A2a2c2c-20260715T050423Z-30edead`.
 
 ## Next task
 
-`QM2-P0-002A2a2c2c — RunRelationship Mapper` is the only recommended next
-task and has not started. Machine-readable next-task fields
-use legal parent `QM2-P0-002` because context schema v1 does not admit the
-fine-grained `A2a2c2c` identifier.
+`QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification` is the
+only recommended next task. The Mapper stage is complete.

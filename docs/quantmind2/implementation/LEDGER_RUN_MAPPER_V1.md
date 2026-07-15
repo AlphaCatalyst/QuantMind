@@ -155,10 +155,12 @@ No `run_from_manifest`, Manifest parser, vocabulary translation, execution
 path binding, or repository identity resolver exists. A future Indexer must
 obtain explicit trusted logical repository binding before constructing Domain.
 
-## 20. Deferred Relationship Mapper
+## 20. Deferred Relationship Mapper (resolved by QM2-P0-002A2a2c2c)
 
-`RunRelationship` conversion, relationship ID handling, graph checks and edge
-queries remain entirely deferred. `run.py` does not import its ORM record.
+This Run-only increment deferred `RunRelationship` conversion. The conversion
+is now implemented in the separate `relationship.py` module under
+`LEDGER_COMPLETE_MAPPER_LAYER_V1.md`; graph checks and edge queries remain
+Repository responsibilities. `run.py` still does not import its ORM record.
 
 ## 21. Deferred Repository and Migration
 
@@ -166,8 +168,8 @@ Replay, parent existence, conflict translation, state updates, optimistic
 concurrency, transaction ownership, migration, schema/table creation and real
 PostgreSQL validation are not implemented.
 
-## 22. Handoff to QM2-P0-002A2a2c2c
+## 22. Historical Handoff to QM2-P0-002A2a2c2c
 
-The only next task is `QM2-P0-002A2a2c2c — RunRelationship Mapper`. It may
-implement Relationship conversion only under its own bounded contract. This
-task does not begin it.
+This document originally handed off to QM2-P0-002A2a2c2c. That task is now
+complete as the full remaining Mapper closure. The active next boundary is
+`QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification`.

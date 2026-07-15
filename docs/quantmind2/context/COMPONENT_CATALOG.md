@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | Bootstrap, audit, Ledger domain, Repository Protocols, in-memory test double, three core, four core-detail, and two reference static ORM mappings exist; annotation mapping, migration, production persistence/API/UI do not |
+| `quantmind2.project_knowledge` | partial | Bootstrap, audit, Ledger domain/Repository contracts, eleven static ORM mappings, and the complete eleven-object Mapper layer exist; migration, production persistence/API/UI do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -43,8 +43,8 @@ ChangedSymbol, TestExecution, and ImplementationArtifact. Their technical IDs,
 A1b2 natural unique keys, restrictive Run FKs, enum-derived checks, cross-field
 checks, and indexes are static metadata only. ComponentReference,
 ArchitectureDecisionReference, Limitation, and RecommendedTask now complete the
-eleven static target mappings. Domain mappers, migration, production Repository,
-Session/UoW, API, and UI remain planned.
+eleven static target mappings. The complete explicit Mapper layer now exists;
+migration, production Repository, Session/UoW, API, and UI remain planned.
 
 QM2-P0-002A2a2b1 adds static composite-primary-key mappings for
 ComponentReference and ArchitectureDecisionReference. The only foreign keys
@@ -59,14 +59,15 @@ migration, deployed schema/tables, Repository, API, and UI remain planned.
 QM2-P0-002A2a2c1 adds the Mapper Identity and Conversion Contract plus
 recomputable ChangedFile/ChangedSymbol identity vectors. It fixes pure
 conversion, logical repository identity, value/error/round-trip, and version
-rules for all eleven families. No Mapper module or function exists; Core,
-Detail, Reference, and Annotation mappers all remain planned.
+rules for all eleven families. That statement describes the c1 historical
+increment; c2c now realizes the full contract.
 
 QM2-P0-002A2a2c2a implements the API persistence Mapper foundation and
 ImplementationTask bidirectional conversion. QM2-P0-002A2a2c2b adds
 ImplementationRun bidirectional conversion with explicit logical repository
 identity, five exact Enums, UTC-aware time, nullable commit/hash fields, Domain
-state validation, and ORM-only version handling. Relationship, Detail,
-Reference, Annotation, technical-ID, Manifest binding, repository identity
-resolution, Repository, migration, database and Indexer layers remain
-unimplemented.
+state validation, and ORM-only version handling. QM2-P0-002A2a2c2c completes
+RunRelationship, Detail, Reference, and Annotation conversion plus frozen
+ChangedFile/ChangedSymbol technical IDs and drift verification. Manifest
+binding, repository identity resolution, production Repository, migration,
+database and Indexer layers remain unimplemented.

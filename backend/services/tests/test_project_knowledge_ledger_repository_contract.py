@@ -600,7 +600,7 @@ class ContractScopeTests(unittest.TestCase):
         for forbidden in ("open(", "Path(", "sqlite", "postgres", "create_engine", "AsyncSession"):
             self.assertNotIn(forbidden, text)
 
-    def test_api_persistence_boundary_has_only_authorized_task_and_run_mapper_files(self):
+    def test_api_persistence_boundary_has_only_authorized_complete_mapper_files(self):
         api_root = REPO_ROOT / "backend/services/api/project_knowledge"
         self.assertEqual(
             {path.relative_to(api_root).as_posix() for path in api_root.rglob("*.py")},
@@ -613,8 +613,13 @@ class ContractScopeTests(unittest.TestCase):
                 "persistence/orm_reference_models.py",
                 "persistence/orm_types.py",
                 "persistence/mappers/__init__.py",
+                "persistence/mappers/annotations.py",
                 "persistence/mappers/common.py",
+                "persistence/mappers/details.py",
                 "persistence/mappers/errors.py",
+                "persistence/mappers/identity.py",
+                "persistence/mappers/references.py",
+                "persistence/mappers/relationship.py",
                 "persistence/mappers/run.py",
                 "persistence/mappers/task.py",
             },
