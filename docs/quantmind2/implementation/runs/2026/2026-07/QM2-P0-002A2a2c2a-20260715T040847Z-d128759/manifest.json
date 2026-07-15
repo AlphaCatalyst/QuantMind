@@ -1,0 +1,203 @@
+{
+  "manifest_schema_version": "1.0.0",
+  "implementation_run_id": "QM2-P0-002A2a2c2a-20260715T040847Z-d128759",
+  "task_id": "QM2-P0-002A2a2c2a",
+  "parent_task_id": "QM2-P0-002A2a2c2",
+  "title": "Mapper Foundation and ImplementationTask Mapper",
+  "objective": "Implement safe Mapper errors, reusable exact Enum/aware-UTC datetime/tuple-JSON conversions, and pure bidirectional ImplementationTask mapping without database or other object-family mapping.",
+  "scope": [
+    "Exactly four Mapper package files: errors, common conversions, Task mapping, and explicit exports.",
+    "ImplementationTask Domain-to-new-version-1-record and loaded-record-to-validated-Domain conversion.",
+    "Task Mapper contract, dedicated tests, Context validation, Project Memory, immutable Run, and one local commit."
+  ],
+  "explicit_non_goals": [
+    "No ImplementationRun, RunRelationship, detail, reference, annotation, artifact-location, or technical-identity mapper/function.",
+    "No Repository implementation/change, Session, Unit of Work, database connection, migration, schema/table/DDL, Parser/Indexer, API, or UI.",
+    "No Domain or ORM model change, accepted ADR, Manifest schema, dependency, lockfile, runtime configuration, Factor Lab, TDX, Dataset Snapshot, factor/model/Qlib business change.",
+    "No A2a2c2b or later task and no push."
+  ],
+  "repository": "qusong0627-quantmind-git-https-github-com",
+  "repository_root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
+  "branch": "master",
+  "base_commit": "d128759188d4e255c6d58093bf59da78f722fe28",
+  "result_commit": null,
+  "workspace_dirty_before": false,
+  "workspace_dirty_after": true,
+  "unrelated_dirty_files": [],
+  "source_bundle_hash": "9926a2507f2599b737c7f8bc889374b744eecc6e6a56aa563691a91a52d52407",
+  "git_diff_hash": "9926a2507f2599b737c7f8bc889374b744eecc6e6a56aa563691a91a52d52407",
+  "started_at": "2026-07-15T04:03:00Z",
+  "completed_at": "2026-07-15T04:14:52Z",
+  "agent_type": "codex",
+  "task_status": "completed_uncommitted",
+  "completion_level": "complete",
+  "verification_level": "targeted_tests",
+  "changed_files": [
+    "backend/services/api/project_knowledge/persistence/mappers/__init__.py",
+    "backend/services/api/project_knowledge/persistence/mappers/common.py",
+    "backend/services/api/project_knowledge/persistence/mappers/errors.py",
+    "backend/services/api/project_knowledge/persistence/mappers/task.py",
+    "backend/services/tests/test_project_knowledge_ledger_repository_contract.py",
+    "backend/services/tests/test_project_knowledge_ledger_task_mapper.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/DATABASE_SCHEMA_INDEX.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/TERMINOLOGY.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/LEDGER_TASK_MAPPER_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/report.md",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "added_files": [
+    "backend/services/api/project_knowledge/persistence/mappers/__init__.py",
+    "backend/services/api/project_knowledge/persistence/mappers/common.py",
+    "backend/services/api/project_knowledge/persistence/mappers/errors.py",
+    "backend/services/api/project_knowledge/persistence/mappers/task.py",
+    "backend/services/tests/test_project_knowledge_ledger_task_mapper.py",
+    "docs/quantmind2/implementation/LEDGER_TASK_MAPPER_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/report.md"
+  ],
+  "deleted_files": [],
+  "changed_symbols": [
+    "backend.services.api.project_knowledge.persistence.mappers.errors.LedgerMapperError",
+    "backend.services.api.project_knowledge.persistence.mappers.errors.RecordToDomainError",
+    "backend.services.api.project_knowledge.persistence.mappers.errors.DomainToRecordError",
+    "backend.services.api.project_knowledge.persistence.mappers.errors.UnknownEnumValueError",
+    "backend.services.api.project_knowledge.persistence.mappers.errors.InvalidMapperValueError",
+    "backend.services.api.project_knowledge.persistence.mappers.errors.MapperContractVersionError",
+    "backend.services.api.project_knowledge.persistence.mappers.common.MAPPER_CONTRACT_VERSION",
+    "backend.services.api.project_knowledge.persistence.mappers.common.enum_to_storage",
+    "backend.services.api.project_knowledge.persistence.mappers.common.enum_from_storage",
+    "backend.services.api.project_knowledge.persistence.mappers.common.datetime_to_storage",
+    "backend.services.api.project_knowledge.persistence.mappers.common.datetime_from_storage",
+    "backend.services.api.project_knowledge.persistence.mappers.common.string_tuple_to_json_array",
+    "backend.services.api.project_knowledge.persistence.mappers.common.json_array_to_string_tuple",
+    "backend.services.api.project_knowledge.persistence.mappers.task.implementation_task_to_record",
+    "backend.services.api.project_knowledge.persistence.mappers.task.implementation_task_from_record",
+    "tools.quantmind2.validate_context_bootstrap.validate_bootstrap"
+  ],
+  "database_migrations": [],
+  "api_endpoints": [],
+  "schemas_changed": [],
+  "config_changed": [],
+  "dependencies_changed": false,
+  "tests_executed": [
+    {
+      "command": "Existing SQLAlchemy Python -m unittest test_project_knowledge_ledger_task_mapper",
+      "scope": "Safe errors, common conversions, Task both directions, version, round trips, loaded-state access, purity and exact family scope.",
+      "status": "passed", "passed": 25, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Final dedicated Task Mapper suite passed all 25 tests. An earlier run had two failures, both corrected and rerun."
+    },
+    {
+      "command": "Existing SQLAlchemy Python -m unittest annotation_orm reference_orm detail_orm core_orm",
+      "scope": "All eleven existing ORM mapping regressions.",
+      "status": "passed", "passed": 108, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 108 ORM tests passed."
+    },
+    {
+      "command": "Existing Python -m unittest ledger_domain ledger_repository_contract context_bootstrap",
+      "scope": "Frozen Domain, Repository/test-double exact scope, Context and Mapper foundation boundaries.",
+      "status": "passed", "passed": 155, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Final run passed 76 Domain, 60 Repository and 19 Context tests. An earlier Repository scope run had one expected-file-set failure, narrowly corrected and rerun."
+    },
+    {
+      "command": "Existing Python tools/quantmind2/validate_context_bootstrap.py",
+      "scope": "Context schemas/contracts, identity vectors, exact four-file Task Mapper package, family/runtime boundary, handoff, Runs and Factor Lab source.",
+      "status": "passed", "passed": 31, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Bootstrap returned passed with 31 named checks."
+    },
+    {
+      "command": "Existing Python py_compile over four Mapper files, Task test, validator and Context test",
+      "scope": "Changed Python syntax.",
+      "status": "passed", "passed": 7, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All seven files compiled without output."
+    },
+    {
+      "command": "Existing Python JSON parse loop over docs/quantmind2/**/*.json",
+      "scope": "All QuantMind 2.0 machine documents before this Run.",
+      "status": "passed", "passed": 27, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "All 27 JSON files parsed."
+    },
+    {
+      "command": "Existing Python actual Manifest schema, report hash, artifact hashes and canonical payload hash validation",
+      "scope": "This immutable Run contract.",
+      "status": "passed", "passed": 3, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Schema, report/artifact hashes and canonical payload hash passed after generation."
+    },
+    {
+      "command": "git diff --check plus dependency/ORM/domain/repository/migration/business and mapper-family scope guards",
+      "scope": "Whitespace and bounded task scope.",
+      "status": "passed", "passed": 3, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Final diff and scope guards were clean."
+    },
+    {
+      "command": "git -C official Factor Lab rev-parse HEAD and status --short",
+      "scope": "Read-only donor identity and cleanliness.",
+      "status": "passed", "passed": 2, "failed": 0, "skipped": 0, "not_run": 0,
+      "evidence": "Factor Lab remained at c83192c2278767e03f008bc39197b1ba33bfb6a9 with empty status."
+    },
+    {
+      "command": "Real PostgreSQL integration",
+      "scope": "Database, migration, transactions, lazy-load and concurrency behavior.",
+      "status": "not_run", "passed": 0, "failed": 0, "skipped": 0, "not_run": 1,
+      "evidence": "Database access is prohibited and outside this task."
+    },
+    {
+      "command": "Final staging audit launcher diagnostics followed by corrected exact-module rerun",
+      "scope": "Truthful retention of two corrected invocation issues before the final successful rerun.",
+      "status": "passed", "passed": 288, "failed": 2, "skipped": 0, "not_run": 0,
+      "evidence": "The first launcher attempt stopped before collection because python was unavailable. A system-Python attempt then ran 157 tests with two import errors: missing SQLAlchemy and an incorrect aggregate module name. Using the existing SQLAlchemy-capable Python and exact modules subsequently passed all 288 tests."
+    }
+  ],
+  "test_results": {"status": "passed", "passed": 649, "failed": 5, "skipped": 0, "not_run": 1},
+  "artifacts": [
+    {"artifact_type": "ledger_task_mapper_contract", "path": "docs/quantmind2/implementation/LEDGER_TASK_MAPPER_V1.md", "hash": "a945536e7b2e5b24f0dc0b6b8f2e6f80934fca8e5a07c101b0c7c12d6540671f"},
+    {"artifact_type": "implementation_report", "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/report.md", "hash": "88c6d0200a53cd603a94c0e9f4cd0f84778a1c9770c7043f0c4c7eb17cda6c62"}
+  ],
+  "architecture_decision_refs": ["ADR-0005", "ADR-0007"],
+  "component_refs": ["quantmind2.project_knowledge"],
+  "known_limitations": [
+    "No ImplementationRun, RunRelationship, detail, reference, annotation, artifact-location, or ChangedFile/ChangedSymbol technical-ID mapper exists.",
+    "No production Repository integration, Session, Unit of Work, database connection, migration, Parser/Indexer, API, or UI exists.",
+    "Task mapping creates new version-1 records only; existing-record update and optimistic concurrency paths are not implemented.",
+    "Manifest v1 logical repository identity and current ORM Mapper/identity version persistence remain unresolved.",
+    "Real PostgreSQL and pinned SQLAlchemy behavior were not tested."
+  ],
+  "unresolved_questions": [
+    "How will the Run Mapper receive explicit trusted logical repository identity without interpreting the Manifest absolute path?",
+    "How will the future Repository own expected-version updates and translate persistence conflicts?",
+    "Where will Mapper and identity algorithm versions be persisted before indexing?"
+  ],
+  "next_recommended_tasks": ["QM2-P0-002A2"],
+  "rollback_information": "Revert the single containing commit. No database, schema, migration, data, API, dependency, lockfile, accepted ADR, business runtime, or Factor Lab rollback is required.",
+  "frozen_architecture_compliance": "compliant",
+  "security_impact": "Mapper errors expose stable bounded metadata and omit complete records, objectives, scopes, non-goals, database URLs and secret-like identities; no external input or database was accessed.",
+  "data_lineage_impact": "No research or database data changed; Task conversion now has deterministic contract-versioned semantics but no durable persistence/indexing was performed.",
+  "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/report.md",
+  "report_hash": "88c6d0200a53cd603a94c0e9f4cd0f84778a1c9770c7043f0c4c7eb17cda6c62",
+  "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002A2a2c2a-20260715T040847Z-d128759/manifest.json",
+  "manifest_payload_hash": "af04afd41a2497e92dcd69d9e841b4434c3a0e6f5a4d95e2cc414e31b45d1e4b",
+  "generated_context_versions": {
+    "architecture": "v1",
+    "ledger_domain_model": "v1",
+    "ledger_repository_contract": "v1",
+    "ledger_core_orm_mapping": "v1",
+    "ledger_mapper_contract": "1.0.0",
+    "ledger_task_mapper": "v1",
+    "current_state": "1.0.0",
+    "component_catalog": "1.0.0",
+    "handoff": "1.0.0",
+    "implementation_manifest": "1.0.0"
+  },
+  "corrects_run_id": null
+}

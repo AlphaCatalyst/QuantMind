@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A2a2c1: `1d5affbb3361c60286028e569bb391f6955dc216`
+- Base before QM2-P0-002A2a2c2a: `d128759188d4e255c6d58093bf59da78f722fe28`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A2a2c1: no
+- Dirty before QM2-P0-002A2a2c2a: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A2a2c1.
+- It remained read-only and clean during QM2-P0-002A2a2c2a.
 
 ## Current position
 
@@ -27,9 +27,9 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A2a2c1`, completed as a Mapper identity and
-  conversion contract increment with no Mapper Python implementation.
-- Latest run: `QM2-P0-002A2a2c1-20260714T181338Z-1d5affb` under
+- Current task: `QM2-P0-002A2a2c2a`, completed as the Mapper foundation and
+  ImplementationTask-only conversion increment.
+- Latest run: `QM2-P0-002A2a2c2a-20260715T040847Z-d128759` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -62,7 +62,11 @@
 - Manifest v1 absolute `repository_root` is execution context and cannot be
   directly mapped to the logical Domain/ORM identity; future Indexer input must
   provide an explicit trusted binding. A future ADR/Manifest v2 is a candidate.
-- Recommended next task: `QM2-P0-002A2a2c2 — Core Task, Run and Relationship Mappers`;
+- Mapper errors/common conversions and Task-to-record/from-record are now
+  implemented. New records use version 1; stored version is validated but not
+  part of Domain. No Run, Relationship, Detail, Reference, Annotation, identity,
+  Repository, Session/UoW, migration, database, Indexer, API, or UI exists.
+- Recommended next task: `QM2-P0-002A2a2c2b — ImplementationRun Mapper`;
   it has not started. Machine-readable task lists use parent
   `QM2-P0-002` due to the current schema pattern.
 

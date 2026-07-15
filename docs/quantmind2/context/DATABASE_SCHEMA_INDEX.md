@@ -91,3 +91,9 @@ future Mapper contract and technical-ID algorithms only. The current schema
 still has no Mapper/identity-version columns, no deployed `quantmind2` schema,
 no migration, and no database connection. Identity algorithm versions must be
 recorded by a future Indexer/migration contract before durable indexing.
+
+QM2-P0-002A2a2c2a adds no metadata or schema change. Task Domain-to-record
+conversion initializes the already-defined ORM `version` column to 1;
+record-to-Domain validates a positive version and excludes it from Domain.
+Updates and expected-version behavior remain future Repository work. No schema,
+table, migration, Session, database connection, or DDL execution was added.

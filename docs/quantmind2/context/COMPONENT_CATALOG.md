@@ -61,3 +61,9 @@ recomputable ChangedFile/ChangedSymbol identity vectors. It fixes pure
 conversion, logical repository identity, value/error/round-trip, and version
 rules for all eleven families. No Mapper module or function exists; Core,
 Detail, Reference, and Annotation mappers all remain planned.
+
+QM2-P0-002A2a2c2a implements the API persistence Mapper foundation and only
+ImplementationTask bidirectional conversion. Common errors and Enum/datetime/
+JSON conversion utilities are reusable, but Run, Relationship, Detail,
+Reference, Annotation, technical-ID, Repository, migration, database and
+Indexer layers remain unimplemented.

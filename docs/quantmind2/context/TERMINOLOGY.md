@@ -19,6 +19,11 @@
   a Mapper implementation, Repository, or persistence runtime.
 - **Mapper technical ID**: deterministic versioned SHA-256 identifier for a
   ChangedFile or ChangedSymbol ORM row whose Domain object has no technical ID.
+- **Task Mapper**: pure explicit conversion between ImplementationTask and a
+  newly constructed ImplementationTaskRecord. It validates ORM-only version
+  but is not an existing-record update, Repository, Session, or transaction.
+- **Mapper Contract Version**: conversion-semantics version used by explicit
+  mappers; current value is 1.0.0 and is not yet persisted in ORM tables.
 - **Ledger Repository Contract**: persistence-independent Protocols defining
   Ledger identity, lookup, append-only history, query, version, transition,
   relationship graph, and atomic-write semantics. It owns no transaction.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T18:13:38Z",
-  "source_commit": "1d5affbb3361c60286028e569bb391f6955dc216",
+  "generated_at": "2026-07-15T04:08:47Z",
+  "source_commit": "d128759188d4e255c6d58093bf59da78f722fe28",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -27,7 +27,7 @@
     {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A2a2, so machine-readable next-task lists use parent QM2-P0-002."},
     {"issue_id": "QM2-KI-019", "severity": "medium", "status": "open", "summary": "Manifest v1 cannot directly represent rich file and symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1."},
     {"issue_id": "QM2-KI-020", "severity": "medium", "status": "open", "summary": "The in-memory Ledger Repository is a contract test double without durability, cross-process concurrency, database isolation, crash recovery, or PostgreSQL constraint evidence."},
-    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "open", "summary": "Ledger ORM metadata now covers all eleven current target objects, but domain mappers, migration, schema deployment, production Repository, UoW, and PostgreSQL integration evidence remain absent; no annotation data has been written."},
+    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "open", "summary": "Ledger ORM metadata covers all eleven objects and Task mapping exists, but the other ten object mappers, migration, schema deployment, production Repository, UoW, and PostgreSQL integration evidence remain absent."},
     {"issue_id": "QM2-KI-022", "severity": "low", "status": "open", "summary": "Static DDL verification used SQLAlchemy 2.0.51 while production requirements pin 2.0.25; pinned-runtime and real PostgreSQL verification remain outstanding."},
     {"issue_id": "QM2-KI-023", "severity": "high", "status": "open", "summary": "Manifest v1 repository_root is an execution absolute path while frozen Domain/ORM repository_root is contractually a logical repository identity; future indexing requires explicit trusted binding and a future ADR/Manifest v2 decision."},
     {"issue_id": "QM2-KI-024", "severity": "medium", "status": "open", "summary": "ImplementationArtifact has one path_or_uri field and no explicit location kind; current Domain prefix semantics are deterministic, but Manifest v2 should record producer intent."}
