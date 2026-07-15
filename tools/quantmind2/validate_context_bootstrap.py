@@ -909,12 +909,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification" not in handoff_text:
-        raise ValidationError("human handoff does not name completed QM2-P0-002A2b task")
     if "QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002A3 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-002A3"]:
-        raise ValidationError("machine handoff must name the exact Repository/UoW task")
+        raise ValidationError("human handoff does not name completed QM2-P0-002A3 task")
+    if "QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-002B next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-002B"]:
+        raise ValidationError("machine handoff must name the exact Parser/Indexer task")
     checks.append("handoff_links")
 
     example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

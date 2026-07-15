@@ -1,7 +1,7 @@
 # Current Implementation State
 
-Generated: 2026-07-14
-Verified source commit before this task: `30edead1d4b8eeece2be2978d6d42c94576122cc`
+Generated: 2026-07-15
+Verified source commit before this task: `d2e2f16aa8d9f48555d3b502b0b9fbf852def913`
 
 ## Implemented in existing systems
 
@@ -230,8 +230,25 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002A2b-20260715T060812Z-7c83e36`.
 
+## PostgreSQL Ledger Repository and Unit of Work
+
+- `QM2-P0-002A3` implements the complete asynchronous PostgreSQL Repository
+  mirror of the frozen A1b2 contract and an explicit async Unit of Work over
+  the shared DatabaseManager engine/sessionmaker.
+- Task, Run, Relationship, all eight child families, typed lists/history,
+  exact replay, immutable conflict, savepoint recovery, expected versions,
+  state changes, finalization, and atomic batch behavior are implemented.
+- Relationship admission uses one stable PostgreSQL transaction advisory lock
+  and a recursive CTE. Independent Sessions verified same/different Task races,
+  stale updates, opposing-edge cycle admission, and batch conflict rollback in
+  disposable PostgreSQL 15.
+- The implementation is persistence access only. No Manifest Parser/Indexer,
+  Git consistency service, repository identity resolver, API, UI, production
+  migration, or research business feature was added.
+- Latest Implementation Run: the `QM2-P0-002A3` Run paired with this task.
+
 ## Next task
 
-`QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work` is the only
-recommended next task. Mapper and migration/database-shape verification stages
-are complete.
+`QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer` is the only
+recommended next task. Domain, ORM, Mapper, migration, Repository, and Unit of
+Work stages are complete.

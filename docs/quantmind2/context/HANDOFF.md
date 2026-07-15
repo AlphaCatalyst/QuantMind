@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A2b: `7c83e36e5e7088a2f4c6ebdc570364a8d437a5cf`
+- Base before QM2-P0-002A3: `d2e2f16aa8d9f48555d3b502b0b9fbf852def913`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A2b: no
+- Dirty before QM2-P0-002A3: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A2b.
+- It remained read-only and clean during QM2-P0-002A3.
 
 ## Current position
 
@@ -27,16 +27,17 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A2b`, completed as the versioned Ledger migration
-  and isolated PostgreSQL verification closure.
-- Completed task name: `QM2-P0-002A2b — Ledger Migration and Isolated PostgreSQL Verification`.
-- Latest run: `QM2-P0-002A2b-20260715T060812Z-7c83e36` under
+- Current task: `QM2-P0-002A3`, completed as the PostgreSQL Ledger Repository
+  and explicit Unit of Work closure.
+- Completed task name: `QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work`.
+- Latest run: `QM2-P0-002A3-20260715T070618Z-d2e2f16` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
   transaction-wrapped PostgreSQL SQL, and an explicit `quantmind2` schema.
-  Migration invocation, ordering, exact-byte checksums, history, advisory
-  locking, guarded rollback, and fresh-install integration are implemented.
+  Migration invocation and rollback are implemented. The async PostgreSQL
+  Repository and explicit UoW now reuse the shared manager's engine/sessionmaker;
+  Repository methods never own transaction completion.
   Production deployment and final schema privilege policy remain unconfirmed.
 - Immutable Ledger domain objects, stable enums, structured errors,
   side-effect-free validators, Run state invariants, and direct relationship
@@ -51,10 +52,11 @@
   ArchitectureDecisionReference, Limitation, and RecommendedTask to eleven explicit
   `quantmind2` table shapes. PostgreSQL DDL compiles without a database connection.
 - All current target ORM mappings and explicit bidirectional Domain mappers
-  exist. Migration `0001` can create and roll back the real schema and eleven
-  tables and matches ORM metadata in isolated PostgreSQL 15. PostgreSQL
-  Repository, business Session/UoW, Manifest Parser/Indexer, Git consistency
-  service, API, and UI do not exist.
+  exist. Migration `0001` and the async PostgreSQL Repository/UoW are complete.
+  Exact replay/conflict, expected version, finalization, append-only children,
+  recursive-CTE/advisory-lock DAG admission, typed history, and atomic batch
+  behavior pass isolated PostgreSQL 15 tests, including independent Sessions.
+  Manifest Parser/Indexer, Git consistency service, API, and UI do not exist.
 - Limitation does not foreign-key Component Catalog; RecommendedTask does not
   foreign-key, create, or execute a future Task. Neither historical annotation
   has an ORM update method, and no annotation data was written.
@@ -67,9 +69,9 @@
 - All eleven objects now have explicit `to_record` and `from_record` functions.
   Stored ChangedFile/Symbol technical IDs are recomputed and verified; explicit
   parent Run IDs cannot disagree with Domain values. Task/Run version behavior
-  remains unchanged. Migration is complete; no PostgreSQL Repository,
-  Session/UoW, Manifest Parser/Indexer, identity resolver, API, or UI exists.
-- Recommended next task: `QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work`.
+  remains unchanged. Repository/UoW are complete; no Manifest Parser/Indexer,
+  identity resolver, Git consistency service, API, or UI exists.
+- Recommended next task: `QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer`.
 
 ## Unconfirmed facts
 
@@ -83,11 +85,9 @@
 - Persistent idempotency-key and semantic-duplicate policy.
 - A future ADR/Manifest v2 split for logical repository ID versus execution
   path, plus explicit artifact location kind and Mapper/identity versions.
-- PostgreSQL realization of Repository uniqueness, expected versions, DAG
-  checks, and atomic batch behavior.
-- SQLAlchemy 2.0.25 pinned-runtime DDL compilation and real PostgreSQL behavior;
+- SQLAlchemy 2.0.25 / asyncpg 0.29 pinned-runtime behavior;
   A2a1/A2a2a/A2a2b1/A2a2b2 static verification used an existing SQLAlchemy
-  2.0.51 environment.
+  2.0.51 environment and A3 used SQLAlchemy 2.0.51 / asyncpg 0.31.0.
 - Production schema privileges and CI execution remain unverified; local
   ordering, checksums, rollback, reapply, parity, and cleanup are verified.
 

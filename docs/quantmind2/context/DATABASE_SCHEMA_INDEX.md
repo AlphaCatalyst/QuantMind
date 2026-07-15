@@ -118,5 +118,7 @@ QM2-P0-002A2b establishes the sole Ledger deployment DDL authority under
 plan/status/validate/up/down, advisory transaction locking, atomic history,
 idempotent up, and guarded latest-only down. Disposable PostgreSQL 15 found no
 drift across 11 tables, 87 columns, 97 named constraints, and 49 explicit
-indexes. No production database has been migrated and no PostgreSQL Repository
-or business Unit of Work exists.
+indexes. QM2-P0-002A3 now supplies the asynchronous PostgreSQL Repository and
+explicit business Unit of Work over that schema, verified only in disposable
+PostgreSQL 15. No production database has been migrated and no Manifest/Git
+indexer exists.

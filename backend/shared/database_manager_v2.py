@@ -214,6 +214,18 @@ class DatabaseManager:
             finally:
                 await session.close()
 
+    async def create_master_session(self) -> AsyncSession:
+        """Return a non-auto-committing master Session for an explicit UoW.
+
+        The caller owns commit, rollback, and close. This reuses the manager's
+        existing engine and sessionmaker; it does not create a parallel pool.
+        """
+        if not self._initialized:
+            await self.initialize()
+        if self._master_session_factory is None:
+            raise RuntimeError("master session factory is unavailable")
+        return self._master_session_factory()
+
     @asynccontextmanager
     async def get_slave_session(self) -> AsyncGenerator[AsyncSession, None]:
         """获取从库会话 (用于读操作，轮询负载均衡)"""

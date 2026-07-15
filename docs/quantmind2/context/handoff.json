@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T06:08:12Z",
-  "source_commit": "7c83e36e5e7088a2f4c6ebdc570364a8d437a5cf",
+  "generated_at": "2026-07-15T07:06:18Z",
+  "source_commit": "d2e2f16aa8d9f48555d3b502b0b9fbf852def913",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "7c83e36e5e7088a2f4c6ebdc570364a8d437a5cf",
+  "base_commit": "d2e2f16aa8d9f48555d3b502b0b9fbf852def913",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-002A2b",
+  "current_task": "QM2-P0-002A3",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-002A2b-20260715T060812Z-7c83e36",
-  "next_recommended_tasks": ["QM2-P0-002A3"],
+  "latest_implementation_run": "QM2-P0-002A3-20260715T070618Z-d2e2f16",
+  "next_recommended_tasks": ["QM2-P0-002B"],
   "unconfirmed_facts": [
     "Concrete TongDaXin Provider implementation and capability contract.",
     "Durable long-term location for the official Factor Lab source.",
@@ -38,8 +38,7 @@
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
     "Future ADR and Manifest v2 fields separating logical repository identity from execution path, plus explicit artifact location kind and Mapper/identity versions.",
-    "PostgreSQL realization of Repository uniqueness, expected versions, DAG checks, and atomic batch behavior.",
-    "SQLAlchemy 2.0.25 pinned-runtime parity; isolated PostgreSQL 15 parity was verified with an existing SQLAlchemy 2.0.51 environment."
+    "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

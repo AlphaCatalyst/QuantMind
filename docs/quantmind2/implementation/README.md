@@ -34,3 +34,12 @@ The explicit versioned Ledger migration contract is
 `data/migrations/quantmind2/` and is coordinated by
 `tools/quantmind2/ledger_migrations.py`. ORM metadata remains the current shape
 contract; the migration is the only Ledger deployment DDL source.
+
+## Ledger PostgreSQL Repository
+
+`LEDGER_POSTGRES_REPOSITORY_V1.md` records the asynchronous Repository and Unit
+of Work boundary implemented by QM2-P0-002A3. Repositories use one injected
+shared-manager Session and never finish transactions; the UoW owns explicit
+commit/rollback. Disposable PostgreSQL tests cover contract parity, savepoints,
+optimistic concurrency, DAG admission, and atomic batches. Manifest/Git parsing
+and indexing remain the QM2-P0-002B boundary.

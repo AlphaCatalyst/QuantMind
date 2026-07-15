@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | Bootstrap, audit, Ledger domain/Repository contracts, eleven static ORM mappings, and the complete eleven-object Mapper layer exist; migration, production persistence/API/UI do not |
+| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger Domain/ORM/Mapper/migration, async PostgreSQL Repository, Unit of Work, and isolated concurrency evidence exist; parsing/indexing/API/UI do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -80,3 +80,12 @@ writes, idempotency, checksum drift, rollback atomicity, and reapply are
 verified. This does not add a PostgreSQL Repository, business Session/UoW,
 Manifest Parser/Indexer, Git consistency service, API, UI, or production
 deployment.
+
+QM2-P0-002A3 adds the production asynchronous PostgreSQL Repository contract
+implementation and explicit Unit of Work. It reuses the shared DatabaseManager
+sessionmaker, never commits inside Repository methods, contains insert races in
+savepoints, applies conditional expected-version updates, serializes DAG edge
+admission with a transaction advisory lock plus recursive CTE, and preserves
+atomic batches. Disposable PostgreSQL 15 and cross-implementation scenarios
+verify behavior. Manifest/Git parsing and indexing, API/UI, production database
+deployment, and research business modules remain absent.
