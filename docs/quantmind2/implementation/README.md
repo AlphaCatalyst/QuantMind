@@ -41,5 +41,7 @@ contract; the migration is the only Ledger deployment DDL source.
 of Work boundary implemented by QM2-P0-002A3. Repositories use one injected
 shared-manager Session and never finish transactions; the UoW owns explicit
 commit/rollback. Disposable PostgreSQL tests cover contract parity, savepoints,
-optimistic concurrency, DAG admission, and atomic batches. Manifest/Git parsing
-and indexing remain the QM2-P0-002B boundary.
+optimistic concurrency, DAG admission, and atomic batches. QM2-P0-002B adds
+Manifest/Git parsing and indexing under `LEDGER_MANIFEST_INDEXER_V1.md`.
+Current Manifest v1 history remains non-indexable where formal Domain evidence
+is absent; no values are invented.

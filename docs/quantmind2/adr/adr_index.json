@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-14T14:25:14Z",
-  "source_commit": "05c2db2b0797c6c173b4916d7f70dc97853dc5ec",
+  "generated_at": "2026-07-15T09:06:30Z",
+  "source_commit": "d33f2815b96053c2e0eba1320d666862d0337997",
   "source_paths": ["docs/quantmind2/adr/ADR_INDEX.md"],
   "authority_level": "accepted_architecture_index",
   "freshness_status": "current_at_base_commit",
@@ -15,6 +15,7 @@
     {"adr_id": "ADR-0006", "title": "Frozen Test and Official Backtest Governance", "status": "accepted", "path": "docs/quantmind2/adr/ADR-0006-frozen-test-and-official-backtest-governance.md"},
     {"adr_id": "ADR-0007", "title": "Immutable Research Identities and Lineage", "status": "accepted", "path": "docs/quantmind2/adr/ADR-0007-immutable-research-identities-and-lineage.md"},
     {"adr_id": "ADR-0008", "title": "Layered Optimization Boundaries", "status": "accepted", "path": "docs/quantmind2/adr/ADR-0008-layered-optimization-boundaries.md"},
-    {"adr_id": "ADR-0009", "title": "Decision–Control–Execution Separation", "status": "accepted", "path": "docs/quantmind2/adr/ADR-0009-decision-control-execution-separation.md"}
+    {"adr_id": "ADR-0009", "title": "Decision–Control–Execution Separation", "status": "accepted", "path": "docs/quantmind2/adr/ADR-0009-decision-control-execution-separation.md"},
+    {"adr_id": "ADR-0010", "title": "Logical Repository Identity Binding", "status": "accepted", "path": "docs/quantmind2/adr/ADR-0010-logical-repository-identity-binding.md"}
   ]
 }

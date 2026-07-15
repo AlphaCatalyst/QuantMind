@@ -14,3 +14,4 @@ superseded record and its approval status; do not overwrite an accepted ADR.
 | [ADR-0007](ADR-0007-immutable-research-identities-and-lineage.md) | accepted | Immutable research identities and lineage |
 | [ADR-0008](ADR-0008-layered-optimization-boundaries.md) | accepted | Factor, Model, Portfolio optimization separation |
 | [ADR-0009](ADR-0009-decision-control-execution-separation.md) | accepted | Research decision, code control, and deterministic execution separation |
+| [ADR-0010](ADR-0010-logical-repository-identity-binding.md) | accepted | Logical repository identity and explicit local path binding |

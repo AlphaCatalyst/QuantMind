@@ -600,7 +600,7 @@ class ContractScopeTests(unittest.TestCase):
         for forbidden in ("open(", "Path(", "sqlite", "postgres", "create_engine", "AsyncSession"):
             self.assertNotIn(forbidden, text)
 
-    def test_api_persistence_boundary_has_only_authorized_a3_files(self):
+    def test_api_project_knowledge_boundary_has_only_authorized_a3_and_b_files(self):
         api_root = REPO_ROOT / "backend/services/api/project_knowledge"
         self.assertEqual(
             {path.relative_to(api_root).as_posix() for path in api_root.rglob("*.py")},
@@ -627,6 +627,14 @@ class ContractScopeTests(unittest.TestCase):
                 "repositories/postgres.py",
                 "repositories/protocols.py",
                 "repositories/unit_of_work.py",
+                "indexing/__init__.py",
+                "indexing/domain_bundle.py",
+                "indexing/errors.py",
+                "indexing/git_evidence.py",
+                "indexing/indexer.py",
+                "indexing/manifest_parser.py",
+                "indexing/models.py",
+                "indexing/repository_binding.py",
             },
         )
         for forbidden in ("repository.py", "api.py", "session.py"):

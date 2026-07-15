@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger Domain/ORM/Mapper/migration, async PostgreSQL Repository, Unit of Work, and isolated concurrency evidence exist; parsing/indexing/API/UI do not |
+| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger Domain/ORM/Mapper/migration, PostgreSQL Repository/UoW, Manifest parser, Git consistency, trusted binding, Indexer, CLI, and isolated evidence exist; API/UI and production deployment do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -68,9 +68,9 @@ ImplementationRun bidirectional conversion with explicit logical repository
 identity, five exact Enums, UTC-aware time, nullable commit/hash fields, Domain
 state validation, and ORM-only version handling. QM2-P0-002A2a2c2c completes
 RunRelationship, Detail, Reference, and Annotation conversion plus frozen
-ChangedFile/ChangedSymbol technical IDs and drift verification. Manifest
-binding, repository identity resolution, production Repository, migration,
-database and Indexer layers remain unimplemented.
+ChangedFile/ChangedSymbol technical IDs and drift verification. Repository,
+migration, database, trusted identity binding, and Indexer layers are now
+implemented; API/UI and production deployment remain unimplemented.
 
 QM2-P0-002A2b adds explicit versioned Ledger migration `0001`, a
 zero-dependency `psql` runner, fresh-install invocation, and opt-in disposable
@@ -87,5 +87,6 @@ sessionmaker, never commits inside Repository methods, contains insert races in
 savepoints, applies conditional expected-version updates, serializes DAG edge
 admission with a transaction advisory lock plus recursive CTE, and preserves
 atomic batches. Disposable PostgreSQL 15 and cross-implementation scenarios
-verify behavior. Manifest/Git parsing and indexing, API/UI, production database
-deployment, and research business modules remain absent.
+verify behavior. QM2-P0-002B adds Manifest/Git parsing and indexing. API/UI,
+production deployment, and research business modules remain absent. Historical
+Manifest v1 Runs cannot be indexed where required Domain evidence is missing.

@@ -12,7 +12,9 @@
 | QM2-KI-008 | high | open | Anti-overfit `recent` is not an access-isolated Frozen Test. |
 | QM2-KI-009 | high | open | Official Factor Lab source is currently under `/tmp`, creating durability risk. |
 | QM2-KI-010 | medium | open | Project Knowledge Center API and UI do not exist. |
-| QM2-KI-011 | medium | open | Implementation Ledger database index does not exist. |
+| QM2-KI-011 | medium | resolved | Git-to-Ledger parser/indexer exists; production deployment remains separate. |
+| QM2-KI-025 | high | open | Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; 0/16 historical Runs are indexable. |
+| QM2-KI-026 | high | open | QM2-P0-001F declares a result commit that differs from its containing commit. |
 | QM2-KI-012 | high | open | Formal Factor Optimization does not exist. |
 | QM2-KI-013 | high | open | V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision/Decision Validator boundary. |
 | QM2-KI-014 | high | resolved | Ledger schema now has a dedicated ordered explicit-SQL runner with history, checksum, lock, up/down, and fresh-install integration; unrelated legacy schema paths remain outside this resolution. |
@@ -22,7 +24,7 @@
 | QM2-KI-018 | medium | open | Context schema v1 cannot encode fine-grained task IDs such as `QM2-P0-002A2a2`; machine-readable next-task lists temporarily use parent `QM2-P0-002`. |
 | QM2-KI-019 | medium | open | Manifest v1 cannot directly represent rich file/symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1. |
 | QM2-KI-020 | medium | resolved | In-memory remains a test double; the async PostgreSQL Repository now has isolated PostgreSQL 15 transaction, rollback, savepoint, constraint, and cross-Session concurrency evidence. |
-| QM2-KI-021 | medium | open | Ledger migration, PostgreSQL Repository, and business Unit of Work now exist, but production migration, Manifest/Git indexing, API, and UI remain absent. |
+| QM2-KI-021 | medium | resolved | Ledger migration, Repository/UoW, Manifest/Git indexing and CLI exist; production deployment and API/UI remain separate open scope. |
 | QM2-KI-022 | low | open | Real PostgreSQL 15 Repository behavior passed with SQLAlchemy 2.0.51 and asyncpg 0.31.0; pinned SQLAlchemy 2.0.25 and asyncpg 0.29.0 runtime parity remains outstanding. |
-| QM2-KI-023 | high | open | Manifest v1 `repository_root` is an execution absolute path while frozen Domain/ORM `repository_root` is now contractually a logical repository identity; future indexing requires explicit trusted binding and a future ADR/Manifest v2 decision. |
+| QM2-KI-023 | high | resolved | ADR-0010 and the Indexer require explicit trusted logical-ID to worktree binding; Manifest v1 absolute path remains informational. |
 | QM2-KI-024 | medium | open | ImplementationArtifact has one `path_or_uri` field and no explicit location kind; existing Domain prefix semantics are deterministic, but Manifest v2 should record producer intent. |

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T07:06:18Z",
-  "source_commit": "d2e2f16aa8d9f48555d3b502b0b9fbf852def913",
+  "generated_at": "2026-07-15T09:06:30Z",
+  "source_commit": "d33f2815b96053c2e0eba1320d666862d0337997",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -17,7 +17,7 @@
     {"issue_id": "QM2-KI-008", "severity": "high", "status": "open", "summary": "Anti-overfit recent is not an isolated Frozen Test."},
     {"issue_id": "QM2-KI-009", "severity": "high", "status": "open", "summary": "Official Factor Lab source under /tmp has durability risk."},
     {"issue_id": "QM2-KI-010", "severity": "medium", "status": "open", "summary": "Project Knowledge Center API and UI do not exist."},
-    {"issue_id": "QM2-KI-011", "severity": "medium", "status": "open", "summary": "Implementation Ledger database index does not exist."},
+    {"issue_id": "QM2-KI-011", "severity": "medium", "status": "resolved", "summary": "Git-to-Ledger parser/indexer exists; production deployment remains separate."},
     {"issue_id": "QM2-KI-012", "severity": "high", "status": "open", "summary": "Formal Factor Optimization does not exist."},
     {"issue_id": "QM2-KI-013", "severity": "high", "status": "open", "summary": "V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision and Decision Validator boundary."},
     {"issue_id": "QM2-KI-014", "severity": "high", "status": "resolved", "summary": "Ledger schema now has a dedicated ordered explicit-SQL runner with history, checksum, lock, up/down, and fresh-install integration; unrelated legacy schema paths remain outside this resolution."},
@@ -27,9 +27,11 @@
     {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A2a2, so machine-readable next-task lists use parent QM2-P0-002."},
     {"issue_id": "QM2-KI-019", "severity": "medium", "status": "open", "summary": "Manifest v1 cannot directly represent rich file and symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1."},
     {"issue_id": "QM2-KI-020", "severity": "medium", "status": "resolved", "summary": "The in-memory test double remains non-durable, while the async PostgreSQL Repository now has isolated PostgreSQL 15 transaction, rollback, savepoint, constraint, and cross-Session concurrency evidence."},
-    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "open", "summary": "Ledger migration, PostgreSQL Repository, and business Unit of Work now exist, but production migration, Manifest/Git indexing, API, and UI remain absent."},
+    {"issue_id": "QM2-KI-021", "severity": "medium", "status": "resolved", "summary": "Ledger migration, Repository/UoW, Manifest/Git indexing and CLI exist; production deployment and API/UI remain separate open scope."},
     {"issue_id": "QM2-KI-022", "severity": "low", "status": "open", "summary": "Real PostgreSQL 15 Repository behavior passed with SQLAlchemy 2.0.51 and asyncpg 0.31.0; pinned SQLAlchemy 2.0.25 and asyncpg 0.29.0 runtime parity remains outstanding."},
-    {"issue_id": "QM2-KI-023", "severity": "high", "status": "open", "summary": "Manifest v1 repository_root is an execution absolute path while frozen Domain/ORM repository_root is contractually a logical repository identity; future indexing requires explicit trusted binding and a future ADR/Manifest v2 decision."},
-    {"issue_id": "QM2-KI-024", "severity": "medium", "status": "open", "summary": "ImplementationArtifact has one path_or_uri field and no explicit location kind; current Domain prefix semantics are deterministic, but Manifest v2 should record producer intent."}
+    {"issue_id": "QM2-KI-023", "severity": "high", "status": "resolved", "summary": "ADR-0010 and the Indexer require explicit trusted logical-ID to worktree binding; Manifest v1 absolute path remains informational."},
+    {"issue_id": "QM2-KI-024", "severity": "medium", "status": "open", "summary": "ImplementationArtifact has one path_or_uri field and no explicit location kind; current Domain prefix semantics are deterministic, but Manifest v2 should record producer intent."},
+    {"issue_id": "QM2-KI-025", "severity": "high", "status": "open", "summary": "Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; zero of sixteen historical Runs are indexable."},
+    {"issue_id": "QM2-KI-026", "severity": "high", "status": "open", "summary": "QM2-P0-001F declares a result commit that differs from its containing commit."}
   ]
 }

@@ -53,6 +53,9 @@ LEDGER_MIGRATION_CONTRACT = QM2 / "implementation" / "LEDGER_MIGRATION_AND_POSTG
 LEDGER_MIGRATION_ROOT = ROOT / "data" / "migrations" / "quantmind2"
 LEDGER_MIGRATION_MANIFEST = LEDGER_MIGRATION_ROOT / "manifest.json"
 LEDGER_MIGRATION_RUNNER = ROOT / "tools" / "quantmind2" / "ledger_migrations.py"
+LEDGER_INDEXER_CONTRACT = QM2 / "implementation" / "LEDGER_MANIFEST_INDEXER_V1.md"
+LEDGER_INDEXING_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge" / "indexing"
+LEDGER_INDEXER_CLI = ROOT / "tools" / "quantmind2" / "index_implementation_runs.py"
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -891,6 +894,28 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     checks.append("ledger_migration_contract")
     checks.append("ledger_migration_checksums")
 
+    required_indexer_files = {
+        "__init__.py", "errors.py", "models.py", "repository_binding.py",
+        "manifest_parser.py", "git_evidence.py", "domain_bundle.py", "indexer.py",
+    }
+    if not LEDGER_INDEXER_CONTRACT.is_file():
+        raise ValidationError("Ledger Manifest Indexer contract is missing")
+    if not LEDGER_INDEXING_ROOT.is_dir() or {
+        path.name for path in LEDGER_INDEXING_ROOT.glob("*.py")
+    } != required_indexer_files:
+        raise ValidationError("Ledger Indexer package does not match the v1 inventory")
+    if not LEDGER_INDEXER_CLI.is_file():
+        raise ValidationError("Ledger Indexer CLI is missing")
+    indexer_contract = LEDGER_INDEXER_CONTRACT.read_text(encoding="utf-8")
+    for marker in (
+        "Git snapshot input", "Source status and resolved status", "Domain Bundle",
+        "Indexing passes and transaction boundaries", "historical backfill",
+    ):
+        if marker not in indexer_contract:
+            raise ValidationError(f"Ledger Indexer contract is missing marker: {marker}")
+    checks.append("ledger_manifest_indexer_contract")
+    checks.append("ledger_manifest_indexer_inventory")
+
     catalog = loaded["component_catalog"]
     component_status = {item["component_id"]: item["status"] for item in catalog["components"]}
     state = loaded["current_state"]
@@ -909,12 +934,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work" not in handoff_text:
-        raise ValidationError("human handoff does not name completed QM2-P0-002A3 task")
     if "QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-002B next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-002B"]:
-        raise ValidationError("machine handoff must name the exact Parser/Indexer task")
+        raise ValidationError("human handoff does not name completed QM2-P0-002B task")
+    if "QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-003 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-003"]:
+        raise ValidationError("machine handoff must name the exact TDX audit task")
     checks.append("handoff_links")
 
     example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

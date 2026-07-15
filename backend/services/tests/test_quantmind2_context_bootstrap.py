@@ -89,12 +89,14 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
 
     def test_adr_index_references_are_complete(self):
         index = load_json(QM2 / "adr" / "adr_index.json")
-        self.assertEqual(len(index["adrs"]), 9)
+        self.assertEqual(len(index["adrs"]), 10)
         root = Path(__file__).resolve().parents[3]
         for adr in index["adrs"]:
             self.assertTrue((root / adr["path"]).is_file())
         adr_0009 = next(item for item in index["adrs"] if item["adr_id"] == "ADR-0009")
         self.assertEqual(adr_0009["status"], "accepted")
+        adr_0010 = next(item for item in index["adrs"] if item["adr_id"] == "ADR-0010")
+        self.assertEqual(adr_0010["status"], "accepted")
 
     def test_research_decision_contract_and_architecture_exist(self):
         self.assertTrue(RESEARCH_DECISION_CONTRACT.is_file())
@@ -200,18 +202,18 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_a3_and_names_exact_b_next_task(self):
+    def test_handoff_records_b_and_names_exact_003_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-        self.assertIn(
-            "QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work",
-            text,
-        )
         self.assertIn(
             "QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer",
             text,
         )
+        self.assertIn(
+            "QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry",
+            text,
+        )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-002B"])
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-003"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

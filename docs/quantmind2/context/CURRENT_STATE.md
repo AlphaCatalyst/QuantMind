@@ -41,7 +41,7 @@ Verified source commit before this task: `d2e2f16aa8d9f48555d3b502b0b9fbf852def9
 - Unified Signal Service
 - Project Knowledge API
 - Project Knowledge Web UI
-- Implementation Ledger PostgreSQL index
+- Project Knowledge API and Web UI
 
 ## Completed context bootstrap
 
@@ -247,8 +247,29 @@ No business-domain implementation was introduced by either task.
   migration, or research business feature was added.
 - Latest Implementation Run: the `QM2-P0-002A3` Run paired with this task.
 
+## Git-authoritative Ledger indexing
+
+- `QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer`
+  implements strict Manifest v1 parsing, explicit logical Repository binding,
+  committed Git-object discovery, hash/commit/immutability checks, Domain
+  Bundle admission, deterministic multi-pass indexing, JSON CLI commands, and
+  isolated tests.
+- Historical compatibility at base `d33f2815`: 16 v1 Runs discovered, 15 pass
+  mandatory Git evidence, and zero form a complete Domain Bundle. The 001F Run
+  declares a result commit different from its containing commit. Every v1 Run
+  lacks independent Task status/creation time; populated children also lack
+  Ledger identities or required semantics.
+- No missing value was inferred. No historical Run was written as a backfill.
+  A complete synthetic bundle verified insert, replay, immutable conflict, and
+  rollback through disposable PostgreSQL 15. Production deployment/backfill
+  has not occurred.
+- ADR-0010 fixes logical repository identity and explicit runtime path binding.
+- Ledger infrastructure implementation is closed. API/UI, watcher, webhook,
+  daemon, and production deployment remain outside this phase.
+- Latest Implementation Run:
+  `QM2-P0-002B-20260715T090630Z-d33f281`.
+
 ## Next task
 
-`QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer` is the only
-recommended next task. Domain, ORM, Mapper, migration, Repository, and Unit of
-Work stages are complete.
+`QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry` is
+the only recommended next task. The Ledger infrastructure stage is complete.

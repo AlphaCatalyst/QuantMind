@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002A3: `d2e2f16aa8d9f48555d3b502b0b9fbf852def913`
+- Base before QM2-P0-002B: `d33f2815b96053c2e0eba1320d666862d0337997`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002A3: no
+- Dirty before QM2-P0-002B: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,7 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002A3.
+- It remained read-only and clean during QM2-P0-002B.
 
 ## Current position
 
@@ -27,10 +27,10 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002A3`, completed as the PostgreSQL Ledger Repository
-  and explicit Unit of Work closure.
-- Completed task name: `QM2-P0-002A3 — PostgreSQL Ledger Repository and Unit of Work`.
-- Latest run: `QM2-P0-002A3-20260715T070618Z-d2e2f16` under
+- Current task: `QM2-P0-002B`, completed as the Git-authoritative Manifest
+  parser and Ledger Indexer closure.
+- Completed task name: `QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer`.
+- Latest run: `QM2-P0-002B-20260715T090630Z-d33f281` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -56,22 +56,32 @@
   Exact replay/conflict, expected version, finalization, append-only children,
   recursive-CTE/advisory-lock DAG admission, typed history, and atomic batch
   behavior pass isolated PostgreSQL 15 tests, including independent Sessions.
-  Manifest Parser/Indexer, Git consistency service, API, and UI do not exist.
+  Manifest Parser/Indexer, Git consistency service, trusted binding, and CLI
+  now exist. API and UI do not exist.
 - Limitation does not foreign-key Component Catalog; RecommendedTask does not
   foreign-key, create, or execute a future Task. Neither historical annotation
   has an ORM update method, and no annotation data was written.
 - Mapper Contract v1 covers all eleven objects. The complete explicit Mapper
   package implements pure conversion, safe errors, round trips, and frozen
   `changed-file-v1` / `changed-symbol-v1` identities. It has no database runtime.
-- Manifest v1 absolute `repository_root` is execution context and cannot be
-  directly mapped to the logical Domain/ORM identity; future Indexer input must
-  provide an explicit trusted binding. A future ADR/Manifest v2 is a candidate.
+- Manifest v1 absolute `repository_root` is execution context and is not mapped
+  to the logical Domain/ORM identity. ADR-0010 and the Indexer require explicit
+  trusted binding. A future Manifest v2 remains a candidate.
 - All eleven objects now have explicit `to_record` and `from_record` functions.
   Stored ChangedFile/Symbol technical IDs are recomputed and verified; explicit
   parent Run IDs cannot disagree with Domain values. Task/Run version behavior
-  remains unchanged. Repository/UoW are complete; no Manifest Parser/Indexer,
-  identity resolver, Git consistency service, API, or UI exists.
-- Recommended next task: `QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer`.
+  remains unchanged. Parser, binding, Git consistency, and Indexer exist; API
+  and UI do not.
+- QM2-P0-002B measured 16 historical Manifest v1 Runs: 15 pass mandatory Git
+  evidence and zero form complete Domain Bundles. It did not invent missing
+  Task/child facts and did not claim a historical backfill. The 001F Run fails
+  result-commit consistency. A complete synthetic bundle passed isolated
+  PostgreSQL insert, replay, immutable-conflict, and rollback verification.
+- ADR-0010 requires explicit caller binding from logical repository ID to local
+  worktree; v1 absolute paths remain informational execution evidence.
+- Ledger infrastructure is closed. Production deployment/backfill, API/UI,
+  watcher, webhook, and daemon remain absent.
+- Recommended next task: `QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry`.
 
 ## Unconfirmed facts
 
