@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T09:06:30Z",
-  "source_commit": "d33f2815b96053c2e0eba1320d666862d0337997",
+  "generated_at": "2026-07-16T13:50:59Z",
+  "source_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -23,6 +23,7 @@
     {"task_id": "QM2-P0-002A2b", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002A2a2c2c"], "objective": "Realize and verify the frozen Ledger metadata in an isolated PostgreSQL migration boundary.", "explicit_non_goals": ["No Repository, Session, UoW, Manifest Parser, Indexer, production API, UI, or research business implementation."], "acceptance_summary": "Versioned up/down, parity, constraints, rollback, reapply, and cleanup pass in disposable PostgreSQL 15."},
     {"task_id": "QM2-P0-002A3", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002A2b"], "objective": "Implement the PostgreSQL Ledger Repository and explicit business Unit of Work on the verified schema.", "explicit_non_goals": ["No Manifest Parser, Indexer, API, UI, or research business implementation."], "acceptance_summary": "Frozen Repository contracts and independent-session races pass against disposable PostgreSQL with transaction ownership outside Repositories."},
     {"task_id": "QM2-P0-002B", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002A3"], "objective": "Parse authoritative artifacts, verify Git, and index complete bundles through the Ledger Unit of Work.", "explicit_non_goals": ["No API, UI, production deployment, historical Manifest repair, or research business implementation."], "acceptance_summary": "Binding, parser, Git consistency, indexer, CLI, and isolated PostgreSQL pass; historical Manifest v1 is zero of sixteen indexable without field invention."},
+    {"task_id": "QM2-P0-002B1", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-002B"], "objective": "Make future Runs losslessly indexable using the formal Manifest v2 producer.", "explicit_non_goals": ["No v1 rewrite, database schema, API, UI, deployment, watcher, or business implementation."], "acceptance_summary": "B1 v2 passes Git, complete eleven-family Bundle, isolated PostgreSQL index, exact replay, immutable conflict, and rollback."},
     {"task_id": "QM2-P0-002", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Index Git implementation runs and expose Project Knowledge APIs.", "explicit_non_goals": ["No web UI or research business domain."], "acceptance_summary": "Git and manifest consistency is queryable."},
     {"task_id": "QM2-P0-003", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Verify TongDaXin Provider capabilities.", "explicit_non_goals": ["No unapproved dependency selection or ingestion."], "acceptance_summary": "Every capability is evidenced or explicitly unavailable."},
     {"task_id": "QM2-P0-004", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-003"], "objective": "Create collection control and immutable Raw Store.", "explicit_non_goals": ["No normalization or snapshot publishing."], "acceptance_summary": "Checkpoint follows committed raw partitions."},

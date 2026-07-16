@@ -1,7 +1,7 @@
 # Current Implementation State
 
-Generated: 2026-07-15
-Verified source commit before this task: `d2e2f16aa8d9f48555d3b502b0b9fbf852def913`
+Generated: 2026-07-16
+Verified source commit before this task: `0353435a3c1fb4b1469a5ab32462a1a010999872`
 
 ## Implemented in existing systems
 
@@ -268,6 +268,29 @@ No business-domain implementation was introduced by either task.
   daemon, and production deployment remain outside this phase.
 - Latest Implementation Run:
   `QM2-P0-002B-20260715T090630Z-d33f281`.
+
+## Forward-indexable Manifest v2
+
+- `QM2-P0-002B1 — Manifest v2 Producer and Forward Indexability` implements
+  strict Manifest v2 Schema, example, protocol documentation, and the formal
+  `new` / `finalize-payload` / `validate` producer used by future Runs.
+- Manifest v2 separates logical Repository identity from execution path and
+  records Mapper/technical identity versions, stable child identities, typed
+  artifact locations, complete Task/Run facts, and canonical integrity.
+- Parser, Git consistency, Domain Bundle, Bootstrap, and Indexer accept v2
+  without changing the v1 route. A valid v2 Run constructs all eleven frozen
+  Ledger Domain families without Report prose or evidence gaps.
+- The B1 Run itself uses Manifest v2 and passed committed-Git planning plus
+  isolated PostgreSQL indexing, exact replay, immutable-conflict, and
+  no-partial-write verification. Production database deployment did not occur.
+- All 17 historical v1 Runs remain immutable. At the B1 base, 16 pass mandatory
+  Git evidence and zero are fully indexable; QM2-P0-001F retains its declared
+  result-commit mismatch.
+- Ledger infrastructure is now formally closed. Project Knowledge API/UI,
+  production deployment/backfill, watcher, webhook, and daemon remain absent
+  and are not the next implementation scope.
+- Latest Implementation Run:
+  `QM2-P0-002B1-20260716T135059Z-0353435`.
 
 ## Next task
 

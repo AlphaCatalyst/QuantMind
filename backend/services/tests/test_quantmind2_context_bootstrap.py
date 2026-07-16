@@ -28,6 +28,7 @@ from tools.quantmind2.validate_context_bootstrap import (
     validate_bootstrap,
     validate_instance,
     validate_mapper_identity_vectors,
+    canonical_manifest_v2_payload_hash,
     sha256_file,
 )
 
@@ -35,6 +36,10 @@ from tools.quantmind2.validate_context_bootstrap import (
 MANIFEST_SCHEMA = SCHEMAS / "implementation_manifest_v1.schema.json"
 MANIFEST_EXAMPLE = (
     QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
+)
+MANIFEST_V2_SCHEMA = SCHEMAS / "implementation_manifest_v2.schema.json"
+MANIFEST_V2_EXAMPLE = (
+    QM2 / "implementation" / "examples" / "implementation_manifest_v2.example.json"
 )
 
 
@@ -47,6 +52,20 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
 
     def test_implementation_manifest_positive_example(self):
         validate_instance(load_json(MANIFEST_EXAMPLE), load_json(MANIFEST_SCHEMA))
+
+    def test_implementation_manifest_v2_positive_example_and_hash(self):
+        payload = load_json(MANIFEST_V2_EXAMPLE)
+        validate_instance(payload, load_json(MANIFEST_V2_SCHEMA))
+        self.assertEqual(
+            canonical_manifest_v2_payload_hash(payload),
+            payload["integrity"]["manifest_payload_sha256"],
+        )
+
+    def test_implementation_manifest_v2_additional_property_is_rejected(self):
+        payload = load_json(MANIFEST_V2_EXAMPLE)
+        payload["task"]["prose_fallback"] = "forbidden"
+        with self.assertRaisesRegex(ValidationError, "additional properties"):
+            validate_instance(payload, load_json(MANIFEST_V2_SCHEMA))
 
     def test_implementation_manifest_missing_required_field_is_rejected(self):
         payload = load_json(MANIFEST_EXAMPLE)
@@ -202,10 +221,10 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_b_and_names_exact_003_next_task(self):
+    def test_handoff_records_b1_and_names_exact_003_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer",
+            "QM2-P0-002B1 — Manifest v2 Producer and Forward Indexability",
             text,
         )
         self.assertIn(

@@ -138,9 +138,13 @@ def test_current_history_is_measured_without_inventing_v1_fields() -> None:
     plan = ImplementationRunPlanner(
         GitSnapshot(bind_repository("quantmind-main", root))
     ).plan()
-    assert plan.discovered_count == 16
-    assert plan.validated_count == 15
-    assert plan.indexable_count == 0
+    v1 = tuple(
+        run for run in plan.runs
+        if run.parsed is not None and run.parsed.schema_version == "1.0.0"
+    )
+    assert len(v1) == 17
+    assert sum(run.validated for run in v1) == 16
+    assert sum(run.indexable for run in v1) == 0
     assert any(
         gap.code == "MANIFEST_V1_TASK_STATUS_MISSING"
         for run in plan.runs

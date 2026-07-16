@@ -25,13 +25,13 @@
     {"issue_id": "QM2-KI-016", "severity": "high", "status": "open", "summary": "Credential-bearing database defaults exist and shared async engine initialization may log the complete database URL."},
     {"issue_id": "QM2-KI-017", "severity": "medium", "status": "open", "summary": "A disposable opt-in PostgreSQL integration test exists and passes locally; CI PostgreSQL capability and scheduling remain unconfirmed."},
     {"issue_id": "QM2-KI-018", "severity": "medium", "status": "open", "summary": "Context schema v1 cannot encode fine-grained task IDs such as QM2-P0-002A2a2, so machine-readable next-task lists use parent QM2-P0-002."},
-    {"issue_id": "QM2-KI-019", "severity": "medium", "status": "open", "summary": "Manifest v1 cannot directly represent rich file and symbol changes, general Run relationships, structured limitations, or recommendation metadata defined by Ledger Domain Model v1."},
+    {"issue_id": "QM2-KI-019", "severity": "medium", "status": "resolved", "summary": "Manifest v2 represents all current Ledger Domain families; historical v1 remains immutable with original evidence gaps."},
     {"issue_id": "QM2-KI-020", "severity": "medium", "status": "resolved", "summary": "The in-memory test double remains non-durable, while the async PostgreSQL Repository now has isolated PostgreSQL 15 transaction, rollback, savepoint, constraint, and cross-Session concurrency evidence."},
     {"issue_id": "QM2-KI-021", "severity": "medium", "status": "resolved", "summary": "Ledger migration, Repository/UoW, Manifest/Git indexing and CLI exist; production deployment and API/UI remain separate open scope."},
     {"issue_id": "QM2-KI-022", "severity": "low", "status": "open", "summary": "Real PostgreSQL 15 Repository behavior passed with SQLAlchemy 2.0.51 and asyncpg 0.31.0; pinned SQLAlchemy 2.0.25 and asyncpg 0.29.0 runtime parity remains outstanding."},
     {"issue_id": "QM2-KI-023", "severity": "high", "status": "resolved", "summary": "ADR-0010 and the Indexer require explicit trusted logical-ID to worktree binding; Manifest v1 absolute path remains informational."},
-    {"issue_id": "QM2-KI-024", "severity": "medium", "status": "open", "summary": "ImplementationArtifact has one path_or_uri field and no explicit location kind; current Domain prefix semantics are deterministic, but Manifest v2 should record producer intent."},
-    {"issue_id": "QM2-KI-025", "severity": "high", "status": "open", "summary": "Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; zero of sixteen historical Runs are indexable."},
+    {"issue_id": "QM2-KI-024", "severity": "medium", "status": "resolved", "summary": "Manifest v2 records repository_path or uri and validates it before constructing the unchanged Domain artifact."},
+    {"issue_id": "QM2-KI-025", "severity": "high", "status": "open", "summary": "Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; zero of seventeen historical v1 Runs are indexable, while v2 resolves future production."},
     {"issue_id": "QM2-KI-026", "severity": "high", "status": "open", "summary": "QM2-P0-001F declares a result commit that differs from its containing commit."}
   ]
 }

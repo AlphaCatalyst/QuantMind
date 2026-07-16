@@ -11,7 +11,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger Domain/ORM/Mapper/migration, PostgreSQL Repository/UoW, Manifest parser, Git consistency, trusted binding, Indexer, CLI, and isolated evidence exist; API/UI and production deployment do not |
+| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger Domain/ORM/Mapper/migration, PostgreSQL Repository/UoW, Manifest v2 producer, v1/v2 parser, Git consistency, trusted binding, Indexer, CLI, and isolated evidence exist; API/UI and production deployment do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
@@ -90,3 +90,11 @@ atomic batches. Disposable PostgreSQL 15 and cross-implementation scenarios
 verify behavior. QM2-P0-002B adds Manifest/Git parsing and indexing. API/UI,
 production deployment, and research business modules remain absent. Historical
 Manifest v1 Runs cannot be indexed where required Domain evidence is missing.
+
+QM2-P0-002B1 adds the default Manifest v2 producer and strict exchange
+contract. New Runs can now express complete Task/Run/Relationship, all detail,
+reference, and annotation families, typed artifact locations, logical
+repository identity, Mapper/identity versions, and canonical integrity. v1
+remains immutable compatibility. The B1 Run itself passes full Git and isolated
+PostgreSQL indexing/replay/conflict verification; no production deployment,
+historical backfill, API, or UI was added.

@@ -18,13 +18,16 @@ MANIFESTS = sorted(
 )
 
 
-def _current() -> tuple[Path, dict]:
-    path = MANIFESTS[-1]
-    return path, json.loads(path.read_text(encoding="utf-8"))
+def _current_v1() -> tuple[Path, dict]:
+    for path in reversed(MANIFESTS):
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        if payload.get("manifest_schema_version") == "1.0.0":
+            return path, payload
+    raise AssertionError("historical Manifest v1 fixture is missing")
 
 
 def test_parser_accepts_current_v1_without_enrichment() -> None:
-    path, payload = _current()
+    path, payload = _current_v1()
     relative = path.relative_to(ROOT).as_posix()
     parsed = ImplementationManifestParser().parse(
         path.read_bytes(),
@@ -39,13 +42,13 @@ def test_parser_accepts_current_v1_without_enrichment() -> None:
 @pytest.mark.parametrize(
     ("mutation", "error"),
     [
-        (lambda value: value.update(manifest_schema_version="2.0.0"), UnsupportedManifestSchemaError),
+        (lambda value: value.update(manifest_schema_version="3.0.0"), UnsupportedManifestSchemaError),
         (lambda value: value.pop("task_id"), ManifestParseError),
         (lambda value: value.update(task_status="invented"), ManifestParseError),
     ],
 )
 def test_parser_rejects_unsupported_or_invalid_manifest(mutation, error) -> None:  # noqa: ANN001
-    path, payload = _current()
+    path, payload = _current_v1()
     mutation(payload)
     relative = path.relative_to(ROOT).as_posix()
     with pytest.raises(error):
@@ -57,7 +60,7 @@ def test_parser_rejects_unsupported_or_invalid_manifest(mutation, error) -> None
 
 
 def test_parser_rejects_malformed_json_and_path_mismatch() -> None:
-    path, payload = _current()
+    path, payload = _current_v1()
     relative = path.relative_to(ROOT).as_posix()
     with pytest.raises(ManifestParseError):
         ImplementationManifestParser().parse(
@@ -75,7 +78,7 @@ def test_parser_rejects_malformed_json_and_path_mismatch() -> None:
 
 
 def test_parser_rejects_malicious_declared_path() -> None:
-    path, payload = _current()
+    path, payload = _current_v1()
     payload["report_path"] = "../report.md"
     with pytest.raises(ManifestParseError):
         ImplementationManifestParser().parse(

@@ -169,6 +169,22 @@ def canonical_manifest_payload_hash(payload: dict[str, Any]) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def canonical_manifest_v2_payload_hash(payload: dict[str, Any]) -> str:
+    """Hash Manifest v2 canonical JSON without its nested self hash."""
+    normalized = copy.deepcopy(payload)
+    integrity = normalized.get("integrity")
+    if isinstance(integrity, dict):
+        integrity.pop("manifest_payload_sha256", None)
+    encoded = json.dumps(
+        normalized,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -896,7 +912,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
 
     required_indexer_files = {
         "__init__.py", "errors.py", "models.py", "repository_binding.py",
-        "manifest_parser.py", "git_evidence.py", "domain_bundle.py", "indexer.py",
+        "manifest_parser.py", "manifest_v2.py", "git_evidence.py",
+        "domain_bundle.py", "indexer.py",
     }
     if not LEDGER_INDEXER_CONTRACT.is_file():
         raise ValidationError("Ledger Manifest Indexer contract is missing")
@@ -934,31 +951,51 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer" not in handoff_text:
-        raise ValidationError("human handoff does not name completed QM2-P0-002B task")
+    if "QM2-P0-002B1 — Manifest v2 Producer and Forward Indexability" not in handoff_text:
+        raise ValidationError("human handoff does not name completed QM2-P0-002B1 task")
     if "QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry" not in handoff_text:
         raise ValidationError("human handoff does not name exact QM2-P0-003 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-003"]:
         raise ValidationError("machine handoff must name the exact TDX audit task")
     checks.append("handoff_links")
 
-    example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
-    manifest_schema = SCHEMAS / "implementation_manifest_v1.schema.json"
-    validate_file(example, manifest_schema)
-    checks.append("manifest_example")
+    v1_example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
+    v1_schema = SCHEMAS / "implementation_manifest_v1.schema.json"
+    v2_example = QM2 / "implementation" / "examples" / "implementation_manifest_v2.example.json"
+    v2_schema = SCHEMAS / "implementation_manifest_v2.schema.json"
+    validate_file(v1_example, v1_schema)
+    example_v2 = validate_file(v2_example, v2_schema)
+    if canonical_manifest_v2_payload_hash(example_v2) != example_v2["integrity"]["manifest_payload_sha256"]:
+        raise ValidationError("Manifest v2 example payload hash mismatch")
+    checks.extend(("manifest_v1_example", "manifest_v2_example"))
 
     run_root = QM2 / "implementation" / "runs"
     for manifest_path in sorted(run_root.glob("*/*/*/manifest.json")):
         report_path = manifest_path.with_name("report.md")
         if not report_path.is_file():
             raise ValidationError(f"implementation report missing beside {manifest_path}")
-        manifest = validate_file(manifest_path, manifest_schema)
-        declared_report = _repo_path(manifest["report_path"])
+        raw = load_json(manifest_path)
+        version = raw.get("schema_version", raw.get("manifest_schema_version"))
+        if version == "1.0.0":
+            manifest = validate_file(manifest_path, v1_schema)
+            report_ref = manifest["report_path"]
+            report_hash = manifest["report_hash"]
+            payload_hash = canonical_manifest_payload_hash(manifest)
+            declared_payload_hash = manifest["manifest_payload_hash"]
+        elif version == "2.0.0":
+            manifest = validate_file(manifest_path, v2_schema)
+            report_ref = manifest["run"]["report_path"]
+            report_hash = manifest["integrity"]["report_sha256"]
+            payload_hash = canonical_manifest_v2_payload_hash(manifest)
+            declared_payload_hash = manifest["integrity"]["manifest_payload_sha256"]
+        else:
+            raise ValidationError(f"unsupported implementation manifest version: {version}")
+        declared_report = _repo_path(report_ref)
         if declared_report.resolve() != report_path.resolve():
             raise ValidationError(f"manifest report_path mismatch: {manifest_path}")
-        if sha256_file(report_path) != manifest["report_hash"]:
+        if sha256_file(report_path) != report_hash:
             raise ValidationError(f"report hash mismatch: {report_path}")
-        if canonical_manifest_payload_hash(manifest) != manifest["manifest_payload_hash"]:
+        if payload_hash != declared_payload_hash:
             raise ValidationError(f"manifest payload hash mismatch: {manifest_path}")
     checks.append("implementation_runs")
 

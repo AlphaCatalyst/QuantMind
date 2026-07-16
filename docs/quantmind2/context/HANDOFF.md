@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002B: `d33f2815b96053c2e0eba1320d666862d0337997`
+- Base before QM2-P0-002B1: `0353435a3c1fb4b1469a5ab32462a1a010999872`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002B: no
+- Dirty before QM2-P0-002B1: no
 - Unrelated dirty files: none
 - Uncommitted work after the finalization commit: no
 
@@ -17,7 +17,10 @@
 - Source: `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`
 - Branch: `factor-lab/real-bounded-v7-orchestrator-v1`
 - Commit: `c83192c2278767e03f008bc39197b1ba33bfb6a9`
-- It remained read-only and clean during QM2-P0-002B.
+- Its source bytes remained read-only during QM2-P0-002B1. The supplied `/tmp`
+  root had no `.git` directory, so the expected branch/commit and Git-clean
+  claims could not be reverified locally; a before/after content digest was
+  used for the task boundary instead.
 
 ## Current position
 
@@ -27,10 +30,10 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002B`, completed as the Git-authoritative Manifest
-  parser and Ledger Indexer closure.
-- Completed task name: `QM2-P0-002B — Manifest Parser, Git Consistency and Ledger Indexer`.
-- Latest run: `QM2-P0-002B-20260715T090630Z-d33f281` under
+- Current task: `QM2-P0-002B1`, completed as the forward-indexable Manifest v2
+  producer and final Ledger infrastructure closure.
+- Completed task name: `QM2-P0-002B1 — Manifest v2 Producer and Forward Indexability`.
+- Latest run: `QM2-P0-002B1-20260716T135059Z-0353435` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -64,21 +67,25 @@
 - Mapper Contract v1 covers all eleven objects. The complete explicit Mapper
   package implements pure conversion, safe errors, round trips, and frozen
   `changed-file-v1` / `changed-symbol-v1` identities. It has no database runtime.
-- Manifest v1 absolute `repository_root` is execution context and is not mapped
-  to the logical Domain/ORM identity. ADR-0010 and the Indexer require explicit
-  trusted binding. A future Manifest v2 remains a candidate.
+- Manifest v2 is the default for future Runs. It separates logical repository
+  identity from execution path, declares Mapper/identity versions, and carries
+  every current Ledger Domain family. ADR-0010 and the Indexer still require an
+  explicit trusted binding. Manifest v1 remains immutable compatibility only.
 - All eleven objects now have explicit `to_record` and `from_record` functions.
   Stored ChangedFile/Symbol technical IDs are recomputed and verified; explicit
   parent Run IDs cannot disagree with Domain values. Task/Run version behavior
   remains unchanged. Parser, binding, Git consistency, and Indexer exist; API
   and UI do not.
-- QM2-P0-002B measured 16 historical Manifest v1 Runs: 15 pass mandatory Git
+- At the B1 base, 17 historical Manifest v1 Runs exist: 16 pass mandatory Git
   evidence and zero form complete Domain Bundles. It did not invent missing
   Task/child facts and did not claim a historical backfill. The 001F Run fails
   result-commit consistency. A complete synthetic bundle passed isolated
   PostgreSQL insert, replay, immutable-conflict, and rollback verification.
 - ADR-0010 requires explicit caller binding from logical repository ID to local
   worktree; v1 absolute paths remain informational execution evidence.
+- The B1 v2 Run passes committed Git consistency and complete Domain Bundle
+  construction, and is fully indexable with all eleven families in isolated
+  PostgreSQL. Exact replay and immutable-conflict rollback are verified.
 - Ledger infrastructure is closed. Production deployment/backfill, API/UI,
   watcher, webhook, and daemon remain absent.
 - Recommended next task: `QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry`.
@@ -90,11 +97,8 @@
 - Production execution-role permission policy for the explicit `quantmind2` schema.
 - CI capability and scheduling for the opt-in disposable PostgreSQL test.
 - Final artifact storage backend for large snapshot and ledger artifacts.
-- A first-class Manifest field for non-correction relationships between runs.
 - Concrete actor identity and permission policy for ResearchDecision.
 - Persistent idempotency-key and semantic-duplicate policy.
-- A future ADR/Manifest v2 split for logical repository ID versus execution
-  path, plus explicit artifact location kind and Mapper/identity versions.
 - SQLAlchemy 2.0.25 / asyncpg 0.29 pinned-runtime behavior;
   A2a1/A2a2a/A2a2b1/A2a2b2 static verification used an existing SQLAlchemy
   2.0.51 environment and A3 used SQLAlchemy 2.0.51 / asyncpg 0.31.0.

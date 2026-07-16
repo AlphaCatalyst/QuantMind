@@ -13,6 +13,7 @@ from tools.quantmind2.validate_context_bootstrap import canonical_manifest_paylo
 
 from .errors import GitEvidenceError, ManifestParseError
 from .manifest_parser import ImplementationManifestParser, RUNS_PREFIX
+from .manifest_v2 import canonical_json_hash, canonical_manifest_v2_payload_hash
 from .models import (
     AnalyzedRun,
     BackfillPlan,
@@ -176,25 +177,47 @@ class GitConsistencyService:
         report_bytes: bytes,
     ) -> GitConsistencyEvidence:
         payload = parsed.payload
+        is_v2 = parsed.schema_version == "2.0.0"
+        run_payload = payload["run"] if is_v2 else payload
+        repository_payload = payload["repository"] if is_v2 else None
+        integrity = payload["integrity"] if is_v2 else None
         checks: list[EvidenceCheck] = []
 
         def record(name: str, passed: bool, detail: str, *, mandatory: bool = True) -> None:
             checks.append(EvidenceCheck(name, mandatory, bool(passed), detail))
 
-        record("repository_binding", True, "explicit logical ID and local path supplied")
+        binding_matches = (
+            repository_payload["repository_id"] == self.snapshot.binding.repository_id
+            if is_v2
+            else True
+        )
+        record(
+            "repository_binding",
+            binding_matches,
+            "explicit logical ID matches Manifest v2 repository identity"
+            if is_v2
+            else "explicit logical ID and local path supplied",
+        )
         record("target_ref", True, f"resolved to {self.snapshot.ref_commit[:12]}")
         record("manifest_in_git", bool(manifest_bytes), "manifest blob exists in target snapshot")
         record("report_in_git", bool(report_bytes), "report blob exists in target snapshot")
         record("run_path", parsed.run_id == discovered.run_id, "Run ID and canonical directory agree")
         record(
             "report_hash",
-            hashlib.sha256(report_bytes).hexdigest() == payload["report_hash"],
+            hashlib.sha256(report_bytes).hexdigest()
+            == (integrity["report_sha256"] if is_v2 else payload["report_hash"]),
             "report SHA-256 checked against exact Git blob bytes",
         )
         record(
             "manifest_payload_hash",
-            canonical_manifest_payload_hash(dict(payload)) == payload["manifest_payload_hash"],
-            "canonical manifest payload hash checked",
+            (
+                canonical_manifest_v2_payload_hash(payload)
+                == integrity["manifest_payload_sha256"]
+                if is_v2
+                else canonical_manifest_payload_hash(dict(payload))
+                == payload["manifest_payload_hash"]
+            ),
+            f"canonical Manifest {'v2' if is_v2 else 'v1'} payload hash checked",
         )
 
         manifest_history = self.snapshot.path_history(discovered.manifest_path)
@@ -234,7 +257,7 @@ class GitConsistencyService:
             for name in ("manifest_blob_immutable", "report_blob_immutable", "containing_reachable"):
                 record(name, False, "containing commit is unavailable")
 
-        base = payload["base_commit"]
+        base = run_payload["base_commit"]
         base_exists = self.snapshot.object_exists(base)
         record("base_commit_exists", base_exists, f"base commit {base[:12]} exists")
         record(
@@ -242,7 +265,7 @@ class GitConsistencyService:
             bool(containing and base_exists and self.snapshot.is_ancestor(base, containing)),
             "base commit must be an ancestor of containing commit",
         )
-        declared_result = payload["result_commit"]
+        declared_result = run_payload["result_commit"]
         result_ok = declared_result is None or declared_result == containing
         record(
             "result_commit",
@@ -251,9 +274,12 @@ class GitConsistencyService:
         )
 
         actual_changed = self.snapshot.changed_files(base, containing) if containing and base_exists else ()
+        declared_changed = (
+            integrity["git_changed_paths"] if is_v2 else payload["changed_files"]
+        )
         record(
             "changed_files",
-            set(actual_changed) == set(payload["changed_files"]),
+            set(actual_changed) == set(declared_changed),
             "declared changed files equal base-to-containing Git diff",
         )
         statuses = self.snapshot.changed_statuses(base, containing) if containing and base_exists else {}
@@ -261,12 +287,14 @@ class GitConsistencyService:
         actual_deleted = {path for path, status in statuses.items() if status == "D"}
         record(
             "added_files",
-            set(payload["added_files"]) == actual_added,
+            set(integrity["git_added_paths"] if is_v2 else payload["added_files"])
+            == actual_added,
             "declared additions exactly equal Git diff additions",
         )
         record(
             "deleted_files",
-            set(payload["deleted_files"]) == actual_deleted,
+            set(integrity["git_deleted_paths"] if is_v2 else payload["deleted_files"])
+            == actual_deleted,
             "declared deletions exactly equal Git diff deletions",
         )
         modes = (
@@ -277,19 +305,95 @@ class GitConsistencyService:
 
         artifact_ok = True
         for artifact in payload["artifacts"]:
+            artifact_path = artifact.get("path_or_uri") if is_v2 else artifact["path"]
+            artifact_hash = artifact.get("content_hash") if is_v2 else artifact["hash"]
+            if is_v2 and (
+                artifact["location_kind"] != "repository_path" or artifact_hash is None
+            ):
+                continue
             try:
-                blob = self.snapshot.read_blob(containing, artifact["path"]) if containing else b""
+                blob = self.snapshot.read_blob(containing, artifact_path) if containing else b""
             except GitEvidenceError:
                 artifact_ok = False
                 break
-            if hashlib.sha256(blob).hexdigest() != artifact["hash"]:
+            if hashlib.sha256(blob).hexdigest() != artifact_hash:
                 artifact_ok = False
                 break
         record("artifact_hashes", artifact_ok, "declared artifacts checked at containing commit")
+
+        if is_v2:
+            changed_file_hashes_ok = True
+            changed_file_statuses_ok = True
+            for item in payload["changed_files"]:
+                expected_status = {
+                    "added": "A", "modified": "M", "deleted": "D",
+                    "renamed": "A", "unchanged": None,
+                }[item["change_type"]]
+                if expected_status is not None and statuses.get(item["path"]) != expected_status:
+                    changed_file_statuses_ok = False
+                if item["change_type"] == "renamed" and statuses.get(item["previous_path"]) != "D":
+                    changed_file_statuses_ok = False
+                try:
+                    if item["before_hash"] is not None:
+                        before_path = item["previous_path"] or item["path"]
+                        before = self.snapshot.read_blob(base, before_path)
+                        if hashlib.sha256(before).hexdigest() != item["before_hash"]:
+                            changed_file_hashes_ok = False
+                    if item["after_hash"] is not None:
+                        after = self.snapshot.read_blob(containing, item["path"])
+                        if hashlib.sha256(after).hexdigest() != item["after_hash"]:
+                            changed_file_hashes_ok = False
+                except GitEvidenceError:
+                    changed_file_hashes_ok = False
+            record(
+                "changed_file_statuses",
+                changed_file_statuses_ok,
+                "structured ChangedFile types agree with Git statuses",
+            )
+            record(
+                "changed_file_hashes",
+                changed_file_hashes_ok,
+                "structured ChangedFile hashes checked against base and containing blobs",
+            )
+
+            source_records = []
+            for path in sorted(integrity["git_changed_paths"]):
+                if path == run_payload["manifest_path"]:
+                    source_records.append(
+                        {"path": path, "sha256": None, "kind": "manifest_payload"}
+                    )
+                elif path in integrity["git_deleted_paths"]:
+                    source_records.append({"path": path, "sha256": None, "kind": "deleted"})
+                else:
+                    try:
+                        blob = self.snapshot.read_blob(containing, path) if containing else b""
+                    except GitEvidenceError:
+                        blob = b""
+                    source_records.append(
+                        {"path": path, "sha256": hashlib.sha256(blob).hexdigest(), "kind": "file"}
+                    )
+            record(
+                "source_bundle_hash",
+                canonical_json_hash(source_records) == integrity["source_bundle_sha256"],
+                "v2 source bundle hash recomputed from committed Git blobs",
+            )
+            record(
+                "git_diff_hash",
+                canonical_json_hash(
+                    {
+                        "changed": integrity["git_changed_paths"],
+                        "added": integrity["git_added_paths"],
+                        "deleted": integrity["git_deleted_paths"],
+                        "domain_changed_files": payload["changed_files"],
+                    }
+                )
+                == integrity["git_diff_sha256"],
+                "v2 structured Git diff declaration hash recomputed",
+            )
         record(
             "execution_path_binding",
             True,
-            "Manifest absolute path retained only as informational execution evidence",
+            "Manifest execution path retained only as informational evidence",
             mandatory=False,
         )
 

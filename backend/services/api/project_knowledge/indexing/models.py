@@ -43,6 +43,14 @@ class ParsedImplementationManifest:
     source_status: str
     payload: Mapping[str, Any] = field(repr=False, compare=False)
 
+    @property
+    def schema_version(self) -> str:
+        return str(
+            self.payload.get(
+                "schema_version", self.payload.get("manifest_schema_version", "")
+            )
+        )
+
 
 @dataclass(frozen=True)
 class EvidenceCheck:

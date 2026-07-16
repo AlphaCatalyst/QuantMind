@@ -161,6 +161,18 @@ At task end, create a human-readable Implementation Report and a
 machine-readable Implementation Manifest under
 `docs/quantmind2/implementation/runs/`. Record the exact tests executed,
 results, known limitations, Git/workspace state, and recommended next task.
+New Runs must use Manifest v2 and the formal producer:
+
+```text
+python tools/quantmind2/create_implementation_manifest.py new ...
+python tools/quantmind2/create_implementation_manifest.py finalize-payload ...
+python tools/quantmind2/create_implementation_manifest.py validate ...
+```
+
+Do not copy Manifest v1 for a new Run. Manifest v1 is read-only historical
+compatibility. Producers must supply structured facts and must not infer Task,
+children, references, or annotations from report prose. Pre-commit v2 Runs keep
+`result_commit` null; only Git consistency resolves the containing commit.
 
 Ordinary implementation tasks must not:
 

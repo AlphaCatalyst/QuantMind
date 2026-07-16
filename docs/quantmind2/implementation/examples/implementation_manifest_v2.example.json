@@ -1,0 +1,155 @@
+{
+  "schema_version": "2.0.0",
+  "mapper_contract_version": "1.0.0",
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "repository": {
+    "repository_id": "quantmind-example",
+    "execution_repository_path": "/workspace/quantmind",
+    "branch": "example",
+    "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "task": {
+    "task_id": "QM2-P0-999",
+    "parent_task_id": null,
+    "title": "Manifest v2 Example",
+    "objective": "Demonstrate every Ledger Domain object family.",
+    "scope": ["Schema example"],
+    "explicit_non_goals": ["No production action"],
+    "status": "completed",
+    "created_at": "2026-07-16T00:00:00Z"
+  },
+  "run": {
+    "implementation_run_id": "QM2-P0-999-20260716T000000Z-0123456",
+    "task_id": "QM2-P0-999",
+    "repository_id": "quantmind-example",
+    "branch": "example",
+    "base_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "result_commit": null,
+    "task_status": "completed_uncommitted",
+    "completion_level": "complete",
+    "verification_level": "targeted_tests",
+    "workspace_dirty_before": false,
+    "workspace_dirty_after": true,
+    "started_at": "2026-07-16T00:00:00Z",
+    "completed_at": "2026-07-16T00:01:00Z",
+    "agent_type": "codex",
+    "manifest_schema_version": "2.0.0",
+    "manifest_path": "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.json",
+    "report_path": "docs/quantmind2/implementation/examples/implementation_report_v2.example.md",
+    "source_bundle_hash": "f03c122cc454c3b0d00abd9df2ee75cdb3961d893246c56c507cffb7a38b8051",
+    "git_diff_hash": "c237f980dfd141fddceebc377edff7ddce1fb0689490d2ca132dfa085af8c8ac",
+    "consistency_status": "unverified",
+    "canonical_status": "noncanonical"
+  },
+  "relationships": [
+    {
+      "relationship_id": "rel-example-1",
+      "source_run_id": "QM2-P0-999-20260716T000000Z-0123456",
+      "target_run_id": "QM2-P0-998-20260715T000000Z-7654321",
+      "relationship_type": "continues",
+      "reason": "Continue a prior implementation task.",
+      "created_at": "2026-07-16T00:01:00Z"
+    }
+  ],
+  "changed_files": [
+    {
+      "path": "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.py",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "20c9b3fe5a82c2a4bdd8fd43679565f50cfb5a5d062a0de3ecc63d73dc04ce18",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "file_path": "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.py",
+      "qualified_name": "implementation_manifest_v2.example.manifest_v2_example",
+      "symbol_type": "function",
+      "change_type": "added"
+    }
+  ],
+  "tests": [
+    {
+      "test_execution_id": "test-example-1",
+      "command": "python -m pytest example_test.py -q",
+      "purpose": "Verify the example producer contract.",
+      "status": "passed",
+      "passed_count": 1,
+      "failed_count": 0,
+      "skipped_count": 0,
+      "not_run_reason": null,
+      "artifact_uri": null,
+      "artifact_hash": null
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-example-report",
+      "artifact_type": "implementation_report",
+      "path_or_uri": "docs/quantmind2/implementation/examples/implementation_report_v2.example.md",
+      "location_kind": "repository_path",
+      "content_hash": "3605f6848c5066ecfb5ec4f150e9db1dd2361cfde57677dc230c601e19fe494f",
+      "schema_version": "2.0.0",
+      "size_bytes": 69
+    },
+    {
+      "artifact_id": "artifact-example-manifest",
+      "artifact_type": "implementation_manifest",
+      "path_or_uri": "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.json",
+      "location_kind": "repository_path",
+      "content_hash": null,
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    }
+  ],
+  "component_references": [
+    {"component_id": "quantmind2.project_knowledge", "impact_type": "documented"}
+  ],
+  "adr_references": [
+    {"adr_id": "ADR-0010", "relation": "conforms_to"}
+  ],
+  "limitations": [
+    {
+      "limitation_id": "limit-example-1",
+      "severity": "low",
+      "component_id": "quantmind2.project_knowledge",
+      "description": "Example evidence is not a production Run.",
+      "status": "accepted"
+    }
+  ],
+  "recommended_tasks": [
+    {
+      "recommendation_id": "recommend-example-1",
+      "next_task_id": "QM2-P0-003",
+      "priority": "P0",
+      "reason": "Continue to the approved data-provider audit."
+    }
+  ],
+  "integrity": {
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "report_sha256": "3605f6848c5066ecfb5ec4f150e9db1dd2361cfde57677dc230c601e19fe494f",
+    "manifest_payload_sha256": "7a0fe964f5a4d08c1292e1b296c7b283410806f5d5fbc804e6315558bc46643f",
+    "source_bundle_sha256": "f03c122cc454c3b0d00abd9df2ee75cdb3961d893246c56c507cffb7a38b8051",
+    "git_diff_sha256": "c237f980dfd141fddceebc377edff7ddce1fb0689490d2ca132dfa085af8c8ac",
+    "git_changed_paths": [
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.json",
+      "docs/quantmind2/implementation/examples/implementation_report_v2.example.md",
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.py"
+    ],
+    "git_added_paths": [
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.json",
+      "docs/quantmind2/implementation/examples/implementation_report_v2.example.md",
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.py"
+    ],
+    "git_deleted_paths": [],
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-example-report",
+        "sha256": "3605f6848c5066ecfb5ec4f150e9db1dd2361cfde57677dc230c601e19fe494f"
+      }
+    ]
+  }
+}

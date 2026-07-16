@@ -8,22 +8,31 @@ and sets `corrects_run_id`; it never overwrites the original.
 
 - Git stores code plus portable report/manifest evidence.
 - The future Implementation Ledger database indexes Git artifacts; it does not
-  replace them.
+replace them.
+- New Implementation Runs default to Manifest v2. Use
+  `tools/quantmind2/create_implementation_manifest.py`; do not copy a v1 Run.
+- Manifest v1 is immutable compatibility evidence only. Its producer and hash
+  semantics remain supported for historical Runs.
 - An uncommitted run uses `result_commit: null` and status
   `completed_uncommitted` or `partial_uncommitted`; it is not canonical.
 - Secrets must not be placed in reports or manifests.
 
-## Manifest hash rule
+## Manifest hash rules
 
 `manifest_payload_hash` is SHA-256 over UTF-8 canonical JSON after removing the
 `manifest_payload_hash` property. Canonical JSON uses sorted keys, no
 insignificant whitespace, `ensure_ascii=false`, and rejects NaN/Infinity.
 
+Manifest v2 uses nested `integrity.manifest_payload_sha256` and the separate
+canonicalization contract documented in `IMPLEMENTATION_MANIFEST_V2.md`. New
+Runs use the v2 Schema/example and the `new`, `finalize-payload`, and `validate`
+producer commands. The producer never creates `result_commit`.
+
 ## Validation level
 
 `tools/quantmind2/validate_context_bootstrap.py` implements a bounded,
 zero-dependency subset of JSON Schema Draft 2020-12 covering only keywords used
-by the v1 repository schemas. It also checks repository paths, ADR references,
+by the repository v1/v2 schemas. It also checks repository paths, ADR references,
 status consistency, official Factor Lab source boundaries, run pairs, report
 hashes, and manifest payload hashes. It is not a general JSON Schema engine.
 
@@ -44,4 +53,5 @@ commit/rollback. Disposable PostgreSQL tests cover contract parity, savepoints,
 optimistic concurrency, DAG admission, and atomic batches. QM2-P0-002B adds
 Manifest/Git parsing and indexing under `LEDGER_MANIFEST_INDEXER_V1.md`.
 Current Manifest v1 history remains non-indexable where formal Domain evidence
-is absent; no values are invented.
+is absent; no values are invented. Manifest v2 is the default forward protocol
+and can express every current Ledger Domain family without report prose.

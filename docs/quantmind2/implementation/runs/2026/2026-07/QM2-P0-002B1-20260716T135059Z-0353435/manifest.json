@@ -1,0 +1,339 @@
+{
+  "schema_version": "2.0.0",
+  "mapper_contract_version": "1.0.0",
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "repository": {
+    "repository_id": "quantmind-main",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "branch": "master",
+    "base_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872"
+  },
+  "task": {
+    "task_id": "QM2-P0-002B1",
+    "parent_task_id": "QM2-P0-002B",
+    "title": "Manifest v2 Producer and Forward Indexability",
+    "objective": "Make every future Implementation Run losslessly indexable across all current Ledger Domain families.",
+    "scope": [
+      "Manifest v2 Schema, producer, Parser, Git consistency, Domain Bundle, Bootstrap, tests, and project memory",
+      "Self-hosted v2 Implementation Run and isolated PostgreSQL verification"
+    ],
+    "explicit_non_goals": [
+      "No historical Manifest rewrite or backfill",
+      "No database schema, migration, API, UI, deployment, dependency, or business implementation",
+      "No Factor Lab modification"
+    ],
+    "status": "completed",
+    "created_at": "2026-07-16T13:50:59Z"
+  },
+  "run": {
+    "implementation_run_id": "QM2-P0-002B1-20260716T135059Z-0353435",
+    "task_id": "QM2-P0-002B1",
+    "repository_id": "quantmind-main",
+    "branch": "master",
+    "base_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872",
+    "result_commit": null,
+    "task_status": "completed_uncommitted",
+    "completion_level": "complete",
+    "verification_level": "integration_tests",
+    "workspace_dirty_before": false,
+    "workspace_dirty_after": true,
+    "started_at": "2026-07-16T13:50:59Z",
+    "completed_at": "2026-07-16T13:59:06Z",
+    "agent_type": "codex",
+    "manifest_schema_version": "2.0.0",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/manifest.json",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/report.md",
+    "source_bundle_hash": "81163f3185a4d916e2f8902800630d443209c0affe81dba01724b193de7f7557",
+    "git_diff_hash": "f9f988181464895da9c6f0a996bfc7efbc98602dec90c82eddf501d83445afb7",
+    "consistency_status": "unverified",
+    "canonical_status": "noncanonical"
+  },
+  "relationships": [
+    {
+      "relationship_id": "rel-qm2-p0-002b1-continues-002b",
+      "source_run_id": "QM2-P0-002B1-20260716T135059Z-0353435",
+      "target_run_id": "QM2-P0-002B-20260715T090630Z-d33f281",
+      "relationship_type": "continues",
+      "reason": "Close the forward evidence-production gap identified by QM2-P0-002B.",
+      "created_at": "2026-07-16T13:59:06Z"
+    }
+  ],
+  "changed_files": [
+    {
+      "path": "backend/services/api/project_knowledge/indexing/manifest_v2.py",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "3806fd51bcccb2642fd5146fed4617216357a7b0fda68f892b12ad3d2e6823c3",
+      "previous_path": null
+    },
+    {
+      "path": "backend/services/api/project_knowledge/indexing/manifest_parser.py",
+      "change_type": "modified",
+      "before_hash": "fb3528653006b2f68411803906ca963889d0707e1e1d90c7a29ffade58b84791",
+      "after_hash": "7904d5496befdeb211d9106f06c49a0a816557e4dbc67ae41df37df027eb282f",
+      "previous_path": null
+    },
+    {
+      "path": "backend/services/api/project_knowledge/indexing/git_evidence.py",
+      "change_type": "modified",
+      "before_hash": "7c655029a9a0fe65623f9636856b1b1b480a2731d41488e86b50df992a2f9f9c",
+      "after_hash": "e0c0a1262982596df5770c1d71fc49c979100f0c4494da1a3fcbbbd07c77c09b",
+      "previous_path": null
+    },
+    {
+      "path": "backend/services/api/project_knowledge/indexing/domain_bundle.py",
+      "change_type": "modified",
+      "before_hash": "a617d553f90d7d51990f27e3379ccbf9a65f43630ffb7c9b201fbd0b341c2738",
+      "after_hash": "e77065ac09b9abbc766b2fac67daa96e47b7514eb7af759130167e8bb7d912c3",
+      "previous_path": null
+    },
+    {
+      "path": "tools/quantmind2/create_implementation_manifest.py",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "2e388d915af5fff258e42107f50a5577f6e0ab629d3666fde0d5b93745ea7ede",
+      "previous_path": null
+    },
+    {
+      "path": "docs/quantmind2/implementation/schemas/implementation_manifest_v2.schema.json",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "cbb0c0efd947f71963b591ca6699fdd5dc94fe247e6d30fb8b80191d6cb243c3",
+      "previous_path": null
+    },
+    {
+      "path": "docs/quantmind2/implementation/IMPLEMENTATION_MANIFEST_V2.md",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "29c40e54560cce343f9bddf880efbbfdc9a3526a7d0c16b7f5be27abdf8501e2",
+      "previous_path": null
+    },
+    {
+      "path": "backend/services/tests/test_project_knowledge_manifest_v2.py",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "283124f7639e341606e6773b7038d12c39bb56c1d3da9bcc32a6dc00d90b50bd",
+      "previous_path": null
+    },
+    {
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/report.md",
+      "change_type": "added",
+      "before_hash": null,
+      "after_hash": "8047d41bc1ef14815a505b2fe9b2ed7c063e7cd2126fa79b624fb0992ec02e79",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "file_path": "backend/services/api/project_knowledge/indexing/manifest_v2.py",
+      "qualified_name": "manifest_v2.validate_manifest_v2_payload",
+      "symbol_type": "function",
+      "change_type": "added"
+    },
+    {
+      "file_path": "backend/services/api/project_knowledge/indexing/manifest_v2.py",
+      "qualified_name": "manifest_v2.finalize_manifest_v2_payload",
+      "symbol_type": "function",
+      "change_type": "added"
+    },
+    {
+      "file_path": "backend/services/api/project_knowledge/indexing/manifest_parser.py",
+      "qualified_name": "ImplementationManifestParser.parse",
+      "symbol_type": "method",
+      "change_type": "modified"
+    },
+    {
+      "file_path": "backend/services/api/project_knowledge/indexing/domain_bundle.py",
+      "qualified_name": "DomainBundleBuilder.build_source_v2",
+      "symbol_type": "method",
+      "change_type": "added"
+    }
+  ],
+  "tests": [
+    {
+      "test_execution_id": "test-qm2-p0-002b1-bootstrap",
+      "command": "python tools/quantmind2/validate_context_bootstrap.py --json",
+      "purpose": "Validate context, schemas, examples, run pairs, paths, and hashes.",
+      "status": "passed",
+      "passed_count": 38,
+      "failed_count": 0,
+      "skipped_count": 0,
+      "not_run_reason": null,
+      "artifact_uri": null,
+      "artifact_hash": null
+    },
+    {
+      "test_execution_id": "test-qm2-p0-002b1-targeted",
+      "command": "python -m pytest backend/services/tests/test_project_knowledge_manifest_v2.py backend/services/tests/test_project_knowledge_manifest_parser.py backend/services/tests/test_project_knowledge_git_consistency.py backend/services/tests/test_project_knowledge_ledger_repository_contract.py backend/services/tests/test_quantmind2_context_bootstrap.py -q -o addopts=''",
+      "purpose": "Verify v2 producer, Parser, Git, Domain Bundle, v1 regression, and Bootstrap.",
+      "status": "passed",
+      "passed_count": 104,
+      "failed_count": 0,
+      "skipped_count": 0,
+      "not_run_reason": null,
+      "artifact_uri": null,
+      "artifact_hash": null
+    },
+    {
+      "test_execution_id": "test-qm2-p0-002b1-regression",
+      "command": "python -m pytest backend/services/tests/test_project_knowledge_*.py backend/services/tests/test_quantmind2_context_bootstrap.py -q -o addopts=''",
+      "purpose": "Run complete Project Knowledge Domain, ORM, Mapper, Migration, Repository, Indexer, and context regression.",
+      "status": "passed",
+      "passed_count": 363,
+      "failed_count": 0,
+      "skipped_count": 7,
+      "not_run_reason": null,
+      "artifact_uri": null,
+      "artifact_hash": null
+    },
+    {
+      "test_execution_id": "test-qm2-p0-002b1-postgresql",
+      "command": "QM2_LEDGER_POSTGRES_INTEGRATION=1 python -m pytest backend/services/tests/test_project_knowledge_ledger_postgres_integration.py backend/services/tests/test_project_knowledge_ledger_postgres_repository.py backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py -q -o addopts=''",
+      "purpose": "Verify disposable PostgreSQL migration, all v2 families, relationship, replay, conflict, and transaction atomicity.",
+      "status": "passed",
+      "passed_count": 8,
+      "failed_count": 0,
+      "skipped_count": 0,
+      "not_run_reason": null,
+      "artifact_uri": null,
+      "artifact_hash": null
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-002b1-report",
+      "artifact_type": "implementation_report",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/report.md",
+      "location_kind": "repository_path",
+      "content_hash": "8047d41bc1ef14815a505b2fe9b2ed7c063e7cd2126fa79b624fb0992ec02e79",
+      "schema_version": "2.0.0",
+      "size_bytes": 8775
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-002b1-manifest",
+      "artifact_type": "implementation_manifest",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/manifest.json",
+      "location_kind": "repository_path",
+      "content_hash": null,
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    }
+  ],
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0010",
+      "relation": "conforms_to"
+    }
+  ],
+  "limitations": [
+    {
+      "limitation_id": "limit-qm2-p0-002b1-historical-v1",
+      "severity": "medium",
+      "component_id": "quantmind2.project_knowledge",
+      "description": "Historical Manifest v1 Runs remain immutable and incomplete; zero of seventeen are fully indexable.",
+      "status": "accepted"
+    },
+    {
+      "limitation_id": "limit-qm2-p0-002b1-factor-lab-git",
+      "severity": "medium",
+      "component_id": null,
+      "description": "The official Factor Lab temporary root lacks Git metadata locally, so expected HEAD, branch, and Git-clean evidence could not be reverified.",
+      "status": "open"
+    },
+    {
+      "limitation_id": "limit-qm2-p0-002b1-production",
+      "severity": "low",
+      "component_id": "quantmind2.project_knowledge",
+      "description": "No production database deployment, historical backfill, Project Knowledge API, or UI was performed.",
+      "status": "accepted"
+    }
+  ],
+  "recommended_tasks": [
+    {
+      "recommendation_id": "recommend-qm2-p0-002b1-tdx",
+      "next_task_id": "QM2-P0-003",
+      "priority": "P0",
+      "reason": "Proceed to the approved TongDaXin Provider reality audit and Dataset Snapshot entry boundary."
+    }
+  ],
+  "integrity": {
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "report_sha256": "8047d41bc1ef14815a505b2fe9b2ed7c063e7cd2126fa79b624fb0992ec02e79",
+    "manifest_payload_sha256": "cbc549d0d9ad2228d756a317d0017fb5e0a0cdbe43e63340454bed35d0cdb7c7",
+    "source_bundle_sha256": "81163f3185a4d916e2f8902800630d443209c0affe81dba01724b193de7f7557",
+    "git_diff_sha256": "f9f988181464895da9c6f0a996bfc7efbc98602dec90c82eddf501d83445afb7",
+    "git_changed_paths": [
+      "AGENTS.md",
+      "backend/services/api/project_knowledge/indexing/__init__.py",
+      "backend/services/api/project_knowledge/indexing/domain_bundle.py",
+      "backend/services/api/project_knowledge/indexing/git_evidence.py",
+      "backend/services/api/project_knowledge/indexing/manifest_parser.py",
+      "backend/services/api/project_knowledge/indexing/manifest_v2.py",
+      "backend/services/api/project_knowledge/indexing/models.py",
+      "backend/services/tests/test_project_knowledge_git_consistency.py",
+      "backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "backend/services/tests/test_project_knowledge_ledger_repository_contract.py",
+      "backend/services/tests/test_project_knowledge_manifest_parser.py",
+      "backend/services/tests/test_project_knowledge_manifest_v2.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/IMPLEMENTATION_MANIFEST_V2.md",
+      "docs/quantmind2/implementation/README.md",
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.json",
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.py",
+      "docs/quantmind2/implementation/examples/implementation_report_v2.example.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/report.md",
+      "docs/quantmind2/implementation/schemas/implementation_manifest_v2.schema.json",
+      "docs/quantmind2/implementation/templates/implementation_report_v2.md",
+      "tools/quantmind2/create_implementation_manifest.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_added_paths": [
+      "backend/services/api/project_knowledge/indexing/manifest_v2.py",
+      "backend/services/tests/test_project_knowledge_manifest_v2.py",
+      "docs/quantmind2/implementation/IMPLEMENTATION_MANIFEST_V2.md",
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.json",
+      "docs/quantmind2/implementation/examples/implementation_manifest_v2.example.py",
+      "docs/quantmind2/implementation/examples/implementation_report_v2.example.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-002B1-20260716T135059Z-0353435/report.md",
+      "docs/quantmind2/implementation/schemas/implementation_manifest_v2.schema.json",
+      "docs/quantmind2/implementation/templates/implementation_report_v2.md",
+      "tools/quantmind2/create_implementation_manifest.py"
+    ],
+    "git_deleted_paths": [],
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-002b1-report",
+        "sha256": "8047d41bc1ef14815a505b2fe9b2ed7c063e7cd2126fa79b624fb0992ec02e79"
+      }
+    ]
+  }
+}

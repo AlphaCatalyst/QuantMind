@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T09:06:30Z",
-  "source_commit": "d33f2815b96053c2e0eba1320d666862d0337997",
+  "generated_at": "2026-07-16T13:50:59Z",
+  "source_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "d33f2815b96053c2e0eba1320d666862d0337997",
+  "base_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-002B",
+  "current_task": "QM2-P0-002B1",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-002B-20260715T090630Z-d33f281",
+  "latest_implementation_run": "QM2-P0-002B1-20260716T135059Z-0353435",
   "next_recommended_tasks": ["QM2-P0-003"],
   "unconfirmed_facts": [
     "Concrete TongDaXin Provider implementation and capability contract.",
@@ -34,10 +34,8 @@
     "Production execution-role permission policy for the explicit quantmind2 PostgreSQL schema.",
     "CI capability and scheduling for the opt-in disposable PostgreSQL integration test.",
     "Storage backend for large snapshot and ledger artifacts.",
-    "Manifest v1 lacks a first-class non-correction related_run_id field.",
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
-    "Future ADR and Manifest v2 fields separating logical repository identity from execution path, plus explicit artifact location kind and Mapper/identity versions.",
     "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment."
   ],
   "protected_constraints": [

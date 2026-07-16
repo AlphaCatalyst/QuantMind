@@ -15,6 +15,11 @@ from .errors import (
 from .git_evidence import GitSnapshot, ImplementationRunPlanner, discover_runs
 from .indexer import LedgerIndexer
 from .manifest_parser import ImplementationManifestParser
+from .manifest_v2 import (
+    canonical_manifest_v2_payload_hash,
+    finalize_manifest_v2_payload,
+    validate_manifest_v2_payload,
+)
 from .repository_binding import bind_repository
 
 __all__ = (
@@ -33,5 +38,8 @@ __all__ = (
     "RepositoryBindingError",
     "UnsupportedManifestSchemaError",
     "bind_repository",
+    "canonical_manifest_v2_payload_hash",
     "discover_runs",
+    "finalize_manifest_v2_payload",
+    "validate_manifest_v2_payload",
 )

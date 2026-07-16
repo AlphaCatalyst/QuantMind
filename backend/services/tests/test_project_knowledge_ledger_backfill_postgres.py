@@ -13,9 +13,16 @@ import time
 
 import pytest
 
-from backend.services.api.project_knowledge.indexing import LedgerIndexConflictError, LedgerIndexer
+from backend.services.api.project_knowledge.indexing import (
+    GitSnapshot,
+    ImplementationRunPlanner,
+    LedgerIndexConflictError,
+    LedgerIndexer,
+    bind_repository,
+)
 from backend.services.api.project_knowledge.repositories import AsyncLedgerUnitOfWork
 from backend.services.tests.test_project_knowledge_ledger_indexer import _bundle, _task
+from backend.services.tests.test_project_knowledge_manifest_v2 import build_v2_repository
 from backend.shared.database_manager_v2 import DatabaseConfig, DatabaseManager
 
 
@@ -117,6 +124,57 @@ def test_postgresql_index_replay_conflict_and_no_partial_write(postgres_url: str
                 assert uow.repository is not None
                 assert await uow.repository.get_run("run-postgres") == bundle.run
                 assert len(await uow.repository.list_artifacts("run-postgres")) == 1
+        finally:
+            await manager.close()
+
+    asyncio.run(scenario())
+
+
+def test_manifest_v2_git_plan_indexes_all_families_and_replays_exactly(
+    postgres_url: str, tmp_path: Path
+) -> None:
+    root, run_id, _, analyzed = build_v2_repository(tmp_path)
+    assert analyzed.validated and analyzed.indexable
+    plan = ImplementationRunPlanner(
+        GitSnapshot(bind_repository("synthetic-main", root))
+    ).plan(run_id)
+    bundle = plan.runs[0].domain_build.bundle
+    assert bundle is not None
+
+    async def scenario() -> None:
+        config = DatabaseConfig()
+        config.database_url = postgres_url
+        config.pool_size = 2
+        config.max_overflow = 0
+        manager = DatabaseManager(config)
+        await manager.initialize()
+        try:
+            indexer = LedgerIndexer(lambda: AsyncLedgerUnitOfWork(database_manager=manager))
+            target = _bundle(
+                "QM2-P0-996-20260716T000000Z-7654321",
+                _task("QM2-P0-996", None, 0),
+                1,
+            )
+            await indexer.index_bundles(
+                repository_id="synthetic-main", ref_commit="1" * 40,
+                discovered=1, validated=1, bundles=(target,),
+            )
+            first = await indexer.index_plan(plan)
+            assert first.indexed == 1 and first.relationships == 1
+            second = await indexer.index_plan(plan)
+            assert second.replayed == 1 and second.relationships == 1
+            async with AsyncLedgerUnitOfWork(database_manager=manager) as uow:
+                repository = uow.repository
+                assert repository is not None
+                assert len(await repository.list_changed_files(run_id)) == 1
+                assert len(await repository.list_changed_symbols(run_id)) == 1
+                assert len(await repository.list_test_executions(run_id)) == 1
+                assert len(await repository.list_artifacts(run_id)) == 2
+                assert len(await repository.list_component_references(run_id)) == 1
+                assert len(await repository.list_adr_references(run_id)) == 1
+                assert len(await repository.list_limitations(run_id)) == 1
+                assert len(await repository.list_recommended_tasks(run_id)) == 1
+                assert len(await repository.list_outgoing_relationships(run_id)) == 1
         finally:
             await manager.close()
 

@@ -633,6 +633,7 @@ class ContractScopeTests(unittest.TestCase):
                 "indexing/git_evidence.py",
                 "indexing/indexer.py",
                 "indexing/manifest_parser.py",
+                "indexing/manifest_v2.py",
                 "indexing/models.py",
                 "indexing/repository_binding.py",
             },
