@@ -2,7 +2,7 @@
 
 | ID | Severity | Status | Issue |
 |---|---|---|---|
-| QM2-KI-001 | blocker | open | Legacy TongDaXin scripts require absent proprietary `tqcenter`; pytdx/mootdx, local client/data root, explicit source units, rate limits and license semantics are unavailable, blocking a real Snapshot. |
+| QM2-KI-001 | high | open | Legacy TongDaXin scripts require absent proprietary `tqcenter`; pytdx/mootdx, local client/data root, explicit source units, rate limits and license semantics are unavailable. The legacy feature route is usable, but no real TDX Daily Bars Snapshot exists. |
 | QM2-KI-002 | high | open | Submitted `label_formula` metadata does not drive the training script's actual tradable-return label construction. |
 | QM2-KI-003 | high | open | Daily data task references a missing Qlib synchronization script. |
 | QM2-KI-004 | high | open | Existing Qlib conversion deletes/replaces the destination non-atomically. |
@@ -28,3 +28,5 @@
 | QM2-KI-022 | low | open | Real PostgreSQL 15 Repository behavior passed with SQLAlchemy 2.0.51 and asyncpg 0.31.0; pinned SQLAlchemy 2.0.25 and asyncpg 0.29.0 runtime parity remains outstanding. |
 | QM2-KI-023 | high | resolved | ADR-0010 and the Indexer require explicit trusted logical-ID to worktree binding; Manifest v1 absolute path remains informational. |
 | QM2-KI-024 | medium | resolved | Manifest v2 records and validates explicit `repository_path` or `uri` location kind before constructing the unchanged Domain object. |
+| QM2-KI-027 | medium | open | The adjacent 2025 feature sidecar describes older bytes; exact Parquet bytes, not the stale sidecar, are authoritative for Legacy source identity. |
+| QM2-KI-028 | high | open | Existing LightGBM training and Qlib still consume their legacy feature/Qlib views rather than the real immutable Legacy Dataset Snapshot. |

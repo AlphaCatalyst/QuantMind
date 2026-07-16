@@ -24,3 +24,19 @@ class SnapshotConflictError(MarketDataError):
 
 class SnapshotValidationError(MarketDataError):
     pass
+
+
+class LegacyFeatureError(MarketDataError):
+    pass
+
+
+class LegacyFeatureBindingError(LegacyFeatureError):
+    pass
+
+
+class LegacyFeatureSchemaError(LegacyFeatureError):
+    pass
+
+
+class LegacyFeatureAccessError(LegacyFeatureError):
+    pass

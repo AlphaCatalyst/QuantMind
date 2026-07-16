@@ -1,0 +1,588 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-003l-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "1978c467edc8e8043f124e9d5068a6dd8e1d377236ae5283d114a6e27292512e",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 9755
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003l-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003l-provider-contract",
+      "artifact_type": "legacy_feature_provider_contract",
+      "content_hash": "d4a74ad7cbe5cd27cef327e71d66cdb603ca58946093ab433697db9eb5935b9c",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/LEGACY_FEATURE_PROVIDER_V1.md",
+      "schema_version": "1.0.0",
+      "size_bytes": 7372
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003l-snapshot-contract",
+      "artifact_type": "legacy_feature_snapshot_contract",
+      "content_hash": "923dc312a7e6bac517fb6d234e1b8f1a115c6ff3a46ceebf8a29a7c2abf311d2",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/LEGACY_FEATURE_DATASET_SNAPSHOT_V1.md",
+      "schema_version": "1.0.0",
+      "size_bytes": 7359
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003l-real-manifest",
+      "artifact_type": "runtime_real_snapshot_manifest",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "runtime://QM2-P0-003L/ds_bc82e7bb2c63d2c47677b11cf0f4fc1e5aa11a0ed18ee0bb27e3c8ab667d2ee7/manifest.json",
+      "schema_version": "1.0.0",
+      "size_bytes": 90231
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003l-real-parquet",
+      "artifact_type": "runtime_real_snapshot_parquet",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "runtime://QM2-P0-003L/ds_bc82e7bb2c63d2c47677b11cf0f4fc1e5aa11a0ed18ee0bb27e3c8ab667d2ee7/partitions/feature_matrix/part-00000.parquet",
+      "schema_version": "legacy_feature_matrix_v1",
+      "size_bytes": 6364318
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "8e83fbb0c5770ba6e04f129081e89da6cc4fb59e3f5ec44bf8ee064dff797920",
+      "before_hash": "918d6dd32e088fbd343f3f864c8c502e78c02c8326a8626f4ad0047ae617b68b",
+      "change_type": "modified",
+      "path": "backend/services/engine/market_data/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "20a93c425443a3b9b3fe08b14cb3f4a8f8b0267bb0f204d6303b471c00834d81",
+      "before_hash": "80c3994da6e7830cf52416e3633646b382ce19244d3a5d44911cbe90454a4517",
+      "change_type": "modified",
+      "path": "backend/services/engine/market_data/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4348e499e25878eb0978a3840741acf41fc2ab35a4b1dca614c0ecef9f0e49d5",
+      "before_hash": "5b15b7a1649f400938c76441fa995aecb687aa60e63b6dfbfcdd17d2e8d06d89",
+      "change_type": "modified",
+      "path": "backend/services/engine/market_data/providers/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ab50338847393dbf20997b6532c403768bf2e90a72967ed35162578c4ecf22fb",
+      "before_hash": "39fad39534fadb8e3097018ef98e7f02e1f1d0c14d14667f8534f63ded6d3784",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dc6b604d80267ff2df6917df4ddb8750e87655a56a3ee2fb27121488cccb7c00",
+      "before_hash": "0516f47266a65a4d8cc0310ba735975cd3176b2e06e965039e7c15ce04d30f0f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b0a18b52358f6eb659ef169e9a0c30ed5f1fc6b136b05ffb30f79fdda5e29672",
+      "before_hash": "66dff3c718466e5e6a9a9404ee0fdc06349a65ae20216e11d5ac37c9268f81e0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7a71d23d720226d185faed6a36f5d2ffcc9a82dc0fccf33bc571ab3db3374191",
+      "before_hash": "b1b9d643902e63a748f766e61009e678ba2c1cb1ca4a696f4dc55def7c1bf971",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "922483014b6bf0e245b656d1c6bf98659845753b475a12baf11b9abe067ddb21",
+      "before_hash": "30c3c2b6feeaf696c83b0c69548c864b37ccc875dca5a187d313009b1a63ba27",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4d6206a3f7a38d8c6fd76212bebb865228b731feb2ad221598602ac6cda0bbde",
+      "before_hash": "8859b5616eb4058e89ad183a14bf7cefffbded084f7cb7ef8ff9ce98350f730a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "11599fd897a5ae32a2a29f618e4c22d364a793ed13b32bcaf1109ec105278e5a",
+      "before_hash": "e68d3967bb4b0db1b0b9497c44982efc741003b950ac44a0a7304ef84d57cfbc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4be287091fc71b1e7cf427b18acfb7974f5d5d584f64f482d6bc121801455672",
+      "before_hash": "b95f84cf96f9f86cee5087a73d2d42bb4416929b2dace48a28f8b3575ce39ac3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a38e76218bf16fe9958a40eb7b6ee61daf83ee8598c077d493279bcb04e66937",
+      "before_hash": "4a2f00fdb575f1c4df4f5e35e9852ee07d7016da05d9abb15cfc297c19d929ff",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "eea2543a6ba5bc3d2cfd822469bf98dd4fe3d06969e4cd29dfcfa79ebecac8c9",
+      "before_hash": "d73f8f0eddbad273fbf1a31d3ecc3351d1f3c30cf93a2ca3d7b74aad0d8b22ea",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "74b5c0c11771dc07bec2d2ff46bb1fe14a2323fedc7649e7f7d2e54d148dbf6c",
+      "before_hash": "00124ef455ce3896a71e994fbedad9d8def57b3749de96be52ba71ecde499bdf",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "557327b65fc4892b69d325639ba9770d677a917dc911c352b2a2a9c4e76e75bd",
+      "before_hash": "b78951504b4a436d03b48a7f66b6eb446276f9a3cfa1adad13dc7cb20cbe2f66",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "30bd38a8fbbbae121f0c4c77c8a96ceb253a6f7af1cf159d591e646874a3abee",
+      "before_hash": "80a0fb5cab72a17ff921fc93e8be104b8194e19d6077d4bb6e995262c423ace5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6db25484e9bc6b28a85eb312b5019123e48d9505f3adb1fce0640809f753fa05",
+      "before_hash": "3786ef9ea96db573c0270ba6a95b5282d381d4853019f4646c376ce0f912fb55",
+      "change_type": "modified",
+      "path": "tools/quantmind2/market_data.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "206bdf38840698321ed69cf5a23a4af3754a4b8ca03c0f50fb4244f24e4085c7",
+      "before_hash": "3455cba98ab923b3d8b5c02de2bcc3dc894459b01360debfeeda5b4073724a33",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dc74517a01e224d552f7669d15e1e3a2602d81261eac46bab437504a9c7d920b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/feature_quality.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "60120c6fddb805562cce52a5373ef91dfa582b63245a5ea2ffa51883da9a61c8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/feature_snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "17be52f4bce96896a612ecc2d9226ea1bfec78d4d596e2ac83d2baa515608f89",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/legacy_models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d65efa934830754e60f123b8154c02bffca0a00045520622efd560a2a809e53a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/providers/legacy_feature.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "44927ebbd195d432dcda36e1dc915daeee62a849db28f6b2c68f76040bffeba0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_legacy_feature_provider.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "763160351dc3b1241e110a847be1a0b35ca9a244d78b3daec4a69620ec7cffc9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_legacy_feature_real.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f80151f768ec77acf4b1d3cc1cfbd27974b84cb8cab94623a8ff7aac0a24e9f3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_legacy_feature_snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "923dc312a7e6bac517fb6d234e1b8f1a115c6ff3a46ceebf8a29a7c2abf311d2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/LEGACY_FEATURE_DATASET_SNAPSHOT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d4a74ad7cbe5cd27cef327e71d66cdb603ca58946093ab433697db9eb5935b9c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/LEGACY_FEATURE_PROVIDER_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1978c467edc8e8043f124e9d5068a6dd8e1d377236ae5283d114a6e27292512e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/manifest.json",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/legacy_models.py",
+      "qualified_name": "LegacyFeatureSourceBinding",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/legacy_models.py",
+      "qualified_name": "LegacyFeatureRequest",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/legacy_models.py",
+      "qualified_name": "LegacyFeatureSchema",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/providers/legacy_feature.py",
+      "qualified_name": "LegacyFeatureProvider",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/feature_quality.py",
+      "qualified_name": "evaluate_feature_matrix",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/feature_snapshot.py",
+      "qualified_name": "LegacyFeatureSnapshotService",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/feature_snapshot.py",
+      "qualified_name": "load_feature_matrix",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/feature_snapshot.py",
+      "qualified_name": "load_labels",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "tools/quantmind2/market_data.py",
+      "qualified_name": "main",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind.feature_snapshots",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind.training",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-003l-provider-contract",
+        "sha256": "d4a74ad7cbe5cd27cef327e71d66cdb603ca58946093ab433697db9eb5935b9c"
+      },
+      {
+        "artifact_id": "artifact-qm2-p0-003l-report",
+        "sha256": "1978c467edc8e8043f124e9d5068a6dd8e1d377236ae5283d114a6e27292512e"
+      },
+      {
+        "artifact_id": "artifact-qm2-p0-003l-snapshot-contract",
+        "sha256": "923dc312a7e6bac517fb6d234e1b8f1a115c6ff3a46ceebf8a29a7c2abf311d2"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/market_data/feature_quality.py",
+      "backend/services/engine/market_data/feature_snapshot.py",
+      "backend/services/engine/market_data/legacy_models.py",
+      "backend/services/engine/market_data/providers/legacy_feature.py",
+      "backend/services/tests/test_legacy_feature_provider.py",
+      "backend/services/tests/test_legacy_feature_real.py",
+      "backend/services/tests/test_legacy_feature_snapshot.py",
+      "docs/quantmind2/implementation/LEGACY_FEATURE_DATASET_SNAPSHOT_V1.md",
+      "docs/quantmind2/implementation/LEGACY_FEATURE_PROVIDER_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/report.md"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/market_data/__init__.py",
+      "backend/services/engine/market_data/errors.py",
+      "backend/services/engine/market_data/feature_quality.py",
+      "backend/services/engine/market_data/feature_snapshot.py",
+      "backend/services/engine/market_data/legacy_models.py",
+      "backend/services/engine/market_data/providers/__init__.py",
+      "backend/services/engine/market_data/providers/legacy_feature.py",
+      "backend/services/tests/test_legacy_feature_provider.py",
+      "backend/services/tests/test_legacy_feature_real.py",
+      "backend/services/tests/test_legacy_feature_snapshot.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/LEGACY_FEATURE_DATASET_SNAPSHOT_V1.md",
+      "docs/quantmind2/implementation/LEGACY_FEATURE_PROVIDER_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/market_data.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "d4b07e0267c8deeafceb54069a460de82266b990872f304bb391bfa2708b02af",
+    "manifest_payload_sha256": "4b9fde1ad35ddc37cc6ee978ab30f93c7164d76e3595b0844385ced0a855c6e2",
+    "report_sha256": "1978c467edc8e8043f124e9d5068a6dd8e1d377236ae5283d114a6e27292512e",
+    "source_bundle_sha256": "d3c7b4a017627a01477f627c53288cbea7149a23cf05564b179b48705901777b"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "The proprietary TDX runtime and canonical source-unit contract remain unavailable; no real TDX Daily Bars Snapshot exists.",
+      "limitation_id": "limit-qm2-p0-003l-tdx",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind.feature_snapshots",
+      "description": "The checked-in 152-feature catalog is used because the active production database catalog was not queried.",
+      "limitation_id": "limit-qm2-p0-003l-catalog",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind.feature_snapshots",
+      "description": "The adjacent 2025 sidecar describes older bytes; direct Parquet bytes are the current source authority.",
+      "limitation_id": "limit-qm2-p0-003l-sidecar",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Existing LightGBM training and Qlib do not consume the new real Legacy Dataset Snapshot.",
+      "limitation_id": "limit-qm2-p0-003l-consumers",
+      "severity": "high",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-004",
+      "priority": "P0",
+      "reason": "Implement Factor DSL v1 against the verified feature-only terminals in the real immutable Legacy Dataset Snapshot.",
+      "recommendation_id": "recommend-qm2-p0-003l-factor-dsl"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-16T15:17:01Z",
+      "reason": "Use the real production feature route while the proprietary TDX environment remains unavailable.",
+      "relationship_id": "rel-qm2-p0-003l-continues-003",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-003L-20260716T151140Z-7d29df7",
+      "target_run_id": "QM2-P0-003-20260716T142422Z-0114f35"
+    }
+  ],
+  "repository": {
+    "base_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-16T15:17:01Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "d4b07e0267c8deeafceb54069a460de82266b990872f304bb391bfa2708b02af",
+    "implementation_run_id": "QM2-P0-003L-20260716T151140Z-7d29df7",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003L-20260716T151140Z-7d29df7/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "d3c7b4a017627a01477f627c53288cbea7149a23cf05564b179b48705901777b",
+    "started_at": "2026-07-16T15:11:40Z",
+    "task_id": "QM2-P0-003L",
+    "task_status": "completed_uncommitted",
+    "verification_level": "integration_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-16T15:11:40Z",
+    "explicit_non_goals": [
+      "No Factor DSL, optimization, Registry, API or UI",
+      "No existing training, LightGBM or Qlib consumer switch and no feature or label recomputation",
+      "No TDX installation, production database, dependency, lockfile, configuration, Ledger persistence or Factor Lab modification"
+    ],
+    "objective": "Bind the actual annual feature Parquet consumed by existing training through a read-only Provider and publish the first real immutable research Dataset Snapshot.",
+    "parent_task_id": "QM2-P0-003",
+    "scope": [
+      "Production training loader and annual feature source audit",
+      "Legacy binding, typed Provider, schema roles, leakage policy, quality, immutable Snapshot, readers and CLI",
+      "Real 2025 Snapshot, production loader parity, Project Memory and Manifest v2 Run"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-003L",
+    "title": "Legacy Feature Parquet Provider and Real Dataset Snapshot"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_legacy_feature_provider.py backend/services/tests/test_legacy_feature_snapshot.py backend/services/tests/test_market_data_provider_contract.py backend/services/tests/test_dataset_snapshot.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 55,
+      "purpose": "Verify binding, roles, filtering, quality, Snapshot, readers, CLI and Daily Bars regression.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003l-unit"
+    },
+    {
+      "artifact_hash": "7fd0316e6f8d936688ef332357fb7589f64c0e127c5f64e3158c584baf28b00f",
+      "artifact_uri": "runtime://QM2-P0-003L/real-integration",
+      "command": "QM2_LEGACY_REAL_ROOT=<bound-root> python -m pytest --no-cov -q backend/services/tests/test_legacy_feature_real.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Verify the real 2025 source, deterministic Snapshot, exact reload and production loader parity.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003l-real"
+    },
+    {
+      "artifact_hash": "8b42dc29e3265e7bc127a921a76f772b3feec78cca1df2d298b3736ae8d04548",
+      "artifact_uri": "runtime://QM2-P0-003L/ds_bc82e7bb2c63d2c47677b11cf0f4fc1e5aa11a0ed18ee0bb27e3c8ab667d2ee7",
+      "command": "market_data.py legacy-snapshot; legacy-validate; legacy-inspect; repeat legacy-snapshot",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Create and verify the bounded real runtime Snapshot, source lineage and exact-existing behavior.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003l-real-cli"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_project_knowledge_*.py backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 363,
+      "purpose": "Run the complete relevant Project Knowledge and Context regression.",
+      "skipped_count": 7,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003l-project-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py --json",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 38,
+      "purpose": "Validate Context, schemas, Run pairs, Manifest hashes and references.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003l-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "JSON parse; py_compile; git diff --check; scope check; source and Factor Lab digests",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Verify syntax, metadata, whitespace, scope and read-only source/donor stability.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003l-static"
+    }
+  ]
+}

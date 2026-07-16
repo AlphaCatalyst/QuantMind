@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-16T14:24:22Z",
-  "source_commit": "0114f35332073cab00928f753af83c9ba8d83b6a",
+  "generated_at": "2026-07-16T15:11:40Z",
+  "source_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -45,11 +45,11 @@
     },
     {
       "component_id": "quantmind.feature_snapshots", "name": "Feature Snapshots", "status": "partial",
-      "responsibility": "Produce annual Parquet matrices consumed by existing training.",
+      "responsibility": "Produce annual Parquet matrices consumed by existing training and expose them through a read-only immutable Snapshot boundary.",
       "source_path": "scripts/data/rebuild_v2/build_feature_snapshots.py", "target_path": "backend/services/engine/factor_research/features",
-      "key_symbols": ["add_daily_technical_features"], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_registry"],
-      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0007"], "current_limitations": ["No immutable Dataset Snapshot or Factor Registry lineage."],
-      "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
+      "key_symbols": ["add_daily_technical_features", "LegacyFeatureProvider", "LegacyFeatureSnapshotService", "load_feature_matrix"], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_registry"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0007"], "current_limitations": ["Existing training has not switched to the real immutable Legacy Dataset Snapshot.", "No Factor Registry lineage."],
+      "last_verified_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "factor_lab.official_v7_source", "name": "Official V7 Factor Lab Source", "status": "partial",
@@ -96,9 +96,9 @@
       "last_verified_commit": null, "evidence_level": "planned"
     },
     {
-      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "partial", "responsibility": "TongDaXin ingestion, immutable raw data, normalization, quality, Dataset Snapshot, and consumer views.",
-      "source_path": "scripts/full_update.py", "target_path": "backend/services/engine/market_data", "key_symbols": ["MarketDataProvider", "TongDaXinProvider", "FakeMarketDataProvider", "DailyBarsRequest", "DatasetSnapshotService", "load_daily_bars"], "dependencies": ["pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0003"],
-      "current_limitations": ["Real TongDaXin access is unavailable because the repository and active environments lack tqcenter.tq, and canonical volume/amount unit assertions are not configured.", "Calendar and point-in-time universe domains are deferred.", "Existing training and Qlib consumers have not switched to Dataset Snapshot."], "last_verified_commit": "0114f35332073cab00928f753af83c9ba8d83b6a", "evidence_level": "code_confirmed"
+      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "partial", "responsibility": "TongDaXin ingestion, legacy feature binding, immutable raw/data snapshots, normalization, quality, and consumer views.",
+      "source_path": "scripts/full_update.py", "target_path": "backend/services/engine/market_data", "key_symbols": ["MarketDataProvider", "TongDaXinProvider", "FakeMarketDataProvider", "DailyBarsRequest", "DatasetSnapshotService", "LegacyFeatureSourceBinding", "LegacyFeatureProvider", "LegacyFeatureSnapshotService", "load_daily_bars", "load_feature_matrix", "load_labels"], "dependencies": ["pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0003"],
+      "current_limitations": ["Real TongDaXin access is unavailable because the repository and active environments lack tqcenter.tq, and canonical volume/amount unit assertions are not configured.", "Calendar and point-in-time universe domains are deferred.", "Existing training and Qlib consumers have not switched to Dataset Snapshot."], "last_verified_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "planned", "responsibility": "Canonical AST, parameter nodes, validation, canonicalization, and hashing.",

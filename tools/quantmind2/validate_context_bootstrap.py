@@ -951,12 +951,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-003 task")
-    if "QM2-P0-003F — TongDaXin Environment Enablement and Real Snapshot Verification" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-003F next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-003F"]:
-        raise ValidationError("machine handoff must name the exact TDX enablement task")
+    if "QM2-P0-003L — Legacy Feature Parquet Provider and Real Dataset Snapshot" not in handoff_text:
+        raise ValidationError("human handoff does not name current QM2-P0-003L task")
+    if "QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-004 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-004"]:
+        raise ValidationError("machine handoff must name the exact Factor DSL task")
     checks.append("handoff_links")
 
     v1_example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

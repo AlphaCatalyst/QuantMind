@@ -4,12 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-003: `0114f35332073cab00928f753af83c9ba8d83b6a`
+- Base before QM2-P0-003L: `7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-003: no
+- Dirty before QM2-P0-003L: no
 - Unrelated dirty files: none
-- Uncommitted work after the QM2-P0-003 commit: no
+- Uncommitted work after the QM2-P0-003L commit: no
 
 ## Official Factor Lab source
 
@@ -30,10 +30,10 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-003`, partially completed because the real proprietary
-  TongDaXin runtime is unavailable.
-- Partial task name: `QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry`.
-- Latest run: `QM2-P0-003-20260716T142422Z-0114f35` under
+- Current task: `QM2-P0-003L`, completed using the real feature Parquet consumed
+  by production LightGBM training. Real proprietary TongDaXin remains unavailable.
+- Task name: `QM2-P0-003L — Legacy Feature Parquet Provider and Real Dataset Snapshot`.
+- Latest run: `QM2-P0-003L-20260716T151140Z-7d29df7` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -96,12 +96,28 @@
   Snapshot ID exists. Fake Snapshots are test-only and explicitly identified.
 - Existing training remains on feature snapshots and Qlib remains on its
   separate binary view. No production consumer switch occurred.
-- Recommended next task: `QM2-P0-003F — TongDaXin Environment Enablement and Real Snapshot Verification`.
+- The production feature source is explicitly bound read-only as logical source
+  `quantmind-production-feature-snapshots-v1`. The latest complete 2025 bytes
+  hash to `7fd0316e6f8d936688ef332357fb7589f64c0e127c5f64e3158c584baf28b00f`.
+- Real Legacy Snapshot
+  `ds_bc82e7bb2c63d2c47677b11cf0f4fc1e5aa11a0ed18ee0bb27e3c8ab667d2ee7`
+  contains 5,931 rows, 100 deterministic symbols, 60 observed dates, all 152
+  legal research features and zero labels. Default readers cannot expose labels,
+  forbidden or unknown columns.
+- Production loader parity passed with only its existing numeric-to-float32 cast
+  allowlisted. Source and Snapshot values/NaN masks otherwise match exactly.
+- Factor DSL must consume validated Snapshot terminals through
+  `load_feature_matrix`; it must not read the legacy root or labels directly.
+- Recommended next task: `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot`.
 
 ## Unconfirmed facts
 
-- Obtain the authorized `tqcenter` runtime/client and confirm daily-bar volume,
-  amount, adjustment, timeout, rate-limit and license semantics.
+- Authorized `tqcenter` runtime/client and daily-bar volume, amount, adjustment,
+  timeout, rate-limit and license semantics remain unavailable, but no longer
+  block the Legacy Snapshot to Factor DSL route.
+- The active production database feature allowlist was not queried; the provider
+  is bound to the checked-in 152-enabled-feature catalog.
+- The adjacent 2025 source sidecar is stale relative to current Parquet bytes.
 - Long-term durable location for the official Factor Lab source.
 - Production execution-role permission policy for the explicit `quantmind2` schema.
 - CI capability and scheduling for the opt-in disposable PostgreSQL test.

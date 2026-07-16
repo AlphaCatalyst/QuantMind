@@ -315,7 +315,27 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-003-20260716T142422Z-0114f35` (partial: real TDX environment absent).
 
+## Legacy production feature route
+
+- `QM2-P0-003L — Legacy Feature Parquet Provider and Real Dataset Snapshot`
+  binds the actual annual Parquet consumed by existing LightGBM training through
+  an explicit read-only Provider and the shared immutable Snapshot authority.
+- The latest complete source is 2025: 1,248,108 rows, 5,212 symbols, 243 dates,
+  155 columns and exact source SHA-256
+  `7fd0316e6f8d936688ef332357fb7589f64c0e127c5f64e3158c584baf28b00f`.
+- The real bounded Snapshot is
+  `ds_bc82e7bb2c63d2c47677b11cf0f4fc1e5aa11a0ed18ee0bb27e3c8ab667d2ee7`:
+  5,931 rows, 100 deterministic symbols, 60 dates, all 152 allowed features,
+  zero labels, zero quality errors. Labels remain inaccessible by default.
+- Existing production-loader/Provider/Snapshot parity passed. The only allowed
+  production conversion is the existing numeric source dtype to `float32` cast.
+- Real TDX remains unavailable, but it no longer blocks the Factor DSL route.
+  A future TDX Provider adds Daily Bars Snapshots under the same authority model.
+- Existing LightGBM training and Qlib backtest have not switched consumers.
+- Latest Implementation Run:
+  `QM2-P0-003L-20260716T151140Z-7d29df7`.
+
 ## Next task
 
-`QM2-P0-003F — TongDaXin Environment Enablement and Real Snapshot Verification`
-is the only recommended next task. The Ledger stage remains closed.
+`QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot` is the
+only recommended next task. The Ledger stage remains closed.
