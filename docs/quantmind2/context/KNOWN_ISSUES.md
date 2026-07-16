@@ -31,3 +31,4 @@
 | QM2-KI-027 | medium | open | The adjacent 2025 feature sidecar describes older bytes; exact Parquet bytes, not the stale sidecar, are authoritative for Legacy source identity. |
 | QM2-KI-028 | high | open | Existing LightGBM training and Qlib still consume their legacy feature/Qlib views rather than the real immutable Legacy Dataset Snapshot. |
 | QM2-KI-029 | high | resolved | Manifest v2 self-reference is rejected for new Runs; committed v2 self-reference is narrowly warned and excluded from ChangedFile mapping without weakening other Git evidence. |
+| QM2-KI-030 | low | resolved | The 003LF post-commit PostgreSQL test referenced nonexistent `AnalyzedRun.git_consistency`; QM2-P0-003LF1 now uses the public `evidence.consistent` and `evidence.warnings` contract, and all four real opt-in tests pass. |

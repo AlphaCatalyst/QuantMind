@@ -349,6 +349,19 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-003LF-20260716T153535Z-22461e0`.
 
+## Manifest PostgreSQL assertion closure
+
+- `QM2-P0-003LF1 — Fix Manifest Self-reference PostgreSQL Test Assertion`
+  corrects the test-only use of nonexistent `AnalyzedRun.git_consistency` to
+  the public `AnalyzedRun.evidence` contract.
+- The production Planner, Git evidence, Manifest, Indexer, Repository,
+  migration, Dataset Snapshot and Legacy Provider behavior are unchanged.
+- The opt-in disposable PostgreSQL suite now passes all four tests, including
+  real 003L and 003LF planning, first index, exact replay and absence of a
+  self-Manifest ChangedFile.
+- Latest Implementation Run:
+  `QM2-P0-003LF1-20260716T160222Z-da271ac`.
+
 ## Next task
 
 `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot` is the

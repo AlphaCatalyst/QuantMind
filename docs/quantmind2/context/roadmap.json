@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-16T15:35:35Z",
-  "source_commit": "22461e0fb603171efa5b1467586a260e2f54ed7b",
+  "generated_at": "2026-07-16T16:02:22Z",
+  "source_commit": "da271accfc06417ce5a36f8e34cef7ca70052760",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -29,6 +29,7 @@
     {"task_id": "QM2-P0-003F", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-003"], "objective": "Enable an authorized TongDaXin environment and verify a real immutable Snapshot vertical slice.", "explicit_non_goals": ["No Factor DSL, training migration, Qlib consumer migration, or broader market-data domains."], "acceptance_summary": "A real two-market daily-bar Snapshot passes raw capture, normalization, quality, reload, hash, and exact-existing checks without exposing credentials."},
     {"task_id": "QM2-P0-003L", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-003"], "objective": "Bind current production annual feature Parquet read-only and publish a real immutable research Snapshot.", "explicit_non_goals": ["No DSL, training or Qlib switch, TDX install, feature recomputation, API, or UI."], "acceptance_summary": "Real 2025 100-symbol, 60-date, 152-feature Snapshot and production loader parity pass."},
     {"task_id": "QM2-P0-003LF", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-003L"], "objective": "Remove future Manifest self-reference and restore 003L strict forward indexing through bounded compatibility.", "explicit_non_goals": ["No DSL, Snapshot mutation, schema or migration, API or UI, or Ledger expansion."], "acceptance_summary": "New Runs reject self-reference; 003L and this Run validate, build complete Bundles, and replay in isolated PostgreSQL."},
+    {"task_id": "QM2-P0-003LF1", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-003LF"], "objective": "Correct the test-only AnalyzedRun evidence assertion and close PostgreSQL verification.", "explicit_non_goals": ["No production behavior, schema, migration, Snapshot, Provider, DSL, API or UI change."], "acceptance_summary": "Four opt-in PostgreSQL tests pass for 003L and 003LF planning, index and exact replay."},
     {"task_id": "QM2-P0-004", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-003L"], "objective": "Create Factor DSL v1 on the real Legacy Feature Dataset Snapshot.", "explicit_non_goals": ["No optimizer, Registry, LightGBM or Qlib switch, structure evolution, or Python main path."], "acceptance_summary": "DSL validates, hashes, and computes deterministically without label access."},
     {"task_id": "QM2-P0-005", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-004"], "objective": "Normalize market data and enforce quality.", "explicit_non_goals": ["No factor computation."], "acceptance_summary": "Critical quality failures block publish readiness."},
     {"task_id": "QM2-P0-006", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-005"], "objective": "Publish Dataset Snapshots and atomic Qlib views.", "explicit_non_goals": ["No research or model implementation."], "acceptance_summary": "Only published snapshots are consumable."},

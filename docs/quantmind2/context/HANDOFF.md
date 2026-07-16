@@ -4,12 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-003LF: `22461e0fb603171efa5b1467586a260e2f54ed7b`
+- Base before QM2-P0-003LF1: `da271accfc06417ce5a36f8e34cef7ca70052760`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-003LF: no
+- Dirty before QM2-P0-003LF1: no
 - Unrelated dirty files: none
-- Uncommitted work after the QM2-P0-003LF commit: no
+- Uncommitted work after the QM2-P0-003LF1 commit: no
 
 ## Official Factor Lab source
 
@@ -30,10 +30,11 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-003LF`, fixing only Manifest v2 self-reference and
-  restoring 003L forward indexability without changing the real Snapshot.
-- Task name: `QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability`.
-- Latest run: `QM2-P0-003LF-20260716T153535Z-22461e0` under
+- Current task: `QM2-P0-003LF1`, fixing only the PostgreSQL test assertion that
+  referenced nonexistent `AnalyzedRun.git_consistency` instead of `evidence`.
+- Task name: `QM2-P0-003LF1 — Fix Manifest Self-reference PostgreSQL Test Assertion`.
+- Completed predecessor: `QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability`.
+- Latest run: `QM2-P0-003LF1-20260716T160222Z-da271ac` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -113,6 +114,9 @@
 - Historical 003L is immutable and uses the generic compatibility warning
   `LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED`; its Manifest is not mapped to a
   ChangedFile, while every other Git/hash check remains strict.
+- The 003LF test-only assertion now uses `AnalyzedRun.evidence.consistent` and
+  `evidence.warnings`; all four opt-in PostgreSQL tests pass without a
+  production-code change. Ledger remains closed.
 - Recommended next task: `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot`.
 
 ## Unconfirmed facts

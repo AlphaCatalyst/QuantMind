@@ -1,0 +1,357 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0010",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-003lf1-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "27301c6554a7e3e0dede9b86462e2b454d6d4166be69b065bbe905feaedb1fad",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 5697
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003lf1-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "d68bbc974207a94a1b17cf4644b36610017ff16c5b94179c24b1ab3fb2f8e28d",
+      "before_hash": "7406de651e59c65a128b33b413ea3184c2709a17afb2f00b6eb6712eca7287d7",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "880b05bb8590baf81914948925e9caa20af3f4c6783623d9dd3e25c2f2720850",
+      "before_hash": "c392b5269b81f00e2ec8fcb0805a11944c4778f9e1243b537fd1dc8ca4950327",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2632b9dbc9c56f5b218ee93e24a86f52d0e5d25585db4c30a8bca933bedf021d",
+      "before_hash": "23088e5dbac34478d1bbf3b2bf40aa939cbf1cc80635b785756277f13dfbe0cd",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8ff1c669e8832a6bdab0d316cd8a420638dddcfbe995ae9b687e2aae3b22f40f",
+      "before_hash": "b2472c9ddb868b6a03d120fdfa231df265699b936121bfb798b86e37891c15c5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "92be2900a78ea1e792aa35bd8f38cc445f6dfb0ed38032b53c5001d6b8b6a373",
+      "before_hash": "28f5550a0e3b8e52faa07b2f042490fdbdb5f74562c2e3f5df07d90a6f7a3bfe",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fc3c6c1340d81e3634b89f8953181db0deb2309827115f923701c7f03c3c3ca0",
+      "before_hash": "8897781a80ea0ed742c9901428a0b400ba7b768d0d420bf7d272f5babf191c73",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f50fe31899a29a27b8478e061aa84f8b0982ac115c8fd513bd9958057bb271fc",
+      "before_hash": "9e457746f457216086e93945034dbf4a5eb53bdee58b025e35ada9ba55b1d076",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "141fe114299d43c34f7a55f748959645583af368d008f2d55b5cad7fcc554098",
+      "before_hash": "fab6b9e1181c32e382d840067994683618ca075ec551a4c2d123f3892f354f4f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "805500e0fe68897564dd853c21c4ff2217c4303a1f96ba618ac7b0027d112683",
+      "before_hash": "88917c65e662ef7c60a5cada7595c1ed62e01d7692298423ddc9c363e1dea71f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "27301c6554a7e3e0dede9b86462e2b454d6d4166be69b065bbe905feaedb1fad",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/report.md",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "qualified_name": "test_real_003lf_indexes_replays_after_containing_commit",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "unaffected"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "impact_type": "unaffected"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-003lf1-report",
+        "sha256": "27301c6554a7e3e0dede9b86462e2b454d6d4166be69b065bbe905feaedb1fad"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/report.md"
+    ],
+    "git_changed_paths": [
+      "backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/report.md"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "20865e4f13b6050fbfc50052aa51faf479ba2db182b2744d3dfa1a0be958f015",
+    "manifest_payload_sha256": "1badfb520d32164cc817763dfaa4b5a84dcc4252b567b64c695f4ca16521ecef",
+    "report_sha256": "27301c6554a7e3e0dede9b86462e2b454d6d4166be69b065bbe905feaedb1fad",
+    "source_bundle_sha256": "ade5f774691f90c2e2fea4c24c0058421a61885dd87297e89f62bcc249e44450"
+  },
+  "limitations": [
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "description": "The supplied historical Factor Lab digest differs from the value reproduced at preflight; the read-only donor remained byte-identical during this task.",
+      "limitation_id": "limit-qm2-p0-003lf1-factor-lab-digest",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "description": "Disposable PostgreSQL used SQLAlchemy 2.0.51 and asyncpg 0.31.0; pinned-runtime parity and CI scheduling remain pre-existing limitations.",
+      "limitation_id": "limit-qm2-p0-003lf1-runtime",
+      "severity": "low",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-004",
+      "priority": "P0",
+      "reason": "Proceed directly to Factor DSL v1 on the verified real Legacy Feature Dataset Snapshot; Ledger remains closed.",
+      "recommendation_id": "recommend-qm2-p0-003lf1-factor-dsl"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-16T16:06:39Z",
+      "reason": "Close only the test assertion limitation recorded after the 003LF commit.",
+      "relationship_id": "rel-qm2-p0-003lf1-continues-003lf",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-003LF1-20260716T160222Z-da271ac",
+      "target_run_id": "QM2-P0-003LF-20260716T153535Z-22461e0"
+    }
+  ],
+  "repository": {
+    "base_commit": "da271accfc06417ce5a36f8e34cef7ca70052760",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "da271accfc06417ce5a36f8e34cef7ca70052760",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-16T16:06:39Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "20865e4f13b6050fbfc50052aa51faf479ba2db182b2744d3dfa1a0be958f015",
+    "implementation_run_id": "QM2-P0-003LF1-20260716T160222Z-da271ac",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003LF1-20260716T160222Z-da271ac/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "ade5f774691f90c2e2fea4c24c0058421a61885dd87297e89f62bcc249e44450",
+    "started_at": "2026-07-16T16:02:22Z",
+    "task_id": "QM2-P0-003LF1",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-16T16:02:22Z",
+    "explicit_non_goals": [
+      "No production Manifest, Planner, Git evidence, Indexer, Repository, migration or schema change",
+      "No Dataset Snapshot, Legacy Provider, Factor DSL, API, UI, dependency, lockfile, Factor Lab, production database, amend or push"
+    ],
+    "objective": "Correct the test-only AnalyzedRun evidence assertion and restore the complete real PostgreSQL verification suite without production behavior changes.",
+    "parent_task_id": "QM2-P0-003LF",
+    "scope": [
+      "PostgreSQL test assertion",
+      "Real 003L and 003LF planning/index/replay verification",
+      "Project Memory and Implementation Run"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-003LF1",
+    "title": "Fix Manifest Self-reference PostgreSQL Test Assertion"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_LEDGER_POSTGRES_INTEGRATION=1 python -m pytest --no-cov -q backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 3,
+      "purpose": "Reproduce the committed invalid AnalyzedRun attribute assertion before editing.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-qm2-p0-003lf1-reproduction"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "runtime://QM2-P0-003LF1/disposable-postgresql-15",
+      "command": "QM2_LEDGER_POSTGRES_INTEGRATION=1 python -m pytest --no-cov -q backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Apply migration 0001 and verify synthetic plus real 003L/003LF first index, exact replay, children and no self-Manifest ChangedFile.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-postgres"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_project_knowledge_manifest_v2.py backend/services/tests/test_project_knowledge_git_consistency.py backend/services/tests/test_project_knowledge_ledger_indexer.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 24,
+      "purpose": "Verify strict self-reference rejection, bounded historical warning, exact exclusion, Report/hash checks and Planner/Indexer regression.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_project_knowledge_*.py backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 368,
+      "purpose": "Run complete Project Knowledge and Context regression without PostgreSQL opt-in.",
+      "skipped_count": 9,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-project"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_dataset_snapshot.py backend/services/tests/test_market_data_provider_contract.py backend/services/tests/test_tongdaxin_provider.py backend/services/tests/test_legacy_feature_provider.py backend/services/tests/test_legacy_feature_snapshot.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 55,
+      "purpose": "Prove Dataset Snapshot and Legacy Provider behavior is unchanged.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-market"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "index_implementation_runs.py validate for real QM2-P0-003L and QM2-P0-003LF",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 2,
+      "purpose": "Verify both real Runs are validated, indexable, complete and gap-free with exact warning behavior.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-planners"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py --json",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 38,
+      "purpose": "Validate Context, immutable Runs and official source boundaries.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "JSON parse; py_compile; git diff --check; scope and Factor Lab before/after digest checks",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Verify syntax, metadata, whitespace, authorized scope and no donor mutation.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003lf1-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "Planner validate QM2-P0-003LF1 after containing commit",
+      "failed_count": 0,
+      "not_run_reason": "Requires this independent commit to exist; result will be reported after commit without modifying immutable Run files.",
+      "passed_count": 0,
+      "purpose": "Verify this self-reference-free Manifest v2 Run is forward-indexable.",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-qm2-p0-003lf1-postcommit"
+    }
+  ]
+}

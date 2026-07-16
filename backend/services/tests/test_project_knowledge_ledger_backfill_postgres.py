@@ -266,8 +266,8 @@ def test_real_003lf_indexes_replays_after_containing_commit(
     assert analyzed.domain_build is not None
     assert analyzed.domain_build.bundle is not None
     assert analyzed.domain_build.gaps == ()
-    assert analyzed.git_consistency is not None
-    assert analyzed.git_consistency.warnings == ()
+    assert analyzed.evidence.consistent
+    assert analyzed.evidence.warnings == ()
 
     async def scenario() -> None:
         config = DatabaseConfig()
