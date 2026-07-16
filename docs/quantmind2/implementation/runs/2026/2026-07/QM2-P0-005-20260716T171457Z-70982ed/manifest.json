@@ -1,0 +1,839 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0002",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0003",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "implements"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-005-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "15d6b9797a6221c662413c7c2ed6405636f78b90f73b0a390671da74fec31978",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 13176
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-study-a",
+      "artifact_type": "factor_optimization_study",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-005-optimization/fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2?study_manifest_sha256=b0d77fde5837f9fd6a419d25264a259ae2077e4a4eb5fcdfa8ec94d3f01b2075#manifest_file_sha256=2a1490622afe72522ff73d372d5e4a92df7b76e9cce4969efd3458a7339dc5df",
+      "schema_version": "factor-optimization-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-study-b",
+      "artifact_type": "factor_optimization_study",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-005-optimization/fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19?study_manifest_sha256=a662573c8c80d3cdee34dbd4df8c520d08750fb092f29bf0ae09aeaaf4bdc1c1#manifest_file_sha256=69b395e1cabb15fb7b3180c2e2ce24552a22e1f603be966501bd3460b83503ca",
+      "schema_version": "factor-optimization-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-01",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_3d02e13bc1fa254ae621586e44fca782354fe2935f50a9e65a521a3feace60e1/values.parquet?trial_id=fot_230dfb8eec1515916567d6652558ef68f6e2d163cadd312d74f05cd0ba26d116&factor_instance_id=fi_d34cd8b273180eb2280abc3b284a05eff1c1c4bd8a1aa8a01d17da90ad56d7c5&study_id=fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2#sha256=6051c4845c798b7c1348d2e318806719ce613c422453e5389d70d6db8459092e",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-02",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_385ed568d5b68b7ec24dc2302081f867469206d591e51002d32998085b504264/values.parquet?trial_id=fot_f83683c30cbb564d3d634d633977a79b32cb44807cc616d05336e04c04675f9f&factor_instance_id=fi_d666f5b0409763e8a2ce35c3135ac32adb82c83dd20c370f106414acf0793964&study_id=fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2#sha256=ce98cf28c91913471fb786674958fa7b2e0a7a875fc7f4d691ee9e3f2b580f1c",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-03",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_d32e6bae985d9ada6845f0e3788fa31d054b3e85cc5f5b4410f7f977590966fc/values.parquet?trial_id=fot_3d75fefd2ee38a57c8357e70ddce84c2a727870f1a3eeed4d8efc94b5ef3ed17&factor_instance_id=fi_67cef63af4995339fde06b7ff68581eba40dd9d315e9cdc3749a90a8b064aa7d&study_id=fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2#sha256=e343b412b1ab2e4cbd4c3ba4a811ae6987a1a00e2ccbe170f49d544e9b6d6dfc",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-04",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_5b83b004cd6c985f51af22c3d417656c7f24657bb2d1647607ca5a12f8fafdff/values.parquet?trial_id=fot_091eef460aa28993bdc1fde30cc3d0b02931db886fa17b10d6c5df52b530974d&factor_instance_id=fi_94b3fc524e46b37f97c9a7e87aca83099da507b4c7822775d28e932d48f01943&study_id=fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2#sha256=4112b52c2d9708c6e9e0bcd85dd3ffd51438bf3ca4bb7cf383fa38ebe585ea8f",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-05",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_4e81b5310ae9e80fdea1bbc72f1bf322e2e19a0f584f93d7bec36c5c0d2dd8b8/values.parquet?trial_id=fot_566b33580ebf082bc08ebb234ca27954d387d91bf44349b83d2332de9d11e7ec&factor_instance_id=fi_0e401b112a42090600ab9f7fa42bd914b13a98759b244bc2b71b7cc2ae93ea99&study_id=fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2#sha256=4376db2dde1737c593e1a6c9349c64e13ad22f1e339403324be82246f7f05647",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-06",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_68c0f0729f0cd46f59ed5a1463ba84a81884b9fb63e38a918bb1ef9ecaee16d6/values.parquet?trial_id=fot_55d82e65c25bd5fe5d2f8353dd14b574903789d26832de21165a900a7d79b8d3&factor_instance_id=fi_3daa5e41b2f9fb7632d3d7fc74c070b539811090fbf99d3dabd821b3bd526de5&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=cc60d0ce5432c2e9e6e634667ee476a4224b5c541be21c991100eb0cb43338b6",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-07",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_95f8d7bb1297f118e8c9fdcdd318f291bcf4fedaf778cda66e76e03749c1da86/values.parquet?trial_id=fot_e6862a131db5a34f0f26a710e73ae9399dcded320cb836fd1c15f5e7a17d630e&factor_instance_id=fi_ae03bc2aad44d55cffd2d241c33f31994b1a30b686c0e472b1b5954a2fddaaf9&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=84cb6064d19518ac00662156098da4b5bf9485c0b4e3cac43396ac4515166c74",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-08",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_dad9f31bc8ff292081899a1e995e2755911f6c8d918166d31a25c04c2f6b325f/values.parquet?trial_id=fot_39f0ba7061b354c54da47532dbe33750383e9c1474cbe8a844722bff48cf3481&factor_instance_id=fi_7dbb667e4691f08b062b4e6df7a86f9bd5075ec8f36cf9d09bd9a9a7caaf6ca3&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=d3ce364b82b57b81ae92ff26b87a035856b0b19db9a01a547e69096f44c7b1da",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-09",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_9c37014be8c5f6d53846b5407fcb0e43c17ffc6a4b25ab246d4e07495c97bd7c/values.parquet?trial_id=fot_4d78ce9cf3fc4be34eb581a18cae2284e32682605d3742810636d86f2b61edf2&factor_instance_id=fi_79137ce1245b0ac293244d2bfcd371962ac9c65e4f09adab1f730479509eec77&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=0363dfcc5b46cf2944700dc0d0a87548dcc72ae9a3f4c0da75b673ce646cb211",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-10",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_0ce88446ab3cc6509b7b6e50f3d8f4c27ee39c7e9f260e88b1ffc36f5dda0c2c/values.parquet?trial_id=fot_5650e135b4c73f57e5d0da6f301b7202c547e828ba5d284dae233fc3bf39d9f5&factor_instance_id=fi_901a9ca551bfc8497ef4cd38d0348a65e1e97ab94f96e7cffbc6cf10117ecaf9&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=893308ef0b8ecaa003b3a273da00b1e08e5f366edd3b5ddf976e0c38630436f8",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-11",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_8995b787620d3f48386a163ea5ead0d2b15ae3f4618da2b5ea474a057683f6cd/values.parquet?trial_id=fot_a181ba7ad2054ded37c93be89663090f937a701b5b3d61feb4325a3ca8409b77&factor_instance_id=fi_a66ad344d67de2b1b10d202d97e36d777bad090c8f515033890fd627f5276857&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=8fab9556639aa6185a773650dcfb37215d3eaffcf3e71378ac00d22cdf3a643a",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-12",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_d78b5964c7e8c6ff68caebdd3b2c36cca8207503ac32cbc4dd6b10f9d0564026/values.parquet?trial_id=fot_187f33947f6348ff9d08d526f72813f0368113a605b6a6ec8aa85c0041dfe12d&factor_instance_id=fi_2496486d6561f6aeffd056da31ad4ddcd39c38666e74ecdc4923cd3e2e98a234&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=6daaf922fe1a803225838318a965182a38f4975f8773d2d72c1e833b5d6c7bcb",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-13",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_924201dd17891d9720cb8ab95e0036af2ac46d11bcb7186ba8da9bdf1123946e/values.parquet?trial_id=fot_ea31b7aeedba0f890acd04f77a2cd8833d379abf0d721d5873a350107d606f72&factor_instance_id=fi_ae17c28690132fc3fb282b48234d309dd9e41a8b54c109f110a88b51dc05b5cd&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=343f672f909151f52da208ffb35654b35261d4bc4d5f91833856d6ac2cefcf32",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-005-factor-values-14",
+      "artifact_type": "factor_values_reference",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_3c727c5c4d02b7a615679c9c03e4f13b168634bf43d1b2c67deb7e0ff7a8573f/values.parquet?trial_id=fot_19443929f3a7a724b8b3a98a7ac9a000d440433fff8aa6d360f661885728f23a&factor_instance_id=fi_f9fec179d9c7cd146e6b4dbb59ef7e406441025c57c345ca9cb398d9cac5a825&study_id=fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19#sha256=5a2b5e52fcfb20a72586c82a06743b903f78ccd64501700a0a263c1270205825",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "0b95fe70642cf17478bcb1f296ef595115797fe5d930de0588904eb02ee77fd9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "eb486516b6f6cb93db2d17613f1f9c3d5387a625a670abab6101a8db44dcf86a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8f47fe80ed36304bcc49a312a77088d8e5dec3d5471dad4a208392b3ec5470c4",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1d7d7aacaca17a2835c97af5d4203531a2ce7a55d66f357ccd37bce65aa8579d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/eligibility.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "667347f42b8daa8230edc8300dcab197a8c653371dea8e7b2f08200ac80660c0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/enumerator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2770426a122fee213fce139f2b3c1af2f7e6018cc925859c820c67fcb21ab7fe",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f7656f17e252c473c0d0974b429bf9f1cbfe5c0facd6d09620678c3ebfff01f7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8dc0f877ac482c682506dd8db9dc2f8c78864aadd665537ede6885cb726a8a1c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/examples.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2458e663e478d65ff7c5372f324bd5e9bdaa9e81cc444b65ebaa97e4905bf915",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/identity.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c8603af2e9a2cb69338955b3fe6cbb95b94bf048eb63d3d3b1d6d52688f72646",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/metrics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2371552da1ee5449b882056c2c7f45042761427c916a7a8099470195d4c8ef4f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc72147af3e39399f838a5d76ff0b8c62deaccfa559b1ce2b9fdd40e6a55da64",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "54e9f9ee8a2cd4466d5fd077178b911467a8caf6593022fa5a3da199be6645f7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/roles.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "470223c7efd47f30c1fa8f741f34c57b3e38924cd04a03f90665033d11759df8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/runner.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "94068d9cf5e6ed85b527c7b274f8e8d4ca4c2623e732f1e302d33739019bccd6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bf3627a2dac510b688f18da5829f9194ef41eb64b2b33fa8a44c19571e3c99fc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_optimization/search_space.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "48150bdd35bb825b3963251619a823342a2be3d2f111adc2fc50a3946e8991f7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_optimization_enumerator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f4373969bb336dce32b5030f63f2577c61d6e72cf2697fcab9e1fb7f1950a6d6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_optimization_real_snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7e6d31c3bf68d4223086793ac168f47e584a58244c9336208260cf5bb86ff4fa",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_optimization_runner.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2654d34d45a21c3258302a40073b767ab4eca4537584a4bdef7729f475da9cc4",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_optimization_schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "52c5ca2f451376d6acac87440463d1cfb078ab9b9c8061b4a78dd659184ad954",
+      "before_hash": "c35998c37be8b092e063275dba09010d40dc84d55985a71ff24be93e034e42ef",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2132ed4fed003b680690ee26fb3e55d90364d65d69c32f22be2eb8623adda781",
+      "before_hash": "f8acbb0e9175d325ccb0a7c8d0255045555fd9b972979bb09a9e597be97394ce",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8058a92601be9d7de83550147d584bee39dc9f68f69a3a2c8039feaf092a9fe9",
+      "before_hash": "d2607df8d9b396a6ba7f21cd9265eedf2f557c49de3a675023a90e404a31c8d1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d19f0f98b232472b275805c1b4e664d54d49696f7ad9531b08d7cccbb65dc2ca",
+      "before_hash": "a48444dd815d4f03edcd56ffc7a659196a1a52e7f386c7535ef673ca439b87f5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c0251e416da5999bc569f90843094d80f5ab54494e97267bc124e879bc47ad7d",
+      "before_hash": "71badadc4f80c2426fad0b7d10b381405a43480546c7145452080b0b58a83ef3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "14ee89f4cd435a4b9ecc40bd8b6c8fca24a047efa142ea42a68bd46fa3942a07",
+      "before_hash": "efcf3872d2586258de789fbed5fdeb61a1cd3824de0ff5c4132eb433701631ec",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3405f9160391260bb10e1394174cd0233847cf06ce5962a04f0d498f75c19137",
+      "before_hash": "7095498796fe1fc5d66e47e8b18866d3814add24820e752c66c3458a6eddb843",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/TERMINOLOGY.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ac6266b4d46ada75e7b935be4182af4491719280c1faa1cfe7af6ee88bcd1964",
+      "before_hash": "ba379676d11f553cb17c5b5923b77ae3963f01b4368bb5b0ffd7533efe06b052",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "48d00b5885fd52a516418c0bd62ab828c0fd4c6f6a8e90753b54322420b08768",
+      "before_hash": "d96ca5fb9a75c5c542fc95317dbbb2530dcb207b26eaeeb62acb0cc96138ec64",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fa878b838ac8ddc49004ddd99fd040a3b4e4011e46765fee1255d120f60a9755",
+      "before_hash": "9e729e1c33dab912d2da123eb8bfee8114c7dd87af53e175ebf6556a6315c3be",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1ce4a88f19fab248cdaa282ec69a9535398a6b90246dd883455277ce7ee8ade5",
+      "before_hash": "cae6e09a8e49c8fa87ec4e849ecf7b3a09b4824f37f79f13bde993e8a8d15f59",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "11f108dd79b24642696498d2dadd196572989dfcf3e5325c15e254a2338d4735",
+      "before_hash": "e3b509aa5d306c20b6150d5e614797c10885d5aa6d18b7118f347b72cdc06bdc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "44e2dc544b95637f7d45360c4063efd33539d7134769de2c809635247a37eff9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FACTOR_OPTIMIZATION_ARTIFACT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "61187e42fd1211395e4461442ba67ec3be331a65b619ff4cc40fe464e60c2925",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FACTOR_OPTIMIZATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "15d6b9797a6221c662413c7c2ed6405636f78b90f73b0a390671da74fec31978",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cf9a1cc4a9b899a052a531897c221d22e899e9f2891223a7fba651c956cfb308",
+      "before_hash": "b84a03be1d8cfceb5e86db9fd26e8a8ef9edc1b92dcc6fab7b20774a4f002408",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1e60052722d34fee7734e3202a393ad9786027ad3c821f8d4d2c5d9f1681e2f2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_optimization_spec_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "11db9e00e1aabe3ee77c18b9a38a29461c3afba33519e401b3f321eadf07ae4a",
+      "before_hash": "8b46f4cb1d5c19eb2983aca29fc3a245a678a1a6fde8e79d989eb3e2cfa3ca2e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ee76a61abcf294a53ee14f7fb083779339597352653cd25cea55ca0890443232",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/factor_optimization.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "060800f6173abc84564849aca683bb599bab6c4b88e7e30f15a70cc39a869387",
+      "before_hash": "c554eb2a22de3ca7de30d06f900d5e4a894a8d8d5ec98930ba65b4cb36b1a9e5",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/models.py",
+      "qualified_name": "backend.services.engine.factor_optimization.models.FactorOptimizationSpec",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/models.py",
+      "qualified_name": "backend.services.engine.factor_optimization.models.FactorOptimizationStudy",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/models.py",
+      "qualified_name": "backend.services.engine.factor_optimization.models.FactorOptimizationTrial",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/models.py",
+      "qualified_name": "backend.services.engine.factor_optimization.models.FactorOptimizationResult",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/parser.py",
+      "qualified_name": "backend.services.engine.factor_optimization.parser.parse_optimization_spec",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/enumerator.py",
+      "qualified_name": "backend.services.engine.factor_optimization.enumerator.plan_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/runner.py",
+      "qualified_name": "backend.services.engine.factor_optimization.runner.execute_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_optimization/artifact.py",
+      "qualified_name": "backend.services.engine.factor_optimization.artifact.validate_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "docs/quantmind2/implementation/schemas/factor_optimization_spec_v1.schema.json",
+      "qualified_name": "FactorOptimizationSpecSchemaV1",
+      "symbol_type": "schema"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/factor_optimization.py",
+      "qualified_name": "tools.quantmind2.factor_optimization.main",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_dsl",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_compute",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "impact_type": "documented"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-005-report",
+        "sha256": "15d6b9797a6221c662413c7c2ed6405636f78b90f73b0a390671da74fec31978"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/factor_optimization/__init__.py",
+      "backend/services/engine/factor_optimization/artifact.py",
+      "backend/services/engine/factor_optimization/canonical.py",
+      "backend/services/engine/factor_optimization/eligibility.py",
+      "backend/services/engine/factor_optimization/enumerator.py",
+      "backend/services/engine/factor_optimization/enums.py",
+      "backend/services/engine/factor_optimization/errors.py",
+      "backend/services/engine/factor_optimization/examples.py",
+      "backend/services/engine/factor_optimization/identity.py",
+      "backend/services/engine/factor_optimization/metrics.py",
+      "backend/services/engine/factor_optimization/models.py",
+      "backend/services/engine/factor_optimization/parser.py",
+      "backend/services/engine/factor_optimization/roles.py",
+      "backend/services/engine/factor_optimization/runner.py",
+      "backend/services/engine/factor_optimization/schema.py",
+      "backend/services/engine/factor_optimization/search_space.py",
+      "backend/services/tests/test_factor_optimization_enumerator.py",
+      "backend/services/tests/test_factor_optimization_real_snapshot.py",
+      "backend/services/tests/test_factor_optimization_runner.py",
+      "backend/services/tests/test_factor_optimization_schema.py",
+      "docs/quantmind2/implementation/FACTOR_OPTIMIZATION_ARTIFACT_V1.md",
+      "docs/quantmind2/implementation/FACTOR_OPTIMIZATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/report.md",
+      "docs/quantmind2/implementation/schemas/factor_optimization_spec_v1.schema.json",
+      "tools/quantmind2/factor_optimization.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/factor_optimization/__init__.py",
+      "backend/services/engine/factor_optimization/artifact.py",
+      "backend/services/engine/factor_optimization/canonical.py",
+      "backend/services/engine/factor_optimization/eligibility.py",
+      "backend/services/engine/factor_optimization/enumerator.py",
+      "backend/services/engine/factor_optimization/enums.py",
+      "backend/services/engine/factor_optimization/errors.py",
+      "backend/services/engine/factor_optimization/examples.py",
+      "backend/services/engine/factor_optimization/identity.py",
+      "backend/services/engine/factor_optimization/metrics.py",
+      "backend/services/engine/factor_optimization/models.py",
+      "backend/services/engine/factor_optimization/parser.py",
+      "backend/services/engine/factor_optimization/roles.py",
+      "backend/services/engine/factor_optimization/runner.py",
+      "backend/services/engine/factor_optimization/schema.py",
+      "backend/services/engine/factor_optimization/search_space.py",
+      "backend/services/tests/test_factor_optimization_enumerator.py",
+      "backend/services/tests/test_factor_optimization_real_snapshot.py",
+      "backend/services/tests/test_factor_optimization_runner.py",
+      "backend/services/tests/test_factor_optimization_schema.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/TERMINOLOGY.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/FACTOR_OPTIMIZATION_ARTIFACT_V1.md",
+      "docs/quantmind2/implementation/FACTOR_OPTIMIZATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_optimization_spec_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/factor_optimization.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "2ff1fd39ae4ff78bcaa87a0481d70170d2c6a995f3c3062635343bb5aec6e4fc",
+    "manifest_payload_sha256": "aad7df4139b593d35a956915c5fb87ba557de556e959d01fe421a2bd8ffa1a5f",
+    "report_sha256": "15d6b9797a6221c662413c7c2ed6405636f78b90f73b0a390671da74fec31978",
+    "source_bundle_sha256": "afc27fa01a4db05bcd406f5df8df4d332bedf3ecaf3449c04f86d0adbb6bf975"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "description": "v1 is deterministic parameter-only serial search; signal threshold, random, Bayesian, conditional and distributed search are absent.",
+      "limitation_id": "limit-qm2-p0-005-search",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.factor_validation",
+      "description": "Mechanical eligibility and ordering are not predictive evidence; label-aware Train, Validation and isolated Frozen Test remain unimplemented.",
+      "limitation_id": "limit-qm2-p0-005-predictive",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "description": "Runtime Study and Factor Values proof artifacts under /private/tmp are not durable production storage.",
+      "limitation_id": "limit-qm2-p0-005-storage",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-006",
+      "priority": "P0",
+      "reason": "Add label-aware Factor Validation with strict Train, Validation and access-isolated Frozen Test boundaries; keep the Optimizer unable to access Frozen Test.",
+      "recommendation_id": "recommend-qm2-p0-005-factor-validation"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-16T17:40:00Z",
+      "reason": "Apply deterministic parameter search to the verified Factor DSL and real Dataset Snapshot.",
+      "relationship_id": "rel-qm2-p0-005-continues-004",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-005-20260716T171457Z-70982ed",
+      "target_run_id": "QM2-P0-004-20260716T163004Z-4efc06b"
+    }
+  ],
+  "repository": {
+    "base_commit": "70982ed804a8fce57b759cd556e3ce323b41d0dc",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "70982ed804a8fce57b759cd556e3ce323b41d0dc",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-16T17:40:00Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "2ff1fd39ae4ff78bcaa87a0481d70170d2c6a995f3c3062635343bb5aec6e4fc",
+    "implementation_run_id": "QM2-P0-005-20260716T171457Z-70982ed",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-005-20260716T171457Z-70982ed/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "afc27fa01a4db05bcd406f5df8df4d332bedf3ecaf3449c04f86d0adbb6bf975",
+    "started_at": "2026-07-16T17:14:57Z",
+    "task_id": "QM2-P0-005",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-16T17:14:57Z",
+    "explicit_non_goals": [
+      "No predictive validation, labels, IC, RankIC or Frozen Test",
+      "No structure, random, Bayesian, model or portfolio optimization",
+      "No Registry, LightGBM, Qlib, backtest, API, database or production promotion"
+    ],
+    "objective": "Implement bounded deterministic parameter-only Factor Optimization v1 on the real Legacy Feature Dataset Snapshot.",
+    "parent_task_id": "QM2-P0-004",
+    "scope": [
+      "Strict Optimization Spec, parameter roles and finite search spaces",
+      "Deterministic Study and Trial identity, enumeration and budgets",
+      "Mechanical evaluation, immutable artifacts, replay, CLI, tests and real-Snapshot proof"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-005",
+    "title": "Factor Optimization v1 on Parameterized DSL"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest factor_optimization tests -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 19,
+      "purpose": "Initial diagnostic; real opt-in missing and global coverage floor applied.",
+      "skipped_count": 3,
+      "status": "failed",
+      "test_execution_id": "test-qm2-p0-005-initial-environment"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_DSL_REAL_SNAPSHOT_ROOT=/private/tmp/qm2-p0-003l-real-snapshot python -m pytest --no-cov backend/services/tests/test_factor_optimization_*.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 24,
+      "purpose": "Verify all Optimization contracts and two real Studies.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-optimization"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_DSL_REAL_SNAPSHOT_ROOT=/private/tmp/qm2-p0-003l-real-snapshot python -m pytest --no-cov Factor DSL, data, Manifest/Indexer and Context modules -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 134,
+      "purpose": "Relevant regression before final Manifest generation.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_LEGACY_REAL_ROOT=/Users/yj/Documents/Codex/2026-06-30/nih/work/QuantMind/db/feature_snapshots python -m pytest --no-cov backend/services/tests/test_legacy_feature_real.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Verify real Legacy Snapshot and production-loader parity.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-real-legacy"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/factor_optimization.py validate-spec/plan/execute/validate-study/inspect ...",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Verify all offline CLI operations on real Study A and exact-existing.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-cli"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py and pytest test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 59,
+      "purpose": "Validate human/machine context, ADRs and Run references.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "parse all docs/quantmind2 JSON; py_compile new Python; git diff --check; Factor Lab digest compare",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Verify JSON, syntax, whitespace, scope and donor immutability.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2 real roots python -m pytest --no-cov Optimization, Factor DSL, data, Manifest/Indexer and Context modules -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 159,
+      "purpose": "Final combined regression after Manifest finalization.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-005-final-regression"
+    }
+  ]
+}

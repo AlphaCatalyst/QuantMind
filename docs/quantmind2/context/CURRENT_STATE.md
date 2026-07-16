@@ -1,7 +1,7 @@
 # Current Implementation State
 
-Generated: 2026-07-16
-Verified source commit before this task: `4efc06b8099e180a583eceadfc0f1b270113d7d7`
+Generated: 2026-07-17
+Verified source commit before this task: `70982ed804a8fce57b759cd556e3ce323b41d0dc`
 
 ## Implemented in existing systems
 
@@ -32,7 +32,7 @@ Verified source commit before this task: `4efc06b8099e180a583eceadfc0f1b270113d7
 - Research Skill runtime
 - executable ResearchDecision model and Decision Validator
 - QuantMind 2.0 Bounded Code Orchestrator
-- Factor Optimization
+- Factor Validation with isolated Train, Validation, and Frozen Test
 - immutable Factor Registry
 - Frozen Test access isolation
 - Registry → Feature Snapshot → LightGBM lineage
@@ -400,7 +400,36 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-004-20260716T163004Z-4efc06b`.
 
+## Factor Optimization v1
+
+- `QM2-P0-005` adds strict Optimization Spec parsing, typed parameter-role
+  admission, deterministic Search Space enumeration, trial/failure budgets,
+  Study/Trial/Result identities, failure isolation, mechanical metrics,
+  validation eligibility, stable candidate ordering, immutable atomic Study
+  artifacts, exact-existing validation, replay, and CLI under
+  `backend/services/engine/factor_optimization/` and `tools/quantmind2/`.
+- v1 searches only Template-declared `lookback_window` and
+  `factor_internal_weight` parameters. `signal_threshold` is reserved but
+  rejected until a formal Signal node exists. Structure, model, portfolio,
+  random, Bayesian, and distributed search are absent.
+- Rolling Rank Study
+  `fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2`
+  produced five eligible real-Snapshot trials for windows 2, 3, 5, 10 and 20.
+- Weighted Delta Study
+  `fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19`
+  produced nine eligible real-Snapshot trials for the deterministic
+  `periods=[1,3,5]` by `weight=[0.2,0.5,0.8]` product.
+- All 14 trials bind the same authoritative 003L Snapshot, reference immutable
+  Factor Values artifacts, and passed mechanical eligibility. Re-execution
+  returned exact-existing; existing Factor Values were replayed where present.
+- `validation_candidate_order` is mechanical data/execution readiness only.
+  No label, IC, RankIC, future return, LightGBM, Qlib, signal, or backtest was
+  accessed or produced.
+- Latest Implementation Run:
+  `QM2-P0-005-20260716T171457Z-70982ed`.
+
 ## Next task
 
-`QM2-P0-005 — Factor Optimization v1 on Parameterized DSL` is the only
-recommended next task. The Ledger stage remains closed.
+`QM2-P0-006 — Factor Validation v1 with Train, Validation and Frozen Test` is
+the only recommended next task. The Optimizer must remain unable to access
+Frozen Test, and the Ledger stage remains closed.

@@ -103,17 +103,17 @@
     {
       "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "partial", "responsibility": "Canonical typed AST, parameter nodes, static admission, canonicalization, hashing, and bounded compilation.",
       "source_path": "backend/services/engine/factor_dsl", "target_path": "backend/services/engine/factor_dsl", "key_symbols": ["FactorTemplate", "ExpressionNode", "parse_template", "compile_template", "factor_template_id", "factor_instance_id"], "dependencies": ["quantmind2.data_foundation"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
-      "current_limitations": ["v1 has a closed 18-node catalog and no structure evolution, optimization, Registry lifecycle, Agent loop, API, or UI.", "Current code is verified in the QM2-P0-004 uncommitted workspace and is not contained in last_verified_commit."], "last_verified_commit": null, "evidence_level": "code_confirmed"
+      "current_limitations": ["v1 has a closed 18-node catalog and no structure evolution, Registry lifecycle, Agent loop, API, or UI."], "last_verified_commit": "70982ed804a8fce57b759cd556e3ce323b41d0dc", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_compute", "name": "Factor Compute", "status": "partial", "responsibility": "Evaluate admitted DSL Factor Instances against validated Dataset Snapshots and atomically materialize immutable Parquet Factor Values.",
       "source_path": "backend/services/engine/factor_dsl", "target_path": "backend/services/engine/factor_dsl", "key_symbols": ["execute_compiled", "publish_values", "validate_values", "factor_quality"], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl", "pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
-      "current_limitations": ["Offline single-process v1 only; no distributed compute, object storage, Registry, validation metrics, optimizer, API, or database index.", "Current code is verified in the QM2-P0-004 uncommitted workspace and is not contained in last_verified_commit."], "last_verified_commit": null, "evidence_level": "code_confirmed"
+      "current_limitations": ["Offline single-process v1 only; no distributed compute, object storage, Registry, predictive validation, API, or database index."], "last_verified_commit": "70982ed804a8fce57b759cd556e3ce323b41d0dc", "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind2.factor_optimization", "name": "Factor Optimization", "status": "planned", "responsibility": "Search window, factor-internal weight, and signal threshold under explicit budgets.",
-      "source_path": null, "target_path": "backend/services/engine/factor_research/optimization", "key_symbols": [], "dependencies": ["quantmind2.factor_compute"], "architecture_decision_refs": ["ADR-0006", "ADR-0008"],
-      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+      "component_id": "quantmind2.factor_optimization", "name": "Factor Optimization", "status": "partial", "responsibility": "Deterministically search declared DSL lookback-window and factor-internal-weight parameters under explicit trial and failure budgets, then order mechanically eligible validation candidates.",
+      "source_path": "backend/services/engine/factor_optimization", "target_path": "backend/services/engine/factor_optimization", "key_symbols": ["FactorOptimizationSpec", "FactorOptimizationStudy", "FactorOptimizationTrial", "FactorOptimizationResult", "parse_optimization_spec", "plan_study", "execute_study", "validate_study"], "dependencies": ["quantmind2.factor_compute", "quantmind2.factor_dsl", "quantmind2.data_foundation", "pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0006", "ADR-0007", "ADR-0008"],
+      "current_limitations": ["v1 is offline, serial, parameter-only deterministic enumeration; no signal threshold, random or Bayesian search, structure evolution, distributed workers, API, database index, Registry promotion, labels, IC, model, portfolio, or backtest evaluation.", "Current code is verified in the QM2-P0-005 uncommitted workspace and is not contained in last_verified_commit."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_validation", "name": "Factor Validation", "status": "planned", "responsibility": "Produce versioned train, validation, and access-isolated Frozen Test evidence.",

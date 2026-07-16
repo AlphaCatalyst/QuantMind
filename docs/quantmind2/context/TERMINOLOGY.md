@@ -62,7 +62,15 @@
 - **Factor Template**: parameterized Canonical DSL AST.
 - **Factor Instance**: immutable template plus bound parameters.
 - **Candidate**: Agent proposal; it has no approval authority.
-- **Optimization Trial**: one parameter assignment and objective observation.
+- **Factor Optimization Spec**: immutable declaration of one admitted Template,
+  Snapshot, typed parameter roles, finite search spaces, budgets, mechanical
+  quality gate, and candidate-ordering rule.
+- **Factor Optimization Study**: one immutable deterministic search plan and
+  its trial/result summary; it is not a Campaign Memory or Registry state.
+- **Optimization Trial**: one concrete parameter assignment, distinct Factor
+  Instance, Factor Values reference, mechanical metrics, and eligibility fact.
+- **Factor Optimization Result**: immutable Study outcome and validation
+  candidate order; it contains no predictive or production-promotion claim.
 - **Dataset Snapshot**: published, immutable authority for research data.
 - **Materialization**: computed factor values for one instance and snapshot.
 - **Validation Result**: immutable evidence for one materialization and policy.

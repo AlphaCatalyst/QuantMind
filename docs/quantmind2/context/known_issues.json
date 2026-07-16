@@ -18,7 +18,7 @@
     {"issue_id": "QM2-KI-009", "severity": "high", "status": "open", "summary": "Official Factor Lab source under /tmp has durability risk."},
     {"issue_id": "QM2-KI-010", "severity": "medium", "status": "open", "summary": "Project Knowledge Center API and UI do not exist."},
     {"issue_id": "QM2-KI-011", "severity": "medium", "status": "resolved", "summary": "Git-to-Ledger parser/indexer exists; production deployment remains separate."},
-    {"issue_id": "QM2-KI-012", "severity": "high", "status": "open", "summary": "Formal Factor Optimization does not exist."},
+    {"issue_id": "QM2-KI-012", "severity": "high", "status": "resolved", "summary": "QM2-P0-005 implements bounded deterministic Factor Optimization v1 for declared lookback-window and factor-internal-weight parameters; predictive validation, threshold, random/Bayesian and distributed search remain separate future scope."},
     {"issue_id": "QM2-KI-013", "severity": "high", "status": "open", "summary": "V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision and Decision Validator boundary."},
     {"issue_id": "QM2-KI-014", "severity": "high", "status": "resolved", "summary": "Ledger schema now has a dedicated ordered explicit-SQL runner with history, checksum, lock, up/down, and fresh-install integration; unrelated legacy schema paths remain outside this resolution."},
     {"issue_id": "QM2-KI-015", "severity": "high", "status": "open", "summary": "Shared async contexts auto-commit while many services also commit internally, leaving transaction ownership inconsistent for atomic Ledger indexing."},

@@ -4,12 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-003LF1: `da271accfc06417ce5a36f8e34cef7ca70052760`
+- Base before QM2-P0-005: `70982ed804a8fce57b759cd556e3ce323b41d0dc`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-003LF1: no
+- Dirty before QM2-P0-005: no
 - Unrelated dirty files: none
-- Uncommitted work after the QM2-P0-003LF1 commit: no
+- Uncommitted work after the QM2-P0-005 commit: no
 
 ## Official Factor Lab source
 
@@ -30,11 +30,11 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-003LF1`, fixing only the PostgreSQL test assertion that
-  referenced nonexistent `AnalyzedRun.git_consistency` instead of `evidence`.
-- Task name: `QM2-P0-003LF1 — Fix Manifest Self-reference PostgreSQL Test Assertion`.
-- Completed predecessor: `QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability`.
-- Latest run: `QM2-P0-003LF1-20260716T160222Z-da271ac` under
+- Current task: `QM2-P0-005`, implementing bounded deterministic parameter
+  optimization on admitted Factor DSL Templates and the real 003L Snapshot.
+- Task name: `QM2-P0-005 — Factor Optimization v1 on Parameterized DSL`.
+- Completed predecessor: `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot`.
+- Latest run: `QM2-P0-005-20260716T171457Z-70982ed` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -124,7 +124,19 @@
 - Five parameter instances passed on the real 003L Snapshot with 5,931 rows
   each and exact replay. This is compute evidence, not factor validation,
   Registry status, model value, signal or backtest evidence.
-- Recommended next task: `QM2-P0-005 — Factor Optimization v1 on Parameterized DSL`.
+- Factor Optimization v1 now admits only declared `lookback_window` and
+  `factor_internal_weight` parameters, enumerates deterministic finite Study
+  products under trial/failure budgets, executes or replays existing Factor
+  Values, evaluates mechanical quality, and atomically publishes immutable
+  Study/Trial artifacts.
+- Real Studies
+  `fos_969d431e553ad29d1d7bcdd4d912a6ab92471b5c4faf833a18abe2607baa1cb2`
+  and `fos_ac8ea3539ba0db8faa4dc223750d649584da270244ec022638faef8bdfeb5a19`
+  completed 5 plus 9 trials; all 14 were mechanically eligible and exact Study
+  replay passed. Their ordering is not predictive evidence.
+- No label, IC/RankIC, return, model, Qlib, signal, backtest, structure
+  evolution, random/Bayesian, model, or portfolio optimization was introduced.
+- Recommended next task: `QM2-P0-006 — Factor Validation v1 with Train, Validation and Frozen Test`.
 
 ## Unconfirmed facts
 

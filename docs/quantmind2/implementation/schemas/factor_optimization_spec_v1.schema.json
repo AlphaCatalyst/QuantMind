@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/factor_optimization_spec_v1.schema.json",
+  "title": "QuantMind Factor Optimization Spec v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "name", "description", "template", "snapshot_id", "parameter_roles", "search_space", "budget", "quality_gate", "candidate_ordering"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "name": {"type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_.-]{0,127}$"},
+    "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "template": {"type": "object"},
+    "snapshot_id": {"type": "string", "pattern": "^ds_[0-9a-f]{64}$"},
+    "parameter_roles": {"type": "object", "minProperties": 1, "additionalProperties": {"enum": ["lookback_window", "factor_internal_weight", "signal_threshold"]}},
+    "search_space": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/searchSpace"}},
+    "budget": {"type": "object", "additionalProperties": false, "required": ["max_trials", "max_failed_trials"], "properties": {"max_trials": {"type": "integer", "minimum": 1, "maximum": 256}, "max_failed_trials": {"type": "integer", "minimum": 0, "maximum": 32}, "stop_on_first_error": {"type": "boolean"}}},
+    "quality_gate": {"type": "object", "additionalProperties": false, "properties": {"minimum_finite_coverage": {"type": "number", "minimum": 0, "maximum": 1}, "minimum_median_daily_finite_symbols": {"type": "integer", "minimum": 1}, "minimum_date_count": {"type": "integer", "minimum": 1}, "minimum_symbol_count": {"type": "integer", "minimum": 1}}},
+    "candidate_ordering": {"const": "mechanical_validation_readiness_v1"}
+  },
+  "$defs": {
+    "searchSpace": {"oneOf": [
+      {"type": "object", "additionalProperties": false, "required": ["kind", "minimum", "maximum", "step"], "properties": {"kind": {"const": "integer_range"}, "minimum": {"type": "integer"}, "maximum": {"type": "integer"}, "step": {"type": "integer", "minimum": 1}}},
+      {"type": "object", "additionalProperties": false, "required": ["kind", "values"], "properties": {"kind": {"const": "explicit_values"}, "values": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "number"}}}}
+    ]}
+  }
+}

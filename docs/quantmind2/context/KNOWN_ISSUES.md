@@ -15,7 +15,7 @@
 | QM2-KI-011 | medium | resolved | Git-to-Ledger parser/indexer exists; production deployment remains separate. |
 | QM2-KI-025 | high | open | Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; 0/17 historical v1 Runs are indexable. Manifest v2 resolves only future production. |
 | QM2-KI-026 | high | open | QM2-P0-001F declares a result commit that differs from its containing commit. |
-| QM2-KI-012 | high | open | Formal Factor Optimization does not exist. |
+| QM2-KI-012 | high | resolved | QM2-P0-005 implements bounded deterministic Factor Optimization v1 for declared lookback-window and factor-internal-weight parameters. Predictive validation, threshold, random/Bayesian and distributed search remain separate future scope. |
 | QM2-KI-013 | high | open | V7 Factor Lab combines Python-first research decisions, concrete parameters, loop control, dispatch, and result feedback without a formal ResearchDecision/Decision Validator boundary. |
 | QM2-KI-014 | high | resolved | Ledger schema now has a dedicated ordered explicit-SQL runner with history, checksum, lock, up/down, and fresh-install integration; unrelated legacy schema paths remain outside this resolution. |
 | QM2-KI-015 | high | open | Shared async session contexts auto-commit, while many services also commit internally, so transaction ownership is inconsistent for future atomic Ledger indexing. |
