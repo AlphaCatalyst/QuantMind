@@ -952,12 +952,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-005" not in handoff_text or "Factor Optimization v1" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-005 Factor Optimization task")
-    if "QM2-P0-006 — Factor Validation v1 with Train, Validation and Frozen Test" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-006 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-006"]:
-        raise ValidationError("machine handoff must name the exact Factor Validation task")
+    if "QM2-P0-006" not in handoff_text or "Factor Validation v1" not in handoff_text:
+        raise ValidationError("human handoff does not name current QM2-P0-006 Factor Validation task")
+    if "QM2-P0-007 — Factor Registry v1 and Promotion Contract" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-007 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-007"]:
+        raise ValidationError("machine handoff must name the exact Factor Registry task")
     checks.append("handoff_links")
 
     v1_example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"

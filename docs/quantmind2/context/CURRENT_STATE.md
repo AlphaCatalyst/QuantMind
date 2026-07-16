@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-17
-Verified source commit before this task: `70982ed804a8fce57b759cd556e3ce323b41d0dc`
+Verified source commit before this task: `07a3df9e5809b4b87e31736e00994521af896ebf`
 
 ## Implemented in existing systems
 
@@ -32,14 +32,31 @@ Verified source commit before this task: `70982ed804a8fce57b759cd556e3ce323b41d0
 - Research Skill runtime
 - executable ResearchDecision model and Decision Validator
 - QuantMind 2.0 Bounded Code Orchestrator
-- Factor Validation with isolated Train, Validation, and Frozen Test
 - immutable Factor Registry
-- Frozen Test access isolation
 - Registry → Feature Snapshot → LightGBM lineage
 - Unified Signal Service
 - Project Knowledge API
 - Project Knowledge Web UI
 - Project Knowledge API and Web UI
+
+## Factor Validation v1
+
+- `QM2-P0-006` implements the audited production Label Contract, immutable
+  Label Snapshot and Validation Dataset, strict Train/Validation/2025
+  quarantine/Frozen splits, one-date embargo, 14-Trial full-period Factor
+  Values, Train-only orientation, daily IC/RankIC, Validation-only immutable
+  selection and independent one-time Frozen evaluation.
+- Dataset `vd_1ac71a8b...c3ed62` binds current source-byte hashes and output
+  Parquet hashes. The effective split dates are Train 2022-01-04..2023-12-28,
+  Validation 2024-01-02..2024-12-30, quarantined development
+  2025-01-02..2025-12-30 and Frozen 2026-01-05..2026-06-23.
+- Four of 14 Trials passed the published Validation gates; top three are locked
+  in Selection `fvs_f679a630...819e9c`. Frozen result
+  `fvt_734478fc...21c787` is confirmatory evidence only and did not alter the
+  Selection or Optimization.
+- No Registry promotion, LightGBM, Qlib, signal, portfolio, backtest, Sharpe or
+  future-return conclusion was produced. Registry remains the next boundary.
+- Latest Implementation Run: `QM2-P0-006-20260716T181959Z-07a3df9`.
 
 ## Completed context bootstrap
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-16T15:35:35Z",
-  "source_commit": "22461e0fb603171efa5b1467586a260e2f54ed7b",
+  "generated_at": "2026-07-16T18:19:59Z",
+  "source_commit": "07a3df9e5809b4b87e31736e00994521af896ebf",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -116,10 +116,10 @@
       "current_limitations": ["v1 is offline, serial, parameter-only deterministic enumeration; no signal threshold, random or Bayesian search, structure evolution, distributed workers, API, database index, Registry promotion, labels, IC, model, portfolio, or backtest evaluation.", "Current code is verified in the QM2-P0-005 uncommitted workspace and is not contained in last_verified_commit."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind2.factor_validation", "name": "Factor Validation", "status": "planned", "responsibility": "Produce versioned train, validation, and access-isolated Frozen Test evidence.",
-      "source_path": "/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/evaluation/", "target_path": "backend/services/engine/factor_research/validation", "key_symbols": ["AntiOverfitEvaluator", "HardenedEvaluator"],
-      "dependencies": ["quantmind2.factor_compute"], "architecture_decision_refs": ["ADR-0006", "ADR-0007"], "current_limitations": ["Target service and Frozen Test isolation are not implemented; donor algorithms require adaptation."],
-      "last_verified_commit": "c83192c2278767e03f008bc39197b1ba33bfb6a9", "evidence_level": "planned"
+      "component_id": "quantmind2.factor_validation", "name": "Factor Validation", "status": "partial", "responsibility": "Materialize the audited Label Contract, validate immutable Factor Values on temporal Train and Validation splits, publish immutable candidate selection, and isolate one-time Frozen Test access.",
+      "source_path": "backend/services/engine/factor_validation", "target_path": "backend/services/engine/factor_validation", "key_symbols": ["LabelContract", "FactorValidationSpec", "FrozenTestAccessContext", "build_validation_dataset", "evaluate_validation", "evaluate_frozen"],
+      "dependencies": ["quantmind2.factor_compute", "quantmind2.factor_optimization", "quantmind2.data_foundation", "pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0003", "ADR-0006", "ADR-0007"], "current_limitations": ["Offline single-process v1 on one deterministic 300-symbol universe; no regime, cost, turnover, correlation, walk-forward, API, database index, authentication service, Registry promotion or official backtest.", "Current code is verified in the QM2-P0-006 uncommitted workspace and is not contained in last_verified_commit."],
+      "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_registry", "name": "Factor Registry", "status": "planned", "responsibility": "Own immutable factor definitions, templates, instances, materializations, validation references, and lifecycle state.",

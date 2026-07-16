@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-005: `70982ed804a8fce57b759cd556e3ce323b41d0dc`
+- Base before QM2-P0-006: `07a3df9e5809b4b87e31736e00994521af896ebf`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-005: no
+- Dirty before QM2-P0-006: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-005 commit: no
 
@@ -30,11 +30,11 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-005`, implementing bounded deterministic parameter
-  optimization on admitted Factor DSL Templates and the real 003L Snapshot.
-- Task name: `QM2-P0-005 — Factor Optimization v1 on Parameterized DSL`.
-- Completed predecessor: `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot`.
-- Latest run: `QM2-P0-005-20260716T171457Z-70982ed` under
+- Current task: `QM2-P0-006`, implementing supervised, temporally isolated
+  Factor Validation and the one-time 2026 Frozen Test.
+- Task name: `QM2-P0-006 — Factor Validation v1 with Immutable Labels and Frozen Test`.
+- Completed predecessor: `QM2-P0-005 — Factor Optimization v1 on Parameterized DSL`.
+- Latest run: `QM2-P0-006-20260716T181959Z-07a3df9` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -136,7 +136,13 @@
   replay passed. Their ordering is not predictive evidence.
 - No label, IC/RankIC, return, model, Qlib, signal, backtest, structure
   evolution, random/Bayesian, model, or portfolio optimization was introduced.
-- Recommended next task: `QM2-P0-006 — Factor Validation v1 with Train, Validation and Frozen Test`.
+- Factor Validation v1 audited current production label behavior and created
+  Dataset `vd_1ac71a8b...c3ed62`, full-period Factor Values for all 14 Trials,
+  Result `fvr_b9f247e4...c51ab0`, Selection `fvs_f679a630...819e9c`, and Frozen
+  Result `fvt_734478fc...21c787`. Four Trials passed Validation gates; only the
+  top three were frozen. 2025 remains quarantined and was not used in formal
+  metrics. Frozen results did not feed selection or Optimization.
+- Recommended next task: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
 
 ## Unconfirmed facts
 

@@ -55,3 +55,11 @@ Manifest/Git parsing and indexing under `LEDGER_MANIFEST_INDEXER_V1.md`.
 Current Manifest v1 history remains non-indexable where formal Domain evidence
 is absent; no values are invented. Manifest v2 is the default forward protocol
 and can express every current Ledger Domain family without report prose.
+
+## Factor Validation
+
+`FACTOR_LABEL_CONTRACT_V1.md`, `FACTOR_VALIDATION_V1.md`, and
+`FROZEN_TEST_PROTOCOL_V1.md` define the production-parity label, immutable
+temporal validation artifacts, Validation-only selection, and isolated one-time
+Frozen boundary implemented by QM2-P0-006. These artifacts are predictive
+statistics only; they are not Registry promotion or backtest evidence.

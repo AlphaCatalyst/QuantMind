@@ -1,0 +1,573 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "implements"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-006-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "2e622a9c90fbd7b7c7f75a01a28ea0343daafa72fd6494e031a1c5eb4a92b5b0",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 7474
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-006-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-006-dataset",
+      "artifact_type": "factor_validation_dataset",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-006-validation/data/datasets/vd_1ac71a8b1bab36f7d4304fe13c14cbb936f073d0426b76e0c73096a819c3ed62/manifest.json#sha256=809236a72913b3f5fcd9a825006f09e50dc9a9da0ab05c1ce851497147da4f53",
+      "schema_version": "factor-validation-dataset-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-006-result",
+      "artifact_type": "factor_validation_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-006-validation/artifacts/results/fvr_b9f247e42487267754d5e6128beb4f90a379b77853462b6ca25f0f2918c51ab0/manifest.json#sha256=b1f09da1b697009eb302be0ba89028c6731648a43513d890698b4a7ec1776097",
+      "schema_version": "factor-validation-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-006-selection",
+      "artifact_type": "factor_candidate_selection",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-006-validation/artifacts/selections/fvs_f679a63089f076c11315f522f4d59dc8248731863ec6aafc02b70c9762819e9c/manifest.json#sha256=6e6109f310039ce247cb3593d7f8e1c9f6d3e886a98eced681e203131f2d1d8a",
+      "schema_version": "factor-validation-selection-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-006-frozen",
+      "artifact_type": "factor_frozen_test_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-006-validation/artifacts/frozen/fvt_734478fcc0291910667321669e5b5293f64594efe6f0e5b1334779f4d921c787/manifest.json#sha256=9742183a8fe0c32ec5b18deee5cde101abee5594025e25f0d724b31eca88794a",
+      "schema_version": "factor-frozen-test-result-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "b2c03be47f8ba93564bebe3baf8425d41464e1c9eb9c66336d260484a9c76979",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "798ba124d468029d6bdb497395816e6622aa7765b74b51fa3c5f9b040db93658",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "47173efc52b056c9bee52756ce7a2af85aee5e9b2af5e0a2ad5b52346afee15d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/dataset.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "31b49c281827125fa4b6d981942f6356604771ba6c5640fcbfaf2bf538e49f80",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e5e48b5779e76243cdaaaaafd02f02db8ae40b7e1a842c821a3b0df3312e4476",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/frozen.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0bf1dd1814616af747b4921ab13723307d80ce2c5e4f9a13ada3a89c38b8a26e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/labels.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a43710421ab5350ff2818b0814f3f8eb803ae272b5909098abd18f5cfb68d030",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/metrics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9126ecd87463148c0b12abeaeaba29c49be0d12623f027f8382ce162adb0ba61",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c2685ff201a45b7d713f59f1be6cf9d570834195d13a6d24935c881fd5f489a1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4187cf9f228c0353973076ea58a1c7f5a0f27810e74771afca912295d0f6df5e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_validation/validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "18853e6585034be511862be81bd8bc1679726d9e9e45ed5da7ae7fa9424fc2ba",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f4891242527d5e005feb361773d2838ef97bdcc9ec9c180743c5f1108e588a9d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_validation_real.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3b824899335fda6284a0d352ea9929c0df835aa6612cc436edb880f5ee8bd2ab",
+      "before_hash": "52c5ca2f451376d6acac87440463d1cfb078ab9b9c8061b4a78dd659184ad954",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bb38796b8e1c6d45c4c9847537d02c19ba296ee109b242e0a59346b42c34b9a6",
+      "before_hash": "8058a92601be9d7de83550147d584bee39dc9f68f69a3a2c8039feaf092a9fe9",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f5b06d83826c6d921c7f9a69687f72aacaed1949c82dc0dffbcd08e48cf999b6",
+      "before_hash": "d19f0f98b232472b275805c1b4e664d54d49696f7ad9531b08d7cccbb65dc2ca",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b00a1fb47ca81f8a26787ed4d2122d707ddcd4e2ec1195cdc1bf8f2a1aef7939",
+      "before_hash": "14ee89f4cd435a4b9ecc40bd8b6c8fca24a047efa142ea42a68bd46fa3942a07",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a1c2dc7e42de31916741e9081709c224d6313462ab106982ff702b5b30edd60f",
+      "before_hash": "ac6266b4d46ada75e7b935be4182af4491719280c1faa1cfe7af6ee88bcd1964",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1c7b0b2236fc4685c2f2a3fd4e6a1742b9d7ce7a6282cb950a10f55b47c5bb08",
+      "before_hash": "48d00b5885fd52a516418c0bd62ab828c0fd4c6f6a8e90753b54322420b08768",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4423767ac5e94a6de62feafad94b0f9dec1e60a0b42346e01b53a43426ca3ae0",
+      "before_hash": "fa878b838ac8ddc49004ddd99fd040a3b4e4011e46765fee1255d120f60a9755",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "189368f6be809cb0e4ce3559ad38a8d13edf6612f496c3239be713eb57a7b075",
+      "before_hash": "11f108dd79b24642696498d2dadd196572989dfcf3e5325c15e254a2338d4735",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5a3b568b15e19eb8f5df3819b7b5a22faa86a67f35131295e07dc1da49c1af2b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FACTOR_LABEL_CONTRACT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bf8e7ba5d52e71622dae8ea4e5fae2b820d18a251e26e84a11558c99f0c175e1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FACTOR_VALIDATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0f2c3bcb45ad9b9e701540278b58676e52c24e4fc16ffa2e43a6084a9806437d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FROZEN_TEST_PROTOCOL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "583413eaaae1db11a90943646d1508c1c0b38d8072f4bab03f1cbf178111a87c",
+      "before_hash": "25a17b172e3206973d8f637f561f943f4d8e9fb2fca939b85db76237f67fb131",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/README.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2e622a9c90fbd7b7c7f75a01a28ea0343daafa72fd6494e031a1c5eb4a92b5b0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f0d7ccd0b21a4e602fcc2f15017b789c058ff98ffae1d7540da947871a2d0994",
+      "before_hash": "cf9a1cc4a9b899a052a531897c221d22e899e9f2891223a7fba651c956cfb308",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "299afb34c1cfa8fa99d736a754fa719d4449940d356807ae1ee38a48a8dd9b95",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_validation_spec_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1f3c8de47edf7f58c98d987513752ee823a7fb8e0827fbe0b594cf9b697dcc41",
+      "before_hash": "11db9e00e1babe3ee77c18b9a38a29461c3afba33519e401b3f321eadf07ae4a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e6bfb3daaae3aa9215df386f32c117d7301a946190e08492e653e82681559b31",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/factor_validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "530e92c0dd41a5be74d3d6922546a13bdbb65eb2205f748963d028cf57cc5ba8",
+      "before_hash": "060800f6173abc84564849aca683bb599bab6c4b88e7e30f15a70cc39a869387",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/models.py",
+      "qualified_name": "backend.services.engine.factor_validation.models.LabelContract",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/models.py",
+      "qualified_name": "backend.services.engine.factor_validation.models.FactorValidationSpec",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/models.py",
+      "qualified_name": "backend.services.engine.factor_validation.models.FrozenTestAccessContext",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/dataset.py",
+      "qualified_name": "backend.services.engine.factor_validation.dataset.build_validation_dataset",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/labels.py",
+      "qualified_name": "backend.services.engine.factor_validation.labels.build_production_labels",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/validation.py",
+      "qualified_name": "backend.services.engine.factor_validation.validation.evaluate_validation",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_validation/frozen.py",
+      "qualified_name": "backend.services.engine.factor_validation.frozen.evaluate_frozen",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/factor_validation.py",
+      "qualified_name": "tools.quantmind2.factor_validation.main",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.factor_validation",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_compute",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-006-report",
+        "sha256": "2e622a9c90fbd7b7c7f75a01a28ea0343daafa72fd6494e031a1c5eb4a92b5b0"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/factor_validation/__init__.py",
+      "backend/services/engine/factor_validation/canonical.py",
+      "backend/services/engine/factor_validation/dataset.py",
+      "backend/services/engine/factor_validation/errors.py",
+      "backend/services/engine/factor_validation/frozen.py",
+      "backend/services/engine/factor_validation/labels.py",
+      "backend/services/engine/factor_validation/metrics.py",
+      "backend/services/engine/factor_validation/models.py",
+      "backend/services/engine/factor_validation/parser.py",
+      "backend/services/engine/factor_validation/validation.py",
+      "backend/services/tests/test_factor_validation.py",
+      "backend/services/tests/test_factor_validation_real.py",
+      "docs/quantmind2/implementation/FACTOR_LABEL_CONTRACT_V1.md",
+      "docs/quantmind2/implementation/FACTOR_VALIDATION_V1.md",
+      "docs/quantmind2/implementation/FROZEN_TEST_PROTOCOL_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/report.md",
+      "docs/quantmind2/implementation/schemas/factor_validation_spec_v1.schema.json",
+      "tools/quantmind2/factor_validation.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/factor_validation/__init__.py",
+      "backend/services/engine/factor_validation/canonical.py",
+      "backend/services/engine/factor_validation/dataset.py",
+      "backend/services/engine/factor_validation/errors.py",
+      "backend/services/engine/factor_validation/frozen.py",
+      "backend/services/engine/factor_validation/labels.py",
+      "backend/services/engine/factor_validation/metrics.py",
+      "backend/services/engine/factor_validation/models.py",
+      "backend/services/engine/factor_validation/parser.py",
+      "backend/services/engine/factor_validation/validation.py",
+      "backend/services/tests/test_factor_validation.py",
+      "backend/services/tests/test_factor_validation_real.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/FACTOR_LABEL_CONTRACT_V1.md",
+      "docs/quantmind2/implementation/FACTOR_VALIDATION_V1.md",
+      "docs/quantmind2/implementation/FROZEN_TEST_PROTOCOL_V1.md",
+      "docs/quantmind2/implementation/README.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_validation_spec_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/factor_validation.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "b303b07c402d2803092849adbf4bca4af6d8e8b0512f5ecc782f66f16868bfc3",
+    "manifest_payload_sha256": "2d239dd4ca95ef28148bc3f25b000073a27c0d1f5f4a88f34665a2b1ff243a09",
+    "report_sha256": "2e622a9c90fbd7b7c7f75a01a28ea0343daafa72fd6494e031a1c5eb4a92b5b0",
+    "source_bundle_sha256": "a4676c36c1da89cf18128bf1f04ef671dca2c58cf4886c4f66b3eb9dd2f732b0"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.factor_validation",
+      "description": "v1 has one temporal protocol and lacks regime, turnover, cost, correlation, walk-forward and multiple-testing correction.",
+      "limitation_id": "limit-qm2-p0-006-statistics",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Current adjustment-factor behavior is parity-checked, but upstream vendor point-in-time provenance is unproven.",
+      "limitation_id": "limit-qm2-p0-006-pit",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.factor_validation",
+      "description": "Large validation artifacts under /private/tmp are not durable production storage.",
+      "limitation_id": "limit-qm2-p0-006-storage",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-007",
+      "priority": "P0",
+      "reason": "Register only exact validated Factor Instances and preserve immutable Dataset, Values, Validation, Selection and Frozen evidence.",
+      "recommendation_id": "recommend-qm2-p0-006-factor-registry"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-16T18:24:00Z",
+      "reason": "Add supervised temporal evidence to the immutable fourteen-Trial optimization output.",
+      "relationship_id": "rel-qm2-p0-006-continues-005",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-006-20260716T181959Z-07a3df9",
+      "target_run_id": "QM2-P0-005-20260716T171457Z-70982ed"
+    }
+  ],
+  "repository": {
+    "base_commit": "07a3df9e5809b4b87e31736e00994521af896ebf",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "07a3df9e5809b4b87e31736e00994521af896ebf",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-16T18:24:00Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "b303b07c402d2803092849adbf4bca4af6d8e8b0512f5ecc782f66f16868bfc3",
+    "implementation_run_id": "QM2-P0-006-20260716T181959Z-07a3df9",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-006-20260716T181959Z-07a3df9/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "a4676c36c1da89cf18128bf1f04ef671dca2c58cf4886c4f66b3eb9dd2f732b0",
+    "started_at": "2026-07-16T17:42:00Z",
+    "task_id": "QM2-P0-006",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-16T17:42:00Z",
+    "explicit_non_goals": [
+      "No Registry promotion or validation mutation",
+      "No new parameter search, structure mutation or post-Frozen tuning",
+      "No LightGBM, Qlib, signal, portfolio, backtest, API, UI or database"
+    ],
+    "objective": "Validate all fourteen parameterized DSL Trials using immutable production-parity labels, temporal isolation and a one-time Frozen Test.",
+    "parent_task_id": "QM2-P0-005",
+    "scope": [
+      "Production Label Contract and immutable Label Snapshot",
+      "Validation Dataset, split, purge and embargo",
+      "Train orientation, Validation metrics and immutable candidate selection",
+      "Independent Frozen Test access, artifact, replay, CLI, tests and context"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-006",
+    "title": "Factor Validation v1 with Immutable Labels and Frozen Test"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_factor_validation.py -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 9,
+      "purpose": "Initial focused diagnostic; assertions passed but whole-repository coverage floor applied.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-qm2-p0-006-initial"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_VALIDATION_REAL_ROOT=/private/tmp/qm2-p0-006-validation python -m pytest --no-cov test_factor_validation.py test_factor_validation_real.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 12,
+      "purpose": "Verify unit contracts, real Dataset, all fourteen Trial records, Selection, Frozen result and exact replay.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-006-focused-real"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2 real roots python -m pytest --no-cov Factor Validation, DSL, Optimization, Legacy, Market Data, Manifest/Indexer and Context tests",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 155,
+      "purpose": "Relevant full regression after context updates.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-006-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py and pytest test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 59,
+      "purpose": "Validate human/machine project context and implementation-run references.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-006-bootstrap"
+    }
+  ]
+}

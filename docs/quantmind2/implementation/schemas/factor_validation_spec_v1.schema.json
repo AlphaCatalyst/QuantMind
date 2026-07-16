@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/factor_validation_spec_v1.schema.json",
+  "title": "FactorValidationSpec v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "name", "description", "validation_dataset_id", "optimization_study_ids", "trial_ids", "metrics", "minimum_requirements", "candidate_selection", "frozen_test_policy"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 128},
+    "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "validation_dataset_id": {"type": "string", "pattern": "^vd_[0-9a-f]{64}$"},
+    "optimization_study_ids": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^fos_[0-9a-f]{64}$"}},
+    "trial_ids": {"type": "array", "minItems": 14, "maxItems": 14, "uniqueItems": true, "items": {"type": "string", "pattern": "^fot_[0-9a-f]{64}$"}},
+    "metrics": {"type": "array", "minItems": 5, "maxItems": 5, "uniqueItems": true, "items": {"enum": ["ic", "rank_ic", "icir", "positive_rate", "coverage"]}},
+    "minimum_requirements": {
+      "type": "object", "additionalProperties": false,
+      "required": ["train_minimum_valid_rank_ic_dates", "validation_minimum_valid_rank_ic_dates", "train_minimum_median_daily_observations", "validation_minimum_median_daily_observations", "minimum_factor_finite_coverage"],
+      "properties": {
+        "train_minimum_valid_rank_ic_dates": {"type": "integer", "minimum": 1},
+        "validation_minimum_valid_rank_ic_dates": {"type": "integer", "minimum": 1},
+        "train_minimum_median_daily_observations": {"type": "integer", "minimum": 1},
+        "validation_minimum_median_daily_observations": {"type": "integer", "minimum": 1},
+        "minimum_factor_finite_coverage": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "candidate_selection": {"type": "object", "additionalProperties": false, "required": ["ordering", "top_k"], "properties": {"ordering": {"const": "validation_predictive_order_v1"}, "top_k": {"const": 3}}},
+    "frozen_test_policy": {"type": "object", "additionalProperties": false, "required": ["protocol_id", "one_time", "candidate_source", "reselection"], "properties": {"protocol_id": {"type": "string", "minLength": 1}, "one_time": {"const": true}, "candidate_source": {"const": "published_selection"}, "reselection": {"const": "forbidden"}}}
+  }
+}
