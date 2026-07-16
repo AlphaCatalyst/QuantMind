@@ -61,6 +61,13 @@ class EvidenceCheck:
 
 
 @dataclass(frozen=True)
+class EvidenceWarning:
+    code: str
+    field: str
+    detail: str
+
+
+@dataclass(frozen=True)
 class GitConsistencyEvidence:
     run_id: str
     repository_id: str
@@ -71,6 +78,7 @@ class GitConsistencyEvidence:
     resolved_result_commit: str | None
     actual_changed_files: tuple[str, ...]
     checks: tuple[EvidenceCheck, ...]
+    warnings: tuple[EvidenceWarning, ...] = ()
 
     @property
     def consistent(self) -> bool:

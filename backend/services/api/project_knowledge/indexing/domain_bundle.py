@@ -27,6 +27,7 @@ from backend.services.engine.project_knowledge.domain import (
 )
 
 from .errors import ManifestParseError
+from .manifest_v2 import validate_manifest_v2_payload
 
 from .models import (
     DomainBundleBuild,
@@ -171,8 +172,7 @@ class DomainBundleBuilder:
 
     def build_source_v2(self, payload) -> ImplementationDomainBundle:  # noqa: ANN001
         """Validate a pre-commit v2 payload through real Domain constructors."""
-        if payload.get("schema_version") != "2.0.0":
-            raise ManifestParseError("source Domain validation requires Manifest v2")
+        validate_manifest_v2_payload(payload)
         return self._v2_bundle(
             payload,
             task_status=payload["run"]["task_status"],
@@ -286,6 +286,7 @@ class DomainBundleBuilder:
                     item["before_hash"], item["after_hash"], item["previous_path"],
                 )
                 for item in payload["changed_files"]
+                if item["path"] != run_data["manifest_path"]
             ),
             changed_symbols=tuple(
                 ChangedSymbol(

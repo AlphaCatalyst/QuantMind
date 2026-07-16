@@ -13,6 +13,7 @@ import copy
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import unicodedata
 from pathlib import Path
@@ -951,8 +952,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-003L — Legacy Feature Parquet Provider and Real Dataset Snapshot" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-003L task")
+    if "QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability" not in handoff_text:
+        raise ValidationError("human handoff does not name current QM2-P0-003LF task")
     if "QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot" not in handoff_text:
         raise ValidationError("human handoff does not name exact QM2-P0-004 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-004"]:
@@ -984,6 +985,22 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
             declared_payload_hash = manifest["manifest_payload_hash"]
         elif version == "2.0.0":
             manifest = validate_file(manifest_path, v2_schema)
+            self_references = [
+                item for item in manifest["changed_files"]
+                if item["path"] == manifest["run"]["manifest_path"]
+            ]
+            if self_references:
+                relative = manifest_path.relative_to(ROOT).as_posix()
+                committed = subprocess.run(
+                    ["git", "show", f"HEAD:{relative}"],
+                    cwd=ROOT,
+                    capture_output=True,
+                    check=False,
+                )
+                if committed.returncode or committed.stdout != manifest_path.read_bytes():
+                    raise ValidationError(
+                        "MANIFEST_SELF_REFERENCE: new Manifest cannot be a ChangedFile"
+                    )
             report_ref = manifest["run"]["report_path"]
             report_hash = manifest["integrity"]["report_sha256"]
             payload_hash = canonical_manifest_v2_payload_hash(manifest)

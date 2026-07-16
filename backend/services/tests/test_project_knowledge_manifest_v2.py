@@ -14,6 +14,7 @@ from backend.services.api.project_knowledge.indexing import (
     ImplementationManifestParser,
     ImplementationRunPlanner,
     ManifestParseError,
+    ManifestSelfReferenceError,
     UnsupportedManifestSchemaError,
     bind_repository,
     canonical_manifest_v2_payload_hash,
@@ -21,6 +22,8 @@ from backend.services.api.project_knowledge.indexing import (
     validate_manifest_v2_payload,
 )
 from backend.services.api.project_knowledge.indexing.domain_bundle import DomainBundleBuilder
+from backend.services.api.project_knowledge.indexing.git_evidence import business_changed_paths
+from backend.services.api.project_knowledge.indexing.manifest_v2 import canonical_json_hash
 from backend.services.api.project_knowledge.indexing.models import RepositoryBinding
 from tools.quantmind2.create_implementation_manifest import new_draft
 from tools.quantmind2.validate_context_bootstrap import validate_instance
@@ -41,7 +44,13 @@ def _git(root: Path, *args: str) -> str:
     ).stdout.strip()
 
 
-def build_v2_repository(tmp_path: Path, *, execution_path: str | None = None):  # noqa: ANN001
+def build_v2_repository(
+    tmp_path: Path,
+    *,
+    execution_path: str | None = None,
+    legacy_self_reference: bool = False,
+    wrong_business_hash: bool = False,
+):  # noqa: ANN001
     root = tmp_path / "v2-repository"
     root.mkdir()
     _git(root, "init", "-q")
@@ -99,10 +108,16 @@ def build_v2_repository(tmp_path: Path, *, execution_path: str | None = None):  
             "reason": "Synthetic prior evidence exists before indexing.",
             "created_at": "2026-07-16T01:00:30Z",
         }],
-        "changed_files": [{
-            "path": source_path, "change_type": "added", "before_hash": None,
-            "after_hash": hashlib.sha256(source).hexdigest(), "previous_path": None,
-        }],
+        "changed_files": [
+            {
+                "path": source_path, "change_type": "added", "before_hash": None,
+                "after_hash": hashlib.sha256(source).hexdigest(), "previous_path": None,
+            },
+            {
+                "path": report_path, "change_type": "added", "before_hash": None,
+                "after_hash": hashlib.sha256(report).hexdigest(), "previous_path": None,
+            },
+        ],
         "changed_symbols": [{
             "file_path": source_path, "qualified_name": "implementation.implementation",
             "symbol_type": "function", "change_type": "added",
@@ -131,6 +146,29 @@ def build_v2_repository(tmp_path: Path, *, execution_path: str | None = None):  
         },
     }
     finalized = finalize_manifest_v2_payload(payload, report_bytes=report, repository_root=root)
+    if legacy_self_reference:
+        finalized["changed_files"].append({
+            "path": manifest_path,
+            "change_type": "added",
+            "before_hash": None,
+            "after_hash": "0" * 64,
+            "previous_path": None,
+        })
+    if wrong_business_hash:
+        finalized["changed_files"][0]["after_hash"] = "f" * 64
+    if legacy_self_reference or wrong_business_hash:
+        diff_hash = canonical_json_hash({
+            "changed": finalized["integrity"]["git_changed_paths"],
+            "added": finalized["integrity"]["git_added_paths"],
+            "deleted": finalized["integrity"]["git_deleted_paths"],
+            "domain_changed_files": finalized["changed_files"],
+        })
+        finalized["run"]["git_diff_hash"] = diff_hash
+        finalized["integrity"]["git_diff_sha256"] = diff_hash
+        finalized["integrity"]["manifest_payload_sha256"] = "0" * 64
+        finalized["integrity"]["manifest_payload_sha256"] = (
+            canonical_manifest_v2_payload_hash(finalized)
+        )
     (root / manifest_path).write_text(json.dumps(finalized, indent=2, sort_keys=True) + "\n")
     _git(root, "add", ".")
     _git(root, "commit", "-qm", "add v2 run")
@@ -229,6 +267,113 @@ def test_v2_producer_cli_new_and_validate(tmp_path: Path) -> None:
         "schema_version": "2.0.0",
         "status": "valid",
     }
+
+
+def test_v2_producer_and_semantic_validator_reject_manifest_self_reference(
+    tmp_path: Path,
+) -> None:
+    payload = copy.deepcopy(EXAMPLE)
+    payload["changed_files"].append({
+        "path": payload["run"]["manifest_path"],
+        "change_type": "added",
+        "before_hash": None,
+        "after_hash": "0" * 64,
+        "previous_path": None,
+    })
+    with pytest.raises(ManifestSelfReferenceError) as error:
+        validate_manifest_v2_payload(payload)
+    assert error.value.error_code == "MANIFEST_SELF_REFERENCE"
+    with pytest.raises(ManifestSelfReferenceError):
+        new_draft(payload)
+    with pytest.raises(ManifestSelfReferenceError):
+        finalize_manifest_v2_payload(
+            payload,
+            report_bytes=(ROOT / payload["run"]["report_path"]).read_bytes(),
+            repository_root=ROOT,
+        )
+
+    input_path = tmp_path / "input.json"
+    output_path = tmp_path / "manifest.json"
+    input_path.write_text(json.dumps(payload), encoding="utf-8")
+    completed = subprocess.run(
+        [sys.executable, str(ROOT / "tools/quantmind2/create_implementation_manifest.py"),
+         "new", "--input", str(input_path), "--output", str(output_path)],
+        cwd=ROOT, text=True, capture_output=True, check=False,
+    )
+    assert completed.returncode == 2
+    error_payload = json.loads(completed.stdout)
+    assert error_payload["error_code"] == "MANIFEST_SELF_REFERENCE"
+    assert error_payload["message"] == (
+        "Manifest protocol path cannot be a ChangedFile"
+    )
+    assert not output_path.exists()
+
+
+def test_report_remains_a_changed_file_and_exclusion_is_exact() -> None:
+    manifest = "docs/runs/current/manifest.json"
+    report = "docs/runs/current/report.md"
+    other_manifest = "docs/runs/other/manifest.json"
+    arbitrary_json = "config/evidence.json"
+    assert business_changed_paths(
+        (manifest, report, other_manifest, arbitrary_json), manifest
+    ) == (report, other_manifest, arbitrary_json)
+
+
+def test_legacy_v2_self_reference_is_warned_filtered_and_indexable(tmp_path: Path) -> None:
+    _, _, payload, analyzed = build_v2_repository(
+        tmp_path, legacy_self_reference=True
+    )
+    assert analyzed.validated and analyzed.indexable
+    assert analyzed.domain_build is not None
+    assert analyzed.domain_build.gaps == ()
+    assert analyzed.domain_build.bundle is not None
+    assert {item.path for item in analyzed.domain_build.bundle.changed_files} == {
+        payload["changed_files"][0]["path"], payload["changed_files"][1]["path"]
+    }
+    assert [warning.code for warning in analyzed.evidence.warnings] == [
+        "LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED"
+    ]
+    assert not [
+        check for check in analyzed.evidence.checks
+        if check.mandatory and not check.passed
+    ]
+
+
+def test_legacy_compatibility_does_not_hide_other_hash_errors(tmp_path: Path) -> None:
+    _, _, _, analyzed = build_v2_repository(
+        tmp_path, legacy_self_reference=True, wrong_business_hash=True
+    )
+    assert not analyzed.validated and not analyzed.indexable
+    assert [warning.code for warning in analyzed.evidence.warnings] == [
+        "LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED"
+    ]
+    assert "changed_file_hashes" in {
+        check.name for check in analyzed.evidence.checks
+        if check.mandatory and not check.passed
+    }
+
+
+def test_real_003l_is_complete_with_one_compatibility_warning() -> None:
+    run_id = "QM2-P0-003L-20260716T151140Z-7d29df7"
+    analyzed = ImplementationRunPlanner(
+        GitSnapshot(bind_repository("quantmind-main", ROOT))
+    ).plan(run_id).runs[0]
+    assert analyzed.validated and analyzed.indexable
+    assert analyzed.evidence.containing_commit == (
+        "22461e0fb603171efa5b1467586a260e2f54ed7b"
+    )
+    assert analyzed.evidence.source_status == "completed_uncommitted"
+    assert analyzed.evidence.resolved_status == "completed_committed"
+    assert analyzed.domain_build is not None and analyzed.domain_build.gaps == ()
+    assert analyzed.domain_build.bundle is not None
+    assert len(analyzed.domain_build.bundle.changed_files) == 28
+    assert all(
+        item.path != analyzed.discovered.manifest_path
+        for item in analyzed.domain_build.bundle.changed_files
+    )
+    assert [warning.code for warning in analyzed.evidence.warnings] == [
+        "LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED"
+    ]
 
 
 def test_v2_committed_git_is_consistent_indexable_and_path_independent(tmp_path: Path) -> None:

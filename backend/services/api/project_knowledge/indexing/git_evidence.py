@@ -19,6 +19,7 @@ from .models import (
     BackfillPlan,
     DiscoveredRun,
     EvidenceCheck,
+    EvidenceWarning,
     GitConsistencyEvidence,
     RepositoryBinding,
 )
@@ -30,6 +31,11 @@ _RUN_MANIFEST_RE = re.compile(
 )
 _FULL_COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 _MAX_GIT_OUTPUT = 16 * 1024 * 1024
+
+
+def business_changed_paths(paths: Iterable[str], manifest_path: str) -> tuple[str, ...]:
+    """Exclude only the current Run's protocol carrier from business changes."""
+    return tuple(path for path in paths if path != manifest_path)
 
 
 def _resolved_status(source_status: str, containing_commit: str | None) -> tuple[str | None, str | None]:
@@ -182,6 +188,24 @@ class GitConsistencyService:
         repository_payload = payload["repository"] if is_v2 else None
         integrity = payload["integrity"] if is_v2 else None
         checks: list[EvidenceCheck] = []
+        warnings: list[EvidenceWarning] = []
+        manifest_path = run_payload["manifest_path"]
+        legacy_self_references = (
+            tuple(
+                item for item in payload["changed_files"]
+                if item["path"] == manifest_path
+            )
+            if is_v2
+            else ()
+        )
+        if legacy_self_references:
+            warnings.append(
+                EvidenceWarning(
+                    "LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED",
+                    "changed_files",
+                    "Current Run protocol manifest is excluded from ChangedFile evidence",
+                )
+            )
 
         def record(name: str, passed: bool, detail: str, *, mandatory: bool = True) -> None:
             checks.append(EvidenceCheck(name, mandatory, bool(passed), detail))
@@ -274,13 +298,28 @@ class GitConsistencyService:
         )
 
         actual_changed = self.snapshot.changed_files(base, containing) if containing and base_exists else ()
-        declared_changed = (
-            integrity["git_changed_paths"] if is_v2 else payload["changed_files"]
+        declared_changed = integrity["git_changed_paths"] if is_v2 else payload["changed_files"]
+        record(
+            "git_changed_paths",
+            set(actual_changed) == set(declared_changed),
+            "declared protocol Git inventory equals base-to-containing Git diff",
+        )
+        business_actual_changed = (
+            business_changed_paths(actual_changed, manifest_path)
+            if is_v2
+            else actual_changed
+        )
+        business_declared_changed = (
+            business_changed_paths(
+                (item["path"] for item in payload["changed_files"]), manifest_path
+            )
+            if is_v2
+            else declared_changed
         )
         record(
             "changed_files",
-            set(actual_changed) == set(declared_changed),
-            "declared changed files equal base-to-containing Git diff",
+            set(business_actual_changed) == set(business_declared_changed),
+            "business ChangedFiles equal Git diff excluding only this Run manifest",
         )
         statuses = self.snapshot.changed_statuses(base, containing) if containing and base_exists else {}
         actual_added = {path for path, status in statuses.items() if status == "A"}
@@ -325,6 +364,8 @@ class GitConsistencyService:
             changed_file_hashes_ok = True
             changed_file_statuses_ok = True
             for item in payload["changed_files"]:
+                if item["path"] == manifest_path:
+                    continue
                 expected_status = {
                     "added": "A", "modified": "M", "deleted": "D",
                     "renamed": "A", "unchanged": None,
@@ -408,6 +449,7 @@ class GitConsistencyService:
             resolved_result,
             actual_changed,
             tuple(checks),
+            tuple(warnings),
         )
 
 

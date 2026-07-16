@@ -8,6 +8,7 @@ from .errors import (
     ImplementationIndexError,
     LedgerIndexConflictError,
     ManifestParseError,
+    ManifestSelfReferenceError,
     ReportValidationError,
     RepositoryBindingError,
     UnsupportedManifestSchemaError,
@@ -18,6 +19,7 @@ from .manifest_parser import ImplementationManifestParser
 from .manifest_v2 import (
     canonical_manifest_v2_payload_hash,
     finalize_manifest_v2_payload,
+    manifest_self_reference_items,
     validate_manifest_v2_payload,
 )
 from .repository_binding import bind_repository
@@ -34,6 +36,7 @@ __all__ = (
     "LedgerIndexConflictError",
     "LedgerIndexer",
     "ManifestParseError",
+    "ManifestSelfReferenceError",
     "ReportValidationError",
     "RepositoryBindingError",
     "UnsupportedManifestSchemaError",
@@ -41,5 +44,6 @@ __all__ = (
     "canonical_manifest_v2_payload_hash",
     "discover_runs",
     "finalize_manifest_v2_payload",
+    "manifest_self_reference_items",
     "validate_manifest_v2_payload",
 )

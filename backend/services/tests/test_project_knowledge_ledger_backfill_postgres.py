@@ -166,7 +166,7 @@ def test_manifest_v2_git_plan_indexes_all_families_and_replays_exactly(
             async with AsyncLedgerUnitOfWork(database_manager=manager) as uow:
                 repository = uow.repository
                 assert repository is not None
-                assert len(await repository.list_changed_files(run_id)) == 1
+                assert len(await repository.list_changed_files(run_id)) == 2
                 assert len(await repository.list_changed_symbols(run_id)) == 1
                 assert len(await repository.list_test_executions(run_id)) == 1
                 assert len(await repository.list_artifacts(run_id)) == 2
@@ -175,6 +175,128 @@ def test_manifest_v2_git_plan_indexes_all_families_and_replays_exactly(
                 assert len(await repository.list_limitations(run_id)) == 1
                 assert len(await repository.list_recommended_tasks(run_id)) == 1
                 assert len(await repository.list_outgoing_relationships(run_id)) == 1
+        finally:
+            await manager.close()
+
+    asyncio.run(scenario())
+
+
+def test_real_003l_indexes_replays_and_omits_manifest_changed_file(
+    postgres_url: str,
+) -> None:
+    run_id = "QM2-P0-003L-20260716T151140Z-7d29df7"
+    plan = ImplementationRunPlanner(
+        GitSnapshot(bind_repository("quantmind-main", ROOT))
+    ).plan(run_id)
+    analyzed = plan.runs[0]
+    assert analyzed.validated and analyzed.indexable
+    assert analyzed.domain_build is not None
+    assert analyzed.domain_build.bundle is not None
+    assert analyzed.domain_build.gaps == ()
+
+    async def scenario() -> None:
+        config = DatabaseConfig()
+        config.database_url = postgres_url
+        config.pool_size = 2
+        config.max_overflow = 0
+        manager = DatabaseManager(config)
+        await manager.initialize()
+        try:
+            indexer = LedgerIndexer(
+                lambda: AsyncLedgerUnitOfWork(database_manager=manager)
+            )
+            target = _bundle(
+                "QM2-P0-003-20260716T142422Z-0114f35",
+                _task("QM2-P0-003", None, 0),
+                1,
+            )
+            await indexer.index_bundles(
+                repository_id="quantmind-main",
+                ref_commit="1" * 40,
+                discovered=1,
+                validated=1,
+                bundles=(target,),
+            )
+            first = await indexer.index_plan(plan)
+            assert first.indexed == 1 and first.replayed == 0
+            second = await indexer.index_plan(plan)
+            assert second.indexed == 0 and second.replayed == 1
+            async with AsyncLedgerUnitOfWork(database_manager=manager) as uow:
+                repository = uow.repository
+                assert repository is not None
+                assert await repository.get_task("QM2-P0-003L") is not None
+                stored_run = await repository.get_run(run_id)
+                assert stored_run == analyzed.domain_build.bundle.run
+                changed_files = await repository.list_changed_files(run_id)
+                assert len(changed_files) == 28
+                assert all(item.path != analyzed.discovered.manifest_path for item in changed_files)
+                artifacts = await repository.list_artifacts(run_id)
+                assert any(
+                    "ds_bc82e7bb2c63d2c47677b11cf0f4fc1e5aa11a0ed18ee0bb27e3c8ab667d2ee7"
+                    in item.path_or_uri
+                    for item in artifacts
+                )
+        finally:
+            await manager.close()
+
+    asyncio.run(scenario())
+
+
+def test_real_003lf_indexes_replays_after_containing_commit(
+    postgres_url: str,
+) -> None:
+    run_id = "QM2-P0-003LF-20260716T153535Z-22461e0"
+    manifest_path = (
+        "docs/quantmind2/implementation/runs/2026/2026-07/"
+        f"{run_id}/manifest.json"
+    )
+    committed = subprocess.run(
+        ["git", "cat-file", "-e", f"HEAD:{manifest_path}"],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if committed.returncode != 0:
+        pytest.skip("003LF verification requires its containing commit")
+    plan = ImplementationRunPlanner(
+        GitSnapshot(bind_repository("quantmind-main", ROOT))
+    ).plan(run_id)
+    analyzed = plan.runs[0]
+    assert analyzed.validated and analyzed.indexable
+    assert analyzed.domain_build is not None
+    assert analyzed.domain_build.bundle is not None
+    assert analyzed.domain_build.gaps == ()
+    assert analyzed.git_consistency is not None
+    assert analyzed.git_consistency.warnings == ()
+
+    async def scenario() -> None:
+        config = DatabaseConfig()
+        config.database_url = postgres_url
+        config.pool_size = 2
+        config.max_overflow = 0
+        manager = DatabaseManager(config)
+        await manager.initialize()
+        try:
+            indexer = LedgerIndexer(
+                lambda: AsyncLedgerUnitOfWork(database_manager=manager)
+            )
+            first = await indexer.index_plan(plan)
+            assert first.indexed == 1 and first.replayed == 0
+            second = await indexer.index_plan(plan)
+            assert second.indexed == 0 and second.replayed == 1
+            async with AsyncLedgerUnitOfWork(database_manager=manager) as uow:
+                repository = uow.repository
+                assert repository is not None
+                assert await repository.get_task("QM2-P0-003LF") is not None
+                stored_run = await repository.get_run(run_id)
+                assert stored_run == analyzed.domain_build.bundle.run
+                changed_files = await repository.list_changed_files(run_id)
+                assert changed_files
+                assert all(
+                    item.path != analyzed.discovered.manifest_path
+                    for item in changed_files
+                )
+                assert any(item.path.endswith("/report.md") for item in changed_files)
         finally:
             await manager.close()
 

@@ -57,6 +57,7 @@ def _plan_summary(plan) -> dict[str, Any]:  # noqa: ANN001
                     if check.mandatory and not check.passed
                 ],
                 "evidence_gaps": [_jsonable(gap) for gap in gaps],
+                "warnings": [_jsonable(warning) for warning in analyzed.evidence.warnings],
                 "errors": list(analyzed.errors),
             }
         )

@@ -4,12 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-003L: `7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34`
+- Base before QM2-P0-003LF: `22461e0fb603171efa5b1467586a260e2f54ed7b`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-003L: no
+- Dirty before QM2-P0-003LF: no
 - Unrelated dirty files: none
-- Uncommitted work after the QM2-P0-003L commit: no
+- Uncommitted work after the QM2-P0-003LF commit: no
 
 ## Official Factor Lab source
 
@@ -30,10 +30,10 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-003L`, completed using the real feature Parquet consumed
-  by production LightGBM training. Real proprietary TongDaXin remains unavailable.
-- Task name: `QM2-P0-003L — Legacy Feature Parquet Provider and Real Dataset Snapshot`.
-- Latest run: `QM2-P0-003L-20260716T151140Z-7d29df7` under
+- Current task: `QM2-P0-003LF`, fixing only Manifest v2 self-reference and
+  restoring 003L forward indexability without changing the real Snapshot.
+- Task name: `QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability`.
+- Latest run: `QM2-P0-003LF-20260716T153535Z-22461e0` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -108,6 +108,11 @@
   allowlisted. Source and Snapshot values/NaN masks otherwise match exactly.
 - Factor DSL must consume validated Snapshot terminals through
   `load_feature_matrix`; it must not read the legacy root or labels directly.
+- New v2 Runs must omit their own Manifest from `changed_files`; the Manifest
+  remains in integrity Git inventories. Report remains a ChangedFile/Artifact.
+- Historical 003L is immutable and uses the generic compatibility warning
+  `LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED`; its Manifest is not mapped to a
+  ChangedFile, while every other Git/hash check remains strict.
 - Recommended next task: `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot`.
 
 ## Unconfirmed facts

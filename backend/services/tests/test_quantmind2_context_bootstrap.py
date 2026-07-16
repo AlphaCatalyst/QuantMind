@@ -221,10 +221,10 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_003l_and_names_exact_004_next_task(self):
+    def test_handoff_records_003lf_and_names_exact_004_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-003L — Legacy Feature Parquet Provider and Real Dataset Snapshot",
+            "QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability",
             text,
         )
         self.assertIn(

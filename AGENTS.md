@@ -174,6 +174,14 @@ compatibility. Producers must supply structured facts and must not infer Task,
 children, references, or annotations from report prose. Pre-commit v2 Runs keep
 `result_commit` null; only Git consistency resolves the containing commit.
 
+The current Run's `manifest.json` is the protocol carrier, not a business
+`ChangedFile`, and MUST NOT appear in `changed_files`. It remains listed in the
+integrity Git path inventories and is protected by its canonical payload hash
+and immutable Git blob. `report.md` is not self-referential and MAY remain both
+a `ChangedFile` and an Artifact. The producer and semantic validator reject a
+new self-reference with `MANIFEST_SELF_REFERENCE`; never add a placeholder
+Manifest after-hash or retry hashing in a loop.
+
 Ordinary implementation tasks must not:
 
 - silently modify an accepted or frozen ADR;

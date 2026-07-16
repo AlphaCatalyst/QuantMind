@@ -28,8 +28,8 @@ Run filter narrows this discovered set without reading the worktree.
 
 ## Parser and Report validation
 
-The parser accepts only recognized schema `1.0.0`, applies the frozen JSON
-Schema exactly, validates canonical path/Run identity, and performs no repair,
+The parser accepts recognized schema `1.0.0` and `2.0.0`, applies the matching
+strict Schema, validates canonical path/Run identity, and performs no repair,
 defaulting, prose extraction, or field invention. The report SHA-256 is checked
 against the exact committed report bytes. `manifest_payload_hash` is checked
 with the existing canonical JSON rule that excludes only that hash field.
@@ -47,6 +47,19 @@ commit. The declared changed-file set must equal the base-to-containing diff;
 declared additions and deletions must agree with Git statuses. Run files must
 be ordinary blobs, not symlinks. Declared artifact hashes are checked at the
 containing commit.
+
+For v2, the full `integrity.git_changed_paths` must still equal the real diff.
+The business ChangedFile comparison excludes only the current Run's canonical
+Manifest path from both sides. Report, other Run Manifests, arbitrary JSON and
+all unknown extra paths remain mandatory business changes. New self-referential
+payloads are rejected by the producer and semantic validator.
+
+A committed v2 payload that already lists its exact `run.manifest_path` as a
+ChangedFile is handled by a general compatibility rule: its impossible
+before/after hash is not checked, no ChangedFile Domain object is constructed,
+and evidence records structured warning
+`LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED`. This does not waive any other
+check, does not change payload hashing, and contains no Run-ID exception.
 
 ## Source status and resolved status
 
@@ -135,5 +148,5 @@ replay, immutable-conflict, and rollback path; it is test evidence, not history.
 Parser, trusted binding, Git consistency, admission, Indexer, CLI, and isolated
 write-path verification close the Ledger infrastructure implementation stage.
 Production deployment/backfill, Project Knowledge API/UI, watcher, webhook,
-and daemon remain outside scope. The next task moves to TongDaXin provider
-reality and Dataset Snapshot entry.
+and daemon remain outside scope. The next task is `QM2-P0-004 — Factor DSL v1
+on Real Legacy Feature Dataset Snapshot`.

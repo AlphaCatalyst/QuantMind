@@ -66,6 +66,15 @@ type. Their technical IDs remain Mapper-derived using the declared
 `changed-file-v1` and `changed-symbol-v1` algorithms; no array index or line
 number participates.
 
+The current Run's `run.manifest_path` is the protocol carrier and is not a
+ChangedFile business object. Including it would require its `after_hash` to be
+embedded in the same bytes being hashed, changing the hash again. Therefore it
+must be absent from `changed_files`; placeholders and iterative hash attempts
+are invalid. It remains in `integrity.git_changed_paths` and
+`git_added_paths`, is discovered at its canonical path, and is protected by the
+canonical payload hash plus immutable Git-blob checks. `report.md` has no such
+self-reference and may remain a ChangedFile and an Artifact.
+
 ## 9. Tests and artifacts
 
 Each test has an explicit execution ID, recorded command, purpose, typed
@@ -121,6 +130,11 @@ cross-object, Binding, and Domain construction checks. The input must supply
 all structured Task, Run, children, references, annotations, and exact Git path
 inventories.
 
+All three producer/validator boundaries reject
+`changed_files[*].path == run.manifest_path` with stable code
+`MANIFEST_SELF_REFERENCE`. This is a semantic path rule because JSON Schema
+cannot compare two instance paths.
+
 ## 13. Parser routing and Indexer workflow
 
 The parser routes `1.0.0` to the unchanged v1 contract, `2.0.0` to v2, and
@@ -131,6 +145,21 @@ Run files. A successful v2 plan constructs a complete, gap-free Domain Bundle.
 The existing two-pass Indexer writes Task/Run/children first and relationships
 second inside the existing Unit of Work; exact replay and immutable conflict
 semantics remain Repository-owned.
+
+Business ChangedFile comparison removes only the current Run's Manifest from
+the actual base-to-containing Git diff. It does not remove the Report, another
+Run's Manifest, an arbitrary JSON file, or any other changed path. The complete
+protocol Git inventory, including the current Manifest, is still checked
+separately against the real diff.
+
+Committed v2 payloads created before this rule may contain exactly the same
+path in `changed_files` and `run.manifest_path`. The committed parser preserves
+those bytes, Git evidence emits
+`LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED`, skips only that item's before/after
+hash, and the Domain mapper does not construct a ChangedFile for it. Every
+other path, status, hash, artifact, payload, report, diff and immutable-history
+check remains mandatory. This rule is structural and contains no Run-ID
+special case. New producer and standalone validation remain strict.
 
 ## 14. End-to-end verification and historical policy
 
@@ -144,9 +173,9 @@ partial write before container cleanup. No production database is accessed.
 Historical v1 statistics remain separately measured and are not improved by
 v2 defaults. Manifest v2 closes only the future evidence-production gap.
 
-## 15. Ledger closure and handoff to TDX
+## 15. Ledger closure and handoff to Factor DSL
 
-With a v2 producer and a self-indexable B1 Run, the Ledger infrastructure phase
-is closed. This does not deploy the Ledger, add an API/UI, backfill historical
-Runs, or add watchers. The sole next task is `QM2-P0-003 — TongDaXin Provider
-Reality Audit and Dataset Snapshot Entry`.
+With forward self-reference handling fixed, Ledger infrastructure remains
+closed. This does not deploy the Ledger, add an API/UI, backfill unrelated
+history, or add watchers. The sole next task is `QM2-P0-004 — Factor DSL v1 on
+Real Legacy Feature Dataset Snapshot`.

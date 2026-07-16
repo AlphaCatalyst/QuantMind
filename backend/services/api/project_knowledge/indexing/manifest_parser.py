@@ -73,7 +73,10 @@ class ImplementationManifestParser:
             source_status = payload["task_status"]
         else:
             try:
-                validate_manifest_v2_payload(payload)
+                # Committed v2 payloads are parsed losslessly. Git evidence and
+                # Domain mapping apply the narrow legacy carrier compatibility
+                # rule; producer/standalone validation remains strict.
+                validate_manifest_v2_payload(payload, allow_legacy_self_reference=True)
             except (ManifestParseError, UnsupportedManifestSchemaError) as exc:
                 if exc.run_id is None:
                     exc.run_id = directory_run_id

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-16T15:11:40Z",
-  "source_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34",
+  "generated_at": "2026-07-16T15:35:35Z",
+  "source_commit": "22461e0fb603171efa5b1467586a260e2f54ed7b",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -34,6 +34,7 @@
     {"issue_id": "QM2-KI-025", "severity": "high", "status": "open", "summary": "Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; zero of seventeen historical v1 Runs are indexable, while v2 resolves future production."},
     {"issue_id": "QM2-KI-026", "severity": "high", "status": "open", "summary": "QM2-P0-001F declares a result commit that differs from its containing commit."},
     {"issue_id": "QM2-KI-027", "severity": "medium", "status": "open", "summary": "The adjacent 2025 feature sidecar describes older bytes; exact Parquet bytes, not the stale sidecar, are authoritative for Legacy source identity."},
-    {"issue_id": "QM2-KI-028", "severity": "high", "status": "open", "summary": "Existing LightGBM training and Qlib still consume their legacy feature/Qlib views rather than the real immutable Legacy Dataset Snapshot."}
+    {"issue_id": "QM2-KI-028", "severity": "high", "status": "open", "summary": "Existing LightGBM training and Qlib still consume their legacy feature/Qlib views rather than the real immutable Legacy Dataset Snapshot."},
+    {"issue_id": "QM2-KI-029", "severity": "high", "status": "resolved", "summary": "Manifest v2 self-reference is rejected for new Runs; committed v2 self-reference is narrowly warned and excluded from ChangedFile mapping without weakening other Git evidence."}
   ]
 }

@@ -29,6 +29,7 @@ from backend.services.api.project_knowledge.indexing.manifest_v2 import (  # noq
     MANIFEST_V2_SCHEMA_VERSION,
     MAPPER_CONTRACT_VERSION,
     finalize_manifest_v2_payload,
+    reject_manifest_self_reference,
     validate_manifest_v2_payload,
 )
 from backend.services.api.project_knowledge.indexing.models import (  # noqa: E402
@@ -60,6 +61,7 @@ def _write(path: Path, payload: dict) -> None:
 def new_draft(source: dict) -> dict:
     """Add only protocol constants and hash placeholders; never infer semantics."""
     payload = copy.deepcopy(source)
+    reject_manifest_self_reference(payload)
     payload.setdefault("schema_version", MANIFEST_V2_SCHEMA_VERSION)
     payload.setdefault("mapper_contract_version", MAPPER_CONTRACT_VERSION)
     payload.setdefault(
@@ -146,7 +148,14 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     except (ImplementationIndexError, OSError, ValueError) as exc:
         message = exc.message if isinstance(exc, ImplementationIndexError) else str(exc)
-        print(json.dumps({"status": "error", "message": message}, ensure_ascii=False))
+        error_code = (
+            exc.error_code if isinstance(exc, ImplementationIndexError)
+            else "MANIFEST_PRODUCER_ERROR"
+        )
+        print(json.dumps(
+            {"status": "error", "error_code": error_code, "message": message},
+            ensure_ascii=False,
+        ))
         return 2
 
 

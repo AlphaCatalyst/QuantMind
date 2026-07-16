@@ -11,7 +11,11 @@ from typing import Any, Mapping
 
 from tools.quantmind2.validate_context_bootstrap import ValidationError, validate_instance
 
-from .errors import ManifestParseError, UnsupportedManifestSchemaError
+from .errors import (
+    ManifestParseError,
+    ManifestSelfReferenceError,
+    UnsupportedManifestSchemaError,
+)
 
 
 MANIFEST_V2_SCHEMA_VERSION = "2.0.0"
@@ -53,7 +57,33 @@ def load_manifest_v2_schema() -> dict[str, Any]:
     return json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
 
 
-def validate_manifest_v2_payload(payload: Mapping[str, Any]) -> None:
+def manifest_self_reference_items(payload: Mapping[str, Any]) -> tuple[Mapping[str, Any], ...]:
+    """Return only ChangedFile entries that name this payload's protocol carrier."""
+    run = payload.get("run")
+    changed_files = payload.get("changed_files")
+    if not isinstance(run, Mapping) or not isinstance(changed_files, list):
+        return ()
+    manifest_path = run.get("manifest_path")
+    if not isinstance(manifest_path, str):
+        return ()
+    return tuple(
+        item
+        for item in changed_files
+        if isinstance(item, Mapping) and item.get("path") == manifest_path
+    )
+
+
+def reject_manifest_self_reference(payload: Mapping[str, Any]) -> None:
+    if manifest_self_reference_items(payload):
+        raise ManifestSelfReferenceError(
+            "Manifest protocol path cannot be a ChangedFile",
+            check="changed_files",
+        )
+
+
+def validate_manifest_v2_payload(
+    payload: Mapping[str, Any], *, allow_legacy_self_reference: bool = False
+) -> None:
     """Apply Schema plus cross-object and version constraints."""
     if payload.get("schema_version") != MANIFEST_V2_SCHEMA_VERSION:
         raise UnsupportedManifestSchemaError("manifest schema version is unsupported")
@@ -73,6 +103,9 @@ def validate_manifest_v2_payload(payload: Mapping[str, Any]) -> None:
         validate_instance(dict(payload), load_manifest_v2_schema())
     except ValidationError as exc:
         raise ManifestParseError("manifest does not conform to schema v2") from exc
+
+    if not allow_legacy_self_reference:
+        reject_manifest_self_reference(payload)
 
     repository = payload["repository"]
     task = payload["task"]

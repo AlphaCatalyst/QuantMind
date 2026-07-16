@@ -335,6 +335,20 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-003L-20260716T151140Z-7d29df7`.
 
+## Manifest v2 forward-indexability repair
+
+- `QM2-P0-003LF — Manifest Self-reference Fix and 003L Forward-indexability`
+  makes the current Run Manifest a protocol carrier rather than a ChangedFile.
+- New Manifest v2 production rejects self-reference with
+  `MANIFEST_SELF_REFERENCE`; Report remains a valid ChangedFile and Artifact.
+- Committed v2 self-reference uses a general, path-based compatibility rule.
+  003L now validates and builds a complete Domain Bundle with one structured
+  `LEGACY_V2_MANIFEST_SELF_REFERENCE_IGNORED` warning and zero evidence gaps.
+- The real 003L Dataset Snapshot, hashes, values, quality and loader-parity
+  evidence are unchanged.
+- Latest Implementation Run:
+  `QM2-P0-003LF-20260716T153535Z-22461e0`.
+
 ## Next task
 
 `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot` is the

@@ -24,6 +24,10 @@ class ManifestParseError(ImplementationIndexError):
     error_code = "MANIFEST_PARSE_ERROR"
 
 
+class ManifestSelfReferenceError(ManifestParseError):
+    error_code = "MANIFEST_SELF_REFERENCE"
+
+
 class UnsupportedManifestSchemaError(ImplementationIndexError):
     error_code = "UNSUPPORTED_MANIFEST_SCHEMA"
 
