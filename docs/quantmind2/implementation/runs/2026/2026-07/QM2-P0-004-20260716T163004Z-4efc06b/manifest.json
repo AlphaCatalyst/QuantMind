@@ -1,0 +1,746 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0002",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0003",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-004-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "dd54842d343025335fe4d88f9e6fe0f10f9871e384d26c4bd1ce18e14ea6a72a",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 9536
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-004-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-004-values-1",
+      "artifact_type": "factor_values",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_385ed568d5b68b7ec24dc2302081f867469206d591e51002d32998085b504264/values.parquet#sha256=ce98cf28c91913471fb786674958fa7b2e0a7a875fc7f4d691ee9e3f2b580f1c",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-004-values-2",
+      "artifact_type": "factor_values",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_5b83b004cd6c985f51af22c3d417656c7f24657bb2d1647607ca5a12f8fafdff/values.parquet#sha256=4112b52c2d9708c6e9e0bcd85dd3ffd51438bf3ca4bb7cf383fa38ebe585ea8f",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-004-values-3",
+      "artifact_type": "factor_values",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_346461783ca9956c2e90d66e04c028ffb90eb2ee08724ec58e64d01423f54bc9/values.parquet#sha256=cad8789b4b4a6bee736d2c4bed041a552fe59d36baa0553a95ce098c0a4a90eb",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-004-values-4",
+      "artifact_type": "factor_values",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_bb8d92e8ecc4d13f8c4d2e0d91c56b133186cb97ebeb32ec83b9c2f6b4b162a3/values.parquet#sha256=084e6c46994a236c4bc1590e740975a3b81384ccd97bbb82db16dd5caa127734",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-004-values-5",
+      "artifact_type": "factor_values",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-004-factor-values/fv_c200a1c6d2f9d86527650073bf7184cfba1d43929832ecbeb9ff98b620a753c9/values.parquet#sha256=9df8b7f12ba41901b63e19c2496abeb2c7bb2f9547ba589c00b2de640963bc52",
+      "schema_version": "factor-values-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "f1aea6e3d56776a96b2abc16f0d38205ae6b5ea60ac66fa35a4c805ec4cdf3d7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "226d22375211afcd8ec6ccf26bc32bf99bb51b0956bd52a973d91ab5db3cf7a2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/admission.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "574a9cb54879cea34e3bfe5e5ae506decd8a267fa933fcfc6a60b5ba20979b1a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "110031d3df248517b17945d78c8b5775e02695c215509102d1ceed63a6cf8de5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "495fa081456b751d36cfd150e2f0d0dd286775536237c3dd7cfa985c2fcab5c6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/compiler.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8837e5026fea54f0f18d33c8a7effdc5cc9b58fbdd3465b25607c57c71f30696",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b8f5fd247f6708d927a85c697accb27882fe6a95d1b25ebe0984c1dcd411b94e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6c4834fee404022610ef577bccb8a2816476457e503e0e1caa20166333302869",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/examples.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3b49647c9b5535470bbbd6fe7e120d25e086ba4a761eb69cce814b26173e7af5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/executor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "808802ab8fc359d39b0df7988dd0c4aa0d5e8fc6302e1c9a56d841c842df2899",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/identity.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d5b4efb93499a5bbb2366acc8d94f72c9c39d9b35ffc1a64b4e1500e35954c65",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "946a332f2a92d94574619cb77fbde42f97359f62c539753047adb72c4789868c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/operator_catalog.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "49e6d0b9626c3b3d49f0e1ba645de493f2e2346c8e24f092348efa7fffd7310c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e56827f0b081f6b317b86013a30f7752e9ba20c4519c13e4643b8f8fe2c35e99",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/quality.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ba42715a12b20c45c25c137fc089d3463f119b7f09b68c136070f895b6cf3462",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_dsl/schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0cf6d523c13f65bf227a84a4f658ee6d72a6f2452722876b0f8b99832bcf788c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_dsl_compiler.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "95a102ca5994c45fa3ac48468791b8ef1210cd61cc31202f008f38fa6a49965f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_dsl_executor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3d545401b3611e228d0bc960a09c4f9fd77808c2249b8e8fc3515ed34b0ee21e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_dsl_parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "27fda4e34254d97b7dbcf5774d9cb4fdbb15328b8dbe08125630c76d237a1138",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_dsl_real_snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c35998c37be8b092e063275dba09010d40dc84d55985a71ff24be93e034e42ef",
+      "before_hash": "a768f93d3aeb2c98fd127f382165373f4998503765837a31cac6e94e7219c0e6",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f8acbb0e9175d325ccb0a7c8d0255045555fd9b972979bb09a9e597be97394ce",
+      "before_hash": "087720ded04849e5e4eb9eb1dff3206d17563d2f81650b6250024789e45eff33",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d2607df8d9b396a6ba7f21cd9265eedf2f557c49de3a675023a90e404a31c8d1",
+      "before_hash": "880b05bb8590baf81914948925e9caa20af3f4c6783623d9dd3e25c2f2720850",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a48444dd815d4f03edcd56ffc7a659196a1a52e7f386c7535ef673ca439b87f5",
+      "before_hash": "2632b9dbc9c56f5b218ee93e24a86f52d0e5d25585db4c30a8bca933bedf021d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "71badadc4f80c2426fad0b7d10b381405a43480546c7145452080b0b58a83ef3",
+      "before_hash": "8ff1c669e8832a6bdab0d316cd8a420638dddcfbe995ae9b687e2aae3b22f40f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "efcf3872d2586258de789fbed5fdeb61a1cd3824de0ff5c4132eb433701631ec",
+      "before_hash": "92be2900a78ea1e792aa35bd8f38cc445f6dfb0ed38032b53c5001d6b8b6a373",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ba379676d11f553cb17c5b5923b77ae3963f01b4368bb5b0ffd7533efe06b052",
+      "before_hash": "49eb41ba7ec6058d5ec96c4026b6654e763949b569f3987ae67fff6713c0cbef",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d96ca5fb9a75c5c542fc95317dbbb2530dcb207b26eaeeb62acb0cc96138ec64",
+      "before_hash": "fc3c6c1340d81e3634b89f8953181db0deb2309827115f923701c7f03c3c3ca0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9e729e1c33dab912d2da123eb8bfee8114c7dd87af53e175ebf6556a6315c3be",
+      "before_hash": "f50fe31899a29a27b8478e061aa84f8b0982ac115c8fd513bd9958057bb271fc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cae6e09a8e49c8fa87ec4e849ecf7b3a09b4824f37f79f13bde993e8a8d15f59",
+      "before_hash": "141fe114299d43c34f7a55f748959645583af368d008f2d55b5cad7fcc554098",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e3b509aa5d306c20b6150d5e614797c10885d5aa6d18b7118f347b72cdc06bdc",
+      "before_hash": "805500e0fe68897564dd853c21c4ff2217c4303a1f96ba618ac7b0027d112683",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d2706e0420827d415606acfe238cd8e0ab320af06dd8a37ab207f15d908a7ee0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/FACTOR_DSL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8046d684f6c1a6f1e456e89c1f88ef7cc87a13db1564e066555ff9465417c49e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/FACTOR_VALUES_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dd54842d343025335fe4d88f9e6fe0f10f9871e384d26c4bd1ce18e14ea6a72a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b84a03be1d8cfceb5e86db9fd26e8a8ef9edc1b92dcc6fab7b20774a4f002408",
+      "before_hash": "557327b65fc4892b69d325639ba9770d677a917dc911c352b2a2a9c4e76e75bd",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ee054fb30679f997bf06e85652577fcdfdd7def9f8b640311f5e24227cf8fe31",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_template_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8b46f4cb1d5c19eb2983aca29fc3a245a678a1a6fde8e79d989eb3e2cfa3ca2e",
+      "before_hash": "30bd38a8fbbbae121f0c4c77c8a96ceb253a6f7af1cf159d591e646874a3abee",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9045a25587511c67acbf7bbc0be5bcc9b675284844d8b9b243008fd56aecfd1d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/factor_dsl.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c554eb2a22de3ca7de30d06f900d5e4a894a8d8d5ec98930ba65b4cb36b1a9e5",
+      "before_hash": "a204c6915e3a4002f22623e21e656ab60eeed28902b1abab7dbefd004ba90abf",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/models.py",
+      "qualified_name": "backend.services.engine.factor_dsl.models.FactorTemplate",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/parser.py",
+      "qualified_name": "backend.services.engine.factor_dsl.parser.parse_template",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/compiler.py",
+      "qualified_name": "backend.services.engine.factor_dsl.compiler.compile_template",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/executor.py",
+      "qualified_name": "backend.services.engine.factor_dsl.executor.execute_compiled",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/artifact.py",
+      "qualified_name": "backend.services.engine.factor_dsl.artifact.publish_values",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/artifact.py",
+      "qualified_name": "backend.services.engine.factor_dsl.artifact.validate_values",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/identity.py",
+      "qualified_name": "backend.services.engine.factor_dsl.identity.factor_template_id",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/identity.py",
+      "qualified_name": "backend.services.engine.factor_dsl.identity.factor_instance_id",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/factor_dsl.py",
+      "qualified_name": "tools.quantmind2.factor_dsl.main",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "docs/quantmind2/implementation/schemas/factor_template_v1.schema.json",
+      "qualified_name": "FactorTemplateSchemaV1",
+      "symbol_type": "schema"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/models.py",
+      "qualified_name": "backend.services.engine.factor_dsl.models.BoundFactorInstance",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/models.py",
+      "qualified_name": "backend.services.engine.factor_dsl.models.FactorValuesArtifact",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_dsl/operator_catalog.py",
+      "qualified_name": "backend.services.engine.factor_dsl.operator_catalog.OPERATOR_CATALOG",
+      "symbol_type": "constant"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.factor_dsl",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_compute",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "impact_type": "documented"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-004-report",
+        "sha256": "dd54842d343025335fe4d88f9e6fe0f10f9871e384d26c4bd1ce18e14ea6a72a"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/factor_dsl/__init__.py",
+      "backend/services/engine/factor_dsl/admission.py",
+      "backend/services/engine/factor_dsl/artifact.py",
+      "backend/services/engine/factor_dsl/canonical.py",
+      "backend/services/engine/factor_dsl/compiler.py",
+      "backend/services/engine/factor_dsl/enums.py",
+      "backend/services/engine/factor_dsl/errors.py",
+      "backend/services/engine/factor_dsl/examples.py",
+      "backend/services/engine/factor_dsl/executor.py",
+      "backend/services/engine/factor_dsl/identity.py",
+      "backend/services/engine/factor_dsl/models.py",
+      "backend/services/engine/factor_dsl/operator_catalog.py",
+      "backend/services/engine/factor_dsl/parser.py",
+      "backend/services/engine/factor_dsl/quality.py",
+      "backend/services/engine/factor_dsl/schema.py",
+      "backend/services/tests/test_factor_dsl_compiler.py",
+      "backend/services/tests/test_factor_dsl_executor.py",
+      "backend/services/tests/test_factor_dsl_parser.py",
+      "backend/services/tests/test_factor_dsl_real_snapshot.py",
+      "docs/quantmind2/contracts/FACTOR_DSL_V1.md",
+      "docs/quantmind2/contracts/FACTOR_VALUES_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/report.md",
+      "docs/quantmind2/implementation/schemas/factor_template_v1.schema.json",
+      "tools/quantmind2/factor_dsl.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/factor_dsl/__init__.py",
+      "backend/services/engine/factor_dsl/admission.py",
+      "backend/services/engine/factor_dsl/artifact.py",
+      "backend/services/engine/factor_dsl/canonical.py",
+      "backend/services/engine/factor_dsl/compiler.py",
+      "backend/services/engine/factor_dsl/enums.py",
+      "backend/services/engine/factor_dsl/errors.py",
+      "backend/services/engine/factor_dsl/examples.py",
+      "backend/services/engine/factor_dsl/executor.py",
+      "backend/services/engine/factor_dsl/identity.py",
+      "backend/services/engine/factor_dsl/models.py",
+      "backend/services/engine/factor_dsl/operator_catalog.py",
+      "backend/services/engine/factor_dsl/parser.py",
+      "backend/services/engine/factor_dsl/quality.py",
+      "backend/services/engine/factor_dsl/schema.py",
+      "backend/services/tests/test_factor_dsl_compiler.py",
+      "backend/services/tests/test_factor_dsl_executor.py",
+      "backend/services/tests/test_factor_dsl_parser.py",
+      "backend/services/tests/test_factor_dsl_real_snapshot.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/FACTOR_DSL_V1.md",
+      "docs/quantmind2/contracts/FACTOR_VALUES_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_template_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/factor_dsl.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "29aedbedd7c7de6c5e1797200e5a85f915a95e4e14057658f3c5af48e6646f71",
+    "manifest_payload_sha256": "c73b590be4e8a3b05593397cb56856f77e0fc242b8c34d64656040992e325487",
+    "report_sha256": "dd54842d343025335fe4d88f9e6fe0f10f9871e384d26c4bd1ce18e14ea6a72a",
+    "source_bundle_sha256": "bbcb862ec96c2ee524fe36bf22fd5444bcb66d712a6b7bdf65dd7714cc4315cd"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.factor_compute",
+      "description": "Factor DSL v1 compute is offline single-process pandas/Parquet and has no durable object-store or distributed execution.",
+      "limitation_id": "limit-qm2-p0-004-runtime",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.factor_dsl",
+      "description": "Optimization, validation metrics, Frozen Test, Registry, Agent loop, model/signal and backtest consumers remain unimplemented.",
+      "limitation_id": "limit-qm2-p0-004-research-scope",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "description": "The official bounded Factor Lab directory is under /tmp and references several source modules absent from that directory; no donor code was copied or changed.",
+      "limitation_id": "limit-qm2-p0-004-factor-lab-source",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-005",
+      "priority": "P0",
+      "reason": "Add reproducible budgeted parameter trials on the now-verified parameterized DSL without structure evolution or Frozen Test access.",
+      "recommendation_id": "recommend-qm2-p0-004-factor-optimization"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-16T16:42:00Z",
+      "reason": "Build the bounded Factor DSL directly on the verified real Legacy Feature Dataset Snapshot authority.",
+      "relationship_id": "rel-qm2-p0-004-continues-003l",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-004-20260716T163004Z-4efc06b",
+      "target_run_id": "QM2-P0-003L-20260716T151140Z-7d29df7"
+    }
+  ],
+  "repository": {
+    "base_commit": "4efc06b8099e180a583eceadfc0f1b270113d7d7",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "4efc06b8099e180a583eceadfc0f1b270113d7d7",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-16T16:42:00Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "29aedbedd7c7de6c5e1797200e5a85f915a95e4e14057658f3c5af48e6646f71",
+    "implementation_run_id": "QM2-P0-004-20260716T163004Z-4efc06b",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-004-20260716T163004Z-4efc06b/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "bbcb862ec96c2ee524fe36bf22fd5444bcb66d712a6b7bdf65dd7714cc4315cd",
+    "started_at": "2026-07-16T16:30:04Z",
+    "task_id": "QM2-P0-004",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-16T16:30:04Z",
+    "explicit_non_goals": [
+      "No Factor Optimization, Registry or validation metrics",
+      "No LightGBM, Qlib, training, inference or backtest consumer switch",
+      "No arbitrary Python main path, structure evolution, Agent loop, API, UI, database or migration"
+    ],
+    "objective": "Implement the bounded canonical Factor DSL v1 and immutable Factor Values against the real Legacy Feature Dataset Snapshot.",
+    "parent_task_id": "QM2-P0-003L",
+    "scope": [
+      "Closed typed Factor Template JSON and parser",
+      "Dataset-aware static compiler and identities",
+      "Deterministic Snapshot-only executor and Factor Values v1",
+      "Offline CLI, contracts, tests, real Snapshot proof and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-004",
+    "title": "Factor DSL v1 on Real Legacy Feature Dataset Snapshot"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_DSL_REAL_SNAPSHOT_ROOT=/private/tmp/qm2-p0-003l-real-snapshot python -m pytest backend/services/tests/test_factor_dsl_*.py -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 18,
+      "purpose": "Initial Factor DSL and real Snapshot suite; tests passed but global repository coverage floor failed.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-qm2-p0-004-initial-coverage"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_DSL_REAL_SNAPSHOT_ROOT=/private/tmp/qm2-p0-003l-real-snapshot python -m pytest --no-cov backend/services/tests/test_factor_dsl_parser.py backend/services/tests/test_factor_dsl_compiler.py backend/services/tests/test_factor_dsl_executor.py backend/services/tests/test_factor_dsl_real_snapshot.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 29,
+      "purpose": "Verify parser, compiler, leakage gates, operator semantics, five real Snapshot instances and exact replay.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-factor-dsl"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov backend/services/tests/test_dataset_snapshot.py backend/services/tests/test_legacy_feature_provider.py backend/services/tests/test_legacy_feature_snapshot.py backend/services/tests/test_tongdaxin_provider.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 41,
+      "purpose": "Verify Dataset Snapshot, Legacy Provider/Snapshot and TongDaXin boundaries did not regress.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-market-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov backend/services/tests/test_quantmind2_context_bootstrap.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 21,
+      "purpose": "Verify Project Memory and context contracts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 38,
+      "purpose": "Validate machine/human context, ADR and Implementation Run references.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m py_compile backend/services/engine/factor_dsl/*.py tools/quantmind2/factor_dsl.py && parse all docs/quantmind2 JSON && git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 3,
+      "purpose": "Verify syntax, JSON parsing and whitespace integrity.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/factor_dsl.py validate-values ... && python tools/quantmind2/factor_dsl.py inspect ...",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 2,
+      "purpose": "Verify safe CLI validation and metadata inspection on runtime proof artifacts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-cli"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "combined Factor DSL, Context and market-data pytest before Manifest refinalization",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 89,
+      "purpose": "Expose stale Report-to-Manifest hash sequencing before final payload regeneration.",
+      "skipped_count": 1,
+      "status": "failed",
+      "test_execution_id": "test-qm2-p0-004-prefinalization"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_DSL_REAL_SNAPSHOT_ROOT=/private/tmp/qm2-p0-003l-real-snapshot python -m pytest --no-cov Factor DSL, Context Bootstrap, Dataset Snapshot, Legacy Provider/Snapshot and TongDaXin test modules -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 91,
+      "purpose": "Final combined regression after Manifest payload regeneration.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-004-final-regression"
+    }
+  ]
+}

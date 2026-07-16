@@ -13,6 +13,8 @@ Statuses describe current implementation, not architectural intention.
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
 | `quantmind2.project_knowledge` | partial | Bootstrap, Ledger persistence/indexing, strict self-reference-free Manifest v2 production, bounded historical-v2 compatibility and isolated evidence exist; API/UI and production deployment do not |
 | `quantmind2.data_foundation` | partial | Daily Bars and Legacy Feature provider boundaries, real legacy immutable Snapshot, quality, validation, safe readers and CLI exist; real TDX and production consumer switches do not |
+| `quantmind2.factor_dsl` | partial | Closed typed AST, strict admission, canonical Template/Instance identities and dataset-aware compiler exist; optimization, Registry and Agent loop do not |
+| `quantmind2.factor_compute` | partial | Deterministic Snapshot-only executor and immutable Factor Values v1 exist; distributed compute, Registry, validation and production consumers do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

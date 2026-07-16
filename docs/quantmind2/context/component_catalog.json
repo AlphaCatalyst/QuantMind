@@ -101,14 +101,14 @@
       "current_limitations": ["Real TongDaXin access is unavailable because the repository and active environments lack tqcenter.tq, and canonical volume/amount unit assertions are not configured.", "Calendar and point-in-time universe domains are deferred.", "Existing training and Qlib consumers have not switched to Dataset Snapshot."], "last_verified_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34", "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "planned", "responsibility": "Canonical AST, parameter nodes, validation, canonicalization, and hashing.",
-      "source_path": null, "target_path": "backend/services/engine/factor_research/dsl", "key_symbols": [], "dependencies": ["quantmind2.factor_registry"], "architecture_decision_refs": ["ADR-0002", "ADR-0007"],
-      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+      "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "partial", "responsibility": "Canonical typed AST, parameter nodes, static admission, canonicalization, hashing, and bounded compilation.",
+      "source_path": "backend/services/engine/factor_dsl", "target_path": "backend/services/engine/factor_dsl", "key_symbols": ["FactorTemplate", "ExpressionNode", "parse_template", "compile_template", "factor_template_id", "factor_instance_id"], "dependencies": ["quantmind2.data_foundation"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
+      "current_limitations": ["v1 has a closed 18-node catalog and no structure evolution, optimization, Registry lifecycle, Agent loop, API, or UI.", "Current code is verified in the QM2-P0-004 uncommitted workspace and is not contained in last_verified_commit."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind2.factor_compute", "name": "Factor Compute", "status": "planned", "responsibility": "Evaluate DSL Factor Instances against published Dataset Snapshots and materialize Parquet values.",
-      "source_path": null, "target_path": "backend/services/engine/factor_research/compute", "key_symbols": [], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
-      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+      "component_id": "quantmind2.factor_compute", "name": "Factor Compute", "status": "partial", "responsibility": "Evaluate admitted DSL Factor Instances against validated Dataset Snapshots and atomically materialize immutable Parquet Factor Values.",
+      "source_path": "backend/services/engine/factor_dsl", "target_path": "backend/services/engine/factor_dsl", "key_symbols": ["execute_compiled", "publish_values", "validate_values", "factor_quality"], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl", "pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
+      "current_limitations": ["Offline single-process v1 only; no distributed compute, object storage, Registry, validation metrics, optimizer, API, or database index.", "Current code is verified in the QM2-P0-004 uncommitted workspace and is not contained in last_verified_commit."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_optimization", "name": "Factor Optimization", "status": "planned", "responsibility": "Search window, factor-internal weight, and signal threshold under explicit budgets.",

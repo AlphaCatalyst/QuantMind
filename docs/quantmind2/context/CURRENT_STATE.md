@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-16
-Verified source commit before this task: `0114f35332073cab00928f753af83c9ba8d83b6a`
+Verified source commit before this task: `4efc06b8099e180a583eceadfc0f1b270113d7d7`
 
 ## Implemented in existing systems
 
@@ -32,7 +32,6 @@ Verified source commit before this task: `0114f35332073cab00928f753af83c9ba8d83b
 - Research Skill runtime
 - executable ResearchDecision model and Decision Validator
 - QuantMind 2.0 Bounded Code Orchestrator
-- Factor DSL / Canonical AST
 - Factor Optimization
 - immutable Factor Registry
 - Frozen Test access isolation
@@ -362,7 +361,46 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-003LF1-20260716T160222Z-da271ac`.
 
+## Factor DSL v1 and real-Snapshot compute
+
+- `QM2-P0-004` adds the closed JSON/typed AST contract, strict parser,
+  canonical Template/Instance identities, dataset-aware static compiler and
+  bounded pandas execution under `backend/services/engine/factor_dsl/`.
+- Only Snapshot columns with exact role `feature` are admitted. Execution reads
+  through `load_feature_matrix`, never `load_labels`, and preserves Snapshot
+  `symbol,trade_date` keys.
+- Factor Values v1 is an immutable atomic Parquet artifact with manifest,
+  quality evidence, hashes and exact replay behavior. Runtime proof artifacts
+  remain outside Git under `/tmp`.
+- Five parameter instances on the real 003L Snapshot each produced and
+  revalidated 5,931 rows; exact replay reused the same content identity.
+- Real terminals were `mom_ret_1d`, `liq_volume_ratio_5`, `style_beta_20` and
+  `style_idio_vol_20`; the Snapshot role contract reported 152 legal features
+  and zero labels.
+- Template IDs: rolling rank
+  `ft_8174c2c375fe504dfada1d0cdb953ac94469ec8c017276382f365bfebccad8b5`,
+  weighted delta
+  `ft_c75dc9f65292b6711a939bb178c2b48455df07653708508b315395fc3b2e2453`,
+  normalized spread
+  `ft_bf8f68bfb0a54459cb3d1708990819f5ad194d7894c693acb9c178574c085d4d`.
+- Bound Instance IDs are
+  `fi_d666f5b0409763e8a2ce35c3135ac32adb82c83dd20c370f106414acf0793964`,
+  `fi_94b3fc524e46b37f97c9a7e87aca83099da507b4c7822775d28e932d48f01943`,
+  `fi_f808ee5f0c9c87035f6ef6d634ee8bece6373b622489042d527a89cf1df546f5`,
+  `fi_ba5479118b518decabc2b165abca43d64fc4b70fc44d49e19b55ecad0552824a`
+  and `fi_a462e50f80e7fc0fb134c123d556bb701ceed29acfb52850c14471cef69f1a76`.
+- Factor Values IDs are
+  `fv_385ed568d5b68b7ec24dc2302081f867469206d591e51002d32998085b504264`,
+  `fv_5b83b004cd6c985f51af22c3d417656c7f24657bb2d1647607ca5a12f8fafdff`,
+  `fv_346461783ca9956c2e90d66e04c028ffb90eb2ee08724ec58e64d01423f54bc9`,
+  `fv_bb8d92e8ecc4d13f8c4d2e0d91c56b133186cb97ebeb32ec83b9c2f6b4b162a3`
+  and `fv_c200a1c6d2f9d86527650073bf7184cfba1d43929832ecbeb9ff98b620a753c9`.
+- This is a partial research component, not a Registry, factor validation,
+  optimization, LightGBM feature, Qlib signal or production promotion.
+- Latest Implementation Run:
+  `QM2-P0-004-20260716T163004Z-4efc06b`.
+
 ## Next task
 
-`QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot` is the
-only recommended next task. The Ledger stage remains closed.
+`QM2-P0-005 — Factor Optimization v1 on Parameterized DSL` is the only
+recommended next task. The Ledger stage remains closed.

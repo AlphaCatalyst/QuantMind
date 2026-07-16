@@ -117,7 +117,14 @@
 - The 003LF test-only assertion now uses `AnalyzedRun.evidence.consistent` and
   `evidence.warnings`; all four opt-in PostgreSQL tests pass without a
   production-code change. Ledger remains closed.
-- Recommended next task: `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot`.
+- `QM2-P0-004 — Factor DSL v1 on Real Legacy Feature Dataset Snapshot` now
+  provides a closed typed JSON AST, strict feature/parameter
+  admission, canonical Template and Instance identities, deterministic
+  Snapshot-only execution, and immutable Factor Values artifacts.
+- Five parameter instances passed on the real 003L Snapshot with 5,931 rows
+  each and exact replay. This is compute evidence, not factor validation,
+  Registry status, model value, signal or backtest evidence.
+- Recommended next task: `QM2-P0-005 — Factor Optimization v1 on Parameterized DSL`.
 
 ## Unconfirmed facts
 

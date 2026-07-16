@@ -32,3 +32,4 @@
 | QM2-KI-028 | high | open | Existing LightGBM training and Qlib still consume their legacy feature/Qlib views rather than the real immutable Legacy Dataset Snapshot. |
 | QM2-KI-029 | high | resolved | Manifest v2 self-reference is rejected for new Runs; committed v2 self-reference is narrowly warned and excluded from ChangedFile mapping without weakening other Git evidence. |
 | QM2-KI-030 | low | resolved | The 003LF post-commit PostgreSQL test referenced nonexistent `AnalyzedRun.git_consistency`; QM2-P0-003LF1 now uses the public `evidence.consistent` and `evidence.warnings` contract, and all four real opt-in tests pass. |
+| QM2-KI-031 | medium | open | The current official Factor Lab bounded source references FactorSpec, CandidateManifest, admission, evaluator and sandbox modules whose source files are absent from that directory; QM2-P0-004 reused only surviving contract and runbook evidence. |
