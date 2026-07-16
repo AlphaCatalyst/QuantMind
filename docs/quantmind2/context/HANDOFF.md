@@ -4,12 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-002B1: `0353435a3c1fb4b1469a5ab32462a1a010999872`
+- Base before QM2-P0-003: `0114f35332073cab00928f753af83c9ba8d83b6a`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-002B1: no
+- Dirty before QM2-P0-003: no
 - Unrelated dirty files: none
-- Uncommitted work after the finalization commit: no
+- Uncommitted work after the QM2-P0-003 commit: no
 
 ## Official Factor Lab source
 
@@ -30,10 +30,10 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-002B1`, completed as the forward-indexable Manifest v2
-  producer and final Ledger infrastructure closure.
-- Completed task name: `QM2-P0-002B1 — Manifest v2 Producer and Forward Indexability`.
-- Latest run: `QM2-P0-002B1-20260716T135059Z-0353435` under
+- Current task: `QM2-P0-003`, partially completed because the real proprietary
+  TongDaXin runtime is unavailable.
+- Partial task name: `QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry`.
+- Latest run: `QM2-P0-003-20260716T142422Z-0114f35` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -88,11 +88,20 @@
   PostgreSQL. Exact replay and immutable-conflict rollback are verified.
 - Ledger infrastructure is closed. Production deployment/backfill, API/UI,
   watcher, webhook, and daemon remain absent.
-- Recommended next task: `QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry`.
+- Dataset Snapshot v1 now provides explicit Provider requests, immutable Raw
+  Capture, deterministic normalization, blocking quality checks, atomic
+  Parquet publication, identity/hash validation and a read-only consumer seam.
+- Real TDX is not verified: legacy scripts depend on absent `tqcenter`; pytdx
+  and mootdx are absent; source volume/amount units are not evidenced. No real
+  Snapshot ID exists. Fake Snapshots are test-only and explicitly identified.
+- Existing training remains on feature snapshots and Qlib remains on its
+  separate binary view. No production consumer switch occurred.
+- Recommended next task: `QM2-P0-003F — TongDaXin Environment Enablement and Real Snapshot Verification`.
 
 ## Unconfirmed facts
 
-- Concrete TongDaXin Provider implementation and capability contract.
+- Obtain the authorized `tqcenter` runtime/client and confirm daily-bar volume,
+  amount, adjustment, timeout, rate-limit and license semantics.
 - Long-term durable location for the official Factor Lab source.
 - Production execution-role permission policy for the explicit `quantmind2` schema.
 - CI capability and scheduling for the opt-in disposable PostgreSQL test.

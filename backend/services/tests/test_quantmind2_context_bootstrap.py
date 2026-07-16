@@ -221,18 +221,18 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_b1_and_names_exact_003_next_task(self):
+    def test_handoff_records_003_and_names_exact_003f_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-        self.assertIn(
-            "QM2-P0-002B1 — Manifest v2 Producer and Forward Indexability",
-            text,
-        )
         self.assertIn(
             "QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry",
             text,
         )
+        self.assertIn(
+            "QM2-P0-003F — TongDaXin Environment Enablement and Real Snapshot Verification",
+            text,
+        )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-003"])
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-003F"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

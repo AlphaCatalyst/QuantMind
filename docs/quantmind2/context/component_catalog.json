@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-15T09:06:30Z",
-  "source_commit": "d33f2815b96053c2e0eba1320d666862d0337997",
+  "generated_at": "2026-07-16T14:24:22Z",
+  "source_commit": "0114f35332073cab00928f753af83c9ba8d83b6a",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -96,9 +96,9 @@
       "last_verified_commit": null, "evidence_level": "planned"
     },
     {
-      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "planned", "responsibility": "TongDaXin ingestion, immutable raw data, normalization, quality, Dataset Snapshot, and consumer views.",
-      "source_path": null, "target_path": "backend/services/engine/data_foundation", "key_symbols": [], "dependencies": [], "architecture_decision_refs": ["ADR-0003"],
-      "current_limitations": ["Not implemented; concrete TongDaXin provider is unverified."], "last_verified_commit": null, "evidence_level": "planned"
+      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "partial", "responsibility": "TongDaXin ingestion, immutable raw data, normalization, quality, Dataset Snapshot, and consumer views.",
+      "source_path": "scripts/full_update.py", "target_path": "backend/services/engine/market_data", "key_symbols": ["MarketDataProvider", "TongDaXinProvider", "FakeMarketDataProvider", "DailyBarsRequest", "DatasetSnapshotService", "load_daily_bars"], "dependencies": ["pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0003"],
+      "current_limitations": ["Real TongDaXin access is unavailable because the repository and active environments lack tqcenter.tq, and canonical volume/amount unit assertions are not configured.", "Calendar and point-in-time universe domains are deferred.", "Existing training and Qlib consumers have not switched to Dataset Snapshot."], "last_verified_commit": "0114f35332073cab00928f753af83c9ba8d83b6a", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "planned", "responsibility": "Canonical AST, parameter nodes, validation, canonicalization, and hashing.",

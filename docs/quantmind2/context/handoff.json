@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-16T13:50:59Z",
-  "source_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872",
+  "generated_at": "2026-07-16T14:24:22Z",
+  "source_commit": "0114f35332073cab00928f753af83c9ba8d83b6a",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "0353435a3c1fb4b1469a5ab32462a1a010999872",
+  "base_commit": "0114f35332073cab00928f753af83c9ba8d83b6a",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,12 +24,12 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-002B1",
-  "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-002B1-20260716T135059Z-0353435",
-  "next_recommended_tasks": ["QM2-P0-003"],
+  "current_task": "QM2-P0-003",
+  "completion_status": "partial_committed",
+  "latest_implementation_run": "QM2-P0-003-20260716T142422Z-0114f35",
+  "next_recommended_tasks": ["QM2-P0-003F"],
   "unconfirmed_facts": [
-    "Concrete TongDaXin Provider implementation and capability contract.",
+    "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics.",
     "Durable long-term location for the official Factor Lab source.",
     "Production execution-role permission policy for the explicit quantmind2 PostgreSQL schema.",
     "CI capability and scheduling for the opt-in disposable PostgreSQL integration test.",

@@ -9,8 +9,8 @@
     "repository": {"type": "string"}, "branch": {"type": "string"}, "base_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
     "workspace_dirty": {"type": "boolean"}, "unrelated_dirty_files": {"type": "array", "items": {"type": "string"}},
     "factor_lab_source": {"type": "object", "additionalProperties": false, "required": ["root", "source_path", "branch", "commit", "read_only"], "properties": {"root": {"type": "string"}, "source_path": {"type": "string"}, "branch": {"type": "string"}, "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "read_only": {"const": true}}},
-    "architecture_version": {"const": "v1"}, "current_task": {"type": "string"}, "completion_status": {"enum": ["completed_uncommitted", "completed_committed", "partial_uncommitted", "blocked", "in_progress"]},
-    "latest_implementation_run": {"type": "string"}, "next_recommended_tasks": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-002A2b", "QM2-P0-002A3", "QM2-P0-002B", "QM2-P0-003"]}},
+    "architecture_version": {"const": "v1"}, "current_task": {"type": "string"}, "completion_status": {"enum": ["completed_uncommitted", "completed_committed", "partial_uncommitted", "partial_committed", "blocked", "in_progress"]},
+    "latest_implementation_run": {"type": "string"}, "next_recommended_tasks": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-002A2b", "QM2-P0-002A3", "QM2-P0-002B", "QM2-P0-003", "QM2-P0-003F"]}},
     "unconfirmed_facts": {"type": "array", "items": {"type": "string"}}, "protected_constraints": {"type": "array", "items": {"type": "string"}},
     "mandatory_read_order": {"type": "array", "minItems": 8, "items": {"type": "string"}}, "uncommitted_work": {"type": "boolean"}
   }

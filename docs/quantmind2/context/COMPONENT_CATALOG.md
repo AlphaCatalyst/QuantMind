@@ -12,6 +12,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.feature_snapshots` | partial | 152-column annual Parquet snapshots, incomplete QM2 lineage |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
 | `quantmind2.project_knowledge` | partial | Bootstrap, Ledger Domain/ORM/Mapper/migration, PostgreSQL Repository/UoW, Manifest v2 producer, v1/v2 parser, Git consistency, trusted binding, Indexer, CLI, and isolated evidence exist; API/UI and production deployment do not |
+| `quantmind2.data_foundation` | partial | Provider contract, TQ adapter, Fake Provider, Raw Capture, normalization, quality, immutable Parquet Dataset Snapshot, validation, reader and CLI exist; real TDX environment and production consumer views do not |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

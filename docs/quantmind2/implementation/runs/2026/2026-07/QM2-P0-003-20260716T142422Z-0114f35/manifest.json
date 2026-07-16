@@ -1,0 +1,569 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-003-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "dc741ab2a41dc97b7365276d5c41c2891659da4bbbaf7a8b90d95c0ab153c513",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 9851
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003-audit",
+      "artifact_type": "market_data_reality_audit",
+      "content_hash": "859ccf516c37b995c5cd6b10ba2c8c3658397ce3af75fb68fbcd244a1aed7b8e",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/MARKET_DATA_REALITY_AUDIT_V1.md",
+      "schema_version": "1.0.0",
+      "size_bytes": 8042
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003-snapshot-contract",
+      "artifact_type": "dataset_snapshot_contract",
+      "content_hash": "8c0918d33910e82ef43c1da97c1498cc6e30871e6214a2650d73d667c6a22eb8",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/DATASET_SNAPSHOT_V1.md",
+      "schema_version": "1.0.0",
+      "size_bytes": 5510
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003-fake-manifest",
+      "artifact_type": "runtime_fake_snapshot_manifest",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "runtime://QM2-P0-003/ds_ba104a6fb37e452032fac35ead6cd1c6ad223c0d9f76fafb99ac0e3aa0c8cd3f/manifest.json",
+      "schema_version": "1.0.0",
+      "size_bytes": 4169
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-003-fake-parquet",
+      "artifact_type": "runtime_fake_snapshot_parquet",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "runtime://QM2-P0-003/ds_ba104a6fb37e452032fac35ead6cd1c6ad223c0d9f76fafb99ac0e3aa0c8cd3f/partitions/daily_bars/part-00000.parquet",
+      "schema_version": "daily-bars-v1",
+      "size_bytes": 6373
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "e07accfc0532dbf9a48b88338506c580a4c25fa99d941370bc3250628fd7802b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1e3597c3b6aa46cf91e4332b05497c2f0219be9196d0da1d920e9d2d660675a4",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/provider.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fd0b7e4ac86d98a172fc4a4a5f46908821e07b4699e71b98873efdb31f2f280f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/providers/tongdaxin.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c899cd8d8772ff2c91a40c50439b6eb9649b386d959d13587576555cb46f0a6b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/providers/fake.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7a1673d6b961cf3f13e51833ace75abb7b604cfd05d5dca9a10d073cfd9e0327",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/normalization.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "980e72728c7b7d328d78702c5e2f9585635f9d17e849a4b927bd7cfab7964ccd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/quality.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "265bd0005b81285b31e44e7260afa1fabb61cce174a08b094e4b5fdda5c8b724",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/storage.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dfbb79d5c380bfa5d62d8e9c741e7427fe1a3c0cb0445881970573fdb2bc5288",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/market_data/snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3786ef9ea96db573c0270ba6a95b5282d381d4853019f4646c376ce0f912fb55",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/market_data.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "829d9754068bd2efdc2bf618237bd81a2ad922b5e29f97edb7a7b1e100b938f5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_dataset_snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "db388b110af97078b0c678b41c5f8a0508227669b759fcef5ee17605e6655ed2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_market_data_provider_contract.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "87b55308d124e25339dd49bd524ca5ee206855c5287f6e8868af9708a2fa7950",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_tongdaxin_provider.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "859ccf516c37b995c5cd6b10ba2c8c3658397ce3af75fb68fbcd244a1aed7b8e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/MARKET_DATA_REALITY_AUDIT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8c0918d33910e82ef43c1da97c1498cc6e30871e6214a2650d73d667c6a22eb8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/DATASET_SNAPSHOT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dc741ab2a41dc97b7365276d5c41c2891659da4bbbaf7a8b90d95c0ab153c513",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "66dff3c718466e5e6a9a9404ee0fdc06349a65ae20216e11d5ac37c9268f81e0",
+      "before_hash": "159312ea9a35111fb3c8a15c4a01153bc83e8ad6aa695d2bef4ff0a3c1623c51",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b1b9d643902e63a748f766e61009e678ba2c1cb1ca4a696f4dc55def7c1bf971",
+      "before_hash": "a73d6822229e1daa3673b6d6dcf6f3dda2be32768c4cbe3273f0b08e0f4d3f59",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e68d3967bb4b0db1b0b9497c44982efc741003b950ac44a0a7304ef84d57cfbc",
+      "before_hash": "d6159a9f06f282a896cb0b2357b66443b1f3e2988d03e224bd945eddb65d3db0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b95f84cf96f9f86cee5087a73d2d42bb4416929b2dace48a28f8b3575ce39ac3",
+      "before_hash": "4ecca24c4ed714c3a63bd21b6caeebe2a60d11c95de9aedb82a50bab1dc1ad57",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4a2f00fdb575f1c4df4f5e35e9852ee07d7016da05d9abb15cfc297c19d929ff",
+      "before_hash": "27af2915867ae1d75e8faa5d3eed818d5cc28b20ca89d151ec735e3a4d59fa16",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/models.py",
+      "qualified_name": "DailyBarsRequest",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/provider.py",
+      "qualified_name": "MarketDataProvider",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/providers/tongdaxin.py",
+      "qualified_name": "TongDaXinProvider",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/providers/fake.py",
+      "qualified_name": "FakeMarketDataProvider",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/normalization.py",
+      "qualified_name": "normalize_daily_bars",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/quality.py",
+      "qualified_name": "evaluate_daily_bars",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/storage.py",
+      "qualified_name": "capture_raw",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/snapshot.py",
+      "qualified_name": "DatasetSnapshotService",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/market_data/snapshot.py",
+      "qualified_name": "load_daily_bars",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/market_data.py",
+      "qualified_name": "main",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "introduced"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-003-audit",
+        "sha256": "859ccf516c37b995c5cd6b10ba2c8c3658397ce3af75fb68fbcd244a1aed7b8e"
+      },
+      {
+        "artifact_id": "artifact-qm2-p0-003-report",
+        "sha256": "dc741ab2a41dc97b7365276d5c41c2891659da4bbbaf7a8b90d95c0ab153c513"
+      },
+      {
+        "artifact_id": "artifact-qm2-p0-003-snapshot-contract",
+        "sha256": "8c0918d33910e82ef43c1da97c1498cc6e30871e6214a2650d73d667c6a22eb8"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/market_data/__init__.py",
+      "backend/services/engine/market_data/errors.py",
+      "backend/services/engine/market_data/models.py",
+      "backend/services/engine/market_data/normalization.py",
+      "backend/services/engine/market_data/provider.py",
+      "backend/services/engine/market_data/providers/__init__.py",
+      "backend/services/engine/market_data/providers/fake.py",
+      "backend/services/engine/market_data/providers/tongdaxin.py",
+      "backend/services/engine/market_data/quality.py",
+      "backend/services/engine/market_data/snapshot.py",
+      "backend/services/engine/market_data/storage.py",
+      "backend/services/engine/market_data/symbol.py",
+      "backend/services/tests/test_dataset_snapshot.py",
+      "backend/services/tests/test_market_data_provider_contract.py",
+      "backend/services/tests/test_tongdaxin_provider.py",
+      "docs/quantmind2/implementation/DATASET_SNAPSHOT_V1.md",
+      "docs/quantmind2/implementation/MARKET_DATA_REALITY_AUDIT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/report.md",
+      "tools/quantmind2/market_data.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/market_data/__init__.py",
+      "backend/services/engine/market_data/errors.py",
+      "backend/services/engine/market_data/models.py",
+      "backend/services/engine/market_data/normalization.py",
+      "backend/services/engine/market_data/provider.py",
+      "backend/services/engine/market_data/providers/__init__.py",
+      "backend/services/engine/market_data/providers/fake.py",
+      "backend/services/engine/market_data/providers/tongdaxin.py",
+      "backend/services/engine/market_data/quality.py",
+      "backend/services/engine/market_data/snapshot.py",
+      "backend/services/engine/market_data/storage.py",
+      "backend/services/engine/market_data/symbol.py",
+      "backend/services/tests/test_dataset_snapshot.py",
+      "backend/services/tests/test_market_data_provider_contract.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "backend/services/tests/test_tongdaxin_provider.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/DATASET_SNAPSHOT_V1.md",
+      "docs/quantmind2/implementation/MARKET_DATA_REALITY_AUDIT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/market_data.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "b5ac03772c19af7c62931cf3994c7730f04c891f3920c2749716ad137948312c",
+    "manifest_payload_sha256": "7657a541511dd5d9284a455e92cf38d1ea55dc75dfd801ee7f1941f57e88dd6d",
+    "report_sha256": "dc741ab2a41dc97b7365276d5c41c2891659da4bbbaf7a8b90d95c0ab153c513",
+    "source_bundle_sha256": "44cbc8ff8d44281d44726caa38526963ecd315f7f84ee50cf995cbce70f024e4"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "No real TongDaXin Snapshot exists because the authorized tqcenter client and canonical source-unit contract are unavailable.",
+      "limitation_id": "limit-qm2-p0-003-real-tdx",
+      "severity": "critical",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "TongDaXin endpoint authorization, timeout, retry, rate limit, license, backward adjustment and exact source-unit behavior remain unverified.",
+      "limitation_id": "limit-qm2-p0-003-provider-semantics",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Formal Calendar Snapshot and point-in-time Universe are absent; v1 uses explicit symbols and unverified weekday warnings.",
+      "limitation_id": "limit-qm2-p0-003-calendar-universe",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Existing annual feature training and Qlib binary consumers have not switched to Dataset Snapshot.",
+      "limitation_id": "limit-qm2-p0-003-consumers",
+      "severity": "high",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-003F",
+      "priority": "P0",
+      "reason": "Supply the authorized TQ runtime and explicit unit semantics, then execute the required real SH/SZ Snapshot verification.",
+      "recommendation_id": "recommend-qm2-p0-003-real-tdx"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-16T14:32:20Z",
+      "reason": "Start the approved market-data mainline after closing the Ledger infrastructure stage.",
+      "relationship_id": "rel-qm2-p0-003-continues-002b1",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-003-20260716T142422Z-0114f35",
+      "target_run_id": "QM2-P0-002B1-20260716T135059Z-0353435"
+    }
+  ],
+  "repository": {
+    "base_commit": "0114f35332073cab00928f753af83c9ba8d83b6a",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "0114f35332073cab00928f753af83c9ba8d83b6a",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-16T14:35:00Z",
+    "completion_level": "partial",
+    "consistency_status": "unverified",
+    "git_diff_hash": "b5ac03772c19af7c62931cf3994c7730f04c891f3920c2749716ad137948312c",
+    "implementation_run_id": "QM2-P0-003-20260716T142422Z-0114f35",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-003-20260716T142422Z-0114f35/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "44cbc8ff8d44281d44726caa38526963ecd315f7f84ee50cf995cbce70f024e4",
+    "started_at": "2026-07-16T14:24:22Z",
+    "task_id": "QM2-P0-003",
+    "task_status": "partial_uncommitted",
+    "verification_level": "integration_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-16T14:24:22Z",
+    "explicit_non_goals": [
+      "No dependency installation, lockfile, runtime configuration, production database or Factor Lab modification",
+      "No production ingestion or existing training, LightGBM, Qlib or backtest consumer switch",
+      "No Factor DSL, optimization, validation, Registry, calendar or point-in-time universe implementation"
+    ],
+    "objective": "Audit actual QuantMind market-data sources and establish an immutable, verifiable Dataset Snapshot v1 vertical slice.",
+    "parent_task_id": null,
+    "scope": [
+      "Market-data, training, Alpha158 and Qlib source reality audit",
+      "Daily-bar Provider, Raw Capture, normalization, quality, immutable Parquet Snapshot, reader and CLI",
+      "Deterministic Fake verification, Project Memory and Manifest v2 Implementation Run"
+    ],
+    "status": "partial",
+    "task_id": "QM2-P0-003",
+    "title": "TongDaXin Provider Reality Audit and Dataset Snapshot Entry"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q backend/services/tests/test_market_data_provider_contract.py backend/services/tests/test_dataset_snapshot.py backend/services/tests/test_tongdaxin_provider.py",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 30,
+      "purpose": "Preserve the failed repository-default command: all 30 assertions passed and one real test skipped, but whole-repository coverage was 0.54 percent below fail-under 5.",
+      "skipped_count": 1,
+      "status": "failed",
+      "test_execution_id": "test-qm2-p0-003-initial-coverage"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_market_data_provider_contract.py backend/services/tests/test_dataset_snapshot.py backend/services/tests/test_tongdaxin_provider.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 31,
+      "purpose": "Verify Provider, Fake, normalization, quality, Snapshot, CLI and mocked TQ behavior without unrelated whole-repo coverage.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-market"
+    },
+    {
+      "artifact_hash": "66205f7b2c125f6e956d6e5d39809b3f5fae129073a20f61a686199a80d19e28",
+      "artifact_uri": "runtime://QM2-P0-003/ds_ba104a6fb37e452032fac35ead6cd1c6ad223c0d9f76fafb99ac0e3aa0c8cd3f",
+      "command": "market_data.py audit; snapshot --provider fake; validate; inspect; repeat snapshot",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Verify the bounded Fake vertical slice and exact-existing behavior.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-fake-cli"
+    },
+    {
+      "artifact_hash": "2733b0d5e107beb1d9ba587142142c5c6f80594704fdb7ec836d23ab87890eff",
+      "artifact_uri": "runtime://QM2-P0-003/ds_ba104a6fb37e452032fac35ead6cd1c6ad223c0d9f76fafb99ac0e3aa0c8cd3f/partitions/daily_bars/part-00000.parquet",
+      "command": "shasum -a 256 <fake-snapshot-parquet>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Record the runtime Fake Parquet exact-byte hash.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-fake-parquet"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/market_data.py probe --provider tongdaxin",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Verify safe actual-environment capability reporting.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-tdx-probe"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "real probe, fetch, raw capture, normalization, Snapshot, reload and exact-existing",
+      "failed_count": 0,
+      "not_run_reason": "The authorized tqcenter client and explicit source volume/amount unit contract are unavailable; Fake evidence is not substituted.",
+      "passed_count": 0,
+      "purpose": "Verify the required real TongDaXin vertical slice.",
+      "skipped_count": 7,
+      "status": "not_run",
+      "test_execution_id": "test-qm2-p0-003-real-tdx"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py --json",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 38,
+      "purpose": "Validate Context, Schemas, Run pairs, Manifest hashes and references.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_project_knowledge_*.py backend/services/tests/test_quantmind2_context_bootstrap.py -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 363,
+      "purpose": "Run the complete relevant Project Knowledge and Context regression without a database connection.",
+      "skipped_count": 7,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "py_compile; parse all added JSON; git diff --check; Factor Lab digest",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Verify syntax, JSON, whitespace, scope and read-only donor stability.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-003-static"
+    }
+  ]
+}

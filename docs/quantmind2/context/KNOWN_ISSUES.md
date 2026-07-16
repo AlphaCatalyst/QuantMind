@@ -2,11 +2,11 @@
 
 | ID | Severity | Status | Issue |
 |---|---|---|---|
-| QM2-KI-001 | blocker | open | Formal TongDaXin Provider implementation is unverified. |
+| QM2-KI-001 | blocker | open | Legacy TongDaXin scripts require absent proprietary `tqcenter`; pytdx/mootdx, local client/data root, explicit source units, rate limits and license semantics are unavailable, blocking a real Snapshot. |
 | QM2-KI-002 | high | open | Submitted `label_formula` metadata does not drive the training script's actual tradable-return label construction. |
 | QM2-KI-003 | high | open | Daily data task references a missing Qlib synchronization script. |
 | QM2-KI-004 | high | open | Existing Qlib conversion deletes/replaces the destination non-atomically. |
-| QM2-KI-005 | high | open | PostgreSQL, Parquet, and Qlib authority is not unified by Dataset Snapshot. |
+| QM2-KI-005 | high | open | Dataset Snapshot v1 now exists, but current PostgreSQL, annual feature Parquet, and Qlib binary consumers have not migrated to it. |
 | QM2-KI-006 | high | open | Official Factor Lab candidate contract remains Python-first. |
 | QM2-KI-007 | high | open | Factor Lab JSON experiment registry can replace historical records by ID. |
 | QM2-KI-008 | high | open | Anti-overfit `recent` is not an access-isolated Frozen Test. |

@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-16
-Verified source commit before this task: `0353435a3c1fb4b1469a5ab32462a1a010999872`
+Verified source commit before this task: `0114f35332073cab00928f753af83c9ba8d83b6a`
 
 ## Implemented in existing systems
 
@@ -35,7 +35,6 @@ Verified source commit before this task: `0353435a3c1fb4b1469a5ab32462a1a0109998
 - Factor DSL / Canonical AST
 - Factor Optimization
 - immutable Factor Registry
-- authoritative Dataset Snapshot service
 - Frozen Test access isolation
 - Registry → Feature Snapshot → LightGBM lineage
 - Unified Signal Service
@@ -294,5 +293,29 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry` is
-the only recommended next task. The Ledger infrastructure stage is complete.
+## Market data entry and Dataset Snapshot v1
+
+- `QM2-P0-003 — TongDaXin Provider Reality Audit and Dataset Snapshot Entry`
+  completed the repository/data-flow audit and implemented the Provider,
+  Raw Capture, deterministic normalization, quality gate, immutable Parquet
+  Snapshot, reader, validator and CLI boundaries.
+- Current production reality is multi-source: official/remote PostgreSQL,
+  local/CSMAR Parquet, feature snapshots and Qlib binary are not bound to one
+  authoritative version. Training reads yearly feature Parquet; Qlib backtest
+  reads a separate binary provider view.
+- The evidenced TongDaXin path is the proprietary `tqcenter.tq` wrapper used by
+  standalone legacy scripts, not pytdx/mootdx. The module, local client/data
+  directory and canonical unit evidence are unavailable in this environment.
+- No real TongDaXin Snapshot was generated. Deterministic Fake Provider tests
+  validate the full storage contract and are explicitly marked `provider_id=fake`.
+- Calendar, PIT Universe, listing/delisting, corporate actions, ST, limits,
+  suspension, industry, finance and index-membership authorities remain open.
+- Existing LightGBM training and Qlib backtest have not switched to Dataset
+  Snapshot.
+- Latest Implementation Run:
+  `QM2-P0-003-20260716T142422Z-0114f35` (partial: real TDX environment absent).
+
+## Next task
+
+`QM2-P0-003F — TongDaXin Environment Enablement and Real Snapshot Verification`
+is the only recommended next task. The Ledger stage remains closed.
