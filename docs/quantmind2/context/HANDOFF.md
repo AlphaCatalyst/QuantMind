@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-008G: `8bf1bb6daa6ed444ac5b4924595aeb4f0690d249`
+- Base before QM2-P0-010F: `77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-008G: no
+- Dirty before QM2-P0-010F: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -30,6 +30,15 @@
 - All 65 current reachable artifacts migrated with zero missing sources and
   healthy integrity. Read `RESEARCH_ARTIFACT_STORE_V1.md`, migration and
   recovery contracts before runtime cutover work.
+- The original immutable `QM2-P0-010` Implementation Run remains
+  Git-inconsistent and non-indexable because only its own Manifest is absent
+  from `integrity.git_changed_paths` and `git_added_paths`. The independently
+  verified Git inventories contain 42 changed and 28 added paths. Its 41
+  business ChangedFiles remain correct: the Manifest is excluded and the
+  Report is included.
+- `QM2-P0-010F` publishes correction evidence only, with one `corrects`
+  relationship. It changes no Store behavior or research artifact identity.
+  Latest run: `QM2-P0-010F-20260717T161330Z-77f5b1f`.
 - Next task is only `QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill`.
   Fresh evaluation is still 0/60 and must not run.
 
@@ -39,12 +48,12 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-008G`, reconciling sibling Agent Registry snapshots
-  and applying a fixed Development-only admission gate.
-- Task name: `QM2-P0-008G — Canonical Registry Reconciliation and Fresh Validation Admission`.
+- Current task: `QM2-P0-010F`, recording immutable Git inventory correction
+  evidence for the Artifact Store implementation Run.
+- Task name: `QM2-P0-010F — Immutable Git Inventory Correction for Artifact Store Run`.
 - Completed predecessor: `QM2-P0-008 — Agent Research Campaign v1` remains
   historically partial because its external attempts failed.
-- Latest run: `QM2-P0-008G-20260717T133812Z-8bf1bb6` under
+- Latest run: `QM2-P0-010F-20260717T161330Z-77f5b1f` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -206,7 +215,7 @@
   business ChangedFiles were omitted. QM2-P0-009F records the complete 35-entry
   Git-derived inventory as immutable correction evidence with `corrects`; it
   does not edit the original Run or research controls.
-- Recommended next task: `QM2-P0-010 — Persistent Research Artifact Store v1`.
+- Recommended next task: `QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill`.
 
 ## Unconfirmed facts
 

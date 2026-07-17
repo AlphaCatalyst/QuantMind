@@ -71,6 +71,13 @@ CHANGED_FILES_CORRECTION = (
     QM2 / "implementation" / "corrections"
     / "QM2-P0-009-changed-files-correction-v1.json"
 )
+GIT_INVENTORY_CORRECTION_SCHEMA = (
+    SCHEMAS / "implementation_git_inventory_correction_v1.schema.json"
+)
+GIT_INVENTORY_CORRECTION = (
+    QM2 / "implementation" / "corrections"
+    / "QM2-P0-010-git-inventory-correction-v1.json"
+)
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -966,8 +973,8 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-009" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-009 task")
+    if "QM2-P0-010F" not in handoff_text:
+        raise ValidationError("human handoff does not name current QM2-P0-010F task")
     if "QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill" not in handoff_text:
         raise ValidationError("human handoff does not name exact QM2-P0-011 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-011"]:
@@ -1027,6 +1034,42 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if sha256_file(target_root / "manifest.json") != changed_correction["immutable_target_manifest_sha256"]:
         raise ValidationError("ChangedFiles correction target Manifest changed")
     checks.append("implementation_changed_files_correction")
+
+    inventory_correction = validate_file(
+        GIT_INVENTORY_CORRECTION, GIT_INVENTORY_CORRECTION_SCHEMA
+    )
+    changed = inventory_correction["fields"]["integrity.git_changed_paths"]
+    added = inventory_correction["fields"]["integrity.git_added_paths"]
+    manifest_path = inventory_correction["manifest_path"]
+    report_path = inventory_correction["report_path"]
+    expected_missing = [manifest_path]
+    if changed["missing"] != expected_missing or added["missing"] != expected_missing:
+        raise ValidationError("Git inventory correction must isolate the target Manifest omission")
+    if changed["unexpected"] or added["unexpected"]:
+        raise ValidationError("Git inventory correction has unexpected recorded paths")
+    if manifest_path in inventory_correction["business_changed_files"]:
+        raise ValidationError("Git inventory correction misclassifies Manifest as business change")
+    if report_path not in inventory_correction["business_changed_files"]:
+        raise ValidationError("Git inventory correction omits Report from business changes")
+    inventory_payload = {
+        "integrity.git_added_paths": sorted(added["verified"]),
+        "integrity.git_changed_paths": sorted(changed["verified"]),
+    }
+    canonical = json.dumps(
+        inventory_payload, ensure_ascii=False, sort_keys=True,
+        separators=(",", ":"), allow_nan=False,
+    ).encode("utf-8")
+    if hashlib.sha256(canonical).hexdigest() != inventory_correction["verified_inventory_sha256"]:
+        raise ValidationError("Git inventory correction canonical hash mismatch")
+    target_root = (
+        QM2 / "implementation" / "runs" / "2026" / "2026-07"
+        / inventory_correction["target_run_id"]
+    )
+    if sha256_file(target_root / "report.md") != inventory_correction["immutable_target_report_sha256"]:
+        raise ValidationError("Git inventory correction target Report changed")
+    if sha256_file(target_root / "manifest.json") != inventory_correction["immutable_target_manifest_sha256"]:
+        raise ValidationError("Git inventory correction target Manifest changed")
+    checks.append("implementation_git_inventory_correction")
 
     v1_example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
     v1_schema = SCHEMAS / "implementation_manifest_v1.schema.json"

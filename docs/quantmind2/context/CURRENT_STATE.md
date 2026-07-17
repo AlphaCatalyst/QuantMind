@@ -1,7 +1,7 @@
 # Current Implementation State
 
-Generated: 2026-07-17
-Verified source commit before this task: `0374aaceab7c8b14e26e3d21ff5ed35366795384`
+Generated: 2026-07-18
+Verified source commit before this task: `77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d`
 
 ## Persistent Research Artifact Store v1
 
@@ -18,7 +18,17 @@ Verified source commit before this task: `0374aaceab7c8b14e26e3d21ff5ed353667953
 - Independent Factor Values, Optimization, Registry and Campaign recovery
   passed byte/hash parity and formal Domain revalidation; source artifacts were
   preserved. Fresh Validation remains awaiting its first date at 0/60.
-- Current task: `QM2-P0-010`. Next task: `QM2-P0-011 — Artifact-backed
+- The immutable `QM2-P0-010` Run remains Git-inconsistent and non-indexable:
+  its integrity inventories omit only its own Manifest (41 recorded versus 42
+  verified changed paths; 27 recorded versus 28 verified added paths). Its 41
+  business ChangedFiles are correct because that list excludes the Manifest
+  and retains the Report.
+- `QM2-P0-010F` records the exact commit-derived inventory in a separate
+  immutable correction Artifact and links it to the original Run with
+  `corrects`; it does not edit the original Run, Store code, Store bytes,
+  migration result, inventory or recovery result.
+- Current task: `QM2-P0-010F`. Latest Implementation Run:
+  `QM2-P0-010F-20260717T161330Z-77f5b1f`. Next task: `QM2-P0-011 — Artifact-backed
   Research Runtime Cutover and Recovery Drill`; `QM2-FV-001` remains forbidden
   until at least 60 locked post-lock mature trading dates exist.
 

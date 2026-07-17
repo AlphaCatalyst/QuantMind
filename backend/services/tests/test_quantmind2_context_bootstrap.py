@@ -221,15 +221,15 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_reconciliation_and_exact_validation_next_task(self):
+    def test_handoff_records_correction_and_exact_runtime_cutover_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn("candidates, approved and active are all zero", text)
         self.assertIn(
-            "QM2-P0-008G — Canonical Registry Reconciliation and Fresh Validation Admission",
+            "QM2-P0-010F — Immutable Git Inventory Correction for Artifact Store Run",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["current_task"], "QM2-P0-010")
+        self.assertEqual(handoff["current_task"], "QM2-P0-010F")
         self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-011"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):

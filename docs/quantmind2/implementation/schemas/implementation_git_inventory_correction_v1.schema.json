@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/implementation_git_inventory_correction_v1.schema.json",
+  "title": "QuantMind 2.0 Git Inventory Evidence Correction v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "correction_id", "target_run_id", "target_base_commit",
+    "target_containing_commit", "verification_method", "fields",
+    "verified_git_modified_paths", "verified_git_deleted_paths",
+    "verified_git_renamed_paths", "business_changed_files", "manifest_path",
+    "report_path", "manifest_in_verified_changed_paths",
+    "manifest_in_verified_added_paths",
+    "business_changed_files_manifest_exclusion_verified",
+    "report_business_classification_verified", "verified_inventory_sha256",
+    "immutable_target_manifest_sha256", "immutable_target_report_sha256",
+    "root_cause", "root_cause_detail", "effect", "artifact_store_identity",
+    "fresh_validation_identity", "verified_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "correction_id": {"const": "qm2-p0-010-git-inventory-correction-v1"},
+    "target_run_id": {"const": "QM2-P0-010-20260717T154150Z-26cebb9"},
+    "target_base_commit": {"const": "26cebb9a9dfa95a295a57d66db193d9629844b90"},
+    "target_containing_commit": {"const": "77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d"},
+    "verification_method": {"const": "git_commit_diff_path_inventory"},
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["integrity.git_changed_paths", "integrity.git_added_paths"],
+      "properties": {
+        "integrity.git_changed_paths": {"$ref": "#/$defs/comparison"},
+        "integrity.git_added_paths": {"$ref": "#/$defs/comparison"}
+      }
+    },
+    "verified_git_modified_paths": {"$ref": "#/$defs/paths"},
+    "verified_git_deleted_paths": {"$ref": "#/$defs/paths"},
+    "verified_git_renamed_paths": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["previous_path", "path"],
+        "properties": {
+          "previous_path": {"$ref": "#/$defs/path"},
+          "path": {"$ref": "#/$defs/path"}
+        }
+      }
+    },
+    "business_changed_files": {"$ref": "#/$defs/paths"},
+    "manifest_path": {"$ref": "#/$defs/path"},
+    "report_path": {"$ref": "#/$defs/path"},
+    "manifest_in_verified_changed_paths": {"const": true},
+    "manifest_in_verified_added_paths": {"const": true},
+    "business_changed_files_manifest_exclusion_verified": {"const": true},
+    "report_business_classification_verified": {"const": true},
+    "verified_inventory_sha256": {"$ref": "#/$defs/sha256"},
+    "immutable_target_manifest_sha256": {"const": "4f247cab75a073b5507d6583812bf810cde71b82a058a957151c7582424e96e3"},
+    "immutable_target_report_sha256": {"const": "abd6681b6703727de8eb52d61ff1862713e5ad607e31407eb365b6d21f2ef72a"},
+    "root_cause": {
+      "enum": [
+        "manifest_finalization_order", "manual_integrity_inventory_omission",
+        "producer_bug", "post_generation_file_addition",
+        "incorrect_run_generation_usage", "other"
+      ]
+    },
+    "root_cause_detail": {"type": "string", "minLength": 1},
+    "effect": {"const": "evidence_correction_only"},
+    "artifact_store_identity": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "reachability_plan_id", "inventory_id", "artifact_count", "blob_count",
+        "integrity_status", "missing_reachable_artifact_count",
+        "unreferenced_blob_count"
+      ],
+      "properties": {
+        "reachability_plan_id": {"const": "rap_f3aca751ad751c976888fd9b464f9f56dd4913339b226786c0c3a7ef65ccc247"},
+        "inventory_id": {"const": "sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312"},
+        "artifact_count": {"const": 65},
+        "blob_count": {"const": 280},
+        "integrity_status": {"const": "healthy"},
+        "missing_reachable_artifact_count": {"const": 0},
+        "unreferenced_blob_count": {"const": 0}
+      }
+    },
+    "fresh_validation_identity": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "candidate_lock_id", "protocol_id", "exposure_ledger_id", "watermark_id",
+        "eligible_date_count", "status"
+      ],
+      "properties": {
+        "candidate_lock_id": {"const": "fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b"},
+        "protocol_id": {"const": "fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867"},
+        "exposure_ledger_id": {"const": "rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff"},
+        "watermark_id": {"const": "fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248"},
+        "eligible_date_count": {"const": 0},
+        "status": {"const": "awaiting_first_fresh_date"}
+      }
+    },
+    "verified_at": {"$ref": "#/$defs/utc"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "path": {
+      "type": "string", "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+    },
+    "paths": {
+      "type": "array", "uniqueItems": true,
+      "items": {"$ref": "#/$defs/path"}
+    },
+    "comparison": {
+      "type": "object", "additionalProperties": false,
+      "required": ["recorded", "verified", "missing", "unexpected"],
+      "properties": {
+        "recorded": {"$ref": "#/$defs/paths"},
+        "verified": {"$ref": "#/$defs/paths"},
+        "missing": {"$ref": "#/$defs/paths"},
+        "unexpected": {"$ref": "#/$defs/paths"}
+      }
+    },
+    "utc": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?Z$"
+    }
+  }
+}

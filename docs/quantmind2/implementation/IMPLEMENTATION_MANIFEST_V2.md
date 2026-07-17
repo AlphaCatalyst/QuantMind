@@ -135,6 +135,26 @@ All three producer/validator boundaries reject
 `MANIFEST_SELF_REFERENCE`. This is a semantic path rule because JSON Schema
 cannot compare two instance paths.
 
+### Post-commit completion gate
+
+A Run is not complete merely because its Manifest validates before commit.
+After the containing commit exists, the exact base-to-containing Git diff must
+be reconstructed and all of the following must hold:
+
+- `integrity.git_changed_paths` equals the complete committed changed-path
+  inventory and includes the current Run Manifest;
+- `integrity.git_added_paths` equals the complete committed added-path
+  inventory and includes the Manifest when that Manifest was newly added;
+- business `changed_files` equals the committed changed-path inventory with
+  only the current Run Manifest removed, and still contains the Report;
+- Planner reports `validated=true`, `indexable=true`, zero evidence gaps and
+  zero warnings for a new v2 Run.
+
+The producer does not guess late paths or silently patch a finalized payload.
+A post-commit mismatch keeps the original Run immutable and non-indexable; any
+correction is a new independently validated Run with explicit correction
+evidence and a `corrects` relationship.
+
 ## 13. Parser routing and Indexer workflow
 
 The parser routes `1.0.0` to the unchanged v1 contract, `2.0.0` to v2, and
