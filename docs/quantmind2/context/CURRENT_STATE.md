@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-17
-Verified source commit before this task: `ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8`
+Verified source commit before this task: `0374aaceab7c8b14e26e3d21ff5ed35366795384`
 
 ## Implemented in existing systems
 
@@ -29,9 +29,9 @@ Verified source commit before this task: `ff4a61bf04e3e8194b6883831aa8a5d36ddb06
 
 ## Not implemented
 
-- Research Skill runtime
-- executable ResearchDecision model and Decision Validator
-- QuantMind 2.0 Bounded Code Orchestrator
+- Generic Research Skill packages beyond Agent Research Campaign v1
+- Cross-domain Decision Validator beyond the Campaign-specific runtime
+- Persistent multi-service QuantMind 2.0 Code Orchestrator
 - Registry → Feature Snapshot → LightGBM lineage
 - Unified Signal Service
 - Project Knowledge API
@@ -456,7 +456,10 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-008 — Agent Research Campaign v1` is the only recommended next task.
+`QM2-P0-008F — Agent Provider Enablement and External Campaign Completion` is
+the only recommended next task. The bounded Baseline Campaign is complete, but
+real Codex CLI structured generation returned exit code 1 on both bounded
+attempts and therefore did not admit an external-AI Proposal.
 Agent may propose new Factor Templates and ResearchDecisions using filtered
 Registry history, but cannot mutate Registry, access Frozen Test details, tune
 after Frozen observation, or approve/activate Factors.
@@ -484,3 +487,26 @@ after Frozen observation, or approve/activate Factors.
   Factors remain unimplemented.
 - Latest Implementation Run:
   `QM2-P0-007-20260717T052606Z-ff4a61b`.
+
+## Agent Research Campaign v1
+
+- `QM2-P0-008` implements closed Research Goal/Decision contracts, sanitized
+  Campaign Memory, deterministic and Codex Agent adapters, structural novelty,
+  bounded orchestration, adaptive Development evaluation, immutable Campaign
+  artifacts, CLI, and research-only Registry evidence under
+  `backend/services/engine/research_campaign/`.
+- Real Baseline Campaign `rc_4970d141...19cd5f` ran three iterations against
+  Dataset Snapshot `ds_dd1defb...e338f`, admitted four novel Templates, ran 12
+  successful Optimization Trials, and published four `research_registered`
+  entries in Registry Snapshot `frs_d40bfd74...584718`.
+- Direction was fixed on 2022–2024. Development feedback used only
+  2025-01-02..2025-12-30 and is explicitly contaminated, adaptive-only, not
+  Validation, not Frozen evidence, and ineligible for promotion. No Frozen
+  evaluator was called and candidate/approved/active additions are all zero.
+- Codex CLI and the real adapter were invoked. Two bounded calls per Campaign
+  returned provider exit code 1 before a structured Proposal was available;
+  Campaign `rc_c9c7a98...3bca43` is therefore immutable `partial` evidence with
+  zero admitted Templates, Trials, or Registry changes. QM2-P0-008 as a whole
+  is partial, not completed.
+- Latest Implementation Run:
+  `QM2-P0-008-20260717T072210Z-0374aac`.

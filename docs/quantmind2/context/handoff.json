@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T05:26:06Z",
-  "source_commit": "ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8",
+  "generated_at": "2026-07-17T07:22:10Z",
+  "source_commit": "0374aaceab7c8b14e26e3d21ff5ed35366795384",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8",
+  "base_commit": "0374aaceab7c8b14e26e3d21ff5ed35366795384",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-007",
-  "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-007-20260717T052606Z-ff4a61b",
-  "next_recommended_tasks": ["QM2-P0-008"],
+  "current_task": "QM2-P0-008",
+  "completion_status": "partial_committed",
+  "latest_implementation_run": "QM2-P0-008-20260717T072210Z-0374aac",
+  "next_recommended_tasks": ["QM2-P0-008F"],
   "unconfirmed_facts": [
     "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics; this no longer blocks the Legacy Snapshot Factor DSL route.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
@@ -38,7 +38,8 @@
     "Storage backend for large snapshot and ledger artifacts.",
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
-    "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment."
+    "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment.",
+    "Codex CLI structured Provider availability: real bounded calls returned exit code 1 before any structured Proposal."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

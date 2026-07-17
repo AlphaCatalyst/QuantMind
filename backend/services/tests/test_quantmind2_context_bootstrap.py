@@ -233,8 +233,8 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["current_task"], "QM2-P0-007")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-008"])
+        self.assertEqual(handoff["current_task"], "QM2-P0-008")
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-008F"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/research_goal_v1.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "allowed_features": {"items": {"type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "allowed_operators": {"items": {"type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "allowed_parameter_roles": {"items": {"enum": ["lookback_window", "factor_internal_weight", "signal_threshold"]}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "constraints": {"items": {"type": "string"}, "minItems": 1, "type": "array", "uniqueItems": true},
+    "dataset_kind": {"type": "string"}, "goal_id": {"pattern": "^rg_[0-9a-f]{64}$", "type": "string"},
+    "maximum_iterations": {"maximum": 3, "minimum": 1, "type": "integer"},
+    "maximum_templates": {"maximum": 8, "minimum": 1, "type": "integer"},
+    "maximum_trials": {"maximum": 64, "minimum": 1, "type": "integer"},
+    "name": {"type": "string"}, "novelty_requirement": {"type": "string"}, "objective": {"type": "string"},
+    "schema_version": {"const": "1.0.0"}
+  },
+  "required": ["schema_version", "goal_id", "name", "objective", "dataset_kind", "allowed_features", "allowed_operators", "allowed_parameter_roles", "maximum_templates", "maximum_trials", "maximum_iterations", "novelty_requirement", "constraints"],
+  "type": "object"
+}

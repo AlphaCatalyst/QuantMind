@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/research_campaign_v1.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "campaign_id": {"pattern": "^rc_[0-9a-f]{64}$", "type": "string"},
+    "event_count": {"minimum": 1, "type": "integer"},
+    "file_hashes": {"additionalProperties": {"pattern": "^[0-9a-f]{64}$", "type": "string"}, "type": "object"},
+    "schema_version": {"const": "research-campaign-v1"}
+  },
+  "required": ["schema_version", "campaign_id", "file_hashes", "event_count"],
+  "type": "object"
+}

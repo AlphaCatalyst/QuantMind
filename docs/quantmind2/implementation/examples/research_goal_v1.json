@@ -1,0 +1,15 @@
+{
+  "allowed_features": ["mom_ret_1d", "liq_volume_ratio_5", "style_beta_20", "style_idio_vol_20"],
+  "allowed_operators": ["add", "subtract", "multiply", "divide", "rolling_mean", "rolling_std", "rolling_min", "rolling_max", "delta", "cs_rank", "cs_zscore"],
+  "allowed_parameter_roles": ["lookback_window", "factor_internal_weight", "signal_threshold"],
+  "constraints": ["no lookahead", "no executable code", "adaptive development only"],
+  "dataset_kind": "legacy_feature_matrix_v1",
+  "goal_id": "rg_b2382653dcd38b623c9b7a14b877ef78ed0d36b43fee64eb1e0afe39cb4b045a",
+  "maximum_iterations": 3,
+  "maximum_templates": 4,
+  "maximum_trials": 16,
+  "name": "novel_legacy_feature_structures",
+  "novelty_requirement": "structurally distinct from Registry and current Campaign",
+  "objective": "Propose parameterized DSL structures distinct from existing families for bounded adaptive development research.",
+  "schema_version": "1.0.0"
+}

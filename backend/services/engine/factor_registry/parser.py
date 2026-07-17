@@ -10,6 +10,8 @@ from .schema import require_id, require_known_status
 
 def entry_payload(entry):
     payload = dict(entry.__dict__); payload["status"] = entry.status.value
+    if payload.get("research_evidence") is None:
+        payload.pop("research_evidence", None)
     payload["parameter_values"] = dict(sorted(entry.parameter_values.items()))
     payload["factor_values_ids"] = list(entry.factor_values_ids)
     payload["status_reasons"] = list(entry.status_reasons)
@@ -20,8 +22,10 @@ def entry_payload(entry):
 
 def parse_entry(payload):
     required = set(RegistryEntry.__dataclass_fields__)
-    if not isinstance(payload, dict) or set(payload) != required:
+    legacy_required = required - {"research_evidence"}
+    if not isinstance(payload, dict) or set(payload) not in (required, legacy_required):
         raise FactorRegistryError("Registry Entry fields do not match closed schema")
+    payload = {**payload, "research_evidence": payload.get("research_evidence")}
     require_id("factor_instance_id", payload["factor_instance_id"]); require_id("template_id", payload["template_id"])
     require_id("dataset_snapshot_id", payload["dataset_snapshot_id"])
     require_id("study_id", payload["optimization_study_id"]); require_id("trial_id", payload["optimization_trial_id"])
@@ -35,6 +39,19 @@ def parse_entry(payload):
         raise FactorRegistryError("Registry Entry family/orientation mismatch")
     if payload["frozen_result_id"] is None and payload["frozen_metrics_summary"] is not None:
         raise FactorRegistryError("Frozen metrics require Frozen evidence")
+    evidence = payload["research_evidence"]
+    if evidence is not None:
+        expected = {"campaign_id", "research_goal_id", "research_decision_id", "development_evaluation_id",
+                    "development_is_contaminated", "is_validation_evidence", "is_frozen_evidence"}
+        if not isinstance(evidence, dict) or set(evidence) != expected:
+            raise FactorRegistryError("Research evidence fields do not match closed schema")
+        patterns = {"campaign_id": r"^rc_[0-9a-f]{64}$", "research_goal_id": r"^rg_[0-9a-f]{64}$",
+                    "research_decision_id": r"^rd_[0-9a-f]{64}$", "development_evaluation_id": r"^der_[0-9a-f]{64}$"}
+        for key, pattern in patterns.items():
+            if not isinstance(evidence[key], str) or not re.fullmatch(pattern, evidence[key]):
+                raise FactorRegistryError("Research evidence identity is invalid")
+        if evidence["development_is_contaminated"] is not True or evidence["is_validation_evidence"] is not False or evidence["is_frozen_evidence"] is not False:
+            raise FactorRegistryError("Research evidence must remain quarantined")
     return RegistryEntry(**{**payload, "status": status, "factor_values_ids": tuple(payload["factor_values_ids"]),
         "status_reasons": tuple(payload["status_reasons"]), "created_from_protocols": tuple(payload["created_from_protocols"])})
 

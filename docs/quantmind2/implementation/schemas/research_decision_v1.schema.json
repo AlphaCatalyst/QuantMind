@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/research_decision_v1.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "decision_id": {"type": "string"}, "goal_id": {"pattern": "^rg_[0-9a-f]{64}$", "type": "string"},
+    "hypothesis_summary": {"maxLength": 2000, "type": "string"}, "iteration": {"minimum": 1, "type": "integer"},
+    "proposals": {"items": {"additionalProperties": false, "properties": {
+      "expected_behavior": {"type": "string"}, "invalidation_conditions": {"items": {"type": "string"}, "type": "array"},
+      "novelty_claim": {"type": "string"}, "parameter_search": {"type": "object"}, "proposal_id": {"type": "string"},
+      "rationale": {"type": "string"}, "risks": {"items": {"type": "string"}, "type": "array"}, "template": {"type": "object"}},
+      "required": ["proposal_id", "template", "parameter_search", "rationale", "expected_behavior", "novelty_claim", "risks", "invalidation_conditions"], "type": "object"},
+      "maxItems": 4, "type": "array"},
+    "schema_version": {"const": "1.0.0"}, "stop_recommendation": {"type": "boolean"}
+  },
+  "required": ["schema_version", "decision_id", "goal_id", "iteration", "hypothesis_summary", "proposals", "stop_recommendation"],
+  "type": "object"
+}

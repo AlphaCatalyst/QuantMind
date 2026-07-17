@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-007: `ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8`
+- Base before QM2-P0-008: `0374aaceab7c8b14e26e3d21ff5ed35366795384`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-007: no
+- Dirty before QM2-P0-008: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -30,11 +30,12 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-007`, implementing Factor Registry v1 and its explicit
-  Promotion Contract without changing research evidence.
-- Task name: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
-- Completed predecessor: `QM2-P0-006F — Immutable Evidence Correction for Factor Validation Run`.
-- Latest run: `QM2-P0-007-20260717T052606Z-ff4a61b` under
+- Current task: `QM2-P0-008`, partially implementing Agent Research Campaign
+  v1; the deterministic real-data loop is complete and the external Provider
+  completion criterion remains unmet.
+- Task name: `QM2-P0-008 — Agent Research Campaign v1`.
+- Completed predecessor: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
+- Latest run: `QM2-P0-008-20260717T072210Z-0374aac` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -158,7 +159,16 @@
   API/UI, durable backend, active Factor, LightGBM/Qlib consumption or backtest
   was introduced. Agent may read filtered failure history but cannot mutate,
   approve, activate, or access Frozen details.
-- Recommended next task: `QM2-P0-008 — Agent Research Campaign v1`.
+- Baseline Campaign `rc_4970d141...19cd5f` produced four new research-only
+  Registry entries after 12 real Trials and contaminated 2025 Development
+  evaluation. Registry before/after: `frs_436f4a96...f2d9` →
+  `frs_d40bfd74...584718`; no promotion candidate, approved, or active entry
+  was added.
+- External Codex Campaign `rc_c9c7a98...3bca43` is partial: two bounded real
+  CLI attempts returned exit code 1 before structured output, so it spent no
+  Trial budget and changed no Registry state. This must not be described as an
+  external AI factor proposal.
+- Recommended next task: `QM2-P0-008F — Agent Provider Enablement and External Campaign Completion`.
 
 ## Unconfirmed facts
 

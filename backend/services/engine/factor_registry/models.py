@@ -52,6 +52,7 @@ class RegistryEntry:
     family_id: str
     created_from_protocols: Tuple[str, ...]
     redundancy_group: Optional[str] = None
+    research_evidence: Optional[Mapping[str, Any]] = None
 
 
 @dataclass(frozen=True)
