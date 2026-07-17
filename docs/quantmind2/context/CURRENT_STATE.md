@@ -456,13 +456,11 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-008F — Agent Provider Enablement and External Campaign Completion` is
-the only recommended next task. The bounded Baseline Campaign is complete, but
-real Codex CLI structured generation returned exit code 1 on both bounded
-attempts and therefore did not admit an external-AI Proposal.
-Agent may propose new Factor Templates and ResearchDecisions using filtered
-Registry history, but cannot mutate Registry, access Frozen Test details, tune
-after Frozen observation, or approve/activate Factors.
+`QM2-P0-009 — Fresh Validation Protocol for Agent-generated Factors` is the
+only recommended next task. The external Provider boundary and one admitted
+research-only Campaign are complete. Agent-generated factors still require a
+fresh formal Validation protocol that does not reuse contaminated 2025
+Development feedback as independent evidence.
 
 ## Factor Registry v1
 
@@ -510,3 +508,24 @@ after Frozen observation, or approve/activate Factors.
   is partial, not completed.
 - Latest Implementation Run:
   `QM2-P0-008-20260717T072210Z-0374aac`.
+
+## External Agent Provider completion
+
+- `QM2-P0-008F` diagnosed the historical exit code 1 as Provider
+  `invalid_json_schema`: Codex CLI structured output requires explicit JSON
+  types alongside `const` and `enum`. The adapter now performs a semantic-only
+  transport normalization, parses JSONL events, classifies Provider failures,
+  redacts safe error summaries, and records bounded call evidence.
+- Codex CLI `0.145.0-alpha.18` successfully used explicitly configured
+  `gpt-5.6-terra`. Historical QM2-P0-008 failed Campaign evidence remains
+  immutable and unchanged.
+- External Campaign `rc_0b13d7f...d9401c`, Decision
+  `rd_0efd9c55...f08e96`, admitted one novel Template, completed Study
+  `fos_eb355bff...ba56be` with four successful Trials, produced contaminated
+  Development result `der_d8e4951e...53bbb`, and published one
+  `research_registered` entry in Registry `frs_7ab0a844...01054`.
+- Replay returned exact-existing with zero new Agent calls. Promotion candidate,
+  approved, active, Validation evidence, and Frozen evidence additions remain
+  zero. The 2025 Development period remains contaminated adaptive research.
+- Latest Implementation Run:
+  `QM2-P0-008F-20260717T113419Z-5988dff`.

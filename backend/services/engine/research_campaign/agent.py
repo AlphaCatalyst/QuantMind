@@ -1,5 +1,7 @@
+import hashlib
 import json
 import os
+import re
 import subprocess
 import tempfile
 from pathlib import Path
@@ -8,6 +10,111 @@ from .canonical import canonical_bytes
 from .decision import decision_json_schema
 from .errors import AgentContractError
 from .models import ResearchAgentRequest, ResearchAgentResponse
+
+
+_SECRET = re.compile(
+    r"(?i)(authorization|api[ _-]?key|access[ _-]?token|secret|password)"
+    r"(\s*[:=]\s*)([^\s,}\"]+)"
+)
+_BEARER = re.compile(r"(?i)\bbearer\s+[^\s,}\"]+")
+_URL = re.compile(r"https?://\S+", re.IGNORECASE)
+
+
+class CodexProviderError(AgentContractError):
+    """Safe, classified failure from the external Codex CLI boundary."""
+
+    def __init__(self, code, summary, *, exit_code=None):
+        self.code = code
+        self.safe_summary = summary
+        self.exit_code = exit_code
+        super().__init__(f"{code}: {summary}")
+
+
+def _provider_schema(value):
+    """Add types required by Codex structured output without changing semantics."""
+    if isinstance(value, list):
+        return [_provider_schema(item) for item in value]
+    if not isinstance(value, dict):
+        return value
+    result = {key: _provider_schema(item) for key, item in value.items()}
+    if "type" in result:
+        return result
+    values = [result["const"]] if "const" in result else result.get("enum")
+    if not values:
+        return result
+    kinds = {_json_type(item) for item in values}
+    if len(kinds) == 1 and None not in kinds:
+        result["type"] = kinds.pop()
+    return result
+
+
+def _json_type(value):
+    if isinstance(value, bool): return "boolean"
+    if isinstance(value, int): return "integer"
+    if isinstance(value, float): return "number"
+    if isinstance(value, str): return "string"
+    if value is None: return "null"
+    return None
+
+
+def _events(stdout):
+    result = []
+    for line in stdout.splitlines():
+        try:
+            event = json.loads(line)
+        except (TypeError, json.JSONDecodeError):
+            continue
+        if isinstance(event, dict):
+            result.append(event)
+    return result
+
+
+def _safe_summary(value):
+    rendered = str(value or "").replace("\x00", " ")
+    rendered = _SECRET.sub(r"\1\2<redacted>", rendered)
+    rendered = _BEARER.sub("Bearer <redacted>", rendered)
+    rendered = _URL.sub("<url>", rendered)
+    rendered = re.sub(r"/(?:Users|private/tmp|tmp)/[^\s,}\"]+", "<path>", rendered)
+    return " ".join(rendered.split())[:300] or "no safe provider detail"
+
+
+def _failure_detail(events, stderr):
+    for event in reversed(events):
+        if event.get("type") == "turn.failed":
+            error = event.get("error")
+            return error.get("message") if isinstance(error, dict) else error
+    errors = [event.get("message") for event in events if event.get("type") == "error"]
+    return errors[-1] if errors else stderr
+
+
+def _failure_code(detail, returncode):
+    text = str(detail or "").lower()
+    checks = (
+        ("authentication_required", ("not logged in", "authentication required", "unauthorized", "invalid api key")),
+        ("unsupported_model", ("model_not_found", "unsupported model", "does not exist", "model is not supported")),
+        ("unsupported_flag", ("unexpected argument", "unknown option", "unrecognized option", "unsupported flag")),
+        ("invalid_schema", ("invalid_json_schema", "invalid schema", "text.format.schema")),
+        ("invalid_prompt_input", ("invalid prompt", "prompt is required", "input is too long")),
+        ("workspace_permission", ("permission denied", "not a trusted directory", "workspace permission")),
+        ("sandbox_failure", ("sandbox", "seatbelt")),
+        ("provider_rate_limit", ("rate_limit", "rate limit", "too many requests", "quota")),
+        ("provider_internal_error", ("internal server error", "server_error", "service unavailable")),
+        ("response_parse_error", ("failed to parse", "invalid json response", "response parse")),
+    )
+    for code, needles in checks:
+        if any(needle in text for needle in needles):
+            return code
+    return "unknown_provider_failure" if returncode else "response_parse_error"
+
+
+def _cli_version(executable, env):
+    try:
+        return subprocess.check_output(
+            [executable, "--version"], env=env, stderr=subprocess.DEVNULL,
+            text=True, timeout=10,
+        ).strip()[:120]
+    except (OSError, subprocess.SubprocessError):
+        return "unavailable"
 
 
 def _feature(name): return {"type": "feature", "name": name}
@@ -106,24 +213,54 @@ class CodexResearchAgent:
         prompt = ("You are the structure-proposal layer of a bounded quantitative research system. "
                   "Return exactly one JSON object matching the supplied schema. Do not include prose, paths, code, "
                   "data rows, labels, control decisions, or secrets. Propose only canonical DSL templates using the "
-                  "allowed features/operators and explicit bounded search spaces.\nREQUEST:\n" +
+                  "allowed features/operators and explicit bounded search spaces. Every declared parameter must be "
+                  "referenced by the expression AST and parameter_search; use lookback parameters only in rolling "
+                  "window or delta periods nodes and factor weights as arithmetic operands. Do not declare unused "
+                  "parameters. The expression root must be an operator, not a constant or bare feature, and must "
+                  "contain at least one allowed feature. A valid lookback use has the exact shape "
+                  "{\"type\":\"rolling_mean\",\"operand\":{\"type\":\"feature\",\"name\":\"mom_ret_1d\"},"
+                  "\"window\":{\"type\":\"parameter\",\"name\":\"window\"}}. For this pre-Signal Campaign, "
+                  "use only lookback_window and factor_internal_weight; signal_threshold is reserved. Use two "
+                  "explicit search values per parameter so each proposal remains small.\nREQUEST:\n" +
                   canonical_bytes({"goal": request.goal, "memory": request.sanitized_memory,
                                    "contract": request.contract}).decode("utf-8"))
         env = {key: os.environ[key] for key in ("PATH", "HOME", "TMPDIR", "LANG", "LC_ALL") if key in os.environ}
+        cli_version = _cli_version(self.executable, env)
         with tempfile.TemporaryDirectory(prefix="qm2-agent-") as temp:
             schema_path = Path(temp) / "schema.json"; output_path = Path(temp) / "response.json"
-            schema_path.write_bytes(canonical_bytes(decision_json_schema()))
+            schema_path.write_bytes(canonical_bytes(_provider_schema(decision_json_schema())))
             command = [self.executable, "exec", "--ephemeral", "--sandbox", "read-only", "--skip-git-repo-check",
-                       "--model", self.model_id, "--output-schema", str(schema_path),
+                       "--model", self.model_id, "--color", "never", "--json", "--output-schema", str(schema_path),
                        "--output-last-message", str(output_path), prompt]
             try:
                 completed = subprocess.run(command, cwd=temp, env=env, stdin=subprocess.DEVNULL,
                     stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, timeout=self.timeout_seconds, check=False)
-            except (OSError, subprocess.TimeoutExpired) as exc:
-                raise AgentContractError(f"Codex adapter unavailable: {type(exc).__name__}") from exc
+            except FileNotFoundError as exc:
+                raise CodexProviderError("cli_not_found", "Codex CLI executable was not found") from exc
+            except subprocess.TimeoutExpired as exc:
+                raise CodexProviderError("timeout", f"Codex CLI exceeded {self.timeout_seconds} seconds") from exc
+            except OSError as exc:
+                raise CodexProviderError("unknown_provider_failure", _safe_summary(type(exc).__name__)) from exc
+            events = _events(completed.stdout)
             if completed.returncode != 0 or not output_path.is_file():
-                raise AgentContractError(f"Codex adapter failed with exit code {completed.returncode}")
+                detail = _failure_detail(events, completed.stderr)
+                raise CodexProviderError(_failure_code(detail, completed.returncode), _safe_summary(detail),
+                                         exit_code=completed.returncode)
             if output_path.stat().st_size > 65536:
-                raise AgentContractError("Codex adapter response exceeds 65536 bytes")
+                raise CodexProviderError("response_parse_error", "Codex adapter response exceeds 65536 bytes",
+                                         exit_code=completed.returncode)
             raw = output_path.read_text(encoding="utf-8")
-        return ResearchAgentResponse(raw, self.provider_id, self.model_id, {"usage_available": False})
+        completed_event = next((event for event in reversed(events) if event.get("type") == "turn.completed"), {})
+        usage = completed_event.get("usage") if isinstance(completed_event.get("usage"), dict) else None
+        request_bytes = canonical_bytes({"goal": request.goal, "memory": request.sanitized_memory,
+                                         "contract": request.contract})
+        evidence = {"provider_id": self.provider_id, "cli_version": cli_version,
+                    "requested_model": self.model_id, "effective_model": self.model_id,
+                    "model_resolution_source": "explicit_adapter_configuration",
+                    "request_sha256": hashlib.sha256(request_bytes).hexdigest(),
+                    "response_sha256": hashlib.sha256(raw.encode("utf-8")).hexdigest(),
+                    "response_size_bytes": len(raw.encode("utf-8")), "exit_code": completed.returncode,
+                    "repair_attempted": "repair_instruction" in request.contract,
+                    "event_count": len(events), "last_event_type": events[-1].get("type") if events else None}
+        return ResearchAgentResponse(raw, self.provider_id, self.model_id,
+                                     {"provider_call": evidence, "usage": usage})

@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-008: `0374aaceab7c8b14e26e3d21ff5ed35366795384`
+- Base before QM2-P0-008F: `5988dff70f1e86a0ba4478182331dcd3109f929b`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-008: no
+- Dirty before QM2-P0-008F: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -30,12 +30,12 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-008`, partially implementing Agent Research Campaign
-  v1; the deterministic real-data loop is complete and the external Provider
-  completion criterion remains unmet.
-- Task name: `QM2-P0-008 — Agent Research Campaign v1`.
-- Completed predecessor: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
-- Latest run: `QM2-P0-008-20260717T072210Z-0374aac` under
+- Current task: `QM2-P0-008F`, completing the real Codex CLI Provider boundary
+  and one admitted external-AI research-only Campaign.
+- Task name: `QM2-P0-008F — Agent Provider Enablement and External Campaign Completion`.
+- Completed predecessor: `QM2-P0-008 — Agent Research Campaign v1` remains
+  historically partial because its external attempts failed.
+- Latest run: `QM2-P0-008F-20260717T113419Z-5988dff` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -168,7 +168,16 @@
   CLI attempts returned exit code 1 before structured output, so it spent no
   Trial budget and changed no Registry state. This must not be described as an
   external AI factor proposal.
-- Recommended next task: `QM2-P0-008F — Agent Provider Enablement and External Campaign Completion`.
+- QM2-P0-008F identifies `invalid_json_schema` as the old root cause and keeps
+  the ResearchDecision contract unchanged while adding Provider-schema type
+  normalization and classified safe diagnostics in `CodexResearchAgent`.
+- External Campaign `rc_0b13d7f...d9401c` used Codex CLI
+  `0.145.0-alpha.18` with explicit `gpt-5.6-terra`, admitted one Proposal,
+  completed four Trials and contaminated Development evaluation, and published
+  one `research_registered` entry in Registry `frs_7ab0a844...01054`.
+  Exact-existing replay made zero additional Agent calls; promotion candidate,
+  approved, active, Validation evidence and Frozen evidence additions are zero.
+- Recommended next task: `QM2-P0-009 — Fresh Validation Protocol for Agent-generated Factors`.
 
 ## Unconfirmed facts
 
