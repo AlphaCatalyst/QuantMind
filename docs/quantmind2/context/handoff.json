@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-16T18:19:59Z",
-  "source_commit": "07a3df9e5809b4b87e31736e00994521af896ebf",
+  "generated_at": "2026-07-17T04:46:08Z",
+  "source_commit": "8ad3e22575f9339955dd5fde4255269d87e9b138",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "07a3df9e5809b4b87e31736e00994521af896ebf",
+  "base_commit": "8ad3e22575f9339955dd5fde4255269d87e9b138",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-006",
+  "current_task": "QM2-P0-006F",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-006-20260716T181959Z-07a3df9",
+  "latest_implementation_run": "QM2-P0-006F-20260717T044608Z-8ad3e22",
   "next_recommended_tasks": ["QM2-P0-007"],
   "unconfirmed_facts": [
     "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics; this no longer blocks the Legacy Snapshot Factor DSL route.",

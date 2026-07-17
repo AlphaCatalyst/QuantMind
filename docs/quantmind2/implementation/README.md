@@ -63,3 +63,9 @@ and can express every current Ledger Domain family without report prose.
 temporal validation artifacts, Validation-only selection, and isolated one-time
 Frozen boundary implemented by QM2-P0-006. These artifacts are predictive
 statistics only; they are not Registry promotion or backtest evidence.
+
+The immutable QM2-P0-006 Run retains one incorrect manually recorded
+`before_hash` and therefore remains Git-inconsistent. QM2-P0-006F adds a
+strict, separately hashed evidence-correction Artifact and a `corrects`
+relationship. It neither edits the original Run nor changes Factor Validation,
+Selection, Frozen Test, promotion, database schema, or production behavior.

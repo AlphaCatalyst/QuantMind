@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0.0",
+  "correction_id": "qm2-p0-006-before-hash-correction-v1",
+  "target_run_id": "QM2-P0-006-20260716T181959Z-07a3df9",
+  "target_containing_commit": "8ad3e22575f9339955dd5fde4255269d87e9b138",
+  "target_base_commit": "07a3df9e5809b4b87e31736e00994521af896ebf",
+  "field": "changed_files.before_hash",
+  "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+  "recorded_value": "11db9e00e1babe3ee77c18b9a38a29461c3afba33519e401b3f321eadf07ae4a",
+  "verified_value": "11db9e00e1aabe3ee77c18b9a38a29461c3afba33519e401b3f321eadf07ae4a",
+  "verified_blob_size": 2443,
+  "verification_method": "git_blob_raw_bytes_sha256",
+  "effect": "evidence_correction_only",
+  "promotion_effect": "none",
+  "immutable_target_report_sha256": "2e622a9c90fbd7b7c7f75a01a28ea0343daafa72fd6494e031a1c5eb4a92b5b0",
+  "immutable_target_manifest_sha256": "e3e07381c6e4ca47267ae639de8d74422470f1a91cf0b0b8c017ef31157eea4e",
+  "validation_result_id": "fvr_b9f247e42487267754d5e6128beb4f90a379b77853462b6ca25f0f2918c51ab0",
+  "candidate_selection_id": "fvs_f679a63089f076c11315f522f4d59dc8248731863ec6aafc02b70c9762819e9c",
+  "frozen_test_result_id": "fvt_734478fcc0291910667321669e5b5293f64594efe6f0e5b1334779f4d921c787",
+  "verified_at": "2026-07-17T04:46:08Z"
+}

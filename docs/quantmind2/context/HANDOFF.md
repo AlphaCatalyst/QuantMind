@@ -4,12 +4,12 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-006: `07a3df9e5809b4b87e31736e00994521af896ebf`
+- Base before QM2-P0-006F: `8ad3e22575f9339955dd5fde4255269d87e9b138`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-006: no
+- Dirty before QM2-P0-006F: no
 - Unrelated dirty files: none
-- Uncommitted work after the QM2-P0-005 commit: no
+- Uncommitted work after the QM2-P0-006 commit: no
 
 ## Official Factor Lab source
 
@@ -30,11 +30,11 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-006`, implementing supervised, temporally isolated
-  Factor Validation and the one-time 2026 Frozen Test.
-- Task name: `QM2-P0-006 — Factor Validation v1 with Immutable Labels and Frozen Test`.
-- Completed predecessor: `QM2-P0-005 — Factor Optimization v1 on Parameterized DSL`.
-- Latest run: `QM2-P0-006-20260716T181959Z-07a3df9` under
+- Current task: `QM2-P0-006F`, recording an immutable implementation-evidence
+  correction without changing Factor Validation behavior or artifacts.
+- Task name: `QM2-P0-006F — Immutable Evidence Correction for Factor Validation Run`.
+- Completed predecessor: `QM2-P0-006 — Factor Validation v1 with Immutable Labels and Frozen Test`.
+- Latest run: `QM2-P0-006F-20260717T044608Z-8ad3e22` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -142,6 +142,15 @@
   Result `fvt_734478fc...21c787`. Four Trials passed Validation gates; only the
   top three were frozen. 2025 remains quarantined and was not used in formal
   metrics. Frozen results did not feed selection or Optimization.
+- The original Run remains Git-inconsistent: its immutable Manifest records
+  `11db9e00e1babe...` for the pre-change `handoff_v1.schema.json`, while raw
+  bytes from base commit `07a3df9e...` hash to `11db9e00e1aabe...`.
+  `QM2-P0-006F` preserves that history and adds the correct value as a strict
+  evidence-correction Artifact with a `corrects` relationship. It does not
+  rewrite the old Run or change Dataset, Validation Result, Selection or
+  Frozen Result identities.
+- The three candidates observed in Frozen Test are not promotion evidence;
+  no factor is currently validated or promoted by a Registry authority.
 - Recommended next task: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
 
 ## Unconfirmed facts

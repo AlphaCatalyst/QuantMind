@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/implementation_evidence_correction_v1.schema.json",
+  "title": "QuantMind 2.0 Implementation Evidence Correction v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "correction_id",
+    "target_run_id",
+    "target_containing_commit",
+    "target_base_commit",
+    "field",
+    "path",
+    "recorded_value",
+    "verified_value",
+    "verified_blob_size",
+    "verification_method",
+    "effect",
+    "promotion_effect",
+    "immutable_target_report_sha256",
+    "immutable_target_manifest_sha256",
+    "validation_result_id",
+    "candidate_selection_id",
+    "frozen_test_result_id",
+    "verified_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "correction_id": {
+      "const": "qm2-p0-006-before-hash-correction-v1"
+    },
+    "target_run_id": {
+      "const": "QM2-P0-006-20260716T181959Z-07a3df9"
+    },
+    "target_containing_commit": {
+      "$ref": "#/$defs/gitCommit"
+    },
+    "target_base_commit": {
+      "$ref": "#/$defs/gitCommit"
+    },
+    "field": {"const": "changed_files.before_hash"},
+    "path": {"$ref": "#/$defs/repoPath"},
+    "recorded_value": {"$ref": "#/$defs/sha256"},
+    "verified_value": {"$ref": "#/$defs/sha256"},
+    "verified_blob_size": {"type": "integer", "minimum": 0},
+    "verification_method": {"const": "git_blob_raw_bytes_sha256"},
+    "effect": {"const": "evidence_correction_only"},
+    "promotion_effect": {"const": "none"},
+    "immutable_target_report_sha256": {"$ref": "#/$defs/sha256"},
+    "immutable_target_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "validation_result_id": {"type": "string", "pattern": "^fvr_[0-9a-f]{64}$"},
+    "candidate_selection_id": {"type": "string", "pattern": "^fvs_[0-9a-f]{64}$"},
+    "frozen_test_result_id": {"type": "string", "pattern": "^fvt_[0-9a-f]{64}$"},
+    "verified_at": {"$ref": "#/$defs/utcDateTime"}
+  },
+  "$defs": {
+    "gitCommit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repoPath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"
+    },
+    "utcDateTime": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?Z$"
+    }
+  }
+}

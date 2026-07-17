@@ -301,3 +301,95 @@ def test_real_003lf_indexes_replays_after_containing_commit(
             await manager.close()
 
     asyncio.run(scenario())
+
+
+def test_real_006f_correction_indexes_relationship_artifact_and_replays_exactly(
+    postgres_url: str,
+) -> None:
+    run_id = "QM2-P0-006F-20260717T044608Z-8ad3e22"
+    target_run_id = "QM2-P0-006-20260716T181959Z-07a3df9"
+    manifest_path = (
+        "docs/quantmind2/implementation/runs/2026/2026-07/"
+        f"{run_id}/manifest.json"
+    )
+    committed = subprocess.run(
+        ["git", "cat-file", "-e", f"HEAD:{manifest_path}"],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if committed.returncode != 0:
+        pytest.skip("006F verification requires its containing commit")
+    plan = ImplementationRunPlanner(
+        GitSnapshot(bind_repository("quantmind-main", ROOT))
+    ).plan(run_id)
+    analyzed = plan.runs[0]
+    assert analyzed.validated and analyzed.indexable
+    assert analyzed.evidence.consistent and analyzed.evidence.warnings == ()
+    assert analyzed.domain_build is not None
+    assert analyzed.domain_build.gaps == ()
+    assert analyzed.domain_build.bundle is not None
+    bundle = analyzed.domain_build.bundle
+    assert len(bundle.relationships) == 1
+    assert bundle.relationships[0].relationship_type.value == "corrects"
+    assert bundle.relationships[0].target_run_id == target_run_id
+    assert any(
+        item.artifact_type == "implementation_evidence_correction"
+        for item in bundle.artifacts
+    )
+
+    async def scenario() -> None:
+        config = DatabaseConfig()
+        config.database_url = postgres_url
+        config.pool_size = 2
+        config.max_overflow = 0
+        manager = DatabaseManager(config)
+        await manager.initialize()
+        try:
+            indexer = LedgerIndexer(
+                lambda: AsyncLedgerUnitOfWork(database_manager=manager)
+            )
+            target = _bundle(
+                target_run_id,
+                _task("QM2-P0-006", None, 0),
+                1,
+            )
+            target_result = await indexer.index_bundles(
+                repository_id="quantmind-main",
+                ref_commit="8" * 40,
+                discovered=1,
+                validated=1,
+                bundles=(target,),
+            )
+            assert target_result.indexed == 1
+
+            first = await indexer.index_plan(plan)
+            assert first.indexed == 1 and first.replayed == 0
+            assert first.relationships == 1 and first.failed == 0
+            second = await indexer.index_plan(plan)
+            assert second.indexed == 0 and second.replayed == 1
+            assert second.relationships == 1 and second.failed == 0
+
+            async with AsyncLedgerUnitOfWork(database_manager=manager) as uow:
+                repository = uow.repository
+                assert repository is not None
+                assert await repository.get_run(target_run_id) == target.run
+                assert await repository.get_run(run_id) == bundle.run
+                relationships = await repository.list_outgoing_relationships(run_id)
+                assert tuple(relationships) == bundle.relationships
+                artifacts = await repository.list_artifacts(run_id)
+                correction_artifacts = [
+                    item for item in artifacts
+                    if item.artifact_type == "implementation_evidence_correction"
+                ]
+                assert len(correction_artifacts) == 1
+                assert correction_artifacts[0].path_or_uri.endswith(
+                    "QM2-P0-006-evidence-correction-v1.json"
+                )
+                changed_files = await repository.list_changed_files(run_id)
+                assert changed_files
+                assert all(item.path != manifest_path for item in changed_files)
+        finally:
+            await manager.close()
+
+    asyncio.run(scenario())

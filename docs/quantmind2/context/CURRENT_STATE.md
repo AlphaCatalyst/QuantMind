@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-17
-Verified source commit before this task: `07a3df9e5809b4b87e31736e00994521af896ebf`
+Verified source commit before this task: `8ad3e22575f9339955dd5fde4255269d87e9b138`
 
 ## Implemented in existing systems
 
@@ -56,7 +56,17 @@ Verified source commit before this task: `07a3df9e5809b4b87e31736e00994521af896e
   Selection or Optimization.
 - No Registry promotion, LightGBM, Qlib, signal, portfolio, backtest, Sharpe or
   future-return conclusion was produced. Registry remains the next boundary.
-- Latest Implementation Run: `QM2-P0-006-20260716T181959Z-07a3df9`.
+- The Factor Validation implementation is committed at
+  `8ad3e22575f9339955dd5fde4255269d87e9b138`. Its immutable Implementation
+  Run `QM2-P0-006-20260716T181959Z-07a3df9` remains Git-inconsistent because
+  one manually recorded `before_hash` differs from the base Git blob.
+- `QM2-P0-006F` records the verified base-blob SHA-256 in a separate strict
+  evidence-correction Artifact and links it with `corrects`; it does not edit
+  or make the original Run consistent and does not alter Validation, Selection
+  or Frozen Test artifacts.
+- The three Frozen candidates remain confirmatory observations only. They do
+  not constitute Registry promotion evidence and none is currently promoted.
+- Latest Implementation Run: `QM2-P0-006F-20260717T044608Z-8ad3e22`.
 
 ## Completed context bootstrap
 
@@ -447,6 +457,6 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-006 — Factor Validation v1 with Train, Validation and Frozen Test` is
-the only recommended next task. The Optimizer must remain unable to access
-Frozen Test, and the Ledger stage remains closed.
+`QM2-P0-007 — Factor Registry v1 and Promotion Contract` is the only
+recommended next task. Registry admission must preserve the exact Validation,
+Selection and Frozen identities without recomputation or automatic promotion.

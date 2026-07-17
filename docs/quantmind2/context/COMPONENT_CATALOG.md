@@ -11,11 +11,12 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind.risk` | implemented | Existing RiskAnalyzer |
 | `quantmind.feature_snapshots` | partial | Production annual Parquet is now exposed read-only with exact inventory and a real immutable QM2 Snapshot; training has not switched |
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
-| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger persistence/indexing, strict self-reference-free Manifest v2 production, bounded historical-v2 compatibility and isolated evidence exist; API/UI and production deployment do not |
+| `quantmind2.project_knowledge` | partial | Bootstrap, Ledger persistence/indexing, strict self-reference-free Manifest v2 production, immutable correction evidence and isolated replay exist; API/UI and production deployment do not |
 | `quantmind2.data_foundation` | partial | Daily Bars and Legacy Feature provider boundaries, real legacy immutable Snapshot, quality, validation, safe readers and CLI exist; real TDX and production consumer switches do not |
 | `quantmind2.factor_dsl` | partial | Closed typed AST, strict admission, canonical Template/Instance identities and dataset-aware compiler exist; optimization, Registry and Agent loop do not |
 | `quantmind2.factor_compute` | partial | Deterministic Snapshot-only executor and immutable Factor Values v1 exist; distributed compute, Registry, validation and production consumers do not |
 | `quantmind2.factor_optimization` | partial | Deterministic declared-parameter Study/Trial execution, budgets, mechanical metrics, eligibility, immutable artifacts and replay exist; predictive validation, random/Bayesian search, threshold, Registry/API and distributed execution do not |
+| `quantmind2.factor_validation` | partial | Immutable temporal Dataset, Validation Result, Selection and isolated Frozen Result exist; current evidence does not constitute Registry promotion |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

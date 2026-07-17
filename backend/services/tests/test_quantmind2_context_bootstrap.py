@@ -221,17 +221,19 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_factor_validation_and_names_exact_registry_next_task(self):
+    def test_handoff_records_validation_evidence_correction_and_exact_registry_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn(
-            "QM2-P0-006 — Factor Validation v1 with Immutable Labels and Frozen Test",
+            "QM2-P0-006F — Immutable Evidence Correction for Factor Validation Run",
             text,
         )
+        self.assertIn("original Run remains Git-inconsistent", text)
         self.assertIn(
             "QM2-P0-007 — Factor Registry v1 and Promotion Contract",
             text,
         )
         handoff = load_json(QM2 / "context" / "handoff.json")
+        self.assertEqual(handoff["current_task"], "QM2-P0-006F")
         self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-007"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):

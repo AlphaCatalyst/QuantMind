@@ -57,6 +57,13 @@ LEDGER_MIGRATION_RUNNER = ROOT / "tools" / "quantmind2" / "ledger_migrations.py"
 LEDGER_INDEXER_CONTRACT = QM2 / "implementation" / "LEDGER_MANIFEST_INDEXER_V1.md"
 LEDGER_INDEXING_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge" / "indexing"
 LEDGER_INDEXER_CLI = ROOT / "tools" / "quantmind2" / "index_implementation_runs.py"
+EVIDENCE_CORRECTION_SCHEMA = (
+    SCHEMAS / "implementation_evidence_correction_v1.schema.json"
+)
+EVIDENCE_CORRECTION = (
+    QM2 / "implementation" / "corrections"
+    / "QM2-P0-006-evidence-correction-v1.json"
+)
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -952,13 +959,41 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-006" not in handoff_text or "Factor Validation v1" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-006 Factor Validation task")
+    if "QM2-P0-006F" not in handoff_text or "evidence correction" not in handoff_text.lower():
+        raise ValidationError("human handoff does not name current QM2-P0-006F evidence correction task")
     if "QM2-P0-007 — Factor Registry v1 and Promotion Contract" not in handoff_text:
         raise ValidationError("human handoff does not name exact QM2-P0-007 next task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-007"]:
         raise ValidationError("machine handoff must name the exact Factor Registry task")
     checks.append("handoff_links")
+
+    correction = validate_file(EVIDENCE_CORRECTION, EVIDENCE_CORRECTION_SCHEMA)
+    if correction["recorded_value"] == correction["verified_value"]:
+        raise ValidationError("evidence correction must record a real value difference")
+    blob = subprocess.run(
+        [
+            "git", "cat-file", "blob",
+            f"{correction['target_base_commit']}:{correction['path']}",
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        check=False,
+    )
+    if blob.returncode:
+        raise ValidationError("evidence correction base Git blob is unavailable")
+    if len(blob.stdout) != correction["verified_blob_size"]:
+        raise ValidationError("evidence correction Git blob size mismatch")
+    if hashlib.sha256(blob.stdout).hexdigest() != correction["verified_value"]:
+        raise ValidationError("evidence correction Git blob SHA-256 mismatch")
+    target_root = (
+        QM2 / "implementation" / "runs" / "2026" / "2026-07"
+        / correction["target_run_id"]
+    )
+    if sha256_file(target_root / "report.md") != correction["immutable_target_report_sha256"]:
+        raise ValidationError("evidence correction target report hash mismatch")
+    if sha256_file(target_root / "manifest.json") != correction["immutable_target_manifest_sha256"]:
+        raise ValidationError("evidence correction target Manifest hash mismatch")
+    checks.append("implementation_evidence_correction")
 
     v1_example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
     v1_schema = SCHEMAS / "implementation_manifest_v1.schema.json"
