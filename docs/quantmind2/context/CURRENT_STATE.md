@@ -316,6 +316,25 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-002B1-20260716T135059Z-0353435`.
 
+## Fresh Validation forward protocol v1
+
+- QM2-P0-009 locks three exact admitted candidates in
+  `fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b`.
+- Exposure ledger `rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff`
+  records 2024 Validation, adaptive 2025 Development and historical 2026 Frozen
+  exposure. Protocol `fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867`
+  freezes the earliest common 60-date window and all pass gates.
+- Lock time is 2026-07-17T14:12:16.318993Z, market date 2026-07-17. The
+  previously available source cutoff is 2026-06-24. Watermark
+  `fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248`
+  finds source maximum 2026-06-24 and zero eligible dates; state is
+  `awaiting_first_fresh_date`.
+- No old 2026 rows were backfilled, no real Fresh evaluation ran, and promotion,
+  approved and active counts remain zero.
+- Registry successor `frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5`
+  adds only bounded `awaiting_data` evidence to those three entries; every main
+  status remains `research_registered`.
+
 ## Next task
 
 ## Market data entry and Dataset Snapshot v1
@@ -471,11 +490,9 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-009 — Fresh Validation Protocol for Admitted Agent-generated Factors` is the
-only recommended next task. The external Provider boundary and one admitted
-research-only Campaign are complete. Agent-generated factors still require a
-fresh formal Validation protocol that does not reuse contaminated 2025
-Development feedback as independent evidence.
+`QM2-P0-010 — Persistent Research Artifact Store v1` is the only recommended
+next task. A real one-time evaluation is separately permitted only after 60
+post-lock label-complete dates exist.
 
 ## Factor Registry v1
 

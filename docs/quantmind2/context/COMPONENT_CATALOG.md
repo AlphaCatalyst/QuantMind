@@ -105,3 +105,9 @@ repository identity, Mapper/identity versions, and canonical integrity. v1
 remains immutable compatibility. The B1 Run itself passes full Git and isolated
 PostgreSQL indexing/replay/conflict verification; no production deployment,
 historical backfill, API, or UI was added.
+
+QM2-P0-009 adds partial `quantmind2.fresh_validation` under
+`backend/services/engine/fresh_validation`. It locks the exact admitted cohort,
+maintains append-only exposure and immutable Watermarks, builds post-lock
+accrual artifacts, and enforces a one-time earliest-60-date evaluator. The real
+source predates the lock, so no real evaluation result or promotion exists.

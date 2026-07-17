@@ -54,6 +54,8 @@ class RegistryEntry:
     redundancy_group: Optional[str] = None
     research_evidence: Optional[Mapping[str, Any]] = None
     fresh_validation_admission: Optional[Mapping[str, Any]] = None
+    fresh_validation_status: Optional[Mapping[str, Any]] = None
+    fresh_validation_evidence: Optional[Mapping[str, Any]] = None
 
 
 @dataclass(frozen=True)

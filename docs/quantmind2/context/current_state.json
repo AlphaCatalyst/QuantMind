@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T13:38:12Z",
-  "source_commit": "8bf1bb6daa6ed444ac5b4924595aeb4f0690d249",
+  "generated_at": "2026-07-17T14:15:00Z",
+  "source_commit": "34dfa6eb50d7bd9405c3d3bdf0019aa84f9de432",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,9 +12,9 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-008G",
-  "latest_implementation_run": "QM2-P0-008G-20260717T133812Z-8bf1bb6",
-  "current_canonical_registry_snapshot_id": "frs_f0a08cc472270cf80f2ae8c1141de17871dacbe2edccba8eb4ffe05ca45d3ba4",
+  "current_task": "QM2-P0-009",
+  "latest_implementation_run": "QM2-P0-009-20260717T141500Z-34dfa6e",
+  "current_canonical_registry_snapshot_id": "frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5",
   "components_by_status": {
     "implemented": [
       "quantmind.training",
@@ -32,7 +32,8 @@
       "quantmind2.factor_optimization",
       "quantmind2.factor_validation",
       "quantmind2.factor_registry",
-      "quantmind2.research_campaign"
+      "quantmind2.research_campaign",
+      "quantmind2.fresh_validation"
     ],
     "planned": [
       "quantmind2.experiment_manager",
@@ -45,5 +46,13 @@
     "deprecated": [],
     "blocked": []
   },
-  "next_task_candidates": ["QM2-P0-009"]
+  "fresh_validation": {
+    "candidate_lock_id": "fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b",
+    "protocol_id": "fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867",
+    "exposure_ledger_id": "rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff",
+    "watermark_id": "fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248",
+    "status": "awaiting_first_fresh_date", "eligible_date_count": 0,
+    "real_evaluation_executed": false
+  },
+  "next_task_candidates": ["QM2-P0-010"]
 }

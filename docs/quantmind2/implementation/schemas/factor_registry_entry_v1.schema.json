@@ -45,6 +45,24 @@
         "admitted": {"type": "boolean"},
         "reasons": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "rank": {"type": "integer", "minimum": 1}
+      }},
+    "fresh_validation_status": {"type": "object", "additionalProperties": false,
+      "required": ["candidate_lock_id", "protocol_id", "watermark_id", "status"],
+      "properties": {
+        "candidate_lock_id": {"type": "string", "pattern": "^fvcl_[0-9a-f]{64}$"},
+        "protocol_id": {"type": "string", "pattern": "^fvp_[0-9a-f]{64}$"},
+        "watermark_id": {"type": "string", "pattern": "^fdw_[0-9a-f]{64}$"},
+        "status": {"enum": ["awaiting_data", "collecting", "evaluated"]}
+      }},
+    "fresh_validation_evidence": {"type": "object", "additionalProperties": false,
+      "required": ["candidate_lock_id", "protocol_id", "result_id", "passed", "reasons", "rank", "evaluation_window"],
+      "properties": {
+        "candidate_lock_id": {"type": "string", "pattern": "^fvcl_[0-9a-f]{64}$"},
+        "protocol_id": {"type": "string", "pattern": "^fvp_[0-9a-f]{64}$"},
+        "result_id": {"type": "string", "pattern": "^fvvr_[0-9a-f]{64}$"},
+        "passed": {"type": "boolean"}, "reasons": {"type": "array", "items": {"type": "string"}},
+        "rank": {"type": ["integer", "null"], "minimum": 1},
+        "evaluation_window": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "string", "format": "date"}}
       }}
   },
   "$defs": {"templateId": {"type": "string", "pattern": "^ft_[0-9a-f]{64}$"}}

@@ -959,12 +959,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-008G — Canonical Registry Reconciliation and Fresh Validation Admission" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-008G reconciliation task")
-    if "QM2-P0-009 — Fresh Validation Protocol for Admitted Agent-generated Factors" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-009 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-009"]:
-        raise ValidationError("machine handoff must name the exact fresh Validation task")
+    if "QM2-P0-009" not in handoff_text:
+        raise ValidationError("human handoff does not name current QM2-P0-009 task")
+    if "QM2-P0-010 — Persistent Research Artifact Store v1" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-010 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-010"]:
+        raise ValidationError("machine handoff must name the exact persistent artifact task")
     checks.append("handoff_links")
 
     correction = validate_file(EVIDENCE_CORRECTION, EVIDENCE_CORRECTION_SCHEMA)

@@ -186,7 +186,14 @@
   `fvar_89e61fe674bff1d10d46c9bea3913a456f236bbc191578291529736480a831ab`
   admits three of five Agent-generated candidates; the external factor is not
   admitted. This is not Fresh Validation or Frozen evidence.
-- Recommended next task: `QM2-P0-009 — Fresh Validation Protocol for Admitted Agent-generated Factors`.
+- QM2-P0-009 locked three admitted candidates on market date 2026-07-17 under
+  Candidate Lock `fvcl_716d7465...63c7b`, Protocol `fvp_93163e1b...5a867`,
+  Exposure Ledger `rdel_56d95b7...5f5ff`, and Watermark `fdw_3459fb5...aa248`.
+  The real source ends 2026-06-24; eligible count is zero and status is
+  `awaiting_first_fresh_date`. Registry successor `frs_c2ef675...0237b5` adds
+  awaiting-data evidence without changing main status. No historical backfill
+  or real Fresh result exists.
+- Recommended next task: `QM2-P0-010 — Persistent Research Artifact Store v1`.
 
 ## Unconfirmed facts
 

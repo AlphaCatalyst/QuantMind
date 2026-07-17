@@ -1,0 +1,430 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-009-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "a8281a3fe2b7470b7dbcdc412a4921dbb13c33cac3f35c1338b95671686a267f",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 6177
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-009-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-009-candidate-lock",
+      "artifact_type": "fresh_validation_candidate_lock",
+      "content_hash": "ab4f6e44ea1a93fe7c7c97a25f5071ee17611460a8123840118a884563381512",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/research/fresh_validation/candidate-locks/fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b.json",
+      "schema_version": "fresh-validation-candidate-lock-v1",
+      "size_bytes": 6564
+    },
+    {
+      "artifact_id": "artifact-009-exposure-ledger",
+      "artifact_type": "research_data_exposure_ledger",
+      "content_hash": "729c5c7c170e1cb02d56c3dfdaf3f405cf93106df0179c06f59c7227aacfc65c",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/research/fresh_validation/exposure-ledger/rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff.json",
+      "schema_version": "research-data-exposure-ledger-v1",
+      "size_bytes": 1808
+    },
+    {
+      "artifact_id": "artifact-009-protocol",
+      "artifact_type": "fresh_validation_protocol",
+      "content_hash": "f1aaa90b4ba342d28ca927deda2c5790a842c8d9b525ba36d1d34b0e488932df",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/research/fresh_validation/protocols/fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867.json",
+      "schema_version": "fresh-validation-protocol-v1",
+      "size_bytes": 1668
+    },
+    {
+      "artifact_id": "artifact-009-watermark",
+      "artifact_type": "fresh_validation_watermark",
+      "content_hash": "e35e11c8085e880337cb23aa4629c0e24f16e7451d2256ecd7b79f71078998dd",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/research/fresh_validation/watermarks/fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248.json",
+      "schema_version": "fresh-validation-data-watermark-v1",
+      "size_bytes": 720
+    },
+    {
+      "artifact_id": "artifact-009-registry",
+      "artifact_type": "factor_registry_snapshot",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-009/registry/snapshots/frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5",
+      "schema_version": "factor-registry-snapshot-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "f1764fb07f0cf3ad4df4a8e8794f2cef501a0a5ba0ed91f5249034478b352b3e",
+      "before_hash": "6516801ad1d468c4bce2d9150fa2d3dedaed8c4e6cfe3901d37326964a319abf",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4c2df3f03ee556e130fe819b0e9d9e22158435b2a7f187026b7325e87adb093d",
+      "before_hash": "deb05b08de5c39b99147b84f107a8d315e87d606ed8fc4b377c05efdc9287a95",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cd418dda95b7545239a27d19640b11f2c846a02dfe6564fa019f216afee60b15",
+      "before_hash": "842fce9f2d5f7585e3ed9a1c226752acbb2d8223222e2040addadb049d422a5c",
+      "change_type": "modified",
+      "path": "backend/services/engine/research_campaign/memory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6456ee7a9f4afa7ab0a411021be371e7904fd2c524e0bed8011d2cc0349f82cc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1d576b52d5d24cf7b3926cf72422f5da0da359d15751b4608aabaedd46b14b8c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/accrual.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b66c39f1c8bdb1559eddb9fb5cbb0fe34bf8ce5e06c4baa427e7a610c53cdbf5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3eebce630f6812cac2dbd579c7ef9f3acfee9102617506dec0a1115fafd07ccb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/control.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "aaa598ee8ae892606e65bf32b0a5b28b4e36243cba6e9c50525aafaf14bd32a0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d654c3349e43c43256381dc1ef9b662d1810ea3bdee8009b51a597d6155eb16",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/evaluation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "388e0de7aa6c125e8b12e4d1f2c018e1ea0ca29f20b1ac1e3b3d84d7f7126423",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/factor_compute.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "80b6f4a18cb2c606934c2134330a9ed53be337f5c33890f50c048c3e1dc27b0f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_fresh_validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "021fa3102d4df7eed35a9e1663001a260c11988ffde7e942916de85643e42fa8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/fresh_validation.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_validation/control.py",
+      "qualified_name": "build_candidate_lock",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_validation/accrual.py",
+      "qualified_name": "build_accrual_snapshot",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_validation/evaluation.py",
+      "qualified_name": "evaluate_fresh_validation",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/models.py",
+      "qualified_name": "RegistryEntry.fresh_validation_status",
+      "symbol_type": "schema"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/research_campaign/memory.py",
+      "qualified_name": "sanitize_memory",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_registry",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_campaign",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-009-candidate-lock",
+        "sha256": "ab4f6e44ea1a93fe7c7c97a25f5071ee17611460a8123840118a884563381512"
+      },
+      {
+        "artifact_id": "artifact-009-exposure-ledger",
+        "sha256": "729c5c7c170e1cb02d56c3dfdaf3f405cf93106df0179c06f59c7227aacfc65c"
+      },
+      {
+        "artifact_id": "artifact-009-protocol",
+        "sha256": "f1aaa90b4ba342d28ca927deda2c5790a842c8d9b525ba36d1d34b0e488932df"
+      },
+      {
+        "artifact_id": "artifact-009-watermark",
+        "sha256": "e35e11c8085e880337cb23aa4629c0e24f16e7451d2256ecd7b79f71078998dd"
+      },
+      {
+        "artifact_id": "artifact-qm2-p0-009-report",
+        "sha256": "a8281a3fe2b7470b7dbcdc412a4921dbb13c33cac3f35c1338b95671686a267f"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/fresh_validation/__init__.py",
+      "backend/services/engine/fresh_validation/accrual.py",
+      "backend/services/engine/fresh_validation/canonical.py",
+      "backend/services/engine/fresh_validation/control.py",
+      "backend/services/engine/fresh_validation/errors.py",
+      "backend/services/engine/fresh_validation/evaluation.py",
+      "backend/services/engine/fresh_validation/factor_compute.py",
+      "backend/services/tests/test_fresh_validation.py",
+      "docs/quantmind2/implementation/FRESH_VALIDATION_ACCRUAL_V1.md",
+      "docs/quantmind2/implementation/FRESH_VALIDATION_PROTOCOL_V1.md",
+      "docs/quantmind2/implementation/RESEARCH_DATA_EXPOSURE_LEDGER_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+      "docs/quantmind2/research/fresh_validation/candidate-locks/fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b.json",
+      "docs/quantmind2/research/fresh_validation/exposure-ledger/rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff.json",
+      "docs/quantmind2/research/fresh_validation/protocols/fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867.json",
+      "docs/quantmind2/research/fresh_validation/watermarks/fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248.json",
+      "tools/quantmind2/fresh_validation.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/factor_registry/models.py",
+      "backend/services/engine/factor_registry/parser.py",
+      "backend/services/engine/fresh_validation/__init__.py",
+      "backend/services/engine/fresh_validation/accrual.py",
+      "backend/services/engine/fresh_validation/canonical.py",
+      "backend/services/engine/fresh_validation/control.py",
+      "backend/services/engine/fresh_validation/errors.py",
+      "backend/services/engine/fresh_validation/evaluation.py",
+      "backend/services/engine/fresh_validation/factor_compute.py",
+      "backend/services/engine/research_campaign/memory.py",
+      "backend/services/tests/test_fresh_validation.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/FRESH_VALIDATION_ACCRUAL_V1.md",
+      "docs/quantmind2/implementation/FRESH_VALIDATION_PROTOCOL_V1.md",
+      "docs/quantmind2/implementation/RESEARCH_DATA_EXPOSURE_LEDGER_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "docs/quantmind2/research/fresh_validation/candidate-locks/fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b.json",
+      "docs/quantmind2/research/fresh_validation/exposure-ledger/rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff.json",
+      "docs/quantmind2/research/fresh_validation/protocols/fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867.json",
+      "docs/quantmind2/research/fresh_validation/watermarks/fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248.json",
+      "tools/quantmind2/fresh_validation.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "98446c478758012cafa5dc10bf2fdcc87a2a9b3fb982954eea7761f3232dd189",
+    "manifest_payload_sha256": "9167fe349f33cba6567c596ca9d5d41679f076f969ee6f15fdf7f4b97204deb1",
+    "report_sha256": "a8281a3fe2b7470b7dbcdc412a4921dbb13c33cac3f35c1338b95671686a267f",
+    "source_bundle_sha256": "ec0428537793eb9962c318818ad5853acb901f7c2cb6f995b707ab6d3d83476f"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "description": "The real source predates the lock; no real Fresh result exists.",
+      "limitation_id": "lim-009-awaiting-data",
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "description": "Future large accrual and result artifacts require persistent storage.",
+      "limitation_id": "lim-009-durable-artifacts",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-010",
+      "priority": "P0",
+      "reason": "Persist immutable research artifacts beyond temporary runtime roots.",
+      "recommendation_id": "recommend-009-010"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-17T14:15:00Z",
+      "reason": "The immutable admission result defines the locked cohort.",
+      "relationship_id": "rel-009-depends-008g",
+      "relationship_type": "depends_on",
+      "source_run_id": "QM2-P0-009-20260717T141500Z-34dfa6e",
+      "target_run_id": "QM2-P0-008G-20260717T133812Z-8bf1bb6"
+    }
+  ],
+  "repository": {
+    "base_commit": "34dfa6eb50d7bd9405c3d3bdf0019aa84f9de432",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "34dfa6eb50d7bd9405c3d3bdf0019aa84f9de432",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-17T14:20:00Z",
+    "completion_level": "complete",
+    "consistency_status": "consistent",
+    "git_diff_hash": "98446c478758012cafa5dc10bf2fdcc87a2a9b3fb982954eea7761f3232dd189",
+    "implementation_run_id": "QM2-P0-009-20260717T141500Z-34dfa6e",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "ec0428537793eb9962c318818ad5853acb901f7c2cb6f995b707ab6d3d83476f",
+    "started_at": "2026-07-17T13:58:00Z",
+    "task_id": "QM2-P0-009",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-17T14:15:00Z",
+    "explicit_non_goals": [
+      "No historical backfill or real immature evaluation",
+      "No Agent Optimization Development Frozen model signal Qlib backtest or promotion",
+      "No dependency database API UI or configuration change"
+    ],
+    "objective": "Lock the admitted cohort before future data and implement strict forward accrual and one-time evaluation.",
+    "parent_task_id": "QM2-P0-008G",
+    "scope": [
+      "Candidate lock and exposure ledger",
+      "Watermark accrual maturity and one-time evaluator",
+      "Registry memory CLI tests documentation and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-009",
+    "title": "Fresh Validation Protocol for Admitted Agent-generated Factors"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_fresh_validation.py -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 9,
+      "purpose": "Fresh lock exposure watermark accrual maturity evaluator replay and security",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-009-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest <DSL Optimization Validation Registry Campaign Dataset Manifest Context relevant tests> -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 243,
+      "purpose": "Full relevant regression",
+      "skipped_count": 9,
+      "status": "passed",
+      "test_execution_id": "test-009-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 39,
+      "purpose": "Project Memory consistency",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-009-bootstrap"
+    }
+  ]
+}

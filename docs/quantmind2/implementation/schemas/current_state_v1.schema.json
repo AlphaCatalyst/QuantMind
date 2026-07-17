@@ -9,6 +9,9 @@
     "architecture_version": {"const": "v1"}, "current_task": {"type": "string"}, "latest_implementation_run": {"type": "string"},
     "current_canonical_registry_snapshot_id": {"type": "string", "pattern": "^frs_[0-9a-f]{64}$"},
     "components_by_status": {"type": "object", "required": ["implemented", "partial", "planned", "not_implemented", "deprecated", "blocked"], "additionalProperties": false, "properties": {"implemented": {"type": "array", "items": {"type": "string"}}, "partial": {"type": "array", "items": {"type": "string"}}, "planned": {"type": "array", "items": {"type": "string"}}, "not_implemented": {"type": "array", "items": {"type": "string"}}, "deprecated": {"type": "array", "items": {"type": "string"}}, "blocked": {"type": "array", "items": {"type": "string"}}}},
-    "next_task_candidates": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-002A2b", "QM2-P0-002A3", "QM2-P0-002B", "QM2-P0-003", "QM2-P0-003F", "QM2-P0-004", "QM2-P0-005", "QM2-P0-006", "QM2-P0-007", "QM2-P0-008", "QM2-P0-008F", "QM2-P0-009"]}}
+    "fresh_validation": {"type": "object", "additionalProperties": false,
+      "required": ["candidate_lock_id", "protocol_id", "exposure_ledger_id", "watermark_id", "status", "eligible_date_count", "real_evaluation_executed"],
+      "properties": {"candidate_lock_id": {"type": "string", "pattern": "^fvcl_[0-9a-f]{64}$"}, "protocol_id": {"type": "string", "pattern": "^fvp_[0-9a-f]{64}$"}, "exposure_ledger_id": {"type": "string", "pattern": "^rdel_[0-9a-f]{64}$"}, "watermark_id": {"type": "string", "pattern": "^fdw_[0-9a-f]{64}$"}, "status": {"enum": ["awaiting_first_fresh_date", "collecting", "mature", "evaluated", "blocked"]}, "eligible_date_count": {"type": "integer", "minimum": 0}, "real_evaluation_executed": {"type": "boolean"}}},
+    "next_task_candidates": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-002A2b", "QM2-P0-002A3", "QM2-P0-002B", "QM2-P0-003", "QM2-P0-003F", "QM2-P0-004", "QM2-P0-005", "QM2-P0-006", "QM2-P0-007", "QM2-P0-008", "QM2-P0-008F", "QM2-P0-009", "QM2-P0-010"]}}
   }
 }

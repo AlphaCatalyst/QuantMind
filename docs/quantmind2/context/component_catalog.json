@@ -132,6 +132,11 @@
       "current_limitations": ["Offline single-process artifact runtime only; no API, database index, concurrency worker, model, backtest, or promotion.", "The deterministic Baseline and one admitted external Codex Campaign completed; fresh formal Validation of Agent-generated factors remains separate.", "All 2025 feedback is contaminated adaptive research only and requires fresh formal Validation."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
+      "component_id": "quantmind2.fresh_validation", "name": "Fresh Validation", "status": "partial", "responsibility": "Lock admitted candidate lineage before future data, track exposure and source watermarks, accrue immutable post-lock data, and perform one fixed-window one-time evaluation after maturity.",
+      "source_path": "backend/services/engine/fresh_validation", "target_path": "backend/services/engine/fresh_validation", "key_symbols": ["build_candidate_lock", "build_exposure_ledger", "build_protocol", "build_watermark", "build_accrual_snapshot", "evaluate_fresh_validation"], "dependencies": ["quantmind2.factor_dsl", "quantmind2.factor_validation", "quantmind2.factor_registry", "quantmind2.data_foundation"], "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007"],
+      "current_limitations": ["Real source ends before the 2026-07-17 lock, so eligible count is zero and no real Fresh result exists.", "Control artifacts are durable in Git; future large accrual/result artifacts still need persistent storage."], "last_verified_commit": null, "evidence_level": "code_confirmed"
+    },
+    {
       "component_id": "quantmind2.experiment_manager", "name": "Experiment Manager", "status": "planned", "responsibility": "Bind Agent, trials, validation, model, signal, backtest, artifacts, data, code, environment, and seed lineage.",
       "source_path": null, "target_path": "backend/services/engine/factor_research/experiment", "key_symbols": [], "dependencies": ["quantmind2.factor_registry"], "architecture_decision_refs": ["ADR-0007"],
       "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
