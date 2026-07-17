@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-006F: `8ad3e22575f9339955dd5fde4255269d87e9b138`
+- Base before QM2-P0-007: `ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-006F: no
+- Dirty before QM2-P0-007: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -30,11 +30,11 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-006F`, recording an immutable implementation-evidence
-  correction without changing Factor Validation behavior or artifacts.
-- Task name: `QM2-P0-006F — Immutable Evidence Correction for Factor Validation Run`.
-- Completed predecessor: `QM2-P0-006 — Factor Validation v1 with Immutable Labels and Frozen Test`.
-- Latest run: `QM2-P0-006F-20260717T044608Z-8ad3e22` under
+- Current task: `QM2-P0-007`, implementing Factor Registry v1 and its explicit
+  Promotion Contract without changing research evidence.
+- Task name: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
+- Completed predecessor: `QM2-P0-006F — Immutable Evidence Correction for Factor Validation Run`.
+- Latest run: `QM2-P0-007-20260717T052606Z-ff4a61b` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -149,9 +149,16 @@
   evidence-correction Artifact with a `corrects` relationship. It does not
   rewrite the old Run or change Dataset, Validation Result, Selection or
   Frozen Result identities.
-- The three candidates observed in Frozen Test are not promotion evidence;
-  no factor is currently validated or promoted by a Registry authority.
-- Recommended next task: `QM2-P0-007 — Factor Registry v1 and Promotion Contract`.
+- Factor Registry v1 registers 14 real Instances in Snapshot
+  `frs_436f4a966ea0c00ee2182c665813cd74cc13bb900a7022604ad9efc26849f2d9`
+  under Policy `fpp_6ca41655ea0ec5692ef2799674ef743a8bf91a6cf58718e124163bf033e255a3`.
+  Statuses are 10 Validation-rejected, one passed-not-selected, and three
+  Frozen-rejected; candidates, approved and active are all zero.
+- Registry is immutable offline artifact authority only. No Registry database,
+  API/UI, durable backend, active Factor, LightGBM/Qlib consumption or backtest
+  was introduced. Agent may read filtered failure history but cannot mutate,
+  approve, activate, or access Frozen details.
+- Recommended next task: `QM2-P0-008 — Agent Research Campaign v1`.
 
 ## Unconfirmed facts
 

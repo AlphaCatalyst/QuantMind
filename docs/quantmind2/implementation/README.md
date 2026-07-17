@@ -69,3 +69,13 @@ The immutable QM2-P0-006 Run retains one incorrect manually recorded
 strict, separately hashed evidence-correction Artifact and a `corrects`
 relationship. It neither edits the original Run nor changes Factor Validation,
 Selection, Frozen Test, promotion, database schema, or production behavior.
+
+## Factor Registry
+
+`FACTOR_REGISTRY_V1.md` and `FACTOR_PROMOTION_CONTRACT_V1.md` define the
+immutable file-backed Registry, evidence-derived statuses, conservative machine
+gates, explicit human/control-layer decisions, and prohibition on automatic
+approval or activation implemented by QM2-P0-007. The current real Snapshot
+registers 14 Factor Instances but has no promotion candidate, approved Factor,
+or active Factor. Persistence, API/UI, and downstream model/backtest consumption
+remain deferred.

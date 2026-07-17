@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/factor_promotion_decision_v1.schema.json",
+  "title": "QuantMind 2.0 Factor Promotion Decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["decision_id", "factor_instance_id", "registry_snapshot_id", "policy_id", "action", "reason", "decided_by", "decision_source", "created_at", "evidence_hash"],
+  "properties": {
+    "decision_id": {"type": "string", "pattern": "^fpd_[0-9a-f]{64}$"},
+    "factor_instance_id": {"type": "string", "pattern": "^fi_[0-9a-f]{64}$"},
+    "registry_snapshot_id": {"type": "string", "pattern": "^frs_[0-9a-f]{64}$"},
+    "policy_id": {"type": "string", "pattern": "^fpp_[0-9a-f]{64}$"},
+    "action": {"enum": ["approve", "reject", "activate", "retire", "invalidate"]},
+    "reason": {"type": "string", "minLength": 1},
+    "decided_by": {"type": "string", "minLength": 1},
+    "decision_source": {"enum": ["human", "control_layer"]},
+    "created_at": {"type": "string", "format": "date-time"},
+    "evidence_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/factor_registry_entry_v1.schema.json",
+  "title": "QuantMind 2.0 Factor Registry Entry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["factor_instance_id", "template_id", "template_name", "parameter_values", "dataset_snapshot_id", "factor_values_ids", "optimization_study_id", "optimization_trial_id", "validation_dataset_id", "validation_result_id", "candidate_selection_id", "frozen_result_id", "orientation", "status", "status_reasons", "validation_metrics_summary", "frozen_metrics_summary", "evidence_hashes", "family_id", "created_from_protocols", "redundancy_group"],
+  "properties": {
+    "factor_instance_id": {"type": "string", "pattern": "^fi_[0-9a-f]{64}$"},
+    "template_id": {"$ref": "#/$defs/templateId"},
+    "template_name": {"type": "string", "minLength": 1},
+    "parameter_values": {"type": "object", "additionalProperties": {"type": "number"}},
+    "dataset_snapshot_id": {"type": "string", "pattern": "^ds_[0-9a-f]{64}$"},
+    "factor_values_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^fv_[0-9a-f]{64}$"}},
+    "optimization_study_id": {"type": "string", "pattern": "^fos_[0-9a-f]{64}$"},
+    "optimization_trial_id": {"type": "string", "pattern": "^fot_[0-9a-f]{64}$"},
+    "validation_dataset_id": {"anyOf": [{"type": "string", "pattern": "^vd_[0-9a-f]{64}$"}, {"type": "null"}]},
+    "validation_result_id": {"anyOf": [{"type": "string", "pattern": "^fvr_[0-9a-f]{64}$"}, {"type": "null"}]},
+    "candidate_selection_id": {"anyOf": [{"type": "string", "pattern": "^fvs_[0-9a-f]{64}$"}, {"type": "null"}]},
+    "frozen_result_id": {"anyOf": [{"type": "string", "pattern": "^fvt_[0-9a-f]{64}$"}, {"type": "null"}]},
+    "orientation": {"enum": [-1, 1, null]},
+    "status": {"enum": ["research_registered", "validation_rejected", "validation_passed_not_selected", "frozen_rejected", "promotion_candidate", "approved", "active", "retired", "invalidated"]},
+    "status_reasons": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "validation_metrics_summary": {"type": ["object", "null"]},
+    "frozen_metrics_summary": {"type": ["object", "null"]},
+    "evidence_hashes": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+    "family_id": {"$ref": "#/$defs/templateId"},
+    "created_from_protocols": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "redundancy_group": {"type": ["string", "null"]}
+  },
+  "$defs": {"templateId": {"type": "string", "pattern": "^ft_[0-9a-f]{64}$"}}
+}

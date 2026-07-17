@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T04:46:08Z",
-  "source_commit": "8ad3e22575f9339955dd5fde4255269d87e9b138",
+  "generated_at": "2026-07-17T05:26:06Z",
+  "source_commit": "ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -122,9 +122,9 @@
       "last_verified_commit": "8ad3e22575f9339955dd5fde4255269d87e9b138", "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind2.factor_registry", "name": "Factor Registry", "status": "planned", "responsibility": "Own immutable factor definitions, templates, instances, materializations, validation references, and lifecycle state.",
-      "source_path": null, "target_path": "backend/services/engine/factor_research/registry", "key_symbols": [], "dependencies": [], "architecture_decision_refs": ["ADR-0007"],
-      "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+      "component_id": "quantmind2.factor_registry", "name": "Factor Registry", "status": "partial", "responsibility": "Register immutable Factor Instance research lineage, derive governed status, publish content-addressed snapshots, and require explicit promotion decisions.",
+      "source_path": "backend/services/engine/factor_registry", "target_path": "backend/services/engine/factor_registry", "key_symbols": ["FactorPromotionPolicy", "RegistryEntry", "FactorPromotionDecision", "RegistrySnapshot", "build_entries_from_evidence", "publish_snapshot", "load_registry_snapshot", "plan_decision"], "dependencies": ["quantmind2.factor_optimization", "quantmind2.factor_validation"], "architecture_decision_refs": ["ADR-0006", "ADR-0007"],
+      "current_limitations": ["Offline immutable artifact v1 only; no database, API/UI, durable artifact backend, actor authorization service, automatic redundancy analysis, LightGBM/Qlib consumption, or active Factor.", "The real 14-entry Snapshot has zero promotion candidates, approved Factors, or active Factors."], "last_verified_commit": "ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.experiment_manager", "name": "Experiment Manager", "status": "planned", "responsibility": "Bind Agent, trials, validation, model, signal, backtest, artifacts, data, code, environment, and seed lineage.",

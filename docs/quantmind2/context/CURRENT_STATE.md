@@ -1,7 +1,7 @@
 # Current Implementation State
 
 Generated: 2026-07-17
-Verified source commit before this task: `8ad3e22575f9339955dd5fde4255269d87e9b138`
+Verified source commit before this task: `ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8`
 
 ## Implemented in existing systems
 
@@ -32,7 +32,6 @@ Verified source commit before this task: `8ad3e22575f9339955dd5fde4255269d87e9b1
 - Research Skill runtime
 - executable ResearchDecision model and Decision Validator
 - QuantMind 2.0 Bounded Code Orchestrator
-- immutable Factor Registry
 - Registry → Feature Snapshot → LightGBM lineage
 - Unified Signal Service
 - Project Knowledge API
@@ -457,6 +456,31 @@ No business-domain implementation was introduced by either task.
 
 ## Next task
 
-`QM2-P0-007 — Factor Registry v1 and Promotion Contract` is the only
-recommended next task. Registry admission must preserve the exact Validation,
-Selection and Frozen identities without recomputation or automatic promotion.
+`QM2-P0-008 — Agent Research Campaign v1` is the only recommended next task.
+Agent may propose new Factor Templates and ResearchDecisions using filtered
+Registry history, but cannot mutate Registry, access Frozen Test details, tune
+after Frozen observation, or approve/activate Factors.
+
+## Factor Registry v1
+
+- `QM2-P0-007` implements strict Registry Entry, Promotion Policy and Decision,
+  evidence-derived status, immutable content-addressed Registry Snapshot,
+  exact-existing publication, read-only queries, and CLI under
+  `backend/services/engine/factor_registry/` and `tools/quantmind2/`.
+- Real Snapshot
+  `frs_436f4a966ea0c00ee2182c665813cd74cc13bb900a7022604ad9efc26849f2d9`
+  uses policy
+  `fpp_6ca41655ea0ec5692ef2799674ef743a8bf91a6cf58718e124163bf033e255a3`
+  and registers all 14 existing Factor Instances in two Template families.
+- Statuses are exactly 10 `validation_rejected`, one
+  `validation_passed_not_selected`, and three `frozen_rejected`. There are zero
+  `promotion_candidate`, `approved`, or `active` Entries. No currently
+  validated-effective or production Factor exists.
+- Registry verifies Optimization, Validation, Selection, Frozen, and QM2-P0-006F
+  correction evidence without rerunning or modifying research. Agent receives
+  read-only, visibility-filtered Registry history and has no decision authority.
+- Registry database persistence, API/UI, durable artifact storage, actor
+  authorization, redundancy analysis, LightGBM/Qlib consumption, and active
+  Factors remain unimplemented.
+- Latest Implementation Run:
+  `QM2-P0-007-20260717T052606Z-ff4a61b`.

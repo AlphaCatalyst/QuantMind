@@ -106,3 +106,11 @@
 - **Visible Research Memory**: visibility-filtered, lineage-bound summaries
   returned to the Decision Layer after result persistence. It is not the
   authoritative result store and must never expose Frozen Test details.
+- **Registry Entry**: one existing Factor Instance plus immutable research
+  evidence references and its evidence-derived governance status; it is not a
+  metric store or approval.
+- **Promotion Decision**: immutable human/control-layer action against an exact
+  Registry Snapshot and Policy; Agent and Optimizer cannot create approval or
+  activation authority.
+- **Registry Snapshot**: content-addressed immutable collection of Registry
+  Entries, Promotion Decisions and Policy, linked to its predecessor.

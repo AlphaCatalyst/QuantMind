@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/factor_promotion_policy_v1.schema.json",
+  "title": "QuantMind 2.0 Factor Promotion Policy v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "version", "git_evidence_complete", "validation_artifact_valid", "frozen_artifact_required", "no_label_leakage", "development_quarantine_respected", "train_only_orientation", "frozen_candidate_selection_immutable", "frozen_reselection_forbidden", "minimum_frozen_valid_dates", "minimum_frozen_median_daily_observations", "minimum_oriented_frozen_mean_rank_ic", "minimum_oriented_frozen_rank_icir", "minimum_oriented_frozen_rank_ic_positive_rate", "require_same_oriented_sign_as_validation", "requires_human_approval", "allows_auto_approval", "allows_auto_activation", "rationale", "canonical_hash"],
+  "properties": {
+    "policy_id": {"type": "string", "pattern": "^fpp_[0-9a-f]{64}$"},
+    "version": {"const": "1.0.0"},
+    "git_evidence_complete": {"const": true},
+    "validation_artifact_valid": {"const": true},
+    "frozen_artifact_required": {"const": true},
+    "no_label_leakage": {"const": true},
+    "development_quarantine_respected": {"const": true},
+    "train_only_orientation": {"const": true},
+    "frozen_candidate_selection_immutable": {"const": true},
+    "frozen_reselection_forbidden": {"const": true},
+    "minimum_frozen_valid_dates": {"type": "integer", "minimum": 60},
+    "minimum_frozen_median_daily_observations": {"type": "integer", "minimum": 100},
+    "minimum_oriented_frozen_mean_rank_ic": {"type": "number", "minimum": 0.01},
+    "minimum_oriented_frozen_rank_icir": {"type": "number", "minimum": 0.1},
+    "minimum_oriented_frozen_rank_ic_positive_rate": {"type": "number", "minimum": 0.52},
+    "require_same_oriented_sign_as_validation": {"const": true},
+    "requires_human_approval": {"const": true},
+    "allows_auto_approval": {"const": false},
+    "allows_auto_activation": {"const": false},
+    "rationale": {"type": "string", "minLength": 1},
+    "canonical_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

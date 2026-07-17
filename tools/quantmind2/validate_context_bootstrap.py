@@ -959,12 +959,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-006F" not in handoff_text or "evidence correction" not in handoff_text.lower():
-        raise ValidationError("human handoff does not name current QM2-P0-006F evidence correction task")
     if "QM2-P0-007 — Factor Registry v1 and Promotion Contract" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-007 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-007"]:
-        raise ValidationError("machine handoff must name the exact Factor Registry task")
+        raise ValidationError("human handoff does not name current QM2-P0-007 Registry task")
+    if "QM2-P0-008 — Agent Research Campaign v1" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-008 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-008"]:
+        raise ValidationError("machine handoff must name the exact Agent Research Campaign task")
     checks.append("handoff_links")
 
     correction = validate_file(EVIDENCE_CORRECTION, EVIDENCE_CORRECTION_SCHEMA)

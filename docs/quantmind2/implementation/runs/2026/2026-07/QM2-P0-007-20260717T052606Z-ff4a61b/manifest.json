@@ -1,0 +1,666 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-007-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "aae5e32f95a0e6b60948467755a3276bb85b5d9ef77f93a67567b3d51061596e",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 7783
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-007-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-007-registry",
+      "artifact_type": "factor_registry_snapshot",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-007-registry/snapshots/frs_436f4a966ea0c00ee2182c665813cd74cc13bb900a7022604ad9efc26849f2d9",
+      "schema_version": "factor-registry-snapshot-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "61aa4d9b5fdfbab3567ec9f394ca5fd4f8d92cc63209de7fb9de35ee7055774f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "42b83155daad92705ff035f35807c0d3d993e352d85ec550940a9eb49ffc2d29",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7534aaaaba8b0509b4ee073bc975c7117a0bf4d5837e7c61759da3eb72b693f2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/decisions.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0287e67b3fb3973e5cf7202629e81c7a58ed213f780b78346e79254af81e3aa8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9f0e6ab0c5b2e557de9a9a490b59e73771cfd9249190bfb6527af8449a82a310",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d3c74b90cf57b488498a9365790a1b25710727bdf7a75e50daa2d09e8e86ab97",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/evidence.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7f610adb5bb1681c4f6836b5254ac864f9d37df36125c1f4d3f30aa022df5a98",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/identity.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "83bb796bed8b7f93ff67d01a8c95885a47e029cca5222ade23a3ed1666ac1275",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8f0cc252bd6b360e3938f4d8f9f582abc8049c74c3eec9c1213008d4113ddce9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "da7b9f64acc1d888f6b4d4c596533811a5512347dd45eb18ac096790a8c78955",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/policy.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "631a0944723f06cc1a3e7ff847a14e384843278beb9dad334cb6909b29da9608",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/reader.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a67f9b85d9674fd4b840cd9efaf57e57c8233337186200af7c005103f735ce8c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4715ca4208f0e4a90807fec54bd3fec6813f6e91adc576342fdd46bdf646f3e3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9f0627a464b953d82428d8b40fbd8953106500eb59e933ade0a3d922ecd7a4d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/status.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8e58b7657377f9bb9cbd10f5d3edff7b161cb765144588a7287059170431e201",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/storage.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "88c12785a5fef6dce68dd0320a73e310958d690b2d7e8e7c9b2d3acc2a772824",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_registry_policy.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "313342a287ad1d0359454de7003bb802f226c37d35ad15b2a87632fa2312127b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_registry_real_validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "48a286dcce9ad80fd43cd763664acdaf105d09e1ad56c47c4115460f1ee502c2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_registry_schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "73c5adf9b747c166752ea9f4535351ab6dcee293e0695395e1fba467287c6f46",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_registry_snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ddb022433d88e40a165defee11b3870fbd80bb549efab5e5a46c21a5019944eb",
+      "before_hash": "e4b60ef90c2bd0c635a3f39800e157426227bee603b21eef96db3008dee823e3",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "59dc36d2a80c4a0a0f4bb4e2aac63cf19d1d1b63649e53b5f3ddd96a9cc57ecd",
+      "before_hash": "4f42a591316ad3ad139d5dee6678b3b78b14fcf007c0cedceb6e9685035b20c1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "da02bba6b2d84367c260865011173025fd2231802be140f3a79ff0e510505f17",
+      "before_hash": "066f1d49e83dfbbb68a0d8094a8bad6ee66593ec46578a5cbbf257dd7f72e94b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0fae2a8c69108b4a8545feb355a2d5066b2be938328aaa14e3d1db93e7903b3d",
+      "before_hash": "b2c801f677f29868306faee2b228ba416bfd1060d8778e0cd6dfafcd13ae1b93",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c3f58bdf063d4c738ae44532dc7cae090a7b33847a74d850ac07b9d013ad43cd",
+      "before_hash": "c897a59f58eba5638428ecbdfa0921cf3ab6fe423029be56342a6beff0ce7386",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5b65ad815a84d23dd886175130cb2173a95a1c77f3ea58dd4a1e320de1cdbaed",
+      "before_hash": "3405f9160391260bb10e1394174cd0233847cf06ce5962a04f0d498f75c19137",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/TERMINOLOGY.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "513d797c29bbd3a5b3f228c48b236ab64795741df035c1dfc0955a4358bdde3b",
+      "before_hash": "3319caf2e679cdfc77205753dc1d2ea85beaccc45ba960e2fec90b031410010b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "67601b494bfaa23e4ffe857223d1f16b92f814a2d69228cdb0aaa812b6f9af0a",
+      "before_hash": "35c35d02f3cf48cd9eb010f2dee0ba2f34732219b28cc128ab8896bb64aee8bd",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "800aa0f43e7a0bd1b4019aa89ff18c38773bd285362d08ed015ff8f9798e84e7",
+      "before_hash": "18105b02d64c7c3edb3b78a59425000fe02bf685fdd6dfb3cff019c9b142355b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ed40065d58d330d5cc7c824a8e484b91ea23017384b95a1e4ea21c679e5d9846",
+      "before_hash": "c05807b239e316bbbad14273f815421ad1f39c2f22877c3ad297965d20a5d960",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d20e1c0d0b9d2296bb6e454d7bd40aef1aa6e74301862fdff4a8b46c07fefcaf",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FACTOR_PROMOTION_CONTRACT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c45efb3e9c136ca1c1558def0ff556d8ba318515b6962b886691d914cc45d294",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FACTOR_REGISTRY_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0239accfb672fa1524f867d10e795646a9ba78c1bdafd4994cc4a5507c3fa92a",
+      "before_hash": "d3c3ddb8ef0642fc1de49f7eed733674bfe09064a48425a88797e5cc217187f4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/README.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "aae5e32f95a0e6b60948467755a3276bb85b5d9ef77f93a67567b3d51061596e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "981af01023d584cc6b414a413571b17d5a624e63ac148006d0619b0814df1f33",
+      "before_hash": "f0d7ccd0b21a4e602fcc2f15017b789c058ff98ffae1d7540da947871a2d0994",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c4faace3779837d78e07e2da0a3aea20279981e0a5fb5a673ed6c8ea8c9b9c69",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_promotion_decision_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "24d72c6d5dfe2b1fbb06645b729ef49a102aee382f9ce75ace28536b2f62ad6c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_promotion_policy_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5801059528768b6976bbe67b157fa573def88e5672163b777637050f1fb7e38a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b236257a24ac65762316cdbe2c3261dacf08ec464baf5845f3d1645c17bed5c3",
+      "before_hash": "1f3c8de47edf7f58c98d987513752ee823a7fb8e0827fbe0b594cf9b697dcc41",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cbaebe7da90e07ad59a5957d7e337a266dcc1a57a7078031adac232c3a1c0dac",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/factor_registry.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "24c0fe009abaa00558b14903d5199e7f2a6fc5fc00b3bd9e8348c16a525c30eb",
+      "before_hash": "bdecc709aeca79739ba9882a47679afc60edc96ef48e06ff1a00b6ba364c4829",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/models.py",
+      "qualified_name": "backend.services.engine.factor_registry.models",
+      "symbol_type": "module"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/evidence.py",
+      "qualified_name": "backend.services.engine.factor_registry.evidence.build_entries_from_evidence",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/policy.py",
+      "qualified_name": "backend.services.engine.factor_registry.policy.default_promotion_policy",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/status.py",
+      "qualified_name": "backend.services.engine.factor_registry.status.derive_status",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/decisions.py",
+      "qualified_name": "backend.services.engine.factor_registry.decisions.plan_decision",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/snapshot.py",
+      "qualified_name": "backend.services.engine.factor_registry.snapshot.publish_snapshot",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/reader.py",
+      "qualified_name": "backend.services.engine.factor_registry.reader.load_registry_snapshot",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/factor_registry.py",
+      "qualified_name": "tools.quantmind2.factor_registry.main",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "tools/quantmind2/validate_context_bootstrap.py",
+      "qualified_name": "tools.quantmind2.validate_context_bootstrap.validate_bootstrap",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.factor_registry",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_validation",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-007-report",
+        "sha256": "aae5e32f95a0e6b60948467755a3276bb85b5d9ef77f93a67567b3d51061596e"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/factor_registry/__init__.py",
+      "backend/services/engine/factor_registry/canonical.py",
+      "backend/services/engine/factor_registry/decisions.py",
+      "backend/services/engine/factor_registry/enums.py",
+      "backend/services/engine/factor_registry/errors.py",
+      "backend/services/engine/factor_registry/evidence.py",
+      "backend/services/engine/factor_registry/identity.py",
+      "backend/services/engine/factor_registry/models.py",
+      "backend/services/engine/factor_registry/parser.py",
+      "backend/services/engine/factor_registry/policy.py",
+      "backend/services/engine/factor_registry/reader.py",
+      "backend/services/engine/factor_registry/schema.py",
+      "backend/services/engine/factor_registry/snapshot.py",
+      "backend/services/engine/factor_registry/status.py",
+      "backend/services/engine/factor_registry/storage.py",
+      "backend/services/tests/test_factor_registry_policy.py",
+      "backend/services/tests/test_factor_registry_real_validation.py",
+      "backend/services/tests/test_factor_registry_schema.py",
+      "backend/services/tests/test_factor_registry_snapshot.py",
+      "docs/quantmind2/implementation/FACTOR_PROMOTION_CONTRACT_V1.md",
+      "docs/quantmind2/implementation/FACTOR_REGISTRY_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/report.md",
+      "docs/quantmind2/implementation/schemas/factor_promotion_decision_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_promotion_policy_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "tools/quantmind2/factor_registry.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/factor_registry/__init__.py",
+      "backend/services/engine/factor_registry/canonical.py",
+      "backend/services/engine/factor_registry/decisions.py",
+      "backend/services/engine/factor_registry/enums.py",
+      "backend/services/engine/factor_registry/errors.py",
+      "backend/services/engine/factor_registry/evidence.py",
+      "backend/services/engine/factor_registry/identity.py",
+      "backend/services/engine/factor_registry/models.py",
+      "backend/services/engine/factor_registry/parser.py",
+      "backend/services/engine/factor_registry/policy.py",
+      "backend/services/engine/factor_registry/reader.py",
+      "backend/services/engine/factor_registry/schema.py",
+      "backend/services/engine/factor_registry/snapshot.py",
+      "backend/services/engine/factor_registry/status.py",
+      "backend/services/engine/factor_registry/storage.py",
+      "backend/services/tests/test_factor_registry_policy.py",
+      "backend/services/tests/test_factor_registry_real_validation.py",
+      "backend/services/tests/test_factor_registry_schema.py",
+      "backend/services/tests/test_factor_registry_snapshot.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/TERMINOLOGY.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/FACTOR_PROMOTION_CONTRACT_V1.md",
+      "docs/quantmind2/implementation/FACTOR_REGISTRY_V1.md",
+      "docs/quantmind2/implementation/README.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_promotion_decision_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_promotion_policy_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/factor_registry.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "265b597bfff470204e108bfc5f4eac1e55e934d2492ce51dd4d6d54227da5cbb",
+    "manifest_payload_sha256": "77d0cd84106cf65920a193a94c2ef37f163b3c5f1a1df5576a7868d1eb98463b",
+    "report_sha256": "aae5e32f95a0e6b60948467755a3276bb85b5d9ef77f93a67567b3d51061596e",
+    "source_bundle_sha256": "327d159f1198bea057bf4b43d071f07c2f79dc313543ce5a308fd26a8ddaa696"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.factor_registry",
+      "description": "Registry v1 is an offline immutable artifact with no database, API/UI, durable backend or actor authorization service.",
+      "limitation_id": "limit-qm2-p0-007-offline-registry",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.factor_registry",
+      "description": "All fourteen real entries are rejected or not selected; there is no promotion candidate, approved Factor or active Factor.",
+      "limitation_id": "limit-qm2-p0-007-no-active-factor",
+      "severity": "high",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-008",
+      "priority": "P0",
+      "reason": "Implement Agent Research Campaign v1 with filtered read-only Registry history and no Frozen or promotion authority.",
+      "recommendation_id": "recommend-qm2-p0-007-agent-campaign"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-17T05:44:12Z",
+      "reason": "Registry evidence validation consumes the separate immutable QM2-P0-006F correction relationship.",
+      "relationship_id": "rel-qm2-p0-007-depends-on-006f",
+      "relationship_type": "depends_on",
+      "source_run_id": "QM2-P0-007-20260717T052606Z-ff4a61b",
+      "target_run_id": "QM2-P0-006F-20260717T044608Z-8ad3e22"
+    }
+  ],
+  "repository": {
+    "base_commit": "ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "ff4a61bf04e3e8194b6883831aa8a5d36ddb06d8",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-17T05:44:12Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "265b597bfff470204e108bfc5f4eac1e55e934d2492ce51dd4d6d54227da5cbb",
+    "implementation_run_id": "QM2-P0-007-20260717T052606Z-ff4a61b",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-007-20260717T052606Z-ff4a61b/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "327d159f1198bea057bf4b43d071f07c2f79dc313543ce5a308fd26a8ddaa696",
+    "started_at": "2026-07-17T05:26:06Z",
+    "task_id": "QM2-P0-007",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-17T05:26:06Z",
+    "explicit_non_goals": [
+      "No research rerun or metric recomputation",
+      "No automatic approval or activation",
+      "No database, API or UI",
+      "No LightGBM, Qlib, signal, portfolio or backtest"
+    ],
+    "objective": "Register immutable real factor research evidence under explicit promotion governance without automatic approval.",
+    "parent_task_id": null,
+    "scope": [
+      "Factor Registry domain and immutable artifacts",
+      "Promotion Policy and Decision contract",
+      "Real 14-entry evidence registration",
+      "CLI, tests, contracts and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-007",
+    "title": "Factor Registry v1 and Promotion Contract"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov backend/services/tests/test_factor_registry_*.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 27,
+      "purpose": "Registry schema, policy, status, decisions, snapshots and real evidence",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "file:///private/tmp/qm2-p0-007-registry",
+      "command": "python tools/quantmind2/factor_registry.py build|validate|inspect|list (real immutable roots)",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Real Registry build, evidence validation, query and exact-existing replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-cli"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov factor_registry factor_dsl factor_optimization factor_validation dataset_snapshot legacy_feature project_knowledge manifest context suites -q (real artifact env)",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 184,
+      "purpose": "Full relevant regression with real Legacy Snapshot and Validation artifacts",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov backend/services/tests/test_quantmind2_context_bootstrap.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 21,
+      "purpose": "Project Memory contract",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 39,
+      "purpose": "Context Bootstrap repository invariants",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "compileall; parse docs/quantmind2 JSON; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Syntax, JSON and diff hygiene",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "Factor Lab 18-file non-cache source digest before/after comparison",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Read-only donor source boundary",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-p0-007-factor-lab"
+    }
+  ]
+}
