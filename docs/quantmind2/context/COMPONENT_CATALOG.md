@@ -1,5 +1,20 @@
 # Component Catalog
 
+## `quantmind2.research_artifact_store`
+
+- Status: implemented
+- Responsibility: immutable content-addressed large research-artifact storage,
+  Domain validation, inventory, integrity and verified recovery
+- Source/target: `backend/services/engine/artifact_store/`
+- Key symbols: `ResearchArtifactStore`, `FileSystemResearchArtifactStore`,
+  `StoredArtifactDescriptor`, `import_artifact`, `materialize_artifact`,
+  `scan_store_integrity`, `build_reachability_plan`
+- Dependencies: existing Dataset, DSL, Optimization, Validation, Registry,
+  Campaign, Admission and Fresh formal Validators
+- Limitations: local filesystem only; runtime cutover, cloud backend, metadata
+  API/UI and deletion GC are not implemented
+- Evidence: verified real migration and recovery in QM2-P0-010
+
 The machine-readable catalog is authoritative for the initial component list.
 Statuses describe current implementation, not architectural intention.
 

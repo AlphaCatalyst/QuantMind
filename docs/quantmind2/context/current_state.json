@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-009F",
-  "latest_implementation_run": "QM2-P0-009F-20260717T145233Z-a2a4168",
+  "current_task": "QM2-P0-010",
+  "latest_implementation_run": "QM2-P0-010-20260717T154150Z-26cebb9",
   "current_canonical_registry_snapshot_id": "frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5",
   "components_by_status": {
     "implemented": [
@@ -34,6 +34,7 @@
       "quantmind2.factor_registry",
       "quantmind2.research_campaign",
       "quantmind2.fresh_validation"
+      ,"quantmind2.research_artifact_store"
     ],
     "planned": [
       "quantmind2.experiment_manager",
@@ -54,5 +55,5 @@
     "status": "awaiting_first_fresh_date", "eligible_date_count": 0,
     "real_evaluation_executed": false
   },
-  "next_task_candidates": ["QM2-P0-010"]
+  "next_task_candidates": ["QM2-P0-011"]
 }

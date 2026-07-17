@@ -1,0 +1,588 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-010-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "abd6681b6703727de8eb52d61ff1862713e5ad607e31407eb365b6d21f2ef72a",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-010-20260717T154150Z-26cebb9/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 4645
+    },
+    {
+      "artifact_id": "artifact-010-store-inventory",
+      "artifact_type": "research_artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/inventories/sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "dc731dac4d0d63c854f867390b5e8962f841aa87ad2360b4e9035b7f1352badb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9a439c614f202ebac58166570fc0ed586c23394a3836cbb321de8d13f815749f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/blob_store.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d78219af80140fddf7e45aaa2d2a1baf427514859d506d749fe8cbefec255a76",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5a8f830863bc21495a14d140212254dcd453c6335d3e6b15327e955a5d7583f3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/config.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b5d2d044c620951124e2f038f660bd51ef40d6837155332176895b786d0380ce",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/current.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6fc6bc9cfb0d02cd35088802324796f6e2f9af50843f29793bbb10d65b91daa2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/descriptor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8ecc1abdc957a7edc7efb7fd88d964f4a677c96cba8a832228eed2deabba2997",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c4e62678241c52da60188fa9a76d270d6b9747a8f06e76251df495b86a4220eb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "091ce2a58d4832cd2d40b7ad2877f0f90e039f6d1d27d45adfa409ee7c812386",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/identity.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "77ab255f10dc2aaeb9962910f2bc34e6340083bc9f0ee859243fe90a2d509421",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/importer.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "08cf90baa3532032afcf792aa29061ec73ad6cd0d2d44a5cb8d447c4c4a2f3c3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/integrity.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3be4a132561306e445b406a021880a1b03405ad734d7cb2ea3484861bd84fbdd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/inventory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "93e190320a36b25be9aadd385d6def25460b28960313a1b932f77644e2595345",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/materializer.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "009668c627f86f53aeaee599f3592f45e229d426abae370db35e552bb44bb5b3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6caba6bc2da818b46334fee04c4a3b93214cbf083fea32abb4e7070ca96d18c4",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/reachability.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1e8b06b2aeec1b39ae009be72eb8e662d2ba5e83d8c52205550589308d15a72f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/security.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9f38c39c5a4a864a51367828d39bdc7c961b08d5f40629dac1303c1757f544f3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/store.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cc3bd0bcdcb098f93db7441f692a4a6cf963673ec0333f4daffd29abe90e8fe2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e12b4a87883bceca27566dbed705865b5d33c46832ac77f39817ca9e0c46ff0b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_artifact_store_blob.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "109d7e0da90d6a44d9b66c8c3c0cc4dfab7438dddc4ece1adc00055235a6174e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_artifact_store_import.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "22e7ea3e57a5773c585fa27e661371c711d9167eb45014e73555f40128d904ab",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_artifact_store_integrity.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dfb46a2120dd384d92b45a19aa0daeefffd546173181b45f50827f12c95b2fcf",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_artifact_store_real_research.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3996e22b93bc906060a88371a30b5cac86434b9a350fd97e39954ea0dc35681f",
+      "before_hash": "5c89f615f0ef19c06dcce01819d1165edc8ab602eefd9ae4299215d3ca638b41",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d951ecd1322218ac3db314ac787ca16ae8d4d67e06f69039d872aeeb4c7656af",
+      "before_hash": "de1c5cddb7cc9e31d7936faf36e8e175f701e4d34f3613d0c5ea637d0f04529f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2daf47f1be7fd8da79627c8aed9b6131423d9e575379ed48d046bac153c1ef0c",
+      "before_hash": "af72bfdaed8141646c2958d789a1b9ccf4310bbfe9c9e7dfb56e171a2233a7df",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "49832084f732c9ddd14650debe623e72b0ce5b1c65019232b5ac29a2e107a946",
+      "before_hash": "f55bb3764b12ed47cdbb29d813895ac3a35233822a726dec2671c23171060896",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c31639b9fbb8da75e80fd29e37ee5e98358a8bc44b42ef6898f01f58d34e396a",
+      "before_hash": "4a101c79ded45826ec2a91ba9829d306a8b69b25ce74b214de63211fa543b681",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6cea1a4bad3e5dd179abd726d223319eda4e1621ac9fe50473374427b5196b10",
+      "before_hash": "b16f66d05a698b85d928adbfd67db76d5c3e9bdd1eea9ce3653a1a071bd6a9cf",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "019be20b0a513c49f24206a46469c39156a5899ed6efba909a122eb7bd8a977a",
+      "before_hash": "907549da578491cc8fc8a35f27bbd6a88b6be2aa9c706b82004149c1bff02988",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ebec4b74e29ae64fa03700ff637618f04202b0fcd315056367fbadcbf326cb17",
+      "before_hash": "c311bad1115ca734bbd8825d12c514ea72912c16dc2cef08cad88be587c8652c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "392418364b00976c1fdb4dff2ace65e27c57de7aaaf4e1122056d9ced48222e4",
+      "before_hash": "b2b7bbad80a80b52cf8a197b1215ec7dd3529096f6447d9e6c1efaeffa7c387a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d2768b0a58c91a80a862373d4adcf7eeb791c1c7871c58daf839ea17433935f7",
+      "before_hash": "69e8a3d975bf0136d5140e1b10e0b76afc604889b7d7ba0a06ce8f28dd353838",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c9d89388c520312c48cf1ec2a65953e5620ef4d8d87f98ea1e23df75cc728773",
+      "before_hash": "be2d83e5c5e1f323cff9dd3ba1c73110fd5c0204fe09f0aeeee74552cd6d21ba",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f489504c5d795b023e988aca90c68c236006f9bf0ff8d4f8bc02812041b3914b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/RESEARCH_ARTIFACT_MIGRATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "06cecf3c3cad7542d367bdb7b5d806ad1a39020e5ae1ef2f86d8220d0d619f19",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/RESEARCH_ARTIFACT_RECOVERY_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c9ad5d7553e80c8ba30e5a5007e8cf960b622c59654973d003cecbd3d3da6c29",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/RESEARCH_ARTIFACT_STORE_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "abd6681b6703727de8eb52d61ff1862713e5ad607e31407eb365b6d21f2ef72a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-010-20260717T154150Z-26cebb9/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3cb4deeb464251d74ab3e3065f5de926657192a0c0023f186e0e684754116731",
+      "before_hash": "7b2051bb1d2a8a5cf86b3535dd0ff5c8e11e29d844c6b0de72c2cf76293a8501",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5f0dacc1e0009e12e19bb7fb7fbbf4b04067ef8e9d03ef3fc2269b911c78563b",
+      "before_hash": "b3a4b7b5c91ab1268da593c4ec1e8eb9f6374da77d8acba32799595e8ee26d50",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "39172ff2db58575aad2354dbcb29afec0031e9d56172628a566774521324d752",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/artifact_store.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a98b1534ca695be7d459586317825c999b1ce1f3e35da19c44a048fdd35a921e",
+      "before_hash": "167fbe146c4e418dd60083b4582cbdeea5b2e76dc467fb02859416940ea9a9fa",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/store.py",
+      "qualified_name": "ResearchArtifactStore",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/store.py",
+      "qualified_name": "FileSystemResearchArtifactStore",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/importer.py",
+      "qualified_name": "import_artifact",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/materializer.py",
+      "qualified_name": "materialize_artifact",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/integrity.py",
+      "qualified_name": "scan_store_integrity",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-010-report",
+        "sha256": "abd6681b6703727de8eb52d61ff1862713e5ad607e31407eb365b6d21f2ef72a"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/artifact_store/__init__.py",
+      "backend/services/engine/artifact_store/blob_store.py",
+      "backend/services/engine/artifact_store/canonical.py",
+      "backend/services/engine/artifact_store/config.py",
+      "backend/services/engine/artifact_store/current.py",
+      "backend/services/engine/artifact_store/descriptor.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/errors.py",
+      "backend/services/engine/artifact_store/identity.py",
+      "backend/services/engine/artifact_store/importer.py",
+      "backend/services/engine/artifact_store/integrity.py",
+      "backend/services/engine/artifact_store/inventory.py",
+      "backend/services/engine/artifact_store/materializer.py",
+      "backend/services/engine/artifact_store/models.py",
+      "backend/services/engine/artifact_store/reachability.py",
+      "backend/services/engine/artifact_store/security.py",
+      "backend/services/engine/artifact_store/store.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/tests/test_artifact_store_blob.py",
+      "backend/services/tests/test_artifact_store_import.py",
+      "backend/services/tests/test_artifact_store_integrity.py",
+      "backend/services/tests/test_artifact_store_real_research.py",
+      "docs/quantmind2/implementation/RESEARCH_ARTIFACT_MIGRATION_V1.md",
+      "docs/quantmind2/implementation/RESEARCH_ARTIFACT_RECOVERY_V1.md",
+      "docs/quantmind2/implementation/RESEARCH_ARTIFACT_STORE_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-010-20260717T154150Z-26cebb9/report.md",
+      "tools/quantmind2/artifact_store.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/__init__.py",
+      "backend/services/engine/artifact_store/blob_store.py",
+      "backend/services/engine/artifact_store/canonical.py",
+      "backend/services/engine/artifact_store/config.py",
+      "backend/services/engine/artifact_store/current.py",
+      "backend/services/engine/artifact_store/descriptor.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/errors.py",
+      "backend/services/engine/artifact_store/identity.py",
+      "backend/services/engine/artifact_store/importer.py",
+      "backend/services/engine/artifact_store/integrity.py",
+      "backend/services/engine/artifact_store/inventory.py",
+      "backend/services/engine/artifact_store/materializer.py",
+      "backend/services/engine/artifact_store/models.py",
+      "backend/services/engine/artifact_store/reachability.py",
+      "backend/services/engine/artifact_store/security.py",
+      "backend/services/engine/artifact_store/store.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/tests/test_artifact_store_blob.py",
+      "backend/services/tests/test_artifact_store_import.py",
+      "backend/services/tests/test_artifact_store_integrity.py",
+      "backend/services/tests/test_artifact_store_real_research.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/RESEARCH_ARTIFACT_MIGRATION_V1.md",
+      "docs/quantmind2/implementation/RESEARCH_ARTIFACT_RECOVERY_V1.md",
+      "docs/quantmind2/implementation/RESEARCH_ARTIFACT_STORE_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-010-20260717T154150Z-26cebb9/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/artifact_store.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "986a6bc775aa821d427d6e00f21bef09622d80c4da92f379fa2323f99f8fd095",
+    "manifest_payload_sha256": "6b9f1baf6fa20db60624d057184e1a9b84547820e16db4bddf104d0f6130846a",
+    "report_sha256": "abd6681b6703727de8eb52d61ff1862713e5ad607e31407eb365b6d21f2ef72a",
+    "source_bundle_sha256": "4e01d76e3aeaeb1429b1266fa81cefa5a8bdeada173d030d06e5d4bd28a300e6"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "v1 is local-filesystem only and runtimes are not yet cut over; cloud distributed metadata and deletion GC remain deferred.",
+      "limitation_id": "limit-010-local-only",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "description": "Eligible dates remain zero of sixty and no Fresh Validation Result exists.",
+      "limitation_id": "limit-010-no-fresh",
+      "severity": "info",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-011",
+      "priority": "P0",
+      "reason": "Cut research runtimes over to explicit persistent Store resolution and repeat operational recovery.",
+      "recommendation_id": "recommend-010-011"
+    }
+  ],
+  "relationships": [],
+  "repository": {
+    "base_commit": "26cebb9a9dfa95a295a57d66db193d9629844b90",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "26cebb9a9dfa95a295a57d66db193d9629844b90",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-17T16:00:00Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "986a6bc775aa821d427d6e00f21bef09622d80c4da92f379fa2323f99f8fd095",
+    "implementation_run_id": "QM2-P0-010-20260717T154150Z-26cebb9",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-010-20260717T154150Z-26cebb9/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-010-20260717T154150Z-26cebb9/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "4e01d76e3aeaeb1429b1266fa81cefa5a8bdeada173d030d06e5d4bd28a300e6",
+    "started_at": "2026-07-17T15:00:00Z",
+    "task_id": "QM2-P0-010",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-17T15:41:50Z",
+    "explicit_non_goals": [
+      "No cloud backend distributed locking metadata API UI or deletion GC",
+      "No research rerun Fresh evaluation promotion model signal Qlib or backtest"
+    ],
+    "objective": "Persist the current immutable research graph outside Git and temporary runtime roots.",
+    "parent_task_id": "QM2-P0-009",
+    "scope": [
+      "Local content-addressed Artifact Store",
+      "Current reachability migration and recovery",
+      "CLI tests Project Memory and Implementation Run"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-010",
+    "title": "Persistent Research Artifact Store v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q backend/services/tests/test_artifact_store_*.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 10,
+      "purpose": "Store unit integration and real artifact migration replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-010-store"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "artifact_store recovery drill for Factor Values Optimization Registry and Campaign",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Source-independent materialization hash parity and Domain revalidation",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-010-recovery"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q <relevant Dataset DSL Optimization Validation Registry Campaign Fresh Manifest Context tests>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 259,
+      "purpose": "Full relevant regression",
+      "skipped_count": 8,
+      "status": "passed",
+      "test_execution_id": "test-010-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_FACTOR_DSL_REAL_SNAPSHOT_ROOT=<real> QM2_FACTOR_OPTIMIZATION_REAL_SNAPSHOT_ROOT=<real> QM2_FACTOR_VALIDATION_REAL_ROOT=<real> python -m pytest --no-cov -q <real DSL Optimization Validation tests>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 9,
+      "purpose": "Opt-in real Snapshot Optimization and Validation regression",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-010-real-regression"
+    }
+  ]
+}

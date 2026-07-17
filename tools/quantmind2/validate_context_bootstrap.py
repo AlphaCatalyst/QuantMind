@@ -968,10 +968,10 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
     if "QM2-P0-009" not in handoff_text:
         raise ValidationError("human handoff does not name current QM2-P0-009 task")
-    if "QM2-P0-010 — Persistent Research Artifact Store v1" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-010 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-010"]:
-        raise ValidationError("machine handoff must name the exact persistent artifact task")
+    if "QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-011 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-011"]:
+        raise ValidationError("machine handoff must name the exact runtime cutover task")
     checks.append("handoff_links")
 
     correction = validate_file(EVIDENCE_CORRECTION, EVIDENCE_CORRECTION_SCHEMA)

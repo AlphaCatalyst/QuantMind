@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-009F",
+  "current_task": "QM2-P0-010",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-009F-20260717T145233Z-a2a4168",
-  "next_recommended_tasks": ["QM2-P0-010"],
+  "latest_implementation_run": "QM2-P0-010-20260717T154150Z-26cebb9",
+  "next_recommended_tasks": ["QM2-P0-011"],
   "unconfirmed_facts": [
     "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics; this no longer blocks the Legacy Snapshot Factor DSL route.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",

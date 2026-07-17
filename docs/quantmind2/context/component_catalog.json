@@ -145,6 +145,20 @@
       "component_id": "quantmind2.signal_service", "name": "Unified Signal Service", "status": "planned", "responsibility": "Create immutable direction-, transform-, lag-, threshold-, and universe-aware signals for Qlib.",
       "source_path": null, "target_path": "backend/services/engine/factor_research/signals", "key_symbols": [], "dependencies": ["quantmind2.factor_registry", "quantmind.inference"], "architecture_decision_refs": ["ADR-0004", "ADR-0007"],
       "current_limitations": ["Not implemented."], "last_verified_commit": null, "evidence_level": "planned"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "name": "Persistent Research Artifact Store",
+      "status": "implemented",
+      "responsibility": "Persist immutable content-addressed research artifacts, validate domains, inventory reachable evidence and provide verified recovery.",
+      "source_path": "backend/services/engine/artifact_store",
+      "target_path": "backend/services/engine/artifact_store",
+      "key_symbols": ["ResearchArtifactStore", "FileSystemResearchArtifactStore", "StoredArtifactDescriptor", "import_artifact", "materialize_artifact", "scan_store_integrity", "build_reachability_plan"],
+      "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_compute", "quantmind2.factor_optimization", "quantmind2.factor_validation", "quantmind2.factor_registry", "quantmind2.research_campaign", "quantmind2.fresh_validation"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007"],
+      "current_limitations": ["Single-host local filesystem only; no runtime cutover, cloud backend, distributed lock, metadata API/UI, automatic synchronization or deletion GC."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
     }
   ]
 }

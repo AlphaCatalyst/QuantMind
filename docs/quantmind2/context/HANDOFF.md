@@ -24,6 +24,15 @@
 
 ## Current position
 
+- `QM2-P0-010` adds persistent Research Artifact Store v1. Current inventory
+  is `sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312`;
+  reachability plan is `rap_f3aca751ad751c976888fd9b464f9f56dd4913339b226786c0c3a7ef65ccc247`.
+- All 65 current reachable artifacts migrated with zero missing sources and
+  healthy integrity. Read `RESEARCH_ARTIFACT_STORE_V1.md`, migration and
+  recovery contracts before runtime cutover work.
+- Next task is only `QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill`.
+  Fresh evaluation is still 0/60 and must not run.
+
 - Architecture: QuantMind 2.0 Architecture v1, frozen.
 - ADR-0009 and Research Decision Contract v1 are accepted architecture facts.
 - They do not represent implemented Skill, Decision Validator, permission

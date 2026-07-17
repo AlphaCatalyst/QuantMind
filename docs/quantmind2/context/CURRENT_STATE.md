@@ -3,6 +3,25 @@
 Generated: 2026-07-17
 Verified source commit before this task: `0374aaceab7c8b14e26e3d21ff5ed35366795384`
 
+## Persistent Research Artifact Store v1
+
+- `QM2-P0-010` implements a local immutable content-addressed Store with
+  formal Domain validation, exact-existing/conflict semantics, verified
+  materialization, inventories, integrity scans and reachability planning.
+- The root resolves by CLI, environment, then
+  `~/.quantmind2/artifact-store/v1`; Git remains control/implementation
+  authority and the Store is large immutable research-artifact authority.
+- Current Plan `rap_f3aca751...ccc247` migrated all 65 reachable formal
+  artifacts with zero missing/unresolved sources. Inventory
+  `sai_a0b9e618...55d312` records 107,663,971 logical bytes, 107,518,972 unique
+  Blob bytes, 144,999 deduplicated bytes and healthy integrity.
+- Independent Factor Values, Optimization, Registry and Campaign recovery
+  passed byte/hash parity and formal Domain revalidation; source artifacts were
+  preserved. Fresh Validation remains awaiting its first date at 0/60.
+- Current task: `QM2-P0-010`. Next task: `QM2-P0-011 — Artifact-backed
+  Research Runtime Cutover and Recovery Drill`; `QM2-FV-001` remains forbidden
+  until at least 60 locked post-lock mature trading dates exist.
+
 ## Implemented in existing systems
 
 - QuantMind LightGBM training and model artifacts.
