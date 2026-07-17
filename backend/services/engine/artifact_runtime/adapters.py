@@ -6,6 +6,8 @@ from pathlib import Path
 from backend.services.engine.artifact_store.enums import ArtifactKind
 from backend.services.engine.factor_registry import load_registry_snapshot
 from backend.services.engine.research_campaign import validate_campaign
+from backend.services.engine.research_campaign.canonical import sha256_file, write_json
+from backend.services.engine.research_campaign.development import validate_development_bundle
 from backend.services.engine.research_campaign.models import CampaignConfig
 from backend.services.engine.artifact_store.validators import DomainValidationContext
 
@@ -104,7 +106,36 @@ def prepare_campaign_config(
         str(root / "optimization"),
         str(context.cache_root / "collections" / "optimization"),
         str(root / "registry"),
+        str(root / "development"),
     )
+
+
+def _attach_runtime_evidence(context, campaign_artifact, *, publication_plan):
+    path = Path(campaign_artifact["path"])
+    decision_paths = sorted(path.glob("iterations/*/decision.json"))
+    provider_calls = []
+    for decision_path in decision_paths:
+        usage = json.loads(decision_path.read_text(encoding="utf-8")).get("usage_summary") or {}
+        if isinstance(usage.get("provider_call"), dict):
+            provider_calls.append(usage["provider_call"])
+    events = json.loads((path / "events.json").read_text(encoding="utf-8"))
+    for event in events:
+        usage = event.get("usage_summary") or {}
+        provider_call = usage.get("provider_call") if isinstance(usage, dict) else None
+        if isinstance(provider_call, dict):
+            provider_calls.append(provider_call)
+    payload = {
+        "schema_version": "campaign-runtime-evidence-v1",
+        **context.evidence.safe_summary(),
+        "publication_plan": publication_plan,
+        "provider_calls": provider_calls,
+    }
+    write_json(path / "runtime_evidence.json", payload)
+    manifest_path = path / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest["file_hashes"]["runtime_evidence.json"] = sha256_file(path / "runtime_evidence.json")
+    write_json(manifest_path, manifest)
+    validate_campaign(path.parents[1], campaign_artifact["campaign_id"])
 
 
 def publish_campaign_execution(
@@ -122,6 +153,7 @@ def publish_campaign_execution(
     )
     studies = tuple(sorted(set(memory.get("optimization_studies", ()))))
     published_values = []
+    published_studies = []
     for study_id in studies:
         study_root = Path(config.optimization_root) / study_id
         values_ids = tuple(sorted(
@@ -136,15 +168,34 @@ def publish_campaign_execution(
                 lineage=(config.snapshot_id,),
                 validation_context=validation_context,
             ))
-        publish_optimization_study(
+        published_studies.append(publish_optimization_study(
             context, study_id, study_root,
             lineage=(config.snapshot_id, *values_ids),
             validation_context=validation_context,
-        )
+        ))
+    published_development = []
+    for development in memory.get("development_results", ()):
+        development_id = development["development_evaluation_id"]
+        development_root = Path(config.development_output_root) / development_id
+        validate_development_bundle(development_root, development_id)
+        published_development.append(publish_domain_artifact(
+            context,
+            ArtifactKind.GENERIC_RESEARCH_BUNDLE.value,
+            development_id,
+            development_root,
+            lineage=(config.validation_dataset_id, development["factor_values_id"]),
+        ))
+    registry_after = campaign_artifact["result"]["registry_snapshot_after"]
+    _attach_runtime_evidence(context, campaign_artifact, publication_plan={
+        "factor_values": len(published_values),
+        "optimization_studies": len(published_studies),
+        "development_results": len(published_development),
+        "research_campaign": 1,
+        "factor_registry": int(registry_after != config.registry_snapshot_id),
+    })
     campaign = publish_research_campaign(
         context, campaign_id, campaign_artifact["path"], lineage=studies
     )
-    registry_after = campaign_artifact["result"]["registry_snapshot_after"]
     registry = None
     if registry_after != config.registry_snapshot_id:
         registry = publish_registry_snapshot(
@@ -157,14 +208,26 @@ def publish_campaign_execution(
         **campaign.safe_summary(),
         "factor_values_published": len(published_values),
         "optimization_studies_published": len(studies),
+        "development_results_published": len(published_development),
+        "factor_values": [item.safe_summary() for item in published_values],
+        "optimization_studies": [item.safe_summary() for item in published_studies],
+        "development_results": [item.safe_summary() for item in published_development],
         "registry_snapshot_id": registry_after,
+        "registry": registry.safe_summary() if registry else None,
         "registry_published": registry is not None,
         "agent_calls": campaign_artifact["result"]["agent_calls"],
+        "runtime_evidence": context.evidence.safe_summary(),
     }
 
 
 def resolve_factor_values(context: ArtifactRuntimeContext, factor_values_id: str) -> ResolvedArtifact:
     return resolve_artifact(context, ArtifactKind.FACTOR_VALUES.value, factor_values_id)
+
+
+def resolve_development_result(context: ArtifactRuntimeContext, result_id: str) -> ResolvedArtifact:
+    resolved = resolve_artifact(context, ArtifactKind.GENERIC_RESEARCH_BUNDLE.value, result_id)
+    validate_development_bundle(resolved.materialized_root, result_id)
+    return resolved
 
 
 def replay_optimization_study(context: ArtifactRuntimeContext, study_id: str) -> ExactReplayResult:

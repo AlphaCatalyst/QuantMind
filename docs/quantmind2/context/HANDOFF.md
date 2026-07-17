@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-011: `890afdde73de0616a7efcf43946b1cbf6329be91`
+- Base before QM2-P0-012: `ded5c10c1650b98478633278201a42cb70c98e53`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-011: no
+- Dirty before QM2-P0-012: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -24,22 +24,35 @@
 
 ## Current position
 
+- `QM2-P0-012` is a truthful partial production dry run. Campaign
+  `rc_16bf5717...b7ea` made exactly two real Codex CLI calls (the second was
+  the sole repair); both exited 0 but failed the unchanged Proposal parameter
+  contract. It produced no Decision, admitted Proposal, Trial, Development
+  result or Registry successor. Do not retry it, widen its budget, or describe
+  it as an AI factor discovery.
+- The partial Campaign is immutable in Store descriptor
+  `sad_2e42bc...7b18b`. Current Inventory is `sai_b0c03807...70320` with 66
+  artifacts / 287 blobs, healthy and zero unreferenced. Cold recovery and exact
+  replay passed; replay called Agent/Optimization zero times and wrote no
+  Registry or Store artifact. Canonical Registry remains
+  `frs_c2ef675c...0237b5`, 19 entries, with promotion / approved / active =
+  0 / 0 / 0. Fresh remains 0/60.
+- Latest Run is `QM2-P0-012-20260717T180925Z-ded5c10`. The only next task is
+  `QM2-P0-011B — 2019—2026 Historical Diagnostic Backtest`. Conditional
+  `QM2-FV-001` stays forbidden until 60 mature post-lock dates exist.
+
 - `QM2-P0-011` cuts the formal research runtime to `store_required`. Read
   `ARTIFACT_BACKED_RUNTIME_V1.md`, `ARTIFACT_RUNTIME_RECOVERY_V1.md` and
   `ARTIFACT_RUNTIME_ROLLBACK_V1.md` before changing runtime behavior.
-- Store-only empty-cache recovery passed for Factor Values, Optimization,
+- In QM2-P0-011, Store-only empty-cache recovery passed for Factor Values, Optimization,
   Validation, Frozen, canonical Registry, both Campaigns and Fresh Admission.
   External Campaign replay called neither Agent nor Optimization and wrote no
-  Registry state. Store remains healthy at 65 artifacts / 280 blobs on baseline
+  Registry state. Its Store baseline was healthy at 65 artifacts / 280 blobs on
   Inventory `sai_a0b9e618...55d312`.
 - Canonical Registry remains 19 entries with promotion / approved / active =
   0 / 0 / 0. Fresh remains `awaiting_first_fresh_date` at 0/60; no Fresh Result
   exists. Legacy local mode is emergency-only and cannot publish formal results.
-- Current task: `QM2-P0-011 — Artifact-backed Research Runtime Cutover and
-  Recovery Drill`. Latest Run:
-  `QM2-P0-011-20260717T165948Z-890afdd`. The only next task is
-  `QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run`.
-  `QM2-FV-001` remains conditional on 60 mature post-lock dates.
+- This predecessor state is preserved for historical context.
 
 - `QM2-P0-010` adds persistent Research Artifact Store v1. Current inventory
   is `sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312`;
@@ -56,8 +69,8 @@
 - `QM2-P0-010F` publishes correction evidence only, with one `corrects`
   relationship. It changes no Store behavior or research artifact identity.
   Latest run: `QM2-P0-010F-20260717T161330Z-77f5b1f`.
-- Runtime cutover successor is `QM2-P0-012`; Fresh evaluation is still 0/60
-  and must not run.
+- Runtime cutover successor `QM2-P0-012` is the partial dry run recorded above;
+  Fresh evaluation is still 0/60 and must not run.
 
 - Architecture: QuantMind 2.0 Architecture v1, frozen.
 - ADR-0009 and Research Decision Contract v1 are accepted architecture facts.
@@ -231,7 +244,7 @@
   business ChangedFiles were omitted. QM2-P0-009F records the complete 35-entry
   Git-derived inventory as immutable correction evidence with `corrects`; it
   does not edit the original Run or research controls.
-- Recommended next task: `QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run`.
+- Recommended next task: `QM2-P0-011B — 2019—2026 Historical Diagnostic Backtest`.
 
 ## Unconfirmed facts
 

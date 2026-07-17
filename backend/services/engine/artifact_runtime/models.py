@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -15,6 +15,27 @@ class ArtifactRuntimePolicy:
     allow_legacy_read: bool
     require_store_publication: bool
     allow_store_miss_local_import: bool
+
+
+@dataclass
+class ArtifactRuntimeEvidence:
+    """Non-identity operational counters for one Runtime invocation."""
+
+    store_descriptor_reads: int = 0
+    store_miss_count: int = 0
+    cold_materializations: int = 0
+    warm_cache_hits: int = 0
+    published_artifacts: int = 0
+    published_blobs: int = 0
+    reused_blobs: int = 0
+
+    def safe_summary(self) -> dict[str, Any]:
+        return {
+            **self.__dict__,
+            "runtime_mode": "store_required",
+            "legacy_path_inputs": 0,
+            "legacy_fallback_used": False,
+        }
 
 
 @dataclass(frozen=True)
@@ -46,6 +67,7 @@ class ArtifactRuntimeContext:
     store: FileSystemResearchArtifactStore
     cache_root: Path
     inventory_id: str | None = None
+    evidence: ArtifactRuntimeEvidence = field(default_factory=ArtifactRuntimeEvidence)
 
 
 @dataclass(frozen=True)

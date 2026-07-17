@@ -74,3 +74,13 @@ therefore cannot create a different Domain identity or Store object.
 Failure at descriptor, blob, cache or Domain validation stops recovery. It must
 not trigger local-source discovery or recomputation.
 
+## 7. QM2-P0-012 Partial Campaign Recovery
+
+The subsequent production dry run published one immutable partial Campaign
+after two bounded external Provider responses failed the strict Proposal
+parameter contract. Inventory `sai_b0c03807...70320` contains 66 artifacts and
+287 blobs with healthy integrity. A new empty cache recovered the Campaign and
+unchanged canonical Registry from Store; exact replay returned Agent,
+Optimization, Registry-write, new-artifact and new-blob counts of zero. No
+Study, Factor Values, Development result or Registry successor exists for that
+partial Campaign.

@@ -16,6 +16,11 @@ Execution never calls the Agent. The Agent receives no filesystem path, row, cre
 
 `ResearchGoal` v1 is closed, content-addressed as `rg_<sha256>`, and binds the allowed Feature terminals, operators, parameter roles, and campaign bounds. The deterministic baseline is a regression oracle and never represents an LLM. `CodexResearchAgent` is the external adapter: it runs ephemeral/read-only, uses a JSON output schema, an allowlisted environment, a timeout, bounded response bytes, and stores only provider/model, request/response hashes, usage availability, and the structured Decision.
 
+QM2-P0-012 confirms that Provider success is not Decision success: both
+bounded Codex calls exited zero, but strict parameter-contract parsing rejected
+both responses. The resulting Campaign is immutable partial evidence with no
+admission, Trial or Registry change; no third call or relaxed gate is allowed.
+
 ## Budget and State Machine
 
 Hard Control limits are three iterations, four Agent calls, four proposals per iteration, eight admitted templates, 64 trials, eight failed proposals, 16 failed trials, and one repair attempt. Events persist every transition with event ID, campaign ID, iteration, previous/new state, reason, and UTC time. Supported terminal states include completed, partial, stopped-budget, and stopped-no-novelty; the working journal makes progress visible outside process memory.
@@ -38,7 +43,11 @@ Campaigns publish by staging plus atomic rename under `campaigns/<campaign_id>`,
 
 ## Real Campaign and Claims
 
-Runtime Factor Values, Studies, Campaigns, and Registry Snapshots live under `/private/tmp` and are implementation evidence, not committed data. Baseline and external-provider results are recorded in the QM2-P0-008 Implementation Run. No Development statistic is an Alpha discovery, formal Validation, OOS result, Frozen result, or production claim.
+Historical QM2-P0-008 staging lived under `/private/tmp`; formal runtime
+artifacts now publish through the immutable Artifact Store and use local paths
+only as disposable cache/staging. Baseline and external-provider results are
+recorded in their Implementation Runs. No Development statistic is an Alpha
+discovery, formal Validation, OOS result, Frozen result, or production claim.
 
 ## Deferred Formal Validation
 

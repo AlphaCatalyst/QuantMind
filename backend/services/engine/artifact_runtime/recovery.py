@@ -11,7 +11,12 @@ from .errors import ResearchStateRecoveryError
 from .models import ArtifactRuntimeContext, RecoveredResearchState
 
 
-CANONICAL_REGISTRY_ID = "frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5"
+def _canonical_registry_id(repository_root: Path) -> str:
+    path = Path(repository_root) / "docs/quantmind2/context/current_state.json"
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))["current_canonical_registry_snapshot_id"]
+    except (OSError, json.JSONDecodeError, KeyError, TypeError) as exc:
+        raise ResearchStateRecoveryError("current canonical Registry control is unreadable") from exc
 
 
 def _one_control(root: Path, collection: str, pattern: str) -> dict:
@@ -29,8 +34,10 @@ def _one_control(root: Path, collection: str, pattern: str) -> dict:
 def recover_research_state(
     context: ArtifactRuntimeContext,
     repository_root: Path,
+    canonical_registry_id: str | None = None,
 ) -> RecoveredResearchState:
-    registry, _ = load_registry_snapshot_store(context, CANONICAL_REGISTRY_ID)
+    registry_id = canonical_registry_id or _canonical_registry_id(repository_root)
+    registry, _ = load_registry_snapshot_store(context, registry_id)
     controls = Path(repository_root) / "docs/quantmind2/research/fresh_validation"
     lock = _one_control(controls, "candidate-locks", "fvcl_*.json")
     protocol = _one_control(controls, "protocols", "fvp_*.json")
@@ -52,7 +59,7 @@ def recover_research_state(
     if not (len(validation) == len(frozen) == len(admission) == 1):
         raise ResearchStateRecoveryError("current Store research state is ambiguous")
     return RecoveredResearchState(
-        CANONICAL_REGISTRY_ID,
+        registry_id,
         len(registry.entries),
         campaigns,
         studies,
@@ -69,3 +76,43 @@ def recover_research_state(
         len(list_by_status(registry, "approved")),
         len(active_factors(registry)),
     )
+
+
+def recover_campaign_graph(context: ArtifactRuntimeContext, campaign_id: str) -> dict:
+    """Recover one Campaign and its immutable result graph without source staging."""
+    from .adapters import replay_research_campaign, resolve_development_result
+    from .resolver import resolve_artifact
+    campaign = replay_research_campaign(context, campaign_id).resolved
+    root = campaign.materialized_root
+    memory = json.loads((root / "memory.json").read_text(encoding="utf-8"))
+    decisions = [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted(root.glob("iterations/*/decision.json"))
+    ]
+    studies = tuple(memory.get("optimization_studies", ()))
+    development = tuple(memory.get("development_results", ()))
+    factor_values = tuple(sorted({item["factor_values_id"] for item in development}))
+    for study_id in studies:
+        resolve_artifact(context, ArtifactKind.FACTOR_OPTIMIZATION.value, study_id)
+    for factor_values_id in factor_values:
+        resolve_artifact(context, ArtifactKind.FACTOR_VALUES.value, factor_values_id)
+    for item in development:
+        resolve_development_result(context, item["development_evaluation_id"])
+    registry_id = memory["registry_snapshot_after"]
+    registry, registry_ref = load_registry_snapshot_store(context, registry_id)
+    return {
+        "new_campaign_id": campaign_id,
+        "campaign_descriptor_id": campaign.reference.descriptor_id,
+        "new_decision_id": decisions[0]["decision_id"] if decisions else None,
+        "new_template_id": memory.get("templates", [None])[0] if memory.get("templates") else None,
+        "new_study_id": studies[0] if studies else None,
+        "new_factor_values_ids": list(factor_values),
+        "new_development_result_id": development[0]["development_evaluation_id"] if development else None,
+        "new_registry_id": registry_id,
+        "registry_descriptor_id": registry_ref.reference.descriptor_id,
+        "registry_entry_count": len(registry.entries),
+        "promotion_candidate_count": len(promotion_candidates(registry)),
+        "approved_count": len(list_by_status(registry, "approved")),
+        "active_count": len(active_factors(registry)),
+        "runtime_evidence": context.evidence.safe_summary(),
+    }

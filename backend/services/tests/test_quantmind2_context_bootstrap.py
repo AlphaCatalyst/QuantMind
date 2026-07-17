@@ -221,20 +221,15 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_runtime_cutover_and_exact_dry_run_next_task(self):
+    def test_handoff_records_partial_dry_run_and_exact_diagnostic_next_task(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn("candidates, approved and active are all zero", text)
-        self.assertIn(
-            "QM2-P0-011 — Artifact-backed Research Runtime Cutover and",
-            text,
-        )
-        self.assertIn(
-            "QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run",
-            text,
-        )
+        self.assertIn("QM2-P0-011", text)
+        self.assertIn("truthful partial production dry run", text)
+        self.assertIn("QM2-P0-011B — 2019—2026 Historical Diagnostic Backtest", text)
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["current_task"], "QM2-P0-011")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-012"])
+        self.assertEqual(handoff["current_task"], "QM2-P0-012")
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-011B"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

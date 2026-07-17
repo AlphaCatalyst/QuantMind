@@ -15,6 +15,7 @@ from backend.services.engine.artifact_runtime import (  # noqa: E402
     inspect_optimization_replay,
     publish_domain_artifact,
     publish_existing_artifact,
+    recover_campaign_graph,
     recover_research_state,
     replay_optimization_study,
     replay_research_campaign,
@@ -43,7 +44,9 @@ def _parser() -> argparse.ArgumentParser:
     replay = commands.add_parser("replay")
     replay.add_argument("--artifact-kind", choices=("factor_optimization", "research_campaign"), required=True)
     replay.add_argument("--artifact-id", required=True)
-    commands.add_parser("recover-state")
+    recover = commands.add_parser("recover-state")
+    recover.add_argument("--campaign-id")
+    recover.add_argument("--canonical-registry-id")
     existing = commands.add_parser("publish-existing")
     existing.add_argument("--artifact-kind", required=True)
     existing.add_argument("--artifact-id", required=True)
@@ -75,7 +78,11 @@ def main(argv=None) -> int:
                     replay_optimization_study(context, args.artifact_id)
                 )
         else:
-            payload = recover_research_state(context, ROOT).to_dict()
+            payload = recover_research_state(
+                context, ROOT, canonical_registry_id=args.canonical_registry_id
+            ).to_dict()
+            if args.campaign_id:
+                payload["campaign_graph"] = recover_campaign_graph(context, args.campaign_id)
         print(json.dumps(payload, ensure_ascii=False, sort_keys=True, indent=2))
         return 0
     except Exception as exc:

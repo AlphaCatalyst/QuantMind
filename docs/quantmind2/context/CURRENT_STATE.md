@@ -1,7 +1,33 @@
 # Current Implementation State
 
 Generated: 2026-07-18
-Verified source commit before this task: `890afdde73de0616a7efcf43946b1cbf6329be91`
+Verified source commit before this task: `ded5c10c1650b98478633278201a42cb70c98e53`
+
+## Artifact-backed external Agent production dry run
+
+- `QM2-P0-012` executed Campaign `rc_16bf5717...b7ea` through the
+  `store_required` CLI with Codex CLI `0.145.0-alpha.18`, explicit
+  `gpt-5.6-terra`, one iteration, two Agent-call limit, one admitted-template
+  limit and six-Trial limit.
+- Both Provider calls exited 0 and recorded request/response hashes and usage.
+  The initial response violated the strict Proposal parameter contract; the
+  sole permitted repair did the same. The Campaign is therefore `partial`
+  with zero Decision, admitted Proposal, Study, Trial, Factor Values,
+  Development result or Registry write. No gate or budget was relaxed.
+- The immutable partial Campaign is stored as descriptor
+  `sad_2e42bc...7b18b`. Inventory advanced from
+  `sai_a0b9e618...55d312` to `sai_b0c03807...70320`: 66 artifacts and 287
+  blobs, healthy, zero missing and zero unreferenced. Canonical Registry stays
+  `frs_c2ef675c...0237b5` with 19 entries and promotion / approved / active
+  remain 0 / 0 / 0.
+- Empty-cache Campaign and canonical Registry recovery passed. Exact replay
+  returned the same Campaign/Result/Descriptor with Agent calls, Optimization
+  calls, Registry writes, new artifacts and new blobs all zero. Legacy fallback
+  was false. Fresh remains `awaiting_first_fresh_date` at 0/60.
+- Current task: `QM2-P0-012`. Latest Run:
+  `QM2-P0-012-20260717T180925Z-ded5c10`. The only next task is
+  `QM2-P0-011B — 2019—2026 Historical Diagnostic Backtest`; `QM2-FV-001`
+  remains conditional on at least 60 mature post-lock trading dates.
 
 ## Artifact-backed Research Runtime v1
 
@@ -20,14 +46,12 @@ Verified source commit before this task: `890afdde73de0616a7efcf43946b1cbf6329be
 - External Campaign `rc_0b13d7f...d9401c` exact-replayed with Agent calls,
   Optimization calls and Registry writes all zero. Exact-existing publication
   of Registry, Campaign and Optimization created no descriptor or blob.
-- Baseline Inventory remains `sai_a0b9e618...55d312`: 65 artifacts, 280 blobs,
+- The QM2-P0-011 baseline Inventory was `sai_a0b9e618...55d312`: 65 artifacts, 280 blobs,
   healthy, zero missing and zero unreferenced. `/private/tmp` is not a formal
   runtime authority. Explicit `legacy_local` exists only for emergency
   compatibility and cannot establish formal publication without Store import.
-- Fresh Validation remains `awaiting_first_fresh_date` at 0/60; no Fresh Result
-  was created. Current task: `QM2-P0-011`. Latest Implementation Run:
-  `QM2-P0-011-20260717T165948Z-890afdd`. Next task is only
-  `QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run`.
+- Fresh Validation remained `awaiting_first_fresh_date` at 0/60; no Fresh
+  Result was created. Its successor dry run is recorded above.
 
 ## Persistent Research Artifact Store v1
 

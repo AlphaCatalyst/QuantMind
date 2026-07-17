@@ -48,9 +48,9 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.factor_optimization` | partial | Deterministic declared-parameter Study/Trial execution, budgets, mechanical metrics, eligibility, immutable artifacts and replay exist; predictive validation, random/Bayesian search, threshold, Registry/API and distributed execution do not |
 | `quantmind2.factor_validation` | partial | Immutable temporal Dataset, Validation Result, Selection and isolated Frozen Result exist; current evidence does not constitute Registry promotion |
 | `quantmind2.factor_registry` | partial | Immutable Entry/Policy/Decision/Snapshot artifacts, multi-parent reconciliation, strict evidence lineage, queries and CLI exist; current canonical 19-entry Snapshot has no promotion candidate, approved or active Factor; persistence/API are deferred |
-| `quantmind2.research_campaign` | partial | Closed Goal/Decision, sanitized memory, bounded state machine, novelty, real Optimization/Development/Registry loop and CLI exist; Baseline and one admitted external Codex Campaign pass, while formal fresh Validation remains separate |
-| `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies all 65 reachable formal artifacts |
-| `quantmind2.artifact_runtime` | implemented | Formal runtime defaults to Store-required resolution/publication and recovers current state from an empty cache |
+| `quantmind2.research_campaign` | partial | Closed Goal/Decision, sanitized memory, bounded state machine, novelty, real Optimization/Development/Registry loop and CLI exist; QM2-P0-012 strictly rejected two malformed Provider responses and stored partial evidence without admission |
+| `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies 66 formal artifacts in current Inventory |
+| `quantmind2.artifact_runtime` | implemented | Store-required resolution/publication, runtime counters, Campaign graph recovery and exact replay operate from an empty cache |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

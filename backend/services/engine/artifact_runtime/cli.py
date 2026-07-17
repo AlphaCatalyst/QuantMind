@@ -8,7 +8,7 @@ from .errors import ArtifactRuntimeError
 
 
 BASELINE_INVENTORY_ID = (
-    "sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312"
+    "sai_b0c038070f5e09a4f6ab261647c8686ef09c8e99bfc924afc2ced942c2370320"
 )
 
 

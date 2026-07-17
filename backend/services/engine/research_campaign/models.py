@@ -76,3 +76,4 @@ class CampaignConfig:
     optimization_root: str
     existing_optimization_root: Optional[str] = None
     registry_output_root: Optional[str] = None
+    development_output_root: Optional[str] = None

@@ -40,6 +40,10 @@ def publish_domain_artifact(
         store_format_version=runtime_context.store.validate_format()["store_format_version"],
         inventory_id=runtime_context.inventory_id,
     )
+    if not receipt.exact_existing:
+        runtime_context.evidence.published_artifacts += 1
+    runtime_context.evidence.published_blobs += receipt.new_blob_count
+    runtime_context.evidence.reused_blobs += receipt.reused_blob_count
     return PublishedArtifact(
         reference,
         receipt.exact_existing,

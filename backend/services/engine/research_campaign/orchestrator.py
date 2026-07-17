@@ -10,7 +10,7 @@ from backend.services.engine.factor_registry.models import RegistryEntry
 from .artifact import CampaignJournal, campaign_id, validate_campaign
 from .canonical import hash_payload
 from .decision import parse_decision
-from .development import evaluate_development
+from .development import evaluate_development, publish_development_bundle
 from .errors import AgentContractError, ResearchCampaignError
 from .memory import sanitize_memory
 from .models import CampaignConfig, ResearchAgentRequest, ResearchCampaignBudget, ResearchGoal
@@ -167,6 +167,8 @@ def run_campaign(goal: ResearchGoal, budget: ResearchCampaignBudget, agent, conf
                     key = (metric is not None, abs(metric or 0.0), -trial.ordinal)
                     if best is None or key > best_key: best, best_key, best_development = trial, key, development
                 if best is None: raise ResearchCampaignError("no mechanically eligible trial")
+                if config.development_output_root:
+                    publish_development_bundle(config.development_output_root, best_development)
                 journal.event("development_evaluating", iteration=iteration, proposal_id=proposal["proposal_id"])
                 entries.append(_registry_entry(best, study, proposal, decision, best_development, cid))
                 row = {"proposal_id": proposal["proposal_id"], "status": "completed", "fingerprint": fingerprint,
@@ -196,7 +198,7 @@ def run_campaign(goal: ResearchGoal, budget: ResearchCampaignBudget, agent, conf
                       research_registered_added=len(new_entries))
     else:
         after = before
-    campaign_status = "partial" if stop_reason == "agent_contract_failure" else "completed"
+    campaign_status = "completed" if new_entries else "partial"
     completion_event = "partial" if campaign_status == "partial" else ("stopped_no_novelty" if stop_reason == "no_novelty" else "completed")
     journal.event(completion_event, stop_reason=stop_reason)
     result_payload = {"schema_version": "research-campaign-result-v1", "campaign_id": cid,

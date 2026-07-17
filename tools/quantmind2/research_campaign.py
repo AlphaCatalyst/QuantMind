@@ -31,8 +31,19 @@ DEFAULTS = {
     "validation_root": "/private/tmp/qm2-p0-006-validation/data",
     "validation_dataset_id": "vd_1ac71a8b1bab36f7d4304fe13c14cbb936f073d0426b76e0c73096a819c3ed62",
     "registry_root": "/private/tmp/qm2-p0-007-registry",
-    "registry_snapshot_id": "frs_436f4a966ea0c00ee2182c665813cd74cc13bb900a7022604ad9efc26849f2d9",
+    "registry_snapshot_id": "frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5",
     "existing_optimization_root": "/private/tmp/qm2-p0-005-optimization",
+}
+
+PRODUCTION_DRY_RUN_BUDGET = {
+    "max_iterations": 1,
+    "max_agent_calls": 2,
+    "max_proposals_per_iteration": 2,
+    "max_total_admitted_templates": 1,
+    "max_total_trials": 6,
+    "max_failed_proposals": 2,
+    "max_failed_trials": 2,
+    "max_agent_repair_attempts_per_call": 1,
 }
 
 
@@ -43,8 +54,14 @@ def _config(args):
     root = Path(args.runtime_root)
     return CampaignConfig(str(root / "campaign-artifacts"), DEFAULTS["snapshot_root"], DEFAULTS["snapshot_id"],
         DEFAULTS["validation_root"], DEFAULTS["validation_dataset_id"], DEFAULTS["registry_root"],
-        DEFAULTS["registry_snapshot_id"], str(root / "factor-values"), str(root / "optimization"),
-        DEFAULTS["existing_optimization_root"], str(root / "registry"))
+        args.registry_snapshot_id, str(root / "factor-values"), str(root / "optimization"),
+        DEFAULTS["existing_optimization_root"], str(root / "registry"), str(root / "development"))
+
+
+def _budget(args):
+    return ResearchCampaignBudget(**(
+        PRODUCTION_DRY_RUN_BUDGET if args.budget_profile == "production-dry-run-v1" else {}
+    ))
 
 
 def _agent(args):
@@ -61,6 +78,8 @@ def main(argv=None):
         item.add_argument("--agent", choices=("baseline", "codex"), default="baseline")
         item.add_argument("--codex-executable", default="codex"); item.add_argument("--model", default="gpt-5.6-terra")
         item.add_argument("--timeout", type=int, default=180)
+        item.add_argument("--registry-snapshot-id", default=DEFAULTS["registry_snapshot_id"])
+        item.add_argument("--budget-profile", choices=("default", "production-dry-run-v1"), default="default")
     for name in ("validate-campaign", "inspect", "inspect-memory"):
         item = sub.add_parser(name); item.add_argument("campaign_id"); item.add_argument("--runtime-root")
     args = parser.parse_args(argv)
@@ -68,7 +87,7 @@ def main(argv=None):
     if args.command == "validate-goal":
         parsed = parse_goal(args.goal); _json({"status": "valid", "goal_id": parsed.goal_id}); return 0
     if args.command in {"plan", "execute"}:
-        parsed = parse_goal(args.goal); budget = ResearchCampaignBudget()
+        parsed = parse_goal(args.goal); budget = _budget(args)
         if args.runtime_root is None:
             args.runtime_root = str(runtime.cache_root / "campaign-execution")
         config = _config(args); agent = _agent(args)
@@ -88,7 +107,7 @@ def main(argv=None):
                 runtime,
                 snapshot_id=DEFAULTS["snapshot_id"],
                 validation_dataset_id=DEFAULTS["validation_dataset_id"],
-                registry_snapshot_id=DEFAULTS["registry_snapshot_id"],
+                registry_snapshot_id=args.registry_snapshot_id,
                 execution_root=args.runtime_root,
             )
             completed = run_campaign(parsed, budget, agent, config)

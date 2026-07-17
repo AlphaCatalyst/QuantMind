@@ -66,11 +66,13 @@ def resolve_artifact(
 ) -> ResolvedArtifact:
     if artifact_id in _stack:
         raise ArtifactResolutionError("Artifact lineage contains a cycle")
+    runtime_context.evidence.store_descriptor_reads += 1
     try:
         descriptor = runtime_context.store.find_by_artifact_id(artifact_id)
     except ArtifactStoreError as exc:
         raise ArtifactResolutionError("Store descriptor lookup failed") from exc
     if descriptor is None:
+        runtime_context.evidence.store_miss_count += 1
         raise ArtifactResolutionError("Store Artifact is missing; recomputation is forbidden")
     if descriptor.artifact_kind != artifact_kind:
         raise ArtifactReferenceMismatch("Artifact kind differs from Store descriptor")
@@ -105,6 +107,9 @@ def resolve_artifact(
             if not receipt.verified:
                 raise ArtifactResolutionError("Store materialization was not verified")
             write_cache_record(runtime_context.cache_root, descriptor, destination)
+            runtime_context.evidence.cold_materializations += 1
+        else:
+            runtime_context.evidence.warm_cache_hits += 1
         try:
             domain = validate_domain_artifact(
                 artifact_kind,

@@ -15,6 +15,7 @@ from .adapters import (
     replay_optimization_study,
     replay_research_campaign,
     resolve_factor_values,
+    resolve_development_result,
     resolve_fresh_admission,
     resolve_frozen_result,
     resolve_validation_result,
@@ -33,6 +34,7 @@ from .errors import (
 from .guards import guard_local_path
 from .models import (
     ArtifactRuntimeContext,
+    ArtifactRuntimeEvidence,
     ArtifactRuntimePolicy,
     ExactReplayResult,
     PublishedArtifact,
@@ -41,13 +43,13 @@ from .models import (
     StoreBackedArtifactRef,
 )
 from .publisher import publish_domain_artifact
-from .recovery import recover_research_state
+from .recovery import recover_campaign_graph, recover_research_state
 from .reference import reference_from_descriptor
 from .resolver import resolve_artifact, resolve_or_import_artifact
 
 __all__ = [
     "ArtifactPublicationError", "ArtifactReferenceMismatch",
-    "ArtifactResolutionError", "ArtifactRuntimeContext", "ArtifactRuntimeError",
+    "ArtifactResolutionError", "ArtifactRuntimeContext", "ArtifactRuntimeEvidence", "ArtifactRuntimeError",
     "ArtifactRuntimeMode", "ArtifactRuntimePolicy", "ExactReplayResult",
     "InvalidRuntimeMode", "LegacyArtifactPathForbidden", "LocalPathPurpose",
     "PublishedArtifact", "RecoveredResearchState", "ResearchStateRecoveryError",
@@ -59,8 +61,9 @@ __all__ = [
     "publish_optimization_study", "publish_registry_snapshot",
     "publish_research_campaign", "publish_validation_result",
     "publish_existing_artifact",
-    "recover_research_state", "reference_from_descriptor", "replay_optimization_study",
+    "recover_campaign_graph", "recover_research_state", "reference_from_descriptor", "replay_optimization_study",
     "replay_research_campaign", "resolve_artifact", "resolve_or_import_artifact", "resolve_factor_values",
+    "resolve_development_result",
     "resolve_fresh_admission", "resolve_frozen_result", "resolve_runtime_context",
     "resolve_validation_result",
 ]

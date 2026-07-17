@@ -7,6 +7,10 @@ from backend.services.engine.factor_registry.models import RegistryEntry
 from backend.services.engine.factor_registry.parser import entry_payload, parse_entry
 from backend.services.engine.research_campaign.artifact import CampaignJournal, validate_campaign
 from backend.services.engine.research_campaign.errors import CampaignArtifactError
+from backend.services.engine.research_campaign.development import (
+    publish_development_bundle,
+    validate_development_bundle,
+)
 
 
 def entry(evidence=None):
@@ -58,3 +62,21 @@ def test_campaign_artifact_detects_hash_drift(tmp_path):
                                 "memory.json": {"development_results": []}, "sanitized_memory.json": {}})
     (tmp_path / "campaigns" / artifact["campaign_id"] / "goal.json").write_text("{}")
     with pytest.raises(CampaignArtifactError): validate_campaign(tmp_path, artifact["campaign_id"])
+
+
+def test_development_result_bundle_is_immutable_and_quarantined(tmp_path):
+    development = {
+        "development_evaluation_id": "der_" + "d" * 64,
+        "factor_values_id": "fv_" + "f" * 64,
+        "development_is_contaminated": True,
+        "is_validation_evidence": False,
+        "is_frozen_evidence": False,
+        "predictive_claim": False,
+        "adaptive_research_only": True,
+        "contaminated_period": True,
+        "eligible_for_registry_promotion": False,
+    }
+    first = publish_development_bundle(tmp_path, development)
+    second = publish_development_bundle(tmp_path, development)
+    assert first == second
+    assert validate_development_bundle(first, development["development_evaluation_id"]) == development

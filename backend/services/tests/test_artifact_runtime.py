@@ -113,8 +113,10 @@ def test_resolver_cold_warm_corrupt_concurrent_and_mismatch(tmp_path):
     published = _publish_fixture(context, tmp_path)
     cold = resolve_artifact(context, "generic_research_bundle", "bundle_alpha")
     assert cold.verified and not cold.cache_hit
+    assert context.evidence.cold_materializations == 1
     warm = resolve_artifact(context, "generic_research_bundle", "bundle_alpha")
     assert warm.cache_hit and warm.materialized_root == cold.materialized_root
+    assert context.evidence.warm_cache_hits == 1
     (warm.materialized_root / "payload.txt").write_text("corrupt", encoding="utf-8")
     repaired = resolve_artifact(context, "generic_research_bundle", "bundle_alpha")
     assert not repaired.cache_hit and (repaired.materialized_root / "payload.txt").read_text() == "payload"
@@ -145,6 +147,8 @@ def test_publisher_new_exact_existing_conflict_and_no_duplicate_blob(tmp_path):
         tmp_path / "source-payload",
     )
     assert second.exact_existing and second.new_blob_count == 0
+    assert context.evidence.published_artifacts == 1
+    assert context.evidence.published_blobs == 2
     assert second.reference == first.reference
     assert context.store.verify_artifact(first.reference.descriptor_id)
     conflicting = _source(tmp_path / "conflicting", "bundle_alpha", "different")

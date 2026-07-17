@@ -1,0 +1,42 @@
+{
+  "allowed_features": [
+    "mom_ret_1d",
+    "liq_volume_ratio_5",
+    "style_beta_20",
+    "style_idio_vol_20"
+  ],
+  "allowed_operators": [
+    "add",
+    "subtract",
+    "multiply",
+    "divide",
+    "rolling_mean",
+    "rolling_std",
+    "rolling_min",
+    "rolling_max",
+    "delta",
+    "cs_rank",
+    "cs_zscore"
+  ],
+  "allowed_parameter_roles": [
+    "lookback_window",
+    "factor_internal_weight"
+  ],
+  "constraints": [
+    "no lookahead or future data",
+    "no executable extension",
+    "no target data or frozen evidence",
+    "adaptive 2025 development only",
+    "no prediction or promotion claim",
+    "explicit bounded parameter values only"
+  ],
+  "dataset_kind": "legacy_feature_matrix_v1",
+  "goal_id": "rg_6929cb83f3f3f96f422598f1a1cf1463840f7b28d1b9cd0bcb3d4a4a181f55ce",
+  "maximum_iterations": 1,
+  "maximum_templates": 1,
+  "maximum_trials": 6,
+  "name": "artifact_backed_external_agent_novel_structure_dry_run",
+  "novelty_requirement": "structurally distinct from all canonical Registry, baseline Agent, and prior external Agent template families; renaming, default-only changes, and commutative reorderings are not novel",
+  "objective": "Propose a parameterized Factor DSL structure that is structurally distinct from every family in the canonical Registry, using only the four full-cycle feature terminals for bounded 2025 contaminated development research.",
+  "schema_version": "1.0.0"
+}
