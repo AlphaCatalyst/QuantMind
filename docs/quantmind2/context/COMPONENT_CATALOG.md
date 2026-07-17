@@ -11,9 +11,24 @@
   `scan_store_integrity`, `build_reachability_plan`
 - Dependencies: existing Dataset, DSL, Optimization, Validation, Registry,
   Campaign, Admission and Fresh formal Validators
-- Limitations: local filesystem only; runtime cutover, cloud backend, metadata
-  API/UI and deletion GC are not implemented
+- Limitations: local filesystem only; cloud backend, metadata API/UI and
+  deletion GC are not implemented
 - Evidence: verified real migration and recovery in QM2-P0-010
+
+## `quantmind2.artifact_runtime`
+
+- Status: implemented
+- Responsibility: Store-backed reference, policy, verified resolution,
+  materialization, publication, exact replay and research-state recovery
+- Source/target: `backend/services/engine/artifact_runtime/`
+- Key symbols: `ArtifactRuntimePolicy`, `StoreBackedArtifactRef`,
+  `ArtifactRuntimeContext`, `resolve_artifact`, `publish_domain_artifact`,
+  `recover_research_state`
+- Dependencies: `quantmind2.research_artifact_store` and unchanged Domain
+  validators
+- Limitations: single-host/process cache and locks; no cloud/distributed
+  backend, database catalog, API/UI, Qlib or LightGBM cutover
+- Evidence: empty-cache Store-only recovery and exact replay in QM2-P0-011
 
 The machine-readable catalog is authoritative for the initial component list.
 Statuses describe current implementation, not architectural intention.
@@ -34,6 +49,8 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.factor_validation` | partial | Immutable temporal Dataset, Validation Result, Selection and isolated Frozen Result exist; current evidence does not constitute Registry promotion |
 | `quantmind2.factor_registry` | partial | Immutable Entry/Policy/Decision/Snapshot artifacts, multi-parent reconciliation, strict evidence lineage, queries and CLI exist; current canonical 19-entry Snapshot has no promotion candidate, approved or active Factor; persistence/API are deferred |
 | `quantmind2.research_campaign` | partial | Closed Goal/Decision, sanitized memory, bounded state machine, novelty, real Optimization/Development/Registry loop and CLI exist; Baseline and one admitted external Codex Campaign pass, while formal fresh Validation remains separate |
+| `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies all 65 reachable formal artifacts |
+| `quantmind2.artifact_runtime` | implemented | Formal runtime defaults to Store-required resolution/publication and recovers current state from an empty cache |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

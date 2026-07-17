@@ -101,11 +101,9 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         validate_validation_dataset(source.parents[1], artifact_id)
         return "factor_validation.validate_validation_dataset"
     if kind is ArtifactKind.FACTOR_VALIDATION_RESULT:
-        from backend.services.engine.factor_validation.validation import validate_validation_result
-        candidate = json.loads((source / "candidate_selection.json").read_text())
-        selection_id = candidate.get("selection_id") or candidate.get("candidate_selection_id")
-        validate_validation_result(source.parents[1], artifact_id, selection_id)
-        return "factor_validation.validate_validation_result"
+        from backend.services.engine.factor_validation.validation import validate_validation_result_directory
+        validate_validation_result_directory(source, artifact_id)
+        return "factor_validation.validate_validation_result_directory"
     if kind is ArtifactKind.FROZEN_TEST_RESULT:
         from backend.services.engine.factor_validation.frozen import validate_frozen_result
         validate_frozen_result(source.parents[1], artifact_id)

@@ -16,6 +16,9 @@ from backend.services.engine.fresh_validation import (
     evaluate_fresh_validation, publish_json_authority, validate_accrual_snapshot,
     validate_fresh_validation_result, validate_json_authority,
 )
+from backend.services.engine.artifact_runtime.cli import add_runtime_arguments, runtime_context_from_args
+from backend.services.engine.artifact_runtime.enums import ArtifactRuntimeMode
+from backend.services.engine.artifact_runtime.errors import LegacyArtifactPathForbidden
 
 REGISTRY_ID = "frs_f0a08cc472270cf80f2ae8c1141de17871dacbe2edccba8eb4ffe05ca45d3ba4"
 ADMISSION_ID = "fvar_89e61fe674bff1d10d46c9bea3913a456f236bbc191578291529736480a831ab"
@@ -94,6 +97,7 @@ def validate_all(args):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description="Strict forward Fresh Validation control")
+    add_runtime_arguments(parser)
     sub=parser.add_subparsers(dest="command",required=True)
     for name in ("lock-candidates","inspect-exposure","inspect-watermark","check-maturity","inspect","validate"):
         p=sub.add_parser(name); p.add_argument("--authority-root",required=True)
@@ -102,6 +106,9 @@ def main(argv=None):
     p=sub.add_parser("evaluate"); p.add_argument("--authority-root",required=True); p.add_argument("--accrual-root",required=True); p.add_argument("--snapshot-id",required=True); p.add_argument("--output-root",required=True)
     args=parser.parse_args(argv)
     try:
+        runtime=runtime_context_from_args(args)
+        if runtime.policy.mode is ArtifactRuntimeMode.STORE_REQUIRED and args.command in {"lock-candidates","inspect-watermark","build-accrual","evaluate"}:
+            raise LegacyArtifactPathForbidden("store_required forbids legacy research inputs or mutable watermark publication")
         if args.command=="lock-candidates": payload=lock_candidates(args)
         elif args.command=="inspect-watermark": payload=inspect_watermark(args)
         elif args.command=="validate": payload=validate_all(args)

@@ -167,3 +167,37 @@ def validate_validation_result(validation_root, result_id, selection_id):
     return {"status": "valid", "validation_result_id": result_id, "candidate_selection_id": selection_id,
             "result_path": str(root), "selection_path": str(selection), "manifest": manifest,
             "selection": selection_payload}
+
+
+def validate_validation_result_directory(result_root, result_id):
+    """Validate a self-contained Store materialization without reopening Frozen state."""
+    root = Path(result_root)
+    try:
+        manifest = json.loads((root / "manifest.json").read_text())
+        selection_payload = json.loads((root / "candidate_selection.json").read_text())
+    except Exception as exc:
+        raise ValidationArtifactError("materialized Validation Result is unreadable") from exc
+    selection_id = manifest.get("candidate_selection_id")
+    if manifest.get("validation_result_id") != result_id:
+        raise ValidationArtifactError("validation result identity mismatch")
+    for relative, digest in manifest.get("file_hashes", {}).items():
+        if sha256_file(root / relative) != digest:
+            raise ValidationArtifactError("validation result hash mismatch")
+    stable = {key: manifest[key] for key in (
+        "schema_version", "engine_version", "spec", "validation_dataset_id",
+        "feature_snapshot_id", "trial_results", "candidate_order", "selected_trial_ids",
+        "development_diagnostic_used", "frozen_labels_accessed",
+    )}
+    if result_id != "fvr_" + hash_payload(stable):
+        raise ValidationArtifactError("validation result content identity mismatch")
+    selection_stable = {key: selection_payload[key] for key in (
+        "schema_version", "validation_result_id", "validation_dataset_id",
+        "selection_rule", "top_k", "eligible_trial_ids", "selected_trial_ids", "candidates",
+    )}
+    if selection_id != "fvs_" + hash_payload(selection_stable):
+        raise ValidationArtifactError("embedded Candidate Selection identity mismatch")
+    return {
+        "status": "valid", "validation_result_id": result_id,
+        "candidate_selection_id": selection_id, "result_path": str(root),
+        "manifest": manifest, "selection": selection_payload,
+    }

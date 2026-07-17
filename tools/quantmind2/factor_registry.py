@@ -15,6 +15,10 @@ from backend.services.engine.factor_registry import (  # noqa: E402
 )
 from backend.services.engine.factor_registry.decisions import decision_payload  # noqa: E402
 from backend.services.engine.factor_registry.errors import FactorRegistryError  # noqa: E402
+from backend.services.engine.artifact_runtime import load_registry_snapshot_store
+from backend.services.engine.artifact_runtime.cli import add_runtime_arguments, runtime_context_from_args
+from backend.services.engine.artifact_runtime.enums import ArtifactRuntimeMode
+from backend.services.engine.artifact_runtime.errors import LegacyArtifactPathForbidden
 
 
 VALIDATION_RESULT = "fvr_b9f247e42487267754d5e6128beb4f90a379b77853462b6ca25f0f2918c51ab0"
@@ -33,12 +37,13 @@ def _summary(snapshot):
 
 
 def _common(parser):
-    parser.add_argument("--output-root", required=True, type=Path)
+    parser.add_argument("--output-root", type=Path)
     parser.add_argument("--snapshot-id", required=True)
 
 
 def _parser():
     parser=argparse.ArgumentParser(); commands=parser.add_subparsers(dest="command", required=True)
+    add_runtime_arguments(parser)
     build=commands.add_parser("build")
     build.add_argument("--repository-root", default=str(ROOT), type=Path)
     build.add_argument("--optimization-root", required=True, type=Path)
@@ -47,8 +52,8 @@ def _parser():
     for name in ("validate", "inspect", "list"): _common(commands.add_parser(name))
     validation=commands.choices["validate"]
     validation.add_argument("--repository-root", default=str(ROOT), type=Path)
-    validation.add_argument("--optimization-root", required=True, type=Path)
-    validation.add_argument("--validation-root", required=True, type=Path)
+    validation.add_argument("--optimization-root", type=Path)
+    validation.add_argument("--validation-root", type=Path)
     listing=commands.choices["list"]; listing.add_argument("--status"); listing.add_argument("--family-id"); listing.add_argument("--template-id")
     for name in ("plan-decision", "apply-decision"):
         cmd=commands.add_parser(name); _common(cmd); cmd.add_argument("--factor-instance-id", required=True)
@@ -61,28 +66,46 @@ def _parser():
 def main(argv=None):
     args=_parser().parse_args(argv)
     try:
+        runtime=runtime_context_from_args(args)
         if args.command == "build":
+            if runtime.policy.mode is ArtifactRuntimeMode.STORE_REQUIRED:
+                raise LegacyArtifactPathForbidden("store_required Registry publication uses Artifact Runtime staging")
             policy=default_promotion_policy(); entries=build_entries_from_evidence(repository_root=args.repository_root,
                 optimization_root=args.optimization_root, validation_root=args.validation_root,
                 validation_result_id=VALIDATION_RESULT, selection_id=SELECTION, frozen_result_id=FROZEN, policy=policy)
             result=_summary(publish_snapshot(args.output_root, policy, entries))
         else:
-            snapshot=load_registry_snapshot(args.output_root, args.snapshot_id)
+            if runtime.policy.mode is ArtifactRuntimeMode.LEGACY_LOCAL:
+                if args.output_root is None: raise ValueError("legacy_local Registry access requires --output-root")
+                snapshot=load_registry_snapshot(args.output_root, args.snapshot_id)
+                resolved=None
+            else:
+                snapshot,resolved=load_registry_snapshot_store(runtime,args.snapshot_id)
             if args.command == "validate":
+                if runtime.policy.mode is not ArtifactRuntimeMode.LEGACY_LOCAL:
+                    result={"status":"valid","evidence":"store_descriptor_and_domain_valid",**_summary(snapshot),**resolved.safe_summary()}
+                    print(json.dumps(result,sort_keys=True,ensure_ascii=False)); return 0
+                if args.optimization_root is None or args.validation_root is None:
+                    raise ValueError("legacy_local validation requires Optimization and Validation roots")
                 entries=build_entries_from_evidence(repository_root=args.repository_root,
                     optimization_root=args.optimization_root, validation_root=args.validation_root,
                     validation_result_id=VALIDATION_RESULT, selection_id=SELECTION,
                     frozen_result_id=FROZEN, policy=snapshot.policy)
                 if entries != snapshot.entries: raise FactorRegistryError("Registry entries differ from authoritative evidence")
                 result={"status":"valid", "evidence":"valid", **_summary(snapshot)}
-            elif args.command == "inspect": result={"status":"valid", **_summary(snapshot)}
+            elif args.command == "inspect":
+                result={"status":"valid", **_summary(snapshot)}
+                if resolved is not None: result.update(resolved.safe_summary())
             elif args.command == "list":
                 items=snapshot.entries
                 if args.status: items=list_by_status(snapshot,args.status)
                 if args.family_id: items=list_by_family(snapshot,args.family_id)
                 if args.template_id: items=tuple(x for x in items if x.template_id==args.template_id)
                 result={"registry_snapshot_id":snapshot.registry_snapshot_id,"entries":[{"factor_instance_id":x.factor_instance_id,"template_id":x.template_id,"family_id":x.family_id,"status":x.status.value,"parameters":dict(x.parameter_values)} for x in items]}
+                if resolved is not None: result.update(resolved.safe_summary())
             else:
+                if runtime.policy.mode is ArtifactRuntimeMode.STORE_REQUIRED:
+                    raise LegacyArtifactPathForbidden("store_required decisions require a Store-backed publication workflow")
                 entry=next((x for x in snapshot.entries if x.factor_instance_id==args.factor_instance_id),None)
                 if entry is None: raise FactorRegistryError("Factor Instance not found")
                 decision=plan_decision(entry=entry,registry_snapshot_id=snapshot.registry_snapshot_id,

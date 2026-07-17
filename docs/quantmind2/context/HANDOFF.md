@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-010F: `77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d`
+- Base before QM2-P0-011: `890afdde73de0616a7efcf43946b1cbf6329be91`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-010F: no
+- Dirty before QM2-P0-011: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -24,6 +24,23 @@
 
 ## Current position
 
+- `QM2-P0-011` cuts the formal research runtime to `store_required`. Read
+  `ARTIFACT_BACKED_RUNTIME_V1.md`, `ARTIFACT_RUNTIME_RECOVERY_V1.md` and
+  `ARTIFACT_RUNTIME_ROLLBACK_V1.md` before changing runtime behavior.
+- Store-only empty-cache recovery passed for Factor Values, Optimization,
+  Validation, Frozen, canonical Registry, both Campaigns and Fresh Admission.
+  External Campaign replay called neither Agent nor Optimization and wrote no
+  Registry state. Store remains healthy at 65 artifacts / 280 blobs on baseline
+  Inventory `sai_a0b9e618...55d312`.
+- Canonical Registry remains 19 entries with promotion / approved / active =
+  0 / 0 / 0. Fresh remains `awaiting_first_fresh_date` at 0/60; no Fresh Result
+  exists. Legacy local mode is emergency-only and cannot publish formal results.
+- Current task: `QM2-P0-011 — Artifact-backed Research Runtime Cutover and
+  Recovery Drill`. Latest Run:
+  `QM2-P0-011-20260717T165948Z-890afdd`. The only next task is
+  `QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run`.
+  `QM2-FV-001` remains conditional on 60 mature post-lock dates.
+
 - `QM2-P0-010` adds persistent Research Artifact Store v1. Current inventory
   is `sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312`;
   reachability plan is `rap_f3aca751ad751c976888fd9b464f9f56dd4913339b226786c0c3a7ef65ccc247`.
@@ -39,8 +56,8 @@
 - `QM2-P0-010F` publishes correction evidence only, with one `corrects`
   relationship. It changes no Store behavior or research artifact identity.
   Latest run: `QM2-P0-010F-20260717T161330Z-77f5b1f`.
-- Next task is only `QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill`.
-  Fresh evaluation is still 0/60 and must not run.
+- Runtime cutover successor is `QM2-P0-012`; Fresh evaluation is still 0/60
+  and must not run.
 
 - Architecture: QuantMind 2.0 Architecture v1, frozen.
 - ADR-0009 and Research Decision Contract v1 are accepted architecture facts.
@@ -48,12 +65,11 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-010F`, recording immutable Git inventory correction
+- Previous task `QM2-P0-010F` recorded immutable Git inventory correction
   evidence for the Artifact Store implementation Run.
-- Task name: `QM2-P0-010F — Immutable Git Inventory Correction for Artifact Store Run`.
 - Completed predecessor: `QM2-P0-008 — Agent Research Campaign v1` remains
   historically partial because its external attempts failed.
-- Latest run: `QM2-P0-010F-20260717T161330Z-77f5b1f` under
+- Latest correction run: `QM2-P0-010F-20260717T161330Z-77f5b1f` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -215,7 +231,7 @@
   business ChangedFiles were omitted. QM2-P0-009F records the complete 35-entry
   Git-derived inventory as immutable correction evidence with `corrects`; it
   does not edit the original Run or research controls.
-- Recommended next task: `QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill`.
+- Recommended next task: `QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run`.
 
 ## Unconfirmed facts
 

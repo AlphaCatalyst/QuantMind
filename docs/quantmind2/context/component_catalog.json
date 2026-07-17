@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T07:22:10Z",
-  "source_commit": "0374aaceab7c8b14e26e3d21ff5ed35366795384",
+  "generated_at": "2026-07-17T16:59:48Z",
+  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -156,7 +156,21 @@
       "key_symbols": ["ResearchArtifactStore", "FileSystemResearchArtifactStore", "StoredArtifactDescriptor", "import_artifact", "materialize_artifact", "scan_store_integrity", "build_reachability_plan"],
       "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_compute", "quantmind2.factor_optimization", "quantmind2.factor_validation", "quantmind2.factor_registry", "quantmind2.research_campaign", "quantmind2.fresh_validation"],
       "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007"],
-      "current_limitations": ["Single-host local filesystem only; no runtime cutover, cloud backend, distributed lock, metadata API/UI, automatic synchronization or deletion GC."],
+      "current_limitations": ["Single-host local filesystem only; no cloud backend, distributed lock, metadata API/UI, automatic synchronization or deletion GC."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.artifact_runtime",
+      "name": "Artifact-backed Research Runtime",
+      "status": "implemented",
+      "responsibility": "Resolve, verify, materialize, validate, replay and publish formal research artifacts through the immutable Artifact Store without depending on legacy source directories.",
+      "source_path": "backend/services/engine/artifact_runtime",
+      "target_path": "backend/services/engine/artifact_runtime",
+      "key_symbols": ["ArtifactRuntimePolicy", "StoreBackedArtifactRef", "ArtifactRuntimeContext", "ResolvedArtifact", "PublishedArtifact", "resolve_artifact", "publish_domain_artifact", "recover_research_state"],
+      "dependencies": ["quantmind2.research_artifact_store", "quantmind2.factor_compute", "quantmind2.factor_optimization", "quantmind2.factor_validation", "quantmind2.factor_registry", "quantmind2.research_campaign", "quantmind2.fresh_validation"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007"],
+      "current_limitations": ["Single-process local materialization locks only; no cloud backend, distributed cache/lock, database catalog, API/UI, Qlib or LightGBM cutover.", "legacy_local remains an explicit emergency compatibility mode and cannot establish formal publication without Store import."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     }

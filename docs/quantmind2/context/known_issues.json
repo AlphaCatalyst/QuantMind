@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:13:30Z",
-  "source_commit": "77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d",
+  "generated_at": "2026-07-17T16:59:48Z",
+  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -41,9 +41,9 @@
     {"issue_id": "QM2-KI-032", "severity": "high", "status": "resolved", "summary": "QM2-P0-008 historical external failures remain immutable; QM2-P0-008F identified invalid_json_schema, added semantic Provider-schema normalization and safe classified diagnostics, and completed one admitted external Codex Campaign without changing ResearchDecision or Campaign controls."},
     {"issue_id": "QM2-KI-033", "severity": "high", "status": "resolved", "summary": "Baseline and External Campaigns produced sibling Registry snapshots; QM2-P0-008G reconciled them into one immutable multi-parent canonical Snapshot without rewriting either branch."},
     {"issue_id": "QM2-KI-034", "severity": "high", "status": "open", "summary": "The 2026 source ends before the 2026-07-17 Candidate Lock; Fresh Validation is awaiting its first strictly post-lock date and no real result exists."},
-    {"issue_id": "QM2-KI-035", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 implements the persistent content-addressed Store and migrates the complete current reachable research graph; runtime cutover remains QM2-P0-011."},
+    {"issue_id": "QM2-KI-035", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 implements the persistent content-addressed Store and migrates the complete current reachable research graph; QM2-P0-011 completes the Store-backed runtime cutover and recovery drill."},
     {"issue_id": "QM2-KI-036", "severity": "medium", "status": "resolved", "summary": "QM2-P0-009 omitted 23 of 35 Git-proven business ChangedFiles. The original Run remains inconsistent; QM2-P0-009F adds complete immutable correction evidence and a corrects relationship."},
-    {"issue_id": "QM2-KI-037", "severity": "medium", "status": "open", "summary": "Artifact Store v1 is local-filesystem only; runtimes are not yet cut over and NFS, cloud object storage, distributed locking and deletion GC are unsupported."},
+    {"issue_id": "QM2-KI-037", "severity": "medium", "status": "open", "summary": "Artifact Store and Runtime v1 are single-host local-filesystem only; NFS, cloud object storage, distributed locking/cache and deletion GC are unsupported."},
     {"issue_id": "QM2-KI-038", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 omitted only its own Manifest from both integrity Git inventories. The original Run remains immutable, inconsistent and non-indexable; QM2-P0-010F records the exact 42 changed and 28 added path evidence plus a corrects relationship without changing Store behavior or artifacts."}
   ]
 }

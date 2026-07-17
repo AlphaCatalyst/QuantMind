@@ -1,7 +1,33 @@
 # Current Implementation State
 
 Generated: 2026-07-18
-Verified source commit before this task: `77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d`
+Verified source commit before this task: `890afdde73de0616a7efcf43946b1cbf6329be91`
+
+## Artifact-backed Research Runtime v1
+
+- `QM2-P0-011` implements Store-backed references, runtime policy, verified
+  resolver, immutable publisher, descriptor-keyed ephemeral cache, exact replay,
+  source-aware legacy guards, Domain adapters and Store-only research-state
+  recovery. Formal QM2 CLI mode now defaults to `store_required`.
+- Factor Values, Optimization, Validation/Frozen, Registry, Campaign, Fresh
+  Admission and Fresh Validation top-level entry points are Store-backed. Their
+  low-level deterministic readers, validators and compute functions retain
+  explicit paths supplied by the runtime.
+- An empty-cache drill restored and Domain-validated eight artifact roles from
+  the Store without reading original temporary source roots. Canonical Registry
+  remains `frs_c2ef675c...0237b5` with 19 entries and promotion / approved /
+  active counts remain 0 / 0 / 0.
+- External Campaign `rc_0b13d7f...d9401c` exact-replayed with Agent calls,
+  Optimization calls and Registry writes all zero. Exact-existing publication
+  of Registry, Campaign and Optimization created no descriptor or blob.
+- Baseline Inventory remains `sai_a0b9e618...55d312`: 65 artifacts, 280 blobs,
+  healthy, zero missing and zero unreferenced. `/private/tmp` is not a formal
+  runtime authority. Explicit `legacy_local` exists only for emergency
+  compatibility and cannot establish formal publication without Store import.
+- Fresh Validation remains `awaiting_first_fresh_date` at 0/60; no Fresh Result
+  was created. Current task: `QM2-P0-011`. Latest Implementation Run:
+  `QM2-P0-011-20260717T165948Z-890afdd`. Next task is only
+  `QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run`.
 
 ## Persistent Research Artifact Store v1
 
@@ -27,9 +53,9 @@ Verified source commit before this task: `77f5b1fd36fd4f85e14a4c0dd5945abefe847f
   immutable correction Artifact and links it to the original Run with
   `corrects`; it does not edit the original Run, Store code, Store bytes,
   migration result, inventory or recovery result.
-- Current task: `QM2-P0-010F`. Latest Implementation Run:
-  `QM2-P0-010F-20260717T161330Z-77f5b1f`. Next task: `QM2-P0-011 — Artifact-backed
-  Research Runtime Cutover and Recovery Drill`; `QM2-FV-001` remains forbidden
+- `QM2-P0-010F` latest correction Run is
+  `QM2-P0-010F-20260717T161330Z-77f5b1f`. Its successor `QM2-P0-011` performs
+  the runtime cutover; `QM2-FV-001` remains forbidden
   until at least 60 locked post-lock mature trading dates exist.
 
 ## Implemented in existing systems

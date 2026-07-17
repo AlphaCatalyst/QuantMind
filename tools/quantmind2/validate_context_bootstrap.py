@@ -78,6 +78,10 @@ GIT_INVENTORY_CORRECTION = (
     QM2 / "implementation" / "corrections"
     / "QM2-P0-010-git-inventory-correction-v1.json"
 )
+ARTIFACT_RUNTIME_CUTOVER_SCHEMA = (
+    SCHEMAS / "artifact_runtime_cutover_v1.schema.json"
+)
+ARTIFACT_RUNTIME_CUTOVER = QM2 / "runtime" / "artifact-runtime-v1.json"
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -973,13 +977,33 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if not required_handoff_sources.issubset(set(handoff["source_paths"])):
         raise ValidationError("handoff does not reference context and architecture")
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
-    if "QM2-P0-010F" not in handoff_text:
-        raise ValidationError("human handoff does not name current QM2-P0-010F task")
-    if "QM2-P0-011 — Artifact-backed Research Runtime Cutover and Recovery Drill" not in handoff_text:
-        raise ValidationError("human handoff does not name exact QM2-P0-011 next task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-011"]:
-        raise ValidationError("machine handoff must name the exact runtime cutover task")
+    if "QM2-P0-011 — Artifact-backed Research Runtime Cutover and" not in handoff_text:
+        raise ValidationError("human handoff does not name current QM2-P0-011 task")
+    if "QM2-P0-012 — Artifact-backed External Agent Campaign Production Dry Run" not in handoff_text:
+        raise ValidationError("human handoff does not name exact QM2-P0-012 next task")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-012"]:
+        raise ValidationError("machine handoff must name the exact production dry-run task")
     checks.append("handoff_links")
+
+    runtime = validate_file(
+        ARTIFACT_RUNTIME_CUTOVER, ARTIFACT_RUNTIME_CUTOVER_SCHEMA
+    )
+    expected_runtime_modules = {
+        "factor_values", "factor_optimization", "factor_validation",
+        "frozen_test", "factor_registry", "research_campaign",
+        "fresh_validation_admission", "fresh_validation",
+    }
+    if set(runtime["cutover_modules"]) != expected_runtime_modules:
+        raise ValidationError("Artifact Runtime cutover module set is incomplete")
+    if runtime["baseline_inventory_id"] != (
+        "sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312"
+    ):
+        raise ValidationError("Artifact Runtime baseline Inventory drift")
+    runtime_text = ARTIFACT_RUNTIME_CUTOVER.read_text(encoding="utf-8")
+    forbidden_runtime_values = ("/Users/", "/private/tmp/", '"store_root"', '"cache_root"')
+    if any(value in runtime_text for value in forbidden_runtime_values):
+        raise ValidationError("Artifact Runtime record contains a physical path")
+    checks.append("artifact_runtime_cutover_contract")
 
     correction = validate_file(EVIDENCE_CORRECTION, EVIDENCE_CORRECTION_SCHEMA)
     if correction["recorded_value"] == correction["verified_value"]:

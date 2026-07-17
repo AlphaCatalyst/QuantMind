@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/artifact_runtime_cutover_v1.schema.json",
+  "title": "Artifact-backed Research Runtime Cutover v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "runtime_mode",
+    "store_format_version",
+    "baseline_inventory_id",
+    "cutover_modules",
+    "legacy_fallback_policy",
+    "cache_is_non_authoritative",
+    "cutover_commit"
+  ],
+  "properties": {
+    "schema_version": {"const": "artifact-runtime-cutover-v1"},
+    "runtime_mode": {"const": "store_required"},
+    "store_format_version": {"const": "1.0.0"},
+    "baseline_inventory_id": {"pattern": "^sai_[0-9a-f]{64}$", "type": "string"},
+    "cutover_modules": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "factor_values",
+          "factor_optimization",
+          "factor_validation",
+          "frozen_test",
+          "factor_registry",
+          "research_campaign",
+          "fresh_validation_admission",
+          "fresh_validation"
+        ]
+      }
+    },
+    "legacy_fallback_policy": {
+      "const": "explicit_legacy_local_emergency_only_not_formal_publication"
+    },
+    "cache_is_non_authoritative": {"const": true},
+    "cutover_commit": {
+      "anyOf": [
+        {"type": "null"},
+        {"pattern": "^[0-9a-f]{40}$", "type": "string"}
+      ]
+    }
+  }
+}

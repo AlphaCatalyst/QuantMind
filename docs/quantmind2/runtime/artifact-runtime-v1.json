@@ -1,0 +1,19 @@
+{
+  "schema_version": "artifact-runtime-cutover-v1",
+  "runtime_mode": "store_required",
+  "store_format_version": "1.0.0",
+  "baseline_inventory_id": "sai_a0b9e6183a7bed95d9dbcce918a19c9e2f63a67ffbc7617a2091b7a37955d312",
+  "cutover_modules": [
+    "factor_values",
+    "factor_optimization",
+    "factor_validation",
+    "frozen_test",
+    "factor_registry",
+    "research_campaign",
+    "fresh_validation_admission",
+    "fresh_validation"
+  ],
+  "legacy_fallback_policy": "explicit_legacy_local_emergency_only_not_formal_publication",
+  "cache_is_non_authoritative": true,
+  "cutover_commit": null
+}

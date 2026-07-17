@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:13:30Z",
-  "source_commit": "77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d",
+  "generated_at": "2026-07-17T16:59:48Z",
+  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d",
+  "base_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-010F",
+  "current_task": "QM2-P0-011",
   "completion_status": "completed_committed",
-  "latest_implementation_run": "QM2-P0-010F-20260717T161330Z-77f5b1f",
-  "next_recommended_tasks": ["QM2-P0-011"],
+  "latest_implementation_run": "QM2-P0-011-20260717T165948Z-890afdd",
+  "next_recommended_tasks": ["QM2-P0-012"],
   "unconfirmed_facts": [
     "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics; this no longer blocks the Legacy Snapshot Factor DSL route.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
@@ -35,7 +35,7 @@
     "Durable long-term location for the official Factor Lab source.",
     "Production execution-role permission policy for the explicit quantmind2 PostgreSQL schema.",
     "CI capability and scheduling for the opt-in disposable PostgreSQL integration test.",
-    "Storage backend for large snapshot and ledger artifacts.",
+    "Cloud or distributed backend for large research artifacts; Artifact Runtime v1 uses the verified single-host filesystem Store.",
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
     "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment."

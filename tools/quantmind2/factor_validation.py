@@ -14,6 +14,10 @@ from backend.services.engine.factor_validation import (
 )
 from backend.services.engine.factor_validation.labels import label_contract_id, label_contract_payload
 from backend.services.engine.factor_validation.validation import validate_spec_lineage
+from backend.services.engine.artifact_runtime import resolve_frozen_result, resolve_validation_result
+from backend.services.engine.artifact_runtime.cli import add_runtime_arguments, runtime_context_from_args
+from backend.services.engine.artifact_runtime.enums import ArtifactRuntimeMode
+from backend.services.engine.artifact_runtime.errors import LegacyArtifactPathForbidden
 
 
 def _common(command):
@@ -23,6 +27,7 @@ def _common(command):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="QuantMind Factor Validation v1")
+    add_runtime_arguments(parser)
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("audit-label")
     build = sub.add_parser("build-dataset"); build.add_argument("--source-root", required=True); _common(build); build.add_argument("--symbol-limit", type=int, default=300)
@@ -34,10 +39,16 @@ def main(argv=None):
     frozen.add_argument("--dataset-root", required=True); frozen.add_argument("--validation-root", required=True); frozen.add_argument("--factor-values-root", required=True)
     frozen.add_argument("--protocol-id", required=True); frozen.add_argument("--validation-dataset-id", required=True); frozen.add_argument("--candidate-selection-id", required=True)
     frozen.add_argument("--access-reason", required=True); frozen.add_argument("--requested-by", required=True)
-    verify = sub.add_parser("validate-result"); verify.add_argument("--validation-root", required=True); verify.add_argument("--validation-result-id", required=True); verify.add_argument("--candidate-selection-id", required=True)
-    inspect = sub.add_parser("inspect"); inspect.add_argument("--validation-root", required=True); inspect.add_argument("--validation-result-id", required=True); inspect.add_argument("--candidate-selection-id", required=True)
+    verify = sub.add_parser("validate-result"); verify.add_argument("--validation-root"); verify.add_argument("--validation-result-id", required=True); verify.add_argument("--candidate-selection-id")
+    inspect = sub.add_parser("inspect"); inspect.add_argument("--validation-root"); inspect.add_argument("--validation-result-id", required=True); inspect.add_argument("--candidate-selection-id")
+    frozen_replay = sub.add_parser("validate-frozen"); frozen_replay.add_argument("--frozen-result-id", required=True)
     args = parser.parse_args(argv)
     try:
+        runtime = runtime_context_from_args(args)
+        if runtime.policy.mode is ArtifactRuntimeMode.STORE_REQUIRED and args.command in {
+            "build-dataset", "validate-spec", "plan", "evaluate-validation", "evaluate-frozen"
+        }:
+            raise LegacyArtifactPathForbidden("store_required forbids local Validation execution inputs")
         if args.command == "audit-label":
             contract = production_label_contract(); result = {"status": "audited", "label_contract_id": label_contract_id(contract), "contract": label_contract_payload(contract),
                 "production_call_chain": ["docker/training/train.py:main", "docker/training/train.py:load_data", "backend/shared/feature_preprocess.py:apply_cs_mad_zscore"]}
@@ -56,7 +67,21 @@ def main(argv=None):
         elif args.command == "evaluate-frozen":
             context = FrozenTestAccessContext(args.protocol_id, args.validation_dataset_id, args.candidate_selection_id, args.access_reason, args.requested_by)
             result = evaluate_frozen(context, dataset_root=args.dataset_root, validation_root=args.validation_root, factor_values_root=args.factor_values_root)
-        else:
+        elif args.command == "validate-frozen":
+            result = resolve_frozen_result(runtime, args.frozen_result_id).safe_summary()
+            result["status"] = "valid"
+        elif args.command in {"validate-result", "inspect"} and runtime.policy.mode is not ArtifactRuntimeMode.LEGACY_LOCAL:
+            resolved = resolve_validation_result(runtime, args.validation_result_id)
+            manifest = json.loads((resolved.materialized_root / "manifest.json").read_text())
+            result = {"status": "valid", **resolved.safe_summary(),
+                      "candidate_selection_id": manifest["candidate_selection_id"],
+                      "trial_count": len(manifest["trial_results"]),
+                      "eligible_count": len(manifest["candidate_order"]),
+                      "selected_trial_ids": manifest["selected_trial_ids"],
+                      "frozen_labels_accessed": False, "backtest_claim": False}
+        elif args.command in {"validate-result", "inspect"}:
+            if not args.validation_root or not args.candidate_selection_id:
+                raise ValueError("legacy_local result validation requires local root and selection ID")
             result = validate_validation_result(args.validation_root, args.validation_result_id, args.candidate_selection_id)
             if args.command == "inspect":
                 manifest = result["manifest"]

@@ -15,6 +15,15 @@ from backend.services.engine.research_campaign.goal import parse_goal
 from backend.services.engine.research_campaign.memory import sanitize_memory
 from backend.services.engine.research_campaign.models import CampaignConfig
 from backend.services.engine.factor_registry import validate_registry_snapshot
+from backend.services.engine.artifact_runtime import (
+    inspect_campaign_replay,
+    prepare_campaign_config,
+    publish_campaign_execution,
+    replay_research_campaign,
+)
+from backend.services.engine.artifact_runtime.cli import add_runtime_arguments, runtime_context_from_args
+from backend.services.engine.artifact_runtime.enums import ArtifactRuntimeMode
+from backend.services.engine.artifact_runtime.errors import ArtifactResolutionError
 
 DEFAULTS = {
     "snapshot_root": "/private/tmp/qm2-p0-006-validation/snapshots",
@@ -44,26 +53,58 @@ def _agent(args):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="QuantMind 2.0 bounded Agent research campaign")
+    add_runtime_arguments(parser)
     sub = parser.add_subparsers(dest="command", required=True)
     goal = sub.add_parser("validate-goal"); goal.add_argument("goal")
     for name in ("plan", "execute"):
-        item = sub.add_parser(name); item.add_argument("goal"); item.add_argument("--runtime-root", required=True)
+        item = sub.add_parser(name); item.add_argument("goal"); item.add_argument("--runtime-root")
         item.add_argument("--agent", choices=("baseline", "codex"), default="baseline")
         item.add_argument("--codex-executable", default="codex"); item.add_argument("--model", default="gpt-5.6-terra")
         item.add_argument("--timeout", type=int, default=180)
     for name in ("validate-campaign", "inspect", "inspect-memory"):
-        item = sub.add_parser(name); item.add_argument("campaign_id"); item.add_argument("--runtime-root", required=True)
+        item = sub.add_parser(name); item.add_argument("campaign_id"); item.add_argument("--runtime-root")
     args = parser.parse_args(argv)
+    runtime = runtime_context_from_args(args)
     if args.command == "validate-goal":
         parsed = parse_goal(args.goal); _json({"status": "valid", "goal_id": parsed.goal_id}); return 0
     if args.command in {"plan", "execute"}:
-        parsed = parse_goal(args.goal); budget = ResearchCampaignBudget(); config = _config(args); agent = _agent(args)
+        parsed = parse_goal(args.goal); budget = ResearchCampaignBudget()
+        if args.runtime_root is None:
+            args.runtime_root = str(runtime.cache_root / "campaign-execution")
+        config = _config(args); agent = _agent(args)
+        planned_id = campaign_id(parsed, budget, config, agent.provider_id, agent.model_id)
         if args.command == "plan":
-            _json({"campaign_id": campaign_id(parsed, budget, config, agent.provider_id, agent.model_id),
+            _json({"campaign_id": planned_id,
                 "agent": {"provider_id": agent.provider_id, "model_id": agent.model_id}, "budget": asdict(budget),
                 "development_protocol": "adaptive-development-2025-v1-contaminated",
                 "registry_snapshot_id": config.registry_snapshot_id, "agent_called": False}); return 0
+        if runtime.policy.mode is not ArtifactRuntimeMode.LEGACY_LOCAL:
+            try:
+                _json(inspect_campaign_replay(replay_research_campaign(runtime, planned_id)))
+                return 0
+            except ArtifactResolutionError:
+                pass
+            config = prepare_campaign_config(
+                runtime,
+                snapshot_id=DEFAULTS["snapshot_id"],
+                validation_dataset_id=DEFAULTS["validation_dataset_id"],
+                registry_snapshot_id=DEFAULTS["registry_snapshot_id"],
+                execution_root=args.runtime_root,
+            )
+            completed = run_campaign(parsed, budget, agent, config)
+            _json(publish_campaign_execution(runtime, config, completed))
+            return 0
         _json(run_campaign(parsed, budget, agent, config)); return 0
+    if runtime.policy.mode is not ArtifactRuntimeMode.LEGACY_LOCAL:
+        replay = replay_research_campaign(runtime, args.campaign_id)
+        if args.command == "inspect-memory":
+            memory = json.loads((replay.resolved.materialized_root / "sanitized_memory.json").read_text())
+            _json(memory); return 0
+        payload = inspect_campaign_replay(replay)
+        payload["status"] = "valid" if args.command == "validate-campaign" else "inspected"
+        _json(payload); return 0
+    if args.runtime_root is None:
+        raise SystemExit("legacy_local Campaign access requires --runtime-root")
     artifact = validate_campaign(Path(args.runtime_root) / "campaign-artifacts", args.campaign_id)
     if args.command == "validate-campaign":
         memory = json.loads((Path(artifact["path"]) / "memory.json").read_text())

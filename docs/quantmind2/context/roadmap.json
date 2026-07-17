@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:13:30Z",
-  "source_commit": "77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d",
+  "generated_at": "2026-07-17T16:59:48Z",
+  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -42,6 +42,7 @@
     {"task_id": "QM2-P0-009F", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-009"], "objective": "Record complete Git-derived ChangedFiles correction evidence for immutable Run 009.", "explicit_non_goals": ["No target Run edit, research recomputation, control identity change, promotion, model or backtest."], "acceptance_summary": "A new Git-consistent correction Run links to the still-inconsistent target using corrects."},
     {"task_id": "QM2-P0-010", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-009"], "objective": "Establish a persistent immutable research artifact store.", "explicit_non_goals": ["No Fresh evaluation, model, signal, backtest, or automatic promotion."], "acceptance_summary": "Sixty-five reachable artifacts migrate with zero missing sources, healthy integrity and verified recovery."},
     {"task_id": "QM2-P0-010F", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-010"], "objective": "Record exact Git integrity inventories for the immutable 010 Run in independent correction evidence.", "explicit_non_goals": ["No target Run edit, Store code or artifact mutation, migration, inventory regeneration, recovery rerun, Fresh evaluation, model or backtest."], "acceptance_summary": "Correction records 42 changed and 28 added paths, preserves correct business ChangedFiles, and links to the still-inconsistent target using corrects."},
-    {"task_id": "QM2-P0-011", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-010"], "objective": "Cut research runtimes over to explicit Store-backed artifact resolution.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, model, signal, backtest, cloud backend, or deletion GC."], "acceptance_summary": "Runtime no longer depends on temporary source paths and recovery is operationally repeatable."}
+    {"task_id": "QM2-P0-011", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-010"], "objective": "Cut research runtimes over to explicit Store-backed artifact resolution.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, model, signal, backtest, cloud backend, or deletion GC."], "acceptance_summary": "Store-required runtime resolves and publishes formal artifacts through verified descriptors, recovers current research state from an empty cache and exact-replays the external Campaign with zero Agent calls."},
+    {"task_id": "QM2-P0-012", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-011"], "objective": "Run an Artifact-backed External Agent Campaign production dry run.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, automatic promotion, model, signal or backtest."], "acceptance_summary": "A bounded external Campaign uses the Store-backed production runtime and preserves all authority, budget and Frozen Test boundaries."}
   ]
 }

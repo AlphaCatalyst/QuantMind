@@ -12,6 +12,10 @@ from backend.services.engine.factor_registry.snapshot import validate_registry_s
 from backend.services.engine.fresh_validation_admission import (
     CampaignAdmissionSource, reconcile_and_admit, validate_admission_result,
 )
+from backend.services.engine.artifact_runtime import resolve_fresh_admission
+from backend.services.engine.artifact_runtime.cli import add_runtime_arguments, runtime_context_from_args
+from backend.services.engine.artifact_runtime.enums import ArtifactRuntimeMode
+from backend.services.engine.artifact_runtime.errors import LegacyArtifactPathForbidden
 
 ANCESTOR_ID = "frs_436f4a966ea0c00ee2182c665813cd74cc13bb900a7022604ad9efc26849f2d9"
 BASELINE_ID = "frs_d40bfd7497ad56d3f71fd16dd7363222d32a5528e8780ca3765c27ca3c584718"
@@ -63,13 +67,22 @@ def summary(result):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Reconcile Agent Registry branches and admit Fresh Validation candidates")
+    add_runtime_arguments(parser)
     sub = parser.add_subparsers(dest="command", required=True)
     for name in ("reconcile-registry", "evaluate-admission"):
         command = sub.add_parser(name); command.add_argument("--output-root", required=True)
     command = sub.add_parser("validate-reconciliation"); command.add_argument("--output-root", required=True); command.add_argument("--reconciliation-id", required=True)
-    command = sub.add_parser("validate-admission"); command.add_argument("--output-root", required=True); command.add_argument("--result-id", required=True)
-    command = sub.add_parser("inspect"); command.add_argument("--output-root", required=True)
+    command = sub.add_parser("validate-admission"); command.add_argument("--output-root"); command.add_argument("--result-id", required=True)
+    command = sub.add_parser("inspect"); command.add_argument("--output-root")
     args = parser.parse_args(argv)
+    runtime = runtime_context_from_args(args)
+    if runtime.policy.mode is not ArtifactRuntimeMode.LEGACY_LOCAL and args.command in {"validate-admission", "inspect"}:
+        result_id = getattr(args, "result_id", None) or "fvar_89e61fe674bff1d10d46c9bea3913a456f236bbc191578291529736480a831ab"
+        resolved = resolve_fresh_admission(runtime, result_id)
+        payload = {"status": "valid", **resolved.safe_summary()}
+        print(json.dumps(payload, indent=2, sort_keys=True)); return 0
+    if runtime.policy.mode is ArtifactRuntimeMode.STORE_REQUIRED:
+        raise LegacyArtifactPathForbidden("store_required forbids local Fresh Admission reconstruction")
     if args.command in {"reconcile-registry", "evaluate-admission"}:
         payload = summary(run(args.output_root))
     elif args.command == "validate-reconciliation":

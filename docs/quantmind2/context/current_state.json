@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:13:30Z",
-  "source_commit": "77f5b1fd36fd4f85e14a4c0dd5945abefe847f7d",
+  "generated_at": "2026-07-17T16:59:48Z",
+  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,15 +12,17 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-010F",
-  "latest_implementation_run": "QM2-P0-010F-20260717T161330Z-77f5b1f",
+  "current_task": "QM2-P0-011",
+  "latest_implementation_run": "QM2-P0-011-20260717T165948Z-890afdd",
   "current_canonical_registry_snapshot_id": "frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5",
   "components_by_status": {
     "implemented": [
       "quantmind.training",
       "quantmind.inference",
       "quantmind.qlib_backtest",
-      "quantmind.risk"
+      "quantmind.risk",
+      "quantmind2.research_artifact_store",
+      "quantmind2.artifact_runtime"
     ],
     "partial": [
       "quantmind.feature_snapshots",
@@ -34,7 +36,6 @@
       "quantmind2.factor_registry",
       "quantmind2.research_campaign",
       "quantmind2.fresh_validation"
-      ,"quantmind2.research_artifact_store"
     ],
     "planned": [
       "quantmind2.experiment_manager",
@@ -55,5 +56,5 @@
     "status": "awaiting_first_fresh_date", "eligible_date_count": 0,
     "real_evaluation_executed": false
   },
-  "next_task_candidates": ["QM2-P0-011"]
+  "next_task_candidates": ["QM2-P0-012"]
 }
