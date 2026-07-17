@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-008F: `5988dff70f1e86a0ba4478182331dcd3109f929b`
+- Base before QM2-P0-008G: `8bf1bb6daa6ed444ac5b4924595aeb4f0690d249`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-008F: no
+- Dirty before QM2-P0-008G: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -30,12 +30,12 @@
   guard, state machine, budget controller, or Code Orchestrator runtime.
 - Official V7 Factor Lab remains Python-first and does not yet satisfy the
   formal Decision-Control-Execution separation.
-- Current task: `QM2-P0-008F`, completing the real Codex CLI Provider boundary
-  and one admitted external-AI research-only Campaign.
-- Task name: `QM2-P0-008F — Agent Provider Enablement and External Campaign Completion`.
+- Current task: `QM2-P0-008G`, reconciling sibling Agent Registry snapshots
+  and applying a fixed Development-only admission gate.
+- Task name: `QM2-P0-008G — Canonical Registry Reconciliation and Fresh Validation Admission`.
 - Completed predecessor: `QM2-P0-008 — Agent Research Campaign v1` remains
   historically partial because its external attempts failed.
-- Latest run: `QM2-P0-008F-20260717T113419Z-5988dff` under
+- Latest run: `QM2-P0-008G-20260717T133812Z-8bf1bb6` under
   `docs/quantmind2/implementation/runs/2026/2026-07/`.
 - Persistence conclusion: future Ledger access should use SQLAlchemy 2.0 async,
   the shared master engine/session manager, API-owned metadata, versioned
@@ -177,7 +177,16 @@
   one `research_registered` entry in Registry `frs_7ab0a844...01054`.
   Exact-existing replay made zero additional Agent calls; promotion candidate,
   approved, active, Validation evidence and Frozen evidence additions are zero.
-- Recommended next task: `QM2-P0-009 — Fresh Validation Protocol for Agent-generated Factors`.
+- Baseline and External Campaign Registry snapshots are sibling branches. The
+  unique current canonical Registry is
+  `frs_f0a08cc472270cf80f2ae8c1141de17871dacbe2edccba8eb4ffe05ca45d3ba4`
+  with 19 Entries and reconciliation
+  `frr_9112702e368326365d6f4adb144633c7d0cf3ae59baa61ed76270ae86e93cb32`.
+- Fixed Development-evidence admission result
+  `fvar_89e61fe674bff1d10d46c9bea3913a456f236bbc191578291529736480a831ab`
+  admits three of five Agent-generated candidates; the external factor is not
+  admitted. This is not Fresh Validation or Frozen evidence.
+- Recommended next task: `QM2-P0-009 — Fresh Validation Protocol for Admitted Agent-generated Factors`.
 
 ## Unconfirmed facts
 

@@ -16,3 +16,7 @@ class RegistryDecisionError(FactorRegistryError):
 
 class RegistryArtifactError(FactorRegistryError):
     pass
+
+
+class RegistryMergeConflict(FactorRegistryError):
+    error_code = "REGISTRY_ENTRY_MERGE_CONFLICT"

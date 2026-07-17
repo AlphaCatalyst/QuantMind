@@ -454,9 +454,24 @@ No business-domain implementation was introduced by either task.
 - Latest Implementation Run:
   `QM2-P0-005-20260716T171457Z-70982ed`.
 
+## Canonical Registry reconciliation and Fresh Validation admission
+
+- QM2-P0-008 and QM2-P0-008F produced sibling Registry snapshots from the
+  same original Snapshot; neither branch contained the other.
+- Reconciliation `frr_9112702e368326365d6f4adb144633c7d0cf3ae59baa61ed76270ae86e93cb32`
+  preserves all Entries and establishes the unique current canonical Registry
+  `frs_f0a08cc472270cf80f2ae8c1141de17871dacbe2edccba8eb4ffe05ca45d3ba4`.
+- The canonical Registry has 19 Entries: 14 historical and 5 Agent-generated.
+  Promotion candidates, approved, and active Entries remain zero.
+- Admission Policy `fvap_e8af2fd66f311a35160e073258c3f910fe13fe767d0cd4389b90f536c6394efa`
+  produced Result `fvar_89e61fe674bff1d10d46c9bea3913a456f236bbc191578291529736480a831ab`:
+  three candidates advanced to the future Fresh Validation pool and two did
+  not. The external factor was rejected for negative oriented Development
+  mean RankIC. No Fresh Validation or Frozen evaluation was executed.
+
 ## Next task
 
-`QM2-P0-009 — Fresh Validation Protocol for Agent-generated Factors` is the
+`QM2-P0-009 — Fresh Validation Protocol for Admitted Agent-generated Factors` is the
 only recommended next task. The external Provider boundary and one admitted
 research-only Campaign are complete. Agent-generated factors still require a
 fresh formal Validation protocol that does not reuse contaminated 2025

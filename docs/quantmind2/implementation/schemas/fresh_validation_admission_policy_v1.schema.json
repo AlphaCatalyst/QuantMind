@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/fresh_validation_admission_policy_v1.schema.json",
+  "title": "Fresh Validation Admission Policy v1", "type": "object", "additionalProperties": false,
+  "required": ["policy_id", "version", "research_entry_status_required", "campaign_artifact_valid_required", "optimization_artifact_valid_required", "development_artifact_valid_required", "no_label_leakage_required", "no_frozen_access_required", "development_period_contaminated_required", "orientation_frozen_before_development_required", "factor_values_valid_required", "non_constant_output_required", "zero_infinity_count_required", "minimum_valid_rank_ic_dates", "minimum_median_daily_observations", "minimum_factor_finite_coverage", "minimum_oriented_mean_rank_ic", "minimum_oriented_rank_ic_positive_rate", "require_rank_icir_not_null", "maximum_admitted_candidates", "maximum_candidates_per_family", "canonical_hash"],
+  "properties": {
+    "policy_id": {"type": "string", "pattern": "^fvap_[0-9a-f]{64}$"}, "version": {"const": "1.0.0"},
+    "research_entry_status_required": {"const": true}, "campaign_artifact_valid_required": {"const": true}, "optimization_artifact_valid_required": {"const": true}, "development_artifact_valid_required": {"const": true}, "no_label_leakage_required": {"const": true}, "no_frozen_access_required": {"const": true}, "development_period_contaminated_required": {"const": true}, "orientation_frozen_before_development_required": {"const": true}, "factor_values_valid_required": {"const": true}, "non_constant_output_required": {"const": true}, "zero_infinity_count_required": {"const": true},
+    "minimum_valid_rank_ic_dates": {"const": 120}, "minimum_median_daily_observations": {"const": 100}, "minimum_factor_finite_coverage": {"const": 0.6}, "minimum_oriented_mean_rank_ic": {"const": 0.0}, "minimum_oriented_rank_ic_positive_rate": {"const": 0.5}, "require_rank_icir_not_null": {"const": true}, "maximum_admitted_candidates": {"const": 3}, "maximum_candidates_per_family": {"const": 1}, "canonical_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

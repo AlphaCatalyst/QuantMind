@@ -12,6 +12,8 @@ def entry_payload(entry):
     payload = dict(entry.__dict__); payload["status"] = entry.status.value
     if payload.get("research_evidence") is None:
         payload.pop("research_evidence", None)
+    if payload.get("fresh_validation_admission") is None:
+        payload.pop("fresh_validation_admission", None)
     payload["parameter_values"] = dict(sorted(entry.parameter_values.items()))
     payload["factor_values_ids"] = list(entry.factor_values_ids)
     payload["status_reasons"] = list(entry.status_reasons)
@@ -22,10 +24,11 @@ def entry_payload(entry):
 
 def parse_entry(payload):
     required = set(RegistryEntry.__dataclass_fields__)
-    legacy_required = required - {"research_evidence"}
-    if not isinstance(payload, dict) or set(payload) not in (required, legacy_required):
+    optional = {"research_evidence", "fresh_validation_admission"}
+    if not isinstance(payload, dict) or not required - optional <= set(payload) or set(payload) - required:
         raise FactorRegistryError("Registry Entry fields do not match closed schema")
-    payload = {**payload, "research_evidence": payload.get("research_evidence")}
+    payload = {**payload, "research_evidence": payload.get("research_evidence"),
+               "fresh_validation_admission": payload.get("fresh_validation_admission")}
     require_id("factor_instance_id", payload["factor_instance_id"]); require_id("template_id", payload["template_id"])
     require_id("dataset_snapshot_id", payload["dataset_snapshot_id"])
     require_id("study_id", payload["optimization_study_id"]); require_id("trial_id", payload["optimization_trial_id"])
@@ -52,6 +55,20 @@ def parse_entry(payload):
                 raise FactorRegistryError("Research evidence identity is invalid")
         if evidence["development_is_contaminated"] is not True or evidence["is_validation_evidence"] is not False or evidence["is_frozen_evidence"] is not False:
             raise FactorRegistryError("Research evidence must remain quarantined")
+    admission = payload["fresh_validation_admission"]
+    if admission is not None:
+        expected = {"policy_id", "result_id", "admitted", "reasons", "rank"}
+        if not isinstance(admission, dict) or set(admission) != expected:
+            raise FactorRegistryError("Fresh Validation admission fields do not match closed schema")
+        if (not re.fullmatch(r"^fvap_[0-9a-f]{64}$", str(admission["policy_id"])) or
+                not re.fullmatch(r"^fvar_[0-9a-f]{64}$", str(admission["result_id"])) or
+                not isinstance(admission["admitted"], bool) or
+                not isinstance(admission["reasons"], list) or
+                any(not isinstance(reason, str) or not reason for reason in admission["reasons"]) or
+                isinstance(admission["rank"], bool) or not isinstance(admission["rank"], int) or admission["rank"] < 1):
+            raise FactorRegistryError("Fresh Validation admission evidence is invalid")
+        if admission["admitted"] == bool(admission["reasons"]):
+            raise FactorRegistryError("Fresh Validation admission outcome is contradictory")
     return RegistryEntry(**{**payload, "status": status, "factor_values_ids": tuple(payload["factor_values_ids"]),
         "status_reasons": tuple(payload["status_reasons"]), "created_from_protocols": tuple(payload["created_from_protocols"])})
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T11:34:19Z",
-  "source_commit": "5988dff70f1e86a0ba4478182331dcd3109f929b",
+  "generated_at": "2026-07-17T13:38:12Z",
+  "source_commit": "8bf1bb6daa6ed444ac5b4924595aeb4f0690d249",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,9 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-008F",
-  "latest_implementation_run": "QM2-P0-008F-20260717T113419Z-5988dff",
+  "current_task": "QM2-P0-008G",
+  "latest_implementation_run": "QM2-P0-008G-20260717T133812Z-8bf1bb6",
+  "current_canonical_registry_snapshot_id": "frs_f0a08cc472270cf80f2ae8c1141de17871dacbe2edccba8eb4ffe05ca45d3ba4",
   "components_by_status": {
     "implemented": [
       "quantmind.training",

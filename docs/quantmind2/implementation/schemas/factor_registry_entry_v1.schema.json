@@ -26,7 +26,26 @@
     "evidence_hashes": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
     "family_id": {"$ref": "#/$defs/templateId"},
     "created_from_protocols": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
-    "redundancy_group": {"type": ["string", "null"]}
+    "redundancy_group": {"type": ["string", "null"]},
+    "research_evidence": {"type": "object", "additionalProperties": false,
+      "required": ["campaign_id", "research_goal_id", "research_decision_id", "development_evaluation_id", "development_is_contaminated", "is_validation_evidence", "is_frozen_evidence"],
+      "properties": {
+        "campaign_id": {"type": "string", "pattern": "^rc_[0-9a-f]{64}$"},
+        "research_goal_id": {"type": "string", "pattern": "^rg_[0-9a-f]{64}$"},
+        "research_decision_id": {"type": "string", "pattern": "^rd_[0-9a-f]{64}$"},
+        "development_evaluation_id": {"type": "string", "pattern": "^der_[0-9a-f]{64}$"},
+        "development_is_contaminated": {"const": true},
+        "is_validation_evidence": {"const": false}, "is_frozen_evidence": {"const": false}
+      }},
+    "fresh_validation_admission": {"type": "object", "additionalProperties": false,
+      "required": ["policy_id", "result_id", "admitted", "reasons", "rank"],
+      "properties": {
+        "policy_id": {"type": "string", "pattern": "^fvap_[0-9a-f]{64}$"},
+        "result_id": {"type": "string", "pattern": "^fvar_[0-9a-f]{64}$"},
+        "admitted": {"type": "boolean"},
+        "reasons": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "rank": {"type": "integer", "minimum": 1}
+      }}
   },
   "$defs": {"templateId": {"type": "string", "pattern": "^ft_[0-9a-f]{64}$"}}
 }

@@ -53,6 +53,7 @@ class RegistryEntry:
     created_from_protocols: Tuple[str, ...]
     redundancy_group: Optional[str] = None
     research_evidence: Optional[Mapping[str, Any]] = None
+    fresh_validation_admission: Optional[Mapping[str, Any]] = None
 
 
 @dataclass(frozen=True)
@@ -78,3 +79,5 @@ class RegistrySnapshot:
     previous_registry_snapshot_id: Optional[str]
     artifact_path: str
     exact_existing: bool
+    parent_registry_snapshot_ids: Tuple[str, ...] = ()
+    reconciliation_artifact_id: Optional[str] = None

@@ -1,0 +1,623 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0009",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-008g-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "d59f81783151d230bb3267e74886bd946d67bb4588ef9b19179972ec3805cdcb",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 6966
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-008g-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-008g-reconciliation",
+      "artifact_type": "registry_reconciliation",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-008g-final/registry-reconciliation/reconciliations/frr_9112702e368326365d6f4adb144633c7d0cf3ae59baa61ed76270ae86e93cb32",
+      "schema_version": "registry-reconciliation-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-008g-admission",
+      "artifact_type": "fresh_validation_admission",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-008g-final/fresh-validation-admission/fvar_89e61fe674bff1d10d46c9bea3913a456f236bbc191578291529736480a831ab",
+      "schema_version": "fresh-validation-admission-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-008g-registry",
+      "artifact_type": "factor_registry_snapshot",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///private/tmp/qm2-p0-008g-final/registry/snapshots/frs_f0a08cc472270cf80f2ae8c1141de17871dacbe2edccba8eb4ffe05ca45d3ba4",
+      "schema_version": "factor-registry-snapshot-v2",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-factor-lab-readonly-digest",
+      "artifact_type": "source_boundary_digest",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "file:///tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/",
+      "schema_version": null,
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "c77faf7083c0e48ad3bcc532c5c7534e729f9abe517716be9c4503747a04afbd",
+      "before_hash": "61aa4d9b5fdfbab3567ec9f394ca5fd4f8d92cc63209de7fb9de35ee7055774f",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "46616b8c52c9ca3e44b03534ca79f72abcecb1faba75beb493581247ecee2f95",
+      "before_hash": "9f0e6ab0c5b2e557de9a9a490b59e73771cfd9249190bfb6527af8449a82a310",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6516801ad1d468c4bce2d9150fa2d3dedaed8c4e6cfe3901d37326964a319abf",
+      "before_hash": "facbbffb1052dab03fc6c9d300c0fa9d75b34da2b98664b2519ce8648090878d",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "deb05b08de5c39b99147b84f107a8d315e87d606ed8fc4b377c05efdc9287a95",
+      "before_hash": "a210ad6d6d9f360cbd4d3df7a87948098a59ff31585657f4a84a4d31d566656b",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d6eb3d13190e7aad2e626a2de1e12a9a0190128ed5ad42b3d766c284346db3ff",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/factor_registry/reconciliation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b9d0a0dfd7166dc407cce7363fc7407923ca8fe25e5618b38c84bf95cb52c1e1",
+      "before_hash": "4715ca4208f0e4a90807fec54bd3fec6813f6e91adc576342fdd46bdf646f3e3",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/snapshot.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "215cb9c1f401cf87d61263ddf47fc4fb0580f58c62bc55369eb84795fe497b84",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b419c52cc52a760e94ef13c11e88abeaa53e01c5aaa8281294c13537de1e008c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a93ab0899c4f8332bce7f00a3c9260eba147b5c6a4d5fe6b847fc62b577ce688",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c799922b00efabea8c91c7133003ff9599b6bb39b3d313db1da06b63e38c49e0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f4d8b46c531971fbabc2775aa3cac4500c0b907f33c8e2a09dbf0a2612ed4250",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/evaluator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2ac3c00f9ab0c29288fd147510039a4086fe32953a4ccdf3a9b307da9e14e8b7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "83feb3a84e29ef06dd596c243892f9eeb1c7c74fbac8c54ac2c29074f4705618",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/policy.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "035dd7ad3c51f231540e66b5bc258588349294831c76a17881533637f136ab26",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/service.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "147bcb4bd214ae3801abbe030d9e01a17bbadf902dbb987139e3c7781e4bea23",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation_admission/sources.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "842fce9f2d5f7585e3ed9a1c226752acbb2d8223222e2040addadb049d422a5c",
+      "before_hash": "c3ccfd08768551ee0b0096e03ffc404b16f68f2db970310ccb95efd4962a0e5d",
+      "change_type": "modified",
+      "path": "backend/services/engine/research_campaign/memory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a19bb75df2e478e5a4b8bcbe43fe11e0fa2281480f48a6e41bc31614d9d39623",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_factor_registry_reconciliation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "002ac97da0acd384c317f1de3ebbf3edf59c806663b36b034fb98f870056056b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_fresh_validation_admission.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "77b6358bca1cc29a8d641ff774dac6fcf1d2aa429d1a3cf19863c699e4a69c0e",
+      "before_hash": "8504baa3c56a635b6735071fe3e022d78af5c2f6e8847736a2a8cf28860a9a65",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "558bcd6dda0b7f5e7b7d9f9fba3c74daa188c118108e3b086901a62f121a4bcc",
+      "before_hash": "3ce10d74e15e7167ebf81f5494989680c83ec3bc8bf3d42a062c6b5e7c6ccc2f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ea46539dcf4b9e093e9e223cf5300895d2b30fcb92b306ff7b1dee8bee49e864",
+      "before_hash": "f57f1a04a6907220225c5777668e82f6416b1663677949cbe5745065143e20c1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "24156dcb9c343f1ac9847597fd6cf8aab1fb251315588267380655cb2f9eecd3",
+      "before_hash": "48481d0b74b694d60610e7308d977b31933db73b59a128e176158a959cb6c359",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc22fe11580fb6e8232d19a473a9a843b66e7c5b006b608d76638a88747c791d",
+      "before_hash": "f3476d4ebe1bb53a54347c653648714bf869eba2279002f1a95d6bb8459c21bf",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e4deac476badafe3688a3433559492157a5c29863f9a22df9902ad5538840f0c",
+      "before_hash": "303240b6dd7823f48bdcb01510d8ede28c393bc672ed4ab086959493eb5d57be",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9b981fac3e39b59d41b0d28e5bb8709a0675a6a22f51908b89fca1b579246332",
+      "before_hash": "882b295651e0205bfe24d3fc4dc6188707f400aed2bacaa028a261d00a10b3b1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4b949faf2023c63976ed31aff037bc6b3128d1155c54080ba5c708ed8ce3bde2",
+      "before_hash": "2dbc30f08515e1afe863908f3daff4cd08828eeaf7437b513921f070eeabfabf",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "988337295de5c5c0371b93e11c09b16dc1dd04fed5d21d52b0d89a8e4090091a",
+      "before_hash": "09bc1ca78af67eab6e80e3aee54fc17c37f74b0cfbde85342d9081518d156b3d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d34d8461dd30e9f0fbc59a6e3ee3cce7a2856f31cdeeff84beb7f99ce4344fed",
+      "before_hash": "9e0af6000d3f3d67482864021c593d701da281d8d314dc8b88374fb594b6ad4f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "efa96d96cf1c6febc25397ce903a59c7c76a9ec6880e22d7ea2c1b6152a58f9b",
+      "before_hash": "58087b4bebf7ee533eac086da76cda607a203f213a18fc338f1cd7e8aabfb43f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "75cfa00ac6c6d5a1897c7307ea6baa952c8bfccccef940271347c555d4e49bcc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FRESH_VALIDATION_ADMISSION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0d72f8696a80ab16568bbb91f5e4001fa9e12b9a809f1f6d298d86599bc7c030",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/REGISTRY_RECONCILIATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d59f81783151d230bb3267e74886bd946d67bb4588ef9b19179972ec3805cdcb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "053f59571d8d04932db0722ff310f6a58ecc010b82970a3162dd41dc470e8a80",
+      "before_hash": "694fa8bc84f5afc0a05f2d8d81b8258b02e7777c764b6808d515416199ab8594",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "013fed45e6855015e5509c37dbb337fe6151a33e2727eb15b7797b3b1cbafb6d",
+      "before_hash": "5801059528768b6976bbe67b157fa573def88e5672163b777637050f1fb7e38a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b68d866e2dccb6d4c846f3723af622e7a47951fe23b0bb9f97e98c3eb5c7ad99",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/fresh_validation_admission_policy_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fbe5f82c8a52d8b71a9144a4f71fb9b25fe7841c66a426fb8c5879620ade3381",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/registry_reconciliation_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c49a1148eafc8ea3f8503bcdd13cf11503d1f7c6d7a2c4263df3aaa0aebcdbfc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/fresh_validation_admission.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "eb8af7ed14fc172d6ac3534db475139f1b8c6d635c536e12006b14632527a298",
+      "before_hash": "ed5d1fef9be2825d353bfc29936f0f771aefa270aa8bc261ebf68d99ca21a532",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/reconciliation.py",
+      "qualified_name": "RegistryReconciliation",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/factor_registry/reconciliation.py",
+      "qualified_name": "merge_registry_snapshots",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_validation_admission/models.py",
+      "qualified_name": "FreshValidationAdmissionPolicy",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_validation_admission/evaluator.py",
+      "qualified_name": "evaluate_admission",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_validation_admission/service.py",
+      "qualified_name": "reconcile_and_admit",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/research_campaign/memory.py",
+      "qualified_name": "sanitize_memory",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.factor_registry",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_campaign",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.factor_validation",
+      "impact_type": "unaffected"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-008g-report",
+        "sha256": "d59f81783151d230bb3267e74886bd946d67bb4588ef9b19179972ec3805cdcb"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/factor_registry/reconciliation.py",
+      "backend/services/engine/fresh_validation_admission/__init__.py",
+      "backend/services/engine/fresh_validation_admission/artifact.py",
+      "backend/services/engine/fresh_validation_admission/canonical.py",
+      "backend/services/engine/fresh_validation_admission/errors.py",
+      "backend/services/engine/fresh_validation_admission/evaluator.py",
+      "backend/services/engine/fresh_validation_admission/models.py",
+      "backend/services/engine/fresh_validation_admission/policy.py",
+      "backend/services/engine/fresh_validation_admission/service.py",
+      "backend/services/engine/fresh_validation_admission/sources.py",
+      "backend/services/tests/test_factor_registry_reconciliation.py",
+      "backend/services/tests/test_fresh_validation_admission.py",
+      "docs/quantmind2/implementation/FRESH_VALIDATION_ADMISSION_V1.md",
+      "docs/quantmind2/implementation/REGISTRY_RECONCILIATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/report.md",
+      "docs/quantmind2/implementation/schemas/fresh_validation_admission_policy_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/registry_reconciliation_v1.schema.json",
+      "tools/quantmind2/fresh_validation_admission.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/factor_registry/__init__.py",
+      "backend/services/engine/factor_registry/errors.py",
+      "backend/services/engine/factor_registry/models.py",
+      "backend/services/engine/factor_registry/parser.py",
+      "backend/services/engine/factor_registry/reconciliation.py",
+      "backend/services/engine/factor_registry/snapshot.py",
+      "backend/services/engine/fresh_validation_admission/__init__.py",
+      "backend/services/engine/fresh_validation_admission/artifact.py",
+      "backend/services/engine/fresh_validation_admission/canonical.py",
+      "backend/services/engine/fresh_validation_admission/errors.py",
+      "backend/services/engine/fresh_validation_admission/evaluator.py",
+      "backend/services/engine/fresh_validation_admission/models.py",
+      "backend/services/engine/fresh_validation_admission/policy.py",
+      "backend/services/engine/fresh_validation_admission/service.py",
+      "backend/services/engine/fresh_validation_admission/sources.py",
+      "backend/services/engine/research_campaign/memory.py",
+      "backend/services/tests/test_factor_registry_reconciliation.py",
+      "backend/services/tests/test_fresh_validation_admission.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/FRESH_VALIDATION_ADMISSION_V1.md",
+      "docs/quantmind2/implementation/REGISTRY_RECONCILIATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/fresh_validation_admission_policy_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/registry_reconciliation_v1.schema.json",
+      "tools/quantmind2/fresh_validation_admission.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "123d45ca78bc66c0c40862bd12f5cf28dcbc3415eb562717c1c55e1004c4d123",
+    "manifest_payload_sha256": "f5fc509b7fa1fac2d967fe5462014393cfb2c5e97aa7527ae82d60b47a490af8",
+    "report_sha256": "d59f81783151d230bb3267e74886bd946d67bb4588ef9b19179972ec3805cdcb",
+    "source_bundle_sha256": "e3879c94147290d3babf62ff745bf8128a5dbdfcf9620568a10db3aa957b605b"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.factor_registry",
+      "description": "Canonical proof artifacts remain in temporary local storage pending a durable artifact backend.",
+      "limitation_id": "lim-008g-durable-storage",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.factor_validation",
+      "description": "Admission uses contaminated Development evidence only and produces no Fresh Validation or Frozen conclusion.",
+      "limitation_id": "lim-008g-no-fresh-evidence",
+      "severity": "info",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-009",
+      "priority": "P0",
+      "reason": "Lock and evaluate only the three admitted candidates under a future-data protocol.",
+      "recommendation_id": "recommend-008g-009"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-17T13:38:12Z",
+      "reason": "Baseline Campaign produced one sibling Registry.",
+      "relationship_id": "rel-008g-depends-008",
+      "relationship_type": "depends_on",
+      "source_run_id": "QM2-P0-008G-20260717T133812Z-8bf1bb6",
+      "target_run_id": "QM2-P0-008-20260717T072210Z-0374aac"
+    },
+    {
+      "created_at": "2026-07-17T13:38:12Z",
+      "reason": "External Campaign produced the second sibling Registry.",
+      "relationship_id": "rel-008g-depends-008f",
+      "relationship_type": "depends_on",
+      "source_run_id": "QM2-P0-008G-20260717T133812Z-8bf1bb6",
+      "target_run_id": "QM2-P0-008F-20260717T113419Z-5988dff"
+    }
+  ],
+  "repository": {
+    "base_commit": "8bf1bb6daa6ed444ac5b4924595aeb4f0690d249",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "8bf1bb6daa6ed444ac5b4924595aeb4f0690d249",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-17T13:55:00Z",
+    "completion_level": "complete",
+    "consistency_status": "consistent",
+    "git_diff_hash": "123d45ca78bc66c0c40862bd12f5cf28dcbc3415eb562717c1c55e1004c4d123",
+    "implementation_run_id": "QM2-P0-008G-20260717T133812Z-8bf1bb6",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-008G-20260717T133812Z-8bf1bb6/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "e3879c94147290d3babf62ff745bf8128a5dbdfcf9620568a10db3aa957b605b",
+    "started_at": "2026-07-17T12:55:00Z",
+    "task_id": "QM2-P0-008G",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-17T13:38:12Z",
+    "explicit_non_goals": [
+      "No Agent Optimization or Development rerun",
+      "No Fresh Validation or Frozen access",
+      "No promotion model signal Qlib or backtest",
+      "No database API UI dependency or configuration change"
+    ],
+    "objective": "Reconcile sibling Agent Registry snapshots and apply a fixed Development-only gate for future Fresh Validation.",
+    "parent_task_id": "QM2-P0-008",
+    "scope": [
+      "Registry reconciliation",
+      "Fresh Validation admission",
+      "Sanitized memory outcome",
+      "CLI schemas tests documentation and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-008G",
+    "title": "Canonical Registry Reconciliation and Fresh Validation Admission"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q <Registry Admission Campaign targeted tests>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 63,
+      "purpose": "Registry reconciliation, admission gates, real artifacts, Campaign and compatibility",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-008g-targeted"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q <Dataset DSL Optimization Validation Ledger Context tests>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 121,
+      "purpose": "Full relevant regression",
+      "skipped_count": 8,
+      "status": "passed",
+      "test_execution_id": "test-008g-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 39,
+      "purpose": "Project Memory and implementation run consistency",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-008g-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/fresh_validation_admission.py evaluate-admission --output-root /private/tmp/qm2-p0-008g-final",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 2,
+      "purpose": "Actual immutable branch reconciliation, admission, and replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-008g-cli"
+    }
+  ]
+}

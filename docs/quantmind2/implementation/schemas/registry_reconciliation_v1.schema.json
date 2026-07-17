@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/registry_reconciliation_v1.schema.json",
+  "title": "Registry Reconciliation v1", "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "reconciliation_id", "common_ancestor_snapshot_id", "source_snapshot_ids", "source_campaign_ids", "source_result_ids", "entry_merge_summary", "decision_merge_summary", "duplicate_entries", "conflicts", "resulting_snapshot_id", "merge_policy_version"],
+  "properties": {
+    "schema_version": {"const": "registry-reconciliation-v1"},
+    "reconciliation_id": {"type": "string", "pattern": "^frr_[0-9a-f]{64}$"},
+    "common_ancestor_snapshot_id": {"$ref": "#/$defs/snapshot"},
+    "source_snapshot_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"$ref": "#/$defs/snapshot"}},
+    "source_campaign_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^rc_[0-9a-f]{64}$"}},
+    "source_result_ids": {"type": "array", "minItems": 2, "uniqueItems": true, "items": {"type": "string", "pattern": "^rcr_[0-9a-f]{64}$"}},
+    "entry_merge_summary": {"type": "object"}, "decision_merge_summary": {"type": "object"},
+    "duplicate_entries": {"type": "array", "items": {"type": "object"}},
+    "conflicts": {"type": "array", "items": {"type": "object"}},
+    "resulting_snapshot_id": {"$ref": "#/$defs/snapshot"},
+    "merge_policy_version": {"const": "registry-reconciliation-merge-v1"}
+  }, "$defs": {"snapshot": {"type": "string", "pattern": "^frs_[0-9a-f]{64}$"}}
+}
