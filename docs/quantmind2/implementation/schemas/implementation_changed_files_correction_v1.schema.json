@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/implementation_changed_files_correction_v1.schema.json",
+  "title": "QuantMind 2.0 ChangedFiles Evidence Correction v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version","correction_id","target_run_id","target_base_commit","target_containing_commit","target_field","verification_method","recorded_entry_count","verified_entry_count","recorded_paths","actual_paths","missing_entries","unexpected_entries","mismatched_entries","verified_inventory","verified_inventory_sha256","effect","promotion_effect","immutable_target_report_sha256","immutable_target_manifest_sha256","candidate_lock_id","exposure_ledger_id","protocol_id","watermark_id","registry_snapshot_id","verified_at"],
+  "properties": {
+    "schema_version":{"const":"1.0.0"}, "correction_id":{"const":"qm2-p0-009-changed-files-correction-v1"},
+    "target_run_id":{"const":"QM2-P0-009-20260717T141500Z-34dfa6e"}, "target_base_commit":{"$ref":"#/$defs/gitCommit"}, "target_containing_commit":{"$ref":"#/$defs/gitCommit"},
+    "target_field":{"const":"changed_files"}, "verification_method":{"const":"git_commit_diff_and_blob_sha256"},
+    "recorded_entry_count":{"type":"integer","minimum":0}, "verified_entry_count":{"type":"integer","minimum":0},
+    "recorded_paths":{"$ref":"#/$defs/paths"}, "actual_paths":{"$ref":"#/$defs/paths"},
+    "missing_entries":{"type":"array","items":{"$ref":"#/$defs/entry"}}, "unexpected_entries":{"type":"array","items":{"$ref":"#/$defs/entry"}},
+    "mismatched_entries":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["path","recorded","verified"],"properties":{"path":{"$ref":"#/$defs/path"},"recorded":{"$ref":"#/$defs/entry"},"verified":{"$ref":"#/$defs/entry"}}}},
+    "verified_inventory":{"type":"array","items":{"$ref":"#/$defs/entry"}}, "verified_inventory_sha256":{"$ref":"#/$defs/sha256"},
+    "effect":{"const":"evidence_correction_only"}, "promotion_effect":{"const":"none"},
+    "immutable_target_report_sha256":{"$ref":"#/$defs/sha256"}, "immutable_target_manifest_sha256":{"$ref":"#/$defs/sha256"},
+    "candidate_lock_id":{"type":"string","pattern":"^fvcl_[0-9a-f]{64}$"}, "exposure_ledger_id":{"type":"string","pattern":"^rdel_[0-9a-f]{64}$"},
+    "protocol_id":{"type":"string","pattern":"^fvp_[0-9a-f]{64}$"}, "watermark_id":{"type":"string","pattern":"^fdw_[0-9a-f]{64}$"},
+    "registry_snapshot_id":{"type":"string","pattern":"^frs_[0-9a-f]{64}$"}, "verified_at":{"$ref":"#/$defs/utc"}
+  },
+  "$defs": {
+    "gitCommit":{"type":"string","pattern":"^[0-9a-f]{40}$"}, "sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "path":{"type":"string","minLength":1,"pattern":"^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\).+$"}, "paths":{"type":"array","uniqueItems":true,"items":{"$ref":"#/$defs/path"}},
+    "entry":{"type":"object","additionalProperties":false,"required":["path","change_type","before_hash","after_hash","previous_path"],"properties":{"path":{"$ref":"#/$defs/path"},"change_type":{"enum":["added","modified","deleted","renamed"]},"before_hash":{"anyOf":[{"$ref":"#/$defs/sha256"},{"type":"null"}]},"after_hash":{"anyOf":[{"$ref":"#/$defs/sha256"},{"type":"null"}]},"previous_path":{"anyOf":[{"$ref":"#/$defs/path"},{"type":"null"}]}}},
+    "utc":{"type":"string","pattern":"^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(?:\\.[0-9]+)?Z$"}
+  }
+}

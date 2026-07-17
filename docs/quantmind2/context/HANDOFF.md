@@ -193,6 +193,10 @@
   `awaiting_first_fresh_date`. Registry successor `frs_c2ef675...0237b5` adds
   awaiting-data evidence without changing main status. No historical backfill
   or real Fresh result exists.
+- The original QM2-P0-009 Run remains Git-inconsistent/non-indexable because 23
+  business ChangedFiles were omitted. QM2-P0-009F records the complete 35-entry
+  Git-derived inventory as immutable correction evidence with `corrects`; it
+  does not edit the original Run or research controls.
 - Recommended next task: `QM2-P0-010 — Persistent Research Artifact Store v1`.
 
 ## Unconfirmed facts

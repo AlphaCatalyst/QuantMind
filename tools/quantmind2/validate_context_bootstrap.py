@@ -64,6 +64,13 @@ EVIDENCE_CORRECTION = (
     QM2 / "implementation" / "corrections"
     / "QM2-P0-006-evidence-correction-v1.json"
 )
+CHANGED_FILES_CORRECTION_SCHEMA = (
+    SCHEMAS / "implementation_changed_files_correction_v1.schema.json"
+)
+CHANGED_FILES_CORRECTION = (
+    QM2 / "implementation" / "corrections"
+    / "QM2-P0-009-changed-files-correction-v1.json"
+)
 LEDGER_DOMAIN_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "domain"
 LEDGER_TESTING_ROOT = ROOT / "backend" / "services" / "engine" / "project_knowledge" / "testing"
 LEDGER_API_ROOT = ROOT / "backend" / "services" / "api" / "project_knowledge"
@@ -994,6 +1001,32 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     if sha256_file(target_root / "manifest.json") != correction["immutable_target_manifest_sha256"]:
         raise ValidationError("evidence correction target Manifest hash mismatch")
     checks.append("implementation_evidence_correction")
+
+    changed_correction = validate_file(
+        CHANGED_FILES_CORRECTION, CHANGED_FILES_CORRECTION_SCHEMA
+    )
+    inventory = changed_correction["verified_inventory"]
+    canonical = json.dumps(
+        inventory, ensure_ascii=False, sort_keys=True,
+        separators=(",", ":"), allow_nan=False,
+    ).encode("utf-8")
+    if hashlib.sha256(canonical).hexdigest() != changed_correction["verified_inventory_sha256"]:
+        raise ValidationError("ChangedFiles correction inventory hash mismatch")
+    if len(inventory) != changed_correction["verified_entry_count"]:
+        raise ValidationError("ChangedFiles correction inventory count mismatch")
+    if len(changed_correction["recorded_paths"]) != changed_correction["recorded_entry_count"]:
+        raise ValidationError("ChangedFiles correction recorded count mismatch")
+    if changed_correction["unexpected_entries"] or changed_correction["mismatched_entries"]:
+        raise ValidationError("ChangedFiles correction has unexpected or mismatched evidence")
+    target_root = (
+        QM2 / "implementation" / "runs" / "2026" / "2026-07"
+        / changed_correction["target_run_id"]
+    )
+    if sha256_file(target_root / "report.md") != changed_correction["immutable_target_report_sha256"]:
+        raise ValidationError("ChangedFiles correction target report changed")
+    if sha256_file(target_root / "manifest.json") != changed_correction["immutable_target_manifest_sha256"]:
+        raise ValidationError("ChangedFiles correction target Manifest changed")
+    checks.append("implementation_changed_files_correction")
 
     v1_example = QM2 / "implementation" / "templates" / "implementation_manifest_v1.example.json"
     v1_schema = SCHEMAS / "implementation_manifest_v1.schema.json"

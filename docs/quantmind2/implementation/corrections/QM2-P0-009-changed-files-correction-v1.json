@@ -1,0 +1,485 @@
+{
+  "actual_paths": [
+    "backend/services/engine/factor_registry/models.py",
+    "backend/services/engine/factor_registry/parser.py",
+    "backend/services/engine/fresh_validation/__init__.py",
+    "backend/services/engine/fresh_validation/accrual.py",
+    "backend/services/engine/fresh_validation/canonical.py",
+    "backend/services/engine/fresh_validation/control.py",
+    "backend/services/engine/fresh_validation/errors.py",
+    "backend/services/engine/fresh_validation/evaluation.py",
+    "backend/services/engine/fresh_validation/factor_compute.py",
+    "backend/services/engine/research_campaign/memory.py",
+    "backend/services/tests/test_fresh_validation.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/implementation/FRESH_VALIDATION_ACCRUAL_V1.md",
+    "docs/quantmind2/implementation/FRESH_VALIDATION_PROTOCOL_V1.md",
+    "docs/quantmind2/implementation/RESEARCH_DATA_EXPOSURE_LEDGER_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+    "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+    "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+    "docs/quantmind2/research/fresh_validation/candidate-locks/fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b.json",
+    "docs/quantmind2/research/fresh_validation/exposure-ledger/rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff.json",
+    "docs/quantmind2/research/fresh_validation/protocols/fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867.json",
+    "docs/quantmind2/research/fresh_validation/watermarks/fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248.json",
+    "tools/quantmind2/fresh_validation.py",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "candidate_lock_id": "fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b",
+  "correction_id": "qm2-p0-009-changed-files-correction-v1",
+  "effect": "evidence_correction_only",
+  "exposure_ledger_id": "rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff",
+  "immutable_target_manifest_sha256": "6bb2a0f150376eea91ba96eb5bfa5172c7082a2cc23d1dd7100d1e5ed7cffbc2",
+  "immutable_target_report_sha256": "a8281a3fe2b7470b7dbcdc412a4921dbb13c33cac3f35c1338b95671686a267f",
+  "mismatched_entries": [],
+  "missing_entries": [
+    {
+      "after_hash": "45db8f3e7176de75e62f41e762b50abe9b52e1b0d75a99adb0ab970e4713456f",
+      "before_hash": "77b6358bca1cc29a8d641ff774dac6fcf1d2aa429d1a3cf19863c699e4a69c0e",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "de1c5cddb7cc9e31d7936faf36e8e175f701e4d34f3613d0c5ea637d0f04529f",
+      "before_hash": "558bcd6dda0b7f5e7b7d9f9fba3c74daa188c118108e3b086901a62f121a4bcc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "11cb54ca9c39496deae89c08e64d346a56b3579766f5397771b8f6156eaf48d7",
+      "before_hash": "ea46539dcf4b9e093e9e223cf5300895d2b30fcb92b306ff7b1dee8bee49e864",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "534f5f7c7ff040b6f0d2741930012031c451511d5087072055381dd2e19ea323",
+      "before_hash": "24156dcb9c343f1ac9847597fd6cf8aab1fb251315588267380655cb2f9eecd3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7aecc6e6aa0eeedc1b68926ff991ce18439301de9ac9a02f4d1f33addb98770c",
+      "before_hash": "bc22fe11580fb6e8232d19a473a9a843b66e7c5b006b608d76638a88747c791d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bb6cb4abdab5ca707a9f93660f9fbab2a9f8a20ddeaf98204416e708a636c461",
+      "before_hash": "e4deac476badafe3688a3433559492157a5c29863f9a22df9902ad5538840f0c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "907549da578491cc8fc8a35f27bbd6a88b6be2aa9c706b82004149c1bff02988",
+      "before_hash": "9b981fac3e39b59d41b0d28e5bb8709a0675a6a22f51908b89fca1b579246332",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "583061df3b091d48a045039ff185fff40141480de911a3198ff9e81f3f8e5be2",
+      "before_hash": "4b949faf2023c63976ed31aff037bc6b3128d1155c54080ba5c708ed8ce3bde2",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d8367464fd4f452f5fa5b655d28ccbdfddbca6636c0e5ef14b0b6864a5f6778",
+      "before_hash": "988337295de5c5c0371b93e11c09b16dc1dd04fed5d21d52b0d89a8e4090091a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "395291413a2ff3bced794e7a720b8f1d938d1f58f187b1f53d39fa8411c0e15f",
+      "before_hash": "d34d8461dd30e9f0fbc59a6e3ee3cce7a2856f31cdeeff84beb7f99ce4344fed",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d421b31d0b6b58f9bcab40fb96278f891cc09a55ac4a1fdb6f5387f65bcf77f1",
+      "before_hash": "efa96d96cf1c6febc25397ce903a59c7c76a9ec6880e22d7ea2c1b6152a58f9b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7ac8f7b69b4ee9579c72f0f69fe1dce3d08ac799991c95a19b2e731437e03047",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FRESH_VALIDATION_ACCRUAL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5feb6c92739076b82c68f919fa45f3d5217f3cac4401b1aa0c2f7fbdd76aef03",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FRESH_VALIDATION_PROTOCOL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ddb3a40c8f2ff47862075c9ff293edec347532e832d04da968a00fc8acdc0504",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/RESEARCH_DATA_EXPOSURE_LEDGER_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a8281a3fe2b7470b7dbcdc412a4921dbb13c33cac3f35c1338b95671686a267f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7b2051bb1d2a8a5cf86b3535dd0ff5c8e11e29d844c6b0de72c2cf76293a8501",
+      "before_hash": "053f59571d8d04932db0722ff310f6a58ecc010b82970a3162dd41dc470e8a80",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ce3dbfb74e7156a66df2ecffc39e61da167690f0ccd8f0f7c6f66e24dc529cfa",
+      "before_hash": "013fed45e6855015e5509c37dbb337fe6151a33e2727eb15b7797b3b1cbafb6d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b3a4b7b5c91ab1268da593c4ec1e8eb9f6374da77d8acba32799595e8ee26d50",
+      "before_hash": "1bf6531d608392a753c41a1e7ace921f0bedf4723c32e10c1e4961015b48cd2f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ab4f6e44ea1a93fe7c7c97a25f5071ee17611460a8123840118a884563381512",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/candidate-locks/fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "729c5c7c170e1cb02d56c3dfdaf3f405cf93106df0179c06f59c7227aacfc65c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/exposure-ledger/rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f1aaa90b4ba342d28ca927deda2c5790a842c8d9b525ba36d1d34b0e488932df",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/protocols/fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e35e11c8085e880337cb23aa4629c0e24f16e7451d2256ecd7b79f71078998dd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/watermarks/fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3492bf557d6b8fdc09cc8bd9f20557bc475f47bfbbaf714319b06fab5acde368",
+      "before_hash": "eb8af7ed14fc172d6ac3534db475139f1b8c6d635c536e12006b14632527a298",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "promotion_effect": "none",
+  "protocol_id": "fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867",
+  "recorded_entry_count": 12,
+  "recorded_paths": [
+    "backend/services/engine/factor_registry/models.py",
+    "backend/services/engine/factor_registry/parser.py",
+    "backend/services/engine/fresh_validation/__init__.py",
+    "backend/services/engine/fresh_validation/accrual.py",
+    "backend/services/engine/fresh_validation/canonical.py",
+    "backend/services/engine/fresh_validation/control.py",
+    "backend/services/engine/fresh_validation/errors.py",
+    "backend/services/engine/fresh_validation/evaluation.py",
+    "backend/services/engine/fresh_validation/factor_compute.py",
+    "backend/services/engine/research_campaign/memory.py",
+    "backend/services/tests/test_fresh_validation.py",
+    "tools/quantmind2/fresh_validation.py"
+  ],
+  "registry_snapshot_id": "frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5",
+  "schema_version": "1.0.0",
+  "target_base_commit": "34dfa6eb50d7bd9405c3d3bdf0019aa84f9de432",
+  "target_containing_commit": "a2a416898181b6269217e75012e66ad7ebc4c395",
+  "target_field": "changed_files",
+  "target_run_id": "QM2-P0-009-20260717T141500Z-34dfa6e",
+  "unexpected_entries": [],
+  "verification_method": "git_commit_diff_and_blob_sha256",
+  "verified_at": "2026-07-17T14:45:00Z",
+  "verified_entry_count": 35,
+  "verified_inventory": [
+    {
+      "after_hash": "f1764fb07f0cf3ad4df4a8e8794f2cef501a0a5ba0ed91f5249034478b352b3e",
+      "before_hash": "6516801ad1d468c4bce2d9150fa2d3dedaed8c4e6cfe3901d37326964a319abf",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4c2df3f03ee556e130fe819b0e9d9e22158435b2a7f187026b7325e87adb093d",
+      "before_hash": "deb05b08de5c39b99147b84f107a8d315e87d606ed8fc4b377c05efdc9287a95",
+      "change_type": "modified",
+      "path": "backend/services/engine/factor_registry/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6456ee7a9f4afa7ab0a411021be371e7904fd2c524e0bed8011d2cc0349f82cc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1d576b52d5d24cf7b3926cf72422f5da0da359d15751b4608aabaedd46b14b8c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/accrual.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b66c39f1c8bdb1559eddb9fb5cbb0fe34bf8ce5e06c4baa427e7a610c53cdbf5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3eebce630f6812cac2dbd579c7ef9f3acfee9102617506dec0a1115fafd07ccb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/control.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "aaa598ee8ae892606e65bf32b0a5b28b4e36243cba6e9c50525aafaf14bd32a0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d654c3349e43c43256381dc1ef9b662d1810ea3bdee8009b51a597d6155eb16",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/evaluation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "388e0de7aa6c125e8b12e4d1f2c018e1ea0ca29f20b1ac1e3b3d84d7f7126423",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_validation/factor_compute.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cd418dda95b7545239a27d19640b11f2c846a02dfe6564fa019f216afee60b15",
+      "before_hash": "842fce9f2d5f7585e3ed9a1c226752acbb2d8223222e2040addadb049d422a5c",
+      "change_type": "modified",
+      "path": "backend/services/engine/research_campaign/memory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "80b6f4a18cb2c606934c2134330a9ed53be337f5c33890f50c048c3e1dc27b0f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_fresh_validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "45db8f3e7176de75e62f41e762b50abe9b52e1b0d75a99adb0ab970e4713456f",
+      "before_hash": "77b6358bca1cc29a8d641ff774dac6fcf1d2aa429d1a3cf19863c699e4a69c0e",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "de1c5cddb7cc9e31d7936faf36e8e175f701e4d34f3613d0c5ea637d0f04529f",
+      "before_hash": "558bcd6dda0b7f5e7b7d9f9fba3c74daa188c118108e3b086901a62f121a4bcc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "11cb54ca9c39496deae89c08e64d346a56b3579766f5397771b8f6156eaf48d7",
+      "before_hash": "ea46539dcf4b9e093e9e223cf5300895d2b30fcb92b306ff7b1dee8bee49e864",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "534f5f7c7ff040b6f0d2741930012031c451511d5087072055381dd2e19ea323",
+      "before_hash": "24156dcb9c343f1ac9847597fd6cf8aab1fb251315588267380655cb2f9eecd3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7aecc6e6aa0eeedc1b68926ff991ce18439301de9ac9a02f4d1f33addb98770c",
+      "before_hash": "bc22fe11580fb6e8232d19a473a9a843b66e7c5b006b608d76638a88747c791d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bb6cb4abdab5ca707a9f93660f9fbab2a9f8a20ddeaf98204416e708a636c461",
+      "before_hash": "e4deac476badafe3688a3433559492157a5c29863f9a22df9902ad5538840f0c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "907549da578491cc8fc8a35f27bbd6a88b6be2aa9c706b82004149c1bff02988",
+      "before_hash": "9b981fac3e39b59d41b0d28e5bb8709a0675a6a22f51908b89fca1b579246332",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "583061df3b091d48a045039ff185fff40141480de911a3198ff9e81f3f8e5be2",
+      "before_hash": "4b949faf2023c63976ed31aff037bc6b3128d1155c54080ba5c708ed8ce3bde2",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d8367464fd4f452f5fa5b655d28ccbdfddbca6636c0e5ef14b0b6864a5f6778",
+      "before_hash": "988337295de5c5c0371b93e11c09b16dc1dd04fed5d21d52b0d89a8e4090091a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "395291413a2ff3bced794e7a720b8f1d938d1f58f187b1f53d39fa8411c0e15f",
+      "before_hash": "d34d8461dd30e9f0fbc59a6e3ee3cce7a2856f31cdeeff84beb7f99ce4344fed",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d421b31d0b6b58f9bcab40fb96278f891cc09a55ac4a1fdb6f5387f65bcf77f1",
+      "before_hash": "efa96d96cf1c6febc25397ce903a59c7c76a9ec6880e22d7ea2c1b6152a58f9b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7ac8f7b69b4ee9579c72f0f69fe1dce3d08ac799991c95a19b2e731437e03047",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FRESH_VALIDATION_ACCRUAL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5feb6c92739076b82c68f919fa45f3d5217f3cac4401b1aa0c2f7fbdd76aef03",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/FRESH_VALIDATION_PROTOCOL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ddb3a40c8f2ff47862075c9ff293edec347532e832d04da968a00fc8acdc0504",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/RESEARCH_DATA_EXPOSURE_LEDGER_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a8281a3fe2b7470b7dbcdc412a4921dbb13c33cac3f35c1338b95671686a267f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009-20260717T141500Z-34dfa6e/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7b2051bb1d2a8a5cf86b3535dd0ff5c8e11e29d844c6b0de72c2cf76293a8501",
+      "before_hash": "053f59571d8d04932db0722ff310f6a58ecc010b82970a3162dd41dc470e8a80",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ce3dbfb74e7156a66df2ecffc39e61da167690f0ccd8f0f7c6f66e24dc529cfa",
+      "before_hash": "013fed45e6855015e5509c37dbb337fe6151a33e2727eb15b7797b3b1cbafb6d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/factor_registry_entry_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b3a4b7b5c91ab1268da593c4ec1e8eb9f6374da77d8acba32799595e8ee26d50",
+      "before_hash": "1bf6531d608392a753c41a1e7ace921f0bedf4723c32e10c1e4961015b48cd2f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ab4f6e44ea1a93fe7c7c97a25f5071ee17611460a8123840118a884563381512",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/candidate-locks/fvcl_716d7465285f7a8f541924877aa3acde9e90a38efe7d10dea2e20d6874063c7b.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "729c5c7c170e1cb02d56c3dfdaf3f405cf93106df0179c06f59c7227aacfc65c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/exposure-ledger/rdel_56d95b77f42f5b9784badaf3558e92e375d87be9cc1194143e334aba3e55f5ff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f1aaa90b4ba342d28ca927deda2c5790a842c8d9b525ba36d1d34b0e488932df",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/protocols/fvp_93163e1b4f82b52154bf0472b1cd165916f8ecae722ab851dd7fc4210bb5a867.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e35e11c8085e880337cb23aa4629c0e24f16e7451d2256ecd7b79f71078998dd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/fresh_validation/watermarks/fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "021fa3102d4df7eed35a9e1663001a260c11988ffde7e942916de85643e42fa8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/fresh_validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3492bf557d6b8fdc09cc8bd9f20557bc475f47bfbbaf714319b06fab5acde368",
+      "before_hash": "eb8af7ed14fc172d6ac3534db475139f1b8c6d635c536e12006b14632527a298",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "verified_inventory_sha256": "0433d5e114c61ab1f6efb4c2aaaa0bbc0574163968833fd9c3c802d94380a6f6",
+  "watermark_id": "fdw_3459fb5a20fb60707c6bf001dc194a931cfea7cddf250de2a099cba97efaa248"
+}

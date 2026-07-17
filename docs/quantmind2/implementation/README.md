@@ -16,6 +16,11 @@ replace them.
 - An uncommitted run uses `result_commit: null` and status
   `completed_uncommitted` or `partial_uncommitted`; it is not canonical.
 - Secrets must not be placed in reports or manifests.
+- A task may report `completed` only after its committed Run passes the formal
+  post-commit Planner with `validated=true`, `indexable=true`, zero evidence
+  gaps, and zero warnings. Pre-commit producer validation is necessary but does
+  not replace this check. A committed failure is corrected by a new immutable
+  `corrects` Run; it is never amended or overwritten.
 
 ## Manifest hash rules
 
@@ -69,6 +74,12 @@ The immutable QM2-P0-006 Run retains one incorrect manually recorded
 strict, separately hashed evidence-correction Artifact and a `corrects`
 relationship. It neither edits the original Run nor changes Factor Validation,
 Selection, Frozen Test, promotion, database schema, or production behavior.
+
+The immutable QM2-P0-009 Run retains an incomplete manually assembled
+`changed_files` array: 12 entries were recorded while Git proves 35 business
+changes. QM2-P0-009F records the complete sorted Git-blob inventory in a strict
+correction Artifact and links it with `corrects`. The original Run remains
+Git-inconsistent and non-indexable.
 
 ## Factor Registry
 

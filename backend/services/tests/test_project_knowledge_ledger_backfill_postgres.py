@@ -393,3 +393,64 @@ def test_real_006f_correction_indexes_relationship_artifact_and_replays_exactly(
             await manager.close()
 
     asyncio.run(scenario())
+
+
+def test_real_009f_correction_indexes_relationship_artifact_and_replays_exactly(
+    postgres_url: str,
+) -> None:
+    run_id = "QM2-P0-009F-20260717T145233Z-a2a4168"
+    target_run_id = "QM2-P0-009-20260717T141500Z-34dfa6e"
+    manifest_path = (
+        "docs/quantmind2/implementation/runs/2026/2026-07/"
+        f"{run_id}/manifest.json"
+    )
+    committed = subprocess.run(
+        ["git", "cat-file", "-e", f"HEAD:{manifest_path}"],
+        cwd=ROOT, capture_output=True, check=False,
+    )
+    if committed.returncode != 0:
+        pytest.skip("009F verification requires its containing commit")
+    plan = ImplementationRunPlanner(
+        GitSnapshot(bind_repository("quantmind-main", ROOT))
+    ).plan(run_id)
+    analyzed = plan.runs[0]
+    assert analyzed.validated and analyzed.indexable
+    assert analyzed.evidence.consistent and analyzed.evidence.warnings == ()
+    assert analyzed.domain_build is not None and analyzed.domain_build.gaps == ()
+    bundle = analyzed.domain_build.bundle
+    assert bundle is not None and len(bundle.relationships) == 1
+    assert bundle.relationships[0].relationship_type.value == "corrects"
+    assert bundle.relationships[0].target_run_id == target_run_id
+    assert any(item.artifact_type == "implementation_changed_files_correction"
+               for item in bundle.artifacts)
+
+    async def scenario() -> None:
+        config = DatabaseConfig(); config.database_url = postgres_url
+        config.pool_size = 2; config.max_overflow = 0
+        manager = DatabaseManager(config); await manager.initialize()
+        try:
+            indexer = LedgerIndexer(lambda: AsyncLedgerUnitOfWork(database_manager=manager))
+            target = _bundle(target_run_id, _task("QM2-P0-009", None, 0), 1)
+            target_result = await indexer.index_bundles(
+                repository_id="quantmind-main", ref_commit="a" * 40,
+                discovered=1, validated=1, bundles=(target,),
+            )
+            assert target_result.indexed == 1
+            first = await indexer.index_plan(plan)
+            assert first.indexed == 1 and first.replayed == 0 and first.relationships == 1
+            second = await indexer.index_plan(plan)
+            assert second.indexed == 0 and second.replayed == 1 and second.relationships == 1
+            async with AsyncLedgerUnitOfWork(database_manager=manager) as uow:
+                repository = uow.repository; assert repository is not None
+                assert await repository.get_run(target_run_id) == target.run
+                assert await repository.get_run(run_id) == bundle.run
+                assert tuple(await repository.list_outgoing_relationships(run_id)) == bundle.relationships
+                artifacts = await repository.list_artifacts(run_id)
+                assert len([item for item in artifacts if item.artifact_type ==
+                            "implementation_changed_files_correction"]) == 1
+                changed_files = await repository.list_changed_files(run_id)
+                assert changed_files and all(item.path != manifest_path for item in changed_files)
+        finally:
+            await manager.close()
+
+    asyncio.run(scenario())

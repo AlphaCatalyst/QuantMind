@@ -37,3 +37,4 @@
 | QM2-KI-033 | high | resolved | Baseline and External Campaigns produced sibling Registry snapshots. QM2-P0-008G reconciled them into one immutable multi-parent canonical Snapshot without rewriting either branch. |
 | QM2-KI-034 | high | open | The 2026 source ends before the 2026-07-17 Candidate Lock. Fresh Validation is awaiting its first strictly post-lock date and no real result exists. |
 | QM2-KI-035 | medium | open | Small Fresh Validation controls are Git-authoritative; future large accrual/result artifacts still require the persistent store planned for QM2-P0-010. |
+| QM2-KI-036 | medium | resolved | QM2-P0-009 omitted 23 of 35 Git-proven business ChangedFiles. The original Run remains inconsistent; QM2-P0-009F adds complete immutable correction evidence and a `corrects` relationship. |

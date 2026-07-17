@@ -334,6 +334,11 @@ No business-domain implementation was introduced by either task.
 - Registry successor `frs_c2ef675c8ad3d17e1351e6193df706bff1820f16f1d6aaa35bd9aeb7050237b5`
   adds only bounded `awaiting_data` evidence to those three entries; every main
   status remains `research_registered`.
+- The immutable QM2-P0-009 Implementation Run remains Git-inconsistent and
+  non-indexable because its manually assembled `changed_files` recorded 12 of
+  35 Git-proven business paths. QM2-P0-009F adds complete Git-derived correction
+  evidence and a `corrects` relationship without changing that Run or any Fresh
+  Validation identity.
 
 ## Next task
 

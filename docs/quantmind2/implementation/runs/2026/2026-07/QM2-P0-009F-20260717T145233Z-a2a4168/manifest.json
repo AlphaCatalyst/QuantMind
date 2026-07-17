@@ -1,0 +1,373 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0010",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-009f-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "5de4269ba0c1915ec6c1c5cfd12010b053b061f6c534a764ad92d5f0d3346f70",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 5892
+    },
+    {
+      "artifact_id": "artifact-009f-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-009f-correction",
+      "artifact_type": "implementation_changed_files_correction",
+      "content_hash": "4aa6c40dcac0e0938e3f00d648eca7dbebc2314c616c1b07b3ca9137bdcbdc05",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/corrections/QM2-P0-009-changed-files-correction-v1.json",
+      "schema_version": "1.0.0",
+      "size_bytes": 22151
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "2f616bb6b1d31c34a01ae39a78de20050067ed82a4d5015f6a8ea120a1fb09ab",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_changed_files_correction.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "830c4765872278970ddf8576498479e60f3ed0f0d127a20deb1f844b1368ff97",
+      "before_hash": "c5dfb1163b8fa887a095d293074196765a4c2821bc06bbaa84b7a08321a66878",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5c89f615f0ef19c06dcce01819d1165edc8ab602eefd9ae4299215d3ca638b41",
+      "before_hash": "45db8f3e7176de75e62f41e762b50abe9b52e1b0d75a99adb0ab970e4713456f",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "af72bfdaed8141646c2958d789a1b9ccf4310bbfe9c9e7dfb56e171a2233a7df",
+      "before_hash": "11cb54ca9c39496deae89c08e64d346a56b3579766f5397771b8f6156eaf48d7",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f55bb3764b12ed47cdbb29d813895ac3a35233822a726dec2671c23171060896",
+      "before_hash": "534f5f7c7ff040b6f0d2741930012031c451511d5087072055381dd2e19ea323",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4a101c79ded45826ec2a91ba9829d306a8b69b25ce74b214de63211fa543b681",
+      "before_hash": "7aecc6e6aa0eeedc1b68926ff991ce18439301de9ac9a02f4d1f33addb98770c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b16f66d05a698b85d928adbfd67db76d5c3e9bdd1eea9ce3653a1a071bd6a9cf",
+      "before_hash": "bb6cb4abdab5ca707a9f93660f9fbab2a9f8a20ddeaf98204416e708a636c461",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c311bad1115ca734bbd8825d12c514ea72912c16dc2cef08cad88be587c8652c",
+      "before_hash": "583061df3b091d48a045039ff185fff40141480de911a3198ff9e81f3f8e5be2",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b2b7bbad80a80b52cf8a197b1215ec7dd3529096f6447d9e6c1efaeffa7c387a",
+      "before_hash": "9d8367464fd4f452f5fa5b655d28ccbdfddbca6636c0e5ef14b0b6864a5f6778",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "69e8a3d975bf0136d5140e1b10e0b76afc604889b7d7ba0a06ce8f28dd353838",
+      "before_hash": "395291413a2ff3bced794e7a720b8f1d938d1f58f187b1f53d39fa8411c0e15f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "be2d83e5c5e1f323cff9dd3ba1c73110fd5c0204fe09f0aeeee74552cd6d21ba",
+      "before_hash": "d421b31d0b6b58f9bcab40fb96278f891cc09a55ac4a1fdb6f5387f65bcf77f1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "99aa7297bd613728b82986b5bc3db20eb047d91c6532efa0e78b407e212d2bd6",
+      "before_hash": "0239accfb672fa1524f867d10e795646a9ba78c1bdafd4994cc4a5507c3fa92a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/README.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4aa6c40dcac0e0938e3f00d648eca7dbebc2314c616c1b07b3ca9137bdcbdc05",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/corrections/QM2-P0-009-changed-files-correction-v1.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5de4269ba0c1915ec6c1c5cfd12010b053b061f6c534a764ad92d5f0d3346f70",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a7c633bdf68f7b18b39d4b627ffc84746807e9823acf341fb885fb2962e44f27",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/implementation_changed_files_correction_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3b56852820e0b158b9691b75d6ff0cd39018f8098c065c500789f3f64f88b884",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/changed_files_correction.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "167fbe146c4e418dd60083b4582cbdeea5b2e76dc467fb02859416940ea9a9fa",
+      "before_hash": "3492bf557d6b8fdc09cc8bd9f20557bc475f47bfbbaf714319b06fab5acde368",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/changed_files_correction.py",
+      "qualified_name": "git_inventory",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "tools/quantmind2/validate_context_bootstrap.py",
+      "qualified_name": "validate_bootstrap",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-009f-correction",
+        "sha256": "4aa6c40dcac0e0938e3f00d648eca7dbebc2314c616c1b07b3ca9137bdcbdc05"
+      },
+      {
+        "artifact_id": "artifact-009f-report",
+        "sha256": "5de4269ba0c1915ec6c1c5cfd12010b053b061f6c534a764ad92d5f0d3346f70"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/tests/test_changed_files_correction.py",
+      "docs/quantmind2/implementation/corrections/QM2-P0-009-changed-files-correction-v1.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/report.md",
+      "docs/quantmind2/implementation/schemas/implementation_changed_files_correction_v1.schema.json",
+      "tools/quantmind2/changed_files_correction.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/tests/test_changed_files_correction.py",
+      "backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/README.md",
+      "docs/quantmind2/implementation/corrections/QM2-P0-009-changed-files-correction-v1.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/report.md",
+      "docs/quantmind2/implementation/schemas/implementation_changed_files_correction_v1.schema.json",
+      "tools/quantmind2/changed_files_correction.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "bf946b6df53ebeff92207bc1b4be55848f694c445cace20092c6ebef848e8444",
+    "manifest_payload_sha256": "d76f89f12f1c02eccd36ffecc0c82817d36bb4455309b118ec36c414bd4c1978",
+    "report_sha256": "5de4269ba0c1915ec6c1c5cfd12010b053b061f6c534a764ad92d5f0d3346f70",
+    "source_bundle_sha256": "8e793753407da14ab157a72e744a7bc24ac38d7ebcc6b1943e1271d5bbbf88ab"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "description": "The immutable target Run remains Git-inconsistent and non-indexable; consumers must present separate correction evidence.",
+      "limitation_id": "limit-009f-target-inconsistent",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.fresh_validation",
+      "description": "Eligible dates remain zero and no real Fresh Validation Result exists.",
+      "limitation_id": "limit-009f-no-fresh-result",
+      "severity": "info",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-010",
+      "priority": "P0",
+      "reason": "Persist immutable research artifacts beyond temporary runtime roots.",
+      "recommendation_id": "recommend-009f-010"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-17T14:52:33Z",
+      "reason": "Records the complete Git-derived changed_files inventory for the immutable QM2-P0-009 Run without modifying the target Report, Manifest, implementation, research protocol, or control artifacts.",
+      "relationship_id": "rel-009f-corrects-009",
+      "relationship_type": "corrects",
+      "source_run_id": "QM2-P0-009F-20260717T145233Z-a2a4168",
+      "target_run_id": "QM2-P0-009-20260717T141500Z-34dfa6e"
+    }
+  ],
+  "repository": {
+    "base_commit": "a2a416898181b6269217e75012e66ad7ebc4c395",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "a2a416898181b6269217e75012e66ad7ebc4c395",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-17T15:05:00Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "bf946b6df53ebeff92207bc1b4be55848f694c445cace20092c6ebef848e8444",
+    "implementation_run_id": "QM2-P0-009F-20260717T145233Z-a2a4168",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-009F-20260717T145233Z-a2a4168/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "8e793753407da14ab157a72e744a7bc24ac38d7ebcc6b1943e1271d5bbbf88ab",
+    "started_at": "2026-07-17T14:35:00Z",
+    "task_id": "QM2-P0-009F",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-17T14:52:33Z",
+    "explicit_non_goals": [
+      "No target Run or commit modification",
+      "No Fresh Validation implementation control data or result change",
+      "No Agent Optimization Development promotion model signal Qlib or backtest"
+    ],
+    "objective": "Record complete Git-derived ChangedFiles evidence without modifying immutable Run 009.",
+    "parent_task_id": "QM2-P0-009",
+    "scope": [
+      "Git diff and blob verification",
+      "Strict correction Artifact and corrects relationship",
+      "Prevention guard tests Project Memory and Ledger replay"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-009F",
+    "title": "Immutable ChangedFiles Evidence Correction for Fresh Validation Run"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_changed_files_correction.py backend/services/tests/test_quantmind2_context_bootstrap.py -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 26,
+      "purpose": "Git reconstruction classification Schema target immutability and Context",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-009f-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest <Fresh Admission Registry Campaign Validation Optimization DSL Dataset Manifest Indexer Context tests> -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 250,
+      "purpose": "Full relevant regression",
+      "skipped_count": 9,
+      "status": "passed",
+      "test_execution_id": "test-009f-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 40,
+      "purpose": "Project Memory and correction consistency",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-009f-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QM2_LEDGER_POSTGRES_INTEGRATION=1 python -m pytest backend/services/tests/test_project_knowledge_ledger_backfill_postgres.py -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": "requires containing commit",
+      "passed_count": 0,
+      "purpose": "Disposable PostgreSQL correction index and exact replay",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-009f-postgres"
+    }
+  ]
+}

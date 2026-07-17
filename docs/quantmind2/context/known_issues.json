@@ -41,6 +41,7 @@
     {"issue_id": "QM2-KI-032", "severity": "high", "status": "resolved", "summary": "QM2-P0-008 historical external failures remain immutable; QM2-P0-008F identified invalid_json_schema, added semantic Provider-schema normalization and safe classified diagnostics, and completed one admitted external Codex Campaign without changing ResearchDecision or Campaign controls."},
     {"issue_id": "QM2-KI-033", "severity": "high", "status": "resolved", "summary": "Baseline and External Campaigns produced sibling Registry snapshots; QM2-P0-008G reconciled them into one immutable multi-parent canonical Snapshot without rewriting either branch."},
     {"issue_id": "QM2-KI-034", "severity": "high", "status": "open", "summary": "The 2026 source ends before the 2026-07-17 Candidate Lock; Fresh Validation is awaiting its first strictly post-lock date and no real result exists."},
-    {"issue_id": "QM2-KI-035", "severity": "medium", "status": "open", "summary": "Small Fresh Validation controls are Git-authoritative, while future large accrual and result artifacts still need the persistent artifact store planned for QM2-P0-010."}
+    {"issue_id": "QM2-KI-035", "severity": "medium", "status": "open", "summary": "Small Fresh Validation controls are Git-authoritative, while future large accrual and result artifacts still need the persistent artifact store planned for QM2-P0-010."},
+    {"issue_id": "QM2-KI-036", "severity": "medium", "status": "resolved", "summary": "QM2-P0-009 omitted 23 of 35 Git-proven business ChangedFiles. The original Run remains inconsistent; QM2-P0-009F adds complete immutable correction evidence and a corrects relationship."}
   ]
 }
