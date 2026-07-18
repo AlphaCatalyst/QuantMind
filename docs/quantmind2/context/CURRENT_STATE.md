@@ -1,7 +1,48 @@
 # Current Implementation State
 
 Generated: 2026-07-18
-Verified source commit before this task: `ded5c10c1650b98478633278201a42cb70c98e53`
+Verified source commit before this task: `32dc6af0be24468da997e9e32e9627e23d360987`
+
+## Parameter-aligned external Agent success path
+
+- `QM2-P0-012F` generated the Proposal parameter contract summary from the
+  live DSL parameter fields, parameter/role enums, AST-role contexts and
+  Optimization Search Space schema. Prompt and the one permitted repair now
+  consume this summary; Control still requires declared = used = searched =
+  role-assigned parameters and enforces type, bounds, step, AST role and the
+  Cartesian Trial budget.
+- New Goal `rg_decb8ade...bf3109` completed external Campaign
+  `rc_4432a5d3...c04b56` with `openai_codex_cli`, Codex CLI
+  `0.145.0-alpha.18`, explicit `gpt-5.6-terra`, one Provider call and no
+  repair. Decision `rd_142a0fa4...ab9838` admitted Template
+  `ft_115afad9...70aef1` with a lookback and factor-internal weight correctly
+  bound in the AST.
+- Study `fos_22c2f3b6...e8a84` executed all six bounded Trials successfully.
+  The selected Trial is `fot_cd22d4e1...990db`, selected Factor Values is
+  `fv_937e5df1...571a`, and contaminated Development result is
+  `der_b8669e6...9a92e`. The result is adaptive research only, not predictive,
+  not Validation/Frozen evidence and ineligible for promotion.
+- Registry successor `frs_9f61af9b...92052` linearly follows
+  `frs_c2ef675c...0237b5`, has 20 entries, and adds exactly one
+  `research_registered` Entry. Promotion / approved / active remain 0 / 0 / 0.
+  Fresh controls and the 0/60 maturity state did not change.
+- Inventory advanced from `sai_b0c03807...70320` (66 artifacts / 287 blobs)
+  to `sai_820983db...e5e68` (79 / 339). The delta includes three immutable
+  Provider-Schema diagnostic Campaigns plus the successful Campaign graph.
+  Integrity is healthy with zero missing and zero unreferenced blobs.
+- A new empty cache recovered and Domain-validated the full successful graph.
+  Exact replay returned Campaign/Result/Descriptor unchanged with Agent calls,
+  Optimization calls, Development calls, Registry writes, new artifacts and
+  new blobs all zero.
+- P0-012 remains immutable `partial`: two Agent calls, no admitted Proposal and
+  no Registry change. Its Call 1 used undeclared search names against empty
+  placeholder Templates (`search_space_parameter_unknown`); the historical
+  repair response was not persisted, so only the old validator branch proves
+  the same error class, not an exact Proposal index or AST location.
+- Current task: `QM2-P0-012F`. The only next task is
+  `QM2-P0-011B — Fixed-100-Universe 2019—2026 Agent Iteration and Historical
+  Backtest`; `QM2-FV-001` remains conditional on at least 60 mature post-lock
+  trading dates.
 
 ## Artifact-backed external Agent production dry run
 
@@ -24,10 +65,8 @@ Verified source commit before this task: `ded5c10c1650b98478633278201a42cb70c98e
   returned the same Campaign/Result/Descriptor with Agent calls, Optimization
   calls, Registry writes, new artifacts and new blobs all zero. Legacy fallback
   was false. Fresh remains `awaiting_first_fresh_date` at 0/60.
-- Current task: `QM2-P0-012`. Latest Run:
-  `QM2-P0-012-20260717T180925Z-ded5c10`. The only next task is
-  `QM2-P0-011B — 2019—2026 Historical Diagnostic Backtest`; `QM2-FV-001`
-  remains conditional on at least 60 mature post-lock trading dates.
+- This P0-012 partial Campaign remains historical evidence and was not
+  overwritten, retried or reclassified by P0-012F.
 
 ## Artifact-backed Research Runtime v1
 

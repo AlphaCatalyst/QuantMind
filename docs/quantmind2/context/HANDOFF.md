@@ -4,10 +4,10 @@
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`
 - Branch: `master`
-- Base before QM2-P0-012: `ded5c10c1650b98478633278201a42cb70c98e53`
+- Base before QM2-P0-012F: `32dc6af0be24468da997e9e32e9627e23d360987`
 - Current latest commit: the commit containing this handoff; resolve it with
   `git log -1 --format=%H -- docs/quantmind2/context/HANDOFF.md`.
-- Dirty before QM2-P0-012: no
+- Dirty before QM2-P0-012F: no
 - Unrelated dirty files: none
 - Uncommitted work after the QM2-P0-006 commit: no
 
@@ -23,6 +23,36 @@
   used for the task boundary instead.
 
 ## Current position
+
+- `QM2-P0-012F` aligned the external Agent with the unchanged Proposal
+  parameter contract. Campaign `rc_4432a5d3...c04b56` completed after one real
+  `openai_codex_cli` / `gpt-5.6-terra` call and no repair. It produced Decision
+  `rd_142a0fa4...ab9838`, Template `ft_115afad9...70aef1`, Study
+  `fos_22c2f3b6...e8a84`, six successful Trials, selected Factor Values
+  `fv_937e5df1...571a`, Development result `der_b8669e6...9a92e`, and Registry
+  successor `frs_9f61af9b...92052`.
+- The new Registry has 20 entries and adds one `research_registered` factor;
+  promotion / approved / active remain 0 / 0 / 0. The 2025 Development result
+  is contaminated adaptive research only and creates no Validation, Frozen,
+  Fresh or promotion evidence.
+- Current Inventory is `sai_820983db...e5e68`, 79 artifacts / 339 blobs,
+  healthy with zero missing and zero unreferenced. Empty-cache graph recovery
+  passed. Exact replay returned the identical Campaign/Result/Descriptor with
+  zero Agent, Optimization and Registry-write calls and no Store delta.
+- Three earlier P0-012F Goal/Campaign identities are preserved as immutable
+  diagnostics: `rc_29c2c3c9...c3655` (Provider rejected nested `oneOf`),
+  `rc_01e211af...fcc47` (nested `anyOf`) and `rc_0cd43051...4cfe7`
+  (`uniqueItems`). Each stopped after the fixed two-call ceiling and created no
+  Decision, Trial or Registry entry. They explain why Provider transport uses
+  the supported explicit-values profile while Control retains the full formal
+  Search Space validation.
+- P0-012 Campaign `rc_16bf5717...b7ea` remains immutable partial with two
+  calls and no admission. Do not describe P0-012F as changing that result.
+- Latest Run after this task is the `QM2-P0-012F` Run under
+  `docs/quantmind2/implementation/runs/2026/2026-07/`. The only next task is
+  `QM2-P0-011B — Fixed-100-Universe 2019—2026 Agent Iteration and Historical
+  Backtest`. Conditional `QM2-FV-001` remains forbidden until 60 mature
+  post-lock trading dates exist.
 
 - `QM2-P0-012` is a truthful partial production dry run. Campaign
   `rc_16bf5717...b7ea` made exactly two real Codex CLI calls (the second was

@@ -1,0 +1,44 @@
+{
+  "allowed_features": [
+    "mom_ret_1d",
+    "liq_volume_ratio_5",
+    "style_beta_20",
+    "style_idio_vol_20"
+  ],
+  "allowed_operators": [
+    "add",
+    "subtract",
+    "multiply",
+    "divide",
+    "rolling_mean",
+    "rolling_std",
+    "rolling_min",
+    "rolling_max",
+    "delta",
+    "cs_rank",
+    "cs_zscore"
+  ],
+  "allowed_parameter_roles": [
+    "lookback_window",
+    "factor_internal_weight"
+  ],
+  "constraints": [
+    "no lookahead or future data",
+    "no executable extension",
+    "no target data or frozen evidence",
+    "adaptive 2025 development only",
+    "no prediction or promotion claim",
+    "at least one declared parameter used in the AST and searched under the formal role contract",
+    "constant-only templates are forbidden",
+    "maximum two proposals and one admitted template"
+  ],
+  "dataset_kind": "legacy_feature_matrix_v1",
+  "goal_id": "rg_146d401186c91ce59c339acde54c3490cd4997e659e659c08b5cc2f91b6e1973",
+  "maximum_iterations": 1,
+  "maximum_templates": 1,
+  "maximum_trials": 6,
+  "name": "artifact_backed_external_agent_parameter_aligned_success_path",
+  "novelty_requirement": "structurally distinct from all canonical Registry families; names, defaults, bound values, constant-only forms, and commutative reorderings are not novel",
+  "objective": "Propose one fully parameter-bound Factor DSL structure that is structurally distinct from every canonical Registry family, using only the four allowed terminals for bounded contaminated 2025 development research.",
+  "schema_version": "1.0.0"
+}

@@ -979,10 +979,14 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
     if "QM2-P0-012" not in handoff_text or "truthful partial production dry run" not in handoff_text:
         raise ValidationError("human handoff does not record the QM2-P0-012 result")
-    if "QM2-P0-011B — 2019—2026 Historical Diagnostic Backtest" not in handoff_text:
-        raise ValidationError("human handoff does not name exact diagnostic backtest next task")
-    if handoff["current_task"] != "QM2-P0-012":
-        raise ValidationError("machine handoff does not name current QM2-P0-012 task")
+    next_task = (
+        "QM2-P0-011B — Fixed-100-Universe 2019—2026 Agent Iteration and "
+        "Historical Backtest"
+    )
+    if next_task not in " ".join(handoff_text.split()):
+        raise ValidationError("human handoff does not name exact historical backtest next task")
+    if handoff["current_task"] != "QM2-P0-012F":
+        raise ValidationError("machine handoff does not name current QM2-P0-012F task")
     if handoff["next_recommended_tasks"] != ["QM2-P0-011B"]:
         raise ValidationError("machine handoff must name only the diagnostic backtest task")
     checks.append("handoff_links")

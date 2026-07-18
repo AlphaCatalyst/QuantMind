@@ -2,10 +2,9 @@ import json
 import math
 import re
 
-from backend.services.engine.factor_dsl import parse_template
-
 from .canonical import hash_payload
 from .errors import AgentContractError
+from .parameter_contract import validate_proposal_parameter_contract
 
 _SAFE = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]{0,127}$")
 _FORBIDDEN = re.compile(r"(?i)(password\s*[:=]|api[_-]?key\s*[:=]|access[_-]?token\s*[:=]|private[_-]?key\s*[:=]|https?://|/Users/|/tmp/|/private/tmp|factor_impl|subprocess|import\s|curl\s|bash\s|rm\s+-)")
@@ -33,15 +32,25 @@ def decision_json_schema():
         "required": ["schema_version", "name", "description", "dataset_kinds", "parameters", "expression", "output"],
         "properties": {"schema_version": {"const": "1.0.0"}, "name": {"type": "string"},
             "description": {"type": "string"}, "dataset_kinds": {"type": "array", "items": {"type": "string"}},
-            "parameters": {"type": "array", "items": {"type": "object", "additionalProperties": False,
-                "required": ["name", "type", "default", "minimum", "maximum"],
-                "properties": {"name": {"type": "string"}, "type": {"enum": ["integer", "number"]},
-                    "default": {"type": "number"}, "minimum": {"type": "number"}, "maximum": {"type": "number"}}}},
+            "parameters": {"type": "array",
+                "items": {"type": "object", "additionalProperties": False,
+                    "required": ["name", "type", "default", "minimum", "maximum"],
+                    "properties": {"name": {"type": "string"},
+                        "type": {"enum": ["integer", "number"]},
+                        "default": {"type": "number"}, "minimum": {"type": "number"},
+                        "maximum": {"type": "number"}}}},
             "expression": {"$ref": "#/$defs/node"}, "output": {"type": "object", "additionalProperties": False,
                 "required": ["name"], "properties": {"name": {"type": "string"}}}}}
-    parameter_search = {"type": "array", "items": {"type": "object", "additionalProperties": False,
-        "required": ["name", "role", "values"], "properties": {"name": {"type": "string"},
-            "role": {"enum": list(sorted(_ROLES))}, "values": {"type": "array", "items": {"type": "number"}}}}}
+    explicit_values = {"type": "object", "additionalProperties": False,
+        "required": ["kind", "values"], "properties": {
+            "kind": {"const": "explicit_values"},
+            "values": {"type": "array", "items": {"type": "number"}}}}
+    parameter_search = {"type": "array",
+        "items": {"type": "object", "additionalProperties": False,
+        "required": ["name", "role", "kind", "values"], "properties": {"name": {"type": "string"},
+            "role": {"enum": list(sorted(_ROLES))},
+            "kind": {"const": "explicit_values"},
+            "values": explicit_values["properties"]["values"]}}}
     return {"$defs": {"node": node, "template": template, "parameter_search": parameter_search},
             "type": "object", "additionalProperties": False,
             "required": ["schema_version", "decision_id", "goal_id", "iteration", "hypothesis_summary", "proposals", "stop_recommendation"],
@@ -93,7 +102,7 @@ def parse_decision(raw, *, iteration, goal, budget, provider_id, model_id):
     if not isinstance(proposals, list) or len(proposals) > budget.max_proposals_per_iteration:
         raise AgentContractError("ResearchDecision proposal count exceeds budget")
     normalized = []
-    for proposal in proposals:
+    for proposal_index, proposal in enumerate(proposals):
         fields = {"proposal_id", "template", "parameter_search", "rationale", "expected_behavior", "novelty_claim", "risks", "invalidation_conditions"}
         if not isinstance(proposal, dict) or set(proposal) != fields or not _SAFE.fullmatch(str(proposal["proposal_id"])):
             raise AgentContractError("Proposal fields or identity are invalid")
@@ -106,22 +115,9 @@ def parse_decision(raw, *, iteration, goal, budget, provider_id, model_id):
             raise AgentContractError("Proposal risk contract is invalid")
         if _FORBIDDEN.search(json.dumps(proposal, ensure_ascii=False)) or _forbidden_control_key(proposal):
             raise AgentContractError("Proposal contains forbidden control, path, code, secret, or quarantined terms")
-        template = parse_template(proposal["template"])
-        search = proposal["parameter_search"]
-        if isinstance(search, list):
-            if any(not isinstance(item, dict) or set(item) != {"name", "role", "values"} for item in search):
-                raise AgentContractError("Proposal parameter_search is invalid")
-            search = {"parameter_roles": {item["name"]: item["role"] for item in search},
-                      "search_space": {item["name"]: {"kind": "explicit_values", "values": item["values"]} for item in search}}
-            proposal = {**proposal, "parameter_search": search}
-        if not isinstance(search, dict) or set(search) != {"parameter_roles", "search_space"}:
-            raise AgentContractError("Proposal parameter_search is invalid")
-        roles = search["parameter_roles"]; spaces = search["search_space"]
-        if not isinstance(roles, dict) or not isinstance(spaces, dict) or set(roles) != set(spaces) or set(roles) - {p.name for p in template.parameters}:
-            raise AgentContractError("Proposal parameter contract is invalid")
-        if any(role not in _ROLES for role in roles.values()):
-            raise AgentContractError("Proposal parameter role is invalid")
-        normalized.append(proposal)
+        normalized.append(validate_proposal_parameter_contract(
+            proposal, proposal_index, maximum_trials=budget.max_total_trials
+        ))
     stable = {"schema_version": "1.0.0", "goal_id": goal.goal_id, "iteration": iteration, "provider_id": provider_id,
               "model_id": model_id, "hypothesis_summary": payload["hypothesis_summary"],
               "proposals": normalized, "stop_recommendation": payload["stop_recommendation"]}

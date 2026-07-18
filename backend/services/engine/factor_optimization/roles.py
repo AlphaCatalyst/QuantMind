@@ -6,6 +6,16 @@ from .enums import ParameterRole
 from .errors import OptimizationAdmissionError
 
 
+AST_FIELD_CONTEXTS = {
+    "window": "lookback_window",
+    "periods": "lookback_window",
+}
+ROLE_AST_CONTEXTS = {
+    ParameterRole.LOOKBACK_WINDOW: "lookback_window",
+    ParameterRole.FACTOR_INTERNAL_WEIGHT: "arithmetic_scalar",
+}
+
+
 def parameter_usage(expression):
     uses = defaultdict(set)
 
@@ -16,7 +26,7 @@ def parameter_usage(expression):
         for name, value in node.fields.items():
             if not hasattr(value, "kind"):
                 continue
-            child_context = "lookback_window" if name in {"window", "periods"} else "arithmetic_scalar"
+            child_context = AST_FIELD_CONTEXTS.get(name, "arithmetic_scalar")
             visit(value, child_context)
     visit(expression)
     return {name: frozenset(contexts) for name, contexts in uses.items()}
@@ -31,6 +41,6 @@ def validate_parameter_roles(template, roles):
         contexts = usage.get(name, frozenset())
         if role is ParameterRole.SIGNAL_THRESHOLD:
             raise OptimizationAdmissionError("signal_threshold is reserved but unavailable before the Signal stage")
-        expected = "lookback_window" if role is ParameterRole.LOOKBACK_WINDOW else "arithmetic_scalar"
+        expected = ROLE_AST_CONTEXTS[role]
         if not contexts or contexts != {expected}:
             raise OptimizationAdmissionError(f"parameter {name} role {role.value} conflicts with AST uses {sorted(contexts)}")

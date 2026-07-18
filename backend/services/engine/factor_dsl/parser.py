@@ -13,6 +13,8 @@ SECRET_RE = re.compile(r"(?i)(password|passwd|api[_-]?key|access[_-]?token|priva
 BINARY = {NodeKind.ADD, NodeKind.SUBTRACT, NodeKind.MULTIPLY, NodeKind.DIVIDE}
 UNARY = {NodeKind.NEGATE, NodeKind.ABSOLUTE, NodeKind.CS_RANK, NodeKind.CS_ZSCORE}
 ROLLING = {NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN, NodeKind.ROLLING_MAX}
+PARAMETER_REQUIRED_FIELDS = frozenset({"name", "type", "default", "minimum", "maximum"})
+PARAMETER_OPTIONAL_FIELDS = frozenset({"step"})
 
 
 def _exact(obj: Mapping[str, Any], required: Set[str], optional: Set[str] = frozenset(), where="object"):
@@ -101,7 +103,7 @@ def parse_template(payload) -> FactorTemplate:
     parameters = []
     names = set()
     for item in raw_parameters:
-        _exact(item, {"name", "type", "default", "minimum", "maximum"}, {"step"}, "parameter")
+        _exact(item, PARAMETER_REQUIRED_FIELDS, PARAMETER_OPTIONAL_FIELDS, "parameter")
         pname = _name(item["name"], "parameter.name")
         if pname in names:
             raise TemplateValidationError(f"duplicate parameter: {pname}")

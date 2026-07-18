@@ -213,15 +213,22 @@ class CodexResearchAgent:
         prompt = ("You are the structure-proposal layer of a bounded quantitative research system. "
                   "Return exactly one JSON object matching the supplied schema. Do not include prose, paths, code, "
                   "data rows, labels, control decisions, or secrets. Propose only canonical DSL templates using the "
-                  "allowed features/operators and explicit bounded search spaces. Every declared parameter must be "
-                  "referenced by the expression AST and parameter_search; use lookback parameters only in rolling "
-                  "window or delta periods nodes and factor weights as arithmetic operands. Do not declare unused "
-                  "parameters. The expression root must be an operator, not a constant or bare feature, and must "
-                  "contain at least one allowed feature. A valid lookback use has the exact shape "
-                  "{\"type\":\"rolling_mean\",\"operand\":{\"type\":\"feature\",\"name\":\"mom_ret_1d\"},"
-                  "\"window\":{\"type\":\"parameter\",\"name\":\"window\"}}. For this pre-Signal Campaign, "
-                  "use only lookback_window and factor_internal_weight; signal_threshold is reserved. Use two "
-                  "explicit search values per parameter so each proposal remains small.\nREQUEST:\n" +
+                  "allowed features/operators and the generated parameter contract in REQUEST. First design the full "
+                  "AST. Then declare only parameters that the AST genuinely needs to vary. Every declared parameter "
+                  "must be referenced at least once in the AST, have exactly one role, and have a search space with "
+                  "the same name. Every searched name must be declared. A lookback_window parameter may occur only "
+                  "in rolling window or delta periods fields. A factor_internal_weight must occur as an arithmetic "
+                  "operand. Role and AST position must agree. Use a constant node for values that do not need search. "
+                  "The formal Control contract supports integer_range for integer lookbacks, but this Provider's "
+                  "strict transport schema requires kind=explicit_values for every parameter; follow that schema "
+                  "and do not emit optional Template step. The Cartesian product must not exceed "
+                  "REQUEST.contract.maximum_trials. "
+                  "signal_threshold is unavailable before the Signal stage. The expression root must be an operator, "
+                  "not a constant or bare feature, and must contain at least one allowed feature. The generated "
+                  "valid_minimal_examples are mechanical shape examples only: do not return them verbatim or claim "
+                  "they are novel. If repair_instruction exists, return a complete replacement ResearchDecision JSON "
+                  "and apply only its allowed_fix_actions; do not change the Goal, features, budget, safety limits, or "
+                  "output format.\nREQUEST:\n" +
                   canonical_bytes({"goal": request.goal, "memory": request.sanitized_memory,
                                    "contract": request.contract}).decode("utf-8"))
         env = {key: os.environ[key] for key in ("PATH", "HOME", "TMPDIR", "LANG", "LC_ALL") if key in os.environ}

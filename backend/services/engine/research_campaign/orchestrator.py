@@ -4,6 +4,7 @@ from pathlib import Path
 
 from backend.services.engine.factor_dsl import parse_template, snapshot_contract
 from backend.services.engine.factor_optimization import execute_study, parse_optimization_spec, plan_study
+from backend.services.engine.factor_optimization.search_space import parse_search_space
 from backend.services.engine.factor_registry import RegistryStatus, load_registry_snapshot, publish_snapshot
 from backend.services.engine.factor_registry.models import RegistryEntry
 
@@ -11,10 +12,11 @@ from .artifact import CampaignJournal, campaign_id, validate_campaign
 from .canonical import hash_payload
 from .decision import parse_decision
 from .development import evaluate_development, publish_development_bundle
-from .errors import AgentContractError, ResearchCampaignError
+from .errors import AgentContractError, ProposalParameterContractError, ResearchCampaignError
 from .memory import sanitize_memory
 from .models import CampaignConfig, ResearchAgentRequest, ResearchCampaignBudget, ResearchGoal
 from .novelty import structural_fingerprint
+from .parameter_contract import ALLOWED_FIX_ACTIONS, proposal_parameter_contract_summary
 
 
 def _goal_payload(goal): return asdict(goal) | {"allowed_features": list(goal.allowed_features),
@@ -29,16 +31,17 @@ def _request(goal, memory, budget, iteration):
                  "novelty_requirement": goal.novelty_requirement, "constraints": list(goal.constraints)}
     contract = {"schema_version": "research-decision-v1", "iteration": iteration,
                 "maximum_proposals": budget.max_proposals_per_iteration,
-                "parameter_roles": ["lookback_window", "factor_internal_weight", "signal_threshold"],
+                "maximum_trials": min(goal.maximum_trials, budget.max_total_trials),
+                "parameter_contract": proposal_parameter_contract_summary(),
                 "template_contract": {"schema_version": "1.0.0", "dataset_kinds": [goal.dataset_kind],
-                    "parameter_fields": ["name", "type", "default", "minimum", "maximum"],
+                    "parameter_fields": ["name", "type", "default", "minimum", "maximum", "step (optional)"],
                     "feature_node": {"type": "feature", "name": "ALLOWED_FEATURE"},
                     "parameter_node": {"type": "parameter", "name": "DECLARED_PARAMETER"},
                     "constant_node": {"type": "constant", "value": 0.000001},
                     "unary_fields": ["type", "operand"], "binary_fields": ["type", "left", "right"],
                     "rolling_fields": ["type", "operand", "window"],
                     "delta_fields": ["type", "operand", "periods"]},
-                "optimization": "explicit_values only; total campaign trial budget is enforced by Control",
+                "optimization": "integer lookbacks may use integer_range or explicit_values; number parameters use explicit_values; total trial budget is enforced by Control",
                 "authority": "structure proposal only; no Registry status, Validation, or execution authority"}
     return ResearchAgentRequest(safe_goal, memory, contract)
 
@@ -46,10 +49,10 @@ def _request(goal, memory, budget, iteration):
 def _optimization_payload(proposal, snapshot_id, remaining_trials):
     proposed_count = 1
     search = proposal["parameter_search"]
-    for space in search["search_space"].values():
-        if not isinstance(space, dict) or set(space) != {"kind", "values"} or space["kind"] != "explicit_values":
-            raise ResearchCampaignError("Agent search space must use explicit_values")
-        proposed_count *= len(space["values"])
+    template = parse_template(proposal["template"])
+    definitions = {parameter.name: parameter for parameter in template.parameters}
+    for name, space in search["search_space"].items():
+        proposed_count *= len(parse_search_space(space, definitions[name]).values)
     if proposed_count > remaining_trials:
         raise ResearchCampaignError("Proposal exceeds remaining trial budget")
     return {"schema_version": "1.0.0", "name": proposal["template"]["name"] + "_campaign_search",
@@ -124,10 +127,23 @@ def run_campaign(goal: ResearchGoal, budget: ResearchCampaignBudget, agent, conf
                 if response is not None:
                     evidence["response_hash"] = hash_payload(response.raw_response)
                     evidence["usage_summary"] = response.usage_summary
+                if isinstance(exc, ProposalParameterContractError):
+                    evidence["contract_error"] = exc.repair_payload()
                 journal.event("agent_response_rejected", iteration=iteration, attempt=attempt,
                               reason=f"{type(exc).__name__}: {str(exc)[:160]}", **evidence)
+                if isinstance(exc, ProposalParameterContractError):
+                    repair = exc.repair_payload()
+                else:
+                    repair = {
+                        "proposal_index": None, "error_code": "other",
+                        "field_path": None, "declared_parameters": [],
+                        "used_parameters": [], "unused_parameters": [],
+                        "search_space_parameters": [], "role_assignments": {},
+                        "allowed_fix_actions": list(ALLOWED_FIX_ACTIONS),
+                        "safe_summary": str(exc)[:160],
+                    }
                 request = ResearchAgentRequest(request.goal, request.sanitized_memory,
-                    {**request.contract, "repair_instruction": str(exc)[:160]})
+                    {**request.contract, "repair_instruction": repair})
                 decision = None
         if decision is None:
             stop_reason = "agent_contract_failure"; break

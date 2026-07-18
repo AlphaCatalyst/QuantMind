@@ -12,6 +12,15 @@ The parser accepts one plain JSON object up to 64 KiB. It rejects prose outside 
 
 Control checks Goal/iteration, proposal count, DSL closed schema, allowed terminals/operators, parameter declarations/roles, explicit search spaces, and remaining trial budget. Existing DSL compilation supplies lookahead/type/depth/node admission. A failed Proposal is recorded independently; other valid Proposals may continue.
 
+Proposal parameter validation is exposed through a deterministic summary built
+from the live Factor DSL and Optimization contracts. For Campaign v1, declared
+Template parameters, AST parameter references, Search Space names and role names
+must be equal. `lookback_window` binds only to rolling `window` or delta
+`periods`; `factor_internal_weight` binds only as an arithmetic scalar;
+`signal_threshold` remains unavailable before the Signal stage. Number search
+uses explicit values, integer search follows the formal Optimizer schema, and
+all values obey Template bounds/step and the Trial-product budget.
+
 ## Novelty
 
 The structural fingerprint binds the operator tree, Feature terminals, and parameter positions while abstracting bound values, defaults, ranges, Template names, output names, and descriptions. Add and multiply inputs are sorted canonically. Registry and current-Campaign fingerprints are rejected before Optimization and consume no Trial budget.
@@ -23,6 +32,12 @@ The Agent cannot select formal identities. Control ignores its Decision ID place
 ## External Provider Safety
 
 Codex runs ephemeral and read-only with an allowlisted environment, strict output schema, timeout, bounded response, and one repair attempt. Requests contain only the Goal safe view, sanitized memory, DSL shape summary, allowed terminals/operators, and budgets. No secret, Authorization header, raw row, label, absolute path, Registry file, or formal evidence detail is logged or transmitted.
+
+The Provider transport profile is closed and uses explicit-value search rows.
+Semantic binding stays in Control because JSON Schema cannot establish AST use,
+role-location compatibility, novelty or total Trial product. Repair receives a
+safe structured diagnostic and must return a complete replacement Decision;
+it cannot change the Goal, feature set, budget, safety limits or output form.
 
 ## Rejection and Authority
 

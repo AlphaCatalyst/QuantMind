@@ -14,12 +14,29 @@ from backend.services.engine.research_campaign.agent import (
 from backend.services.engine.research_campaign.canonical import canonical_bytes
 from backend.services.engine.research_campaign.decision import decision_json_schema
 from backend.services.engine.research_campaign.models import ResearchAgentRequest
+from backend.services.engine.research_campaign.parameter_contract import (
+    proposal_parameter_contract_summary,
+)
 
 
 def request(repair=False):
-    contract = {"iteration": 1}
+    contract = {
+        "iteration": 1,
+        "maximum_trials": 6,
+        "parameter_contract": proposal_parameter_contract_summary(),
+    }
     if repair:
-        contract["repair_instruction"] = "return strict JSON"
+        contract["repair_instruction"] = {
+            "proposal_index": 0,
+            "error_code": "parameter_declared_but_unused",
+            "field_path": "proposals[0].template.parameters",
+            "declared_parameters": ["window"],
+            "used_parameters": [],
+            "unused_parameters": ["window"],
+            "search_space_parameters": ["window"],
+            "role_assignments": {"window": "lookback_window"},
+            "allowed_fix_actions": ["remove unused parameter"],
+        }
     return ResearchAgentRequest({"goal_id": "rg_test"}, {"safe": True}, contract)
 
 
@@ -42,6 +59,11 @@ def test_provider_schema_adds_explicit_types_without_changing_contract():
 
     walk(schema)
     assert decision_json_schema()["properties"]["schema_version"] == {"const": "1.0.0"}
+    search = schema["$defs"]["parameter_search"]["items"]
+    assert search["additionalProperties"] is False
+    assert set(search["required"]) == {"name", "role", "kind", "values"}
+    assert search["properties"]["kind"]["const"] == "explicit_values"
+    assert "step" not in schema["$defs"]["template"]["properties"]["parameters"]["items"]["properties"]
 
 
 def test_success_uses_safe_argv_environment_and_records_evidence(monkeypatch):
@@ -62,7 +84,11 @@ def test_success_uses_safe_argv_environment_and_records_evidence(monkeypatch):
     command = observed["command"]
     assert command[:2] == ["codex-test", "exec"]
     assert "--json" in command and "--output-schema" in command and "--color" in command
-    assert "Every declared parameter must be referenced by the expression AST" in command[-1]
+    assert "Every declared parameter" in command[-1]
+    assert "generated parameter contract" in command[-1]
+    assert "signal_threshold is unavailable" in command[-1]
+    assert "provider_transport_valid_minimal_examples" in command[-1]
+    assert "declared_parameters == used_parameters" in command[-1]
     assert Path(observed["kwargs"]["cwd"]).name.startswith("qm2-agent-")
     assert "OPENAI_API_KEY" not in observed["kwargs"]["env"]
     assert observed["kwargs"]["stdin"] is subprocess.DEVNULL
