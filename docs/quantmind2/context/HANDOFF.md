@@ -1,5 +1,26 @@
 # Codex Handoff
 
+## Current authority and next task
+
+- Current task is `QM2-P0-014`; implementation is complete pending its single
+  commit and post-commit Ledger Planner verification.
+- Active provider is `tushare-pro-v1`; legacy provider
+  `quantmind-production-feature-snapshots-v1` is `retired_and_purged` and may
+  not be used by formal runtime. Read ADR-0011 and
+  `docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json` before data work.
+- Fixed universe IDs are `tu500_fb547c...24e8c` and
+  `tu100_078e6609...2c526`; formal Qlib view is `tqv_c489efe4...941ff`.
+- Canonical research start is empty Genesis Registry
+  `trg_0e23d0c7...1d309`. Do not restore old Factor Registry metrics or old
+  Research Memory effectiveness labels.
+- Artifact Store Inventory `sai_2e7ce672...02040` is healthy with Missing 0,
+  Unreferenced 0 and legacy Artifact count 0. The purge is irreversible for
+  the deleted local data; rollback means re-fetching/rebuilding Tushare data or
+  restoring old data from an independent backup, not changing the authority
+  record silently.
+- Only recommended next task:
+  `QM2-P0-015 — Re-run Fixed-100 Agent Factor Experiment on Tushare Authority`.
+
 ## Repository state
 
 - QuantMind root: `/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/`

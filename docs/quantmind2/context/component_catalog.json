@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:59:48Z",
-  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
+  "generated_at": "2026-07-20T01:10:00Z",
+  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -44,12 +44,12 @@
       "last_verified_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08", "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind.feature_snapshots", "name": "Feature Snapshots", "status": "partial",
-      "responsibility": "Produce annual Parquet matrices consumed by existing training and expose them through a read-only immutable Snapshot boundary.",
+      "component_id": "quantmind.feature_snapshots", "name": "Feature Snapshots", "status": "deprecated",
+      "responsibility": "Historical annual-Parquet compatibility code; its data authority and local data were retired and purged by QM2-P0-014.",
       "source_path": "scripts/data/rebuild_v2/build_feature_snapshots.py", "target_path": "backend/services/engine/factor_research/features",
       "key_symbols": ["add_daily_technical_features", "LegacyFeatureProvider", "LegacyFeatureSnapshotService", "load_feature_matrix"], "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_registry"],
-      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0007"], "current_limitations": ["Existing training has not switched to the real immutable Legacy Dataset Snapshot.", "No Factor Registry lineage."],
-      "last_verified_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34", "evidence_level": "code_confirmed"
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0007", "ADR-0011"], "current_limitations": ["Formal runtime use is forbidden; code remains only for historical compatibility and must not recreate authority."],
+      "last_verified_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "factor_lab.official_v7_source", "name": "Official V7 Factor Lab Source", "status": "partial",
@@ -96,9 +96,9 @@
       "last_verified_commit": null, "evidence_level": "planned"
     },
     {
-      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "partial", "responsibility": "TongDaXin ingestion, legacy feature binding, immutable raw/data snapshots, normalization, quality, and consumer views.",
-      "source_path": "scripts/full_update.py", "target_path": "backend/services/engine/market_data", "key_symbols": ["MarketDataProvider", "TongDaXinProvider", "FakeMarketDataProvider", "DailyBarsRequest", "DatasetSnapshotService", "LegacyFeatureSourceBinding", "LegacyFeatureProvider", "LegacyFeatureSnapshotService", "load_daily_bars", "load_feature_matrix", "load_labels"], "dependencies": ["pandas", "pyarrow"], "architecture_decision_refs": ["ADR-0003"],
-      "current_limitations": ["Real TongDaXin access is unavailable because the repository and active environments lack tqcenter.tq, and canonical volume/amount unit assertions are not configured.", "Calendar and point-in-time universe domains are deferred.", "Existing training and Qlib consumers have not switched to Dataset Snapshot."], "last_verified_commit": "7d29df7b45b6a49d2526e182c6b2d36e8c2d2f34", "evidence_level": "code_confirmed"
+      "component_id": "quantmind2.data_foundation", "name": "Data Foundation", "status": "implemented", "responsibility": "Tushare-only fixed-500 raw/normalized/Feature/Label authority, fixed-100 Qlib consumer view, immutable Store publication, recovery and legacy retirement.",
+      "source_path": "backend/services/engine/tushare_cutover", "target_path": "backend/services/engine/tushare_cutover", "key_symbols": ["TushareClient", "TushareCutoverPipeline", "validate_tushare_artifact"], "dependencies": ["pandas", "pyarrow", "quantmind2.research_artifact_store"], "architecture_decision_refs": ["ADR-0007", "ADR-0011"],
+      "current_limitations": ["Incremental updates after 2026-06-23, a distributed Artifact Store and LightGBM Feature Snapshot binding are not implemented.", "Formal credentials must be supplied at runtime through TUSHARE_TOKEN."], "last_verified_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb", "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "partial", "responsibility": "Canonical typed AST, parameter nodes, static admission, canonicalization, hashing, and bounded compilation.",

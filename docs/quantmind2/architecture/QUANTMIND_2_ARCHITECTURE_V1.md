@@ -21,9 +21,12 @@ Research Goal → Research Skill / Agent → ResearchDecision
 Data Foundation is orthogonal and authoritative:
 
 ```text
-TongDaXin Provider → Immutable Raw Data → Normalization → Dataset Snapshot
+Tushare Pro Provider → Immutable Raw Data → Normalization → Dataset Snapshot
 → Factor / Feature Materialization → Parquet and Qlib consumer views
 ```
+
+Provider selection is amended by accepted ADR-0011, which supersedes
+ADR-0003 without changing the remaining Architecture v1 boundaries.
 
 Experiment Management binds Candidate, Optimization Trial, Materialization,
 Validation Result, Model, Signal, Backtest Result, Run, Artifact, code version,

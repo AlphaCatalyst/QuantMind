@@ -2,7 +2,7 @@
 
 Project ID: `quantmind2`  
 Architecture version: `v1`  
-Indexed base commit: `e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08`
+Indexed base commit: `65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb`
 
 ## Mandatory read order
 
@@ -14,6 +14,8 @@ Indexed base commit: `e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08`
 6. [Component Catalog](COMPONENT_CATALOG.md)
 7. [Implementation Runs](../implementation/README.md)
 8. Current code, Git status, and relevant tests
+9. [ADR-0011 Tushare-only authority](../adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md)
+10. [Tushare authority record](../data/TUSHARE_AUTHORITY_V1.json)
 
 ## Context documents
 

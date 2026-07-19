@@ -19,13 +19,15 @@ Qlib Backtest → Risk Analysis`.
 - The only official Factor Lab source is
   `/tmp/quantmind_factor_lab_real_bounded_v7_orchestrator_v1/backend/services/engine/factor_lab/`.
   It is a read-only capability donor until explicitly migrated by contract.
-- TongDaXin is the A-share market-data entry. Its concrete provider
-  implementation remains unverified.
+- Tushare Pro is the only active A-share market-data entry under ADR-0011,
+  which supersedes the unverified TongDaXin choice in ADR-0003.
 - Dataset Snapshot is the authoritative research-data version. Parquet stores
   large factor/training materializations. PostgreSQL stores tasks, state,
   metadata, indexes, and query projections. Qlib binary is a consumer view.
 - Existing LightGBM combines multiple factors. Existing Qlib produces official
   portfolio and risk conclusions.
+- The immutable Tushare fixed-500 Dataset/Artifact graph is authoritative. The
+  fixed-100 Qlib binary is a derived consumer view, never a data source.
 
 ## Non-goals
 

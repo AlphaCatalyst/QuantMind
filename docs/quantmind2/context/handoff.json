@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-19T15:33:05Z",
-  "source_commit": "d115ff929c7c64fdf4d64f6cc01bec0163347659",
+  "generated_at": "2026-07-20T01:10:00Z",
+  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "d115ff929c7c64fdf4d64f6cc01bec0163347659",
+  "base_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,12 +24,12 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-011BF",
-  "completion_status": "blocked",
-  "latest_implementation_run": "QM2-P0-011BF-20260719T153305Z-d115ff9",
-  "next_recommended_tasks": [],
+  "current_task": "QM2-P0-014",
+  "completion_status": "completed_uncommitted",
+  "latest_implementation_run": "QM2-P0-014-20260719T171330Z-6538908",
+  "next_recommended_tasks": ["QM2-P0-015"],
   "unconfirmed_facts": [
-    "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics; this no longer blocks the Legacy Snapshot Factor DSL route.",
+    "Tushare incremental collection and late-data revision policy after 2026-06-23.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
     "Stale adjacent 2025 feature sidecar reconciliation; exact Parquet bytes currently remain authoritative.",
     "Durable long-term location for the official Factor Lab source.",
@@ -50,6 +50,8 @@
     "Decision Layer may propose actions but cannot claim execution success.",
     "Code Orchestrator is the only controlled boundary to execution services.",
     "Execution services cannot autonomously choose the next research action."
+    ,"Only tushare-pro-v1 is active market-data authority; legacy feature/Qlib data may not be recreated as formal fallback."
+    ,"TUSHARE_TOKEN is environment-only and must never be persisted, logged, hashed, or accepted by CLI."
   ],
   "mandatory_read_order": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
@@ -61,7 +63,9 @@
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/implementation/README.md",
     "docs/quantmind2/adr/ADR-0009-decision-control-execution-separation.md",
-    "docs/quantmind2/architecture/RESEARCH_DECISION_CONTRACT_V1.md"
+    "docs/quantmind2/architecture/RESEARCH_DECISION_CONTRACT_V1.md",
+    "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
+    "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json"
   ],
-  "uncommitted_work": false
+  "uncommitted_work": true
 }

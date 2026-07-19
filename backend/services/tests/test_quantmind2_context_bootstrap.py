@@ -108,7 +108,7 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
 
     def test_adr_index_references_are_complete(self):
         index = load_json(QM2 / "adr" / "adr_index.json")
-        self.assertEqual(len(index["adrs"]), 10)
+        self.assertEqual(len(index["adrs"]), 11)
         root = Path(__file__).resolve().parents[3]
         for adr in index["adrs"]:
             self.assertTrue((root / adr["path"]).is_file())
@@ -116,6 +116,9 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertEqual(adr_0009["status"], "accepted")
         adr_0010 = next(item for item in index["adrs"] if item["adr_id"] == "ADR-0010")
         self.assertEqual(adr_0010["status"], "accepted")
+        adr_0011 = next(item for item in index["adrs"] if item["adr_id"] == "ADR-0011")
+        self.assertEqual(adr_0011["status"], "accepted")
+        self.assertTrue((root / adr_0011["path"]).is_file())
 
     def test_research_decision_contract_and_architecture_exist(self):
         self.assertTrue(RESEARCH_DECISION_CONTRACT.is_file())
@@ -235,9 +238,9 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertIn("3,822 NaNs / 10,867 observed rows", text)
         self.assertIn("Qlib rerun calls are zero", text)
         self.assertIn("status is `blocked`", text)
-        self.assertEqual(handoff["current_task"], "QM2-P0-011BF")
-        self.assertEqual(handoff["completion_status"], "blocked")
-        self.assertEqual(handoff["next_recommended_tasks"], [])
+        self.assertEqual(handoff["current_task"], "QM2-P0-014")
+        self.assertEqual(handoff["completion_status"], "completed_uncommitted")
+        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-015"])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

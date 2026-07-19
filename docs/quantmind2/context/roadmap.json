@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:59:48Z",
-  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
+  "generated_at": "2026-07-20T01:10:00Z",
+  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -43,6 +43,8 @@
     {"task_id": "QM2-P0-010", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-009"], "objective": "Establish a persistent immutable research artifact store.", "explicit_non_goals": ["No Fresh evaluation, model, signal, backtest, or automatic promotion."], "acceptance_summary": "Sixty-five reachable artifacts migrate with zero missing sources, healthy integrity and verified recovery."},
     {"task_id": "QM2-P0-010F", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-010"], "objective": "Record exact Git integrity inventories for the immutable 010 Run in independent correction evidence.", "explicit_non_goals": ["No target Run edit, Store code or artifact mutation, migration, inventory regeneration, recovery rerun, Fresh evaluation, model or backtest."], "acceptance_summary": "Correction records 42 changed and 28 added paths, preserves correct business ChangedFiles, and links to the still-inconsistent target using corrects."},
     {"task_id": "QM2-P0-011", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-010"], "objective": "Cut research runtimes over to explicit Store-backed artifact resolution.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, model, signal, backtest, cloud backend, or deletion GC."], "acceptance_summary": "Store-required runtime resolves and publishes formal artifacts through verified descriptors, recovers current research state from an empty cache and exact-replays the external Campaign with zero Agent calls."},
-    {"task_id": "QM2-P0-012", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-011"], "objective": "Run an Artifact-backed External Agent Campaign production dry run.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, automatic promotion, model, signal or backtest."], "acceptance_summary": "A bounded external Campaign uses the Store-backed production runtime and preserves all authority, budget and Frozen Test boundaries."}
+    {"task_id": "QM2-P0-012", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-011"], "objective": "Run an Artifact-backed External Agent Campaign production dry run.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, automatic promotion, model, signal or backtest."], "acceptance_summary": "A bounded external Campaign uses the Store-backed production runtime and preserves all authority, budget and Frozen Test boundaries."},
+    {"task_id": "QM2-P0-014", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-011BF"], "objective": "Replace legacy data authority with a PIT-locked fixed-500 Tushare graph and fixed-100 Qlib view, then purge verified legacy data.", "explicit_non_goals": ["No LightGBM redesign, Agent experiment rerun, live trading or incremental update."], "acceptance_summary": "Real Tushare chain, Store recovery and replay, Qlib consumption, credential scan and 11.37 GB legacy purge pass."},
+    {"task_id": "QM2-P0-015", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-014"], "objective": "Re-run bounded Agent factor research on the new immutable fixed-100 Tushare authority.", "explicit_non_goals": ["No old-metric inheritance, automatic promotion, authority change or Frozen leakage."], "acceptance_summary": "Campaign references Tushare locks and datasets plus the empty Genesis Registry; all conclusions are recomputed."}
   ]
 }

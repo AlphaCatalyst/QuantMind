@@ -15,3 +15,4 @@ superseded record and its approval status; do not overwrite an accepted ADR.
 | [ADR-0008](ADR-0008-layered-optimization-boundaries.md) | accepted | Factor, Model, Portfolio optimization separation |
 | [ADR-0009](ADR-0009-decision-control-execution-separation.md) | accepted | Research decision, code control, and deterministic execution separation |
 | [ADR-0010](ADR-0010-logical-repository-identity-binding.md) | accepted | Logical repository identity and explicit local path binding |
+| [ADR-0011](ADR-0011-tushare-only-data-authority-and-legacy-retirement.md) | accepted | Tushare-only authority and verified legacy retirement; supersedes ADR-0003 |

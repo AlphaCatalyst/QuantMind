@@ -2,7 +2,7 @@
 
 | ID | Severity | Status | Issue |
 |---|---|---|---|
-| QM2-KI-001 | high | open | Legacy TongDaXin scripts require absent proprietary `tqcenter`; pytdx/mootdx, local client/data root, explicit source units, rate limits and license semantics are unavailable. The legacy feature route is usable, but no real TDX Daily Bars Snapshot exists. |
+| QM2-KI-001 | high | resolved | ADR-0011 supersedes the unverified TongDaXin provider choice; Tushare Pro is active and the legacy data authority is retired and purged. |
 | QM2-KI-002 | high | open | Submitted `label_formula` metadata does not drive the training script's actual tradable-return label construction. |
 | QM2-KI-003 | high | open | Daily data task references a missing Qlib synchronization script. |
 | QM2-KI-004 | high | open | Existing Qlib conversion deletes/replaces the destination non-atomically. |
@@ -22,6 +22,7 @@
 | QM2-KI-016 | high | open | Database configuration contains credential-bearing defaults in several files, and shared async engine initialization may log the complete database URL. |
 | QM2-KI-017 | medium | open | A disposable opt-in PostgreSQL integration test exists and passes locally; CI PostgreSQL capability and scheduling remain unconfirmed. |
 | QM2-KI-018 | medium | open | Context schema v1 cannot encode fine-grained task IDs such as `QM2-P0-002A2a2`; machine-readable next-task lists temporarily use parent `QM2-P0-002`. |
+| QM2-KI-039 | medium | open | Tushare authority is locked through 2026-06-23; incremental collection, late-data revision policy and scheduled publication are not implemented. |
 | QM2-KI-019 | medium | resolved | Manifest v2 directly represents every current Ledger Domain family; immutable historical v1 Runs retain their original gaps. |
 | QM2-KI-020 | medium | resolved | In-memory remains a test double; the async PostgreSQL Repository now has isolated PostgreSQL 15 transaction, rollback, savepoint, constraint, and cross-Session concurrency evidence. |
 | QM2-KI-021 | medium | resolved | Ledger migration, Repository/UoW, Manifest/Git indexing and CLI exist; production deployment and API/UI remain separate open scope. |

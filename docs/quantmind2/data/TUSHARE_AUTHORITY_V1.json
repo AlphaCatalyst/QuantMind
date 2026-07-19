@@ -1,0 +1,50 @@
+{
+  "schema_version": "tushare-authority-git-record-v1",
+  "provider_id": "tushare-pro-v1",
+  "authority_status": "active",
+  "authority_record_id": "dar_38b6b09e06ed9091cc86789d4e44a50f143e51301bb2464b5f01a4ef47bd9052",
+  "legacy_provider": {
+    "provider_id": "quantmind-production-feature-snapshots-v1",
+    "authority_status": "retired_and_purged",
+    "runtime_read_allowed": false
+  },
+  "date_contract": {
+    "warmup_start": "2018-09-01",
+    "research_start": "2019-01-02",
+    "end": "2026-06-23",
+    "incremental_updates_in_scope": false
+  },
+  "universe_500": {
+    "universe_lock_id": "tu500_fb547c7935c91409b8e7f901bc891257bbb77c911a15a99773eccadf32624e8c",
+    "descriptor_id": "sad_d56b74069f7461f4c4cd204561095b7bdab5d332d0658bc22178a624d7ecf5a6",
+    "count": 500,
+    "ranking_field": "circ_mv",
+    "selection": "first 20 open sessions of 2019; >=15 observations; eligible listing/delisting; descending mean circ_mv; ts_code ascending tie-break"
+  },
+  "universe_100": {
+    "universe_lock_id": "tu100_078e6609ef84c58e4c9db53fe8ee194a4b8b7b31d4990a61fbddb9022c02c526",
+    "descriptor_id": "sad_5c919b994752b0da5d732b3191ddd7952c3db840b5edb66c226a406be64c322c",
+    "count": 100,
+    "selection": "first 100 immutable parent ranks; no replacement"
+  },
+  "normalized_bars_id": "tnb_311f8c6f7efe127f0891831502aa41e779c67f24d45a2b772ba80c613a9c73ec",
+  "feature_dataset_id": "tfd_2cdcf05615a2669d144633952c81efc5e2e493294d8ac191698fd7260e86b97e",
+  "label_dataset_id": "tld_7f765006c745d2a8d4f3ce885d1322dd96441fd547800ebe997c5452b0ddc969",
+  "qlib_view_id": "tqv_c489efe4d2084878433407d6dd3084b4f0c62ae2ca831b156998eba4d62941ff",
+  "registry_genesis_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
+  "sanitized_memory_id": "tsm_d17b00a7a24ef1410baed9a6c49fb24cd52941aa3fd380e3a3894ae911ee9fc8",
+  "purge_plan_id": "ldp_b9074f7f91dfb9c7d700ed83f6702e403c4aa335569975817a167287b5770fed",
+  "purge_result_id": "ldr_cc9b249dcf1a973fa0a49ef7ab319ab2b380add6f7cfdf8786e462b29621fea0",
+  "artifact_store_inventory_id": "sai_2e7ce67296dd8f19af8239c3b7e4da1084cbd7c76c92afdcd2afc30129202040",
+  "quality": {
+    "normalized_rows": 926653,
+    "duplicate_keys": 0,
+    "2026h1_style_idio_vol_20_nan_ratio": 0.0,
+    "2026h1_locked_factor_signal_nan_ratio": 0.0,
+    "store_integrity": "healthy",
+    "store_missing": 0,
+    "store_unreferenced": 0,
+    "legacy_artifact_count": 0
+  },
+  "credential_policy": "TUSHARE_TOKEN environment only; never persisted, logged, hashed, or accepted by CLI"
+}

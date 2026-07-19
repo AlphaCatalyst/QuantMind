@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-17T16:59:48Z",
-  "source_commit": "890afdde73de0616a7efcf43946b1cbf6329be91",
+  "generated_at": "2026-07-20T01:10:00Z",
+  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "issues": [
-    {"issue_id": "QM2-KI-001", "severity": "high", "status": "open", "summary": "The only legacy TongDaXin path depends on missing proprietary tqcenter.tq; endpoint, authorization, limits, timeout/retry behavior, and canonical volume/amount units remain unverified. The real Legacy Feature route exists, but no real TDX Daily Bars Snapshot does."},
+    {"issue_id": "QM2-KI-001", "severity": "high", "status": "resolved", "summary": "ADR-0011 supersedes the unverified TongDaXin provider choice; Tushare Pro is active and the legacy data authority is retired and purged."},
     {"issue_id": "QM2-KI-002", "severity": "high", "status": "open", "summary": "Declared label_formula does not drive the actual training label."},
     {"issue_id": "QM2-KI-003", "severity": "high", "status": "open", "summary": "Daily data task references a missing Qlib synchronization script."},
     {"issue_id": "QM2-KI-004", "severity": "high", "status": "open", "summary": "Current Qlib conversion replaces its destination non-atomically."},
-    {"issue_id": "QM2-KI-005", "severity": "high", "status": "open", "summary": "Dataset Snapshot v1 exists as a new immutable authority contract, but current PostgreSQL, annual feature Parquet, and Qlib binary consumers have not migrated to it."},
+    {"issue_id": "QM2-KI-005", "severity": "high", "status": "resolved", "summary": "QM2-P0-014 establishes one Tushare Artifact/Dataset authority and a fixed-100 Qlib consumer view; the former annual feature authority was purged."},
     {"issue_id": "QM2-KI-006", "severity": "high", "status": "open", "summary": "Official Factor Lab uses a Python-first candidate contract."},
     {"issue_id": "QM2-KI-007", "severity": "high", "status": "open", "summary": "Factor Lab JSON registry can replace historical records."},
     {"issue_id": "QM2-KI-008", "severity": "high", "status": "open", "summary": "Anti-overfit recent is not an isolated Frozen Test."},
@@ -34,7 +34,7 @@
     {"issue_id": "QM2-KI-025", "severity": "high", "status": "open", "summary": "Manifest v1 cannot construct complete Ledger Domain Bundles without inventing Task and child semantics; zero of seventeen historical v1 Runs are indexable, while v2 resolves future production."},
     {"issue_id": "QM2-KI-026", "severity": "high", "status": "open", "summary": "QM2-P0-001F declares a result commit that differs from its containing commit."},
     {"issue_id": "QM2-KI-027", "severity": "medium", "status": "open", "summary": "The adjacent 2025 feature sidecar describes older bytes; exact Parquet bytes, not the stale sidecar, are authoritative for Legacy source identity."},
-    {"issue_id": "QM2-KI-028", "severity": "high", "status": "open", "summary": "Existing LightGBM training and Qlib still consume their legacy feature/Qlib views rather than the real immutable Legacy Dataset Snapshot."},
+    {"issue_id": "QM2-KI-028", "severity": "high", "status": "open", "summary": "Existing LightGBM training is not yet bound to the new Tushare Feature Dataset and exact Factor/Transform lineage; Qlib direct consumption of the new fixed-100 view is verified."},
     {"issue_id": "QM2-KI-029", "severity": "high", "status": "resolved", "summary": "Manifest v2 self-reference is rejected for new Runs; committed v2 self-reference is narrowly warned and excluded from ChangedFile mapping without weakening other Git evidence."},
     {"issue_id": "QM2-KI-030", "severity": "low", "status": "resolved", "summary": "The 003LF post-commit PostgreSQL test used nonexistent AnalyzedRun.git_consistency; QM2-P0-003LF1 uses evidence.consistent and evidence.warnings, and all four opt-in tests pass."},
     {"issue_id": "QM2-KI-031", "severity": "medium", "status": "open", "summary": "The current official Factor Lab source directory references FactorSpec, CandidateManifest, admission, evaluator and sandbox modules whose source files are absent from that bounded directory; only its surviving contracts and runbook evidence were reusable in QM2-P0-004."},
@@ -44,6 +44,7 @@
     {"issue_id": "QM2-KI-035", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 implements the persistent content-addressed Store and migrates the complete current reachable research graph; QM2-P0-011 completes the Store-backed runtime cutover and recovery drill."},
     {"issue_id": "QM2-KI-036", "severity": "medium", "status": "resolved", "summary": "QM2-P0-009 omitted 23 of 35 Git-proven business ChangedFiles. The original Run remains inconsistent; QM2-P0-009F adds complete immutable correction evidence and a corrects relationship."},
     {"issue_id": "QM2-KI-037", "severity": "medium", "status": "open", "summary": "Artifact Store and Runtime v1 are single-host local-filesystem only; NFS, cloud object storage, distributed locking/cache and deletion GC are unsupported."},
-    {"issue_id": "QM2-KI-038", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 omitted only its own Manifest from both integrity Git inventories. The original Run remains immutable, inconsistent and non-indexable; QM2-P0-010F records the exact 42 changed and 28 added path evidence plus a corrects relationship without changing Store behavior or artifacts."}
+    {"issue_id": "QM2-KI-038", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 omitted only its own Manifest from both integrity Git inventories. The original Run remains immutable, inconsistent and non-indexable; QM2-P0-010F records the exact 42 changed and 28 added path evidence plus a corrects relationship without changing Store behavior or artifacts."},
+    {"issue_id": "QM2-KI-039", "severity": "medium", "status": "open", "summary": "Tushare authority is locked through 2026-06-23; incremental collection, late-data revision policy and scheduled publication are not implemented."}
   ]
 }

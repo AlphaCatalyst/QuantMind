@@ -1,5 +1,33 @@
 # Current Implementation State
 
+## Tushare-only authority cutover (QM2-P0-014)
+
+- `tushare-pro-v1` is the only active market-data authority under ADR-0011.
+  Fixed locks are `tu500_fb547c...24e8c` and `tu100_078e6609...2c526`.
+- Real history covers 500 locked stocks from 2018-09-03 through 2026-06-23:
+  daily 926,653 rows, adj-factor 931,312 rows, daily-basic 926,653 rows,
+  trade calendar 2,854 rows and CSI300 1,889 rows. No full-market history was
+  downloaded.
+- Normalized bars `tnb_311f8c6f...c73ec`, Features
+  `tfd_2cdcf056...6b97e`, Labels `tld_7f765006...dc969`, and fixed-100 Qlib
+  view `tqv_c489efe4...941ff` are immutable Store artifacts. Continuous
+  cross-year computation removes the old 2026 annual-boundary cold start;
+  2026H1 idio-vol and locked-signal missingness are both 0%.
+- Existing `QlibBacktestService` initialized directly against the new view;
+  `RedisRecordingStrategy`, `SimulatorExecutor` and `CnExchange` contracts
+  loaded successfully. Existing LightGBM is unchanged and is not yet bound to
+  this new Feature Dataset.
+- New Registry genesis `trg_0e23d0c7...1d309` has entry/promotion/approved/
+  active counts 0/0/0/0. Sanitized Memory `tsm_d17b00a7...9fc8` retains only
+  structural and engineering lessons; old metrics are explicitly invalidated.
+- Purge result `ldr_cc9b249d...1fea0` deleted 59,168 files, all 97 legacy
+  research descriptors and 372 exclusively legacy blobs, reclaiming
+  11,366,423,425 bytes. Old annual features, old Qlib data and old research
+  caches are absent. Final Store Inventory is `sai_2e7ce672...02040`, healthy,
+  with Missing 0, Unreferenced 0 and legacy Artifact count 0.
+- Current task: `QM2-P0-014`. Next task is only
+  `QM2-P0-015 — Re-run Fixed-100 Agent Factor Experiment on Tushare Authority`.
+
 Generated: 2026-07-18
 Verified source commit before this task: `32dc6af0be24468da997e9e32e9627e23d360987`
 

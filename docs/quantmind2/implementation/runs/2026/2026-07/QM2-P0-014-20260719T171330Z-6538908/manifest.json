@@ -1,0 +1,748 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0011",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0003",
+      "relation": "supersedes"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-014-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "62e482b86d30c1a0ec730cfa2dbfdb2b15937f751828786e8b1a31fce9fe950b",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 10925
+    },
+    {
+      "artifact_id": "artifact-014-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-adr",
+      "artifact_type": "architecture_decision_record",
+      "content_hash": "f87dc04feddc72aebc4ab5d553096e15f612ffc539b4ad9b0a9f345060381a87",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
+      "schema_version": "1.0.0",
+      "size_bytes": 3244
+    },
+    {
+      "artifact_id": "artifact-014-git-authority",
+      "artifact_type": "git_data_authority_record",
+      "content_hash": "f268b501d427ee04815eff0c49c62041cb94572562b4fb3ffdab44725e06c4fe",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json",
+      "schema_version": "1.0.0",
+      "size_bytes": 2536
+    },
+    {
+      "artifact_id": "artifact-014-contract",
+      "artifact_type": "data_contract",
+      "content_hash": "6c6b797b068052d6d147e014024bdc7a85c78b5c2484a621629405a4db5ca005",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/data/TUSHARE_DATA_CONTRACT_V1.md",
+      "schema_version": "1.0.0",
+      "size_bytes": 2323
+    },
+    {
+      "artifact_id": "artifact-014-lock-500",
+      "artifact_type": "universe_lock",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tu500_fb547c7935c91409b8e7f901bc891257bbb77c911a15a99773eccadf32624e8c",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-lock-100",
+      "artifact_type": "universe_lock",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tu100_078e6609ef84c58e4c9db53fe8ee194a4b8b7b31d4990a61fbddb9022c02c526",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-normalized",
+      "artifact_type": "normalized_bars",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tnb_311f8c6f7efe127f0891831502aa41e779c67f24d45a2b772ba80c613a9c73ec",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-features",
+      "artifact_type": "feature_dataset",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tfd_2cdcf05615a2669d144633952c81efc5e2e493294d8ac191698fd7260e86b97e",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-labels",
+      "artifact_type": "label_dataset",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tld_7f765006c745d2a8d4f3ce885d1322dd96441fd547800ebe997c5452b0ddc969",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-qlib",
+      "artifact_type": "qlib_view",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tqv_c489efe4d2084878433407d6dd3084b4f0c62ae2ca831b156998eba4d62941ff",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-registry",
+      "artifact_type": "registry_genesis",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-memory",
+      "artifact_type": "sanitized_research_memory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tsm_d17b00a7a24ef1410baed9a6c49fb24cd52941aa3fd380e3a3894ae911ee9fc8",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-purge-plan",
+      "artifact_type": "legacy_data_purge_plan",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/ldp_b9074f7f91dfb9c7d700ed83f6702e403c4aa335569975817a167287b5770fed",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-purge-result",
+      "artifact_type": "legacy_data_purge_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/ldr_cc9b249dcf1a973fa0a49ef7ab319ab2b380add6f7cfdf8786e462b29621fea0",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-authority",
+      "artifact_type": "data_authority_record",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/dar_38b6b09e06ed9091cc86789d4e44a50f143e51301bb2464b5f01a4ef47bd9052",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-014-inventory",
+      "artifact_type": "store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/sai_2e7ce67296dd8f19af8239c3b7e4da1084cbd7c76c92afdcd2afc30129202040",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "94c41b7259f487adc4073942a134c47d0673e356d6c8b01b98248b9d23e3e3e7",
+      "before_hash": "b13ce5b5afbbea46fd65853516c094e8c157313376550a8bb9a6990390b27b4a",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ee04ce75dae56fb7b958382143dce6d82231ef14f38816a9917439549b1d1625",
+      "before_hash": "78db12a7c0e8f1fb3df1d6186a4108ebf445ec000987794eb54ced45d2b56268",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fe705729104124f3366c8da3caf0ec1798400ef5ab3d755c96a84727fb1ce338",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_cutover/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dfff454c3eb34bec81e3890e64565def9e8ba6ef44c62abc62d7150b9e126fd3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_cutover/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "75f0b96765dbcace9afbde6d7a5c467889f3d195918cc2a161fa1e720e05e481",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_cutover/client.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "96d486900d567ee97642c4147ffc981e76f97dbfbafbaa9fd7bfad4f13ac171a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_cutover/pipeline.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f302885121ca9925a52e1571134869d18c13fec195e4e9fea0186285233425ad",
+      "before_hash": "21f9860da7e36564fbb7bc0e8d42c830e3909443a4b7894073c32548dbd2186c",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dcb2378c33be344a803450111cb127edd917642889cee31909f0303e18d73ced",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_tushare_cutover.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f87dc04feddc72aebc4ab5d553096e15f612ffc539b4ad9b0a9f345060381a87",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "acf3799e26048f56f10a3d090385468b56222607720da092874e593e6d1d0d1b",
+      "before_hash": "8b6fc525b8ac1cf5de1928ae5bdadb6800dbf89b8dc3e9a7ca00b0d802945562",
+      "change_type": "modified",
+      "path": "docs/quantmind2/adr/ADR_INDEX.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2294f83190f0d7a918ea02b73cc5bdfa358c085dc78903c1bd3f48890b1ec250",
+      "before_hash": "88f6af09c1aa8ed57dc12d80eaf8ddbe748f924bd1562168b1717cccc650466c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/adr/adr_index.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1a3124f3651623f6bedc351419730d14a8d780ce10ee565fc06a4732dc9d5763",
+      "before_hash": "a87c3ca6ff2fa2901f174bdfa8b2011ead84cc692503b5ff7573521c12dd7e89",
+      "change_type": "modified",
+      "path": "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7fc343d1bc4db5bd3d8442dfb14472b02cdd72d4188e12823a9919ee77417ea1",
+      "before_hash": "55c3f53c50fa7929e844a48a83fb86d4bee0fbab2b3b00f2ab5dfc4b9410a93b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ed2de1ee410776eca0dd5375ede46b69fa47c509dda7b5fbebf0d7e6e0131b77",
+      "before_hash": "df6ee3db82bf6e6a7d5c924badb6b3f26ed82939a7f36a9c9c31e19ebb058e94",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CONTEXT_INDEX.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "454bf43fc29264c91435e9ed44d3ac891bfe7621be9fa4c4428d5048357cafd6",
+      "before_hash": "26c5e625dffb56f1c7fc9d6bb30a08966e33a6fc98878618bcc03f4500cc6473",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "797b87c47518c2f86ddde4ec6bbfc0de83c46d5d4fde6c8aba0727efe1598ec2",
+      "before_hash": "83c8745047a62f783e0a0e7b3150e4bb5db63a0803bc6d35dd5c59cb204a963a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/DATA_SEMANTICS.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "66fe16ad32c386c13c012c52a4dfa71763d942b094fa3edab47d34e68d1b3ce9",
+      "before_hash": "0c2e3782d6caa873e54c6036ea83263d4b90ea3fca1aaba0bf83fe677974f7e7",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5e4fa584b7edc92175862b8de4af98bd5019388a468a84070803a65f19c1b740",
+      "before_hash": "71a16d4768dd3c3c96e274019b9f4bb03f1c5664b6db4ff08d45f5f01ed51894",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "14d4f8ea7df9660e0962516cba2c874b0b782d45aed334dd3e5aa985717d86cb",
+      "before_hash": "2da9fb0d2678f5ae0dfc4cdc4677b29f23b972a37645e8e55f797cd903e86534",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/PROJECT_CHARTER.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8e89a95d1abad36b9a528fb4ace2146bf836bfc40db58ae48ff344fc06e1b5e4",
+      "before_hash": "866a52aaa0af7b656cc9eae6240768db387a4c232d4a5a374c862fc3536eb3ce",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "38da5be7a19b3c94b23a6071fa3fdb99e21b478a7984d599490ce2807bcf223f",
+      "before_hash": "5b3dd593892592f7e3d0f5ae2b6f8022861e9a9ce4982a96fa9db594b3529d52",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8c644fb96609e1ba904cfb2f22f6389d99cf73a7a6c075c1a817fa3c805425ec",
+      "before_hash": "de0e583845cd56c054e3d8bde87649fe60dc7b8476e85bf9cdee3450841b2547",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/context_index.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5badfcc0dde5ecbad973aa888b6b2e70ae05edfbe619b0728ca5e19f8d73dc11",
+      "before_hash": "5b7cb4083a3154bf420624402259736b7237e4b7e6e74c51e8a7f5635d29d64d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "86f6c3aef605bd575d6940c3abcc6f429aab217a6ff12673834070cd0e9f7c44",
+      "before_hash": "ccb00ded73393d6e57f2bf1f6c6e89e6ca55ad84b6649f51e3173658c6eb4101",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f88686c20fa2791b3432b7d8e6b9269a72a2cafff7142a91e604dc647b2b0f0a",
+      "before_hash": "354930e7367b7cbad73cdb6bb721eafa1dfd99d2dd34da7d7d6eae1429944179",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5fcbf37bc93c63295d9883d60bf67d0a3de0100f5370212f8ca1230e1d73c2ab",
+      "before_hash": "e9a5fcad215cf64e3f029a8d57522a3eab9e00860d866acb8d42305fa83e682f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f268b501d427ee04815eff0c49c62041cb94572562b4fb3ffdab44725e06c4fe",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6c6b797b068052d6d147e014024bdc7a85c78b5c2484a621629405a4db5ca005",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/data/TUSHARE_DATA_CONTRACT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "62e482b86d30c1a0ec730cfa2dbfdb2b15937f751828786e8b1a31fce9fe950b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4acf84b593928484ed4ac420e73a4c52b2e54fdf9f4650a327d45116d66e6407",
+      "before_hash": "4bdb7254bba1d88041de303494601aeed901c37d93b7871eff2f7275c2954a11",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5a094b8b4df1f3b8f0683b2e58671f7cf3412c2ef15781bfb9d878aeffb186b5",
+      "before_hash": "b548e8e4907b174d2d78f51fc8695c819934cf6fc59c0a47b35d0a0bb79eacca",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a39b08dda4cd842b2aa66a47ea7bd21475c9cbb360e59f3691c49a9ec56845d7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/tushare_data_cutover.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "42c3b3d979fc94ff5056d2d9c4f534bf8be2778b2d5ba2c8d506997dfb85b013",
+      "before_hash": "060d73545fa5b7e4e8e0093301083d153ad650782eeb653193a8296de3ce1b9c",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/artifact_store/enums.py",
+      "qualified_name": "ArtifactKind",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/artifact_store/validators.py",
+      "qualified_name": "validate_domain_artifact",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_cutover/client.py",
+      "qualified_name": "TushareClient",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_cutover/pipeline.py",
+      "qualified_name": "TushareCutoverPipeline",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_cutover/pipeline.py",
+      "qualified_name": "validate_tushare_artifact",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/tushare_data_cutover.py",
+      "qualified_name": "main",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "tools/quantmind2/validate_context_bootstrap.py",
+      "qualified_name": "validate_bootstrap",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind.feature_snapshots",
+      "impact_type": "deprecated"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_registry",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-014-adr",
+        "sha256": "f87dc04feddc72aebc4ab5d553096e15f612ffc539b4ad9b0a9f345060381a87"
+      },
+      {
+        "artifact_id": "artifact-014-contract",
+        "sha256": "6c6b797b068052d6d147e014024bdc7a85c78b5c2484a621629405a4db5ca005"
+      },
+      {
+        "artifact_id": "artifact-014-git-authority",
+        "sha256": "f268b501d427ee04815eff0c49c62041cb94572562b4fb3ffdab44725e06c4fe"
+      },
+      {
+        "artifact_id": "artifact-014-report",
+        "sha256": "62e482b86d30c1a0ec730cfa2dbfdb2b15937f751828786e8b1a31fce9fe950b"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/tushare_cutover/__init__.py",
+      "backend/services/engine/tushare_cutover/canonical.py",
+      "backend/services/engine/tushare_cutover/client.py",
+      "backend/services/engine/tushare_cutover/pipeline.py",
+      "backend/services/tests/test_tushare_cutover.py",
+      "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
+      "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json",
+      "docs/quantmind2/data/TUSHARE_DATA_CONTRACT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/report.md",
+      "tools/quantmind2/tushare_data_cutover.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/tushare_cutover/__init__.py",
+      "backend/services/engine/tushare_cutover/canonical.py",
+      "backend/services/engine/tushare_cutover/client.py",
+      "backend/services/engine/tushare_cutover/pipeline.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "backend/services/tests/test_tushare_cutover.py",
+      "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
+      "docs/quantmind2/adr/ADR_INDEX.md",
+      "docs/quantmind2/adr/adr_index.json",
+      "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CONTEXT_INDEX.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/DATA_SEMANTICS.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/PROJECT_CHARTER.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/context_index.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json",
+      "docs/quantmind2/data/TUSHARE_DATA_CONTRACT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/tushare_data_cutover.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "6be892c26f472ece651f463eb673a73a52d66bcbb3e14a77db4fb08e853ba655",
+    "manifest_payload_sha256": "0ff4eb990571f59e6df8fdb92ec8677aba73acb9306a4d0be5bc261cd6eb0ca9",
+    "report_sha256": "62e482b86d30c1a0ec730cfa2dbfdb2b15937f751828786e8b1a31fce9fe950b",
+    "source_bundle_sha256": "99733968e52d6b9fd2f5045a8e7cbbbf18b6b1a6270e41db6c90a5490e2ab707"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Incremental updates, revisions, and publication after 2026-06-23 are not implemented.",
+      "limitation_id": "limit-014-incremental",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "Artifact Store remains a single-host local filesystem authority.",
+      "limitation_id": "limit-014-local-store",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind.training",
+      "description": "Existing LightGBM has not yet been bound to this Tushare Feature Dataset.",
+      "limitation_id": "limit-014-lightgbm-binding",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Price-limit labeling is conservative because stk_limit is outside the approved endpoint set.",
+      "limitation_id": "limit-014-price-limit",
+      "severity": "medium",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-015",
+      "priority": "P0",
+      "reason": "Re-run the fixed-100 Agent factor experiment exclusively on the new Tushare authority.",
+      "recommendation_id": "recommend-014-015"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-19T17:13:30Z",
+      "reason": "Replace the diagnosed legacy dataset with a single Tushare authority before rerunning fixed-100 research.",
+      "relationship_id": "rel-qm2-p0-014-continues-011bf",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-014-20260719T171330Z-6538908",
+      "target_run_id": "QM2-P0-011BF-20260719T153305Z-d115ff9"
+    }
+  ],
+  "repository": {
+    "base_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-19T17:13:30Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "6be892c26f472ece651f463eb673a73a52d66bcbb3e14a77db4fb08e853ba655",
+    "implementation_run_id": "QM2-P0-014-20260719T171330Z-6538908",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-014-20260719T171330Z-6538908/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "99733968e52d6b9fd2f5045a8e7cbbbf18b6b1a6270e41db6c90a5490e2ab707",
+    "started_at": "2026-07-19T16:20:00Z",
+    "task_id": "QM2-P0-014",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-19T16:20:00Z",
+    "explicit_non_goals": [
+      "No Agent experiment rerun, LightGBM training, Factor DSL redesign, live trading, database migration, API, UI, or post-2026-06-23 incremental collection"
+    ],
+    "objective": "Make Tushare Pro the sole formal market-data authority, publish the PIT-locked 500/100 data lineage, and purge superseded local research data only after all cutover gates pass.",
+    "parent_task_id": "QM2-P0-011BF",
+    "scope": [
+      "Tushare capability, PIT universe locks, historical acquisition, normalization, Feature/Label/Qlib publication, Artifact Store recovery, clean Registry/Memory genesis, bounded legacy purge, governance and tests"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-014",
+    "title": "Tushare-only 500-stock Data Authority Cutover and Legacy Data Purge"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_tushare_cutover.py backend/services/tests/test_quantmind2_context_bootstrap.py -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 26,
+      "purpose": "Verify Tushare security, identities, cross-year Features, purge bounds, CLI and context.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_tushare_cutover.py backend/services/tests/test_artifact_store_blob.py backend/services/tests/test_artifact_runtime.py backend/services/tests/test_legacy_feature_real.py backend/services/tests/test_historical_agent_experiment.py backend/services/tests/test_quantmind2_context_bootstrap.py -q -o addopts=''",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 41,
+      "purpose": "Run all directly relevant Artifact Store, data, historical experiment and context regression tests.",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-014-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "TUSHARE_TOKEN=<environment> python tools/quantmind2/tushare_data_cutover.py capability-probe and acquire-history",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 6,
+      "purpose": "Probe six required endpoints and complete bounded resumable 500-symbol collection.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-real-provider"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/tushare_data_cutover.py validate and build-qlib-view",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 6,
+      "purpose": "Verify quality gates, direct qlib.init and existing QlibBacktestService consumption.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-quality-qlib"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "quantmind-artifact-store://v1/artifacts/sai_2e7ce67296dd8f19af8239c3b7e4da1084cbd7c76c92afdcd2afc30129202040",
+      "command": "python tools/quantmind2/tushare_data_cutover.py store-recover and purge-legacy and final-inventory",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 11,
+      "purpose": "Verify twice-cold recovery, bounded purge, final exact replay and Store integrity.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-store-purge"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py --json",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Validate Project Memory, ADR, schemas and Implementation Run structure.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "JSON parse plus py_compile plus git diff --check plus lockfile scope check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 93,
+      "purpose": "Validate generated JSON, Python syntax, patch whitespace and dependency-file scope.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "Exact in-memory credential scan over repository and Artifact Store",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5339,
+      "purpose": "Prove the credential value was not persisted.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-014-secret-scan"
+    }
+  ]
+}

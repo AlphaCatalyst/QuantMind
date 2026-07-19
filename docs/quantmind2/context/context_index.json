@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-13T18:36:14Z",
-  "source_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "generated_at": "2026-07-20T01:10:00Z",
+  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/context/PROJECT_CHARTER.md",
@@ -14,12 +14,14 @@
   "project_id": "quantmind2",
   "repository": "qusong0627-quantmind-git-https-github-com",
   "architecture_version": "v1",
-  "indexed_commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+  "indexed_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
   "authoritative_documents": [
     "docs/quantmind2/context/PROJECT_CHARTER.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
     "docs/quantmind2/adr/ADR_INDEX.md",
-    "docs/quantmind2/context/DATA_SEMANTICS.md"
+    "docs/quantmind2/context/DATA_SEMANTICS.md",
+    "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json",
+    "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md"
   ],
   "derived_documents": [
     "docs/quantmind2/context/CURRENT_STATE.md",
@@ -32,7 +34,7 @@
     {
       "role": "target_host",
       "root": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
-      "commit": "e9b0c7d5d00a870a687fc2daeb3c7aa64a0e2e08",
+      "commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
       "read_only": false
     },
     {
@@ -50,7 +52,9 @@
     "docs/quantmind2/context/HANDOFF.md",
     "docs/quantmind2/adr/ADR_INDEX.md",
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
-    "docs/quantmind2/implementation/README.md"
+    "docs/quantmind2/implementation/README.md",
+    "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
+    "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json"
   ],
   "current_state_ref": "docs/quantmind2/context/current_state.json",
   "handoff_ref": "docs/quantmind2/context/handoff.json",

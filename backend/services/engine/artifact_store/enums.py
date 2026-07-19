@@ -26,6 +26,22 @@ class ArtifactKind(str, Enum):
     AGENT_ITERATION_ASSESSMENT = "agent_iteration_assessment"
     SIGNAL_MISSINGNESS_AUDIT = "signal_missingness_audit"
     HISTORICAL_BACKTEST_FOLLOWUP = "historical_backtest_followup"
+    TUSHARE_500_UNIVERSE_LOCK = "tushare_500_universe_lock"
+    TUSHARE_100_EXPERIMENT_UNIVERSE_LOCK = "tushare_100_experiment_universe_lock"
+    TUSHARE_RAW_DAILY = "tushare_raw_daily"
+    TUSHARE_RAW_ADJ_FACTOR = "tushare_raw_adj_factor"
+    TUSHARE_RAW_DAILY_BASIC = "tushare_raw_daily_basic"
+    TUSHARE_TRADE_CALENDAR = "tushare_trade_calendar"
+    TUSHARE_MARKET_BENCHMARK = "tushare_market_benchmark"
+    TUSHARE_NORMALIZED_BARS = "tushare_normalized_bars"
+    TUSHARE_FEATURE_DATASET = "tushare_feature_dataset"
+    TUSHARE_LABEL_DATASET = "tushare_label_dataset"
+    TUSHARE_100_QLIB_VIEW = "tushare_100_qlib_view"
+    TUSHARE_RESEARCH_REGISTRY_GENESIS = "tushare_research_registry_genesis"
+    SANITIZED_RESEARCH_MEMORY = "sanitized_research_memory"
+    DATA_AUTHORITY_RECORD = "data_authority_record"
+    LEGACY_DATA_PURGE_PLAN = "legacy_data_purge_plan"
+    LEGACY_DATA_PURGE_RESULT = "legacy_data_purge_result"
 
 
 class IntegrityStatus(str, Enum):
