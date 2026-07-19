@@ -42,6 +42,13 @@ class ArtifactKind(str, Enum):
     DATA_AUTHORITY_RECORD = "data_authority_record"
     LEGACY_DATA_PURGE_PLAN = "legacy_data_purge_plan"
     LEGACY_DATA_PURGE_RESULT = "legacy_data_purge_result"
+    TUSHARE_HISTORICAL_AGENT_EXPERIMENT = "tushare_historical_agent_experiment"
+    TUSHARE_HISTORICAL_ROUND_LOCK = "tushare_historical_round_lock"
+    TUSHARE_HISTORICAL_ROUND_EVALUATION = "tushare_historical_round_evaluation"
+    TUSHARE_QLIB_BACKTEST_RESULT = "tushare_qlib_backtest_result"
+    TUSHARE_HISTORICAL_HOLDOUT_RESULT = "tushare_historical_holdout_result"
+    TUSHARE_AGENT_ITERATION_ASSESSMENT = "tushare_agent_iteration_assessment"
+    TUSHARE_HISTORICAL_EXPERIMENT_REGISTRY = "tushare_historical_experiment_registry"
 
 
 class IntegrityStatus(str, Enum):

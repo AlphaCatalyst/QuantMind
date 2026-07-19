@@ -23,6 +23,7 @@
 | QM2-KI-017 | medium | open | A disposable opt-in PostgreSQL integration test exists and passes locally; CI PostgreSQL capability and scheduling remain unconfirmed. |
 | QM2-KI-018 | medium | open | Context schema v1 cannot encode fine-grained task IDs such as `QM2-P0-002A2a2`; machine-readable next-task lists temporarily use parent `QM2-P0-002`. |
 | QM2-KI-039 | medium | open | Tushare authority is locked through 2026-06-23; incremental collection, late-data revision policy and scheduled publication are not implemented. |
+| QM2-KI-040 | high | open | QM2-P0-015 Tushare fixed-100 signals have 0% NaN in 2026H1, but formal Qlib rejects the isolated interval because only 98 locked symbols have effective observations while the precheck requires 100. Dropping, replacing, filling or relaxing the gate is forbidden without a separate contract decision. |
 | QM2-KI-019 | medium | resolved | Manifest v2 directly represents every current Ledger Domain family; immutable historical v1 Runs retain their original gaps. |
 | QM2-KI-020 | medium | resolved | In-memory remains a test double; the async PostgreSQL Repository now has isolated PostgreSQL 15 transaction, rollback, savepoint, constraint, and cross-Session concurrency evidence. |
 | QM2-KI-021 | medium | resolved | Ledger migration, Repository/UoW, Manifest/Git indexing and CLI exist; production deployment and API/UI remain separate open scope. |

@@ -2,7 +2,7 @@
 
 ## Current authority and next task
 
-- Current task is `QM2-P0-014`; implementation is complete pending its single
+- Current task is `QM2-P0-015`; implementation is partial pending its single
   commit and post-commit Ledger Planner verification.
 - Active provider is `tushare-pro-v1`; legacy provider
   `quantmind-production-feature-snapshots-v1` is `retired_and_purged` and may
@@ -18,8 +18,10 @@
   the deleted local data; rollback means re-fetching/rebuilding Tushare data or
   restoring old data from an independent backup, not changing the authority
   record silently.
-- Only recommended next task:
-  `QM2-P0-015 — Re-run Fixed-100 Agent Factor Experiment on Tushare Authority`.
+- No successor is authorized. A follow-up must explicitly decide how the
+  formal Qlib fixed-universe precheck represents two locked stocks without
+  effective 2026H1 observations; it must not silently drop, replace or fill
+  them.
 
 ## Repository state
 
@@ -44,6 +46,27 @@
   used for the task boundary instead.
 
 ## Current position
+
+- `QM2-P0-015` completed all four Tushare historical-as-of Agent rounds. The
+  formal run used four calls and 18 Trials; an earlier immutable failed
+  diagnostic used four calls, so the task consumed exactly its eight-call
+  maximum. Eight candidates were round-locked before evaluation.
+- Round mean next-year RankIC is -0.00213 / 0.00358 / 0.00191 / 0.00331 and
+  fixed-100 net excess is -4.41% / 3.41% / 0.93% / 15.99%. Assessment is
+  `mixed`; rounds 2--4 did not continuously improve over round 1.
+- Three candidates were selected using only 2021--2024 evidence. The 2025
+  equal-weight result is +4.23%, but trails CSI300 by 17.52 points and
+  fixed-100 by 2.85 points. Individual 2025 returns are -4.32%, +1.62% and
+  -7.41%.
+- All isolated 2026H1 signal NaN ratios are 0%. Formal Qlib still rejects the
+  interval at its unchanged 100-symbol quality gate because only 98 symbols
+  have effective observations. This is retained as rejected evidence; no
+  fill, replacement, deletion, fallback, threshold change or promotion was
+  performed. Do not quote the successful full-range result as isolated
+  2026H1 performance.
+- Final Experiment `tha_2b367621...76383b` exact-replays with zero Agent,
+  Optimization, Qlib, Registry, Tushare-network or legacy reads. Store is
+  healthy at 43 artifacts / 1,580 blobs with zero missing/unreferenced.
 
 - `QM2-P0-011BF` is a completed diagnostic with a blocked backtest outcome.
   The original 35.17% is exactly 3,822 NaNs / 10,867 observed rows. A full

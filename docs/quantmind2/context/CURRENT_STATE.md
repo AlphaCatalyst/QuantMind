@@ -1,5 +1,40 @@
 # Current Implementation State
 
+## Tushare fixed-100 Agent experiment (QM2-P0-015)
+
+- Four historical-as-of rounds completed on only the immutable Tushare
+  fixed-100 authority. The formal protocol admitted 2 candidates per round,
+  executed 18 bounded factor-parameter Trials, and used one successful
+  `openai_codex_cli` / `gpt-5.6-terra` call per round. A prior immutable
+  diagnostic attempt consumed four additional calls before exposing a wrong
+  public `CompiledFactor` field assumption; the task-wide total is therefore
+  exactly the eight-call ceiling.
+- Every round locked its candidates before the next-year evaluation. Mean
+  next-year RankIC for rounds 1..4 was -0.00213, 0.00358, 0.00191 and 0.00331;
+  fixed-100 net excess was -4.41%, 3.41%, 0.93% and 15.99%. The iteration
+  assessment is `mixed`, not continuously improving.
+- Selection used only evidence through 2024 and locked three Factors. The
+  equal-weight combination returned 82.45% over the available 2019--2026H1
+  main range, with 2.22% excess over fixed-100, 16.79% excess over CSI300,
+  Sharpe 0.474 and maximum drawdown -19.07%. This full-range result must not be
+  treated as an isolated 2026H1 result.
+- 2025 completed for all locked Factors and the combination. The combination
+  returned 4.23%, underperforming CSI300 by 17.52 percentage points and
+  fixed-100 by 2.85 points. The three individual Factors returned -4.32%,
+  1.62% and -7.41%.
+- Every 2026H1 signal has 0% NaN, but the unchanged production Qlib signal
+  precheck rejects the isolated interval because only 98 of the 100 immutable
+  symbols have effective observations. No stock was removed or replaced, no
+  value was filled and no gate was relaxed. The task is therefore `partial`:
+  it has no formal isolated 2026H1 portfolio result or stock-contribution
+  attribution.
+- Experiment `tha_2b367621...76383b` is immutable. Store state is 43 artifacts
+  / 1,580 blobs, healthy, Missing 0 and Unreferenced 0. Thirteen artifacts cold
+  restored, and exact replay used zero Agent, Optimization, Qlib, Registry,
+  network and legacy-data calls.
+- Current task: `QM2-P0-015`. No successor is authorized; resolving the Qlib
+  fixed-universe effective-symbol contract requires a separate explicit task.
+
 ## Tushare-only authority cutover (QM2-P0-014)
 
 - `tushare-pro-v1` is the only active market-data authority under ADR-0011.

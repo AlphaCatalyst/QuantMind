@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T01:10:00Z",
-  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
+  "generated_at": "2026-07-19T18:20:00Z",
+  "source_commit": "d8e89d8dac2d5cf1cb43ad2334d89ec10f77dbfa",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
+  "base_commit": "d8e89d8dac2d5cf1cb43ad2334d89ec10f77dbfa",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-014",
-  "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-P0-014-20260719T171330Z-6538908",
-  "next_recommended_tasks": ["QM2-P0-015"],
+  "current_task": "QM2-P0-015",
+  "completion_status": "partial_uncommitted",
+  "latest_implementation_run": "QM2-P0-015-20260719T182000Z-d8e89d8",
+  "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
@@ -39,6 +39,7 @@
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
     "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment."
+    ,"Formal representation of immutable fixed-universe members with no effective observations in a Qlib evaluation interval; QM2-P0-015 retains the unchanged 100-symbol precheck and records 2026H1 as rejected at 98/100."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

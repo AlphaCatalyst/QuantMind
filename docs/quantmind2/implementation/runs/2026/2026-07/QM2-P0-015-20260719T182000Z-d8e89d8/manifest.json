@@ -1,0 +1,558 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0011",
+      "relation": "implements"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-015-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "b19a80eb4f539420c3073eb67daee0e49be7ba1f4d064c780750766aa6349364",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 12464
+    },
+    {
+      "artifact_id": "artifact-015-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-015-experiment",
+      "artifact_type": "tushare_historical_agent_experiment",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tha_2b3676218af9693cf6bfcf0ab47d102db0cc865f94f0e5b54de6fba26d76383b",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-015-qlib",
+      "artifact_type": "tushare_qlib_backtest_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tqb_ea39d0378a835a3b609dacef769e4bf47708be004c703243d44375c95075d768",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-015-holdout",
+      "artifact_type": "tushare_historical_holdout_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/thh_8d3433a6b0ba3ae01375bce4174b80efdaefff058ae37ca153fee13dfd89b89c",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-015-assessment",
+      "artifact_type": "tushare_agent_iteration_assessment",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/tia_abcaae6d0894b1659d610760bda351d4bf3619b41a0c65e9c5ef65064d42f199",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-015-registry",
+      "artifact_type": "tushare_historical_experiment_registry",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "quantmind-artifact-store://v1/artifacts/thr_5ce6e216dd3b15aae44e64b984870ffb073536558ba8326e1b9b471018b2f275",
+      "schema_version": "1.0.0",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "f7b4b7d0d54d6c7b55bb030329c01a667598a1b92ddcb8cad9a55482c444db6f",
+      "before_hash": "94c41b7259f487adc4073942a134c47d0673e356d6c8b01b98248b9d23e3e3e7",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "497a5f0ad0090745059f7f3cdfbd8395836f0a1249eb6381c7f4d5199e0b21ec",
+      "before_hash": "ee04ce75dae56fb7b958382143dce6d82231ef14f38816a9917439549b1d1625",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "82a6280f39ce8dcc1fee89087c947ccb8116e4a96104f9297dd709f6f4042baf",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5c8841b7ab8fdb9b35799c050f71282a7cf325a20458dbfaa1c3e6e7be203ce6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5f18dc8d80fe80b3632093857694a876bcd74b409efcb648fd3677a211439858",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/data.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "99ff864088fe47eacf640484c5131145ffdd65d09886db4fe8cd3e1bb37ab576",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6954ec8bdc8af6cf59c741e46597be7c448dd9760d3e1f8487d73b4c82ade86a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/evaluation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c36ce624c5ac42a55ba7995291bbcf1680cad07d5f772fae855a9485f96677ca",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/memory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2c077db0653aafbf3dd130a2028ef7a21a88a1d4f58ae1d27474406e45ed1bb9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/tushare_agent_experiment/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8e3eeec2ee28e3f1e613765d5ab4700c399dc32e60a9928b8077c4a3ab27b0ec",
+      "before_hash": "f302885121ca9925a52e1571134869d18c13fec195e4e9fea0186285233425ad",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9a084eed48435f2ab49e77f574250c752f83e17785f94546909e504a052f6b53",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_tushare_agent_experiment.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ae8b9d95bcfb514acb08301bfdf1cc16482438d0ffa2da1228cb6cd2d237366c",
+      "before_hash": "454bf43fc29264c91435e9ed44d3ac891bfe7621be9fa4c4428d5048357cafd6",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8c09a9d8148fff3105e95c316226c763df59c0da3b00c41d07fe1ad6e99dec42",
+      "before_hash": "66fe16ad32c386c13c012c52a4dfa71763d942b094fa3edab47d34e68d1b3ce9",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9e53dbdd14d4860b428c4af57c8f0cfed2db0b9bdf6ce78b0d9082bb2f7b9042",
+      "before_hash": "5e4fa584b7edc92175862b8de4af98bd5019388a468a84070803a65f19c1b740",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8e720649300ba185a75b653aebfc40a1a25c9d6b059cf6fc2edbf52d7a59ae53",
+      "before_hash": "8e89a95d1abad36b9a528fb4ace2146bf836bfc40db58ae48ff344fc06e1b5e4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "495adf08814b57450593837ec7f323b2b5be5546c21cae880dba75082aafaa72",
+      "before_hash": "5badfcc0dde5ecbad973aa888b6b2e70ae05edfbe619b0728ca5e19f8d73dc11",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6631f5efd7ded1cd18cc6e7f29b6fea77f4048b88a55bca559b6ba3629544638",
+      "before_hash": "86f6c3aef605bd575d6940c3abcc6f429aab217a6ff12673834070cd0e9f7c44",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f7de1f63e2baed7cc48a5981d12a62e8befb918794a005c5af63a681ebbd4038",
+      "before_hash": "f88686c20fa2791b3432b7d8e6b9269a72a2cafff7142a91e604dc647b2b0f0a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "89c2b42ddaed2ba70c48898dd3938acdfd36f9fa83ebe1e9731160552fb9f366",
+      "before_hash": "5fcbf37bc93c63295d9883d60bf67d0a3de0100f5370212f8ca1230e1d73c2ab",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b19a80eb4f539420c3073eb67daee0e49be7ba1f4d064c780750766aa6349364",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1cbdca2660fecc00a4597c0c768c9dc56b20fc351443475475a93e5af4b8b6c5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/tushare_agent_experiment.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "526f01ad3dd87fc372d998ee8fa16630f33708a5fee8b012fcace97b35b2d869",
+      "before_hash": "42c3b3d979fc94ff5056d2d9c4f534bf8be2778b2d5ba2c8d506997dfb85b013",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/artifact_store/enums.py",
+      "qualified_name": "ArtifactKind",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/artifact_store/validators.py",
+      "qualified_name": "_formal_validate",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_agent_experiment/engine.py",
+      "qualified_name": "run_experiment",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_agent_experiment/engine.py",
+      "qualified_name": "replay_experiment",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_agent_experiment/engine.py",
+      "qualified_name": "_recover_locked_rounds",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_agent_experiment/evaluation.py",
+      "qualified_name": "FormalQlibRunner",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_agent_experiment/data.py",
+      "qualified_name": "load_authority_bundle",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/tushare_agent_experiment/artifact.py",
+      "qualified_name": "publish_experiment_artifact",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/tushare_agent_experiment.py",
+      "qualified_name": "main",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "tools/quantmind2/validate_context_bootstrap.py",
+      "qualified_name": "validate_bootstrap",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.research_campaign",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.factor_dsl",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_registry",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-015-report",
+        "sha256": "b19a80eb4f539420c3073eb67daee0e49be7ba1f4d064c780750766aa6349364"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/tushare_agent_experiment/__init__.py",
+      "backend/services/engine/tushare_agent_experiment/artifact.py",
+      "backend/services/engine/tushare_agent_experiment/data.py",
+      "backend/services/engine/tushare_agent_experiment/engine.py",
+      "backend/services/engine/tushare_agent_experiment/evaluation.py",
+      "backend/services/engine/tushare_agent_experiment/memory.py",
+      "backend/services/engine/tushare_agent_experiment/protocol.py",
+      "backend/services/tests/test_tushare_agent_experiment.py",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/report.md",
+      "tools/quantmind2/tushare_agent_experiment.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/tushare_agent_experiment/__init__.py",
+      "backend/services/engine/tushare_agent_experiment/artifact.py",
+      "backend/services/engine/tushare_agent_experiment/data.py",
+      "backend/services/engine/tushare_agent_experiment/engine.py",
+      "backend/services/engine/tushare_agent_experiment/evaluation.py",
+      "backend/services/engine/tushare_agent_experiment/memory.py",
+      "backend/services/engine/tushare_agent_experiment/protocol.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "backend/services/tests/test_tushare_agent_experiment.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/report.md",
+      "tools/quantmind2/tushare_agent_experiment.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "9d3f481febf9a3013c298360a1ad1ce3ec85a01795c62f136f974231a77d3932",
+    "manifest_payload_sha256": "d62a2f764add22d76172f05d4203a045fb11752dbd88ca73c277b5969fc58a79",
+    "report_sha256": "b19a80eb4f539420c3073eb67daee0e49be7ba1f4d064c780750766aa6349364",
+    "source_bundle_sha256": "441987e00eeeef045624999b9ea8529cf3d2e241429bf2ca701c61f99df8b9b2"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "description": "Formal isolated 2026H1 Qlib rejects 98 effective symbols against the immutable expected 100; no return or risk result is available.",
+      "limitation_id": "limit-015-2026-qlib",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "description": "Formal Qlib output lacks per-stock realized PnL attribution, so top-10 stock contribution is not claimed.",
+      "limitation_id": "limit-015-stock-attribution",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "Artifact Store remains a single-host local filesystem authority.",
+      "limitation_id": "limit-015-local-store",
+      "severity": "medium",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-19T18:20:00Z",
+      "reason": "Recompute the fixed-100 Agent experiment after the Tushare-only data-authority cutover.",
+      "relationship_id": "rel-qm2-p0-015-continues-014",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-015-20260719T182000Z-d8e89d8",
+      "target_run_id": "QM2-P0-014-20260719T171330Z-6538908"
+    }
+  ],
+  "repository": {
+    "base_commit": "d8e89d8dac2d5cf1cb43ad2334d89ec10f77dbfa",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "d8e89d8dac2d5cf1cb43ad2334d89ec10f77dbfa",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-19T18:20:00Z",
+    "completion_level": "partial",
+    "consistency_status": "unverified",
+    "git_diff_hash": "9d3f481febf9a3013c298360a1ad1ce3ec85a01795c62f136f974231a77d3932",
+    "implementation_run_id": "QM2-P0-015-20260719T182000Z-d8e89d8",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015-20260719T182000Z-d8e89d8/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "441987e00eeeef045624999b9ea8529cf3d2e241429bf2ca701c61f99df8b9b2",
+    "started_at": "2026-07-19T17:20:00Z",
+    "task_id": "QM2-P0-015",
+    "task_status": "partial_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-19T17:20:00Z",
+    "explicit_non_goals": [
+      "No Tushare network, legacy data, universe change, Feature or Label change, portfolio optimization, promotion, LightGBM work, API, database migration, UI or Fresh Validation claim"
+    ],
+    "objective": "Execute four bounded historical-as-of Agent factor-research rounds on the immutable Tushare fixed-100 authority and evaluate locked candidates with formal Qlib.",
+    "parent_task_id": "QM2-P0-014",
+    "scope": [
+      "Store-only Tushare authority, four Agent rounds, DSL proposals, bounded factor Optimization, next-year evaluation, final candidate lock, holdout, formal Qlib, experiment Registry, immutable artifacts, recovery and exact replay"
+    ],
+    "status": "partial",
+    "task_id": "QM2-P0-015",
+    "title": "Re-run Fixed-100 Agent Factor Experiment on Tushare Authority"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_tushare_agent_experiment.py -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 12,
+      "purpose": "Initial focused test run; all 12 assertions passed but repository-wide coverage addopts made the command exit nonzero at 3.13% below the unrelated 5% global threshold.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-015-initial-coverage-config"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov backend/services/tests/test_tushare_agent_experiment.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 13,
+      "purpose": "Verify Tushare authority, as-of memory, DSL causality, public compiled fields, equal combination, Artifact rules and structured Qlib rejection.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q test_quantmind2_context_bootstrap test_tushare_agent_experiment test_tushare_cutover test_research_campaign_codex_agent test_research_campaign_parameter_contract test_artifact_store_import test_artifact_store_integrity",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 71,
+      "purpose": "Run directly relevant Context, Tushare, external Agent and Artifact Store regression tests.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "quantmind-artifact-store://v1/artifacts/tha_2b3676218af9693cf6bfcf0ab47d102db0cc865f94f0e5b54de6fba26d76383b",
+      "command": "python tools/quantmind2/tushare_agent_experiment.py --work-root /tmp/qm2-p0-015-run-v2 run",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Execute four real external Agent rounds and formal Qlib evaluation using only Store-backed Tushare data.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015-real-experiment"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "quantmind-artifact-store://v1/artifacts/tqb_ea39d0378a835a3b609dacef769e4bf47708be004c703243d44375c95075d768",
+      "command": "formal isolated Qlib evaluation 2026-01-05..2026-06-23 for three locked Factors and equal-weight combination",
+      "failed_count": 4,
+      "not_run_reason": null,
+      "passed_count": 0,
+      "purpose": "Run the unchanged formal Qlib signal-quality gate after the 0% NaN gate.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-015-2026-qlib"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "quantmind-artifact-store://v1/artifacts/tha_2b3676218af9693cf6bfcf0ab47d102db0cc865f94f0e5b54de6fba26d76383b",
+      "command": "Store cold recovery plus tushare_agent_experiment.py replay",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 13,
+      "purpose": "Verify Domain validation, integrity and exact replay without Agent, Optimization, Qlib, Registry, network or legacy calls.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015-store-replay"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "py_compile plus JSON parse plus git diff --check plus context bootstrap plus secret and lockfile scope scan",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Verify syntax, structured documents, patch scope and credential boundary.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015-static"
+    }
+  ]
+}

@@ -19,6 +19,7 @@ ID_FIELDS = (
     "signal_missingness_audit_id", "historical_backtest_followup_id",
     "qlib_view_id", "authority_record_id", "purge_plan_id", "purge_result_id",
     "memory_id",
+    "historical_experiment_registry_id",
 )
 
 
@@ -153,6 +154,20 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
     }:
         from backend.services.engine.historical_agent_experiment.artifact import validate_historical_artifact
         return validate_historical_artifact(kind.value, source, artifact_id)
+    if kind in {
+        ArtifactKind.TUSHARE_HISTORICAL_AGENT_EXPERIMENT,
+        ArtifactKind.TUSHARE_HISTORICAL_ROUND_LOCK,
+        ArtifactKind.TUSHARE_HISTORICAL_ROUND_EVALUATION,
+        ArtifactKind.TUSHARE_QLIB_BACKTEST_RESULT,
+        ArtifactKind.TUSHARE_HISTORICAL_HOLDOUT_RESULT,
+        ArtifactKind.TUSHARE_AGENT_ITERATION_ASSESSMENT,
+        ArtifactKind.TUSHARE_HISTORICAL_EXPERIMENT_REGISTRY,
+    }:
+        from backend.services.engine.tushare_agent_experiment.artifact import (
+            validate_experiment_artifact,
+        )
+        validate_experiment_artifact(source, artifact_id, expected_kind=kind.value)
+        return "tushare_agent_experiment.validate_experiment_artifact"
     if kind.value.startswith("tushare_") or kind in {
         ArtifactKind.SANITIZED_RESEARCH_MEMORY,
         ArtifactKind.DATA_AUTHORITY_RECORD,
