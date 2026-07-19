@@ -3,6 +3,34 @@
 Generated: 2026-07-18
 Verified source commit before this task: `32dc6af0be24468da997e9e32e9627e23d360987`
 
+## Fixed-100 historical Agent diagnostic
+
+- `QM2-P0-011B` locked 100 symbols from the first 20 observed 2019 sessions by
+  mean `style_ln_mv_float` with at least 15 observations. No annual reselection,
+  replacement or missing-data fill occurred. Dataset
+  `fuhd_734dae...f95fb` covers 2019-01-02..2026-06-23 and binds the production
+  Label Contract and annual source hashes.
+- Four formal external `openai_codex_cli` / `gpt-5.6-terra` rounds made four
+  calls and 14 bounded factor-only Trials. Round admitted counts were 2/0/1/2;
+  mean next-year RankIC was 0.02346 / unavailable / 0.03963 / -0.01127.
+  Assessment is `mixed`; later rounds did not consistently improve on Round 1.
+- Selection through 2024 locked two candidates. Existing
+  `QlibBacktestService` and `CnExchange` completed 2025 and the 2019–2026H1
+  main-range attempt. The equal-weight combination returned 63.22% over the
+  available full run, below the fixed-universe benchmark by 19.43 percentage
+  points, with Sharpe 0.344 and maximum drawdown -20.03%.
+- The task is truthfully `partial`: every locked signal has 35.17% NaN in
+  2026H1 because its required style input is missing, exceeding the existing
+  Qlib 20% signal-quality gate. No fill, reselection, gate relaxation, Fresh
+  claim or promotion was performed.
+- Historical Experiment `hae_5e4b11ba...3fedd` and Inventory
+  `sai_8ee9085f...c4ee` contain 93 artifacts / 357 blobs. Cold recovery passed;
+  exact replay made zero Agent, Optimization, Qlib, Registry and Store writes.
+  Canonical Registry remains `frs_9f61af9b...92052`, 20 entries, with
+  promotion / approved / active = 0 / 0 / 0. Fresh controls remain unchanged.
+- Current task: `QM2-P0-011B`. No successor is authorized by this task; the
+  2026H1 missing-signal boundary requires an explicit follow-up decision.
+
 ## Parameter-aligned external Agent success path
 
 - `QM2-P0-012F` generated the Proposal parameter contract summary from the

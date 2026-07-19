@@ -24,6 +24,28 @@
 
 ## Current position
 
+- `QM2-P0-011B` is a truthful partial historical diagnostic. Fixed Universe
+  `ful_e899c9ce...df2651`, Dataset `fuhd_734dae...f95fb`, final Historical
+  Experiment `hae_5e4b11ba...3fedd` and Qlib result
+  `qbr_b8be0692...f9dc0` are immutable Store artifacts.
+- Four formal external rounds used four Agent calls and 14 factor-only Trials;
+  a discarded preflight dataset run used four more calls, keeping the task at
+  its eight-call ceiling. Round 2 admitted no Proposal and Round 4 next-year
+  RankIC was negative. The Agent assessment is `mixed`.
+- Two candidates were locked using evidence only through 2024. 2025 completed
+  with about 2.6% net return for each candidate but about -4.4/-4.5 percentage
+  points fixed-universe excess. 2026H1 Qlib execution was rejected by the
+  unchanged signal-quality gate (35.17% NaN versus 20% maximum). Do not fill,
+  reselect, relax the gate or call this Fresh evidence.
+- Inventory `sai_8ee9085f...c4ee` has 93 artifacts / 357 blobs. Cold recovery
+  and exact replay passed with zero Agent/Optimization/Qlib/Registry calls and
+  zero new artifacts/blobs. Production Registry and Fresh control identities
+  did not change. No successor task is authorized; ask for an explicit task
+  that addresses or accepts the 2026H1 coverage boundary.
+- Final read-only verification found no Factor Lab source file at its official
+  `/tmp` path (only a `__pycache__` entry). The earlier normalized digest cannot
+  be reverified; this task did not write or consume that tree.
+
 - `QM2-P0-012F` aligned the external Agent with the unchanged Proposal
   parameter contract. Campaign `rc_4432a5d3...c04b56` completed after one real
   `openai_codex_cli` / `gpt-5.6-terra` call and no repair. It produced Decision

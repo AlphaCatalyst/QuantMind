@@ -1,0 +1,470 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0009",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-011b-universe",
+      "artifact_type": "fixed_universe_lock",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://ful_e899c9ce5a11caaa92e720150f4efaa35b939f0b9408e8e14d8ab12dffdf2651",
+      "schema_version": "fixed-universe-lock-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-011b-dataset",
+      "artifact_type": "fixed_universe_historical_dataset",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://fuhd_734dae599ff7925af7e6625a5c3a3ffd84ae2b1019efd239b431a69913cf95fb",
+      "schema_version": "fixed-universe-historical-dataset-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-011b-experiment",
+      "artifact_type": "historical_agent_experiment",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://hae_5e4b11baed63c300d5c3964b8480ad3115f8864e096a1610c5afc5db0ab3fedd",
+      "schema_version": "historical-agent-experiment-final-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-011b-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "1e139ff0f482523bce0e00b4c8bf162b4e61fbf8dd72575bcdc8fd618248e7cd",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/report.md",
+      "schema_version": null,
+      "size_bytes": 9194
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "d0c265d6257a90027e88978fe504aca592c120fa17f994bc93e8664f47e202e7",
+      "before_hash": "8ecc1abdc957a7edc7efb7fd88d964f4a677c96cba8a832228eed2deabba2997",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4dd8970e572cf88f524c04ad32ac7cb8ce76adbdb785a63b7a63637821f57f3f",
+      "before_hash": "7fe11c406416ab417b68b0a85192b7a1904f4eae443716e78493b800a0680595",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "64e680592522fd12c85881f54a23a82312180cae9e25b4e7d5eeee4003051911",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a515ed7c1c4c8bca1b3e5b650a9bc3d6feef3cd4d52636cc6976c3647c5183d1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/analysis.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4cc53bb1741ed77db61a81664747c52f95c0cf08a8d9004034560803e3ec8792",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "607ed8c278091db4c50af3b45adc5059f553e84ac1f58d3dd70676ac1cd57915",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/canonical.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e85190076a8f57f0a60f81baad907d96736ada7b27eaa2df25e08fbea033559b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/dataset.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c3fad093e1af91d22186dff810a1cc2606e22eba56d20b7c0186babf2321677d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/memory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "aaffdbdb81e3f01f2399bd68bcb4eb926703c3cd0210ad97e9fad04affbbb3eb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/orchestrator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "026903fa1004c32558a869b3871560baccf07ec2d4eb829acb53fc6a70818df7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f4dad97720895d0654338d7f330d32e35130964a0693de379f291f84939d8b9f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/qlib_adapter.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1560ebf938659b651ec93d54b3677143cb0950cf337b9f1bf5bbc5dbd107379b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/qlib_runner.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "89afbd398a5f2830503b9b249d2dbe0ca335d968ff2862fd322b4c1f325914b3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/universe.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9a69ea1e21811993186dcf10e821ad63bb2a6902315fa766f3939c19ee50a5d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_historical_agent_experiment.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "02e51ec86d87bf4a210d0957acf3cbe0ebbff391d137723f9758dd57a4ca4b7c",
+      "before_hash": "b2102de2dc276af04153dc2a969574bd2db6f2a08bf481606dddb5ee105ec64f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc440f3d67b0287f17cdde3cc47a75ba577b7ae8a0bb9976c1fd2ec5c62b5839",
+      "before_hash": "c0f7793fca6be50f8614218b0fa270966fb348999bd14ac11e9d25db6bd55e2e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e7d46b8e1a40ab290b55a35a4faf9bc708555306d49acea939a6ca86d21165e1",
+      "before_hash": "1585bf3756689497b33bcbd812fe675e6e339f2d7daa6f2999ef3fcbd8588a1a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ff10bad97cec5916df7190a1f1ec8c368542caebd61197196c9b55b3525a9c08",
+      "before_hash": "559e2d5234f24f13786d7f32fd11bbc3a148ad501dd186183936717cb7577dd5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a8c4167d3763570ebe4e16d0b3a099d9fa480585e238318fa033ed074c7ec83f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/HISTORICAL_AGENT_EXPERIMENT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1e139ff0f482523bce0e00b4c8bf162b4e61fbf8dd72575bcdc8fd618248e7cd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0c2265838737ca107b39af368dbeac7b5a09f1ea22f62b14a4486b48cb1314af",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011B/experiment_summary.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1d398db4f8c17a0494316dd9a16f303cc1b234b122b4a88a030e3589e26e96de",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011B/fixed_universe_lock.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "61eafd109d2e746f9efddb21a99e1337dd009f080b7bcd1f1b61b1c964dea029",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_historical_qlib_analysis.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2e784a267c672b797cef41ac55e9a9c24bca3b35d32d1fef14e9513e8b540312",
+      "before_hash": "2ee1f43290198acbfda26d0b45abcf9e206ca93f46ab394598ecf6dd508a5076",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/historical_agent_experiment/orchestrator.py",
+      "qualified_name": "run_historical_experiment",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/historical_agent_experiment/memory.py",
+      "qualified_name": "build_as_of_memory",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/historical_agent_experiment/qlib_adapter.py",
+      "qualified_name": "build_qlib_consumer_view",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/historical_agent_experiment/artifact.py",
+      "qualified_name": "validate_historical_artifact",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.research_campaign",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-011b-report",
+        "sha256": "1e139ff0f482523bce0e00b4c8bf162b4e61fbf8dd72575bcdc8fd618248e7cd"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/historical_agent_experiment/__init__.py",
+      "backend/services/engine/historical_agent_experiment/analysis.py",
+      "backend/services/engine/historical_agent_experiment/artifact.py",
+      "backend/services/engine/historical_agent_experiment/canonical.py",
+      "backend/services/engine/historical_agent_experiment/dataset.py",
+      "backend/services/engine/historical_agent_experiment/memory.py",
+      "backend/services/engine/historical_agent_experiment/orchestrator.py",
+      "backend/services/engine/historical_agent_experiment/protocol.py",
+      "backend/services/engine/historical_agent_experiment/qlib_adapter.py",
+      "backend/services/engine/historical_agent_experiment/qlib_runner.py",
+      "backend/services/engine/historical_agent_experiment/universe.py",
+      "backend/services/tests/test_historical_agent_experiment.py",
+      "docs/quantmind2/implementation/HISTORICAL_AGENT_EXPERIMENT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/report.md",
+      "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011B/experiment_summary.json",
+      "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011B/fixed_universe_lock.json",
+      "tools/quantmind2/run_historical_qlib_analysis.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/historical_agent_experiment/__init__.py",
+      "backend/services/engine/historical_agent_experiment/analysis.py",
+      "backend/services/engine/historical_agent_experiment/artifact.py",
+      "backend/services/engine/historical_agent_experiment/canonical.py",
+      "backend/services/engine/historical_agent_experiment/dataset.py",
+      "backend/services/engine/historical_agent_experiment/memory.py",
+      "backend/services/engine/historical_agent_experiment/orchestrator.py",
+      "backend/services/engine/historical_agent_experiment/protocol.py",
+      "backend/services/engine/historical_agent_experiment/qlib_adapter.py",
+      "backend/services/engine/historical_agent_experiment/qlib_runner.py",
+      "backend/services/engine/historical_agent_experiment/universe.py",
+      "backend/services/tests/test_historical_agent_experiment.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/implementation/HISTORICAL_AGENT_EXPERIMENT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/report.md",
+      "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011B/experiment_summary.json",
+      "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011B/fixed_universe_lock.json",
+      "tools/quantmind2/run_historical_qlib_analysis.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "11d4762aff3276d9d1e862630669aff3a38a16105d0c5ef9db18a9a4efd74582",
+    "manifest_payload_sha256": "891301b3cbdc3c438feccbb67e7971e7e13cf66f72720aeea55f6bc81256378d",
+    "report_sha256": "1e139ff0f482523bce0e00b4c8bf162b4e61fbf8dd72575bcdc8fd618248e7cd",
+    "source_bundle_sha256": "8d8f8e4efbc569f5b05bfa722386b1b313168e434b406be41f913a2ca789a273"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "description": "2026H1 locked-candidate score NaN ratio is 35.17%, exceeding the unchanged 20% Qlib signal quality gate; formal 2026H1 portfolio metrics are absent.",
+      "limitation_id": "lim-qm2-011b-2026h1",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.research_campaign",
+      "description": "Removing the ten best return days makes every selected strategy cumulative return negative; full-period net excess is also negative.",
+      "limitation_id": "lim-qm2-011b-concentration",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "description": "Final read-only verification found no Factor Lab source files at the official /tmp path, only a pycache entry; the prior digest could not be reverified.",
+      "limitation_id": "lim-qm2-011b-factor-lab-tmp",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-19T14:58:29Z",
+      "reason": "Uses the Store-backed runtime established by QM2-P0-011.",
+      "relationship_id": "rel-qm2-p0-011b-continues-011",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-011B-20260719T145829Z-d2bd494",
+      "target_run_id": "QM2-P0-011-20260717T165948Z-890afdd"
+    }
+  ],
+  "repository": {
+    "base_commit": "d2bd494192f6a8849d58029c68a391daa4dbcd8b",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "d2bd494192f6a8849d58029c68a391daa4dbcd8b",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-19T14:58:29Z",
+    "completion_level": "partial",
+    "consistency_status": "unverified",
+    "git_diff_hash": "11d4762aff3276d9d1e862630669aff3a38a16105d0c5ef9db18a9a4efd74582",
+    "implementation_run_id": "QM2-P0-011B-20260719T145829Z-d2bd494",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011B-20260719T145829Z-d2bd494/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "8d8f8e4efbc569f5b05bfa722386b1b313168e434b406be41f913a2ca789a273",
+    "started_at": "2026-07-19T13:30:00Z",
+    "task_id": "QM2-P0-011B",
+    "task_status": "partial_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-19T13:30:00Z",
+    "explicit_non_goals": [
+      "No Fresh Validation",
+      "No production Registry promotion",
+      "No LightGBM or live trading",
+      "No missing-data fill or strategy optimization"
+    ],
+    "objective": "Run a bounded retrospective Agent iteration diagnostic over an immutable 100-stock universe with formal Qlib backtests.",
+    "parent_task_id": "QM2-P0-011",
+    "scope": [
+      "fixed universe and historical Dataset",
+      "historical as-of memory",
+      "four external Agent rounds",
+      "factor-only Optimization and next-year evaluation",
+      "formal Qlib/CnExchange backtest",
+      "historical Registry and Store replay"
+    ],
+    "status": "partial",
+    "task_id": "QM2-P0-011B",
+    "title": "Fixed-100-Universe 2019—2026 Agent Iteration and Historical Backtest"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "isolated python -m pytest [historical Agent, Artifact Store, Campaign, Optimization and Validation tests]",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 64,
+      "purpose": "Focused and relevant regression verification",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011b-focused"
+    },
+    {
+      "artifact_hash": "9865e588e2779fddc9da1eb6f34bb9a2927c25fdd1aa6cbdde500e2d869ed316",
+      "artifact_uri": "artifact-store://qbr_b8be0692a4b4b897bc89a93596c2f31a4d89b8cea2d7ca1cd76c6dd0929f9dc0",
+      "command": "managed Python 3.12 tools/quantmind2/run_historical_qlib_analysis.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 43,
+      "purpose": "Formal QlibBacktestService/CnExchange annual, long-period and robustness execution",
+      "skipped_count": 3,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011b-qlib"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store://inventory/sai_8ee9085f89631ff8655185e2adac737669bcbd172b5fdc2399fd497ef31dc4ee",
+      "command": "Artifact Store import, cold materialization and exact replay drill",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 14,
+      "purpose": "Store persistence and zero-call exact replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011b-replay"
+    }
+  ]
+}

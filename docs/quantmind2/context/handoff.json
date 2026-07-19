@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-18T06:44:45Z",
+  "generated_at": "2026-07-19T14:58:29Z",
   "source_commit": "32dc6af0be24468da997e9e32e9627e23d360987",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "32dc6af0be24468da997e9e32e9627e23d360987",
+  "base_commit": "d2bd494192f6a8849d58029c68a391daa4dbcd8b",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-012F",
-  "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-P0-012F-20260718T064445Z-32dc6af",
-  "next_recommended_tasks": ["QM2-P0-011B"],
+  "current_task": "QM2-P0-011B",
+  "completion_status": "partial_uncommitted",
+  "latest_implementation_run": "QM2-P0-011B-20260719T145829Z-d2bd494",
+  "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Authorized tqcenter runtime/client plus daily-bar unit, adjustment, timeout, rate-limit and license semantics; this no longer blocks the Legacy Snapshot Factor DSL route.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",

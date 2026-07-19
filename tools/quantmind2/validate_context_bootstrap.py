@@ -985,10 +985,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     )
     if next_task not in " ".join(handoff_text.split()):
         raise ValidationError("human handoff does not name exact historical backtest next task")
-    if handoff["current_task"] != "QM2-P0-012F":
-        raise ValidationError("machine handoff does not name current QM2-P0-012F task")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-011B"]:
-        raise ValidationError("machine handoff must name only the diagnostic backtest task")
+    if handoff["current_task"] != "QM2-P0-011B":
+        raise ValidationError("machine handoff does not name current QM2-P0-011B task")
+    if handoff["next_recommended_tasks"] != []:
+        raise ValidationError("partial historical diagnostic must not invent a successor task")
+    if "2026H1" not in handoff_text or "35.17%" not in handoff_text:
+        raise ValidationError("human handoff does not record the historical Qlib coverage blocker")
     checks.append("handoff_links")
 
     runtime = validate_file(

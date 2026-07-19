@@ -16,6 +16,14 @@ class ArtifactKind(str, Enum):
     FRESH_VALIDATION_RESULT = "fresh_validation_result"
     IMPLEMENTATION_EVIDENCE = "implementation_evidence"
     GENERIC_RESEARCH_BUNDLE = "generic_research_bundle"
+    FIXED_UNIVERSE_LOCK = "fixed_universe_lock"
+    FIXED_UNIVERSE_HISTORICAL_DATASET = "fixed_universe_historical_dataset"
+    HISTORICAL_AGENT_EXPERIMENT = "historical_agent_experiment"
+    HISTORICAL_ROUND_LOCK = "historical_round_lock"
+    HISTORICAL_ROUND_EVALUATION = "historical_round_evaluation"
+    QLIB_BACKTEST_RESULT = "qlib_backtest_result"
+    HISTORICAL_HOLDOUT_RESULT = "historical_holdout_result"
+    AGENT_ITERATION_ASSESSMENT = "agent_iteration_assessment"
 
 
 class IntegrityStatus(str, Enum):

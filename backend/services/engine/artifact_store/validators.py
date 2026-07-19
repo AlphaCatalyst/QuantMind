@@ -14,6 +14,8 @@ from .models import DomainValidation
 ID_FIELDS = (
     "snapshot_id", "factor_values_id", "study_id", "dataset_id", "result_id",
     "registry_snapshot_id", "reconciliation_id", "campaign_id",
+    "universe_lock_id", "experiment_id", "round_lock_id", "evaluation_id",
+    "backtest_result_id", "holdout_result_id", "assessment_id",
 )
 
 
@@ -134,6 +136,18 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         return "fresh_validation.validate_fresh_validation_result"
     if kind in {ArtifactKind.IMPLEMENTATION_EVIDENCE, ArtifactKind.GENERIC_RESEARCH_BUNDLE}:
         return "artifact_store.manifest_hash_validator"
+    if kind in {
+        ArtifactKind.FIXED_UNIVERSE_LOCK,
+        ArtifactKind.FIXED_UNIVERSE_HISTORICAL_DATASET,
+        ArtifactKind.HISTORICAL_AGENT_EXPERIMENT,
+        ArtifactKind.HISTORICAL_ROUND_LOCK,
+        ArtifactKind.HISTORICAL_ROUND_EVALUATION,
+        ArtifactKind.QLIB_BACKTEST_RESULT,
+        ArtifactKind.HISTORICAL_HOLDOUT_RESULT,
+        ArtifactKind.AGENT_ITERATION_ASSESSMENT,
+    }:
+        from backend.services.engine.historical_agent_experiment.artifact import validate_historical_artifact
+        return validate_historical_artifact(kind.value, source, artifact_id)
     raise DomainValidationError("Artifact kind has no v1 Domain Validator")
 
 
