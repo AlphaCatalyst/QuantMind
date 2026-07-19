@@ -16,6 +16,7 @@ ID_FIELDS = (
     "registry_snapshot_id", "reconciliation_id", "campaign_id",
     "universe_lock_id", "experiment_id", "round_lock_id", "evaluation_id",
     "backtest_result_id", "holdout_result_id", "assessment_id",
+    "signal_missingness_audit_id", "historical_backtest_followup_id",
 )
 
 
@@ -145,6 +146,8 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.QLIB_BACKTEST_RESULT,
         ArtifactKind.HISTORICAL_HOLDOUT_RESULT,
         ArtifactKind.AGENT_ITERATION_ASSESSMENT,
+        ArtifactKind.SIGNAL_MISSINGNESS_AUDIT,
+        ArtifactKind.HISTORICAL_BACKTEST_FOLLOWUP,
     }:
         from backend.services.engine.historical_agent_experiment.artifact import validate_historical_artifact
         return validate_historical_artifact(kind.value, source, artifact_id)

@@ -19,6 +19,8 @@ PREFIXES = {
     "qlib_backtest_result": ("backtest_result_id", "qbr_"),
     "historical_holdout_result": ("holdout_result_id", "hhr_"),
     "agent_iteration_assessment": ("assessment_id", "aia_"),
+    "signal_missingness_audit": ("signal_missingness_audit_id", "sma_"),
+    "historical_backtest_followup": ("historical_backtest_followup_id", "hbf_"),
 }
 
 
@@ -75,4 +77,20 @@ def validate_historical_artifact(kind: str, source: Path, artifact_id: str) -> s
             raise ValueError("fixed universe invariant failed")
     if kind == "historical_round_lock" and manifest.get("locked_before_evaluation") is not True:
         raise ValueError("historical round lock timing evidence absent")
+    if kind == "signal_missingness_audit":
+        required = {
+            "protocol.json", "layer_metrics.json", "daily_missingness.parquet",
+            "symbol_missingness.parquet", "feature_missingness.json",
+            "ast_node_missingness.json", "qlib_alignment.json", "root_cause.json",
+        }
+        if not required.issubset(manifest.get("file_hashes", {})):
+            raise ValueError("signal missingness audit is incomplete")
+        outcomes = {"blocked.json", "rerun_result.json"}
+        if len(outcomes.intersection(manifest.get("file_hashes", {}))) != 1:
+            raise ValueError("signal missingness audit requires exactly one outcome")
+    if kind == "historical_backtest_followup":
+        if manifest.get("quality_gate_threshold") != 0.2:
+            raise ValueError("historical follow-up changed the signal quality gate")
+        if manifest.get("status") not in {"blocked", "completed"}:
+            raise ValueError("historical follow-up status is invalid")
     return "historical_agent_experiment.validate_historical_artifact"

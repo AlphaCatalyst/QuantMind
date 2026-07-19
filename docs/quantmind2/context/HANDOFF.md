@@ -24,6 +24,33 @@
 
 ## Current position
 
+- `QM2-P0-011BF` is a completed diagnostic with a blocked backtest outcome.
+  The original 35.17% is exactly 3,822 NaNs / 10,867 observed rows. A full
+  100-symbol x 111-date grid has 4,055 missing cells / 11,100 (36.53%): 222
+  from two wholly absent symbols (`SH600837`, `SH601989`), 11 local row
+  absences, and 3,822 missing `style_idio_vol_20` values across all 98 observed
+  symbols and 39 dates.
+- Both locked Factor Values artifacts reproduce exactly and all Factor DSL,
+  orientation, normalization and combination steps add zero NaNs. The derived
+  Qlib view reaches 2026-06-24, has 100 instruments and adds no join, date,
+  symbol or score loss. This is an upstream Feature-data-quality boundary, not
+  a Qlib or combination defect.
+- No safe repair was made: recreating the missing authoritative Feature would
+  change research data semantics without sufficient provenance. The 20% gate
+  remains unchanged, Qlib rerun calls are zero, and original 011B artifacts
+  remain immutable.
+- An unchanged, out-of-scope Artifact Store concurrent-import test exposed a
+  timing-sensitive Receipt ID conflict in the final broad regression and two
+  focused reruns; the archived base tree passed one isolated run. Do not call
+  it fixed or attribute it to the signal audit. No production Store concurrency
+  code was changed in 011BF.
+- Store Audit `sma_33979ef...a9b64`, blocked follow-up
+  `hbf_fc927bc...6e1f1`, and Inventory `sai_39e8526...42f2` are current.
+  Store state is 97 artifacts / 372 blobs, healthy, zero missing/unreferenced;
+  cold recovery and exact-existing replay passed.
+- Current task is `QM2-P0-011BF`; status is `blocked`. No successor task is
+  authorized by this contract.
+
 - `QM2-P0-011B` is a truthful partial historical diagnostic. Fixed Universe
   `ful_e899c9ce...df2651`, Dataset `fuhd_734dae...f95fb`, final Historical
   Experiment `hae_5e4b11ba...3fedd` and Qlib result

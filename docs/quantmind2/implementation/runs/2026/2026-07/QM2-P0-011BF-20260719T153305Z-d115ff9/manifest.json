@@ -1,0 +1,511 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-011bf-audit",
+      "artifact_type": "signal_missingness_audit",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://sma_33979ef548d1a5f8ae72b3bbb500063f6c251679e5cd52203a0382b66cba9b64",
+      "schema_version": "signal-missingness-audit-v1",
+      "size_bytes": 172458
+    },
+    {
+      "artifact_id": "artifact-qm2-011bf-followup",
+      "artifact_type": "historical_backtest_followup",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://hbf_fc927bcf0a7fd26b38adde8dc14da1fbc76a7b2acb3ed676b5deb3c07b16e1f1",
+      "schema_version": "historical-backtest-followup-v1",
+      "size_bytes": 2200
+    },
+    {
+      "artifact_id": "artifact-qm2-011bf-inventory",
+      "artifact_type": "artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://sai_39e85260407a110f9bc2636caf30962db65fe21604cdfffcdda31ec2154142f2",
+      "schema_version": "artifact-store-inventory-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-011bf-summary",
+      "artifact_type": "signal_missingness_audit_summary",
+      "content_hash": "d2441f460464421a0cd40e46887ff4fb6419acc78bd1c60676687f3069e99dfc",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011BF/audit_summary.json",
+      "schema_version": "signal-missingness-audit-summary-v1",
+      "size_bytes": 1465
+    },
+    {
+      "artifact_id": "artifact-qm2-011bf-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "73100545d08aacf5cb22e84b5b3eb970ae5f91b67853e415d3e2b94e27c31353",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/report.md",
+      "schema_version": null,
+      "size_bytes": 16010
+    },
+    {
+      "artifact_id": "artifact-qm2-011bf-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "b13ce5b5afbbea46fd65853516c094e8c157313376550a8bb9a6990390b27b4a",
+      "before_hash": "d0c265d6257a90027e88978fe504aca592c120fa17f994bc93e8664f47e202e7",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "78db12a7c0e8f1fb3df1d6186a4108ebf445ec000987794eb54ced45d2b56268",
+      "before_hash": "4dd8970e572cf88f524c04ad32ac7cb8ce76adbdb785a63b7a63637821f57f3f",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "74415483a76920470ee03e34e5cb4f79df94837e643ac6eadfd48026ebfa75ef",
+      "before_hash": "4cc53bb1741ed77db61a81664747c52f95c0cf08a8d9004034560803e3ec8792",
+      "change_type": "modified",
+      "path": "backend/services/engine/historical_agent_experiment/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "df89fc65431514bc086b9c3ce6d1e3deda22820b7ed8edca4a4038eea60a407e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/historical_agent_experiment/missingness.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5cf47456eacc1d52bb5c4b1c74456c426e2202e5445a9566326cdcc962192277",
+      "before_hash": "e9a69ea1e21811993186dcf10e821ad63bb2a6902315fa766f3939c19ee50a5d",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_historical_agent_experiment.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "21f9860da7e36564fbb7bc0e8d42c830e3909443a4b7894073c32548dbd2186c",
+      "before_hash": "5c1d170370c30058a539d84215d221bff03682a8b739fc94fad85e62bf0daedc",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "26c5e625dffb56f1c7fc9d6bb30a08966e33a6fc98878618bcc03f4500cc6473",
+      "before_hash": "02e51ec86d87bf4a210d0957acf3cbe0ebbff391d137723f9758dd57a4ca4b7c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0c2e3782d6caa873e54c6036ea83263d4b90ea3fca1aaba0bf83fe677974f7e7",
+      "before_hash": "bc440f3d67b0287f17cdde3cc47a75ba577b7ae8a0bb9976c1fd2ec5c62b5839",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5b7cb4083a3154bf420624402259736b7237e4b7e6e74c51e8a7f5635d29d64d",
+      "before_hash": "e7d46b8e1a40ab290b55a35a4faf9bc708555306d49acea939a6ca86d21165e1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ccb00ded73393d6e57f2bf1f6c6e89e6ca55ad84b6649f51e3173658c6eb4101",
+      "before_hash": "ff10bad97cec5916df7190a1f1ec8c368542caebd61197196c9b55b3525a9c08",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0636f06b3d8bef41fbbc00eade17950ea9c4ae553126dbd592f8859fbde595af",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/SIGNAL_MISSINGNESS_AUDIT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "73100545d08aacf5cb22e84b5b3eb970ae5f91b67853e415d3e2b94e27c31353",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d2441f460464421a0cd40e46887ff4fb6419acc78bd1c60676687f3069e99dfc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011BF/audit_summary.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "801d91fbe6602aeea00dbf87b04610212f4ff405b4802ca2a1d636b85df62444",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_signal_missingness_audit.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "060d73545fa5b7e4e8e0093301083d153ad650782eeb653193a8296de3ce1b9c",
+      "before_hash": "2e784a267c672b797cef41ac55e9a9c24bca3b35d32d1fef14e9513e8b540312",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/enums.py",
+      "qualified_name": "ArtifactKind.SIGNAL_MISSINGNESS_AUDIT",
+      "symbol_type": "constant"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/artifact_store/enums.py",
+      "qualified_name": "ArtifactKind.HISTORICAL_BACKTEST_FOLLOWUP",
+      "symbol_type": "constant"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/historical_agent_experiment/artifact.py",
+      "qualified_name": "validate_historical_artifact",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/historical_agent_experiment/missingness.py",
+      "qualified_name": "audit_locked_signals",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/historical_agent_experiment/missingness.py",
+      "qualified_name": "_trace_expression",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.research_campaign",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.factor_compute",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "documented"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-011bf-report",
+        "sha256": "73100545d08aacf5cb22e84b5b3eb970ae5f91b67853e415d3e2b94e27c31353"
+      },
+      {
+        "artifact_id": "artifact-qm2-011bf-summary",
+        "sha256": "d2441f460464421a0cd40e46887ff4fb6419acc78bd1c60676687f3069e99dfc"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/historical_agent_experiment/missingness.py",
+      "docs/quantmind2/implementation/SIGNAL_MISSINGNESS_AUDIT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/report.md",
+      "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011BF/audit_summary.json",
+      "tools/quantmind2/run_signal_missingness_audit.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/historical_agent_experiment/artifact.py",
+      "backend/services/engine/historical_agent_experiment/missingness.py",
+      "backend/services/tests/test_historical_agent_experiment.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/implementation/SIGNAL_MISSINGNESS_AUDIT_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/report.md",
+      "docs/quantmind2/research/historical_agent_experiments/QM2-P0-011BF/audit_summary.json",
+      "tools/quantmind2/run_signal_missingness_audit.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "1e49fb96c180af0c7953cc238868082002dca21ac2b8f49db588489b2bd98977",
+    "manifest_payload_sha256": "c97227c81468018e0084456fd407a94d24707255974918f869febc86de8f1583",
+    "report_sha256": "73100545d08aacf5cb22e84b5b3eb970ae5f91b67853e415d3e2b94e27c31353",
+    "source_bundle_sha256": "75db63cb1eb285e40141dcf0ee6190d0c05d7e664d6a8c546354c2fb53f7ab6b"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Authoritative 2026 style_idio_vol_20 values are absent for 3822 observed locked-universe cells and generation provenance is insufficient for a semantics-preserving correction.",
+      "limitation_id": "limit-qm2-011bf-source-feature",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Two locked symbols are entirely absent and eleven additional expected rows are missing in 2026H1.",
+      "limitation_id": "limit-qm2-011bf-row-absence",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "description": "No formal 2026H1 Qlib performance result exists because the frozen 20 percent signal missingness gate fails.",
+      "limitation_id": "limit-qm2-011bf-no-result",
+      "severity": "info",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "The unchanged concurrent same-artifact import test can race on immutable Receipt payload accounting; this unrelated production path is outside the 011BF repair scope.",
+      "limitation_id": "limit-qm2-011bf-store-concurrency",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-19T15:39:14Z",
+      "reason": "Diagnoses the frozen missingness gate that blocked the fixed-universe historical experiment without replacing it.",
+      "relationship_id": "rel-qm2-011bf-continues-011b",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-011BF-20260719T153305Z-d115ff9",
+      "target_run_id": "QM2-P0-011B-20260719T145829Z-d2bd494"
+    }
+  ],
+  "repository": {
+    "base_commit": "d115ff929c7c64fdf4d64f6cc01bec0163347659",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "d115ff929c7c64fdf4d64f6cc01bec0163347659",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-19T15:39:14Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "1e49fb96c180af0c7953cc238868082002dca21ac2b8f49db588489b2bd98977",
+    "implementation_run_id": "QM2-P0-011BF-20260719T153305Z-d115ff9",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-011BF-20260719T153305Z-d115ff9/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "75db63cb1eb285e40141dcf0ee6190d0c05d7e664d6a8c546354c2fb53f7ab6b",
+    "started_at": "2026-07-19T15:33:05Z",
+    "task_id": "QM2-P0-011BF",
+    "task_status": "blocked",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-19T15:33:05Z",
+    "explicit_non_goals": [
+      "No Agent call, new Factor, Optimization, Trial replacement, or orientation change",
+      "No universe, parameter, strategy, cost, or quality-gate change",
+      "No filling, data invention, Promotion, or modification of prior Artifacts",
+      "No Qlib execution while the frozen missingness gate fails"
+    ],
+    "objective": "Attribute the frozen 2026H1 signal missingness exactly and rerun Qlib only after a permitted defect repair passes the unchanged 20 percent gate.",
+    "parent_task_id": "QM2-P0-011B",
+    "scope": [
+      "Read-only layered audit of both locked candidates and their equal-weight signal",
+      "2025 control and 2026H1 source-to-Qlib missingness attribution",
+      "Immutable audit and blocked-followup Artifact publication and verification",
+      "Focused validation, Project Memory, and Implementation evidence"
+    ],
+    "status": "blocked",
+    "task_id": "QM2-P0-011BF",
+    "title": "2026H1 Locked-factor Signal Missingness Audit and Deterministic Re-run"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "uv run --offline --no-project --with 'pandas<3' --with pyarrow --with numpy --with pytest python -m pytest -o addopts='' backend/services/tests/test_historical_agent_experiment.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 6,
+      "purpose": "Verify the historical audit including exact source-Feature attribution and no-fill behavior.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "uv run --offline --no-project --with 'pandas<3' --with pyarrow --with numpy --with jsonschema --with pytest python -m pytest -o addopts='' <22 relevant historical, Artifact Store, DSL, Optimization, Validation, Fresh Validation and Registry modules> -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 126,
+      "purpose": "Run the full relevant research and immutable Artifact regression set.",
+      "skipped_count": 8,
+      "status": "failed",
+      "test_execution_id": "test-qm2-011bf-relevant"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "same relevant suite excluding test_concurrent_same_artifact_is_one_descriptor",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 120,
+      "purpose": "Verify every in-scope deterministic related test while preserving the unrelated concurrency failure as explicit evidence.",
+      "skipped_count": 8,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-relevant-bounded"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_artifact_store_import.py::test_concurrent_same_artifact_is_one_descriptor -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 0,
+      "purpose": "Reproduce the unchanged timing-sensitive Artifact Store Receipt conflict without modifying its production path.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-qm2-011bf-concurrency"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "same isolated concurrency test against git archive d115ff929c7c64fdf4d64f6cc01bec0163347659",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Check whether the unrelated failure is deterministic on the untouched base tree.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-base-concurrency"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "uv run --offline --no-project --with 'pandas<3' --with pyarrow --with numpy --with pytest python -m pytest -o addopts='' <22 relevant modules> -q",
+      "failed_count": 0,
+      "not_run_reason": "Collection stopped because the ephemeral test command omitted jsonschema; the corrected offline command executed and passed all relevant tests.",
+      "passed_count": 0,
+      "purpose": "Record the first broad invocation before the existing jsonschema test requirement was included.",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-qm2-011bf-initial-env"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store://sma_33979ef548d1a5f8ae72b3bbb500063f6c251679e5cd52203a0382b66cba9b64",
+      "command": "python tools/quantmind2/run_signal_missingness_audit.py with frozen 011B Artifact paths",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Execute the immutable real locked-signal audit and enforce the unchanged gate.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-audit"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store://sai_39e85260407a110f9bc2636caf30962db65fe21604cdfffcdda31ec2154142f2",
+      "command": "Artifact Store import, inventory, cold-recovery validation, and exact replay for sma_33979... and hbf_fc927...",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Prove immutable persistence and deterministic recovery of both new Artifacts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-store"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Validate machine-readable Project Memory, run references, and frozen task facts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "uv run --offline --no-project --with jsonschema --with pytest python -m pytest -o addopts='' backend/services/tests/test_project_knowledge_manifest_v2.py backend/services/tests/test_quantmind2_context_bootstrap.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 40,
+      "purpose": "Verify Manifest v2 and Project Memory after replacing the stale prior-task handoff assertion with the current public contract.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-011bf-manifest-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store://hbf_fc927bcf0a7fd26b38adde8dc14da1fbc76a7b2acb3ed676b5deb3c07b16e1f1",
+      "command": "Formal 2026H1 Qlib backtest rerun",
+      "failed_count": 0,
+      "not_run_reason": "No permitted implementation defect was found and 3822/10867 remains above the frozen 20 percent threshold; Qlib calls are exactly zero.",
+      "passed_count": 0,
+      "purpose": "Run only if a permitted repair reduces the unchanged missingness gate to at most 20 percent.",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-qm2-011bf-qlib"
+    }
+  ]
+}

@@ -3,6 +3,38 @@
 Generated: 2026-07-18
 Verified source commit before this task: `32dc6af0be24468da997e9e32e9627e23d360987`
 
+## 2026H1 locked-signal missingness follow-up
+
+- `QM2-P0-011BF` reconstructed the original Qlib numerator and denominator:
+  3,822 NaN scores / 10,867 observed signal rows = 35.1707%. Against the
+  locked 100 symbols and 111 dates, 233 rows are absent, so total expected-grid
+  missingness is 4,055 / 11,100 = 36.5315%.
+- The two locked Factors and their equal-weight combination have the identical
+  missing mask. Both Factor Values artifacts have 180,241 exact Dataset keys,
+  zero duplicates/missing keys and exact recomputation parity. DSL rolling,
+  delta, rank, z-score, orientation and combination add zero 2026H1 NaNs.
+- Root cause is upstream data quality: 222 cells belong to two completely
+  absent locked symbols, 11 are local source-row absences, and 3,822 observed
+  rows lack `style_idio_vol_20`. The source shows `style_beta_20` first valid on
+  2026-02-02 and `style_idio_vol_20` first valid on 2026-03-09, consistent with
+  a two-stage annual-boundary warmup. Provenance is insufficient to recreate
+  the authoritative Feature without changing research semantics.
+- Qlib view `qcv_211a189...d9d2` covers through its 2026-06-24 boundary
+  sentinel; symbol/date alignment, score handoff and quote cells add no loss.
+  The unchanged 20% gate still fails, so no 2026H1 Qlib rerun occurred.
+- Audit `sma_33979ef...a9b64` and blocked follow-up
+  `hbf_fc927bc...6e1f1` are immutable Store artifacts. Inventory
+  `sai_39e8526...42f2` contains 97 artifacts / 372 blobs and is healthy.
+  Cold recovery and exact-existing replay passed with zero new blobs.
+- The unchanged pre-existing Artifact Store concurrent-import test is
+  timing-sensitive: the final broad run exposed an immutable Receipt ID
+  conflict and two focused reruns failed, while the same test on an archived
+  base tree passed once. This task did not modify that unrelated production
+  concurrency path; the failure is recorded rather than hidden.
+- Current task: `QM2-P0-011BF`; status is `blocked`. The original
+  `hae_5e4b11...3fedd` and `qbr_b8be069...f9dc0` remain unchanged. No successor
+  task is authorized.
+
 ## Fixed-100 historical Agent diagnostic
 
 - `QM2-P0-011B` locked 100 symbols from the first 20 observed 2019 sessions by

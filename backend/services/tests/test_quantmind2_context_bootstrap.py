@@ -221,7 +221,7 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             self.assertIn(marker, source)
         self.assertNotIn("run_from_manifest", source)
 
-    def test_handoff_records_success_followup_and_exact_historical_next_task(self):
+    def test_handoff_records_locked_signal_audit_and_blocked_followup(self):
         text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
         self.assertIn("candidates, approved and active are all zero", text)
         self.assertIn("QM2-P0-011", text)
@@ -232,8 +232,12 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
             " ".join(text.split()),
         )
         handoff = load_json(QM2 / "context" / "handoff.json")
-        self.assertEqual(handoff["current_task"], "QM2-P0-012F")
-        self.assertEqual(handoff["next_recommended_tasks"], ["QM2-P0-011B"])
+        self.assertIn("3,822 NaNs / 10,867 observed rows", text)
+        self.assertIn("Qlib rerun calls are zero", text)
+        self.assertIn("status is `blocked`", text)
+        self.assertEqual(handoff["current_task"], "QM2-P0-011BF")
+        self.assertEqual(handoff["completion_status"], "blocked")
+        self.assertEqual(handoff["next_recommended_tasks"], [])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

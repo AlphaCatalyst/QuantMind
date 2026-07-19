@@ -24,6 +24,8 @@ class ArtifactKind(str, Enum):
     QLIB_BACKTEST_RESULT = "qlib_backtest_result"
     HISTORICAL_HOLDOUT_RESULT = "historical_holdout_result"
     AGENT_ITERATION_ASSESSMENT = "agent_iteration_assessment"
+    SIGNAL_MISSINGNESS_AUDIT = "signal_missingness_audit"
+    HISTORICAL_BACKTEST_FOLLOWUP = "historical_backtest_followup"
 
 
 class IntegrityStatus(str, Enum):
