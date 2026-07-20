@@ -2,8 +2,9 @@
 
 ## Current authority and next task
 
-- Current task is `QM2-P0-015`; implementation is partial pending its single
-  commit and post-commit Ledger Planner verification.
+- Current task is `QM2-P0-015F`; lifecycle follow-up implementation and
+  historical backtests are complete pending its single commit and post-commit
+  Ledger Planner verification.
 - Active provider is `tushare-pro-v1`; legacy provider
   `quantmind-production-feature-snapshots-v1` is `retired_and_purged` and may
   not be used by formal runtime. Read ADR-0011 and
@@ -18,10 +19,9 @@
   the deleted local data; rollback means re-fetching/rebuilding Tushare data or
   restoring old data from an independent backup, not changing the authority
   record silently.
-- No successor is authorized. A follow-up must explicitly decide how the
-  formal Qlib fixed-universe precheck represents two locked stocks without
-  effective 2026H1 observations; it must not silently drop, replace or fill
-  them.
+- No successor is authorized by this task. The fixed-universe precheck now
+  accepts the explicit lifecycle contract while retaining the original gate
+  for ordinary requests.
 
 ## Repository state
 
@@ -46,6 +46,26 @@
   used for the task boundary instead.
 
 ## Current position
+
+- `QM2-P0-015F` proves that `600837.SH` and `601989.SH` are status-D members
+  delisted before 2026H1. The fixed 100-member identity and Qlib instrument
+  lines remain intact; daily active membership is 98 and observable/tradable
+  membership ranges from 96 to 98.
+- Lifecycle policy `fulp_60672b83...a632a` uses an observable-cell signal
+  denominator and a pre-frozen capacity minimum of 25 (`topk + n_drop`). All
+  2019--2025 signals, positions and formal metrics retain parity. No universe,
+  candidate, parameter, strategy, market data, or signal changed.
+- 2026H1 formal Qlib completed for all three candidates and their equal-weight
+  combination. Combination net return is -5.84%; it trails CSI300 by 10.11
+  points and beats the lifecycle-aware fixed-100 benchmark by 6.22 points.
+  These are retrospective historical results, not Fresh Validation or
+  Promotion evidence.
+- Follow-up revision 2 `thf_9f389863...7307b2` exact-replays with zero Qlib
+  calls and zero new Store objects. It explicitly supersedes immutable
+  preliminary follow-up `thf_39155cdb...d498d6`, which omitted per-strategy
+  Calmar and lifecycle summaries. Store inventory `sai_ee866a1b...78e6` is
+  healthy at 45 artifacts / 1,589 blobs. Original P0-015 remains immutable and
+  partial.
 
 - `QM2-P0-015` completed all four Tushare historical-as-of Agent rounds. The
   formal run used four calls and 18 Trials; an earlier immutable failed

@@ -238,8 +238,8 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertIn("3,822 NaNs / 10,867 observed rows", text)
         self.assertIn("Qlib rerun calls are zero", text)
         self.assertIn("status is `blocked`", text)
-        self.assertEqual(handoff["current_task"], "QM2-P0-015")
-        self.assertEqual(handoff["completion_status"], "partial_uncommitted")
+        self.assertEqual(handoff["current_task"], "QM2-P0-015F")
+        self.assertEqual(handoff["completion_status"], "completed_uncommitted")
         self.assertEqual(handoff["next_recommended_tasks"], [])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):

@@ -1,5 +1,34 @@
 # Current Implementation State
 
+## Fixed-100 lifecycle follow-up (QM2-P0-015F)
+
+- Fixed membership remains exactly 100. `600837.SH` (海通证券(退), status D,
+  delisted 2025-03-04) and `601989.SH` (中国重工(退), status D, delisted
+  2025-09-05) were proven from the immutable Tushare stock-basic artifact to
+  be `DELISTED_BEFORE_PERIOD` for 2026H1. Their last market rows are
+  2025-02-05 and 2025-08-12; this is not source loss, symbol mapping failure,
+  or Qlib-view omission.
+- `FixedUniverseLifecyclePolicyV1` separates locked, active, observable,
+  tradable and signal-eligible sets. Capacity is frozen before evaluation as
+  TopK 20 + n_drop 5 = 25; the observed daily range is 96--98, while active
+  membership is 98 and all observable signal cells are finite. No member,
+  market value, or signal value was replaced or filled.
+- All four signal paths preserve 2019--2025 signal, position and key-metric
+  parity. Formal 2026H1 Qlib runs now complete under the unchanged TopK,
+  rebalance and CnExchange cost contract. The equal-weight combination net
+  return is -5.84%, CSI300 excess -10.11 points, fixed-100 excess +6.22
+  points, Sharpe -1.143 and maximum drawdown -6.98%.
+- Original experiment `tha_2b367621...76383b` remains immutable and partial.
+  Follow-up revision 2 `thf_9f389863...7307b2` and lifecycle policy
+  `fulp_60672b83...a632a` are historical retrospective evidence, not Fresh
+  Validation or Promotion evidence. Store is healthy at 45 artifacts / 1,589
+  blobs; cold recovery and exact replay pass with zero Qlib calls and zero new
+  artifacts/blobs.
+- Preliminary follow-up `thf_39155cdb...d498d6` remains immutable; revision 2
+  explicitly supersedes it because the preliminary output omitted per-strategy
+  Calmar and lifecycle summaries.
+- Current task: `QM2-P0-015F`. No successor is authorized by this task.
+
 ## Tushare fixed-100 Agent experiment (QM2-P0-015)
 
 - Four historical-as-of rounds completed on only the immutable Tushare
@@ -22,18 +51,14 @@
   returned 4.23%, underperforming CSI300 by 17.52 percentage points and
   fixed-100 by 2.85 points. The three individual Factors returned -4.32%,
   1.62% and -7.41%.
-- Every 2026H1 signal has 0% NaN, but the unchanged production Qlib signal
-  precheck rejects the isolated interval because only 98 of the 100 immutable
-  symbols have effective observations. No stock was removed or replaced, no
-  value was filled and no gate was relaxed. The task is therefore `partial`:
-  it has no formal isolated 2026H1 portfolio result or stock-contribution
-  attribution.
+- Every 2026H1 signal has 0% NaN. This original task remains immutable and
+  `partial`; its rejected result is superseded only by the separate lifecycle
+  follow-up evidence above, not rewritten.
 - Experiment `tha_2b367621...76383b` is immutable. Store state is 43 artifacts
   / 1,580 blobs, healthy, Missing 0 and Unreferenced 0. Thirteen artifacts cold
   restored, and exact replay used zero Agent, Optimization, Qlib, Registry,
   network and legacy-data calls.
-- Current task: `QM2-P0-015`. No successor is authorized; resolving the Qlib
-  fixed-universe effective-symbol contract requires a separate explicit task.
+- Historical task: `QM2-P0-015`; its artifacts remain unchanged.
 
 ## Tushare-only authority cutover (QM2-P0-014)
 

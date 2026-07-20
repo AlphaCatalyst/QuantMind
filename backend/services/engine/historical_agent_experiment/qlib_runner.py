@@ -17,14 +17,22 @@ def write_oriented_signal(values_path: Path, output_path: Path, orientation: int
 
 async def run_formal_backtest(service, *, signal_path: Path, start: str, end: str,
                               topk: int = 20, n_drop: int = 5,
-                              rebalance_days: int = 5, cost_multiplier: float = 1.0) -> dict:
+                              rebalance_days: int = 5, cost_multiplier: float = 1.0,
+                              lifecycle_policy: dict | None = None) -> dict:
     from backend.services.engine.qlib_app.schemas.backtest import QlibBacktestRequest
 
     os.environ["QLIB_PRED_PATH"] = str(signal_path)
+    strategy_params = {"topk": topk, "n_drop": n_drop,
+                       "rebalance_days": rebalance_days, "signal": "<PRED>"}
+    if lifecycle_policy is not None:
+        strategy_params.update({
+            "fixed_universe_lifecycle_policy_id": lifecycle_policy["policy_id"],
+            "locked_member_count": lifecycle_policy["locked_member_count"],
+            "minimum_observable_instruments": lifecycle_policy["minimum_observable_instruments"],
+        })
     request = QlibBacktestRequest(
         strategy_type="TopkDropout",
-        strategy_params={"topk": topk, "n_drop": n_drop,
-                         "rebalance_days": rebalance_days, "signal": "<PRED>"},
+        strategy_params=strategy_params,
         start_date=start, end_date=end, initial_capital=1_000_000,
         benchmark_symbol="SH000300", universe="all", deal_price="open", signal_lag_days=1,
         commission=0.00025 * cost_multiplier, stamp_duty=0.0005 * cost_multiplier,

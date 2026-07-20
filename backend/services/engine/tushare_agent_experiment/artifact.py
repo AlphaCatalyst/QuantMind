@@ -25,6 +25,10 @@ PREFIXES = {
         "historical_experiment_registry_id",
         "thr_",
     ),
+    "tushare_historical_experiment_lifecycle_followup": (
+        "historical_experiment_lifecycle_followup_id",
+        "thf_",
+    ),
 }
 
 
@@ -79,6 +83,25 @@ def validate_experiment_artifact(
         payload = json.loads((root / "experiment.json").read_text(encoding="utf-8"))
         if payload.get("legacy_reads") != 0 or payload.get("tushare_network_calls") != 0:
             raise ValueError("historical experiment authority boundary failed")
+    if kind == "tushare_historical_experiment_lifecycle_followup":
+        required = {
+            "lifecycle_policy.json", "symbol_lifecycle_audit.json",
+            "daily_member_counts.parquet", "qlib_instrument_contract.json",
+            "parity_2019_2025.json", "backtest_2026h1.json",
+        }
+        if set(hashes) != required:
+            raise ValueError("lifecycle follow-up required file inventory mismatch")
+        policy = json.loads((root / "lifecycle_policy.json").read_text(encoding="utf-8"))
+        parity = json.loads((root / "parity_2019_2025.json").read_text(encoding="utf-8"))
+        backtest = json.loads((root / "backtest_2026h1.json").read_text(encoding="utf-8"))
+        if (
+            policy.get("replacement_rule") != "forbidden"
+            or policy.get("market_fill_rule") != "forbidden"
+            or policy.get("signal_fill_rule") != "forbidden"
+            or parity.get("passed") is not True
+            or any(row.get("status") != "completed" for row in backtest.get("strategies", {}).values())
+        ):
+            raise ValueError("lifecycle follow-up governance evidence is invalid")
     return {
         "status": "valid",
         "artifact_kind": kind,

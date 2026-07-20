@@ -37,6 +37,15 @@ class BaseStrategyParams(BaseModel):
     max_short_exposure: float = Field(1.0, description="最大空头敞口", ge=0.0, le=3.0)
     max_leverage: float = Field(1.0, description="最大总杠杆", ge=0.0, le=5.0)
     account_stop_loss: float = Field(0.2, description="账户爆仓止损线", ge=0.0, le=0.8)
+    fixed_universe_lifecycle_policy_id: str | None = Field(
+        None, description="固定股票池生命周期策略标识；为空时保持原信号质量门"
+    )
+    locked_member_count: int | None = Field(
+        None, description="固定股票池锁定成员数", ge=1
+    )
+    minimum_observable_instruments: int | None = Field(
+        None, description="由策略容量预先推导的最小可观测成员数", ge=1
+    )
 
 class TopkDropoutParams(BaseStrategyParams):
     pass

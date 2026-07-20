@@ -799,6 +799,18 @@ class QlibBacktestServiceRuntimeMixin(QlibBacktestServiceQueryMixin):
 
         min_dates = int(os.getenv("QLIB_SIGNAL_MIN_DATES", "30"))
         min_instruments = int(os.getenv("QLIB_SIGNAL_MIN_INSTRUMENTS", "100"))
+        params = getattr(request, "strategy_params", None) if request is not None else None
+        lifecycle_policy_id = getattr(params, "fixed_universe_lifecycle_policy_id", None)
+        if lifecycle_policy_id:
+            locked_count = getattr(params, "locked_member_count", None)
+            lifecycle_minimum = getattr(params, "minimum_observable_instruments", None)
+            topk = int(getattr(params, "topk", 0) or 0)
+            n_drop = int(getattr(params, "n_drop", 0) or 0)
+            if locked_count is None or lifecycle_minimum is None:
+                raise ValueError("固定股票池生命周期合同缺少成员数或策略容量门")
+            if lifecycle_minimum < topk + n_drop or lifecycle_minimum > locked_count:
+                raise ValueError("固定股票池生命周期策略容量门不合法")
+            min_instruments = int(lifecycle_minimum)
         max_nan_ratio = float(os.getenv("QLIB_SIGNAL_MAX_NAN_RATIO", "0.2"))
         date_count = int(signal_meta.get("date_count") or 0)
         instrument_count = int(signal_meta.get("instrument_count") or 0)

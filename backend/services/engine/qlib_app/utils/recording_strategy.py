@@ -149,6 +149,10 @@ _OUR_KWARGS = {
     # 敞口配置
     "long_exposure",
     "short_exposure",
+    # 信号质量层消费的固定股票池生命周期合同，不属于 Qlib 策略参数
+    "fixed_universe_lifecycle_policy_id",
+    "locked_member_count",
+    "minimum_observable_instruments",
     # CustomStrategyParams 扩展字段（由策略上层消费，不传给 qlib BaseStrategy）
     "momentum_period",
     "riskmodel_root",

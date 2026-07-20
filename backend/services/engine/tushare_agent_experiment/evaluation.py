@@ -127,7 +127,9 @@ def fixed100_benchmark(normalized: pd.DataFrame) -> pd.Series:
     frame = normalized[["symbol", "trade_date", "adjusted_close"]].copy()
     frame["trade_date"] = pd.to_datetime(frame["trade_date"])
     frame["return"] = frame.sort_values(["symbol", "trade_date"]).groupby("symbol")["adjusted_close"].pct_change(fill_method=None)
-    return frame.groupby("trade_date")["return"].mean().sort_index().fillna(0.0)
+    # Missing observations are structurally absent from that day's equal-weight
+    # denominator.  They must never be converted to zero-return constituents.
+    return frame.groupby("trade_date")["return"].mean().sort_index()
 
 
 def _runtime_compatibility() -> None:
@@ -177,6 +179,7 @@ class FormalQlibRunner:
         n_drop: int = 5,
         rebalance_days: int = 5,
         cost_multiplier: float = 1.0,
+        lifecycle_policy: dict | None = None,
     ) -> dict:
         from backend.services.engine.historical_agent_experiment.qlib_runner import run_formal_backtest_sync
 
@@ -188,6 +191,7 @@ class FormalQlibRunner:
             "n_drop": n_drop,
             "rebalance_days": rebalance_days,
             "cost_multiplier": cost_multiplier,
+            "lifecycle_policy": lifecycle_policy,
         })
         cached = self.cache_root / f"{key}.json"
         if cached.exists():
@@ -209,6 +213,7 @@ class FormalQlibRunner:
                 n_drop=n_drop,
                 rebalance_days=rebalance_days,
                 cost_multiplier=cost_multiplier,
+                lifecycle_policy=lifecycle_policy,
             )
         finally:
             self.cn_exchange.CnExchange.deal_order = original
