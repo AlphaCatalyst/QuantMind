@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T13:58:19Z",
-  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
+  "generated_at": "2026-07-20T14:35:50Z",
+  "source_commit": "623acf8d328b219bc32396e6ae21a2312aff8e62",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-015G",
-  "latest_implementation_run": "QM2-P0-015G-20260720T135819Z-20fccfe",
+  "current_task": "QM2-P0-015H",
+  "latest_implementation_run": "QM2-P0-015H-20260720T143550Z-623acf8",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -35,7 +35,8 @@
       "quantmind2.factor_validation",
       "quantmind2.factor_registry",
       "quantmind2.research_campaign",
-      "quantmind2.fresh_validation"
+      "quantmind2.fresh_validation",
+      "quantmind2.corporate_actions"
     ],
     "planned": [
       "quantmind2.experiment_manager",

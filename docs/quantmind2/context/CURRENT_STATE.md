@@ -1,5 +1,35 @@
 # Current Implementation State
 
+## Tushare corporate-action evidence audit (QM2-P0-015H)
+
+- The environment-only Tushare credential was used for 19 redacted requests.
+  Thirteen requests were available: `stock_basic`, `daily`, `namechange`,
+  `suspend_d`, `share_float`, `dividend` and `major_news` metadata. Issuer
+  announcement endpoint `anns_d` and candidate structured `merge`/`merger`
+  endpoints were unavailable for both target securities.
+- Raw Snapshot `tsca_raw_c8c04e...91b13` preserves 409 event/status rows, 800
+  news-metadata rows, request schemas, response hashes and safe capability
+  outcomes. It contains no credential, account, physical path or request time.
+- Event Set `scae_a90b3726...abd1f` confirms last tradable/effective dates
+  2025-02-05/2025-03-04 for `SH600837` and 2025-08-12/2025-09-05 for
+  `SH601989`. Both remain `delisting` events with null settlement date, cash,
+  replacement symbol, conversion ratio and residual cash; completeness is
+  `evidence_missing`.
+- `FixedUniverseBenchmarkContractV2` is frozen as investable, self-financing,
+  equal-weight semantics under `fubc_e1885a79...513e4`. Locked membership
+  remains 100, replacement is forbidden, settlement cash stays in cash and a
+  conversion asset does not become a new locked member.
+- The canonical-revision gate hard-failed with
+  `SECURITY_TERMINATION_SETTLEMENT_UNRESOLVED`. No benchmark revision,
+  corrected return, relative metric, Qlib call, Agent call, Optimization or
+  Promotion was produced. All Fixed-100 2025/full-period metrics remain
+  noncanonical; strategy NAV, CSI300, 2019--2024 and 2026H1 remain unchanged.
+- Store Inventory `sai_ff1a263a...faee2` is healthy at 49 artifacts / 1,607
+  blobs, Missing 0 and Unreferenced 0. Cold recovery and exact replay pass with
+  zero Tushare, Qlib and Agent calls and zero new objects.
+- Current task: `QM2-P0-015H`; status is `blocked` with reason
+  `TUSHARE_CORPORATE_ACTION_EVIDENCE_INSUFFICIENT`. No successor is authorized.
+
 ## Security termination audit (QM2-P0-015G)
 
 - `SecurityTerminationPolicyV1` now defines delisting, cash settlement, stock

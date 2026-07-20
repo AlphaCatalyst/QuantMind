@@ -22,6 +22,8 @@ ID_FIELDS = (
     "historical_experiment_registry_id",
     "historical_experiment_lifecycle_followup_id",
     "termination_followup_id",
+    "raw_snapshot_id", "event_artifact_id", "benchmark_contract_id",
+    "benchmark_revision_id", "benchmark_followup_id",
 )
 
 
@@ -142,6 +144,18 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         return "fresh_validation.validate_fresh_validation_result"
     if kind in {ArtifactKind.IMPLEMENTATION_EVIDENCE, ArtifactKind.GENERIC_RESEARCH_BUNDLE}:
         return "artifact_store.manifest_hash_validator"
+    if kind in {
+        ArtifactKind.TUSHARE_CORPORATE_ACTION_RAW,
+        ArtifactKind.SECURITY_CORPORATE_ACTION_EVENT,
+        ArtifactKind.FIXED_UNIVERSE_BENCHMARK_CONTRACT,
+        ArtifactKind.FIXED_UNIVERSE_BENCHMARK_REVISION,
+        ArtifactKind.HISTORICAL_BACKTEST_BENCHMARK_FOLLOWUP,
+    }:
+        from backend.services.engine.corporate_actions.validation import (
+            validate_domain_artifact as validate_corporate_action_artifact,
+        )
+        validate_corporate_action_artifact(source, artifact_id, kind.value)
+        return "corporate_actions.validate_domain_artifact"
     if kind in {
         ArtifactKind.FIXED_UNIVERSE_LOCK,
         ArtifactKind.FIXED_UNIVERSE_HISTORICAL_DATASET,

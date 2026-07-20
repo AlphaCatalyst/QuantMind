@@ -2,10 +2,10 @@
 
 ## Current authority and next task
 
-- Current task is `QM2-P0-015G`. The strategy-side termination audit is
-  complete; the task is partial because the governed Tushare graph contains no
-  cash, conversion, merger-exchange or write-off settlement evidence for the
-  Fixed-100 benchmark positions.
+- Current task is `QM2-P0-015H`; it is blocked because the live Tushare account
+  cannot supply issuer announcements or structured cash/conversion/merger
+  settlement fields for both 2025 terminations. Do not supplement this gap
+  with web, remembered news, manual ratios or another Provider.
 - Active provider is `tushare-pro-v1`; legacy provider
   `quantmind-production-feature-snapshots-v1` is `retired_and_purged` and may
   not be used by formal runtime. Read ADR-0011 and
@@ -15,8 +15,8 @@
 - Canonical research start is empty Genesis Registry
   `trg_0e23d0c7...1d309`. Do not restore old Factor Registry metrics or old
   Research Memory effectiveness labels.
-- Artifact Store Inventory `sai_3ce20ede...b7a25` is healthy at 46 artifacts /
-  1,597 blobs with Missing 0, Unreferenced 0 and legacy Artifact count 0. The purge is irreversible for
+- Artifact Store Inventory `sai_ff1a263a...faee2` is healthy at 49 artifacts /
+  1,607 blobs with Missing 0, Unreferenced 0 and legacy Artifact count 0. The purge is irreversible for
   the deleted local data; rollback means re-fetching/rebuilding Tushare data or
   restoring old data from an independent backup, not changing the authority
   record silently.
@@ -47,6 +47,21 @@
   used for the task boundary instead.
 
 ## Current position
+
+- Corporate-action Raw Snapshot `tsca_raw_c8c04e...91b13`, normalized Event
+  Set `scae_a90b3726...abd1f` and Benchmark Contract
+  `fubc_e1885a79...513e4` are immutable. Exact replay performs no network,
+  Qlib, Agent or Store writes.
+- Live capability evidence shows `stock_basic`, `daily`, `namechange`,
+  `suspend_d`, `share_float`, `dividend` and `major_news` metadata available;
+  `anns_d`, `merge` and `merger` are unavailable for both symbols. News
+  metadata is not an issuer announcement or structured settlement source.
+- Both events have `evidence_missing`; all settlement fields are null. The
+  Fixed-100 2025/full-period benchmark and related excess metrics remain
+  noncanonical. Block reason is
+  `TUSHARE_CORPORATE_ACTION_EVIDENCE_INSUFFICIENT`. No benchmark revision
+  exists. Strategy NAV, trades, CSI300,
+  2019--2024, 2026H1 and Promotion state are unchanged.
 
 - Termination audit `htf_4a0762a5...ba6c3f` proves all four strategy paths are
   flat before both security terminations. `600837.SH` was never held;

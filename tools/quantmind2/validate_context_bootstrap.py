@@ -979,8 +979,10 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
     if "QM2-P0-012" not in handoff_text or "truthful partial production dry run" not in handoff_text:
         raise ValidationError("human handoff does not record the QM2-P0-012 result")
-    if handoff["current_task"] != "QM2-P0-015G":
-        raise ValidationError("machine handoff does not name current QM2-P0-015G task")
+    if handoff["current_task"] != "QM2-P0-015H":
+        raise ValidationError("machine handoff does not name current QM2-P0-015H task")
+    if handoff["completion_status"] != "blocked":
+        raise ValidationError("machine handoff does not preserve the blocked 015H result")
     if handoff["next_recommended_tasks"]:
         raise ValidationError("QM2-P0-015 does not authorize a successor task")
     for fact in ("2026H1", "3,822", "10,867", "style_idio_vol_20", "Qlib rerun calls are zero"):
@@ -992,6 +994,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     ):
         if fact not in handoff_text:
             raise ValidationError(f"human handoff omits termination audit fact: {fact}")
+    for fact in (
+        "tsca_raw_c8c04e", "scae_a90b3726", "fubc_e1885a79",
+        "TUSHARE_CORPORATE_ACTION_EVIDENCE_INSUFFICIENT", "No benchmark revision",
+    ):
+        if fact not in handoff_text:
+            raise ValidationError(f"human handoff omits corporate-action fact: {fact}")
     checks.append("handoff_links")
 
     runtime = validate_file(

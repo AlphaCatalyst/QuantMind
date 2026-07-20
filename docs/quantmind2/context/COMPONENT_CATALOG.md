@@ -67,6 +67,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies 79 formal artifacts in current Inventory |
 | `quantmind2.artifact_runtime` | implemented | Store-required resolution/publication, runtime counters, Campaign graph recovery and exact replay operate from an empty cache |
 | `quantmind2.security_termination` | implemented | Generic evidence-gated policy and formal 2025 Qlib/Fixed-100 termination audit; unresolved benchmark settlement remains noncanonical |
+| `quantmind2.corporate_actions` | partial | Tushare capability capture, immutable Raw/Event artifacts, generic settlement engine, benchmark contract and exact replay exist; current live evidence is insufficient, so no benchmark revision is publishable |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

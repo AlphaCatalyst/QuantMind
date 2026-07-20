@@ -243,8 +243,13 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertIn("2025-04-21", text)
         self.assertIn("noncanonical", text)
         self.assertIn("Corporate Action Provider", text)
-        self.assertEqual(handoff["current_task"], "QM2-P0-015G")
-        self.assertEqual(handoff["completion_status"], "partial_uncommitted")
+        self.assertIn("tsca_raw_c8c04e", text)
+        self.assertIn("scae_a90b3726", text)
+        self.assertIn("fubc_e1885a79", text)
+        self.assertIn("TUSHARE_CORPORATE_ACTION_EVIDENCE_INSUFFICIENT", text)
+        self.assertIn("No benchmark revision", text)
+        self.assertEqual(handoff["current_task"], "QM2-P0-015H")
+        self.assertEqual(handoff["completion_status"], "blocked")
         self.assertEqual(handoff["next_recommended_tasks"], [])
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):

@@ -1,0 +1,571 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-015h-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "a05cefda7842a8770151347154fb5d06dd038c8513f666c387378f7f94c98d9d",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 11806
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-015h-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "tsca_raw_c8c04e0228791d6a6c6103b249b6c9172668b3126aa94aba6377c396c9291b13",
+      "artifact_type": "tushare_corporate_action_raw",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:tsca_raw_c8c04e0228791d6a6c6103b249b6c9172668b3126aa94aba6377c396c9291b13",
+      "schema_version": "corporate-action-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "scae_a90b37266807856f0644bb242364374ced4666275bbcfaf95831ba20907abd1f",
+      "artifact_type": "security_corporate_action_event",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:scae_a90b37266807856f0644bb242364374ced4666275bbcfaf95831ba20907abd1f",
+      "schema_version": "corporate-action-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "fubc_e1885a790fc9f3f2825dab5954a02e7154cbc013ead8bbd116384630b22513e4",
+      "artifact_type": "fixed_universe_benchmark_contract",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:fubc_e1885a790fc9f3f2825dab5954a02e7154cbc013ead8bbd116384630b22513e4",
+      "schema_version": "corporate-action-artifact-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "1dcf5def9d3ad3ed177792a6546c2f15c38b5db7d29ea6503abd992c313dcf2d",
+      "before_hash": "2fa49f69cb358cc2f78a7bf51879726373ebfee42ebb8819fa9dfef866d8f66d",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bd52f531dc27d5dfb735e8f039797f64da16ab631536967140c5ebbaf1c5cec2",
+      "before_hash": "0e271e03b5a606e8b72f064ca571aaf869fe99d045ae8c2f8827935f6b3d3c28",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2987eddfb0a9500f8668a61d794590c59eab10548b3a84364913ed13a050d6d7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c595d3c98f24b71b67404d91cb39da791e6af3eb8b04635833e038c345751312",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/benchmark.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9042173a161528004ec6ab9b733b8225516165f20931d62bab5c16620c5b8c04",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/capability.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1ad9b007750d430330fdf238ef3806e8bd963143bf118111d10ff4a7aea11af9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/credentials.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5b0debbeaa9be7d1144660a33c0215ea057f3c131326791f335e6d8b3e6a92a5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "548b30d499d119319f6b94405917c51faa7ce7abae5abfa0accacd95a339a30a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "601a839f1d7435bf75a4dd0965c7d8f7929746cee5617596d7944510782c072b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cb3b484bbcb24f8da88b624cbb0fac7c58c87aa4cf591bcdce9ed2231f1e90bb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3e20d4969bc4854b77f4dc4073736b09693e8f137dd28be9a33993ca6303df65",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/normalization.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8d144565fbb8c673330955146e173753722acae8400e16c47860fb264e9f42eb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/raw_artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d1d283cd9d31576bf7c84680361a8db8cb6afe25bb0081f7ceff3b82f73cffb9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/settlement.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "16ec763f7b914e785700d117ed1d8646d88a542a364916ac30ce6cd0420a02d2",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/tushare_client.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b0214e253af18a1ca128c71ac7c3a493c0668f65a1de7e059e22d6827b7a2f5c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/corporate_actions/validation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "579a544c8f8239ef3c052772e0226313bde5ea579d6d5ec11e58e3c423b89b8a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_fixed_universe_benchmark_settlement.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a353266dfea5acf758640a6abb39dc407f2c631352a92f63520374567b2ee94c",
+      "before_hash": "819d7147c1aa743ad53f40bbee359437f54597deb3db1a58c3136e26967efb59",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0365d9054f8cbbc750ab3e0b4f61abd2434cd9db2e006d59a1009db1a3e7abfa",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_security_termination_settlement.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a9dd840c492efde6a0dd6cce672a733b59201f219747dd86970b3394a1a01a75",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_tushare_corporate_actions.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f87cd95eb72f530d3832a8b085e202ea510b335f1f68f5709a65491771fbc130",
+      "before_hash": "2eebc32a30da46e9cd58ad38e1535f51eaeac65461f985db031dc69339a84b9b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "66d3991f9ec943b2baba2903ccf27ca933eead09ef623381b4bedd0d649f4d2f",
+      "before_hash": "26dd946d8c431edb77720a5b9c05fc4f81f87c99536dbb02a4059f29ef93840d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3015d3bb57fe01d3949955c2c99ab4b5fee534473c08255befc9714d98f451a4",
+      "before_hash": "6f1977ae408e2b2176e48a8919d2b802728f44b25f9e7929ee3cab8d1208416e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5350333059144ffa19f7696faf58f1391dd18c2eede30cbc28ae067768c233d4",
+      "before_hash": "d0e2edf3476d64c00e5120cc3fc7b47b6ad6c294e2efe8976f8623c7f69cbfb1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1a7d6128853fc7b58d2eac2af41b4b63bf139de8f1c59fef74f0a0c2114f33de",
+      "before_hash": "b73223c25fb492c995c3de2e46168188f25f28dd9f5425e040b6129c56159d54",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9286f7a94e924d4e638c6e8305d4649142f8dd765e867ef62b6da5d06f737e0",
+      "before_hash": "5944c71e79d230020229143b7339091006aee288e22871694404311f86de0573",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9de7ca05fafb05a7ba9c2f7a483041dc0cd6a845355cb3192bc7f08a21aeb538",
+      "before_hash": "04e0e4ae21a66d1bb62d4e3c45c4f1a8abc9d53758bc6b3cf635ba4d34b0811b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "084e2ae62af0bf861f692209e3a5c1ba196f3eea19b914038cccd747be2f1b80",
+      "before_hash": "ea7d5e5613b487d15d0ef8617afdd48f2692e4e35d47529b4100917047541312",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ea5f5af2cd73e08b43f73082452f4a1e74b0eb17443c2365b1d39fdce0102ad0",
+      "before_hash": "c3c133a0d56e050858aba8fba9b9cdb985a463768a3b26a1d20822fae1ff04bb",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3e4aabcf6c547206fada829b9c08b1f6885d691f1a722c5aab01176a56f2d432",
+      "before_hash": "ba179b18d42351d9faa5f9f52f4568a6705b2ff28c76d997ffaab2e7d842a97e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a05cefda7842a8770151347154fb5d06dd038c8513f666c387378f7f94c98d9d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9a0aec5459c561d91f84377e6a5e4acf55223041e8b2c4e5d3c2df79c91598f8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/tushare_corporate_actions.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fa33dfa45ed40653405b5d9316323f9b42f3447ccb8b44c6a62017439ddb98fe",
+      "before_hash": "64fe25d7bde4196b82d3fa1491329923ec9209d1dfd6a56fe08404d388d1334a",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/corporate_actions/tushare_client.py",
+      "qualified_name": "CorporateActionTushareClient",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/corporate_actions/models.py",
+      "qualified_name": "SecurityCorporateActionEvent",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/corporate_actions/settlement.py",
+      "qualified_name": "settle_position",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/corporate_actions/benchmark.py",
+      "qualified_name": "FixedUniverseBenchmarkContractV2",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/corporate_actions/engine.py",
+      "qualified_name": "run_corporate_action_audit",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/corporate_actions/engine.py",
+      "qualified_name": "replay_corporate_action_audit",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.corporate_actions",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.security_termination",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-015h-report",
+        "sha256": "a05cefda7842a8770151347154fb5d06dd038c8513f666c387378f7f94c98d9d"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/corporate_actions/__init__.py",
+      "backend/services/engine/corporate_actions/benchmark.py",
+      "backend/services/engine/corporate_actions/capability.py",
+      "backend/services/engine/corporate_actions/credentials.py",
+      "backend/services/engine/corporate_actions/engine.py",
+      "backend/services/engine/corporate_actions/enums.py",
+      "backend/services/engine/corporate_actions/errors.py",
+      "backend/services/engine/corporate_actions/models.py",
+      "backend/services/engine/corporate_actions/normalization.py",
+      "backend/services/engine/corporate_actions/raw_artifact.py",
+      "backend/services/engine/corporate_actions/settlement.py",
+      "backend/services/engine/corporate_actions/tushare_client.py",
+      "backend/services/engine/corporate_actions/validation.py",
+      "backend/services/tests/test_fixed_universe_benchmark_settlement.py",
+      "backend/services/tests/test_security_termination_settlement.py",
+      "backend/services/tests/test_tushare_corporate_actions.py",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/report.md",
+      "tools/quantmind2/tushare_corporate_actions.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/corporate_actions/__init__.py",
+      "backend/services/engine/corporate_actions/benchmark.py",
+      "backend/services/engine/corporate_actions/capability.py",
+      "backend/services/engine/corporate_actions/credentials.py",
+      "backend/services/engine/corporate_actions/engine.py",
+      "backend/services/engine/corporate_actions/enums.py",
+      "backend/services/engine/corporate_actions/errors.py",
+      "backend/services/engine/corporate_actions/models.py",
+      "backend/services/engine/corporate_actions/normalization.py",
+      "backend/services/engine/corporate_actions/raw_artifact.py",
+      "backend/services/engine/corporate_actions/settlement.py",
+      "backend/services/engine/corporate_actions/tushare_client.py",
+      "backend/services/engine/corporate_actions/validation.py",
+      "backend/services/tests/test_fixed_universe_benchmark_settlement.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "backend/services/tests/test_security_termination_settlement.py",
+      "backend/services/tests/test_tushare_corporate_actions.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/report.md",
+      "tools/quantmind2/tushare_corporate_actions.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "d47af379b83333f49d3f8c310db5d59e382c573dbe8cf638fdf4f32fdb2bda44",
+    "manifest_payload_sha256": "2059076a359972ef580f42215ce0117ee620db869a2ab27b55770786b6c667bc",
+    "report_sha256": "a05cefda7842a8770151347154fb5d06dd038c8513f666c387378f7f94c98d9d",
+    "source_bundle_sha256": "a48fd458928dff64ec0ce48f7e56bb24385db9d48fe9e382872759736c5c1be7"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.corporate_actions",
+      "description": "The current Tushare account cannot access issuer announcement bodies or structured merger endpoints for the two terminations, and available records do not contain complete settlement terms.",
+      "limitation_id": "limit-015h-1",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.corporate_actions",
+      "description": "Both events remain evidence_missing; no Fixed-100 revision or related canonical metric can be published.",
+      "limitation_id": "limit-015h-2",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Tushare authority ends at 2026-06-23; incremental collection and late-data revision policy remain absent.",
+      "limitation_id": "limit-015h-3",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "description": "The configured formal temporary Factor Lab source contains no non-cache source files.",
+      "limitation_id": "limit-015h-4",
+      "severity": "low",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-20T14:47:55Z",
+      "reason": "Attempt the Tushare-only evidence acquisition required by the unresolved Fixed-100 settlement without rewriting the termination audit.",
+      "relationship_id": "rel-qm2-p0-015h-continues-015g",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-015H-20260720T143550Z-623acf8",
+      "target_run_id": "QM2-P0-015G-20260720T135819Z-20fccfe"
+    }
+  ],
+  "repository": {
+    "base_commit": "623acf8d328b219bc32396e6ae21a2312aff8e62",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "623acf8d328b219bc32396e6ae21a2312aff8e62",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-20T14:47:55Z",
+    "completion_level": "partial",
+    "consistency_status": "unverified",
+    "git_diff_hash": "d47af379b83333f49d3f8c310db5d59e382c573dbe8cf638fdf4f32fdb2bda44",
+    "implementation_run_id": "QM2-P0-015H-20260720T143550Z-623acf8",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-015H-20260720T143550Z-623acf8/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "a48fd458928dff64ec0ce48f7e56bb24385db9d48fe9e382872759736c5c1be7",
+    "started_at": "2026-07-20T14:35:50Z",
+    "task_id": "QM2-P0-015H",
+    "task_status": "blocked",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-20T14:35:50Z",
+    "explicit_non_goals": [
+      "No alternate Provider, inferred settlement, Agent, Optimization, candidate, strategy, Qlib strategy rerun, universe, CSI300, 2026H1, Promotion, dependency, database, API or UI change"
+    ],
+    "objective": "Use only governed Tushare evidence to resolve two 2025 terminations and revise the affected Fixed-100 benchmark only if both settlements are complete.",
+    "parent_task_id": "QM2-P0-015G",
+    "scope": [
+      "Tushare capability audit, immutable Raw and normalized Event artifacts, generic settlement mechanics, Fixed-100 Benchmark Contract, Store replay and Project Memory"
+    ],
+    "status": "blocked",
+    "task_id": "QM2-P0-015H",
+    "title": "Tushare Corporate Action Provider and Fixed-100 Benchmark Settlement"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q corporate-action and security-termination focused tests",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 18,
+      "purpose": "Credential, capability, raw/event, settlement, benchmark and termination contracts",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015h-focused-1"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q 12 relevant Tushare, lifecycle, termination, Artifact Store and Context test files",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 79,
+      "purpose": "Full relevant regression",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015h-regression-1"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:tsca_raw_c8c04e0228791d6a6c6103b249b6c9172668b3126aa94aba6377c396c9291b13",
+      "command": "tushare_corporate_actions.py replay --raw-snapshot-id tsca_raw_c8c04e...91b13",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Cold recovery and exact replay with zero calls and writes",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015h-replay-1"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Validate Project Memory and implementation contracts",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015h-context-1"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "py_compile; parse 94 QuantMind 2.0 JSON files; credential-byte scan; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Static, JSON, secret and diff verification",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-015h-static-1"
+    }
+  ]
+}

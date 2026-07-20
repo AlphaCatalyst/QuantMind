@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T13:58:19Z",
-  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
+  "generated_at": "2026-07-20T14:35:50Z",
+  "source_commit": "623acf8d328b219bc32396e6ae21a2312aff8e62",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -176,6 +176,20 @@
       "dependencies": ["quantmind2.research_artifact_store", "quantmind2.factor_compute", "quantmind2.factor_optimization", "quantmind2.factor_validation", "quantmind2.factor_registry", "quantmind2.research_campaign", "quantmind2.fresh_validation"],
       "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007"],
       "current_limitations": ["Single-process local materialization locks only; no cloud backend, distributed cache/lock, database catalog, API/UI, Qlib or LightGBM cutover.", "legacy_local remains an explicit emergency compatibility mode and cannot establish formal publication without Store import."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.corporate_actions",
+      "name": "Tushare Corporate Action Provider and Settlement",
+      "status": "partial",
+      "responsibility": "Capture redacted Tushare capability evidence, normalize immutable security corporate-action events, enforce governed settlement completeness, and gate Fixed-100 benchmark revisions.",
+      "source_path": "backend/services/engine/corporate_actions",
+      "target_path": "backend/services/engine/corporate_actions",
+      "key_symbols": ["TushareCorporateActionClient", "build_raw_snapshot", "normalize_security_events", "settle_position", "FixedUniverseBenchmarkContractV2", "run_corporate_action_settlement", "replay_corporate_action_settlement"],
+      "dependencies": ["quantmind2.data_foundation", "quantmind2.security_termination", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0006", "ADR-0007", "ADR-0011"],
+      "current_limitations": ["The current Tushare account cannot access issuer announcements or structured merger endpoints, and available responses do not provide complete settlement terms for the two governed events.", "No benchmark revision is publishable until both normalized events are settlement-complete; affected Fixed-100 metrics remain noncanonical."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     }
