@@ -1,0 +1,735 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-p0-016-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "9e7c61b6ed5af9d12fd5688fd4087a99307947af6eb3d4b6e5b38069b4b471bd",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 8857
+    },
+    {
+      "artifact_id": "artifact-qm2-p0-016-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "usa_4c824a58d0a17cb0aebea30bbc2197ae8246843b2aaae14a49fc1c091789fab0",
+      "artifact_type": "unified_signal",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:usa_4c824a58d0a17cb0aebea30bbc2197ae8246843b2aaae14a49fc1c091789fab0",
+      "schema_version": "unified-signal-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "usa_839f30c4ac0d8ab68f2828c1037269438c3cc65cca83b6a4ee23f0e0e99cdb73",
+      "artifact_type": "unified_signal",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:usa_839f30c4ac0d8ab68f2828c1037269438c3cc65cca83b6a4ee23f0e0e99cdb73",
+      "schema_version": "unified-signal-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "usa_a4dad65c88f6e74122d96325d003e6eea5d651c4e5fb578c589e4b87c8350ca3",
+      "artifact_type": "unified_signal",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:usa_a4dad65c88f6e74122d96325d003e6eea5d651c4e5fb578c589e4b87c8350ca3",
+      "schema_version": "unified-signal-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "usa_5399f8d7095d3592278cd06ae09b8c99df028ae07bd6c2ac45f3fa147f89d72d",
+      "artifact_type": "unified_signal",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:usa_5399f8d7095d3592278cd06ae09b8c99df028ae07bd6c2ac45f3fa147f89d72d",
+      "schema_version": "unified-signal-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "pta_957ffb1948a4e0998f042d4d8179c3da548e8bec57c73bd5f038ad43adb95fbc",
+      "artifact_type": "portfolio_target",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:pta_957ffb1948a4e0998f042d4d8179c3da548e8bec57c73bd5f038ad43adb95fbc",
+      "schema_version": "portfolio-target-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "pta_4e5e45deb09285120a60ba6cd62f441a18c1bff734c61039f728a4e19c108b81",
+      "artifact_type": "portfolio_target",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:pta_4e5e45deb09285120a60ba6cd62f441a18c1bff734c61039f728a4e19c108b81",
+      "schema_version": "portfolio-target-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "pta_6aa983c10e9410de67765890aa0d31bb22689044d2209f120d21faa74acd22da",
+      "artifact_type": "portfolio_target",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:pta_6aa983c10e9410de67765890aa0d31bb22689044d2209f120d21faa74acd22da",
+      "schema_version": "portfolio-target-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "pta_903df432cc2b2bb71541ba68591a29788ad1018847d0c785f99b405318f09834",
+      "artifact_type": "portfolio_target",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:pta_903df432cc2b2bb71541ba68591a29788ad1018847d0c785f99b405318f09834",
+      "schema_version": "portfolio-target-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sbr_75d24a99db153896cf8b79af6e84d57d95ed5a76965e24ae1caba66adbd7e1ee",
+      "artifact_type": "strategy_backtest_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sbr_75d24a99db153896cf8b79af6e84d57d95ed5a76965e24ae1caba66adbd7e1ee",
+      "schema_version": "strategy-backtest-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sbr_1a3f3d43b6b6a5e89278831def848cfe12010a9c55f17ee4003bf42be6dbbf93",
+      "artifact_type": "strategy_backtest_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sbr_1a3f3d43b6b6a5e89278831def848cfe12010a9c55f17ee4003bf42be6dbbf93",
+      "schema_version": "strategy-backtest-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sbr_6c31a5f88f83e1380a2767c19a11aa3227fcc2dcf0c1e388bd2ea3632634e189",
+      "artifact_type": "strategy_backtest_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sbr_6c31a5f88f83e1380a2767c19a11aa3227fcc2dcf0c1e388bd2ea3632634e189",
+      "schema_version": "strategy-backtest-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sbr_2f708e69013a13eb7cf1b18effec3d73cd6f6b26175970c717aef663a1b0b5f6",
+      "artifact_type": "strategy_backtest_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sbr_2f708e69013a13eb7cf1b18effec3d73cd6f6b26175970c717aef663a1b0b5f6",
+      "schema_version": "strategy-backtest-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "srr_a2d226d4ca751100256a3d6332ed5576c29c40c53a3a78a634fbdffef74ea503",
+      "artifact_type": "strategy_research_registry",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:srr_a2d226d4ca751100256a3d6332ed5576c29c40c53a3a78a634fbdffef74ea503",
+      "schema_version": "strategy-research-registry-artifact-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "f63bb4a0ea4dcca03fee2bb14b5c43e2817d91a3e7ac77bac995477a4af3f567",
+      "before_hash": "2ddedcb06e43727b1c5f091d544c0acddd71a3c3b324406f214d21dcec71b8fd",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "828bc35dacae165f34050a83cda0b29d15dd6590ea27d793f0bec9f666525e57",
+      "before_hash": "1dcf5def9d3ad3ed177792a6546c2f15c38b5db7d29ea6503abd992c313dcf2d",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "98ba724746345e5abb2b7a2cacb7b96f505418e074e360518b03d6eae4473c63",
+      "before_hash": "bd52f531dc27d5dfb735e8f039797f64da16ab631536967140c5ebbaf1c5cec2",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8ec95a529dc09dc4ed16a3f19585c2a4ace7acf0a44b53cda0516984b4caeb06",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "09eeeb4961ebcb033f406c8d27002f51a58f38ce9924f0a8c954cd72539e760c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "77fcacbee8fa7fb98c4fd40bb64187192adcdf0a553bd23bb9b027c2c44a7468",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "165d2f87c32d1913f57d4daa79e54617107403fb47ed096f88adbd13a5c3d995",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9fddb020aa7d5337c4ea4f59852bc9a5fd67e88b91b0f7f3d03116c8f6424c8a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/qlib_adapter.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "def7f6c33a6b1a79259e5b22d578d669bb15f544769b76b218ed2b382480b3b5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/result.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "532d3d959d35c818e11d86163dbd507ff4efa4456952ab3f9c03d0bfd6502edb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f18ee319560ebbfef547bda22058fb210f3f2a3e60f1901d80a55e609f2019c5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_layer/service.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "72c21a76e7e0b26dbcb80bc5409ed2724fcdfce59fd293ace823cf56a85e72e3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/unified_signal/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "13bb48b5dea919b95180f5c0d9531ed9ff775b9dcf6a4e1d672b6eb9d4a114a6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/unified_signal/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "eb027de78f4e72d8fb42244bc56ae249112f695f65be8c98b352ccb3eb963739",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/unified_signal/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4b5f241b58c5ebb29f340ce23137bdbbdcbaedd134622a636dc7031c72df6e10",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/unified_signal/schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3b8dd489ace08d80521f891900474eb36db3f05376916af42c9f9327633315b1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/unified_signal/service.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "52af0183c7bc52f05c786d29c2af2069f7e2d217c621e1dfc0489f26f3e21437",
+      "before_hash": "a353266dfea5acf758640a6abb39dc407f2c631352a92f63520374567b2ee94c",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "34efe0e1dcee968d9f5e10634dadf16dbfb2735731082465148dc1373ed41fdb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_strategy_layer.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "301fb4199ef173f0c2632b9c21c20245ab1d657a42618ef676b504b4a088e06d",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_strategy_qlib_real.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4a92f8063abd6ac64b8aad8989b0a2db6d640aa29bef5faedb64e04c5bc29bbc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_unified_signal.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "81de9bde60d09d66f0be3b1c0422244ae4b05c6615291b8762693db994ebaefc",
+      "before_hash": "f87cd95eb72f530d3832a8b085e202ea510b335f1f68f5709a65491771fbc130",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5fd67fd0671ba52b59883ce01599cb3f0bec0d3f649c3e66cd180eab2eafec35",
+      "before_hash": "66d3991f9ec943b2baba2903ccf27ca933eead09ef623381b4bedd0d649f4d2f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4cbc9341e71cfd35532ebc69b8aa0b50b808f733686532211f5ec35d100214e8",
+      "before_hash": "3015d3bb57fe01d3949955c2c99ab4b5fee534473c08255befc9714d98f451a4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bcc60efa0c502e80a6b88ac69d97282900c2591b48b263eb7944851bd2d1f936",
+      "before_hash": "5350333059144ffa19f7696faf58f1391dd18c2eede30cbc28ae067768c233d4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dc69eae6fb27e4cdfbc9208d7ca2d0821ee07e4e1667fc6209b69373fe42fab4",
+      "before_hash": "1a7d6128853fc7b58d2eac2af41b4b63bf139de8f1c59fef74f0a0c2114f33de",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ad5a7e382a95b765c30189da3b0b542d409b5ea990ed882330873391af92a3a2",
+      "before_hash": "e9286f7a94e924d4e638c6e8305d4649142f8dd765e867ef62b6da5d06f737e0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7a81a60d5f6ec1fc44a9effe23cc14ecdfc1612420afa69ed4ef49f946b1fb6c",
+      "before_hash": "9de7ca05fafb05a7ba9c2f7a483041dc0cd6a845355cb3192bc7f08a21aeb538",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "574f368b2bea7a4af4c77664cf5af6cc43e32a943b3cef5a97ab30928c1c6a3f",
+      "before_hash": "084e2ae62af0bf861f692209e3a5c1ba196f3eea19b914038cccd747be2f1b80",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8adc02bcb126bb682a2ccec7515e73c69f8ada9ba981dc2514ed179ae3b844de",
+      "before_hash": "ea5f5af2cd73e08b43f73082452f4a1e74b0eb17443c2365b1d39fdce0102ad0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1d77ae83c0a20ec63fded268a7aa501af3d2deb5362575c48ba63f09b6ee886c",
+      "before_hash": "3e4aabcf6c547206fada829b9c08b1f6885d691f1a722c5aab01176a56f2d432",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d9c0af8e5674d4efcd31b996225a590d5e267f8c1aec94e8eb08d935bddd3fbe",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/STRATEGY_LAYER_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b51be7e82f22d48c927ea74e00efbcce34c4ff972b835bc1116b7e3560dff4e5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/UNIFIED_SIGNAL_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9e7c61b6ed5af9d12fd5688fd4087a99307947af6eb3d4b6e5b38069b4b471bd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f6692533e293f0890318c088cc490a8fa353d68ebf3074a58e01fa16cb74fbb9",
+      "before_hash": "4acf84b593928484ed4ac420e73a4c52b2e54fdf9f4650a327d45116d66e6407",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1eb99db537bde7a03e6945a2013b9215978b683f929bdb8c5f1488857a162fb0",
+      "before_hash": "5a094b8b4df1f3b8f0683b2e58671f7cf3412c2ef15781bfb9d878aeffb186b5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1b3bd2cdebe164abd928b65635da7598a741568c17c8d97e2594981614a3cbb7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/strategy_layer.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e68000dedce7b8c3b10980800733f6c8bf000fb98a38afc1253f33c8a3e6b358",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/unified_signal.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "58516a0d012843e3705c0c110122e5660a3f75bed3a45f8e87ae3bd362046306",
+      "before_hash": "fa33dfa45ed40653405b5d9316323f9b42f3447ccb8b44c6a62017439ddb98fe",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/unified_signal/models.py",
+      "qualified_name": "FactorSignalInput",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/unified_signal/models.py",
+      "qualified_name": "UnifiedSignalSpec",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/unified_signal/service.py",
+      "qualified_name": "build_unified_signal",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_layer/models.py",
+      "qualified_name": "StrategySpec",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_layer/service.py",
+      "qualified_name": "build_portfolio_target",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_layer/result.py",
+      "qualified_name": "publish_backtest_result",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_layer/result.py",
+      "qualified_name": "publish_strategy_registry",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.signal_service",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.strategy_layer",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.security_termination",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-p0-016-report",
+        "sha256": "9e7c61b6ed5af9d12fd5688fd4087a99307947af6eb3d4b6e5b38069b4b471bd"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/strategy_layer/__init__.py",
+      "backend/services/engine/strategy_layer/artifact.py",
+      "backend/services/engine/strategy_layer/errors.py",
+      "backend/services/engine/strategy_layer/models.py",
+      "backend/services/engine/strategy_layer/qlib_adapter.py",
+      "backend/services/engine/strategy_layer/result.py",
+      "backend/services/engine/strategy_layer/schema.py",
+      "backend/services/engine/strategy_layer/service.py",
+      "backend/services/engine/unified_signal/__init__.py",
+      "backend/services/engine/unified_signal/errors.py",
+      "backend/services/engine/unified_signal/models.py",
+      "backend/services/engine/unified_signal/schema.py",
+      "backend/services/engine/unified_signal/service.py",
+      "backend/services/tests/test_strategy_layer.py",
+      "backend/services/tests/test_strategy_qlib_real.py",
+      "backend/services/tests/test_unified_signal.py",
+      "docs/quantmind2/contracts/STRATEGY_LAYER_V1.md",
+      "docs/quantmind2/contracts/UNIFIED_SIGNAL_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/report.md",
+      "tools/quantmind2/strategy_layer.py",
+      "tools/quantmind2/unified_signal.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_runtime/cache.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/strategy_layer/__init__.py",
+      "backend/services/engine/strategy_layer/artifact.py",
+      "backend/services/engine/strategy_layer/errors.py",
+      "backend/services/engine/strategy_layer/models.py",
+      "backend/services/engine/strategy_layer/qlib_adapter.py",
+      "backend/services/engine/strategy_layer/result.py",
+      "backend/services/engine/strategy_layer/schema.py",
+      "backend/services/engine/strategy_layer/service.py",
+      "backend/services/engine/unified_signal/__init__.py",
+      "backend/services/engine/unified_signal/errors.py",
+      "backend/services/engine/unified_signal/models.py",
+      "backend/services/engine/unified_signal/schema.py",
+      "backend/services/engine/unified_signal/service.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "backend/services/tests/test_strategy_layer.py",
+      "backend/services/tests/test_strategy_qlib_real.py",
+      "backend/services/tests/test_unified_signal.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/STRATEGY_LAYER_V1.md",
+      "docs/quantmind2/contracts/UNIFIED_SIGNAL_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/strategy_layer.py",
+      "tools/quantmind2/unified_signal.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "c44b3e0a93e2119425a2999a6bd993902acb23ca4a1a80b9060feb58eb43ab93",
+    "manifest_payload_sha256": "75b17aaee8fd9c1ae8d50952665a61ef89ab3b014f6d6087701ef8bd48477737",
+    "report_sha256": "9e7c61b6ed5af9d12fd5688fd4087a99307947af6eb3d4b6e5b38069b4b471bd",
+    "source_bundle_sha256": "be17f9b8a001cea6b11f2856b56e987e0d0da100cbc4d89840d824b425eaedef"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.strategy_layer",
+      "description": "Existing formal Qlib source results do not expose pre-trade target weights, so target-to-actual-target equality is not verifiable.",
+      "limitation_id": "limit-016-1",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.strategy_layer",
+      "description": "All current inputs are research_diagnostic; no result is eligible for parameter optimization or Promotion.",
+      "limitation_id": "limit-016-2",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "description": "Fixed-100 affected benchmark evidence remains noncanonical and Tushare authority ends at 2026-06-23.",
+      "limitation_id": "limit-016-3",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.artifact_runtime",
+      "description": "Six pre-cutover real-runtime tests still reference artifacts intentionally purged by QM2-P0-014; they are not valid against the Tushare-only Store.",
+      "limitation_id": "limit-016-4",
+      "severity": "low",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-017",
+      "priority": "P0",
+      "reason": "Search only TopK, n_drop and rebalance frequency after the fixed strategy evidence boundary exists.",
+      "recommendation_id": "recommend-016-017"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-20T15:40:00Z",
+      "reason": "Consume the termination canonicality boundary without rewriting its immutable evidence.",
+      "relationship_id": "rel-qm2-p0-016-depends-015g",
+      "relationship_type": "depends_on",
+      "source_run_id": "QM2-P0-016-20260720T152346Z-33703db",
+      "target_run_id": "QM2-P0-015G-20260720T135819Z-20fccfe"
+    }
+  ],
+  "repository": {
+    "base_commit": "33703db03949f9b0fa676faa6bb08bdd3901461d",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "33703db03949f9b0fa676faa6bb08bdd3901461d",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-20T15:40:00Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "c44b3e0a93e2119425a2999a6bd993902acb23ca4a1a80b9060feb58eb43ab93",
+    "implementation_run_id": "QM2-P0-016-20260720T152346Z-33703db",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-016-20260720T152346Z-33703db/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "be17f9b8a001cea6b11f2856b56e987e0d0da100cbc4d89840d824b425eaedef",
+    "started_at": "2026-07-20T15:23:46Z",
+    "task_id": "QM2-P0-016",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-20T15:23:46Z",
+    "explicit_non_goals": [
+      "No Agent, Factor or Strategy Optimization, LightGBM, risk model, simplified backtester, Promotion, database, API or UI"
+    ],
+    "objective": "Build immutable unified signals, fixed portfolio targets and Store-lineaged formal Qlib strategy results.",
+    "parent_task_id": "QM2-P0-015G",
+    "scope": [
+      "Unified Signal contracts and artifacts",
+      "Fixed Strategy contracts, targets, Qlib result adaptation, canonicality and research Registry",
+      "Artifact Store publication, recovery, replay, CLI, tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-016",
+    "title": "Unified Signal and Strategy Layer v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QUANTMIND_RUN_REAL_STRATEGY_TESTS=1 python -m pytest test_unified_signal.py test_strategy_layer.py test_strategy_qlib_real.py -q --no-cov",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 12,
+      "purpose": "Signal, Strategy and real Store/Qlib lineage contracts",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-016-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q relevant Artifact Store/Runtime, Tushare, termination, Manifest, Indexer and Context tests",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 117,
+      "purpose": "Full relevant regression excluding obsolete pre-cutover real Store fixture IDs",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-016-regression-final"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:srr_a2d226d4ca751100256a3d6332ed5576c29c40c53a3a78a634fbdffef74ea503",
+      "command": "Store cold resolve plus exact publication replay for final 13-artifact graph",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 13,
+      "purpose": "Cold recovery and zero-call exact replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-016-replay"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "py_compile; parse all docs JSON; validate_context_bootstrap.py; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Static, machine context and diff verification",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-016-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "initial broad regression including test_artifact_runtime_real.py",
+      "failed_count": 9,
+      "not_run_reason": null,
+      "passed_count": 114,
+      "purpose": "Detect pre-cutover fixture assumptions",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-016-obsolete-store-diagnostic"
+    }
+  ]
+}

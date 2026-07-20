@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T14:35:50Z",
-  "source_commit": "623acf8d328b219bc32396e6ae21a2312aff8e62",
+  "generated_at": "2026-07-20T15:23:46Z",
+  "source_commit": "33703db03949f9b0fa676faa6bb08bdd3901461d",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -48,6 +48,7 @@
     {"issue_id": "QM2-KI-039", "severity": "medium", "status": "open", "summary": "Tushare authority is locked through 2026-06-23; incremental collection, late-data revision policy and scheduled publication are not implemented."},
     {"issue_id": "QM2-KI-040", "severity": "high", "status": "resolved", "summary": "QM2-P0-015F proves the two missing 2026H1 members were already delisted and adds an explicit lifecycle-aware Qlib capacity contract; all four historical strategies complete without replacement or fill."},
     {"issue_id": "QM2-KI-041", "severity": "high", "status": "open", "summary": "The governed Tushare Artifact graph has no cash, conversion, merger-exchange or write-off settlement evidence for the two 2025 terminations. Strategy results are unaffected, but the 2025 and full-period Fixed-100 benchmark and related excess metrics remain noncanonical pending governed evidence."},
-    {"issue_id": "QM2-KI-042", "severity": "high", "status": "open", "summary": "QM2-P0-015H live capability evidence confirms the current Tushare account cannot access issuer announcements (anns_d) or structured merger endpoints, while available Tushare tables contain no complete settlement evidence. The task is blocked and publishes no benchmark revision."}
+    {"issue_id": "QM2-KI-042", "severity": "high", "status": "open", "summary": "QM2-P0-015H live capability evidence confirms the current Tushare account cannot access issuer announcements (anns_d) or structured merger endpoints, while available Tushare tables contain no complete settlement evidence. The task is blocked and publishes no benchmark revision."},
+    {"issue_id": "QM2-KI-043", "severity": "medium", "status": "open", "summary": "Existing formal TopKDropout results persist actual positions but not the pre-trade target-weight object; QM2-P0-016 preserves deterministic Portfolio Targets separately and marks target-to-actual-target equality not verifiable instead of inferring it."}
   ]
 }

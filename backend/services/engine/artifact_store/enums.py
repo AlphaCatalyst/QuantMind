@@ -56,6 +56,10 @@ class ArtifactKind(str, Enum):
     FIXED_UNIVERSE_BENCHMARK_CONTRACT = "fixed_universe_benchmark_contract"
     FIXED_UNIVERSE_BENCHMARK_REVISION = "fixed_universe_benchmark_revision"
     HISTORICAL_BACKTEST_BENCHMARK_FOLLOWUP = "historical_backtest_benchmark_followup"
+    UNIFIED_SIGNAL = "unified_signal"
+    PORTFOLIO_TARGET = "portfolio_target"
+    STRATEGY_BACKTEST_RESULT = "strategy_backtest_result"
+    STRATEGY_RESEARCH_REGISTRY = "strategy_research_registry"
 
 
 class IntegrityStatus(str, Enum):

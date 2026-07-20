@@ -1,5 +1,12 @@
 # Known Issues
 
+## QM2-KI-043 — Qlib target-weight observability
+
+Open, medium. Existing formal TopKDropout results persist actual positions but
+not the pre-trade target-weight object. QM2-P0-016 preserves deterministic
+Portfolio Targets separately and marks target-to-actual-target equality not
+verifiable. Actual positions are not relabeled as targets.
+
 | ID | Severity | Status | Issue |
 |---|---|---|---|
 | QM2-KI-001 | high | resolved | ADR-0011 supersedes the unverified TongDaXin provider choice; Tushare Pro is active and the legacy data authority is retired and purged. |

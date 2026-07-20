@@ -1,5 +1,20 @@
 # Component Catalog
 
+## QM2-P0-016 additions
+
+- `quantmind2.signal_service` — implemented at
+  `backend/services/engine/unified_signal`; owns strict Factor inputs,
+  transformation, fixed/equal combination, missingness quality, identities and
+  immutable `unified_signal` artifacts.
+- `quantmind2.strategy_layer` — implemented at
+  `backend/services/engine/strategy_layer`; owns fixed V1 Strategy Specs,
+  execution plans, deterministic desired targets, formal Qlib result import,
+  canonicality and the research-only Strategy Registry.
+- Both components are offline/store-backed V1 implementations. They do not
+  provide Agent calls, parameter optimization, LightGBM, Promotion, API or UI.
+  The current Qlib source exposes actual positions but not formal pre-trade
+  target weights.
+
 ## `quantmind2.security_termination`
 
 - Status: implemented

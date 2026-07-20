@@ -1,5 +1,32 @@
 # Current Implementation State
 
+## Unified Signal and Strategy Layer v1 (QM2-P0-016)
+
+- Unified Signal v1 now separates locked Factor inputs, transformation,
+  combination, quality, materialization and immutable identity. Four signals
+  were published from three research-diagnostic Tushare candidates. The
+  equal-weight signal `usa_4c824a58...9fab0` is exactly equal to the historical
+  reference across 180,241 interval keys, including the NaN mask and all
+  180,231 finite cells.
+- Strategy Layer v1 fixes TopK 20, n_drop 5, five-session weekly rebalance,
+  equal target weights, CSI300 and the existing formal Qlib execution chain.
+  Four Portfolio Targets and four Strategy Results were published. The final
+  Strategy Registry is `srr_a2d226d4...ea503`, with four
+  `backtest_completed`, zero approved and zero active entries.
+- Equal weight returned 82.45%, Sharpe 0.474 and maximum drawdown -19.07%.
+  It improves Sharpe and drawdown over every individual Factor but does not
+  exceed the best single Factor's 91.90% total return. CSI300 excess is 16.79%.
+- Absolute and CSI300-relative strategy evidence is canonical. Fixed-100
+  2025/full-period comparison remains noncanonical and unusable for decisions.
+  The historical Qlib result exposes actual positions but not formal pre-trade
+  target weights, so target-to-actual-target equality is not verifiable and is
+  not fabricated.
+- Store Inventory is healthy with Missing 0 and Unreferenced 0. Final cold
+  recovery verifies 13 current artifacts; exact replay creates zero artifacts,
+  zero blobs and makes zero Qlib, Agent, Optimization or Promotion calls.
+- Current task: `QM2-P0-016`. Next task is only `QM2-P0-017 — Strategy
+  Parameter Optimization v1`.
+
 ## Tushare corporate-action evidence audit (QM2-P0-015H)
 
 - The environment-only Tushare credential was used for 19 redacted requests.

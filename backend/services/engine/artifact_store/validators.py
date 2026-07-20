@@ -24,6 +24,8 @@ ID_FIELDS = (
     "termination_followup_id",
     "raw_snapshot_id", "event_artifact_id", "benchmark_contract_id",
     "benchmark_revision_id", "benchmark_followup_id",
+    "unified_signal_artifact_id", "portfolio_target_artifact_id",
+    "strategy_backtest_result_id", "strategy_research_registry_id",
 )
 
 
@@ -85,6 +87,15 @@ def _verify_manifest_hashes(source: Path, manifest: dict) -> None:
 
 def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
                      context: DomainValidationContext) -> str:
+    if kind in {
+        ArtifactKind.UNIFIED_SIGNAL,
+        ArtifactKind.PORTFOLIO_TARGET,
+        ArtifactKind.STRATEGY_BACKTEST_RESULT,
+        ArtifactKind.STRATEGY_RESEARCH_REGISTRY,
+    }:
+        from backend.services.engine.strategy_layer.artifact import validate_strategy_domain_artifact
+        validate_strategy_domain_artifact(source, artifact_id, kind.value)
+        return "strategy_layer.validate_strategy_domain_artifact"
     if kind is ArtifactKind.DATASET_SNAPSHOT:
         from backend.services.engine.market_data.feature_snapshot import LegacyFeatureSnapshotService
         LegacyFeatureSnapshotService(source.parents[1]).validate(artifact_id)

@@ -2,6 +2,20 @@
 
 ## Current authority and next task
 
+- `QM2-P0-016` implements Unified Signal and Strategy Layer v1. Read
+  `docs/quantmind2/contracts/UNIFIED_SIGNAL_V1.md` and
+  `docs/quantmind2/contracts/STRATEGY_LAYER_V1.md` before strategy work.
+- Final equal-weight signal is `usa_4c824a58...9fab0`; final Strategy Registry
+  is `srr_a2d226d4...ea503`. The Registry has four research-only completed
+  backtests and no approved or active strategy.
+- Absolute and CSI300-relative results are canonical. Fixed-100 affected
+  metrics remain noncanonical. Do not use them for ranking, optimization or
+  Promotion.
+- Next task is only `QM2-P0-017 — Strategy Parameter Optimization v1`.
+  It may search TopK, n_drop and rebalance frequency only after explicit task
+  authorization; it must not optimize Factor structure, Factor parameters,
+  combination weights or transaction costs.
+
 - Current task is `QM2-P0-015H`; it is blocked because the live Tushare account
   cannot supply issuer announcements or structured cash/conversion/merger
   settlement fields for both 2025 terminations. Do not supplement this gap

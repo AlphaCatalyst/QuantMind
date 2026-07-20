@@ -36,6 +36,12 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "fresh_validation_result": ("fresh-results", "results"),
         "implementation_evidence": ("implementation-evidence",),
         "generic_research_bundle": ("generic",),
+        "unified_signal": ("unified-signal",),
+        "portfolio_target": ("portfolio-target",),
+        "strategy_backtest_result": ("strategy-results",),
+        "strategy_research_registry": ("strategy-registry",),
+        "tushare_historical_round_lock": ("tushare-round-lock",),
+        "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }
     try:
         parts = layout[artifact_kind]
