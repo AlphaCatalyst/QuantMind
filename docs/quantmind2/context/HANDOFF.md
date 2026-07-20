@@ -1,5 +1,24 @@
 # Codex Handoff
 
+## Expanded-feature Agent factor research
+
+- `QM2-R1-001` is complete. Read
+  `docs/quantmind2/contracts/EXPANDED_FEATURE_AGENT_FACTOR_ITERATION_V2.md`
+  before continuing Factor research.
+- Feature Catalog v2 is `tfc2_7d996ee8...21c21e`, Fixed-100 Dataset v2 is
+  `tfd2_ee90879c...2e407`, and no Tushare network or retired data was used.
+- Six external Agent rounds admitted 12 Templates and completed 38 parameter
+  Trials plus 50 formal Qlib calls. Only `fi_e2dd6057...d8576f` passed all
+  gates. Its Lock is `afcl_27fb695b...ba51e`; final Experiment is
+  `afi2_78fe3138...7fcf`.
+- The Candidate is `research_registered` only. Its 2025 and 2026H1 CSI300
+  excess is negative, so the assessment is `mixed`; do not describe it as
+  Fresh Validation, Frozen evidence, Promotion or production Alpha.
+- Contract revision 2 immutably supersedes preliminary records only to add
+  readable canonical DSL. Exact replay selects the unique highest revision
+  and performs zero Agent, Optimization, Qlib, network or Store writes.
+- No successor task is authorized. Wait for an explicit task contract.
+
 ## Strategy optimization completion and next task
 
 - `QM2-P0-017` completed 96/96 formal Qlib parameter Trials over four locked

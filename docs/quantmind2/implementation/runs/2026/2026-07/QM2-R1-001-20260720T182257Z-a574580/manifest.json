@@ -1,0 +1,583 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r1-001-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "8d99c24e2bd060096b5ba721046a61662087e294c752de16fc00a1dee85107c1",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/report.md",
+      "schema_version": null,
+      "size_bytes": 10822
+    },
+    {
+      "artifact_id": "artifact-qm2-r1-001-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "efda_289b89c147a0c0e539c71130daec20ba1ee75a94ca563d1a6c7a8e8d58bc052a",
+      "artifact_type": "existing_factor_definition_audit",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:efda_289b89c147a0c0e539c71130daec20ba1ee75a94ca563d1a6c7a8e8d58bc052a",
+      "schema_version": "existing-factor-definition-audit-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "tfc2_7d996ee8101ddc7710e2997347b3e8e8a4e0249a25de8aa651d3a575c821c21e",
+      "artifact_type": "tushare_feature_catalog_v2",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:tfc2_7d996ee8101ddc7710e2997347b3e8e8a4e0249a25de8aa651d3a575c821c21e",
+      "schema_version": "tushare-feature-catalog-v2",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "tfd2_ee90879ccb5b311f9690ab418b832548ff74637c6a83d51fb3a9095e5ca2e407",
+      "artifact_type": "tushare_feature_dataset_v2",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:tfd2_ee90879ccb5b311f9690ab418b832548ff74637c6a83d51fb3a9095e5ca2e407",
+      "schema_version": "tushare-feature-dataset-v2",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "afcl_27fb695b24bf92a63fb8a57e55bfdb102a675935e951b12184d7b9e8f6aba51e",
+      "artifact_type": "agent_factor_candidate_lock",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:afcl_27fb695b24bf92a63fb8a57e55bfdb102a675935e951b12184d7b9e8f6aba51e",
+      "schema_version": "agent-factor-candidate-lock-v2",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "afi2_78fe313863910ce2cd47409ac1fbe66dbedaea1bfc8815a0e09f261288d57fcf",
+      "artifact_type": "agent_factor_iteration_v2",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:afi2_78fe313863910ce2cd47409ac1fbe66dbedaea1bfc8815a0e09f261288d57fcf",
+      "schema_version": "agent-factor-iteration-v2",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sai_5a2ff03af923402be13f2882a4018dfb7db38e427505153f5daee82ad35c17ac",
+      "artifact_type": "artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sai_5a2ff03af923402be13f2882a4018dfb7db38e427505153f5daee82ad35c17ac",
+      "schema_version": "artifact-store-inventory-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "b00b1ccf7caa6e6ed60ce3c595e9ec8752da75a321e4363e34bdfc673aacb726",
+      "before_hash": "2cc5f8a5c9e50224bb4b7d8957c2672b5a6d8cf4de10282586bb007695e038c0",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3935805f8ea9fdc76491bf66c3acc82fd402261091aaeaa8e0a9c9868b5418b4",
+      "before_hash": "0da2678dba7d8d821b555f418280b7df2371dcfd93b1ed72218ff96c0e409661",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cf3573c96b6dc5a191e9307ac0df8e711f36d5d9cfacfcf4629abe5d4c7d69fb",
+      "before_hash": "3dd48b727e8e438af56989e612ab814b781e46e0fb02a0a5190e2dd55af4a825",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d68807b65b73a6f18497d3f9e543cdb45bac735ca5409207beaa8c6d5445a425",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b3eca3260484b2f80e3d8fe6f4cd47a4a738108b48bdbe7c0a733d93c7fafd49",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9683545b40736f4662c5e7167e584a4b715b3d1a954e72ed6230ed0bc0935c07",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/audit.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "891a6ef53fac3a7b1bd84806fa563d4dde9a9b3a680b3dcba8b6394beeea4558",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6f8822cca3ddb8ef72ed2695435c5ac1578416a6f2732288056d5cf1e442f9aa",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/features.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "033dd8d8691dbd881b331bace98d26b4d4fbc43fb0c2bad641b6614d70ac246c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "830ddde0bf1561b88aa7f1cead8e561ab5afe6a8fb81cefb2f4b81097f69d0b6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/expanded_factor_iteration/redundancy.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "10bc48cfa0a8b99960f2167133f087d23e54ef5ca90bd6374e425be4be7dadce",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_expanded_factor_iteration.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "58015864338ef67060d913cf9a5933f7842cd98e6aa9c36f7596fd008be7d958",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_expanded_factor_iteration_real.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cd8dc4e4d501e24b3c573d8b1e4cf63415dae04c87f459f6df9864d1134afcb6",
+      "before_hash": "f51dafca1a6b0a8f931e9b023950746974223137c50ce9d75e25d4e5a67df562",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a79ef32efe19ceeace44d64585a7946c944294cd6cda079cb8e57350e3ccce14",
+      "before_hash": "a68689bac3fda8d014ec1cccfbb94d37d46db90c47653476229e593686b98e97",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a508c430ae9f469229e629ec7ce4c1ce98d010212725d8b6a342be3ee5145be4",
+      "before_hash": "389ec0580dc2dbcb322c9c603dcf8e38f9d752287fe90f611f4078d317f04d44",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "262377e9885de62fd0e497ae940ec52b83dbaf1945d06bd5acdef4ddb62159c3",
+      "before_hash": "172f17aad23778bf44a4dbfa53de0115c04da94929f750e3d8d29dc581e016ff",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8826d94c53a07958a7f1b3fc556f2bb6ffc60c3b4c339a8d74b5e61d766396f3",
+      "before_hash": "373632b25dbe2144f07aed44ab9f680c660f95bd9f5d7469e9a8c9bf8fce9b6d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d367c0db5517fe198562f6edd123deac5cffe468bde3aeb9765f91ff2a1a1c28",
+      "before_hash": "4e5b5eb8767b0a23db2f19ec979724b6c4bc14fc05186f4a6ecc5b65a544020b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cb24c8064747b73ea91366bc5ba892e627d098e6d1e161a9985e4d16ee0b843c",
+      "before_hash": "baa59913d16e0a40470a2da9cc3fc71a9a97c7d5ada729fd4f1b6a3ee1ca22ab",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dd1ca5e1ca9139913bffd6f519216a8d23f54854ce4e94e594ef8d3e23147fb7",
+      "before_hash": "626f0d63ba6bb12ad718def49bd2183344db3470d0c06639ae81e046e9b322b9",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d6cff02eacc54afd1b14eb1e6213425825d863f39342ff973c10bd4c5e0a4192",
+      "before_hash": "9d81994bc2fc5a873d26ba8d07b0d5ff8301e3aa1a033203b51759eda029ca61",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c292013d6416b90ea069e3294f64f464f330b308847dc6bb4da3f0c90b52658e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/EXPANDED_FEATURE_AGENT_FACTOR_ITERATION_V2.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8d99c24e2bd060096b5ba721046a61662087e294c752de16fc00a1dee85107c1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0980910bc17440c5d8a9518d658da91445df74ddfc90f862fbb6e68c64bd7f6b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_agent_factor_iteration_v2.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e6de54ae38b62d830f714a49141aa0ef219c9b91a96f7d59f92191f303edc6a5",
+      "before_hash": "0390bf5eafc6e480c9cee3c2ecfe9c7f4718326063c1c736b3578732dfbf3162",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/audit.py",
+      "qualified_name": "build_existing_factor_audit",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/features.py",
+      "qualified_name": "compute_feature_candidates",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/features.py",
+      "qualified_name": "quality_and_selection",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/redundancy.py",
+      "qualified_name": "assess_template",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/engine.py",
+      "qualified_name": "run_experiment",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/engine.py",
+      "qualified_name": "replay_experiment",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/expanded_factor_iteration/artifact.py",
+      "qualified_name": "validate_artifact",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_dsl",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_campaign",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "documented"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r1-001-report",
+        "sha256": "8d99c24e2bd060096b5ba721046a61662087e294c752de16fc00a1dee85107c1"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/expanded_factor_iteration/__init__.py",
+      "backend/services/engine/expanded_factor_iteration/artifact.py",
+      "backend/services/engine/expanded_factor_iteration/audit.py",
+      "backend/services/engine/expanded_factor_iteration/engine.py",
+      "backend/services/engine/expanded_factor_iteration/features.py",
+      "backend/services/engine/expanded_factor_iteration/protocol.py",
+      "backend/services/engine/expanded_factor_iteration/redundancy.py",
+      "backend/services/tests/test_expanded_factor_iteration.py",
+      "backend/services/tests/test_expanded_factor_iteration_real.py",
+      "docs/quantmind2/contracts/EXPANDED_FEATURE_AGENT_FACTOR_ITERATION_V2.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/report.md",
+      "tools/quantmind2/run_agent_factor_iteration_v2.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_runtime/cache.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/expanded_factor_iteration/__init__.py",
+      "backend/services/engine/expanded_factor_iteration/artifact.py",
+      "backend/services/engine/expanded_factor_iteration/audit.py",
+      "backend/services/engine/expanded_factor_iteration/engine.py",
+      "backend/services/engine/expanded_factor_iteration/features.py",
+      "backend/services/engine/expanded_factor_iteration/protocol.py",
+      "backend/services/engine/expanded_factor_iteration/redundancy.py",
+      "backend/services/tests/test_expanded_factor_iteration.py",
+      "backend/services/tests/test_expanded_factor_iteration_real.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/EXPANDED_FEATURE_AGENT_FACTOR_ITERATION_V2.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/report.md",
+      "tools/quantmind2/run_agent_factor_iteration_v2.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "fdec482b35731dc28a1ad302ce909fa03c5d98650868996fd9ef155a4e7629a1",
+    "manifest_payload_sha256": "d98b8d4179c660aabff812812f942583768c7a36a51dabb56e286651f13e6dd3",
+    "report_sha256": "8d99c24e2bd060096b5ba721046a61662087e294c752de16fc00a1dee85107c1",
+    "source_bundle_sha256": "bba38d738f9e1dbdd6d4bc879c0304b175da2aacceec73549c0c0c8fdc01ad51"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "description": "Selection and later reports are retrospectively exposed research and cannot support predictive, Fresh, Frozen or Promotion claims.",
+      "limitation_id": "limit-qm2-r1-001-retrospective",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "description": "The sole eligible Candidate underperforms CSI300 in both 2025 and 2026H1 despite positive RankIC, so the result is mixed.",
+      "limitation_id": "limit-qm2-r1-001-later-failure",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "description": "Runtime is single-process/local-Store with no API, UI, distributed execution or LightGBM consumer.",
+      "limitation_id": "limit-qm2-r1-001-runtime",
+      "severity": "medium",
+      "status": "open"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "description": "The official /tmp Factor Lab source directory has no source files outside cache entries at final verification; this task did not modify or depend on it.",
+      "limitation_id": "limit-qm2-r1-001-factor-lab-source",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-20T18:31:40Z",
+      "reason": "Returns from completed Strategy Optimization to the Factor research layer while preserving the fixed strategy baseline.",
+      "relationship_id": "rel-qm2-r1-001-continues-017",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R1-001-20260720T182257Z-a574580",
+      "target_run_id": "QM2-P0-017-20260720T170618Z-a4ce656"
+    }
+  ],
+  "repository": {
+    "base_commit": "a574580a61b57c17c0215f69ae350efadbdb37be",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "a574580a61b57c17c0215f69ae350efadbdb37be",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-20T18:31:40Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "fdec482b35731dc28a1ad302ce909fa03c5d98650868996fd9ef155a4e7629a1",
+    "implementation_run_id": "QM2-R1-001-20260720T182257Z-a574580",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001-20260720T182257Z-a574580/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "bba38d738f9e1dbdd6d4bc879c0304b175da2aacceec73549c0c0c8fdc01ad51",
+    "started_at": "2026-07-20T18:22:57Z",
+    "task_id": "QM2-R1-001",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-20T18:22:57Z",
+    "explicit_non_goals": [
+      "No strategy, universe, benchmark, execution, Label or combination-weight change",
+      "No 2025 or 2026H1 selection or Agent feedback",
+      "No legacy data or Tushare network collection",
+      "No Fresh Validation, Frozen Test, Promotion, production, LightGBM, API, database or UI"
+    ],
+    "objective": "Expand the PIT-safe Tushare Fixed-100 feature space and run bounded external-Agent Factor research with independent walk-forward parameter locks and formal Qlib evidence.",
+    "parent_task_id": "QM2-P0-017",
+    "scope": [
+      "Existing Factor definition audit and sanitized failure Memory",
+      "Feature Catalog/Dataset v2, quality and redundancy gates",
+      "Six-round bounded Agent and factor-only parameter search",
+      "Four independent walk-forward Folds and fixed formal Qlib evaluation",
+      "Research-only Candidate lock, later-period report, comparison, Store recovery and replay"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R1-001",
+    "title": "Tushare Expanded-feature Agent Factor Iteration v2"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -o addopts='' backend/services/tests/test_expanded_factor_iteration.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 10,
+      "purpose": "Verify Feature, PIT, redundancy, Memory, Fold, eligibility, ordering and research-only Store contracts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r1-001-domain"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QUANTMIND_RUN_EXPANDED_FACTOR_REAL_TESTS=1 python -m pytest -o addopts='' backend/services/tests/test_expanded_factor_iteration_real.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Verify real audit, replay, cold recovery, rounds and Candidate Lock without a skip path.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r1-001-real"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QUANTMIND_RUN_EXPANDED_FACTOR_REAL_TESTS=1 python -m pytest -o addopts='' <20 relevant Factor, Campaign, Store, Strategy, Tushare and Context modules> -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 144,
+      "purpose": "Run broad relevant regression over reused system boundaries.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r1-001-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Validate Project Memory and Implementation Run contracts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r1-001-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -o addopts='' backend/services/tests/test_quantmind2_context_bootstrap.py backend/services/tests/test_project_knowledge_manifest_v2.py backend/services/tests/test_project_knowledge_ledger_indexer.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Verify Context, Manifest v2 and Ledger Planner/Indexer contracts after Project Memory update.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r1-001-ledger-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/run_agent_factor_iteration_v2.py <all nine subcommands>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 9,
+      "purpose": "Exercise audit, Catalog, build, planning, formal/replay execution, validation and inspection surfaces.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r1-001-cli"
+    }
+  ]
+}

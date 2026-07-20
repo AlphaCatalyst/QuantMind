@@ -1,5 +1,10 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R1-001` is completed with expanded Tushare
+Feature Catalog v2, six bounded Agent rounds, four-Fold evaluation, one
+research-only Candidate, formal Qlib comparison, Store recovery and exact
+replay. This task authorizes no successor.
+
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
 | QM2-P0-001 Context Bootstrap and Implementation Contract | completed_committed | P0 | none | Establish repository context, ADR, report, manifest, handoff, validation | No business code, DB, API | Machine and human bootstrap validates and records itself |

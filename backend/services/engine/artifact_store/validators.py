@@ -28,6 +28,8 @@ ID_FIELDS = (
     "strategy_backtest_result_id", "strategy_research_registry_id",
     "strategy_optimization_study_id", "strategy_optimization_trial_id",
     "strategy_parameter_candidate_lock_id", "strategy_optimization_result_id",
+    "audit_id", "catalog_id", "feature_dataset_id", "round_result_id",
+    "candidate_lock_id",
 )
 
 
@@ -107,6 +109,18 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         from backend.services.engine.strategy_optimization.artifact import validate_strategy_optimization_artifact
         validate_strategy_optimization_artifact(source, artifact_id, kind.value)
         return "strategy_optimization.validate_strategy_optimization_artifact"
+    if kind in {
+        ArtifactKind.EXISTING_FACTOR_DEFINITION_AUDIT,
+        ArtifactKind.TUSHARE_FEATURE_CATALOG_V2,
+        ArtifactKind.TUSHARE_FEATURE_DATASET_V2,
+        ArtifactKind.AGENT_FACTOR_ITERATION_V2,
+        ArtifactKind.AGENT_FACTOR_ROUND_RESULT,
+        ArtifactKind.AGENT_FACTOR_CANDIDATE_LOCK,
+        ArtifactKind.AGENT_FACTOR_ITERATION_ASSESSMENT,
+    }:
+        from backend.services.engine.expanded_factor_iteration.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "expanded_factor_iteration.validate_artifact"
     if kind is ArtifactKind.DATASET_SNAPSHOT:
         from backend.services.engine.market_data.feature_snapshot import LegacyFeatureSnapshotService
         LegacyFeatureSnapshotService(source.parents[1]).validate(artifact_id)

@@ -44,6 +44,13 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "strategy_optimization_trial": ("strategy-optimization", "trials"),
         "strategy_parameter_candidate_lock": ("strategy-optimization", "candidates"),
         "strategy_optimization_result": ("strategy-optimization", "results"),
+        "existing_factor_definition_audit": ("expanded-factor-iteration", "existing-audit"),
+        "tushare_feature_catalog_v2": ("expanded-factor-iteration", "feature-catalog"),
+        "tushare_feature_dataset_v2": ("expanded-factor-iteration", "feature-dataset"),
+        "agent_factor_iteration_v2": ("expanded-factor-iteration", "experiments"),
+        "agent_factor_round_result": ("expanded-factor-iteration", "rounds"),
+        "agent_factor_candidate_lock": ("expanded-factor-iteration", "candidates"),
+        "agent_factor_iteration_assessment": ("expanded-factor-iteration", "assessments"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

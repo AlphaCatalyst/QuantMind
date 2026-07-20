@@ -1,5 +1,15 @@
 # Component Catalog
 
+## QM2-R1-001 addition
+
+- `quantmind2.expanded_factor_iteration` — implemented at
+  `backend/services/engine/expanded_factor_iteration`; owns existing-Factor
+  definition recovery, Fixed-100 Feature Catalog v2 computation and quality,
+  structural/equivalence redundancy, bounded external-Agent proposals,
+  four-Fold parameter isolation, fixed formal Qlib evaluation, research-only
+  Candidate locking, immutable Store publication, recovery and exact replay.
+  Current evidence is retrospective and mixed, with no Promotion authority.
+
 ## QM2-P0-017 addition
 
 - `quantmind2.strategy_optimization` — implemented at

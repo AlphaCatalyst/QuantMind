@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T17:06:18Z",
-  "source_commit": "a4ce6560b482e20ebf1357daff37a393ce970b99",
+  "generated_at": "2026-07-20T18:22:57Z",
+  "source_commit": "a574580a61b57c17c0215f69ae350efadbdb37be",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -200,6 +200,20 @@
       "dependencies": ["quantmind2.data_foundation", "quantmind2.security_termination", "quantmind2.research_artifact_store"],
       "architecture_decision_refs": ["ADR-0003", "ADR-0006", "ADR-0007", "ADR-0011"],
       "current_limitations": ["The current Tushare account cannot access issuer announcements or structured merger endpoints, and available responses do not provide complete settlement terms for the two governed events.", "No benchmark revision is publishable until both normalized events are settlement-complete; affected Fixed-100 metrics remain noncanonical."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "name": "Tushare Expanded-feature Agent Factor Iteration v2",
+      "status": "implemented",
+      "responsibility": "Recover existing Factor definitions, materialize a PIT-safe Fixed-100 Feature Catalog v2, run bounded external-Agent structure research and factor-only parameter search through four independent walk-forward Folds, and publish research-only immutable Qlib evidence.",
+      "source_path": "backend/services/engine/expanded_factor_iteration",
+      "target_path": "backend/services/engine/expanded_factor_iteration",
+      "key_symbols": ["build_existing_factor_audit", "compute_feature_candidates", "quality_and_selection", "assess_template", "run_experiment", "replay_experiment", "validate_artifact"],
+      "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl", "quantmind2.factor_optimization", "quantmind2.research_campaign", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Evidence is retrospective adaptive research, not Fresh Validation, Frozen Test, Promotion or production evidence.", "The sole eligible Candidate underperforms CSI300 in both retrospective 2025 and 2026H1 despite positive RankIC, so the formal assessment is mixed.", "Runtime is single-process/local-Store and does not provide API, UI, distributed execution or LightGBM consumption."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     }

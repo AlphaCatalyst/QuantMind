@@ -1,5 +1,33 @@
 # Current Implementation State
 
+## Expanded-feature Agent factor iteration v2 (QM2-R1-001)
+
+- Complete definitions of the three existing Factors were recovered before
+  any new Agent call. Feature Catalog v2 selected 24 of 26 PIT-safe daily
+  price/volume features and materialized 180,241 Fixed-100 rows from the
+  immutable Tushare normalized-bars authority without a network or legacy-data
+  read. All selected features pass the frozen quality gates.
+- Six external `openai_codex_cli` / `gpt-5.6-terra` rounds completed with 12
+  admitted Templates, 38 factor-only parameter Trials and 50 formal Qlib
+  calls. Every Template retained four independently parameter-locked
+  2021--2024 evaluation Folds under fixed TopK20/n_drop5/five-session strategy.
+- One Candidate passed: `fi_e2dd6057...d8576f`, combining smoothed
+  `amount_ratio_5` with absolute change in `price_vs_ma_60`. It has 3/4
+  positive RankIC Folds, 4/4 positive CSI300-excess Folds, median/worst RankIC
+  0.001440/-0.004723, median/worst excess 16.88%/9.91%, turnover 35.317 and
+  maximum old-factor correlation 0.276.
+- Candidate Lock `afcl_27fb695b...ba51e` and Experiment
+  `afi2_78fe3138...7fcf` are contract revision 2 and research-only. They
+  supersede immutable preliminary records solely to add readable canonical
+  DSL; no Agent, Optimization or Qlib call was repeated.
+- Retrospective 2025 and 2026H1 CSI300 excess is -10.91 and -20.84 percentage
+  points. The assessment is `mixed`, not Fresh Validation, Promotion or
+  production evidence.
+- Store is healthy with Missing 0 and Unreferenced 0. All 15 original and
+  superseding v2 Artifacts cold-recover; exact replay performs no external
+  calls and creates no objects.
+- Current task: `QM2-R1-001`. No successor is authorized by this task.
+
 ## Strategy Parameter Optimization v1 (QM2-P0-017)
 
 - A strict Strategy Optimization domain searches only TopK `[10,20,30]`,

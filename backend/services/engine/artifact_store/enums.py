@@ -64,6 +64,13 @@ class ArtifactKind(str, Enum):
     STRATEGY_OPTIMIZATION_TRIAL = "strategy_optimization_trial"
     STRATEGY_PARAMETER_CANDIDATE_LOCK = "strategy_parameter_candidate_lock"
     STRATEGY_OPTIMIZATION_RESULT = "strategy_optimization_result"
+    EXISTING_FACTOR_DEFINITION_AUDIT = "existing_factor_definition_audit"
+    TUSHARE_FEATURE_CATALOG_V2 = "tushare_feature_catalog_v2"
+    TUSHARE_FEATURE_DATASET_V2 = "tushare_feature_dataset_v2"
+    AGENT_FACTOR_ITERATION_V2 = "agent_factor_iteration_v2"
+    AGENT_FACTOR_ROUND_RESULT = "agent_factor_round_result"
+    AGENT_FACTOR_CANDIDATE_LOCK = "agent_factor_candidate_lock"
+    AGENT_FACTOR_ITERATION_ASSESSMENT = "agent_factor_iteration_assessment"
 
 
 class IntegrityStatus(str, Enum):
