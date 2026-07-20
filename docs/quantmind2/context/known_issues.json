@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-19T18:20:00Z",
-  "source_commit": "d8e89d8dac2d5cf1cb43ad2334d89ec10f77dbfa",
+  "generated_at": "2026-07-20T13:58:19Z",
+  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -46,6 +46,7 @@
     {"issue_id": "QM2-KI-037", "severity": "medium", "status": "open", "summary": "Artifact Store and Runtime v1 are single-host local-filesystem only; NFS, cloud object storage, distributed locking/cache and deletion GC are unsupported."},
     {"issue_id": "QM2-KI-038", "severity": "medium", "status": "resolved", "summary": "QM2-P0-010 omitted only its own Manifest from both integrity Git inventories. The original Run remains immutable, inconsistent and non-indexable; QM2-P0-010F records the exact 42 changed and 28 added path evidence plus a corrects relationship without changing Store behavior or artifacts."},
     {"issue_id": "QM2-KI-039", "severity": "medium", "status": "open", "summary": "Tushare authority is locked through 2026-06-23; incremental collection, late-data revision policy and scheduled publication are not implemented."},
-    {"issue_id": "QM2-KI-040", "severity": "high", "status": "resolved", "summary": "QM2-P0-015F proves the two missing 2026H1 members were already delisted and adds an explicit lifecycle-aware Qlib capacity contract; all four historical strategies complete without replacement or fill."}
+    {"issue_id": "QM2-KI-040", "severity": "high", "status": "resolved", "summary": "QM2-P0-015F proves the two missing 2026H1 members were already delisted and adds an explicit lifecycle-aware Qlib capacity contract; all four historical strategies complete without replacement or fill."},
+    {"issue_id": "QM2-KI-041", "severity": "high", "status": "open", "summary": "The governed Tushare Artifact graph has no cash, conversion, merger-exchange or write-off settlement evidence for the two 2025 terminations. Strategy results are unaffected, but the 2025 and full-period Fixed-100 benchmark and related excess metrics remain noncanonical pending a formal Corporate Action Provider."}
   ]
 }

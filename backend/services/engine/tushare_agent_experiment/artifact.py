@@ -29,6 +29,10 @@ PREFIXES = {
         "historical_experiment_lifecycle_followup_id",
         "thf_",
     ),
+    "historical_backtest_termination_followup": (
+        "termination_followup_id",
+        "htf_",
+    ),
 }
 
 
@@ -102,6 +106,38 @@ def validate_experiment_artifact(
             or any(row.get("status") != "completed" for row in backtest.get("strategies", {}).values())
         ):
             raise ValueError("lifecycle follow-up governance evidence is invalid")
+    if kind == "historical_backtest_termination_followup":
+        required = {
+            "policy.json", "symbol_events.json", "strategy_exposure.json",
+            "benchmark_exposure.json", "position_timeline.parquet",
+            "impact_summary.json", "canonicality.json",
+        }
+        if set(hashes) != required:
+            raise ValueError("termination follow-up required file inventory mismatch")
+        policy = json.loads((root / "policy.json").read_text(encoding="utf-8"))
+        events = json.loads((root / "symbol_events.json").read_text(encoding="utf-8"))
+        impact = json.loads((root / "impact_summary.json").read_text(encoding="utf-8"))
+        canonicality = json.loads((root / "canonicality.json").read_text(encoding="utf-8"))
+        forbidden_rules = (
+            "stale_valuation_rule", "implicit_last_price_sale_rule",
+            "unsupported_zero_return_rule", "implicit_cash_rule",
+            "implicit_conversion_rule",
+        )
+        if (
+            policy.get("schema_version") != "security-termination-policy-v1"
+            or any(policy.get(name) != "forbidden" for name in forbidden_rules)
+            or policy.get("unresolved_code") != "SECURITY_TERMINATION_SETTLEMENT_UNRESOLVED"
+            or not isinstance(events.get("events"), list)
+            or not events["events"]
+            or any(not row.get("source_artifact") or len(row.get("evidence_hash", "")) != 64
+                   for row in events["events"])
+            or impact.get("promotion_writes") != 0
+            or impact.get("agent_calls") != 0
+            or impact.get("optimization_trials") != 0
+            or canonicality.get("2025", {}).get("fixed_100_benchmark_return") != "noncanonical"
+            or canonicality.get("2025", {}).get("strategy_fixed_100_excess") != "noncanonical"
+        ):
+            raise ValueError("termination follow-up governance evidence is invalid")
     return {
         "status": "valid",
         "artifact_kind": kind,

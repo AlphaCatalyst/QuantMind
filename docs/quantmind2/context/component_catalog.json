@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T01:10:00Z",
-  "source_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb",
+  "generated_at": "2026-07-20T13:58:19Z",
+  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -135,6 +135,11 @@
       "component_id": "quantmind2.fresh_validation", "name": "Fresh Validation", "status": "partial", "responsibility": "Lock admitted candidate lineage before future data, track exposure and source watermarks, accrue immutable post-lock data, and perform one fixed-window one-time evaluation after maturity.",
       "source_path": "backend/services/engine/fresh_validation", "target_path": "backend/services/engine/fresh_validation", "key_symbols": ["build_candidate_lock", "build_exposure_ledger", "build_protocol", "build_watermark", "build_accrual_snapshot", "evaluate_fresh_validation"], "dependencies": ["quantmind2.factor_dsl", "quantmind2.factor_validation", "quantmind2.factor_registry", "quantmind2.data_foundation"], "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007"],
       "current_limitations": ["Real source ends before the 2026-07-17 lock, so eligible count is zero and no real Fresh result exists.", "Control artifacts are durable in Git; future large accrual/result artifacts still need persistent storage."], "last_verified_commit": null, "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.security_termination", "name": "Security Termination Policy and Audit", "status": "implemented", "responsibility": "Represent evidence-backed security termination and settlement events, classify formal Qlib exposure, and gate canonical strategy and benchmark conclusions without inferred settlement.",
+      "source_path": "backend/services/engine/security_termination", "target_path": "backend/services/engine/security_termination", "key_symbols": ["SecurityTerminationEvent", "SecurityTerminationPolicyV1", "run_termination_audit"], "dependencies": ["quantmind.qlib_backtest", "quantmind2.data_foundation", "quantmind2.research_artifact_store"], "architecture_decision_refs": ["ADR-0003", "ADR-0006", "ADR-0007", "ADR-0011"],
+      "current_limitations": ["The governed Tushare graph has no cash, conversion, merger-exchange or write-off settlement evidence for the audited 2025 terminations, so affected Fixed-100 benchmark metrics remain noncanonical.", "The existing TopkDropout path exposes executed orders and positions but not formal daily target weights; the audit records target weights as unavailable instead of reconstructing them by assumption."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.experiment_manager", "name": "Experiment Manager", "status": "planned", "responsibility": "Bind Agent, trials, validation, model, signal, backtest, artifacts, data, code, environment, and seed lineage.",

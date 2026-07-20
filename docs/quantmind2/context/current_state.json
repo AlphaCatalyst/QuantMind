@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T04:50:04Z",
-  "source_commit": "0b77ef01166d27d7e30b9aa95b97c2bae311df78",
+  "generated_at": "2026-07-20T13:58:19Z",
+  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-P0-015F",
-  "latest_implementation_run": "QM2-P0-015F-20260720T045004Z-0b77ef0",
+  "current_task": "QM2-P0-015G",
+  "latest_implementation_run": "QM2-P0-015G-20260720T135819Z-20fccfe",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -22,6 +22,7 @@
       "quantmind.qlib_backtest",
       "quantmind.risk",
       "quantmind2.data_foundation",
+      "quantmind2.security_termination",
       "quantmind2.research_artifact_store",
       "quantmind2.artifact_runtime"
     ],

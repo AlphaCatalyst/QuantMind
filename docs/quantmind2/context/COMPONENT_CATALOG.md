@@ -1,5 +1,20 @@
 # Component Catalog
 
+## `quantmind2.security_termination`
+
+- Status: implemented
+- Responsibility: represent governed termination/settlement evidence, classify
+  formal Qlib exposure, and gate canonical strategy and benchmark conclusions
+- Source/target: `backend/services/engine/security_termination/`
+- Key symbols: `SecurityTerminationEvent`, `SecurityTerminationPolicyV1`,
+  `run_termination_audit`
+- Dependencies: formal Qlib, Tushare authority and Artifact Store
+- Limitations: no governed corporate-action settlement evidence exists for the
+  audited 2025 benchmark positions; TopkDropout does not expose formal daily
+  target weights
+- Evidence: four 2025 Qlib parity reruns, immutable Store audit, cold recovery
+  and exact replay in QM2-P0-015G
+
 ## `quantmind2.research_artifact_store`
 
 - Status: implemented
@@ -51,6 +66,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.research_campaign` | partial | Closed Goal/Decision, generated parameter-contract summary, structured repair, sanitized memory, bounded state machine, novelty, real Optimization/Development/Registry loop and CLI exist; QM2-P0-012 remains partial while QM2-P0-012F completed one real Store-backed external Campaign |
 | `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies 79 formal artifacts in current Inventory |
 | `quantmind2.artifact_runtime` | implemented | Store-required resolution/publication, runtime counters, Campaign graph recovery and exact replay operate from an empty cache |
+| `quantmind2.security_termination` | implemented | Generic evidence-gated policy and formal 2025 Qlib/Fixed-100 termination audit; unresolved benchmark settlement remains noncanonical |
 | `quantmind2.research_skill` | planned | ADR-0009 and ResearchDecision contract only; no Skill runtime |
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |

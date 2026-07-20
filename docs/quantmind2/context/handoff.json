@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T04:50:04Z",
-  "source_commit": "0b77ef01166d27d7e30b9aa95b97c2bae311df78",
+  "generated_at": "2026-07-20T13:58:19Z",
+  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "0b77ef01166d27d7e30b9aa95b97c2bae311df78",
+  "base_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
   "workspace_dirty": false,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-P0-015F",
-  "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-P0-015F-20260720T045004Z-0b77ef0",
+  "current_task": "QM2-P0-015G",
+  "completion_status": "partial_uncommitted",
+  "latest_implementation_run": "QM2-P0-015G-20260720T135819Z-20fccfe",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
@@ -39,7 +39,7 @@
     "Concrete actor identity and permission policy for ResearchDecision.",
     "Persistent idempotency-key and semantic-duplicate policy.",
     "SQLAlchemy 2.0.25 and asyncpg 0.29 pinned-runtime parity; isolated PostgreSQL 15 Repository behavior was verified with an existing SQLAlchemy 2.0.51 and asyncpg 0.31.0 environment."
-    ,"Formal policy for forced liquidation and valuation when a held member delists during a backtest interval; P0-015F audits existing Qlib behavior but does not invent a forced-exit rule."
+    ,"Governed cash, conversion, merger-exchange or write-off evidence for the 2025 terminations; without it, Fixed-100 benchmark settlement is unresolved."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",

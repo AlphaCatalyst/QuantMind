@@ -180,6 +180,7 @@ class FormalQlibRunner:
         rebalance_days: int = 5,
         cost_multiplier: float = 1.0,
         lifecycle_policy: dict | None = None,
+        execution_audit_symbols: tuple[str, ...] = (),
     ) -> dict:
         from backend.services.engine.historical_agent_experiment.qlib_runner import run_formal_backtest_sync
 
@@ -192,15 +193,30 @@ class FormalQlibRunner:
             "rebalance_days": rebalance_days,
             "cost_multiplier": cost_multiplier,
             "lifecycle_policy": lifecycle_policy,
+            "execution_audit_symbols": sorted(execution_audit_symbols),
         })
         cached = self.cache_root / f"{key}.json"
         if cached.exists():
             return json.loads(cached.read_text(encoding="utf-8"))
-        collector: list[dict[str, float]] = []
+        collector: list[dict] = []
         original = self.cn_exchange.CnExchange.deal_order
         def audited(exchange, *args, **kwargs):
             result = original(exchange, *args, **kwargs)
-            collector.append({"value": float(result[0]), "cost": float(result[1])})
+            order = args[0] if args else kwargs.get("order")
+            record = {"value": float(result[0]), "cost": float(result[1])}
+            if order is not None and str(getattr(order, "stock_id", "")) in execution_audit_symbols:
+                direction = int(getattr(order, "direction", -1))
+                record.update({
+                    "symbol": str(order.stock_id),
+                    "action": "buy" if direction == 1 else "sell" if direction == 0 else "unknown",
+                    "order_amount": float(getattr(order, "amount", 0.0) or 0.0),
+                    "dealt_amount": float(getattr(order, "deal_amount", 0.0) or 0.0),
+                    "trade_price": None if result[2] is None else float(result[2]),
+                    "start_time": str(getattr(order, "start_time", "")),
+                    "end_time": str(getattr(order, "end_time", "")),
+                    "factor": None if getattr(order, "factor", None) is None else float(order.factor),
+                })
+            collector.append(record)
             return result
         self.cn_exchange.CnExchange.deal_order = audited
         try:
@@ -263,6 +279,23 @@ class FormalQlibRunner:
             "net_excess_fixed_100": None if net_return is None else float(net_return) - fixed_return,
             "formal_chain": ["QlibBacktestService", "RedisRecordingStrategy", "SimulatorExecutor", "CnExchange"],
         })
+        if execution_audit_symbols:
+            raw = [row for row in collector if "symbol" in row]
+            unique = {}
+            for row in raw:
+                key = (
+                    row["symbol"], row["action"], row["start_time"], row["end_time"],
+                    round(row["order_amount"], 12), round(row["dealt_amount"], 12),
+                    round(row["value"], 8), round(row["cost"], 8),
+                )
+                unique.setdefault(key, row)
+            result["execution_audit"] = {
+                "requested_symbols": sorted(execution_audit_symbols),
+                "raw_order_count": len(raw),
+                "deduplicated_order_count": len(unique),
+                "orders": list(unique.values()),
+                "target_weight_status": "not_emitted_by_topk_dropout",
+            }
         if not equity.empty:
             equity["date"] = pd.to_datetime(equity["date"])
             equity["return"] = equity["value"].pct_change()

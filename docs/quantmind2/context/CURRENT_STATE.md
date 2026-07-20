@@ -1,5 +1,34 @@
 # Current Implementation State
 
+## Security termination audit (QM2-P0-015G)
+
+- `SecurityTerminationPolicyV1` now defines delisting, cash settlement, stock
+  conversion, merger exchange, write-off and unknown-termination evidence. It
+  forbids implicit last-price sale, stale valuation, zero return, cash or
+  conversion assumptions. A position crossing the last tradable date without
+  governed settlement evidence is `SECURITY_TERMINATION_SETTLEMENT_UNRESOLVED`.
+- Formal 2025 Qlib reruns reconstructed positions and executed orders for the
+  three locked candidates and equal-weight combination. Neither strategy path
+  ever held `600837.SH`. The combination and Candidate 1 held `601989.SH` but
+  fully exited on 2025-07-11 and 2025-04-21, before its 2025-08-12 last market
+  date. Candidates 2 and 3 had no exposure. All strategy absolute and CSI300-
+  relative 2025 metrics preserve exact parity and remain canonical.
+- The daily observable-member Fixed-100 benchmark had unit-notional weights
+  1/100 on `600837.SH` at 2025-02-05 and 1/98 on `601989.SH` at 2025-08-12,
+  then removed each missing member without a governed cash, conversion or
+  write-off event. Its 2025 return, all Fixed-100-relative 2025 metrics and the
+  corresponding full-period metrics are noncanonical. No corrected return or
+  maximum impact was fabricated.
+- Audit `htf_4a0762a5...ba6c3f` is immutable in the Store. It contains policy,
+  symbol events, strategy and benchmark exposure, a position timeline, impact
+  and canonicality. Store is healthy at 46 artifacts / 1,597 blobs; cold
+  recovery and exact replay pass with zero Qlib calls and zero new objects.
+- 2019--2024 and 2026H1 remain unchanged and canonical. No Agent,
+  Optimization, candidate, parameter, universe or Promotion state changed.
+- Current task: `QM2-P0-015G`; result is `partial` because a governed Corporate
+  Action Provider is still required to resolve the historical Fixed-100
+  benchmark settlement. No successor is authorized by this task.
+
 ## Fixed-100 lifecycle follow-up (QM2-P0-015F)
 
 - Fixed membership remains exactly 100. `600837.SH` (海通证券(退), status D,

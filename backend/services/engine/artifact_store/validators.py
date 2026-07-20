@@ -21,6 +21,7 @@ ID_FIELDS = (
     "memory_id",
     "historical_experiment_registry_id",
     "historical_experiment_lifecycle_followup_id",
+    "termination_followup_id",
 )
 
 
@@ -164,6 +165,7 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.TUSHARE_AGENT_ITERATION_ASSESSMENT,
         ArtifactKind.TUSHARE_HISTORICAL_EXPERIMENT_REGISTRY,
         ArtifactKind.TUSHARE_HISTORICAL_EXPERIMENT_LIFECYCLE_FOLLOWUP,
+        ArtifactKind.HISTORICAL_BACKTEST_TERMINATION_FOLLOWUP,
     }:
         from backend.services.engine.tushare_agent_experiment.artifact import (
             validate_experiment_artifact,

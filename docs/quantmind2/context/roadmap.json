@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-19T18:20:00Z",
-  "source_commit": "d8e89d8dac2d5cf1cb43ad2334d89ec10f77dbfa",
+  "generated_at": "2026-07-20T13:58:19Z",
+  "source_commit": "20fccfe82c7b258a7f52cff54ff597e650565851",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -46,6 +46,7 @@
     {"task_id": "QM2-P0-012", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-011"], "objective": "Run an Artifact-backed External Agent Campaign production dry run.", "explicit_non_goals": ["No Fresh evaluation before sixty mature dates, automatic promotion, model, signal or backtest."], "acceptance_summary": "A bounded external Campaign uses the Store-backed production runtime and preserves all authority, budget and Frozen Test boundaries."},
     {"task_id": "QM2-P0-014", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-011BF"], "objective": "Replace legacy data authority with a PIT-locked fixed-500 Tushare graph and fixed-100 Qlib view, then purge verified legacy data.", "explicit_non_goals": ["No LightGBM redesign, Agent experiment rerun, live trading or incremental update."], "acceptance_summary": "Real Tushare chain, Store recovery and replay, Qlib consumption, credential scan and 11.37 GB legacy purge pass."},
     {"task_id": "QM2-P0-015", "status": "partial_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-014"], "objective": "Re-run bounded Agent factor research on the new immutable fixed-100 Tushare authority.", "explicit_non_goals": ["No old-metric inheritance, automatic promotion, authority change or Frozen leakage."], "acceptance_summary": "Four as-of rounds, 18 Trials, formal Qlib, Store recovery and replay complete; isolated 2026H1 Qlib is rejected at 98/100 effective symbols without changing the lock or gate."},
-    {"task_id": "QM2-P0-015F", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-015"], "objective": "Formalize fixed-universe lifecycle semantics and recover the unchanged 2026H1 Qlib protocol.", "explicit_non_goals": ["No replacement, fill, Agent, Optimization, candidate, parameter, strategy, Fresh Validation or Promotion change."], "acceptance_summary": "Two pre-period delistings are proven; 2019--2025 parity and four lifecycle-aware 2026H1 Qlib runs pass; immutable follow-up exact-replays from a healthy Store."}
+    {"task_id": "QM2-P0-015F", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-015"], "objective": "Formalize fixed-universe lifecycle semantics and recover the unchanged 2026H1 Qlib protocol.", "explicit_non_goals": ["No replacement, fill, Agent, Optimization, candidate, parameter, strategy, Fresh Validation or Promotion change."], "acceptance_summary": "Two pre-period delistings are proven; 2019--2025 parity and four lifecycle-aware 2026H1 Qlib runs pass; immutable follow-up exact-replays from a healthy Store."},
+    {"task_id": "QM2-P0-015G", "status": "partial_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-015F"], "objective": "Audit formal strategy and benchmark positions around two 2025 terminations and establish an evidence-gated generic settlement contract.", "explicit_non_goals": ["No Agent, Optimization, candidate or universe change, inferred settlement, corrected return or Promotion."], "acceptance_summary": "All strategies exit or have no exposure and preserve parity; Fixed-100 settlement remains unresolved and its affected metrics are noncanonical."}
   ]
 }

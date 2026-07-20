@@ -2,9 +2,10 @@
 
 ## Current authority and next task
 
-- Current task is `QM2-P0-015F`; lifecycle follow-up implementation and
-  historical backtests are complete pending its single commit and post-commit
-  Ledger Planner verification.
+- Current task is `QM2-P0-015G`. The strategy-side termination audit is
+  complete; the task is partial because the governed Tushare graph contains no
+  cash, conversion, merger-exchange or write-off settlement evidence for the
+  Fixed-100 benchmark positions.
 - Active provider is `tushare-pro-v1`; legacy provider
   `quantmind-production-feature-snapshots-v1` is `retired_and_purged` and may
   not be used by formal runtime. Read ADR-0011 and
@@ -14,14 +15,14 @@
 - Canonical research start is empty Genesis Registry
   `trg_0e23d0c7...1d309`. Do not restore old Factor Registry metrics or old
   Research Memory effectiveness labels.
-- Artifact Store Inventory `sai_2e7ce672...02040` is healthy with Missing 0,
-  Unreferenced 0 and legacy Artifact count 0. The purge is irreversible for
+- Artifact Store Inventory `sai_3ce20ede...b7a25` is healthy at 46 artifacts /
+  1,597 blobs with Missing 0, Unreferenced 0 and legacy Artifact count 0. The purge is irreversible for
   the deleted local data; rollback means re-fetching/rebuilding Tushare data or
   restoring old data from an independent backup, not changing the authority
   record silently.
-- No successor is authorized by this task. The fixed-universe precheck now
-  accepts the explicit lifecycle contract while retaining the original gate
-  for ordinary requests.
+- No successor is authorized by this task. A future explicitly authorized
+  Corporate Action Provider is required before Fixed-100 2025 or full-period
+  benchmark-relative metrics can become canonical.
 
 ## Repository state
 
@@ -46,6 +47,20 @@
   used for the task boundary instead.
 
 ## Current position
+
+- Termination audit `htf_4a0762a5...ba6c3f` proves all four strategy paths are
+  flat before both security terminations. `600837.SH` was never held;
+  `601989.SH` was exited by the combination on 2025-07-11 and Candidate 1 on
+  2025-04-21, before its 2025-08-12 last market day. Strategy absolute and
+  CSI300-relative results therefore remain canonical.
+- The Fixed-100 benchmark had 1/100 and 1/98 unit-notional exposure at the two
+  last market dates and then silently re-normalized observable members. Since
+  no governed settlement exists, its 2025/full-period return and all affected
+  strategy excess metrics are noncanonical and forbidden for Agent feedback,
+  factor ranking, parameter choice or Promotion.
+- `SecurityTerminationPolicyV1` is generic and contains no stock-specific
+  rule. It forbids inferred last-price sale, zero return, stale valuation,
+  cash or conversion. The immutable audit exact-replays with zero Qlib calls.
 
 - `QM2-P0-015F` proves that `600837.SH` and `601989.SH` are status-D members
   delisted before 2026H1. The fixed 100-member identity and Qlib instrument

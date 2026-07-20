@@ -50,6 +50,7 @@ class ArtifactKind(str, Enum):
     TUSHARE_AGENT_ITERATION_ASSESSMENT = "tushare_agent_iteration_assessment"
     TUSHARE_HISTORICAL_EXPERIMENT_REGISTRY = "tushare_historical_experiment_registry"
     TUSHARE_HISTORICAL_EXPERIMENT_LIFECYCLE_FOLLOWUP = "tushare_historical_experiment_lifecycle_followup"
+    HISTORICAL_BACKTEST_TERMINATION_FOLLOWUP = "historical_backtest_termination_followup"
 
 
 class IntegrityStatus(str, Enum):
