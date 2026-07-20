@@ -15,6 +15,6 @@
     "strategy_layer": {"type": "object", "additionalProperties": false,
       "required": ["unified_signal_id", "strategy_registry_id", "backtest_completed_count", "approved_count", "active_count", "fixed_100_benchmark_canonicality"],
       "properties": {"unified_signal_id": {"type": "string", "pattern": "^usa_[0-9a-f]{64}$"}, "strategy_registry_id": {"type": "string", "pattern": "^srr_[0-9a-f]{64}$"}, "backtest_completed_count": {"type": "integer", "minimum": 0}, "approved_count": {"const": 0}, "active_count": {"const": 0}, "fixed_100_benchmark_canonicality": {"const": "noncanonical"}}},
-    "next_task_candidates": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-002A2b", "QM2-P0-002A3", "QM2-P0-002B", "QM2-P0-003", "QM2-P0-003F", "QM2-P0-004", "QM2-P0-005", "QM2-P0-006", "QM2-P0-007", "QM2-P0-008", "QM2-P0-008F", "QM2-P0-009", "QM2-P0-010", "QM2-P0-011", "QM2-P0-011B", "QM2-P0-012", "QM2-P0-012F", "QM2-P0-014", "QM2-P0-015", "QM2-P0-017"]}}
+    "next_task_candidates": {"type": "array", "items": {"enum": ["QM2-P0-002", "QM2-P0-002A1", "QM2-P0-002A2b", "QM2-P0-002A3", "QM2-P0-002B", "QM2-P0-003", "QM2-P0-003F", "QM2-P0-004", "QM2-P0-005", "QM2-P0-006", "QM2-P0-007", "QM2-P0-008", "QM2-P0-008F", "QM2-P0-009", "QM2-P0-010", "QM2-P0-011", "QM2-P0-011B", "QM2-P0-012", "QM2-P0-012F", "QM2-P0-014", "QM2-P0-015", "QM2-P0-017", "QM2-P0-018"]}}
   }
 }

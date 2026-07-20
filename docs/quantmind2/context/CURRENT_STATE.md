@@ -1,5 +1,28 @@
 # Current Implementation State
 
+## Strategy Parameter Optimization v1 (QM2-P0-017)
+
+- A strict Strategy Optimization domain searches only TopK `[10,20,30]`,
+  n_drop `[0,5,10]` and Qlib trade-date rebalance intervals `[1,5,10]`.
+  Invalid `topk=10,n_drop=10` combinations are rejected before Trial creation;
+  four locked Unified Signals produced exactly 96 deterministic Trials.
+- All 96 Trials completed through `QlibBacktestService →
+  RedisRecordingStrategy → SimulatorExecutor → CnExchange`. Selection used
+  only six annual 2019--2024 CSI300-relative results. Four immutable research
+  Candidate Locks were created before 2025 and 2026H1 reporting.
+- Candidate parameters are respectively `20/0/5`, `20/5/5`, `30/5/10` and
+  `20/5/10` in Study signal order. All four beat CSI300 cumulatively during
+  contaminated 2019--2024 research, but all four underperformed CSI300 in
+  both retrospective 2025 and 2026H1. Every candidate is parameter-unstable.
+- Study `sos_e504d537...10687`, Result `sor_2c7803f0...b8628` and Registry
+  `srr_58f3e455...023d13` remain research-only. Approved/active counts are
+  zero; no Agent, Factor Optimization or Promotion call occurred.
+- Store Inventory `sai_a0dbf127...cf5f5` is healthy at 270 artifacts / 2,468
+  blobs, Missing 0 and Unreferenced 0. Cold recovery and exact replay pass
+  with Qlib calls 0 and no new Store objects.
+- Current task: `QM2-P0-017`. The only next task is `QM2-P0-018 — Strategy
+  Risk and Validation Gate v1`.
+
 ## Unified Signal and Strategy Layer v1 (QM2-P0-016)
 
 - Unified Signal v1 now separates locked Factor inputs, transformation,
@@ -24,8 +47,8 @@
 - Store Inventory is healthy with Missing 0 and Unreferenced 0. Final cold
   recovery verifies 13 current artifacts; exact replay creates zero artifacts,
   zero blobs and makes zero Qlib, Agent, Optimization or Promotion calls.
-- Current task: `QM2-P0-016`. Next task is only `QM2-P0-017 — Strategy
-  Parameter Optimization v1`.
+- Historical task: `QM2-P0-016`; its fixed baseline artifacts remain immutable.
+  Its then-next task `QM2-P0-017` is now completed as recorded above.
 
 ## Tushare corporate-action evidence audit (QM2-P0-015H)
 

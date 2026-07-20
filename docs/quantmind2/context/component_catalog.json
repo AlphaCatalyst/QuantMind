@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T15:23:46Z",
-  "source_commit": "33703db03949f9b0fa676faa6bb08bdd3901461d",
+  "generated_at": "2026-07-20T17:06:18Z",
+  "source_commit": "a4ce6560b482e20ebf1357daff37a393ce970b99",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -154,7 +154,12 @@
     {
       "component_id": "quantmind2.strategy_layer", "name": "Strategy Layer", "status": "implemented", "responsibility": "Bind Unified Signal, fixed TopK Dropout strategy, deterministic targets, formal Qlib evidence, canonicality and research-only lifecycle.",
       "source_path": "backend/services/engine/strategy_layer", "target_path": "backend/services/engine/strategy_layer", "key_symbols": ["StrategySpec", "parse_strategy_spec", "build_execution_plan", "build_portfolio_target", "publish_backtest_result", "publish_strategy_registry"], "dependencies": ["quantmind2.signal_service", "quantmind.qlib_backtest", "quantmind2.security_termination", "quantmind2.research_artifact_store"], "architecture_decision_refs": ["ADR-0004", "ADR-0006", "ADR-0007", "ADR-0008"],
-      "current_limitations": ["No Strategy Parameter Optimization, LightGBM, risk model, Promotion, API or UI.", "Existing formal Qlib source results expose positions but not pre-trade target weights, so target equality is not directly verifiable."], "last_verified_commit": null, "evidence_level": "code_confirmed"
+      "current_limitations": ["No LightGBM integration, risk model, Strategy Validation, Promotion, API or UI.", "Existing baseline Qlib source results expose positions but not pre-trade target weights, so baseline target equality is not directly verifiable."], "last_verified_commit": null, "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.strategy_optimization", "name": "Strategy Parameter Optimization", "status": "implemented", "responsibility": "Search only TopK, n_drop and trade-date rebalance interval through deterministic Studies and formal Qlib Trials, then lock research-only candidates using annual CSI300 evidence.",
+      "source_path": "backend/services/engine/strategy_optimization", "target_path": "backend/services/engine/strategy_optimization", "key_symbols": ["StrategyOptimizationSpec", "PlannedStrategyTrial", "parse_optimization_spec", "plan_trials", "execute_study", "rank_trials", "parameter_sensitivity"], "dependencies": ["quantmind2.signal_service", "quantmind2.strategy_layer", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"], "architecture_decision_refs": ["ADR-0004", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["All current evidence is retrospective contaminated research and unusable for Promotion or production.", "All four selected candidates are parameter-unstable and underperform CSI300 in both retrospective 2025 and 2026H1 reports.", "No Strategy Risk/Validation Gate, API, UI or distributed execution exists."], "last_verified_commit": null, "evidence_level": "code_confirmed"
     },
     {
       "component_id": "quantmind2.research_artifact_store",

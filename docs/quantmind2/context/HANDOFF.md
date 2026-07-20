@@ -1,5 +1,28 @@
 # Codex Handoff
 
+## Strategy optimization completion and next task
+
+- `QM2-P0-017` completed 96/96 formal Qlib parameter Trials over four locked
+  Unified Signals. Read `docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_V1.md`
+  before further strategy work.
+- Current Study is `sos_e504d537...10687`, Result is
+  `sor_2c7803f0...b8628`, Strategy Registry is `srr_58f3e455...023d13`, and
+  the four Candidate Locks are `spcl_1512373e...37531`,
+  `spcl_099b055b...10fbc`, `spcl_d4760d57...7abe0` and
+  `spcl_9228c11b...85c4e`.
+- The Locks select TopK/n_drop/rebalance values `20/0/5`, `20/5/5`,
+  `30/5/10` and `20/5/10`. They are retrospective contaminated research
+  candidates, not validated, approved, active or production-ready.
+- 2025 and 2026H1 were evaluated only after locking and were never used for
+  selection. Every candidate underperformed CSI300 in both periods and every
+  candidate is parameter-unstable. Do not use these results for Promotion.
+- Store Inventory `sai_a0dbf127...cf5f5` is healthy at 270 artifacts / 2,468
+  blobs with zero missing/unreferenced. Exact replay makes zero Qlib, Agent or
+  Factor Optimization calls.
+- The only next task is `QM2-P0-018 — Strategy Risk and Validation Gate v1`.
+  It may introduce risk constraints and a Strategy Validation boundary only
+  under a new explicit task; it must not auto-approve or activate a strategy.
+
 ## Current authority and next task
 
 - `QM2-P0-016` implements Unified Signal and Strategy Layer v1. Read
@@ -11,10 +34,9 @@
 - Absolute and CSI300-relative results are canonical. Fixed-100 affected
   metrics remain noncanonical. Do not use them for ranking, optimization or
   Promotion.
-- Next task is only `QM2-P0-017 — Strategy Parameter Optimization v1`.
-  It may search TopK, n_drop and rebalance frequency only after explicit task
-  authorization; it must not optimize Factor structure, Factor parameters,
-  combination weights or transaction costs.
+- Historical successor `QM2-P0-017` is now completed as recorded above. Its
+  immutable P0-016 baseline remains the TopK20/n_drop5/five-session comparison
+  point and was not rewritten.
 
 - Current task is `QM2-P0-015H`; it is blocked because the live Tushare account
   cannot supply issuer announcements or structured cash/conversion/merger

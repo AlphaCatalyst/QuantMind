@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T15:23:46Z",
-  "source_commit": "33703db03949f9b0fa676faa6bb08bdd3901461d",
+  "generated_at": "2026-07-20T17:06:18Z",
+  "source_commit": "a4ce6560b482e20ebf1357daff37a393ce970b99",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -50,6 +50,7 @@
     {"task_id": "QM2-P0-015G", "status": "partial_committed", "priority": "P0", "dependencies": ["QM2-P0-015F"], "objective": "Audit formal strategy and benchmark positions around two 2025 terminations and establish an evidence-gated generic settlement contract.", "explicit_non_goals": ["No Agent, Optimization, candidate or universe change, inferred settlement, corrected return or Promotion."], "acceptance_summary": "All strategies exit or have no exposure and preserve parity; Fixed-100 settlement remains unresolved and its affected metrics are noncanonical."},
     {"task_id": "QM2-P0-015H", "status": "blocked", "priority": "P0", "dependencies": ["QM2-P0-015G"], "objective": "Acquire governed Tushare settlement evidence and revise only the affected Fixed-100 benchmark.", "explicit_non_goals": ["No other Provider, inferred settlement, strategy rerun, candidate change or Promotion."], "acceptance_summary": "Provider, Raw/Event/Contract artifacts and replay exist, but issuer announcements and structured settlement fields are unavailable; no revision is published."},
     {"task_id": "QM2-P0-016", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-015F", "QM2-P0-015G"], "objective": "Implement Unified Signal and Strategy Layer v1 over immutable Tushare research evidence.", "explicit_non_goals": ["No Agent, Factor or Strategy optimization, model, Promotion or simplified backtester."], "acceptance_summary": "Four signals, targets and formal-Qlib-lineaged results plus a research-only Registry pass exact parity, cold recovery and replay."},
-    {"task_id": "QM2-P0-017", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-016"], "objective": "Search TopK, n_drop and rebalance frequency under a future fixed evidence protocol.", "explicit_non_goals": ["No Factor structure or parameter, combination weight, transaction cost or model optimization."], "acceptance_summary": "Not implemented."}
+    {"task_id": "QM2-P0-017", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-P0-016"], "objective": "Search TopK, n_drop and rebalance frequency under an explicit contaminated-research protocol.", "explicit_non_goals": ["No Factor structure or parameter, combination weight, transaction cost or model optimization."], "acceptance_summary": "Ninety-six formal Qlib Trials, four research-only Candidate Locks, annual ordering, later-period reports, recovery and exact replay pass."},
+    {"task_id": "QM2-P0-018", "status": "planned", "priority": "P0", "dependencies": ["QM2-P0-017"], "objective": "Add a Strategy Risk and Validation Gate v1.", "explicit_non_goals": ["No automatic approval, activation, Promotion or Factor/Signal change."], "acceptance_summary": "Not implemented."}
   ]
 }

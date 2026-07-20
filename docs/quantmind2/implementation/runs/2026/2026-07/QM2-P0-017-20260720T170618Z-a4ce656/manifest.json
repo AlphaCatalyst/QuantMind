@@ -1,0 +1,652 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-017-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "ec8701d967641ea213d137e58e7cf30c4c2c7f56ae1794d05705e30d512dfd13",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/report.md",
+      "schema_version": null,
+      "size_bytes": 10954
+    },
+    {
+      "artifact_id": "artifact-qm2-017-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sos_e504d537b1a28f87db183fa3bb99cd3dc20601a4df0e59b26b155e933fa10687",
+      "artifact_type": "strategy_optimization_study",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sos_e504d537b1a28f87db183fa3bb99cd3dc20601a4df0e59b26b155e933fa10687",
+      "schema_version": "strategy-optimization-study-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sor_2c7803f0226f6988bc421bf7b02ff8b1e3c7c65912c629b33dffdcee0f4b8628",
+      "artifact_type": "strategy_optimization_result",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sor_2c7803f0226f6988bc421bf7b02ff8b1e3c7c65912c629b33dffdcee0f4b8628",
+      "schema_version": "strategy-optimization-result-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "srr_58f3e4551f89e0dbc7cb80a5c2d59ad257746737e04b41fbd6f4c123e4023d13",
+      "artifact_type": "strategy_research_registry",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:srr_58f3e4551f89e0dbc7cb80a5c2d59ad257746737e04b41fbd6f4c123e4023d13",
+      "schema_version": "strategy-research-registry-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sai_a0dbf127c51db8bf71e0ab2e3922bdd0f64c4fa5f7d423ab9aca3c484c0cf5f5",
+      "artifact_type": "artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sai_a0dbf127c51db8bf71e0ab2e3922bdd0f64c4fa5f7d423ab9aca3c484c0cf5f5",
+      "schema_version": "artifact-store-inventory-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "2cc5f8a5c9e50224bb4b7d8957c2672b5a6d8cf4de10282586bb007695e038c0",
+      "before_hash": "f63bb4a0ea4dcca03fee2bb14b5c43e2817d91a3e7ac77bac995477a4af3f567",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0da2678dba7d8d821b555f418280b7df2371dcfd93b1ed72218ff96c0e409661",
+      "before_hash": "828bc35dacae165f34050a83cda0b29d15dd6590ea27d793f0bec9f666525e57",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3dd48b727e8e438af56989e612ab814b781e46e0fb02a0a5190e2dd55af4a825",
+      "before_hash": "98ba724746345e5abb2b7a2cacb7b96f505418e074e360518b03d6eae4473c63",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1836f68daa5ff0a572a07f7c3fccdeb7f533344962f202451c0fe01cbb8a9090",
+      "before_hash": "09eeeb4961ebcb033f406c8d27002f51a58f38ce9924f0a8c954cd72539e760c",
+      "change_type": "modified",
+      "path": "backend/services/engine/strategy_layer/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "881b4a97bf88bbed971290e822317c37b9230a458110e51d5b1ca04d7252633a",
+      "before_hash": "def7f6c33a6b1a79259e5b22d578d669bb15f544769b76b218ed2b382480b3b5",
+      "change_type": "modified",
+      "path": "backend/services/engine/strategy_layer/result.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2eb5fb605f05128efdc850483862bc3f9c4941e072e9007421d348b921ad3d31",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9eca965ec4561597f4f86b441660c5e62e91e7a5299c32d1e1c6b9b998fbc3f5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dc4b4d6751f66f203fde873f4d8a197f41cab1b56f46db77d23dae929e1b7168",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "361d386767fd5c75946f18582ba3810eb48ac77c465a787899bcae080e9aff80",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/errors.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "501e9e7e07de6ec958d9d38fdd1a9e0e2555e898c8db30b0ce62546cc2b0d58c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/metrics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b10fd3b9e55c1f3dfefa3abc70af11808e04090ace932aafbc03c12758760e9b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "326ed4d69bd5f42cfc483572d0afdf3279e1f11890ab4955fbe96df323130151",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/ordering.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a125f9299469299cf8c574cd4a5351bdab2880756a74b21b8a3c5d944aa96a7c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/parser.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b25c65b52a683d4816d04f629397afdaaf4584cdddbf6e78559258894673833c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/planner.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ee9b119827f42eaf8b8b759777e5174df7bf9efd1a86e180072957826fb96dd0",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/strategy_optimization/schema.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f51dafca1a6b0a8f931e9b023950746974223137c50ce9d75e25d4e5a67df562",
+      "before_hash": "52af0183c7bc52f05c786d29c2af2069f7e2d217c621e1dfc0489f26f3e21437",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bdea1fea4e536b0d49d8099fc78bddeabff0632f057e3baf487b65390f5681f3",
+      "before_hash": "34efe0e1dcee968d9f5e10634dadf16dbfb2735731082465148dc1373ed41fdb",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_strategy_layer.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bb811523336a531c07b0f9caf17735dd5b611ec0dfd908d0b0fb73c965b0553a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_strategy_optimization.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc39ac7b1ca4e7b372904e02c921e4e2f9883e4f61a21b57eabed977b218fe4b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_strategy_optimization_qlib_real.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5d29d29d1ac950f576a81a0470e1aca263c585fcd4189b895ed6fb199b3b6121",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_strategy_optimization_store.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a68689bac3fda8d014ec1cccfbb94d37d46db90c47653476229e593686b98e97",
+      "before_hash": "81de9bde60d09d66f0be3b1c0422244ae4b05c6615291b8762693db994ebaefc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "389ec0580dc2dbcb322c9c603dcf8e38f9d752287fe90f611f4078d317f04d44",
+      "before_hash": "5fd67fd0671ba52b59883ce01599cb3f0bec0d3f649c3e66cd180eab2eafec35",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "172f17aad23778bf44a4dbfa53de0115c04da94929f750e3d8d29dc581e016ff",
+      "before_hash": "4cbc9341e71cfd35532ebc69b8aa0b50b808f733686532211f5ec35d100214e8",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "373632b25dbe2144f07aed44ab9f680c660f95bd9f5d7469e9a8c9bf8fce9b6d",
+      "before_hash": "dc69eae6fb27e4cdfbc9208d7ca2d0821ee07e4e1667fc6209b69373fe42fab4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4e5b5eb8767b0a23db2f19ec979724b6c4bc14fc05186f4a6ecc5b65a544020b",
+      "before_hash": "ad5a7e382a95b765c30189da3b0b542d409b5ea990ed882330873391af92a3a2",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "baa59913d16e0a40470a2da9cc3fc71a9a97c7d5ada729fd4f1b6a3ee1ca22ab",
+      "before_hash": "7a81a60d5f6ec1fc44a9effe23cc14ecdfc1612420afa69ed4ef49f946b1fb6c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "626f0d63ba6bb12ad718def49bd2183344db3470d0c06639ae81e046e9b322b9",
+      "before_hash": "574f368b2bea7a4af4c77664cf5af6cc43e32a943b3cef5a97ab30928c1c6a3f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d81994bc2fc5a873d26ba8d07b0d5ff8301e3aa1a033203b51759eda029ca61",
+      "before_hash": "1d77ae83c0a20ec63fded268a7aa501af3d2deb5362575c48ba63f09b6ee886c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3dfb29d4264007feba0285eac74be96e22860b6125fe3cdd21bff79dbd44687a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ec8701d967641ea213d137e58e7cf30c4c2c7f56ae1794d05705e30d512dfd13",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6ded5aa431d4b4b6e560429a2e1f9dc43479ac5a7ac308d85844d3117b0a4f27",
+      "before_hash": "f6692533e293f0890318c088cc490a8fa353d68ebf3074a58e01fa16cb74fbb9",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "da1a7ee0d7a241295b59d34db8b97350ce39dea8afaaaec5ec04f88a3e923a9e",
+      "before_hash": "1eb99db537bde7a03e6945a2013b9215978b683f929bdb8c5f1488857a162fb0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2f2d003eb9b3f71400dcc6151b1d33c9a15e6908c4e8299a1d8f019e74ea1696",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/strategy_optimization.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0390bf5eafc6e480c9cee3c2ecfe9c7f4718326063c1c736b3578732dfbf3162",
+      "before_hash": "58516a0d012843e3705c0c110122e5660a3f75bed3a45f8e87ae3bd362046306",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/models.py",
+      "qualified_name": "StrategyOptimizationSpec",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/models.py",
+      "qualified_name": "PlannedStrategyTrial",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/parser.py",
+      "qualified_name": "parse_optimization_spec",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/planner.py",
+      "qualified_name": "plan_trials",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/engine.py",
+      "qualified_name": "execute_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/ordering.py",
+      "qualified_name": "rank_trials",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/metrics.py",
+      "qualified_name": "parameter_sensitivity",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/strategy_optimization/artifact.py",
+      "qualified_name": "validate_strategy_optimization_artifact",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.strategy_optimization",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.signal_service",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "documented"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-017-report",
+        "sha256": "ec8701d967641ea213d137e58e7cf30c4c2c7f56ae1794d05705e30d512dfd13"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/strategy_optimization/__init__.py",
+      "backend/services/engine/strategy_optimization/artifact.py",
+      "backend/services/engine/strategy_optimization/engine.py",
+      "backend/services/engine/strategy_optimization/errors.py",
+      "backend/services/engine/strategy_optimization/metrics.py",
+      "backend/services/engine/strategy_optimization/models.py",
+      "backend/services/engine/strategy_optimization/ordering.py",
+      "backend/services/engine/strategy_optimization/parser.py",
+      "backend/services/engine/strategy_optimization/planner.py",
+      "backend/services/engine/strategy_optimization/schema.py",
+      "backend/services/tests/test_strategy_optimization.py",
+      "backend/services/tests/test_strategy_optimization_qlib_real.py",
+      "backend/services/tests/test_strategy_optimization_store.py",
+      "docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/report.md",
+      "tools/quantmind2/strategy_optimization.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_runtime/cache.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/strategy_layer/artifact.py",
+      "backend/services/engine/strategy_layer/result.py",
+      "backend/services/engine/strategy_optimization/__init__.py",
+      "backend/services/engine/strategy_optimization/artifact.py",
+      "backend/services/engine/strategy_optimization/engine.py",
+      "backend/services/engine/strategy_optimization/errors.py",
+      "backend/services/engine/strategy_optimization/metrics.py",
+      "backend/services/engine/strategy_optimization/models.py",
+      "backend/services/engine/strategy_optimization/ordering.py",
+      "backend/services/engine/strategy_optimization/parser.py",
+      "backend/services/engine/strategy_optimization/planner.py",
+      "backend/services/engine/strategy_optimization/schema.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "backend/services/tests/test_strategy_layer.py",
+      "backend/services/tests/test_strategy_optimization.py",
+      "backend/services/tests/test_strategy_optimization_qlib_real.py",
+      "backend/services/tests/test_strategy_optimization_store.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/strategy_optimization.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "87752a147ad4c043767fcfb8cefac4e610472c8518f993996fc2704609eb123e",
+    "manifest_payload_sha256": "c9baa4cbfc731fdc97a587d87a36709b74948b17b35937ed2ae653acfd64631c",
+    "report_sha256": "ec8701d967641ea213d137e58e7cf30c4c2c7f56ae1794d05705e30d512dfd13",
+    "source_bundle_sha256": "8b85b6401330aae013e912fe45d75cff57767c1109b3364c12ea69c79b80d370"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.strategy_optimization",
+      "description": "The 2019-2024 selection period is retrospectively contaminated and cannot support a predictive claim.",
+      "limitation_id": "limit-qm2-017-contaminated-selection",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.strategy_optimization",
+      "description": "2025 and 2026H1 were previously exposed and are report-only, not independent holdouts.",
+      "limitation_id": "limit-qm2-017-exposed-later-periods",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.strategy_optimization",
+      "description": "All four candidate locks are parameter-unstable and underperform CSI300 in both later report periods.",
+      "limitation_id": "limit-qm2-017-unstable",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.strategy_optimization",
+      "description": "No Strategy Risk and Validation Gate, approval or active strategy exists.",
+      "limitation_id": "limit-qm2-017-no-validation",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-P0-018",
+      "priority": "P0",
+      "reason": "Apply an explicitly separate risk and validation gate to research-only parameter candidate locks without Promotion.",
+      "recommendation_id": "recommend-qm2-018"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-20T17:18:45Z",
+      "reason": "Optimizes the strategy parameters of the four immutable Unified Signals produced by QM2-P0-016 without replacing them.",
+      "relationship_id": "rel-qm2-017-continues-016",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-P0-017-20260720T170618Z-a4ce656",
+      "target_run_id": "QM2-P0-016-20260720T152346Z-33703db"
+    }
+  ],
+  "repository": {
+    "base_commit": "a4ce6560b482e20ebf1357daff37a393ce970b99",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "a4ce6560b482e20ebf1357daff37a393ce970b99",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-20T17:18:45Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "87752a147ad4c043767fcfb8cefac4e610472c8518f993996fc2704609eb123e",
+    "implementation_run_id": "QM2-P0-017-20260720T170618Z-a4ce656",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-P0-017-20260720T170618Z-a4ce656/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "8b85b6401330aae013e912fe45d75cff57767c1109b3364c12ea69c79b80d370",
+    "started_at": "2026-07-20T17:06:18Z",
+    "task_id": "QM2-P0-017",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-20T17:06:18Z",
+    "explicit_non_goals": [
+      "No Agent, Factor, signal transform, signal weight, universe, benchmark, cost, price, lag or risk optimization",
+      "No LightGBM, Promotion, approval, activation, API, database or UI",
+      "No use of 2025 or 2026H1 for candidate selection",
+      "No modification of predecessor Artifacts or Qlib implementation"
+    ],
+    "objective": "Search the frozen TopK, n_drop and trade-date rebalance grid for four immutable Unified Signals using formal Qlib and lock one research-only candidate per signal.",
+    "parent_task_id": "QM2-P0-016",
+    "scope": [
+      "Strict 24-combination parameter grid per signal and 96 deterministic Trials",
+      "Formal Qlib research-period and annual execution with frozen execution semantics",
+      "Deterministic eligibility, ordering, candidate locks, sensitivity and post-lock retrospective reports",
+      "Immutable Artifact Store publication, cold recovery and exact replay",
+      "CLI, contracts, focused tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-P0-017",
+    "title": "Strategy Parameter Optimization v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q -o addopts='' backend/services/tests/test_strategy_optimization.py backend/services/tests/test_strategy_optimization_store.py backend/services/tests/test_strategy_layer.py backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 37,
+      "purpose": "Verify optimization contracts, ordering, Store replay, Strategy Layer lifecycle and Project Memory.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QUANTMIND_RUN_REAL_STRATEGY_OPTIMIZATION_TESTS=1 python -m pytest -q -o addopts='' backend/services/tests/test_strategy_optimization_qlib_real.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Execute the opt-in real Store-backed Qlib optimization graph rather than a skip path.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-real-qlib"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q -o addopts='' <16 relevant Artifact Runtime/Store, Dataset Snapshot, Legacy Provider, Tushare, Unified Signal, Strategy and Context modules>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 131,
+      "purpose": "Run the broad relevant regression set without the obsolete purged-private-tmp historical fixture test.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-relevant"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Validate Project Memory, implementation run references and frozen source boundaries.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q -o addopts='' backend/services/tests/test_project_knowledge_manifest_v2.py backend/services/tests/test_project_knowledge_ledger_indexer.py backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Verify Manifest v2, Ledger Indexer and Context contracts before commit.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-manifest-indexer"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:sor_2c7803f0226f6988bc421bf7b02ff8b1e3c7c65912c629b33dffdcee0f4b8628",
+      "command": "python tools/quantmind2/strategy_optimization.py run --spec /private/tmp/qm2-017-spec.json",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 96,
+      "purpose": "Execute 96 formal Trials and post-lock retrospective reports against immutable inputs.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-real-study"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:sai_a0dbf127c51db8bf71e0ab2e3922bdd0f64c4fa5f7d423ab9aca3c484c0cf5f5",
+      "command": "python tools/quantmind2/strategy_optimization.py replay --study-id sos_e504d537b1a28f87db183fa3bb99cd3dc20601a4df0e59b26b155e933fa10687",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Prove exact Store replay without Qlib, Agent, Factor Optimization, new artifacts or Promotion writes.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-017-replay"
+    }
+  ]
+}

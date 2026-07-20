@@ -979,12 +979,12 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
     if "QM2-P0-012" not in handoff_text or "truthful partial production dry run" not in handoff_text:
         raise ValidationError("human handoff does not record the QM2-P0-012 result")
-    if handoff["current_task"] != "QM2-P0-016":
-        raise ValidationError("machine handoff does not name current QM2-P0-016 task")
+    if handoff["current_task"] != "QM2-P0-017":
+        raise ValidationError("machine handoff does not name current QM2-P0-017 task")
     if handoff["completion_status"] != "completed_uncommitted":
         raise ValidationError("machine handoff does not preserve the completed 016 result")
-    if handoff["next_recommended_tasks"] != ["QM2-P0-017"]:
-        raise ValidationError("machine handoff must recommend only QM2-P0-017")
+    if handoff["next_recommended_tasks"] != ["QM2-P0-018"]:
+        raise ValidationError("machine handoff must recommend only QM2-P0-018")
     for fact in ("2026H1", "3,822", "10,867", "style_idio_vol_20", "Qlib rerun calls are zero"):
         if fact not in handoff_text:
             raise ValidationError(f"human handoff omits signal missingness fact: {fact}")

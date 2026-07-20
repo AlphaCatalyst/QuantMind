@@ -40,6 +40,10 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "portfolio_target": ("portfolio-target",),
         "strategy_backtest_result": ("strategy-results",),
         "strategy_research_registry": ("strategy-registry",),
+        "strategy_optimization_study": ("strategy-optimization", "studies"),
+        "strategy_optimization_trial": ("strategy-optimization", "trials"),
+        "strategy_parameter_candidate_lock": ("strategy-optimization", "candidates"),
+        "strategy_optimization_result": ("strategy-optimization", "results"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

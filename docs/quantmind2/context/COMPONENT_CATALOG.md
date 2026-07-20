@@ -1,5 +1,17 @@
 # Component Catalog
 
+## QM2-P0-017 addition
+
+- `quantmind2.strategy_optimization` — implemented at
+  `backend/services/engine/strategy_optimization`; owns the strict three-field
+  search contract, deterministic Study/Trial identities, formal Qlib annual
+  metrics, eligibility, stable ordering, sensitivity, Candidate Locks and
+  research-only Results.
+- It depends on Unified Signal, existing Qlib, Tushare Fixed-100 lifecycle and
+  the Artifact Store. It does not own Factor/Signal/model/risk optimization or
+  Promotion. All current Locks are retrospective, parameter-unstable and
+  ineligible for production.
+
 ## QM2-P0-016 additions
 
 - `quantmind2.signal_service` — implemented at

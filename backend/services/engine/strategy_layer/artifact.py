@@ -48,11 +48,19 @@ def validate_strategy_domain_artifact(root: Path, expected_id: str, expected_kin
             raise ValueError("portfolio target data contract failed")
     elif expected_kind == "strategy_backtest_result":
         canonicality = json.loads((root / "canonicality.json").read_text())
-        if canonicality.get("usable_for_parameter_optimization") is not False or canonicality.get("usable_for_promotion") is not False:
+        optimization_evidence = canonicality.get("evidence_class") == "retrospective_contaminated_strategy_parameter_diagnostic"
+        optimization_policy_valid = (
+            optimization_evidence
+            and canonicality.get("usable_for_parameter_optimization") is True
+            and canonicality.get("predictive_claim") is False
+            and canonicality.get("eligible_for_production") is False
+        )
+        baseline_policy_valid = canonicality.get("usable_for_parameter_optimization") is False
+        if (not baseline_policy_valid and not optimization_policy_valid) or canonicality.get("usable_for_promotion") is not False:
             raise ValueError("diagnostic strategy result governance failed")
     elif expected_kind == "strategy_research_registry":
         registry = json.loads((root / "registry.json").read_text())
-        allowed = {"strategy_registered", "backtest_completed", "backtest_noncanonical"}
+        allowed = {"strategy_registered", "backtest_completed", "backtest_noncanonical", "parameter_optimization_completed", "parameter_candidate_locked"}
         if any(item.get("status") not in allowed for item in registry.get("entries", [])):
             raise ValueError("strategy registry contains forbidden lifecycle state")
     return {"status": "valid", "artifact_kind": expected_kind, "artifact_id": expected_id, "file_count": len(actual)}

@@ -65,5 +65,7 @@ def test_rejects_noncanonical_benchmark_and_optimization():
 def test_registry_forbids_promotion(tmp_path):
     good = publish_strategy_registry(tmp_path, [{"strategy_spec_id": "sts_x", "status": "backtest_completed"}], ["sbr_x"])
     assert good["strategy_research_registry_id"].startswith("srr_")
+    locked = publish_strategy_registry(tmp_path, [{"strategy_spec_id": "sts_x", "status": "parameter_candidate_locked"}], ["spcl_x"])
+    assert locked["strategy_research_registry_id"].startswith("srr_")
     with pytest.raises(ValueError):
         publish_strategy_registry(tmp_path, [{"strategy_spec_id": "sts_x", "status": "approved"}], ["sbr_x"])

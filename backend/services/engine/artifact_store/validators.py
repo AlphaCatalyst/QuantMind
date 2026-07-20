@@ -26,6 +26,8 @@ ID_FIELDS = (
     "benchmark_revision_id", "benchmark_followup_id",
     "unified_signal_artifact_id", "portfolio_target_artifact_id",
     "strategy_backtest_result_id", "strategy_research_registry_id",
+    "strategy_optimization_study_id", "strategy_optimization_trial_id",
+    "strategy_parameter_candidate_lock_id", "strategy_optimization_result_id",
 )
 
 
@@ -96,6 +98,15 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         from backend.services.engine.strategy_layer.artifact import validate_strategy_domain_artifact
         validate_strategy_domain_artifact(source, artifact_id, kind.value)
         return "strategy_layer.validate_strategy_domain_artifact"
+    if kind in {
+        ArtifactKind.STRATEGY_OPTIMIZATION_STUDY,
+        ArtifactKind.STRATEGY_OPTIMIZATION_TRIAL,
+        ArtifactKind.STRATEGY_PARAMETER_CANDIDATE_LOCK,
+        ArtifactKind.STRATEGY_OPTIMIZATION_RESULT,
+    }:
+        from backend.services.engine.strategy_optimization.artifact import validate_strategy_optimization_artifact
+        validate_strategy_optimization_artifact(source, artifact_id, kind.value)
+        return "strategy_optimization.validate_strategy_optimization_artifact"
     if kind is ArtifactKind.DATASET_SNAPSHOT:
         from backend.services.engine.market_data.feature_snapshot import LegacyFeatureSnapshotService
         LegacyFeatureSnapshotService(source.parents[1]).validate(artifact_id)

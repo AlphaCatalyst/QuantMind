@@ -111,6 +111,9 @@ def publish_strategy_registry(output_root: Path, entries: list[dict[str, Any]], 
     forbidden = {"validation_candidate", "approved", "active", "retired", "invalidated"}
     if any(item.get("status") in forbidden for item in entries):
         raise ValueError("QM2-P0-016 cannot promote strategy lifecycle state")
+    allowed = {"strategy_registered", "backtest_completed", "backtest_noncanonical", "parameter_optimization_completed", "parameter_candidate_locked"}
+    if any(item.get("status") not in allowed for item in entries):
+        raise ValueError("strategy research lifecycle state is unsupported")
     registry = {"schema_version": "strategy-research-registry-v1", "entries": entries,
                 "approved_count": 0, "active_count": 0, "promotion_writes": 0}
     identity = {"registry": registry, "lineage": sorted(lineage), "data_authority": "tushare-pro-v1"}

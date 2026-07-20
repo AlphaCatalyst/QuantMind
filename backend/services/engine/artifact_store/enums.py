@@ -60,6 +60,10 @@ class ArtifactKind(str, Enum):
     PORTFOLIO_TARGET = "portfolio_target"
     STRATEGY_BACKTEST_RESULT = "strategy_backtest_result"
     STRATEGY_RESEARCH_REGISTRY = "strategy_research_registry"
+    STRATEGY_OPTIMIZATION_STUDY = "strategy_optimization_study"
+    STRATEGY_OPTIMIZATION_TRIAL = "strategy_optimization_trial"
+    STRATEGY_PARAMETER_CANDIDATE_LOCK = "strategy_parameter_candidate_lock"
+    STRATEGY_OPTIMIZATION_RESULT = "strategy_optimization_result"
 
 
 class IntegrityStatus(str, Enum):
