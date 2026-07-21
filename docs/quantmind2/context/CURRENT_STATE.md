@@ -1,5 +1,21 @@
 # Current Implementation State
 
+## Expanded-factor Git evidence correction (QM2-R1-001F)
+
+- `QM2-R1-001` completed its business research loop, but its immutable
+  Implementation Manifest omitted its own path from both Git path inventories.
+  The original Run therefore remains historically `partial_committed`.
+- `QM2-R1-001F` records the exact 26 changed paths and 13 added paths from
+  commit `4de8b1e8...` as independent `GitEvidenceCorrectionV1` evidence and
+  links the new Run to the original with `corrects`. The Ledger-supported
+  resolved state is corrected completion; the original Run is not rewritten.
+- Research evidence is unchanged: assessment `mixed`, one
+  `research_registered` factor, negative 2025 and 2026H1 continuation, and
+  zero Promotion candidates. Agent, Factor Optimization, Qlib, Tushare,
+  network and Promotion calls in this correction task are all zero.
+- Current task: `QM2-R1-001F`. The only next task is
+  `QM2-R1-002 — PIT Fundamental and Regime-aware Factor Iteration v1`.
+
 ## Expanded-feature Agent factor iteration v2 (QM2-R1-001)
 
 - Complete definitions of the three existing Factors were recovered before

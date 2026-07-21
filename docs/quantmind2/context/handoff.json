@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T18:22:57Z",
-  "source_commit": "a574580a61b57c17c0215f69ae350efadbdb37be",
+  "generated_at": "2026-07-21T04:41:55Z",
+  "source_commit": "4de8b1e8e1f8562c0ef0a4a8d692df2fc7f3cfab",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "a574580a61b57c17c0215f69ae350efadbdb37be",
+  "base_commit": "4de8b1e8e1f8562c0ef0a4a8d692df2fc7f3cfab",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,10 +24,12 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R1-001",
+  "current_task": "QM2-R1-001F",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R1-001-20260720T182257Z-a574580",
-  "next_recommended_tasks": [],
+  "latest_implementation_run": "QM2-R1-001F-20260721T044155Z-4de8b1e",
+  "next_recommended_tasks": [
+    "QM2-R1-002"
+  ],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",

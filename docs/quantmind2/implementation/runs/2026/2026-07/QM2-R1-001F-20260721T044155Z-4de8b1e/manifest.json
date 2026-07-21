@@ -1,0 +1,322 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-r1-001f-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "d7003039f12978b3abf633b34de2f1721f33f4f28cee45f92b55d6ff711334ce",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 6356
+    },
+    {
+      "artifact_id": "artifact-r1-001f-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-r1-001f-correction",
+      "artifact_type": "implementation_git_inventory_correction",
+      "content_hash": "de4b64b6b2207da1ba7530d49fb78066c4d50935dc50e10573fbe87c47f04f30",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/corrections/QM2-R1-001-git-evidence-correction-v1.json",
+      "schema_version": "1.0.0",
+      "size_bytes": 11281
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "f43b343149fb95726eef1364f71761c1d5edca7ab33a9109d8b379d62f9af018",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_expanded_factor_iteration_git_evidence_correction.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0b39617beb0ddf94973751e0fe419dc55d9c06ebe3143452cba9e817a1395467",
+      "before_hash": "cd8dc4e4d501e24b3c573d8b1e4cf63415dae04c87f459f6df9864d1134afcb6",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d46ec4603516654c3d99bd23cb7f83284ea7264a433c38db30dc97622517ca7b",
+      "before_hash": "a508c430ae9f469229e629ec7ce4c1ce98d010212725d8b6a342be3ee5145be4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "04c9c5fca7eb2d1076c60a0b51748671998d9e699fc56635be15315b442845be",
+      "before_hash": "262377e9885de62fd0e497ae940ec52b83dbaf1945d06bd5acdef4ddb62159c3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6e5a34d03103b46cd5cb3ba1dc539cd8d7cf1eec1f498aa1a8cc8229e52ae1a2",
+      "before_hash": "cb24c8064747b73ea91366bc5ba892e627d098e6d1e161a9985e4d16ee0b843c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fc542849ba1290e73f4fd973eee7441e5aaf542cec6d3a1c95666096e0cdabfb",
+      "before_hash": "dd1ca5e1ca9139913bffd6f519216a8d23f54854ce4e94e594ef8d3e23147fb7",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "de4b64b6b2207da1ba7530d49fb78066c4d50935dc50e10573fbe87c47f04f30",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/corrections/QM2-R1-001-git-evidence-correction-v1.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d7003039f12978b3abf633b34de2f1721f33f4f28cee45f92b55d6ff711334ce",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "08a3d77d52730be81d097ce2e5390c666567bfb039894b0eea47e3134b31c477",
+      "before_hash": "6ded5aa431d4b4b6e560429a2e1f9dc43479ac5a7ac308d85844d3117b0a4f27",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "adb60b8cec58d9653a7f7bbd9c1ebd6d35d8158b09ff5bf146890fe468c2531e",
+      "before_hash": "da1a7ee0d7a241295b59d34db8b97350ce39dea8afaaaec5ec04f88a3e923a9e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "97e471100df01186c6b7202e41c5428dfa035f81e301906a31932b0c4dbb45bc",
+      "before_hash": "e6de54ae38b62d830f714a49141aa0ef219c9b91a96f7d59f92191f303edc6a5",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [],
+  "component_references": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-r1-001f-correction",
+        "sha256": "de4b64b6b2207da1ba7530d49fb78066c4d50935dc50e10573fbe87c47f04f30"
+      },
+      {
+        "artifact_id": "artifact-r1-001f-report",
+        "sha256": "d7003039f12978b3abf633b34de2f1721f33f4f28cee45f92b55d6ff711334ce"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/tests/test_expanded_factor_iteration_git_evidence_correction.py",
+      "docs/quantmind2/implementation/corrections/QM2-R1-001-git-evidence-correction-v1.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/report.md"
+    ],
+    "git_changed_paths": [
+      "backend/services/tests/test_expanded_factor_iteration_git_evidence_correction.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/implementation/corrections/QM2-R1-001-git-evidence-correction-v1.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/handoff_v1.schema.json",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "16e7bba0994d0175029ba82fd60b84b9d1a90e7a296b46c338c3fca4389210dc",
+    "manifest_payload_sha256": "08e5ec2d287c8315c6e1a00dfbbcb5900aaff33b8b6a6900635b515fdc019eec",
+    "report_sha256": "d7003039f12978b3abf633b34de2f1721f33f4f28cee45f92b55d6ff711334ce",
+    "source_bundle_sha256": "d910674e19a1053ed781fec4055d30948ecd78f9f1aa810a5618cf0624b6ec2e"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "description": "The immutable target Run remains historically partial_committed; consumers resolve corrected completion from this separate Run and corrects relationship.",
+      "limitation_id": "limit-r1-001f-target-historical-partial",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.expanded_factor_iteration",
+      "description": "The research assessment remains mixed with negative 2025 and 2026H1 continuation and no Promotion candidate.",
+      "limitation_id": "limit-r1-001f-research-mixed",
+      "severity": "info",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [
+    {
+      "next_task_id": "QM2-R1-002",
+      "priority": "P1",
+      "reason": "Continue only with the explicitly authorized PIT Fundamental and Regime-aware Factor Iteration v1 task.",
+      "recommendation_id": "recommend-r1-001f-r1-002"
+    }
+  ],
+  "relationships": [
+    {
+      "created_at": "2026-07-21T04:41:55Z",
+      "reason": "Adds exact commit-derived Git changed and added path evidence while preserving the immutable original Run.",
+      "relationship_id": "rel-r1-001f-corrects-r1-001",
+      "relationship_type": "corrects",
+      "source_run_id": "QM2-R1-001F-20260721T044155Z-4de8b1e",
+      "target_run_id": "QM2-R1-001-20260720T182257Z-a574580"
+    }
+  ],
+  "repository": {
+    "base_commit": "4de8b1e8e1f8562c0ef0a4a8d692df2fc7f3cfab",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "4de8b1e8e1f8562c0ef0a4a8d692df2fc7f3cfab",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-21T04:47:34Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "16e7bba0994d0175029ba82fd60b84b9d1a90e7a296b46c338c3fca4389210dc",
+    "implementation_run_id": "QM2-R1-001F-20260721T044155Z-4de8b1e",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-001F-20260721T044155Z-4de8b1e/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "d910674e19a1053ed781fec4055d30948ecd78f9f1aa810a5618cf0624b6ec2e",
+    "started_at": "2026-07-21T04:41:55Z",
+    "task_id": "QM2-R1-001F",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-21T04:41:55Z",
+    "explicit_non_goals": [
+      "No original Run or business research Artifact modification",
+      "No Agent Factor Optimization Qlib Tushare network or Promotion call",
+      "No production Producer Parser Planner Indexer API migration or database behavior change"
+    ],
+    "objective": "Publish exact immutable Git inventory correction evidence for QM2-R1-001 without rerunning or changing research.",
+    "parent_task_id": "QM2-R1-001",
+    "scope": [
+      "Target commit Git inventory reconstruction",
+      "Independent GitEvidenceCorrectionV1 and corrects relationship",
+      "Focused tests Project Memory and Implementation Run"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R1-001F",
+    "title": "Expanded-factor Iteration Git Evidence Correction"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python3 tools/quantmind2/index_implementation_runs.py plan --repository-id quantmind-main --repository-path <absolute-root> --ref HEAD --run-id QM2-R1-001-20260720T182257Z-a574580 --output-json",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Reproduce the two immutable target Git inventory failures",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-001f-original-planner"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "pytest -o addopts='' -q backend/services/tests/test_expanded_factor_iteration_git_evidence_correction.py backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 24,
+      "purpose": "Exact Git correction original immutability Store integrity and Context contracts",
+      "skipped_count": 2,
+      "status": "passed",
+      "test_execution_id": "test-r1-001f-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "pytest -o addopts='' -q <correction context manifest-v2 git-consistency ledger-indexer tests>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 57,
+      "purpose": "Full relevant correction Manifest v2 Git consistency Ledger Indexer and Project Memory regression",
+      "skipped_count": 1,
+      "status": "passed",
+      "test_execution_id": "test-r1-001f-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Bounded Project Context and Implementation Run validation",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-001f-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python3 tools/quantmind2/index_implementation_runs.py plan --repository-id quantmind-main --repository-path <absolute-root> --ref HEAD --run-id QM2-R1-001F-20260721T044155Z-4de8b1e --output-json",
+      "failed_count": 0,
+      "not_run_reason": "requires the single containing commit",
+      "passed_count": 0,
+      "purpose": "Containing-commit Planner and existing Ledger Indexer admission",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-r1-001f-postcommit"
+    }
+  ]
+}

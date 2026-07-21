@@ -1,5 +1,23 @@
 # Codex Handoff
 
+## Expanded-factor Git evidence correction
+
+- `QM2-R1-001F` is an evidence-only correction. It reconstructs commit
+  `4de8b1e8...` as 26 changed paths and 13 added paths, including the original
+  Manifest path, and relates the new Run to
+  `QM2-R1-001-20260720T182257Z-a574580` with `corrects`.
+- The original Run remains immutable and historically `partial_committed`.
+  The completed correction Run plus its relationship is the current Ledger
+  equivalent of `completed_corrected`; do not rewrite the old Manifest or
+  Report.
+- The business result remains `mixed`: the sole new factor remains
+  `research_registered`, did not continue in 2025 or 2026H1, and produces no
+  Promotion candidate. No research Artifact was added, deleted or rerun.
+- Agent, Factor Optimization, Qlib, Tushare, network and Promotion calls for
+  the correction are all zero.
+- The only recommended next task is `QM2-R1-002 — PIT Fundamental and
+  Regime-aware Factor Iteration v1`.
+
 ## Expanded-feature Agent factor research
 
 - `QM2-R1-001` is complete. Read
