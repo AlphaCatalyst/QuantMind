@@ -1,8 +1,16 @@
 # Known Issues
 
+## QM2-KI-046 — Skip-recent signals are not standalone Alpha evidence
+
+Open, medium. `QM2-R1-004` finds positive but weak 2025 RankIC followed by
+negative 2026H1 RankIC and negative stock-selection residual. Costs and
+holding concentration do not explain the failure. The two signals remain
+research-only and may be studied only as stock-selection overlays; this is not
+Fresh Validation or Promotion evidence.
+
 ## QM2-KI-045 — Skip-recent continuation is negative
 
-Open, medium. `QM2-R1-003` repaired forward research-artifact completeness and
+Resolved by successor, medium. `QM2-R1-003` repaired forward research-artifact completeness and
 produced two fully replayable research locks, but both locks and their
 two-family ensemble underperform CSI300 in contaminated 2025 and 2026H1
 reports. They are not eligible for Promotion or production use.

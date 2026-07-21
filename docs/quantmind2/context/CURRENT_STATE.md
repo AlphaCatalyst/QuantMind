@@ -1,5 +1,27 @@
 # Current Implementation State
 
+## Momentum Signal Semantic Audit and Alpha Decomposition v1 (QM2-R1-004)
+
+- Candidate A is a 60--10 momentum deviation/surprise signal, not a
+  risk-adjusted signal. Candidate B's negative distance-to-high term rewards
+  stocks farther below their 60-session high, so it is momentum plus
+  mean-reversion/anti-crowding rather than breakout confirmation.
+- 2025 mean RankIC remains positive at 0.00747/0.00482 for A/B, while 2026H1
+  turns negative at -0.00438/-0.00866. The ensemble is 0.00781 in 2025 and
+  -0.01110 in 2026H1. Later periods remain retrospective reports only.
+- Formal Qlib diagnostics show costs are not the primary failure. 2025 retains
+  positive absolute returns but trails CSI300; 2026H1 loss is dominated by
+  negative stock-selection residual. The candidates have low signal overlap
+  but strongly correlated long-only returns through shared market/style
+  exposure.
+- Five immutable diagnostic artifacts are Store-backed and cold-recoverable.
+  Exact replay restores all five with every external/computational call count
+  and every new-object count equal to zero; Store integrity is healthy.
+- The research decision is `continue_as_stock_selection_overlay_only`. Both
+  Candidate Locks remain `research_registered`; no new Factor, parameter
+  search or Promotion was produced.
+- Current task: `QM2-R1-004`. This task authorizes no automatic successor.
+
 ## Replayable Skip-Recent Momentum Deep Dive v1 (QM2-R1-003)
 
 - Canonical Experiment `srme1_072b0d1a...d1ab3c` implements the Research

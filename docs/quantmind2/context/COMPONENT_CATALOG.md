@@ -1,5 +1,14 @@
 # Component Catalog
 
+## QM2-R1-004 addition
+
+- `quantmind2.momentum_alpha_diagnostics` — implemented at
+  `backend/services/engine/momentum_alpha_diagnostics`. It owns immutable
+  semantic audit, cross-sectional metrics, beta/style/contribution/cost/regime
+  diagnostics, failure classification, Store publication, cold recovery and
+  exact replay for the locked R1-003 signals. It does not own Factor creation,
+  Optimization, Registry state transition, Strategy selection or Promotion.
+
 ## QM2-R1-003 addition
 
 - `quantmind2.skip_recent_momentum` — implemented at

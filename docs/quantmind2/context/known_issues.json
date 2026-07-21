@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-21T14:44:40Z",
-  "source_commit": "5d6442c9ac6ad805c156ac41a8c3ad59755bd03e",
+  "generated_at": "2026-07-21T17:44:30Z",
+  "source_commit": "85c609504eb326f811857e47afc0d808422632e9",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -51,6 +51,7 @@
     {"issue_id": "QM2-KI-042", "severity": "high", "status": "open", "summary": "QM2-P0-015H live capability evidence confirms the current Tushare account cannot access issuer announcements (anns_d) or structured merger endpoints, while available Tushare tables contain no complete settlement evidence. The task is blocked and publishes no benchmark revision."},
     {"issue_id": "QM2-KI-043", "severity": "medium", "status": "open", "summary": "Existing formal TopKDropout results persist actual positions but not the pre-trade target-weight object; QM2-P0-016 preserves deterministic Portfolio Targets separately and marks target-to-actual-target equality not verifiable instead of inferring it."},
     {"issue_id": "QM2-KI-044", "severity": "medium", "status": "resolved_by_successor", "summary": "QM2-R1-002's candidate remained unrecoverable; QM2-R1-003 did not reconstruct it and instead established a complete forward artifact contract and reran skip-recent research from scratch."},
-    {"issue_id": "QM2-KI-045", "severity": "medium", "status": "open", "summary": "QM2-R1-003 produced two fully replayable research locks, but both and their ensemble underperform CSI300 in contaminated 2025 and 2026H1 reports; none is promotable."}
+    {"issue_id": "QM2-KI-045", "severity": "medium", "status": "resolved_by_successor", "summary": "QM2-R1-003 produced two fully replayable research locks that underperformed CSI300 in contaminated later-period reports; QM2-R1-004 now provides semantic and alpha-decomposition evidence without changing their research-only state."},
+    {"issue_id": "QM2-KI-046", "severity": "medium", "status": "open", "summary": "QM2-R1-004 finds weak positive 2025 RankIC followed by negative 2026H1 RankIC and residual return. Costs and concentration are not the primary failure; the locks remain research-only and support at most stock-selection-overlay research."}
   ]
 }

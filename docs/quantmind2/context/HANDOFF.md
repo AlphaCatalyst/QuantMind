@@ -1,5 +1,21 @@
 # Codex Handoff
 
+## QM2-R1-004 handoff
+
+- Read `MOMENTUM_SIGNAL_SEMANTIC_AUDIT_AND_ALPHA_DECOMPOSITION_V1.md` and the
+  `QM2-R1-004` Implementation Run before interpreting the two R1-003 locks.
+- Candidate A is momentum deviation/surprise without risk adjustment.
+  Candidate B rewards distance below the 60-session high; it is not breakout
+  confirmation. Historical IDs and names remain unchanged.
+- 2025 has positive RankIC but negative CSI300-relative performance. 2026H1
+  has negative RankIC and negative residual return. Costs and stock
+  concentration are not the primary explanation.
+- The formal decision is `continue_as_stock_selection_overlay_only`; it does
+  not execute a next task. Both locks remain `research_registered` and no
+  Promotion state exists.
+- Five diagnostic artifacts cold-recover from the Store. Exact replay is
+  zero-call and creates no Store objects. No successor is authorized here.
+
 ## QM2-R1-003 handoff
 
 - Read `RESEARCH_ARTIFACT_COMPLETENESS_V1.md` and

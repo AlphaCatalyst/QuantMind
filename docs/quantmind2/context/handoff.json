@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-21T16:48:32Z",
-  "source_commit": "588d74888d3ffdd2a210804e957a81cd4c04a170",
+  "generated_at": "2026-07-21T17:44:30Z",
+  "source_commit": "85c609504eb326f811857e47afc0d808422632e9",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "588d74888d3ffdd2a210804e957a81cd4c04a170",
+  "base_commit": "85c609504eb326f811857e47afc0d808422632e9",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R1-003",
+  "current_task": "QM2-R1-004",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R1-003-20260721T164832Z-588d748",
+  "latest_implementation_run": "QM2-R1-004-20260721T174430Z-85c6095",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
@@ -69,6 +69,7 @@
     "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json"
     ,"docs/quantmind2/contracts/EXPANDED_FEATURE_AGENT_FACTOR_ITERATION_V2.md"
     ,"docs/quantmind2/contracts/MOMENTUM_FACTOR_ITERATION_V1.md"
+    ,"docs/quantmind2/contracts/MOMENTUM_SIGNAL_SEMANTIC_AUDIT_AND_ALPHA_DECOMPOSITION_V1.md"
   ],
   "uncommitted_work": true
 }

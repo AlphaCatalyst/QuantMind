@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-20T18:22:57Z",
-  "source_commit": "a574580a61b57c17c0215f69ae350efadbdb37be",
+  "generated_at": "2026-07-21T17:44:30Z",
+  "source_commit": "85c609504eb326f811857e47afc0d808422632e9",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -238,6 +238,20 @@
       "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl", "quantmind2.factor_optimization", "quantmind2.research_campaign", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
       "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
       "current_limitations": ["Evidence is retrospective adaptive research and is not Fresh Validation, Frozen Test, Promotion or production evidence.", "Only one family produced a standalone eligible candidate, so the at-least-two-family final-lock gate produced zero locks and no later-period candidate or ensemble report.", "Runtime remains single-process/local-Store and has no API, UI, distributed execution or LightGBM consumer."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.momentum_alpha_diagnostics",
+      "name": "Momentum Signal Semantic Audit and Alpha Decomposition v1",
+      "status": "implemented",
+      "responsibility": "Audit the immutable R1-003 signals and publish deterministic semantic, cross-sectional, beta, style, concentration, contribution, cost, regime, correlation and failure-classification evidence with Store recovery and exact replay.",
+      "source_path": "backend/services/engine/momentum_alpha_diagnostics",
+      "target_path": "backend/services/engine/momentum_alpha_diagnostics",
+      "key_symbols": ["execute_audit", "replay_audit", "semantic_audit", "daily_cross_section", "beta_and_contributions", "holding_and_style", "publish_artifact", "validate_artifact"],
+      "dependencies": ["quantmind2.skip_recent_momentum", "quantmind2.momentum_factor_iteration", "quantmind2.expanded_factor_iteration", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["2025 and 2026H1 are retrospective reports, not Fresh Validation or predictive evidence.", "Market-beta decomposition is diagnostic rather than strict causal attribution; sector concentration is omitted because no PIT industry contract exists.", "The decision is research evidence only and does not execute a successor or change Registry state."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     }

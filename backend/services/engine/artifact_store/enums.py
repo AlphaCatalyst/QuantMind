@@ -88,6 +88,11 @@ class ArtifactKind(str, Enum):
     SKIP_RECENT_MOMENTUM_CANDIDATE_LOCK = "skip_recent_momentum_candidate_lock"
     SKIP_RECENT_MOMENTUM_REPORT = "skip_recent_momentum_report"
     SKIP_RECENT_MOMENTUM_ASSESSMENT = "skip_recent_momentum_assessment"
+    MOMENTUM_SEMANTIC_AUDIT = "momentum_semantic_audit"
+    MOMENTUM_ALPHA_DECOMPOSITION = "momentum_alpha_decomposition"
+    MOMENTUM_CROSS_SECTIONAL_DIAGNOSTIC = "momentum_cross_sectional_diagnostic"
+    MOMENTUM_STYLE_EXPOSURE_REPORT = "momentum_style_exposure_report"
+    MOMENTUM_FAILURE_CLASSIFICATION = "momentum_failure_classification"
 
 
 class IntegrityStatus(str, Enum):

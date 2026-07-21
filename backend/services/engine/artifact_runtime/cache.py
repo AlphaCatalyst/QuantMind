@@ -68,6 +68,11 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "skip_recent_momentum_candidate_lock": ("skip-recent-momentum", "candidates"),
         "skip_recent_momentum_report": ("skip-recent-momentum", "reports"),
         "skip_recent_momentum_assessment": ("skip-recent-momentum", "assessments"),
+        "momentum_semantic_audit": ("momentum-alpha-diagnostics", "semantics"),
+        "momentum_alpha_decomposition": ("momentum-alpha-diagnostics", "decompositions"),
+        "momentum_cross_sectional_diagnostic": ("momentum-alpha-diagnostics", "cross-sectional"),
+        "momentum_style_exposure_report": ("momentum-alpha-diagnostics", "style"),
+        "momentum_failure_classification": ("momentum-alpha-diagnostics", "classifications"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

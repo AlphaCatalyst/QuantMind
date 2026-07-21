@@ -121,6 +121,16 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         validate_artifact(source, artifact_id, kind.value)
         return "skip_recent_momentum.validate_artifact"
     if kind in {
+        ArtifactKind.MOMENTUM_SEMANTIC_AUDIT,
+        ArtifactKind.MOMENTUM_ALPHA_DECOMPOSITION,
+        ArtifactKind.MOMENTUM_CROSS_SECTIONAL_DIAGNOSTIC,
+        ArtifactKind.MOMENTUM_STYLE_EXPOSURE_REPORT,
+        ArtifactKind.MOMENTUM_FAILURE_CLASSIFICATION,
+    }:
+        from backend.services.engine.momentum_alpha_diagnostics.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "momentum_alpha_diagnostics.validate_artifact"
+    if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
         ArtifactKind.STRATEGY_BACKTEST_RESULT,

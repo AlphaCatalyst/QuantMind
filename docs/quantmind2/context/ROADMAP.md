@@ -1,5 +1,10 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R1-004` is completed with semantic audit and
+alpha decomposition of the two locked R1-003 candidates and their ensemble.
+The evidence supports only `continue_as_stock_selection_overlay_only`; no
+successor is automatically authorized.
+
 Current research task: `QM2-R1-003` is completed with a replayable six-family
 skip-recent deep dive. Two research-only candidates pass independent
 eligibility; both and their ensemble underperform CSI300 in contaminated 2025
@@ -18,6 +23,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R1-004 Momentum Signal Semantic Audit and Alpha Decomposition v1 | completed_uncommitted | P0 | R1-003 | Explain later-period degradation through immutable semantic, cross-sectional, beta, style, concentration, contribution, cost and regime evidence | No new Factor, Agent, Optimization, Strategy change, network, Promotion or future-period selection | Five Store-backed diagnostics, cold recovery and exact replay pass; decision is stock-selection overlay only |
 | QM2-P0-001 Context Bootstrap and Implementation Contract | completed_committed | P0 | none | Establish repository context, ADR, report, manifest, handoff, validation | No business code, DB, API | Machine and human bootstrap validates and records itself |
 | QM2-P0-001G Formalize Decision-Control-Execution Separation | completed_committed | P0 | 001 | Accept the three-layer authority model and ResearchDecision contract | No runtime, DB, API, Skill, orchestration, DSL, model, or backtest code | ADR-0009, contract, schema, example, context, tests, and immutable Run are committed |
 | QM2-P0-002A1a Persistence Mechanism Reality Audit | completed_committed | P0 | 001G | Audit real ORM, engine, session, transaction, migration, tests, and secrets; select the future persistence boundary | No Ledger domain, Repository, ORM, table, migration, indexer, API, or UI | Code-backed audit and explicit selection are recorded without persistence implementation |
