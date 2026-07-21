@@ -1,6 +1,11 @@
 # QuantMind 2.0 Initial Roadmap
 
-Current research task: `QM2-R1-002` is completed with multi-family momentum
+Current research task: `QM2-R1-003` is completed with a replayable six-family
+skip-recent deep dive. Two research-only candidates pass independent
+eligibility; both and their ensemble underperform CSI300 in contaminated 2025
+and 2026H1 reports. No successor task is authorized.
+
+Previous research task: `QM2-R1-002` is completed with multi-family momentum
 research on the Tushare Fixed-100 authority. Five external-Agent rounds
 explored eight families; the final two-family lock gate produced no locks, so
 the conclusion is that this daily momentum space has not found sufficiently

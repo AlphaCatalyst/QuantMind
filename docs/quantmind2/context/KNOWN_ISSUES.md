@@ -1,5 +1,12 @@
 # Known Issues
 
+## QM2-KI-045 — Skip-recent continuation is negative
+
+Open, medium. `QM2-R1-003` repaired forward research-artifact completeness and
+produced two fully replayable research locks, but both locks and their
+two-family ensemble underperform CSI300 in contaminated 2025 and 2026H1
+reports. They are not eligible for Promotion or production use.
+
 ## QM2-KI-044 — no robust Fixed-100 daily momentum lock
 
 Open, medium. `QM2-R1-002` explored eight momentum families with 13 admitted

@@ -1,5 +1,19 @@
 # Codex Handoff
 
+## QM2-R1-003 handoff
+
+- Read `RESEARCH_ARTIFACT_COMPLETENESS_V1.md` and
+  `SKIP_RECENT_MOMENTUM_ITERATION_V1.md` before further factor research.
+- Canonical Experiment is `srme1_072b0d1a...d1ab3c`; its 368-artifact lineage
+  cold-recovers with zero replay calls and healthy Store integrity.
+- Two independent locks are `srmcl1_56201db3...9f95b` and
+  `srmcl1_4e0abd49...c80b4`; both are `research_registered` only. The
+  two-family ensemble is permitted.
+- Both locks and the ensemble underperform CSI300 in contaminated 2025 and
+  2026H1 reports. They are not Fresh Validation, Promotion or production.
+- The original `QM2-R1-002` ghost candidate remains unrecoverable and was not
+  reconstructed. No successor task is authorized here.
+
 ## QM2-R1-002 handoff
 
 - Read `docs/quantmind2/contracts/MOMENTUM_FACTOR_ITERATION_V1.md` and the

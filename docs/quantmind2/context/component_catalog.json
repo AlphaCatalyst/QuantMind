@@ -11,6 +11,16 @@
   "verification_status": "verified",
   "components": [
     {
+      "component_id": "quantmind2.skip_recent_momentum", "name": "Replayable Skip-Recent Momentum Research v1", "status": "implemented",
+      "responsibility": "Persist complete Agent-to-candidate evidence and run bounded six-subfamily skip-recent research with four-Fold locks and formal Qlib evaluation.",
+      "source_path": "backend/services/engine/skip_recent_momentum", "target_path": "backend/services/engine/skip_recent_momentum",
+      "key_symbols": ["execute_experiment", "replay_experiment", "candidate_policy", "validate_artifact"],
+      "dependencies": ["quantmind2.momentum_factor_iteration", "quantmind2.factor_dsl", "quantmind2.factor_optimization", "quantmind2.research_campaign", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Retrospective research only; not Fresh Validation, Frozen Test, Promotion or production evidence.", "Both locks and the ensemble underperform CSI300 in 2025 and 2026H1.", "Single-host runtime serializes Qlib feature loading for legacy pkg_resources compatibility."],
+      "last_verified_commit": null, "evidence_level": "code_confirmed"
+    },
+    {
       "component_id": "quantmind.training", "name": "Existing LightGBM Training", "status": "implemented",
       "responsibility": "Build LightGBM training configuration, run containerized training, and emit model artifacts.",
       "source_path": "backend/services/engine/training", "target_path": "backend/services/engine/training",

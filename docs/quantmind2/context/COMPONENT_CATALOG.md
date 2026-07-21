@@ -1,5 +1,13 @@
 # Component Catalog
 
+## QM2-R1-003 addition
+
+- `quantmind2.skip_recent_momentum` — implemented at
+  `backend/services/engine/skip_recent_momentum`. It owns the complete
+  Agent-response through Experiment evidence chain, bounded six-subfamily
+  research, four-Fold locks, formal Qlib evaluation and zero-call replay.
+  Results remain retrospective and research-only.
+
 ## QM2-R1-002 addition
 
 - `quantmind2.momentum_factor_iteration` — implemented at

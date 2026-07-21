@@ -1,5 +1,24 @@
 # Current Implementation State
 
+## Replayable Skip-Recent Momentum Deep Dive v1 (QM2-R1-003)
+
+- Canonical Experiment `srme1_072b0d1a...d1ab3c` implements the Research
+  Artifact Completeness v1 chain from exact Agent response bytes through
+  Proposal, DSL/AST Template, fold-specific Trial values, pre-evaluation Fold
+  locks, Eligibility, Candidate locks, reports and assessment.
+- Six skip-recent subfamilies were explored with nine completed real Agent
+  calls, 15 candidates, 50 unique Trials and 178 formal Qlib calls. Two
+  independently eligible structures are `research_registered`; the two-family
+  ensemble gate also passed. No Promotion or production state was written.
+- Both locked candidates and their ensemble underperformed CSI300 in the
+  contaminated 2025 and 2026H1 retrospective reports. These are not Fresh
+  Validation, frozen evidence or predictive claims.
+- Exact replay recovered 368 artifacts from an empty cache with Agent,
+  Optimization, Qlib, network, new-artifact and Promotion counts all zero.
+  Store integrity is healthy, Missing 0 and Unreferenced 0.
+- Current task: `QM2-R1-003`. No next research task is authorized by this
+  implementation task.
+
 ## Momentum Factor Family Iteration v1 (QM2-R1-002)
 
 - Current task: `QM2-R1-002`; the earlier PIT Fundamental task with this ID is

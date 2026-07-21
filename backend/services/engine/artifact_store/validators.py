@@ -30,6 +30,8 @@ ID_FIELDS = (
     "strategy_parameter_candidate_lock_id", "strategy_optimization_result_id",
     "audit_id", "catalog_id", "feature_dataset_id", "round_result_id",
     "candidate_lock_id", "ensemble_id",
+    "raw_response_artifact_id", "proposal_artifact_id", "template_definition_id",
+    "trial_detail_id", "fold_lock_id", "eligibility_evidence_id", "report_id",
 )
 
 
@@ -103,6 +105,21 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         from backend.services.engine.momentum_factor_iteration.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)
         return "momentum_factor_iteration.validate_artifact"
+    if kind in {
+        ArtifactKind.RESEARCH_AGENT_RAW_RESPONSE,
+        ArtifactKind.RESEARCH_PROPOSAL,
+        ArtifactKind.FACTOR_TEMPLATE_DEFINITION,
+        ArtifactKind.FACTOR_OPTIMIZATION_TRIAL_DETAIL,
+        ArtifactKind.FACTOR_FOLD_CANDIDATE_LOCK,
+        ArtifactKind.FACTOR_CANDIDATE_ELIGIBILITY_EVIDENCE,
+        ArtifactKind.SKIP_RECENT_MOMENTUM_EXPERIMENT,
+        ArtifactKind.SKIP_RECENT_MOMENTUM_CANDIDATE_LOCK,
+        ArtifactKind.SKIP_RECENT_MOMENTUM_REPORT,
+        ArtifactKind.SKIP_RECENT_MOMENTUM_ASSESSMENT,
+    }:
+        from backend.services.engine.skip_recent_momentum.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "skip_recent_momentum.validate_artifact"
     if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
