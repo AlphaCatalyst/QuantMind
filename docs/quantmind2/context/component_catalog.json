@@ -216,6 +216,20 @@
       "current_limitations": ["Evidence is retrospective adaptive research, not Fresh Validation, Frozen Test, Promotion or production evidence.", "The sole eligible Candidate underperforms CSI300 in both retrospective 2025 and 2026H1 despite positive RankIC, so the formal assessment is mixed.", "Runtime is single-process/local-Store and does not provide API, UI, distributed execution or LightGBM consumption."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.momentum_factor_iteration",
+      "name": "Momentum Factor Family Iteration v1",
+      "status": "implemented",
+      "responsibility": "Build a bounded PIT-safe multi-family Momentum Feature Catalog, run external-Agent DSL research with independent four-Fold parameter selection and stability gates, evaluate fixed formal Qlib evidence, and publish research-only immutable artifacts with exact replay.",
+      "source_path": "backend/services/engine/momentum_factor_iteration",
+      "target_path": "backend/services/engine/momentum_factor_iteration",
+      "key_symbols": ["MomentumFeatureDefinition", "compute_features", "build_regimes", "execute_experiment", "replay_experiment", "validate_artifact"],
+      "dependencies": ["quantmind2.data_foundation", "quantmind2.factor_dsl", "quantmind2.factor_optimization", "quantmind2.research_campaign", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Evidence is retrospective adaptive research and is not Fresh Validation, Frozen Test, Promotion or production evidence.", "Only one family produced a standalone eligible candidate, so the at-least-two-family final-lock gate produced zero locks and no later-period candidate or ensemble report.", "Runtime remains single-process/local-Store and has no API, UI, distributed execution or LightGBM consumer."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
     }
   ]
 }

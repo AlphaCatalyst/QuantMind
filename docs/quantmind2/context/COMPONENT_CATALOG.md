@@ -1,5 +1,16 @@
 # Component Catalog
 
+## QM2-R1-002 addition
+
+- `quantmind2.momentum_factor_iteration` — implemented at
+  `backend/services/engine/momentum_factor_iteration`. It owns the 36-feature
+  Momentum Catalog, PIT regime diagnostics, family/complexity gates, bounded
+  external-Agent orchestration, four-fold parameter selection and neighborhood
+  stability, fixed formal Qlib evidence, research-only locks, optional
+  ensembles, immutable Store artifacts and exact replay. It does not own data
+  collection, Strategy Optimization, Promotion, Fresh Validation, LightGBM,
+  API or UI.
+
 ## QM2-R1-001 addition
 
 - `quantmind2.expanded_factor_iteration` — implemented at

@@ -1,5 +1,13 @@
 # Known Issues
 
+## QM2-KI-044 — no robust Fixed-100 daily momentum lock
+
+Open, medium. `QM2-R1-002` explored eight momentum families with 13 admitted
+Templates and 37 Trials. One candidate passed standalone eligibility, but the
+frozen final gate requires at least two eligible families. No candidate was
+locked and no later-period/ensemble evidence was opened. Thresholds were not
+relaxed and no extra round was added.
+
 ## QM2-KI-043 — Qlib target-weight observability
 
 Open, medium. Existing formal TopKDropout results persist actual positions but

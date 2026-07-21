@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-21T04:41:55Z",
-  "source_commit": "4de8b1e8e1f8562c0ef0a4a8d692df2fc7f3cfab",
+  "generated_at": "2026-07-21T14:44:40Z",
+  "source_commit": "5d6442c9ac6ad805c156ac41a8c3ad59755bd03e",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "4de8b1e8e1f8562c0ef0a4a8d692df2fc7f3cfab",
+  "base_commit": "5d6442c9ac6ad805c156ac41a8c3ad59755bd03e",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,12 +24,10 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R1-001F",
+  "current_task": "QM2-R1-002",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R1-001F-20260721T044155Z-4de8b1e",
-  "next_recommended_tasks": [
-    "QM2-R1-002"
-  ],
+  "latest_implementation_run": "QM2-R1-002-20260721T144440Z-5d6442c",
+  "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
@@ -70,6 +68,7 @@
     "docs/quantmind2/adr/ADR-0011-tushare-only-data-authority-and-legacy-retirement.md",
     "docs/quantmind2/data/TUSHARE_AUTHORITY_V1.json"
     ,"docs/quantmind2/contracts/EXPANDED_FEATURE_AGENT_FACTOR_ITERATION_V2.md"
+    ,"docs/quantmind2/contracts/MOMENTUM_FACTOR_ITERATION_V1.md"
   ],
   "uncommitted_work": true
 }

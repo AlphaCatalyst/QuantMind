@@ -1,5 +1,20 @@
 # Codex Handoff
 
+## QM2-R1-002 handoff
+
+- Read `docs/quantmind2/contracts/MOMENTUM_FACTOR_ITERATION_V1.md` and the
+  `QM2-R1-002-20260721T144440Z-5d6442c` Implementation Run first.
+- Canonical Store experiment:
+  `mfi1_87177b7c06420e65159d3f5bdafee8149cdb3290c32f08712cd73e59a4e19dee`,
+  revision 2, superseding immutable revision 1.
+- The research stopped after round 5 under the frozen early-stop rule. Eight
+  families were explored; one standalone eligible candidate did not satisfy
+  the two-family final-lock gate, so there are no locks or ensembles.
+- Do not lower eligibility, open an extra round, reuse 2025/2026H1 for
+  selection, search Strategy parameters or promote any result.
+- Store replay is runtime evidence; local `/private/tmp` work directories are
+  disposable and are not evidence sources. No successor task is authorized.
+
 ## Expanded-factor Git evidence correction
 
 - `QM2-R1-001F` is an evidence-only correction. It reconstructs commit

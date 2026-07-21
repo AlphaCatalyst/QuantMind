@@ -1,6 +1,12 @@
 # QuantMind 2.0 Initial Roadmap
 
-Current research task: `QM2-R1-001` is completed with expanded Tushare
+Current research task: `QM2-R1-002` is completed with multi-family momentum
+research on the Tushare Fixed-100 authority. Five external-Agent rounds
+explored eight families; the final two-family lock gate produced no locks, so
+the conclusion is that this daily momentum space has not found sufficiently
+stable Alpha. No successor task is authorized by this contract.
+
+Previous research task: `QM2-R1-001` is completed with expanded Tushare
 Feature Catalog v2, six bounded Agent rounds, four-Fold evaluation, one
 research-only Candidate, formal Qlib comparison, Store recovery and exact
 replay. This task authorizes no successor.

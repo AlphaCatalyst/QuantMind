@@ -51,6 +51,13 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "agent_factor_round_result": ("expanded-factor-iteration", "rounds"),
         "agent_factor_candidate_lock": ("expanded-factor-iteration", "candidates"),
         "agent_factor_iteration_assessment": ("expanded-factor-iteration", "assessments"),
+        "momentum_feature_catalog": ("momentum-factor-iteration", "feature-catalog"),
+        "momentum_feature_dataset": ("momentum-factor-iteration", "feature-dataset"),
+        "momentum_factor_iteration": ("momentum-factor-iteration", "experiments"),
+        "momentum_factor_round_result": ("momentum-factor-iteration", "rounds"),
+        "momentum_factor_candidate_lock": ("momentum-factor-iteration", "candidates"),
+        "momentum_factor_ensemble": ("momentum-factor-iteration", "ensembles"),
+        "momentum_iteration_assessment": ("momentum-factor-iteration", "assessments"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

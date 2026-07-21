@@ -1,5 +1,25 @@
 # Current Implementation State
 
+## Momentum Factor Family Iteration v1 (QM2-R1-002)
+
+- Current task: `QM2-R1-002`; the earlier PIT Fundamental task with this ID is
+  cancelled and produced no implementation evidence.
+- Canonical experiment revision 2 is
+  `mfi1_87177b7c06420e65159d3f5bdafee8149cdb3290c32f08712cd73e59a4e19dee`.
+  It supersedes immutable revision 1
+  `mfi1_cb0953420f15e3bf162e84be1cac7cd0c0794064197e65c11d430d24a985cf32`.
+- The final run computed 36 quality-passed features in nine families and
+  explored eight families through five real Agent rounds, 13 admitted
+  Templates, 37 Factor Trials and 92 formal Qlib calls.
+- One candidate passed standalone eligibility, but the final lock requires at
+  least two eligible families. No Candidate Lock, later-period candidate
+  report, ensemble, Registry write or Promotion was produced.
+- Store integrity is healthy with Missing 0 and Unreferenced 0. Cold recovery
+  validates nine artifacts and exact replay performs zero Agent, Optimization,
+  Qlib, network, new-artifact or new-blob calls.
+- Formal conclusion: the current Fixed-100 daily momentum space has not found
+  sufficiently stable Alpha. No next research task is authorized here.
+
 ## Expanded-factor Git evidence correction (QM2-R1-001F)
 
 - `QM2-R1-001` completed its business research loop, but its immutable

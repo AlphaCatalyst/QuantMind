@@ -71,6 +71,13 @@ class ArtifactKind(str, Enum):
     AGENT_FACTOR_ROUND_RESULT = "agent_factor_round_result"
     AGENT_FACTOR_CANDIDATE_LOCK = "agent_factor_candidate_lock"
     AGENT_FACTOR_ITERATION_ASSESSMENT = "agent_factor_iteration_assessment"
+    MOMENTUM_FEATURE_CATALOG = "momentum_feature_catalog"
+    MOMENTUM_FEATURE_DATASET = "momentum_feature_dataset"
+    MOMENTUM_FACTOR_ITERATION = "momentum_factor_iteration"
+    MOMENTUM_FACTOR_ROUND_RESULT = "momentum_factor_round_result"
+    MOMENTUM_FACTOR_CANDIDATE_LOCK = "momentum_factor_candidate_lock"
+    MOMENTUM_FACTOR_ENSEMBLE = "momentum_factor_ensemble"
+    MOMENTUM_ITERATION_ASSESSMENT = "momentum_iteration_assessment"
 
 
 class IntegrityStatus(str, Enum):

@@ -29,7 +29,7 @@ ID_FIELDS = (
     "strategy_optimization_study_id", "strategy_optimization_trial_id",
     "strategy_parameter_candidate_lock_id", "strategy_optimization_result_id",
     "audit_id", "catalog_id", "feature_dataset_id", "round_result_id",
-    "candidate_lock_id",
+    "candidate_lock_id", "ensemble_id",
 )
 
 
@@ -91,6 +91,18 @@ def _verify_manifest_hashes(source: Path, manifest: dict) -> None:
 
 def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
                      context: DomainValidationContext) -> str:
+    if kind in {
+        ArtifactKind.MOMENTUM_FEATURE_CATALOG,
+        ArtifactKind.MOMENTUM_FEATURE_DATASET,
+        ArtifactKind.MOMENTUM_FACTOR_ITERATION,
+        ArtifactKind.MOMENTUM_FACTOR_ROUND_RESULT,
+        ArtifactKind.MOMENTUM_FACTOR_CANDIDATE_LOCK,
+        ArtifactKind.MOMENTUM_FACTOR_ENSEMBLE,
+        ArtifactKind.MOMENTUM_ITERATION_ASSESSMENT,
+    }:
+        from backend.services.engine.momentum_factor_iteration.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "momentum_factor_iteration.validate_artifact"
     if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
