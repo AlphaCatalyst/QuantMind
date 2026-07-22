@@ -32,6 +32,8 @@ ID_FIELDS = (
     "candidate_lock_id", "ensemble_id",
     "raw_response_artifact_id", "proposal_artifact_id", "template_definition_id",
     "trial_detail_id", "fold_lock_id", "eligibility_evidence_id", "report_id",
+    "gate_spec_id", "historical_diagnostic_id", "fresh_lock_id",
+    "incremental_snapshot_id", "fresh_observation_id", "fresh_assessment_id",
 )
 
 
@@ -186,6 +188,17 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         from backend.services.engine.momentum_tail_alpha.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)
         return "momentum_tail_alpha.validate_artifact"
+    if kind in {
+        ArtifactKind.BREADTH_MOMENTUM_GATE_SPEC,
+        ArtifactKind.BREADTH_GATED_MOMENTUM_HISTORICAL_DIAGNOSTIC,
+        ArtifactKind.BREADTH_GATED_MOMENTUM_FRESH_LOCK,
+        ArtifactKind.TUSHARE_INCREMENTAL_MARKET_SNAPSHOT,
+        ArtifactKind.BREADTH_GATED_MOMENTUM_FRESH_OBSERVATION,
+        ArtifactKind.BREADTH_GATED_MOMENTUM_FRESH_ASSESSMENT,
+    }:
+        from backend.services.engine.breadth_gated_momentum.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "breadth_gated_momentum.validate_artifact"
     if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,

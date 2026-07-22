@@ -1,5 +1,30 @@
 # Current Implementation State
 
+## Breadth-Gated Momentum Overlay and Fresh Forward Protocol v1 (QM2-R1-010)
+
+- Signal D, the R1-009 `regime_specific_factor` classification, the formal
+  PIT breadth builder and L1 TopK20/n_drop5/10-session protocol remain
+  immutable. Gate Spec `bmgs1_4cb24dc3...aec343` consumes the formal state at
+  session `t` directly because that state already represents raw breadth at
+  `t-1`; a second shift is forbidden.
+- Historical U/G/R mechanism paths are retrospective and contaminated. The
+  final revision is `bgmhd1_48b6d03...030fec`. Conditional selection alpha is
+  positive in 2021, 2022 and 2024, but negative in 2023, 2025 and 2026H1;
+  history alone does not support the overlay.
+- Fresh Lock `bgmfl1_80313cd9...436b60` was published before 68 bounded
+  Tushare calls. Snapshot `tims1_a59e3127...9168c` has 22 exchange sessions,
+  zero duplicates and zero missing adjustment factors.
+- The current Fresh revision contains 20 completed return sessions, two
+  10-session windows, 12 gate-on days and two gate-on rebalances. Interim
+  metrics are positive, but the frozen sample gate is not met; status is
+  `fresh_evidence_accumulating`, never supported or promoted.
+- Observation `bgmfo1_6cdb7685...0abaf` and assessment
+  `bgmfa1_22d8424e...349cd` recover with the other four new artifacts and
+  immutable Signal D: seven recovered artifacts in total.
+  Store integrity is healthy, Missing 0, Unreferenced 0; exact replay makes
+  every prohibited call/write and new-object count zero.
+- Current task: `QM2-R1-010`. No successor task is authorized here.
+
 ## Momentum Tail-Alpha and Selection-Overlay Diagnostic v1 (QM2-R1-009)
 
 - The immutable R1-008 Signal D was decomposed into daily deciles, formal

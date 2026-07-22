@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R1-009",
+  "current_task": "QM2-R1-010",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R1-009-20260722T162843Z-c071c0f",
+  "latest_implementation_run": "QM2-R1-010-20260722T173920Z-705033c",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
@@ -74,6 +74,7 @@
     ,"docs/quantmind2/contracts/DEFAULT_FIRST_MOMENTUM_STRUCTURE_SEARCH_V2.md"
     ,"docs/quantmind2/contracts/LOW_FREQUENCY_MOMENTUM_STUDY_V1.md"
     ,"docs/quantmind2/contracts/MOMENTUM_TAIL_ALPHA_DIAGNOSTIC_V1.md"
+    ,"docs/quantmind2/contracts/BREADTH_GATED_MOMENTUM_FORWARD_V1.md"
   ],
   "uncommitted_work": true
 }

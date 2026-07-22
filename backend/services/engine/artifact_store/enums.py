@@ -124,6 +124,12 @@ class ArtifactKind(str, Enum):
     MOMENTUM_RANK_TRANSITION_REPORT = "momentum_rank_transition_report"
     MOMENTUM_TAIL_STYLE_EXPOSURE = "momentum_tail_style_exposure"
     MOMENTUM_TAIL_SIGNAL_CLASSIFICATION = "momentum_tail_signal_classification"
+    BREADTH_MOMENTUM_GATE_SPEC = "breadth_momentum_gate_spec"
+    BREADTH_GATED_MOMENTUM_HISTORICAL_DIAGNOSTIC = "breadth_gated_momentum_historical_diagnostic"
+    BREADTH_GATED_MOMENTUM_FRESH_LOCK = "breadth_gated_momentum_fresh_lock"
+    TUSHARE_INCREMENTAL_MARKET_SNAPSHOT = "tushare_incremental_market_snapshot"
+    BREADTH_GATED_MOMENTUM_FRESH_OBSERVATION = "breadth_gated_momentum_fresh_observation"
+    BREADTH_GATED_MOMENTUM_FRESH_ASSESSMENT = "breadth_gated_momentum_fresh_assessment"
 
 
 class IntegrityStatus(str, Enum):

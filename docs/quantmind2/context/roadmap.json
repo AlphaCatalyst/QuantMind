@@ -8,6 +8,15 @@
   "verification_status": "verified",
   "items": [
     {
+      "task_id": "QM2-R1-010",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R1-008", "QM2-R1-009"],
+      "objective": "Pre-register the fixed narrow/weak breadth Gate, diagnose immutable Signal D through U/G/R paths, and begin no-backfill Fresh forward observation after 2026-06-24.",
+      "explicit_non_goals": ["No Agent or new Factor", "No Factor, Strategy, Combined or Gate optimization", "No Candidate or Registry mutation", "No Promotion"],
+      "acceptance_summary": "Gate and Fresh Lock predate 68 incremental Tushare calls; historical and Fresh artifacts recover from a healthy Store, while 20 Fresh return sessions remain correctly classified as accumulating evidence."
+    },
+    {
       "task_id": "QM2-R1-009",
       "status": "completed_uncommitted",
       "priority": "P0",

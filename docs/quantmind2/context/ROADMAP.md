@@ -1,5 +1,10 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R1-010` is completed with status
+`fresh_evidence_accumulating`. The fixed narrow/weak Gate and Fresh Lock were
+published before incremental collection; 20 completed return sessions remain
+below the immutable 60/5/20/3 minimums. No successor is authorized.
+
 Current research task: `QM2-R1-009` is completed. The immutable R1-008 Signal
 D is classified as regime-specific after full cross-section, tail, exposure,
 stability and report-period diagnostics. The advisory decision was not

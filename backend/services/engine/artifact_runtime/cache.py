@@ -104,6 +104,12 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "momentum_rank_transition_report": ("momentum-tail-alpha", "transitions"),
         "momentum_tail_style_exposure": ("momentum-tail-alpha", "style"),
         "momentum_tail_signal_classification": ("momentum-tail-alpha", "classifications"),
+        "breadth_momentum_gate_spec": ("breadth-gated-momentum", "gate-specs"),
+        "breadth_gated_momentum_historical_diagnostic": ("breadth-gated-momentum", "historical"),
+        "breadth_gated_momentum_fresh_lock": ("breadth-gated-momentum", "fresh-locks"),
+        "tushare_incremental_market_snapshot": ("breadth-gated-momentum", "incremental-data"),
+        "breadth_gated_momentum_fresh_observation": ("breadth-gated-momentum", "fresh-observations"),
+        "breadth_gated_momentum_fresh_assessment": ("breadth-gated-momentum", "fresh-assessments"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

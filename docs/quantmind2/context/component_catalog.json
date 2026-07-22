@@ -11,6 +11,20 @@
   "verification_status": "verified",
   "components": [
     {
+      "component_id": "quantmind2.breadth_gated_momentum",
+      "name": "Breadth-Gated Momentum Overlay and Fresh Forward Protocol v1",
+      "status": "implemented",
+      "responsibility": "Bind immutable Signal D to the formal lagged Fixed-100 breadth regime, publish fixed U/G/R retrospective diagnostics, pre-register a no-backfill Fresh lock, increment Tushare data and evaluate minimum-gated forward evidence.",
+      "source_path": "backend/services/engine/breadth_gated_momentum",
+      "target_path": "backend/services/engine/breadth_gated_momentum",
+      "key_symbols": ["preregister", "build_historical", "fetch_incremental", "build_incremental_features", "run_fresh", "classify_fresh", "replay", "validate_artifact"],
+      "dependencies": ["quantmind2.low_frequency_momentum", "quantmind2.momentum_tail_alpha", "quantmind2.momentum_factor_iteration", "quantmind2.data_foundation", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Fresh evidence has only 20 completed return sessions and remains accumulating below the frozen 60/5/20/3 gate.", "Historical U/G/R execution is a bounded CnExchange-cost mechanism diagnostic and does not replace a formal Qlib conclusion.", "Runtime is single-process and incremental collection is manually invoked rather than scheduled."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
       "component_id": "quantmind2.momentum_tail_alpha",
       "name": "Momentum Tail-Alpha and Selection-Overlay Diagnostic v1",
       "status": "implemented",

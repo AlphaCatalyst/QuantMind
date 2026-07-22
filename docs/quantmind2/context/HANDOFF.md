@@ -1,5 +1,22 @@
 # Codex Handoff
 
+## QM2-R1-010 breadth-gated momentum forward handoff
+
+- Read `BREADTH_GATED_MOMENTUM_FORWARD_V1.md`, R1-009 and R1-008 before
+  interpreting the overlay. Signal D and all U/G/R parameters are frozen.
+- Formal `build_regimes` output at `t` already uses raw `t-1` breadth. Test
+  that returned state directly; never add a second lag, include neutral, or
+  tune thresholds.
+- Gate Spec `bmgs1_4cb24dc3...aec343` and Fresh Lock
+  `bgmfl1_80313cd9...436b60` predate all new network evidence. Snapshot
+  `tims1_a59e3127...9168c` covers 22 open sessions after 2026-06-24.
+- Fresh evidence is accumulating: 20 return sessions, two 10-session windows,
+  12 gate-on sessions and two gate-on rebalances do not meet the fixed
+  60/5/20/3 minimums. Positive interim metrics are not support.
+- Exact replay recovers the six canonical task artifacts plus Signal D with Store integrity healthy,
+  Missing 0 and Unreferenced 0, and all external, optimization, Qlib,
+  Registry, Promotion and new-object counts zero. No successor is authorized.
+
 ## QM2-R1-009 momentum tail-alpha handoff
 
 - Read `MOMENTUM_TAIL_ALPHA_DIAGNOSTIC_V1.md`, the R1-009 Implementation Run

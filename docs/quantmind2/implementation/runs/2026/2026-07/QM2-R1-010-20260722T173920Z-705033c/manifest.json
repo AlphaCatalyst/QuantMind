@@ -1,0 +1,538 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r1-010-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "ed623b12b5730c02f714343e86af8bbdbe2043b684c25975f13f9d4589939949",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 9911
+    },
+    {
+      "artifact_id": "artifact-qm2-r1-010-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "bmgs1_4cb24dc3078f47b5e0ada070dbeb29e365d12cfabb56e6833643c4f708aec343",
+      "artifact_type": "breadth_momentum_gate_spec",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:bmgs1_4cb24dc3078f47b5e0ada070dbeb29e365d12cfabb56e6833643c4f708aec343",
+      "schema_version": "breadth-momentum-gate-spec-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "bgmhd1_48b6d03636e0418105b8d23c23f6038ae84d56edff553c9675fc94645e030fec",
+      "artifact_type": "breadth_gated_momentum_historical_diagnostic",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:bgmhd1_48b6d03636e0418105b8d23c23f6038ae84d56edff553c9675fc94645e030fec",
+      "schema_version": "breadth-gated-momentum-historical-diagnostic-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "bgmfl1_80313cd93808a188df4ca594f9a92174cb850dfa57439ab7748c8f5ecf436b60",
+      "artifact_type": "breadth_gated_momentum_fresh_lock",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:bgmfl1_80313cd93808a188df4ca594f9a92174cb850dfa57439ab7748c8f5ecf436b60",
+      "schema_version": "breadth-gated-momentum-fresh-lock-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "tims1_a59e3127abcdd187f352b4d268d765c73bfec480ac5fefd6c6c865ebe909168c",
+      "artifact_type": "tushare_incremental_market_snapshot",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:tims1_a59e3127abcdd187f352b4d268d765c73bfec480ac5fefd6c6c865ebe909168c",
+      "schema_version": "tushare-incremental-market-snapshot-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "bgmfo1_6cdb7685034b3fd6160d89eefb723610916e37aa321db71e658468c18350abaf",
+      "artifact_type": "breadth_gated_momentum_fresh_observation",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:bgmfo1_6cdb7685034b3fd6160d89eefb723610916e37aa321db71e658468c18350abaf",
+      "schema_version": "breadth-gated-momentum-fresh-observation-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "bgmfa1_22d8424e029557ff2e19a06623cb11ebf7569b465178d6cd8a8943b0e05349cd",
+      "artifact_type": "breadth_gated_momentum_fresh_assessment",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:bgmfa1_22d8424e029557ff2e19a06623cb11ebf7569b465178d6cd8a8943b0e05349cd",
+      "schema_version": "breadth-gated-momentum-fresh-assessment-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sai_2817ba87390c6abe1801472e8556d830e46603d76e764acab7118385128ac272",
+      "artifact_type": "artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sai_2817ba87390c6abe1801472e8556d830e46603d76e764acab7118385128ac272",
+      "schema_version": "artifact-store-inventory-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "3e4052ad726d8c20e488a1e03f7f15e5bece73560eb845c00426f9cb263acd80",
+      "before_hash": "2574a04f957e19c95f3d645cbe21324d9ac66ca5bb38d1d06cbc66c0df64a806",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a9b316c5e72a0f9f620161067bc715020fbce21fbd671868279207fbc38d9244",
+      "before_hash": "558426d0d707a67a96e460b2882b4011e5fe630173c29b655cb530cf231f80bf",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b8e68be2741003d5de0e87875075d1dd2ae1522f925ee0a932ef3ca10994f229",
+      "before_hash": "b04c0d976eb3ed2713341a285891aa7203602d023cae65bbe836abe44cf2fd00",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5e34b5d0d2e57b09c50cc2c9ee007653906437601eb5f1e4791b5bb30d3e338e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/breadth_gated_momentum/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d50178372dc8ca2a67e2d099630912bcba9849feadbf022e8bc0d603a1150d22",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/breadth_gated_momentum/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "44dc7f635d072f0aa32f137fcc4e16a14d53d7f961e163beda193a4a27d50bf9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/breadth_gated_momentum/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0b0fc2863deda56440c9dbf7aa6e752f3d8c20bb5d7f2e16dc00274975d5f598",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/breadth_gated_momentum/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "134a29c075a79f48af6ed7acecfc1c9a3f33c339a348539f71d3eccda2c144c5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_breadth_gated_momentum.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3cc786d55a96bdc0b3bbe6f2369183d8809a162f4cb35f4f9735918f24d769bc",
+      "before_hash": "13a174caad7db3c3a75c0228e381acf8b22a03dd9bf85aa1309aa992b565396a",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b4fc2e72bf96ea85e93b5ba50dc3c136cdb2c9bcdc72f131e5de132e30c8668c",
+      "before_hash": "4cca530c2b6e575e6e657f4478d3fdff4984a02c0dbf956ddd43429c62973c01",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9b07bfb30144f75db09aceeb8d70ed9bbe083499899bb8be812de80a53b18434",
+      "before_hash": "f254831589843c62581564d36d8f5f4ed1c8b8fc9d68be4e96b4dd04f1644f8b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "79afc7cbde665a164f65a745678a180c87da911e2cfd079ace858d13879292e3",
+      "before_hash": "a60604fa8253a62d2bedda8360eff8f91203f808d64003106ec41baafd2ad93f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc20a52f94d95911534debd9cc2a88d20eec2c56d2d7484e32ce924ef34487ea",
+      "before_hash": "eb9d9e7a7bfcb07f78eb7eb1f3c6eedb931d632fe0184da0ee8d7bdc6bd4469c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6e25ead85769827c91ed6571e8a6e3081b99c914c7da888349058b59a2bdc388",
+      "before_hash": "7f52841069bc35ce8494efb6e55826b456c6e1fa82d36c5a897379f72e46003b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "db7693b5b6bbe278406fceb9346cbab4f5cf8a5ce762c08258752029730d0f57",
+      "before_hash": "4653dc38dbe95afa0c0f40f0ec1925ecf1e9ec51d173be33814cddc4b8d7559e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "35b6b4a86c9bac4d686b0d0d9330ac7b1a517af450fbf8a74a6e8941b95ed549",
+      "before_hash": "c377c26264620927676a76cdde5479ebf7d857806f50fe3649090565d3c08cf5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "35d0be12802d4b7e0d57c1b6af23c08de87e0306ea94d2608a9ba4040e938163",
+      "before_hash": "f5c4ee1624db84dc1b58e01a76699385ade8b44944c6b115dd2abd349a18fd1b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "70af1dc2e3ce643550526196c98de247892c02815a8d3c570cf98156f9f4de55",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/BREADTH_GATED_MOMENTUM_FORWARD_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ed623b12b5730c02f714343e86af8bbdbe2043b684c25975f13f9d4589939949",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f656c2684976ce21ea37449c6e7bf547cd3eff848c1b66fc12989be8400b86c7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_breadth_gated_momentum_forward.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1bcc42ba0df4e734b640b585e494d06882166992dad1986cffdb9f15c02f2c9b",
+      "before_hash": "f749ec08d9ba610724e6f20a83693d1cbff3ba2684adfc9b3e2e8f33e93e274a",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/protocol.py",
+      "qualified_name": "gate_spec",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/protocol.py",
+      "qualified_name": "fresh_lock",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/engine.py",
+      "qualified_name": "preregister",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/engine.py",
+      "qualified_name": "build_historical",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/engine.py",
+      "qualified_name": "fetch_incremental",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/engine.py",
+      "qualified_name": "run_fresh",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/engine.py",
+      "qualified_name": "replay",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/breadth_gated_momentum/artifact.py",
+      "qualified_name": "validate_artifact",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.breadth_gated_momentum",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.momentum_tail_alpha",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.data_foundation",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.artifact_runtime",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r1-010-report",
+        "sha256": "ed623b12b5730c02f714343e86af8bbdbe2043b684c25975f13f9d4589939949"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/breadth_gated_momentum/__init__.py",
+      "backend/services/engine/breadth_gated_momentum/artifact.py",
+      "backend/services/engine/breadth_gated_momentum/engine.py",
+      "backend/services/engine/breadth_gated_momentum/protocol.py",
+      "backend/services/tests/test_breadth_gated_momentum.py",
+      "docs/quantmind2/contracts/BREADTH_GATED_MOMENTUM_FORWARD_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/report.md",
+      "tools/quantmind2/run_breadth_gated_momentum_forward.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_runtime/cache.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/breadth_gated_momentum/__init__.py",
+      "backend/services/engine/breadth_gated_momentum/artifact.py",
+      "backend/services/engine/breadth_gated_momentum/engine.py",
+      "backend/services/engine/breadth_gated_momentum/protocol.py",
+      "backend/services/tests/test_breadth_gated_momentum.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/BREADTH_GATED_MOMENTUM_FORWARD_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/report.md",
+      "tools/quantmind2/run_breadth_gated_momentum_forward.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "036bee8be34651dc2a69d999b80b3f1be97f608ba5a8c34465dc75da52d2843e",
+    "manifest_payload_sha256": "0264f628128d23161520d54c67aac3f78f31cbcf96a6c56d084ff29e88cbde57",
+    "report_sha256": "ed623b12b5730c02f714343e86af8bbdbe2043b684c25975f13f9d4589939949",
+    "source_bundle_sha256": "8c76b44d8d031565c41fa519ebdcf3de81c596430bb5789a1c18d7d149134aec"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.breadth_gated_momentum",
+      "description": "Fresh evidence has only 20 completed return sessions and remains accumulating below the immutable 60/5/20/3 gate.",
+      "limitation_id": "limit-r1-010-fresh-sample",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.breadth_gated_momentum",
+      "description": "Historical U/G/R execution is a bounded CnExchange-cost mechanism diagnostic and does not replace a formal Qlib conclusion.",
+      "limitation_id": "limit-r1-010-historical-executor",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.breadth_gated_momentum",
+      "description": "Incremental collection is manually invoked and single-process; no scheduler or late-revision monitor is implemented.",
+      "limitation_id": "limit-r1-010-manual-runtime",
+      "severity": "medium",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-22T17:39:20Z",
+      "reason": "Evaluate the pre-registered breadth mechanism implied by the immutable R1-009 regime-specific classification.",
+      "relationship_id": "rel-qm2-r1-010-continues-r1-009",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R1-010-20260722T173920Z-705033c",
+      "target_run_id": "QM2-R1-009-20260722T162843Z-c071c0f"
+    }
+  ],
+  "repository": {
+    "base_commit": "705033c820828f5dbfd26805507c8a9771014c0d",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "705033c820828f5dbfd26805507c8a9771014c0d",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-22T17:39:20Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "036bee8be34651dc2a69d999b80b3f1be97f608ba5a8c34465dc75da52d2843e",
+    "implementation_run_id": "QM2-R1-010-20260722T173920Z-705033c",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-010-20260722T173920Z-705033c/report.md",
+    "repository_id": "quantmind",
+    "result_commit": null,
+    "source_bundle_hash": "8c76b44d8d031565c41fa519ebdcf3de81c596430bb5789a1c18d7d149134aec",
+    "started_at": "2026-07-22T17:00:00Z",
+    "task_id": "QM2-R1-010",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-22T17:00:00Z",
+    "explicit_non_goals": [
+      "No Agent or new Factor",
+      "No Factor, Strategy, Combined or Gate optimization",
+      "No Candidate or Registry mutation",
+      "No Promotion, LightGBM or production trading change"
+    ],
+    "objective": "Pre-register the fixed narrow/weak breadth Gate, diagnose immutable Signal D through U/G/R paths, and begin no-backfill Fresh forward observation after 2026-06-24.",
+    "parent_task_id": "QM2-R1-009",
+    "scope": [
+      "Formal Breadth Gate and Fresh Lock",
+      "Fixed U/G/R historical mechanism diagnostic",
+      "Bounded incremental Tushare snapshot",
+      "Incremental Signal D and breadth computation",
+      "Fresh minimum-evidence assessment",
+      "Immutable Store recovery and replay"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R1-010",
+    "title": "Breadth-Gated Momentum Overlay and Fresh Forward Protocol v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -o addopts='' backend/services/tests/test_breadth_gated_momentum.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 13,
+      "purpose": "Verify the bounded Gate, paths, Fresh policy, credentials and artifacts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-010-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:bgmfa1_22d8424e029557ff2e19a06623cb11ebf7569b465178d6cd8a8943b0e05349cd",
+      "command": "validate-gate; build historical; fetch incremental; build features; run Fresh; validate-study",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 7,
+      "purpose": "Verify real immutable sources, pre-network lock, bounded Tushare collection, Store publication and zero-call replay.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-010-formal"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -o addopts='' <8 relevant Store, runtime, momentum and Context files> -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 82,
+      "purpose": "Run bounded relevant regression.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-010-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Validate Project Memory and implementation evidence references.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-010-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "parse all QuantMind2 JSON; py_compile new package/CLI; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 3,
+      "purpose": "Verify machine-readable context, syntax and whitespace.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-010-json-compile-diff"
+    }
+  ]
+}

@@ -1,5 +1,15 @@
 # Component Catalog
 
+## QM2-R1-010 addition
+
+- `quantmind2.breadth_gated_momentum` — implemented at
+  `backend/services/engine/breadth_gated_momentum`. It binds immutable Signal
+  D to the formal PIT breadth state, publishes fixed U/G/R retrospective
+  diagnostics, and accumulates no-backfill Fresh evidence from Tushare.
+- The component cannot call Agent or Optimization, mutate Candidate/Registry,
+  or promote. The Fresh state remains accumulating below the frozen
+  60/5/20/3 minimums.
+
 ## QM2-R1-009 addition
 
 - `quantmind2.momentum_tail_alpha` — implemented at
