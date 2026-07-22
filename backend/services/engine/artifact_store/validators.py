@@ -142,6 +142,15 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         validate_artifact(source, artifact_id, kind.value)
         return "parameter_optimization_ablation.validate_artifact"
     if kind in {
+        ArtifactKind.OPTIMIZATION_GOVERNANCE_DECISION,
+        ArtifactKind.FACTOR_OPTIMIZATION_POLICY,
+        ArtifactKind.STRATEGY_OPTIMIZATION_POLICY,
+        ArtifactKind.COMBINED_OPTIMIZATION_POLICY,
+    }:
+        from backend.services.engine.optimization_governance.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "optimization_governance.validate_artifact"
+    if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
         ArtifactKind.STRATEGY_BACKTEST_RESULT,

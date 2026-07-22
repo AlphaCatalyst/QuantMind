@@ -138,10 +138,11 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.factor_dsl` | partial | Closed typed AST, strict admission, canonical Template/Instance identities and dataset-aware compiler exist; optimization, Registry and Agent loop do not |
 | `quantmind2.factor_compute` | partial | Deterministic Snapshot-only executor and immutable Factor Values v1 exist; distributed compute, Registry, validation and production consumers do not |
 | `quantmind2.factor_optimization` | partial | Deterministic declared-parameter Study/Trial execution, budgets, mechanical metrics, eligibility, immutable artifacts and replay exist; predictive validation, random/Bayesian search, threshold, Registry/API and distributed execution do not |
+| `quantmind2.optimization_governance` | implemented | Default-first Factor/Strategy policies, one-hop rescue budgets, diagnostic-only full search, suspended combined optimization, Candidate metadata gates, Store artifacts and zero-call replay are enforced for new research |
 | `quantmind2.factor_validation` | partial | Immutable temporal Dataset, Validation Result, Selection and isolated Frozen Result exist; current evidence does not constitute Registry promotion |
 | `quantmind2.factor_registry` | partial | Immutable Entry/Policy/Decision/Snapshot artifacts, multi-parent reconciliation, strict evidence lineage, queries and CLI exist; current canonical 20-entry Snapshot has one new research-only Entry and no promotion candidate, approved or active Factor; persistence/API are deferred |
 | `quantmind2.research_campaign` | partial | Closed Goal/Decision, generated parameter-contract summary, structured repair, sanitized memory, bounded state machine, novelty, real Optimization/Development/Registry loop and CLI exist; QM2-P0-012 remains partial while QM2-P0-012F completed one real Store-backed external Campaign |
-| `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies 79 formal artifacts in current Inventory |
+| `quantmind2.research_artifact_store` | implemented | Immutable Store contains and verifies 636 formal artifacts after QM2-R1-006 publication; current integrity is healthy |
 | `quantmind2.artifact_runtime` | implemented | Store-required resolution/publication, runtime counters, Campaign graph recovery and exact replay operate from an empty cache |
 | `quantmind2.security_termination` | implemented | Generic evidence-gated policy and formal 2025 Qlib/Fixed-100 termination audit; unresolved benchmark settlement remains noncanonical |
 | `quantmind2.corporate_actions` | partial | Tushare capability capture, immutable Raw/Event artifacts, generic settlement engine, benchmark contract and exact replay exist; current live evidence is insufficient, so no benchmark revision is publishable |
@@ -149,6 +150,12 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
 | Remaining QuantMind 2.0 research/data components | planned | Frozen architecture only |
+
+`quantmind2.optimization_governance` applies the corrected R1-005 business
+decision without modifying the v1 optimization engines or historical objects.
+Its full-search modes are diagnostic consumers only; Candidate selection uses
+explicit defaults or a failure-gated local rescue, and Promotion remains out
+of scope.
 
 The persistence audit selects the future Project Knowledge/Ledger integration
 boundary but adds no runtime component: API control-plane ownership,

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/factor_optimization_policy_v2.schema.json",
+  "title": "FactorOptimizationPolicyV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "policy_version", "default_mode", "max_trials_per_template", "local_search_rule", "full_search_diagnostic_enabled_by_default", "full_search_usable_for_candidate_selection", "full_search_usable_for_promotion", "missing_default_error"],
+  "properties": {
+    "policy_id": {"const": "factor-optimization-policy-v2-default-first"},
+    "policy_version": {"const": "2.0.0"},
+    "default_mode": {"const": "default_first"},
+    "max_trials_per_template": {"const": 7},
+    "local_search_rule": {"const": "default_plus_previous_and_next_one_parameter_at_a_time"},
+    "full_search_diagnostic_enabled_by_default": {"const": false},
+    "full_search_usable_for_candidate_selection": {"const": false},
+    "full_search_usable_for_promotion": {"const": false},
+    "missing_default_error": {"const": "AGENT_DEFAULT_PARAMETERS_MISSING"}
+  }
+}

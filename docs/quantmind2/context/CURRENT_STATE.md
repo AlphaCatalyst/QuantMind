@@ -1,5 +1,23 @@
 # Current Implementation State
 
+## Default-first Optimization Governance v2 (QM2-R1-006)
+
+- The corrected R1-005 business decision is now runtime policy: new research
+  evaluates explicit Agent defaults first, stops when they pass, and permits
+  at most a one-hop, one-parameter-at-a-time local rescue after failure.
+- Factor and Strategy full searches are explicit diagnostic-only modes. They
+  cannot select Candidate parameters or authorize Promotion. Combined Factor
+  and Strategy parameter search is suspended and hard-fails during planning.
+- New Candidate Locks require twelve optimization-governance metadata fields;
+  local rescue remains `research_registered` only and needs new-time evidence
+  before any later lifecycle admission.
+- Four immutable policy/decision artifacts are Store-backed under decision
+  `ogd1_7de0ba81...911f7f5`. Cold recovery and exact replay restore all four
+  with Agent, Factor/Strategy Optimization, Qlib, network, Promotion and new
+  object counts equal to zero. Store integrity is healthy.
+- R1-003 Candidate Locks, R1-005 artifacts and their statuses were not changed.
+- Current task: `QM2-R1-006`; no successor task is authorized here.
+
 ## Parameter Optimization Ablation Git evidence correction (QM2-R1-005F)
 
 - The original `QM2-R1-005-20260722T052636Z-82f13f9` Run remains immutable,

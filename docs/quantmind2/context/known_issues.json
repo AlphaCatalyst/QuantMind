@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T13:32:05Z",
-  "source_commit": "3e04743f41ee6d604a7de6064558f9925d89d993",
+  "generated_at": "2026-07-22T14:13:43Z",
+  "source_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -54,7 +54,7 @@
     {"issue_id": "QM2-KI-045", "severity": "medium", "status": "resolved_by_successor", "summary": "QM2-R1-003 produced two fully replayable research locks that underperformed CSI300 in contaminated later-period reports; QM2-R1-004 now provides semantic and alpha-decomposition evidence without changing their research-only state."},
     {"issue_id": "QM2-KI-046", "severity": "medium", "status": "open", "summary": "QM2-R1-004 finds weak positive 2025 RankIC followed by negative 2026H1 RankIC and residual return. Costs and concentration are not the primary failure; the locks remain research-only and support at most stock-selection-overlay research."},
     {"issue_id": "QM2-KI-047", "severity": "medium", "status": "open", "summary": "Both R1-003 candidate Templates expose only one three-point optimizable parameter, so the frozen F1 direct-neighbor and F2 full factor spaces are identical. QM2-R1-005 preserves both modes but cannot infer a factor search-size effect from their equality."},
-    {"issue_id": "QM2-KI-048", "severity": "high", "status": "open", "summary": "QM2-R1-005 classifies Candidate B factor and strategy optimization as likely overfit and both Candidates' combined optimization as likely overfit. The advisory contract selects default-first separate optimization and suspension of combined optimization, but no optimizer default or production behavior has been changed."},
+    {"issue_id": "QM2-KI-048", "severity": "high", "status": "resolved", "summary": "QM2-R1-005 classifies Candidate B factor and strategy optimization as likely overfit and both Candidates' combined optimization as likely overfit. QM2-R1-006 applies default-first separate policies, diagnostic-only full search and suspended combined optimization to new research without changing historical objects."},
     {"issue_id": "QM2-KI-049", "severity": "medium", "status": "resolved_by_correction", "summary": "The immutable QM2-R1-005 Manifest froze hashes before one trailing-whitespace cleanup. The original Run remains Git-inconsistent and non-indexable; QM2-R1-005F records exact commit-derived ChangedFile and source-bundle evidence plus a corrects relationship without changing research results."}
   ]
 }

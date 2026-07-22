@@ -1,0 +1,617 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r1-006-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "90381b62a8b36121c0c1073b9d3ba8e2314c0f74aa970608d818a75ade2bae3b",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 10582
+    },
+    {
+      "artifact_id": "artifact-qm2-r1-006-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "fop2_32ca8b27153f4dd0cb4f6d4f5bf13fd22ae2a47ddb9a1f0945ba00dc4d446161",
+      "artifact_type": "factor_optimization_policy",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:fop2_32ca8b27153f4dd0cb4f6d4f5bf13fd22ae2a47ddb9a1f0945ba00dc4d446161",
+      "schema_version": "optimization-governance-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sop2_f7dcc13f435c3804518c8790d4330f7f06874a7f116a5e3f80fbf05304f667b7",
+      "artifact_type": "strategy_optimization_policy",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sop2_f7dcc13f435c3804518c8790d4330f7f06874a7f116a5e3f80fbf05304f667b7",
+      "schema_version": "optimization-governance-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "cop1_c787605254f2c9694fe9eda98ac5eba13b42b9030a6f6d6734adf9a8e265887e",
+      "artifact_type": "combined_optimization_policy",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:cop1_c787605254f2c9694fe9eda98ac5eba13b42b9030a6f6d6734adf9a8e265887e",
+      "schema_version": "optimization-governance-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "ogd1_7de0ba81247dc226aa305c42f2e893225a0906cfae0d30f881b3c7d5f911f7f5",
+      "artifact_type": "optimization_governance_decision",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:ogd1_7de0ba81247dc226aa305c42f2e893225a0906cfae0d30f881b3c7d5f911f7f5",
+      "schema_version": "optimization-governance-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sai_98b0f673fb6e94aae89d8628e2589707527f8878bcc0b3f23407b56d4a6fc125",
+      "artifact_type": "artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sai_98b0f673fb6e94aae89d8628e2589707527f8878bcc0b3f23407b56d4a6fc125",
+      "schema_version": "artifact-store-inventory-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "f50fd3fefbe5e62eb2eb02e0e35e84a4f5bee35e24713b67cda465b45d949d78",
+      "before_hash": "ed660a8d2e9f6576e02926255c11925d089ff91ff41b9dca065f2e4bb31ce8eb",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7200d45a2c801ab6546794b793b61e2e84a8b9186cad3dd904688d38902ffa71",
+      "before_hash": "f98efb2d7792e54f001ac7695d82da064b4e2994e69e7f9bc0fb2dd7639870c7",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "96cb0b1463b16a119c371dee57e644b66869f0a01a189d53d9a8e2d14f602ece",
+      "before_hash": "452ff88f0e063fef68f0d346d9b2c64b5d988cc24c97219bbfe74f4b358236d9",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7cdf1c6e561c20f56fe2523575d6b0cd5ab966cf60ff85ebce09c96a03a459dd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/optimization_governance/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7e7b349a6a0beea21d0bf8e07fe600211dd03eb14ad3d05d56230e39da80664b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/optimization_governance/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bd83e23da01a5a2d15314a1b023286d383d8e61c0c564956f9354e5e71437d14",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/optimization_governance/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ddea6cfa070369d22e1d6f95e77d157db7e5eba9647ee30ae6da7d2f3dce5f22",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/optimization_governance/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5b29842e4386dfe2144c8bcf356132d13eec17e80f24979f0553a4bc9747324e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/optimization_governance/policies.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "789e87f942caddc78fdeff7ffe270197c98c71c265da1e5619f37c75e280eb3f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_optimization_governance.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8d45d250ff611d8e4215719abe419f21528dd3b79573c408b071a245030f91a0",
+      "before_hash": "f5ccedf90e9a2de77e89fa2b7ff8f1f1d6e0a7c29ea3e541a3e6f6688dfb8c6b",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "58b5ea3dd558716b725ea7dffe0fee6d5183c812a915a791f65f4ca7c1824842",
+      "before_hash": "15de6d6d8a54d75c5399012d83aa3453fef36d0435a87d2ecbdf6533fd696a6a",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f1741d0d47ba5efd75fb6af563ef053bbe910aa8c3e5a87452114f87dad825f8",
+      "before_hash": "e0b807c4b9fa3b0ac1aa5b0eead4f99ea3281901cbe27c3f4d162ec403584c30",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cce5c62dc6d737cd9c6912e65578e03ff49a031b45a9d1cebf6e773ba755916c",
+      "before_hash": "1398b3ab4b47ddb3c41360d1cb25019597ed30d2fb93ab8a0c971a617c797aee",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "30aea3e370996c8e376aab1865d3ff7b9546bc0e9694096ac9efd5c0978012e5",
+      "before_hash": "f5fe1739ce459fed739bb760b0334af37690ec9c86813ee5a4da3bab245c1cad",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "13ab72916a0b601646f488bcf2c9f378fc6bfe4a1fb6e09764c14e64e58a1bc2",
+      "before_hash": "15246bc74836ab2a1a7b20618877483d677063a55d1127831582d26e23e2568d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9bb17dda8251ecd8be93dd66d5bbac2e66da0429000ba8f0e248fee7c7958d78",
+      "before_hash": "3e2265568544606af6583b9de3f5539056d4f977ffa23fdb34ff3eeb06735ec3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a24cf73fcce7b446b8574282b98c7bad8a5792e1ad80a47f4d8219d1310f9387",
+      "before_hash": "93808a60870c7894e81afabe30f5ea089b2f6edb5bcc87e56e10763bbbbe2893",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "61f83813e868d44c3048f0eb33d230255060a930ef41aa7f404d9eca1a3502ba",
+      "before_hash": "444c5da60dca7299fed00743a32ccec056671adaa5bd75cc2f961f13b313356e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "132d3bbfcf8ff4db6b5b52c382b0e7912f379c929d8e4c11b1a44eda23da87b7",
+      "before_hash": "a19356d222e949a3896f1a0578a5affac2f6ed316a4102532c7e47c11444da67",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c8371e93e879253cf2927717771dc1676f0f768ca8f2fcebc6896b943c5df1c5",
+      "before_hash": "1816fcec22a54f6f9701ece76c6ff79c8a8b033d73f93d08ee2d3b2f4c53cfe2",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "779f31d5d82e16724e1308e928258feb3dcdbf7dcac8ce4fc5455b8d63844635",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/COMBINED_OPTIMIZATION_POLICY_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7215f4a176d2639da122eeccd660bedade8af23bb64cd2513d9b0e57c2516c6a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/FACTOR_OPTIMIZATION_POLICY_V2.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c69dc118d0e33a18eb0861aa7368465bc49d6884a150d2bb0859d0f6f81f3e11",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_POLICY_V2.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "90381b62a8b36121c0c1073b9d3ba8e2314c0f74aa970608d818a75ade2bae3b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c8e3272750fbbab8d43f60e0767a473e0f4778c955b43cc29ffebb8437a119a5",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/combined_optimization_policy_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ff6a1e83a29ebbe7f227fbf79389dc3aa2780ceeb1d18d952dd3eb0a9e904601",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/factor_optimization_policy_v2.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "15d65897e76046ef39dcc6dd3aa8b44d51f9e9603b27a190175057b95ffd0295",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/optimization_governance_decision_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "313596bdcf2b3d20d89f8b8e7af3f226c7481ef89a7050bd622033807d14c01b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/schemas/strategy_optimization_policy_v2.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bcd1440efeaacd16e7addddc7694cb0314952b88d52aff0bbc44da4910dfde58",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/optimization_governance.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "30cc6ff621514731b72dcb6d4ac4392b318d34ff2a01fc95b012a80a70c63089",
+      "before_hash": "fc7b56bf8c3a853a3e27d71f35712823dab1ae59fbc27a67b60d0e86033ec4dc",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/policies.py",
+      "qualified_name": "FactorOptimizationPolicyV2",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/policies.py",
+      "qualified_name": "StrategyOptimizationPolicyV2",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/policies.py",
+      "qualified_name": "CombinedOptimizationPolicyV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/models.py",
+      "qualified_name": "OptimizationEvidenceClass",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/engine.py",
+      "qualified_name": "plan_governance",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/engine.py",
+      "qualified_name": "evaluate_factor",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/engine.py",
+      "qualified_name": "evaluate_strategy",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/engine.py",
+      "qualified_name": "validate_candidate_lock_metadata",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/engine.py",
+      "qualified_name": "execute_governance",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/optimization_governance/engine.py",
+      "qualified_name": "replay_governance",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.optimization_governance",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.factor_optimization",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.strategy_optimization",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.parameter_optimization_ablation",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r1-006-report",
+        "sha256": "90381b62a8b36121c0c1073b9d3ba8e2314c0f74aa970608d818a75ade2bae3b"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/optimization_governance/__init__.py",
+      "backend/services/engine/optimization_governance/artifact.py",
+      "backend/services/engine/optimization_governance/engine.py",
+      "backend/services/engine/optimization_governance/models.py",
+      "backend/services/engine/optimization_governance/policies.py",
+      "backend/services/tests/test_optimization_governance.py",
+      "docs/quantmind2/contracts/COMBINED_OPTIMIZATION_POLICY_V1.md",
+      "docs/quantmind2/contracts/FACTOR_OPTIMIZATION_POLICY_V2.md",
+      "docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_POLICY_V2.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/report.md",
+      "docs/quantmind2/implementation/schemas/combined_optimization_policy_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_optimization_policy_v2.schema.json",
+      "docs/quantmind2/implementation/schemas/optimization_governance_decision_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/strategy_optimization_policy_v2.schema.json",
+      "tools/quantmind2/optimization_governance.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_runtime/cache.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/optimization_governance/__init__.py",
+      "backend/services/engine/optimization_governance/artifact.py",
+      "backend/services/engine/optimization_governance/engine.py",
+      "backend/services/engine/optimization_governance/models.py",
+      "backend/services/engine/optimization_governance/policies.py",
+      "backend/services/tests/test_optimization_governance.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/COMBINED_OPTIMIZATION_POLICY_V1.md",
+      "docs/quantmind2/contracts/FACTOR_OPTIMIZATION_POLICY_V2.md",
+      "docs/quantmind2/contracts/STRATEGY_OPTIMIZATION_POLICY_V2.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/report.md",
+      "docs/quantmind2/implementation/schemas/combined_optimization_policy_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/factor_optimization_policy_v2.schema.json",
+      "docs/quantmind2/implementation/schemas/optimization_governance_decision_v1.schema.json",
+      "docs/quantmind2/implementation/schemas/strategy_optimization_policy_v2.schema.json",
+      "tools/quantmind2/optimization_governance.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "4b5ef1c7b49fd4e65a7d85b81240c3a680705585f68fcf504a551b7198f77cc6",
+    "manifest_payload_sha256": "788a7c3501060e9d60c4ef5b8592e51a89d1740e7d877550f1bf23aacb7cfc75",
+    "report_sha256": "90381b62a8b36121c0c1073b9d3ba8e2314c0f74aa970608d818a75ade2bae3b",
+    "source_bundle_sha256": "08ea1537ef8d0ed75d8118fddb34c17d33e27a11d3b93fb1d5cff64cae2f53e1"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.optimization_governance",
+      "description": "Governance applies to newly created research and does not migrate historical Studies Trials or Candidate Locks.",
+      "limitation_id": "limit-r1-006-new-research-only",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.optimization_governance",
+      "description": "The policy governs flow and budgets but each authorized research task still owns its concrete Eligibility and Strategy Gate.",
+      "limitation_id": "limit-r1-006-gate-owned-by-task",
+      "severity": "info",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [],
+  "repository": {
+    "base_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-22T14:20:01Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "4b5ef1c7b49fd4e65a7d85b81240c3a680705585f68fcf504a551b7198f77cc6",
+    "implementation_run_id": "QM2-R1-006-20260722T141343Z-9a28a1c",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-006-20260722T141343Z-9a28a1c/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "08ea1537ef8d0ed75d8118fddb34c17d33e27a11d3b93fb1d5cff64cae2f53e1",
+    "started_at": "2026-07-22T14:13:43Z",
+    "task_id": "QM2-R1-006",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-22T14:13:43Z",
+    "explicit_non_goals": [
+      "No Agent Factor Optimization Trial Strategy Optimization Trial Qlib Tushare or network execution",
+      "No Candidate Registry Promotion Factor Template Factor Instance Signal Strategy Result Dataset Label or historical Artifact mutation",
+      "No dependency lockfile database API or Qlib algorithm change"
+    ],
+    "objective": "Apply corrected parameter-ablation decisions as default-first runtime governance for new research.",
+    "parent_task_id": "QM2-R1-005",
+    "scope": [
+      "Factor and Strategy default-first policies",
+      "Bounded one-hop local rescue and diagnostic-only full search",
+      "Combined optimization suspension",
+      "Candidate metadata search accounting CLI and Planner gates",
+      "Immutable governance artifacts recovery replay tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R1-006",
+    "title": "Default-first Optimization Governance v2"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "<existing-python-3.12> -m pytest -q -o addopts= <optimization governance ablation factor strategy Store runtime and context tests>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 129,
+      "purpose": "Focused governance and directly relevant regression",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-006-relevant"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python3 tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Project Context and Implementation Run validation",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-006-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:ogd1_7de0ba81247dc226aa305c42f2e893225a0906cfae0d30f881b3c7d5f911f7f5",
+      "command": "<existing-python-3.12> tools/quantmind2/optimization_governance.py plan publish replay",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 3,
+      "purpose": "Formal governance publication cold recovery exact replay and zero-call evidence",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-006-real-artifacts"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "find docs/quantmind2 -name '*.json' | xargs python3 -m json.tool",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "All QuantMind2 JSON parseability",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-006-json"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "<existing-python-3.12> -m py_compile backend/services/engine/optimization_governance/*.py tools/quantmind2/optimization_governance.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 6,
+      "purpose": "New Python syntax validation",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-006-compile"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Whitespace and patch integrity",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-006-diff-check"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "<existing-python-3.12> -m pytest <relevant tests plus nonexistent test_context_files.py>",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 0,
+      "purpose": "Initial aggregate regression setup; corrected command passed",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-r1-006-initial-suite-path"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python3 tools/quantmind2/index_implementation_runs.py plan --repository-id quantmind-main --repository-path <absolute-root> --ref HEAD --run-id QM2-R1-006-20260722T141343Z-9a28a1c --output-json",
+      "failed_count": 0,
+      "not_run_reason": "requires the containing commit",
+      "passed_count": 0,
+      "purpose": "Containing-commit Planner admission",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-r1-006-postcommit"
+    }
+  ]
+}

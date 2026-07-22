@@ -1,5 +1,23 @@
 # Codex Handoff
 
+## QM2-R1-006 default-first optimization-governance handoff
+
+- Read the three optimization policy contracts and the R1-005/R1-005F Runs
+  before changing parameter-research behavior. R1-005 is supported as
+  `completed_corrected`; never rewrite its historical Report or Manifest.
+- New Factor/Strategy research must evaluate explicit Agent defaults first.
+  A pass freezes immediately; a failure permits only the bounded one-hop local
+  neighborhood. Full spaces are diagnostic-only and opt-in.
+- Combined optimization is suspended. `F0S0`, failure-gated `F1S0`, and
+  failure-gated `F0S1` are the only allowed combinations; if both defaults
+  fail, search Factor locally with default Strategy and then stop.
+- Canonical governance decision is `ogd1_7de0ba81...911f7f5`; its three policy
+  parents and the decision cold-recover and exact-replay with all execution
+  and new-object counts zero.
+- R1-003 locks remain `research_registered`. No Candidate, Registry lifecycle,
+  Qlib result, Dataset, signal or historical optimization artifact changed.
+- No successor task is authorized by this governance implementation.
+
 ## QM2-R1-005F Git evidence correction handoff
 
 - The original `QM2-R1-005-20260722T052636Z-82f13f9` Report and Manifest are

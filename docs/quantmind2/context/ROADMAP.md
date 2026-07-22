@@ -1,6 +1,10 @@
 # QuantMind 2.0 Initial Roadmap
 
-Current evidence task: `QM2-R1-005F` records immutable Git correction evidence
+Current governance task: `QM2-R1-006` applies the corrected R1-005 decision as
+default-first Factor/Strategy policy and suspends combined optimization. It
+changes no historical research object and authorizes no successor.
+
+Previous evidence task: `QM2-R1-005F` records immutable Git correction evidence
 for the original R1-005 Run. It changes no research result or runtime behavior
 and authorizes no successor.
 
@@ -27,6 +31,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R1-006 Default-first Optimization Governance v2 | completed_uncommitted | P0 | R1-005, R1-005F | Apply default-first Factor/Strategy evaluation, bounded local rescue and suspended combined optimization to new research | No Agent, Optimization Trial, Qlib, Tushare, network, Promotion, historical Artifact or Candidate-state change | Runtime policies, CLI gates, Candidate metadata, four Store artifacts, cold recovery and zero-call replay pass |
 | QM2-R1-005F Parameter Optimization Ablation Git Evidence Correction | completed_uncommitted | P0 | R1-005 | Record exact commit-derived ChangedFile and source-bundle evidence and link it to the immutable inconsistent Run | No original Run edit, research rerun, Agent, Optimization, Qlib, network, Candidate or Promotion change | Independent correction evidence and `corrects` relation provide the supported corrected completion |
 | QM2-R1-004 Momentum Signal Semantic Audit and Alpha Decomposition v1 | completed_uncommitted | P0 | R1-003 | Explain later-period degradation through immutable semantic, cross-sectional, beta, style, concentration, contribution, cost and regime evidence | No new Factor, Agent, Optimization, Strategy change, network, Promotion or future-period selection | Five Store-backed diagnostics, cold recovery and exact replay pass; decision is stock-selection overlay only |
 | QM2-P0-001 Context Bootstrap and Implementation Contract | completed_committed | P0 | none | Establish repository context, ADR, report, manifest, handoff, validation | No business code, DB, API | Machine and human bootstrap validates and records itself |

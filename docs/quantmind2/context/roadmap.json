@@ -1,12 +1,21 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T13:32:05Z",
-  "source_commit": "3e04743f41ee6d604a7de6064558f9925d89d993",
+  "generated_at": "2026-07-22T14:13:43Z",
+  "source_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "items": [
+    {
+      "task_id": "QM2-R1-006",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R1-005", "QM2-R1-005F"],
+      "objective": "Apply default-first Factor and Strategy governance, bounded local rescue and suspended combined optimization to new research.",
+      "explicit_non_goals": ["No Agent, Optimization Trial, Qlib, Tushare, network, Promotion, historical Artifact or Candidate-state change."],
+      "acceptance_summary": "Runtime policies, CLI gates, Candidate metadata, four Store artifacts, cold recovery and zero-call replay pass."
+    },
     {
       "task_id": "QM2-R1-005F",
       "status": "completed_uncommitted",

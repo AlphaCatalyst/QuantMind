@@ -99,6 +99,10 @@ class ArtifactKind(str, Enum):
     COMBINED_OPTIMIZATION_ABLATION = "combined_optimization_ablation"
     OPTIMIZATION_TRIAL_RANK_STABILITY = "optimization_trial_rank_stability"
     OPTIMIZATION_OVERFIT_ASSESSMENT = "optimization_overfit_assessment"
+    OPTIMIZATION_GOVERNANCE_DECISION = "optimization_governance_decision"
+    FACTOR_OPTIMIZATION_POLICY = "factor_optimization_policy"
+    STRATEGY_OPTIMIZATION_POLICY = "strategy_optimization_policy"
+    COMBINED_OPTIMIZATION_POLICY = "combined_optimization_policy"
 
 
 class IntegrityStatus(str, Enum):

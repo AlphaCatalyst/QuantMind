@@ -79,6 +79,10 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "combined_optimization_ablation": ("parameter-optimization-ablation", "combined"),
         "optimization_trial_rank_stability": ("parameter-optimization-ablation", "rank-stability"),
         "optimization_overfit_assessment": ("parameter-optimization-ablation", "assessments"),
+        "optimization_governance_decision": ("optimization-governance", "decisions"),
+        "factor_optimization_policy": ("optimization-governance", "factor-policies"),
+        "strategy_optimization_policy": ("optimization-governance", "strategy-policies"),
+        "combined_optimization_policy": ("optimization-governance", "combined-policies"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

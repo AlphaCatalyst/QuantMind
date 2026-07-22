@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/optimization_governance_decision_v1.schema.json",
+  "title": "OptimizationGovernanceDecisionV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_ablation_task", "source_correction_task", "source_ablation_assessment_id", "factor_decision", "strategy_decision", "combined_decision", "factor_policy_id", "strategy_policy_id", "combined_policy_id", "auto_applied", "effective_from_task", "historical_artifacts_mutated", "candidate_status_mutated"],
+  "properties": {
+    "schema_version": {"const": "optimization-governance-decision-v1"},
+    "source_ablation_task": {"const": "QM2-R1-005"},
+    "source_correction_task": {"const": "QM2-R1-005F"},
+    "source_ablation_assessment_id": {"type": "string", "pattern": "^poa1_"},
+    "factor_decision": {"const": "default_first_optimize_only_on_failure"},
+    "strategy_decision": {"const": "default_first_optimize_only_on_failure"},
+    "combined_decision": {"const": "suspend_parameter_optimization"},
+    "factor_policy_id": {"type": "string", "pattern": "^fop2_"},
+    "strategy_policy_id": {"type": "string", "pattern": "^sop2_"},
+    "combined_policy_id": {"type": "string", "pattern": "^cop1_"},
+    "auto_applied": {"const": true},
+    "effective_from_task": {"const": "QM2-R1-006"},
+    "historical_artifacts_mutated": {"const": false},
+    "candidate_status_mutated": {"const": false}
+  }
+}

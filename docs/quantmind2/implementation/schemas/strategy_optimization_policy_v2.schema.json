@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/strategy_optimization_policy_v2.schema.json",
+  "title": "StrategyOptimizationPolicyV2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "policy_version", "default_mode", "topk", "n_drop", "rebalance_interval", "weighting", "signal_lag", "execution_price", "max_trials", "full_search_diagnostic_enabled_by_default", "full_search_usable_for_candidate_selection", "full_search_usable_for_promotion", "default_parameters", "local_neighborhood"],
+  "properties": {
+    "policy_id": {"const": "strategy-optimization-policy-v2-default-first"},
+    "policy_version": {"const": "2.0.0"},
+    "default_mode": {"const": "default_first"},
+    "topk": {"const": 20}, "n_drop": {"const": 5}, "rebalance_interval": {"const": 5},
+    "weighting": {"const": "equal_weight"}, "signal_lag": {"const": 1}, "execution_price": {"const": "open"},
+    "max_trials": {"const": 7},
+    "full_search_diagnostic_enabled_by_default": {"const": false},
+    "full_search_usable_for_candidate_selection": {"const": false},
+    "full_search_usable_for_promotion": {"const": false},
+    "default_parameters": {"type": "object"},
+    "local_neighborhood": {"type": "array", "minItems": 7, "maxItems": 7, "items": {"type": "object"}}
+  }
+}

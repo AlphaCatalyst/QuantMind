@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T13:32:05Z",
-  "source_commit": "3e04743f41ee6d604a7de6064558f9925d89d993",
+  "generated_at": "2026-07-22T14:13:43Z",
+  "source_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R1-005F",
-  "latest_implementation_run": "QM2-R1-005F-20260722T133205Z-3e04743",
+  "current_task": "QM2-R1-006",
+  "latest_implementation_run": "QM2-R1-006-20260722T141343Z-9a28a1c",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -31,6 +31,7 @@
       "quantmind2.skip_recent_momentum",
       "quantmind2.momentum_alpha_diagnostics",
       "quantmind2.parameter_optimization_ablation",
+      "quantmind2.optimization_governance",
       "quantmind2.research_artifact_store",
       "quantmind2.artifact_runtime"
     ],

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/combined_optimization_policy_v1.schema.json",
+  "title": "CombinedOptimizationPolicyV1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["policy_id", "policy_version", "status", "violation_error", "both_defaults_fail_order"],
+  "properties": {
+    "policy_id": {"const": "combined-optimization-policy-v1-suspended"},
+    "policy_version": {"const": "1.0.0"},
+    "status": {"const": "suspended"},
+    "violation_error": {"const": "COMBINED_PARAMETER_OPTIMIZATION_SUSPENDED"},
+    "both_defaults_fail_order": {"const": "factor_local_with_default_strategy_then_stop"}
+  }
+}
