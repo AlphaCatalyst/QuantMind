@@ -282,6 +282,20 @@
       "current_limitations": ["The policy governs new research only and does not rewrite legacy Optimization Studies, Trials or Candidate Locks.", "Local rescue remains research-only until independent new-time evidence is available.", "Full search remains available only as explicitly enabled diagnostic evidence and can never select or promote a Candidate."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.default_first_momentum_search",
+      "name": "Default-first Momentum Structure Search v2",
+      "status": "implemented",
+      "responsibility": "Run bounded external-Agent momentum structure research with explicit defaults, default-first development evaluation, R1-006 one-hop rescue, immutable parameter locking, annual eligibility and report-only later periods.",
+      "source_path": "backend/services/engine/default_first_momentum_search",
+      "target_path": "backend/services/engine/default_first_momentum_search",
+      "key_symbols": ["validate_governance", "local_rescue_eligible", "candidate_ordering", "execute_experiment", "replay_experiment", "validate_artifact"],
+      "dependencies": ["quantmind2.optimization_governance", "quantmind2.momentum_factor_iteration", "quantmind2.factor_dsl", "quantmind2.research_campaign", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["The evidence is retrospective research, not Fresh Validation, Frozen Test, Promotion or production evidence.", "All eight default structures and thirteen legal local Trials failed the frozen development gate, so no Development Lock, annual locked evaluation, Candidate Lock or report-period result exists.", "Runtime is single-process and uses the existing local filesystem Artifact Store."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
     }
   ]
 }

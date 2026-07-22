@@ -151,6 +151,20 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         validate_artifact(source, artifact_id, kind.value)
         return "optimization_governance.validate_artifact"
     if kind in {
+        ArtifactKind.DEFAULT_PARAMETER_EVALUATION,
+        ArtifactKind.LOCAL_FACTOR_RESCUE_STUDY,
+        ArtifactKind.DEVELOPMENT_PARAMETER_LOCK,
+        ArtifactKind.DEFAULT_FIRST_MOMENTUM_ANNUAL_EVALUATION,
+        ArtifactKind.DEFAULT_FIRST_MOMENTUM_ELIGIBILITY_EVIDENCE,
+        ArtifactKind.DEFAULT_FIRST_MOMENTUM_CANDIDATE_LOCK,
+        ArtifactKind.DEFAULT_FIRST_MOMENTUM_REPORT,
+        ArtifactKind.DEFAULT_FIRST_MOMENTUM_ASSESSMENT,
+        ArtifactKind.DEFAULT_FIRST_MOMENTUM_EXPERIMENT,
+    }:
+        from backend.services.engine.default_first_momentum_search.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "default_first_momentum_search.validate_artifact"
+    if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
         ArtifactKind.STRATEGY_BACKTEST_RESULT,

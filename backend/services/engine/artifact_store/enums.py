@@ -103,6 +103,15 @@ class ArtifactKind(str, Enum):
     FACTOR_OPTIMIZATION_POLICY = "factor_optimization_policy"
     STRATEGY_OPTIMIZATION_POLICY = "strategy_optimization_policy"
     COMBINED_OPTIMIZATION_POLICY = "combined_optimization_policy"
+    DEFAULT_PARAMETER_EVALUATION = "default_parameter_evaluation"
+    LOCAL_FACTOR_RESCUE_STUDY = "local_factor_rescue_study"
+    DEVELOPMENT_PARAMETER_LOCK = "development_parameter_lock"
+    DEFAULT_FIRST_MOMENTUM_ANNUAL_EVALUATION = "default_first_momentum_annual_evaluation"
+    DEFAULT_FIRST_MOMENTUM_ELIGIBILITY_EVIDENCE = "default_first_momentum_eligibility_evidence"
+    DEFAULT_FIRST_MOMENTUM_CANDIDATE_LOCK = "default_first_momentum_candidate_lock"
+    DEFAULT_FIRST_MOMENTUM_REPORT = "default_first_momentum_report"
+    DEFAULT_FIRST_MOMENTUM_ASSESSMENT = "default_first_momentum_assessment"
+    DEFAULT_FIRST_MOMENTUM_EXPERIMENT = "default_first_momentum_experiment"
 
 
 class IntegrityStatus(str, Enum):

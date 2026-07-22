@@ -1,5 +1,26 @@
 # Current Implementation State
 
+## Default-first Momentum Structure Search v2 (QM2-R1-007)
+
+- R1-006 governance is now exercised by a real momentum research runtime:
+  explicit Agent defaults run first, only near-gate failures enter a one-hop
+  factor neighborhood, and Strategy/Combined optimization remains zero.
+- Six real Agent calls produced eight evaluated DSL Proposals. Eight defaults
+  plus thirteen local Trials consumed 21 formal Qlib calls. Network and
+  Promotion writes are zero.
+- All defaults failed the frozen development gate because turnover exceeded
+  45 and neither CSI300 excess nor cross-sectional group evidence was
+  positive. No local Trial rescued a structure. Thresholds, rounds and search
+  scope were not expanded.
+- There are no Development Locks, annual locked evaluations, Candidate Locks,
+  2025 reports or 2026H1 reports. This is the frozen zero-candidate terminal
+  outcome, not missing execution evidence.
+- Canonical Experiment is `dfme1_e15ea299...98b6b0`; Assessment is
+  `dfma1_b259450...271af4`. Cold recovery restores 40 objects; exact replay
+  performs every external/computational call and new-object count at zero.
+  Store integrity is healthy, Missing 0 and Unreferenced 0.
+- Current task: `QM2-R1-007`; no successor task is authorized here.
+
 ## Default-first Optimization Governance v2 (QM2-R1-006)
 
 - The corrected R1-005 business decision is now runtime policy: new research

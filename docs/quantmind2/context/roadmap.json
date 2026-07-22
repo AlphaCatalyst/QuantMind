@@ -8,6 +8,15 @@
   "verification_status": "verified",
   "items": [
     {
+      "task_id": "QM2-R1-007",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R1-003", "QM2-R1-004", "QM2-R1-006"],
+      "objective": "Evaluate new Agent-proposed momentum structures under explicit defaults and bounded one-hop factor rescue.",
+      "explicit_non_goals": ["Full, random or Bayesian factor search", "Strategy or Combined optimization", "Tushare network", "Promotion", "Use 2025 or 2026H1 for selection"],
+      "acceptance_summary": "Six real Agent calls, eight defaults, thirteen local Trials and 21 formal Qlib calls terminate with zero eligible candidates under unchanged gates; immutable artifacts recover and exact-replay with zero calls."
+    },
+    {
       "task_id": "QM2-R1-006",
       "status": "completed_uncommitted",
       "priority": "P0",

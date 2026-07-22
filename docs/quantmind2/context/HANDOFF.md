@@ -1,5 +1,21 @@
 # Codex Handoff
 
+## QM2-R1-007 default-first momentum handoff
+
+- Read `DEFAULT_FIRST_MOMENTUM_STRUCTURE_SEARCH_V2.md`, the R1-006 policy
+  contracts and R1-004 semantic audit before changing momentum research.
+- Canonical Experiment is `dfme1_e15ea299...98b6b0`; Assessment is
+  `dfma1_b259450...271af4`. Six Agent calls, eight defaults, thirteen local
+  Trials and 21 Qlib calls produced zero eligible structures.
+- The result is deliberate: every default exceeded turnover 45 and lacked
+  positive excess/group evidence; none of the legal one-hop Trials rescued
+  it. Do not lower the gates, reopen full search, tune Strategy parameters or
+  use 2025/2026H1 to select a structure.
+- There are no Candidate Locks or report-period results. All Registry states
+  remain unchanged and no Promotion exists. Exact replay is zero-call and
+  Store integrity is healthy.
+- No successor task is authorized by this implementation task.
+
 ## QM2-R1-006 default-first optimization-governance handoff
 
 - Read the three optimization policy contracts and the R1-005/R1-005F Runs
