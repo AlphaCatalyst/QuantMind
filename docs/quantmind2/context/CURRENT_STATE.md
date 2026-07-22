@@ -1,5 +1,27 @@
 # Current Implementation State
 
+## Momentum Tail-Alpha and Selection-Overlay Diagnostic v1 (QM2-R1-009)
+
+- The immutable R1-008 Signal D was decomposed into daily deciles, formal
+  label RankIC, adjusted-close forward-return RankIC, tail spreads, fixed
+  Top-N baskets, 2023 monthly/stock contributions, beta/style/breadth,
+  stability, rank transition and T+1--T+40 decay.
+- Signal D is not a stable broad monotonic or tail-only factor. Q10 beats its
+  observable universe only in 2024 across the four research years; fixed
+  Top20 beats CSI300 in 2021, 2023 and 2024, but not 2022, 2025 or 2026H1.
+- The only jointly positive PIT breadth regime is narrow/weak: RankIC
+  0.02628, Q10-Q1 0.001323 and Top20 CSI300 excess 39.05%. The formal class is
+  `regime_specific_factor`; the non-executed decision is
+  `retain_for_regime_specific_research`.
+- Revision 2 explicitly separates immutable-label RankIC from adjusted-close
+  forward-return RankIC. Diagnostic
+  `mtad1_308b2628...951951` and its four child artifacts recover from Store;
+  integrity is healthy, Missing 0, Unreferenced 0 and exact replay creates no
+  object or external/research call.
+- Agent, all Optimization classes, Qlib strategy, network/Tushare, Candidate
+  Lock, Registry and Promotion counts are zero. Current task is
+  `QM2-R1-009`; no successor task is authorized here.
+
 ## Low-Frequency Momentum and Turnover-Control Study v1 (QM2-R1-008)
 
 - Four immutable, pre-registered Momentum signals were evaluated under B0

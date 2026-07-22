@@ -177,6 +177,16 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         validate_artifact(source, artifact_id, kind.value)
         return "low_frequency_momentum.validate_artifact"
     if kind in {
+        ArtifactKind.MOMENTUM_TAIL_ALPHA_DIAGNOSTIC,
+        ArtifactKind.MOMENTUM_QUANTILE_RETURN_REPORT,
+        ArtifactKind.MOMENTUM_RANK_TRANSITION_REPORT,
+        ArtifactKind.MOMENTUM_TAIL_STYLE_EXPOSURE,
+        ArtifactKind.MOMENTUM_TAIL_SIGNAL_CLASSIFICATION,
+    }:
+        from backend.services.engine.momentum_tail_alpha.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "momentum_tail_alpha.validate_artifact"
+    if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
         ArtifactKind.STRATEGY_BACKTEST_RESULT,

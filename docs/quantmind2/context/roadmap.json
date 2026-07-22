@@ -1,12 +1,21 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T15:52:15Z",
-  "source_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
+  "generated_at": "2026-07-22T16:28:43Z",
+  "source_commit": "c071c0f02da89e1b5663a2fb32e26493bbe97ff9",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "items": [
+    {
+      "task_id": "QM2-R1-009",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R1-008"],
+      "objective": "Diagnose whether immutable Signal D has broad, tail-only, defensive, regime-specific or no reliable Alpha.",
+      "explicit_non_goals": ["No new Factor", "No Agent or parameter optimization", "No Top-N selection", "No Candidate Lock, Registry write or Promotion"],
+      "acceptance_summary": "Formal-label and adjusted-close RankIC, deciles, fixed Top-N, 2023 attribution, exposure, stability, decay and report periods classify Signal D as regime_specific_factor; Store recovery and zero-call replay pass."
+    },
     {
       "task_id": "QM2-R1-008",
       "status": "completed_uncommitted",

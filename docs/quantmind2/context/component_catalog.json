@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T15:52:15Z",
-  "source_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
+  "generated_at": "2026-07-22T16:28:43Z",
+  "source_commit": "c071c0f02da89e1b5663a2fb32e26493bbe97ff9",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -10,6 +10,20 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "components": [
+    {
+      "component_id": "quantmind2.momentum_tail_alpha",
+      "name": "Momentum Tail-Alpha and Selection-Overlay Diagnostic v1",
+      "status": "implemented",
+      "responsibility": "Diagnose immutable Signal D through formal-label RankIC, adjusted-close deciles and tail metrics, fixed gross Top-N baskets, 2023 attribution, beta/style/breadth exposure, stability, rank transition and decay, then publish governed Store artifacts.",
+      "source_path": "backend/services/engine/momentum_tail_alpha",
+      "target_path": "backend/services/engine/momentum_tail_alpha",
+      "key_symbols": ["diagnostic_spec", "recover_source", "execute_diagnostic", "replay_diagnostic", "quantile_and_tail", "classify", "validate_artifact"],
+      "dependencies": ["quantmind2.low_frequency_momentum", "quantmind2.momentum_factor_iteration", "quantmind2.data_foundation", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Retrospective diagnostic only; not Fresh Validation, Frozen Test, Candidate selection, Promotion or production evidence.", "Top-N returns are gross-only because formal trading costs are unavailable on this diagnostic path.", "Historical PIT industry attribution is omitted because no governed industry contract exists; beta/style decomposition is diagnostic rather than causal."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
     {
       "component_id": "quantmind2.low_frequency_momentum",
       "name": "Low-Frequency Momentum and Turnover-Control Study v1",

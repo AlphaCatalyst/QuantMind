@@ -119,6 +119,11 @@ class ArtifactKind(str, Enum):
     LOW_FREQUENCY_MOMENTUM_REPORT = "low_frequency_momentum_report"
     LOW_FREQUENCY_MOMENTUM_ASSESSMENT = "low_frequency_momentum_assessment"
     LOW_FREQUENCY_MOMENTUM_STUDY = "low_frequency_momentum_study"
+    MOMENTUM_TAIL_ALPHA_DIAGNOSTIC = "momentum_tail_alpha_diagnostic"
+    MOMENTUM_QUANTILE_RETURN_REPORT = "momentum_quantile_return_report"
+    MOMENTUM_RANK_TRANSITION_REPORT = "momentum_rank_transition_report"
+    MOMENTUM_TAIL_STYLE_EXPOSURE = "momentum_tail_style_exposure"
+    MOMENTUM_TAIL_SIGNAL_CLASSIFICATION = "momentum_tail_signal_classification"
 
 
 class IntegrityStatus(str, Enum):

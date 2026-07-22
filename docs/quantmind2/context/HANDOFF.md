@@ -1,5 +1,25 @@
 # Codex Handoff
 
+## QM2-R1-009 momentum tail-alpha handoff
+
+- Read `MOMENTUM_TAIL_ALPHA_DIAGNOSTIC_V1.md`, the R1-009 Implementation Run
+  and the immutable R1-008 study before interpreting Signal D.
+- Signal D remains the exact 0.5/0.5 absolute/residual momentum consensus.
+  Revision 2 separates formal `model_label` RankIC from adjusted-close
+  forward-return RankIC; never merge these meanings or replace the formal
+  gate with a tail metric.
+- The final class is `regime_specific_factor`; only narrow/weak breadth has
+  jointly positive RankIC, Q10-Q1 and Top20 CSI300 excess. The advisory
+  decision `retain_for_regime_specific_research` was not executed.
+- 2025 and 2026H1 are retrospective reports only. Both fail Top20 relative
+  performance; 2025 underperformance is not explained by low beta, and
+  2026H1 adjusted-close tail returns reverse despite positive formal label
+  RankIC.
+- Diagnostic `mtad1_308b2628...951951` plus four child artifacts cold-recover
+  and exact-replay from a healthy Store with every prohibited call/write and
+  new-object count at zero. No Candidate, Registry or Promotion state changed.
+- No successor task is authorized by this implementation.
+
 ## QM2-R1-008 low-frequency momentum handoff
 
 QM2-R1-008 completed the pre-registered comparison with 40 formal Qlib calls:

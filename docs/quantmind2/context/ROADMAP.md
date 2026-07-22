@@ -1,6 +1,11 @@
 # QuantMind 2.0 Initial Roadmap
 
-Current research task: `QM2-R1-008` is completed. Four fixed low-frequency
+Current research task: `QM2-R1-009` is completed. The immutable R1-008 Signal
+D is classified as regime-specific after full cross-section, tail, exposure,
+stability and report-period diagnostics. The advisory decision was not
+executed and no successor is authorized.
+
+Previous research task: `QM2-R1-008` is completed. Four fixed low-frequency
 momentum signals were compared under B0/L1 with 40 formal Qlib calls. L1
 reduced median annual turnover and cost by 34.54%/33.21%, but zero signals
 passed all frozen eligibility gates. The result is
@@ -41,6 +46,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R1-009 Momentum Tail-Alpha and Selection-Overlay Diagnostic v1 | completed_uncommitted | P0 | R1-008 | Classify immutable Signal D using full cross-section, tail, exposure, stability and report-period diagnostics | No new Factor, Agent/parameter optimization, Top-N selection, Candidate Lock, Registry write or Promotion | Formal-label/forward-return RankIC, deciles, fixed Top-N, 2023 attribution, exposure, stability and decay classify Signal D as regime-specific; recovery and replay pass |
 | QM2-R1-006 Default-first Optimization Governance v2 | completed_uncommitted | P0 | R1-005, R1-005F | Apply default-first Factor/Strategy evaluation, bounded local rescue and suspended combined optimization to new research | No Agent, Optimization Trial, Qlib, Tushare, network, Promotion, historical Artifact or Candidate-state change | Runtime policies, CLI gates, Candidate metadata, four Store artifacts, cold recovery and zero-call replay pass |
 | QM2-R1-007 Default-first Momentum Structure Search v2 | completed_uncommitted | P0 | R1-003, R1-004, R1-006 | Test whether new momentum structures survive with explicit defaults and at most one-hop factor rescue | No full/random/Bayesian, Strategy or Combined optimization; no Tushare network, Promotion or report-period selection | Six Agent calls, eight defaults, thirteen local Trials and 21 formal Qlib calls terminate with zero candidates under unchanged gates; Store recovery and exact replay pass |
 | QM2-R1-005F Parameter Optimization Ablation Git Evidence Correction | completed_uncommitted | P0 | R1-005 | Record exact commit-derived ChangedFile and source-bundle evidence and link it to the immutable inconsistent Run | No original Run edit, research rerun, Agent, Optimization, Qlib, network, Candidate or Promotion change | Independent correction evidence and `corrects` relation provide the supported corrected completion |

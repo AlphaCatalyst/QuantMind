@@ -1,5 +1,15 @@
 # Component Catalog
 
+## QM2-R1-009 addition
+
+- `quantmind2.momentum_tail_alpha` — implemented at
+  `backend/services/engine/momentum_tail_alpha`; diagnoses the immutable
+  R1-008 Signal D through deciles, tail metrics, fixed gross Top-N baskets,
+  2023 decomposition, beta/style/breadth exposure, stability, transition and
+  decay, then publishes five Store-backed Artifact kinds. It is retrospective
+  only, has no PIT industry attribution or formal Top-N costs, and cannot
+  create Candidates, Registry state or Promotion evidence.
+
 ## QM2-R1-008 addition
 
 - `quantmind2.low_frequency_momentum` — implemented at
