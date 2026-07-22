@@ -1,5 +1,24 @@
 # Codex Handoff
 
+## QM2-R1-005 handoff
+
+- Read `PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md`, the R1-005
+  Implementation Run and the preceding R1-004 semantic audit before changing
+  parameter-research behavior.
+- Final Assessment is `poa1_15e9398...c69f1a`, contract revision 2. Its six
+  artifacts recover from the Store and exact-replay with all computational,
+  external and new-object counts equal to zero; Store integrity is healthy.
+- Candidate A default is window 20 and Candidate B default is weight 0.5.
+  Their frozen F1 and F2 factor spaces are the same three points; do not claim
+  this study observed a larger F2 factor search.
+- Candidate B is likely overfit in factor and strategy layers. Both Candidates
+  are likely overfit under O1 and O2; ensemble evidence is inconclusive. The
+  formal advisory decisions are default-first for separate Factor/Strategy
+  optimization and suspend for combined optimization.
+- Do not apply these recommendations automatically. Both locks remain
+  `research_registered`; no new Factor, Candidate state, Registry state,
+  Agent/network call or Promotion exists. No successor is authorized.
+
 ## QM2-R1-004 handoff
 
 - Read `MOMENTUM_SIGNAL_SEMANTIC_AUDIT_AND_ALPHA_DECOMPOSITION_V1.md` and the

@@ -1,5 +1,32 @@
 # Current Implementation State
 
+## Parameter Optimization Overfit Ablation v1 (QM2-R1-005)
+
+- The immutable R1-003 defaults, full search spaces, two Candidate Locks and
+  equal-weight ensemble were recovered from the Store. Candidate A defaults
+  to `baseline_window=20`; Candidate B defaults to
+  `high_distance_weight=0.5`. Both one-parameter local spaces equal their
+  three-point full spaces, so F1 and F2 are intentionally identical.
+- F0/F1/F2, S0/S1/S2 and O0/O1/O2 completed across four isolated walk-forward
+  Folds and retrospective 2025/2026H1 reports. The study produced 1,470 unique
+  formal Qlib results with no rejected result, 162 Trial-rank records and 108
+  Winner's-Curse records.
+- Candidate B is `likely_overfit` under both factor and strategy optimization.
+  Candidate A and B are both `likely_overfit` under light and full combined
+  optimization; ensemble classifications are inconclusive. Combined search
+  raises research excess while lowering average later excess for A and B.
+- The advisory decisions are `default_first_optimize_only_on_failure` for
+  Factor and Strategy parameters and `suspend_parameter_optimization` for
+  combined optimization. `apply_automatically=false`; both locks remain
+  `research_registered` and no Factor, Agent, network or Promotion action was
+  produced.
+- Contract revision 2 corrects a revision 1 list-order-only F1/F2 equality
+  summary without rewriting the immutable revision 1 artifacts. The final six
+  revision 2 artifacts cold-recover; exact replay performs zero Qlib,
+  Optimization, Agent, network, Store-object or Promotion calls. Store
+  integrity is healthy with Missing 0 and Unreferenced 0.
+- Current task: `QM2-R1-005`. No successor task is authorized here.
+
 ## Momentum Signal Semantic Audit and Alpha Decomposition v1 (QM2-R1-004)
 
 - Candidate A is a 60--10 momentum deviation/surprise signal, not a

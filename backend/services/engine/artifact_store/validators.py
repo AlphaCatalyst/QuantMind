@@ -131,6 +131,17 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         validate_artifact(source, artifact_id, kind.value)
         return "momentum_alpha_diagnostics.validate_artifact"
     if kind in {
+        ArtifactKind.PARAMETER_OPTIMIZATION_ABLATION_SPEC,
+        ArtifactKind.FACTOR_OPTIMIZATION_ABLATION,
+        ArtifactKind.STRATEGY_OPTIMIZATION_ABLATION,
+        ArtifactKind.COMBINED_OPTIMIZATION_ABLATION,
+        ArtifactKind.OPTIMIZATION_TRIAL_RANK_STABILITY,
+        ArtifactKind.OPTIMIZATION_OVERFIT_ASSESSMENT,
+    }:
+        from backend.services.engine.parameter_optimization_ablation.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "parameter_optimization_ablation.validate_artifact"
+    if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,
         ArtifactKind.STRATEGY_BACKTEST_RESULT,

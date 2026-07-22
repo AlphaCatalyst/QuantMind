@@ -73,6 +73,12 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "momentum_cross_sectional_diagnostic": ("momentum-alpha-diagnostics", "cross-sectional"),
         "momentum_style_exposure_report": ("momentum-alpha-diagnostics", "style"),
         "momentum_failure_classification": ("momentum-alpha-diagnostics", "classifications"),
+        "parameter_optimization_ablation_spec": ("parameter-optimization-ablation", "specs"),
+        "factor_optimization_ablation": ("parameter-optimization-ablation", "factor"),
+        "strategy_optimization_ablation": ("parameter-optimization-ablation", "strategy"),
+        "combined_optimization_ablation": ("parameter-optimization-ablation", "combined"),
+        "optimization_trial_rank_stability": ("parameter-optimization-ablation", "rank-stability"),
+        "optimization_overfit_assessment": ("parameter-optimization-ablation", "assessments"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

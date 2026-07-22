@@ -28,6 +28,18 @@
   collection, Strategy Optimization, Promotion, Fresh Validation, LightGBM,
   API or UI.
 
+## QM2-R1-005 addition
+
+- `quantmind2.parameter_optimization_ablation` — implemented at
+  `backend/services/engine/parameter_optimization_ablation`; owns immutable
+  recovery of the R1-003 defaults/search spaces, F0/F1/F2, S0/S1/S2 and
+  O0/O1/O2 walk-forward diagnostics, formal Qlib evidence, overfit
+  classification, Store publication, cold recovery and exact replay.
+- It is retrospective and advisory only. It creates no Factor, makes no Agent
+  or network call, preserves `research_registered`, performs no Promotion and
+  cannot change optimizer defaults. Both Factors have one three-point
+  parameter, so their F1 and F2 factor spaces are identical.
+
 ## QM2-R1-001 addition
 
 - `quantmind2.expanded_factor_iteration` — implemented at

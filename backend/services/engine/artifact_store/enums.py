@@ -93,6 +93,12 @@ class ArtifactKind(str, Enum):
     MOMENTUM_CROSS_SECTIONAL_DIAGNOSTIC = "momentum_cross_sectional_diagnostic"
     MOMENTUM_STYLE_EXPOSURE_REPORT = "momentum_style_exposure_report"
     MOMENTUM_FAILURE_CLASSIFICATION = "momentum_failure_classification"
+    PARAMETER_OPTIMIZATION_ABLATION_SPEC = "parameter_optimization_ablation_spec"
+    FACTOR_OPTIMIZATION_ABLATION = "factor_optimization_ablation"
+    STRATEGY_OPTIMIZATION_ABLATION = "strategy_optimization_ablation"
+    COMBINED_OPTIMIZATION_ABLATION = "combined_optimization_ablation"
+    OPTIMIZATION_TRIAL_RANK_STABILITY = "optimization_trial_rank_stability"
+    OPTIMIZATION_OVERFIT_ASSESSMENT = "optimization_overfit_assessment"
 
 
 class IntegrityStatus(str, Enum):

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-21T17:44:30Z",
-  "source_commit": "85c609504eb326f811857e47afc0d808422632e9",
+  "generated_at": "2026-07-22T05:26:36Z",
+  "source_commit": "82f13f92d9accd39e1ec9209c38a66b37ccff457",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -52,6 +52,8 @@
     {"issue_id": "QM2-KI-043", "severity": "medium", "status": "open", "summary": "Existing formal TopKDropout results persist actual positions but not the pre-trade target-weight object; QM2-P0-016 preserves deterministic Portfolio Targets separately and marks target-to-actual-target equality not verifiable instead of inferring it."},
     {"issue_id": "QM2-KI-044", "severity": "medium", "status": "resolved_by_successor", "summary": "QM2-R1-002's candidate remained unrecoverable; QM2-R1-003 did not reconstruct it and instead established a complete forward artifact contract and reran skip-recent research from scratch."},
     {"issue_id": "QM2-KI-045", "severity": "medium", "status": "resolved_by_successor", "summary": "QM2-R1-003 produced two fully replayable research locks that underperformed CSI300 in contaminated later-period reports; QM2-R1-004 now provides semantic and alpha-decomposition evidence without changing their research-only state."},
-    {"issue_id": "QM2-KI-046", "severity": "medium", "status": "open", "summary": "QM2-R1-004 finds weak positive 2025 RankIC followed by negative 2026H1 RankIC and residual return. Costs and concentration are not the primary failure; the locks remain research-only and support at most stock-selection-overlay research."}
+    {"issue_id": "QM2-KI-046", "severity": "medium", "status": "open", "summary": "QM2-R1-004 finds weak positive 2025 RankIC followed by negative 2026H1 RankIC and residual return. Costs and concentration are not the primary failure; the locks remain research-only and support at most stock-selection-overlay research."},
+    {"issue_id": "QM2-KI-047", "severity": "medium", "status": "open", "summary": "Both R1-003 candidate Templates expose only one three-point optimizable parameter, so the frozen F1 direct-neighbor and F2 full factor spaces are identical. QM2-R1-005 preserves both modes but cannot infer a factor search-size effect from their equality."},
+    {"issue_id": "QM2-KI-048", "severity": "high", "status": "open", "summary": "QM2-R1-005 classifies Candidate B factor and strategy optimization as likely overfit and both Candidates' combined optimization as likely overfit. The advisory contract selects default-first separate optimization and suspension of combined optimization, but no optimizer default or production behavior has been changed."}
   ]
 }
