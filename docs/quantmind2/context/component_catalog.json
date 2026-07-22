@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T05:26:36Z",
-  "source_commit": "82f13f92d9accd39e1ec9209c38a66b37ccff457",
+  "generated_at": "2026-07-22T13:32:05Z",
+  "source_commit": "3e04743f41ee6d604a7de6064558f9925d89d993",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"

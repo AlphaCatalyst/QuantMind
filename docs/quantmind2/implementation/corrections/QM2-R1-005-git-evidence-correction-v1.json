@@ -1,0 +1,446 @@
+{
+  "changed_file_hash_mismatches": [
+    {
+      "path": "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+      "recorded": {
+        "after_hash": "7905747a2960d1f8070ab119839d60afd28a68a70ce6826ca3136cb0b4a393bb",
+        "before_hash": null,
+        "change_type": "added",
+        "path": "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+        "previous_path": null
+      },
+      "verified": {
+        "after_hash": "08b3db1900af9bec2b678a4d1f503d88cbc16feb62b3e78f9e6c5a773b62938a",
+        "before_hash": null,
+        "change_type": "added",
+        "path": "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+        "previous_path": null
+      }
+    }
+  ],
+  "correction_id": "qm2-r1-005-git-evidence-correction-v1",
+  "correction_reason": "Manifest哈希冻结后，合同文档的一处行尾空格被清理，导致提交内容与Manifest记录哈希不一致。",
+  "historical_target_git_status": "git_inconsistent",
+  "historical_target_indexable": false,
+  "historical_target_task_result": "blocked",
+  "historical_target_validated": false,
+  "object_type": "GitEvidenceCorrectionV1",
+  "original_gap_codes": [
+    "changed_file_hashes",
+    "source_bundle_hash"
+  ],
+  "recorded_changed_file_hashes": [
+    {
+      "after_hash": "ed660a8d2e9f6576e02926255c11925d089ff91ff41b9dca065f2e4bb31ce8eb",
+      "before_hash": "61fa050fa2b8eb2e0e56f6a519ff74071d3a8863eb744b90ca4a85f488236e90",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f98efb2d7792e54f001ac7695d82da064b4e2994e69e7f9bc0fb2dd7639870c7",
+      "before_hash": "04fbe12117c6c35f66b024ad769797ea83c01302c7f19a5841da22e53ce84cc6",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "452ff88f0e063fef68f0d346d9b2c64b5d988cc24c97219bbfe74f4b358236d9",
+      "before_hash": "0c37abfb7add6748a1db6e7182a974d9ac638a499f28007eb2ce46a768eba886",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "83f00b9357c0ac32ab3cbec09b10766fbdccea9b91396c99b36c63cacad8cc05",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7fa9ab11aa3881a11754e6cfba6f336eccb4e36fcd5a8cb5efa75564986827fc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "409c39e3824082db21ea11f091f55fd33cd49e54df2b23419f765ce5462e31fd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc1e962981089f88b7aa713567fb5f64e471f57b27a9943a9b433d5f1a88b0f6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/metrics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2fbc88d03825d8654677dd98cd29dc0fc7c2aef67968629d3989a90a54a20000",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d5f18f6e52bc6b7b2ed86c380f0d3b73cecc77df1858d7440972094caefaf3c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_parameter_optimization_ablation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f0cfcb670a8ae8d3b5cd82c1482b4eed0712f427ae023ba7d47e24db43d097fe",
+      "before_hash": "75ebe91a701f9ea7c78a06a9ff4487d155c794ec0c567cb53d98c065d42a17f4",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "15de6d6d8a54d75c5399012d83aa3453fef36d0435a87d2ecbdf6533fd696a6a",
+      "before_hash": "7f6262a644b3d650c352145453396797730646727c70d05ca3953de0baca8e6c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2ed41c94d70850fbfa49fda164a6c3dd5bf70e5f02b9b95f17f6cab066efcaf1",
+      "before_hash": "dce09f01b3efe6ec25d9cedb71a482d70b02a8bcb11bdbf08cd86f3047712274",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ee3ba1610f264935e27f018911b280634d00181a3d04cce14024403716bb390b",
+      "before_hash": "111c5897b538eee19c358269235af657260bc180519d118e6e045e80dd8f4125",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2088210d1bb2d2d83a320868f4a248d27470b833b5fe1c7c438cfcb75aa2ca1e",
+      "before_hash": "27b9397e92406daf7553a07cd41042c4d91e237e041ebd98f779ec1889bfd459",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "232a5f6e7a400eba1378d2566ac76f35b0cace8c1ce46715ce6e67107ededcf8",
+      "before_hash": "02aa24f73c3d9d37f923d190ceca3bda61c777b9126c3e616f17ba69bf5dd561",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9809c13a372c33f6db4a36b1cbd76793e9a6d42bf338d3fb48148233bb3e795",
+      "before_hash": "2c36fbb6e1fbd9cede71715c433b2f3bacd93d15424fa4d791b7411501454762",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ce6704f90f7ad999a6f0a6fc0e132479c4df77721cb075bc4742ca518749d74e",
+      "before_hash": "b49dab872c6d189c07049c3ae759fea1e00a35169661e725f16b8da9f66e32ff",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1bbca60fd424f490528f9987e38d1502d77c00e5eba1e170cbf181b8190c5972",
+      "before_hash": "7d0943ce5ef4dda8abfe5720d26f5b4cc1265979224247f0efd9bf13adfdaea4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "828ef336a8d08a691fdbbb25e939aaecc33c48974529c64da04dcc457d0bd4dc",
+      "before_hash": "74f05b03fa51d88ccffddd84d9cdc1ad0eaf3ae44172010e217ef8d60d43a263",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e258eb54e65c3ab4f9de51ce218b2d0b5b220210d527c5b5ff2bcf2e728a453d",
+      "before_hash": "65ba2899108f5e2dcc8ce95c4851786f4a2fb5d3f7c0a5c3f58d1b833bdba9bf",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7905747a2960d1f8070ab119839d60afd28a68a70ce6826ca3136cb0b4a393bb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "68f99eae2a4e543403a4918042a1bb8f16bd7990d8ed23831f8958b925d2acce",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f616c551b9e499503866fe187fb60a7b6ed340bd981fde24c3cb09f050195c4b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_parameter_optimization_ablation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "330bd15277e5e3e5cf4bd45336964ee37981467f8429b4a26e9eefe2e3433519",
+      "before_hash": "cb34c769fed7f1e430fbb3deeac42beaa7e7c4dcb049346dce9e5cafc42993c8",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "recorded_source_bundle_hash": "cffd4deb60cc76f8739218dadd6e1e67088395f0854c544447a65260b848e90f",
+  "research_execution": {
+    "agent_calls": 0,
+    "candidate_state_changes": 0,
+    "factor_optimization_calls": 0,
+    "network_calls": 0,
+    "new_research_artifacts": 0,
+    "new_research_blobs": 0,
+    "promotion_writes": 0,
+    "qlib_calls": 0,
+    "strategy_optimization_calls": 0
+  },
+  "resolved_ledger_status": "completed_corrected",
+  "resolved_status_semantics": "The immutable target remains Git-inconsistent; this independently completed correction Run and its corrects relationship are the Ledger-supported corrected completion.",
+  "root_cause": "post_manifest_finalization_format_change",
+  "schema_version": "1.0.0",
+  "source_bundle_hash_matches": false,
+  "target_base_commit": "82f13f92d9accd39e1ec9209c38a66b37ccff457",
+  "target_changed_file_hashes": [
+    {
+      "after_hash": "ed660a8d2e9f6576e02926255c11925d089ff91ff41b9dca065f2e4bb31ce8eb",
+      "before_hash": "61fa050fa2b8eb2e0e56f6a519ff74071d3a8863eb744b90ca4a85f488236e90",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f98efb2d7792e54f001ac7695d82da064b4e2994e69e7f9bc0fb2dd7639870c7",
+      "before_hash": "04fbe12117c6c35f66b024ad769797ea83c01302c7f19a5841da22e53ce84cc6",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "452ff88f0e063fef68f0d346d9b2c64b5d988cc24c97219bbfe74f4b358236d9",
+      "before_hash": "0c37abfb7add6748a1db6e7182a974d9ac638a499f28007eb2ce46a768eba886",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "83f00b9357c0ac32ab3cbec09b10766fbdccea9b91396c99b36c63cacad8cc05",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7fa9ab11aa3881a11754e6cfba6f336eccb4e36fcd5a8cb5efa75564986827fc",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "409c39e3824082db21ea11f091f55fd33cd49e54df2b23419f765ce5462e31fd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc1e962981089f88b7aa713567fb5f64e471f57b27a9943a9b433d5f1a88b0f6",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/metrics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2fbc88d03825d8654677dd98cd29dc0fc7c2aef67968629d3989a90a54a20000",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/parameter_optimization_ablation/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9d5f18f6e52bc6b7b2ed86c380f0d3b73cecc77df1858d7440972094caefaf3c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_parameter_optimization_ablation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f0cfcb670a8ae8d3b5cd82c1482b4eed0712f427ae023ba7d47e24db43d097fe",
+      "before_hash": "75ebe91a701f9ea7c78a06a9ff4487d155c794ec0c567cb53d98c065d42a17f4",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "15de6d6d8a54d75c5399012d83aa3453fef36d0435a87d2ecbdf6533fd696a6a",
+      "before_hash": "7f6262a644b3d650c352145453396797730646727c70d05ca3953de0baca8e6c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2ed41c94d70850fbfa49fda164a6c3dd5bf70e5f02b9b95f17f6cab066efcaf1",
+      "before_hash": "dce09f01b3efe6ec25d9cedb71a482d70b02a8bcb11bdbf08cd86f3047712274",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ee3ba1610f264935e27f018911b280634d00181a3d04cce14024403716bb390b",
+      "before_hash": "111c5897b538eee19c358269235af657260bc180519d118e6e045e80dd8f4125",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2088210d1bb2d2d83a320868f4a248d27470b833b5fe1c7c438cfcb75aa2ca1e",
+      "before_hash": "27b9397e92406daf7553a07cd41042c4d91e237e041ebd98f779ec1889bfd459",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "232a5f6e7a400eba1378d2566ac76f35b0cace8c1ce46715ce6e67107ededcf8",
+      "before_hash": "02aa24f73c3d9d37f923d190ceca3bda61c777b9126c3e616f17ba69bf5dd561",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9809c13a372c33f6db4a36b1cbd76793e9a6d42bf338d3fb48148233bb3e795",
+      "before_hash": "2c36fbb6e1fbd9cede71715c433b2f3bacd93d15424fa4d791b7411501454762",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ce6704f90f7ad999a6f0a6fc0e132479c4df77721cb075bc4742ca518749d74e",
+      "before_hash": "b49dab872c6d189c07049c3ae759fea1e00a35169661e725f16b8da9f66e32ff",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1bbca60fd424f490528f9987e38d1502d77c00e5eba1e170cbf181b8190c5972",
+      "before_hash": "7d0943ce5ef4dda8abfe5720d26f5b4cc1265979224247f0efd9bf13adfdaea4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "828ef336a8d08a691fdbbb25e939aaecc33c48974529c64da04dcc457d0bd4dc",
+      "before_hash": "74f05b03fa51d88ccffddd84d9cdc1ad0eaf3ae44172010e217ef8d60d43a263",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e258eb54e65c3ab4f9de51ce218b2d0b5b220210d527c5b5ff2bcf2e728a453d",
+      "before_hash": "65ba2899108f5e2dcc8ce95c4851786f4a2fb5d3f7c0a5c3f58d1b833bdba9bf",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "08b3db1900af9bec2b678a4d1f503d88cbc16feb62b3e78f9e6c5a773b62938a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "68f99eae2a4e543403a4918042a1bb8f16bd7990d8ed23831f8958b925d2acce",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f616c551b9e499503866fe187fb60a7b6ed340bd981fde24c3cb09f050195c4b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_parameter_optimization_ablation.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "330bd15277e5e3e5cf4bd45336964ee37981467f8429b4a26e9eefe2e3433519",
+      "before_hash": "cb34c769fed7f1e430fbb3deeac42beaa7e7c4dcb049346dce9e5cafc42993c8",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "target_commit": "3e04743f41ee6d604a7de6064558f9925d89d993",
+  "target_git_added_paths": [
+    "backend/services/engine/parameter_optimization_ablation/__init__.py",
+    "backend/services/engine/parameter_optimization_ablation/artifact.py",
+    "backend/services/engine/parameter_optimization_ablation/engine.py",
+    "backend/services/engine/parameter_optimization_ablation/metrics.py",
+    "backend/services/engine/parameter_optimization_ablation/protocol.py",
+    "backend/services/tests/test_parameter_optimization_ablation.py",
+    "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/report.md",
+    "tools/quantmind2/run_parameter_optimization_ablation.py"
+  ],
+  "target_git_changed_paths": [
+    "backend/services/engine/artifact_runtime/cache.py",
+    "backend/services/engine/artifact_store/enums.py",
+    "backend/services/engine/artifact_store/validators.py",
+    "backend/services/engine/parameter_optimization_ablation/__init__.py",
+    "backend/services/engine/parameter_optimization_ablation/artifact.py",
+    "backend/services/engine/parameter_optimization_ablation/engine.py",
+    "backend/services/engine/parameter_optimization_ablation/metrics.py",
+    "backend/services/engine/parameter_optimization_ablation/protocol.py",
+    "backend/services/tests/test_parameter_optimization_ablation.py",
+    "backend/services/tests/test_quantmind2_context_bootstrap.py",
+    "docs/quantmind2/context/COMPONENT_CATALOG.md",
+    "docs/quantmind2/context/CURRENT_STATE.md",
+    "docs/quantmind2/context/HANDOFF.md",
+    "docs/quantmind2/context/KNOWN_ISSUES.md",
+    "docs/quantmind2/context/ROADMAP.md",
+    "docs/quantmind2/context/component_catalog.json",
+    "docs/quantmind2/context/current_state.json",
+    "docs/quantmind2/context/handoff.json",
+    "docs/quantmind2/context/known_issues.json",
+    "docs/quantmind2/context/roadmap.json",
+    "docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/manifest.json",
+    "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/report.md",
+    "tools/quantmind2/run_parameter_optimization_ablation.py",
+    "tools/quantmind2/validate_context_bootstrap.py"
+  ],
+  "target_manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/manifest.json",
+  "target_report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-005-20260722T052636Z-82f13f9/report.md",
+  "target_run_id": "QM2-R1-005-20260722T052636Z-82f13f9",
+  "target_source_bundle_hash": "4bf48d647c8fd8deb640dde6b5a38e3d07cdbdcd2d85cd387c7cd7de6066ee84",
+  "target_task_id": "QM2-R1-005",
+  "verified_by_git": {
+    "canonical_inventory_sha256": "521bb5b82bf5d92751c932b82f5749bc612b1b19ae6366902978a5a5764f4843",
+    "changed_file_hash_mismatch_count": 1,
+    "method": "target_commit_diff_inventory_blob_sha256_and_source_bundle",
+    "target_changed_file_hash_count": 24,
+    "target_git_added_path_count": 10,
+    "target_git_changed_path_count": 25,
+    "target_manifest_sha256": "774b75de1d5773c75b8abf2fbc6ba9328fadb5909370cd1d173cc509e5bf3ae8",
+    "target_report_sha256": "68f99eae2a4e543403a4918042a1bb8f16bd7990d8ed23831f8958b925d2acce",
+    "verified_at": "2026-07-22T13:32:05Z"
+  }
+}

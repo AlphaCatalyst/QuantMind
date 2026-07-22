@@ -1,5 +1,9 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current evidence task: `QM2-R1-005F` records immutable Git correction evidence
+for the original R1-005 Run. It changes no research result or runtime behavior
+and authorizes no successor.
+
 Current research task: `QM2-R1-004` is completed with semantic audit and
 alpha decomposition of the two locked R1-003 candidates and their ensemble.
 The evidence supports only `continue_as_stock_selection_overlay_only`; no
@@ -23,6 +27,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R1-005F Parameter Optimization Ablation Git Evidence Correction | completed_uncommitted | P0 | R1-005 | Record exact commit-derived ChangedFile and source-bundle evidence and link it to the immutable inconsistent Run | No original Run edit, research rerun, Agent, Optimization, Qlib, network, Candidate or Promotion change | Independent correction evidence and `corrects` relation provide the supported corrected completion |
 | QM2-R1-004 Momentum Signal Semantic Audit and Alpha Decomposition v1 | completed_uncommitted | P0 | R1-003 | Explain later-period degradation through immutable semantic, cross-sectional, beta, style, concentration, contribution, cost and regime evidence | No new Factor, Agent, Optimization, Strategy change, network, Promotion or future-period selection | Five Store-backed diagnostics, cold recovery and exact replay pass; decision is stock-selection overlay only |
 | QM2-P0-001 Context Bootstrap and Implementation Contract | completed_committed | P0 | none | Establish repository context, ADR, report, manifest, handoff, validation | No business code, DB, API | Machine and human bootstrap validates and records itself |
 | QM2-P0-001G Formalize Decision-Control-Execution Separation | completed_committed | P0 | 001 | Accept the three-layer authority model and ResearchDecision contract | No runtime, DB, API, Skill, orchestration, DSL, model, or backtest code | ADR-0009, contract, schema, example, context, tests, and immutable Run are committed |

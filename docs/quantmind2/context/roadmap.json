@@ -1,12 +1,21 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T05:26:36Z",
-  "source_commit": "82f13f92d9accd39e1ec9209c38a66b37ccff457",
+  "generated_at": "2026-07-22T13:32:05Z",
+  "source_commit": "3e04743f41ee6d604a7de6064558f9925d89d993",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "items": [
+    {
+      "task_id": "QM2-R1-005F",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R1-005"],
+      "objective": "Record exact commit-derived Git evidence for the immutable inconsistent parameter-ablation Run.",
+      "explicit_non_goals": ["No target Run edit, research rerun, Agent, Optimization, Qlib, network, Candidate or Promotion change."],
+      "acceptance_summary": "Independent evidence and a corrects relationship provide the supported corrected completion."
+    },
     {"task_id": "QM2-P0-001", "status": "completed_committed", "priority": "P0", "dependencies": [], "objective": "Establish Context Bootstrap and implementation contracts.", "explicit_non_goals": ["No business code, database, or API."], "acceptance_summary": "Bootstrap validates and records its own run."},
     {"task_id": "QM2-P0-001G", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-001"], "objective": "Accept the Decision-Control-Execution authority model and ResearchDecision contract.", "explicit_non_goals": ["No runtime, database, API, Skill, orchestration, DSL, model, or backtest implementation."], "acceptance_summary": "ADR-0009, contract, schema, example, context, tests, and immutable Run are committed."},
     {"task_id": "QM2-P0-002A1", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-P0-001G"], "objective": "Complete the Ledger persistence audit, pure domain, and Repository contract sequence.", "explicit_non_goals": ["No ORM model, database table, migration, indexer, API, or UI in the A1 sequence."], "acceptance_summary": "Persistence facts, domain invariants, Repository Protocols, and in-memory contract behavior are code-backed."},

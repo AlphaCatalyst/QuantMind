@@ -1,5 +1,23 @@
 # Codex Handoff
 
+## QM2-R1-005F Git evidence correction handoff
+
+- The original `QM2-R1-005-20260722T052636Z-82f13f9` Report and Manifest are
+  immutable and remain Git-inconsistent: `validated=false`,
+  `indexable=false`, with `changed_file_hashes` and `source_bundle_hash`
+  evidence gaps.
+- Correction evidence is rebuilt exclusively from commit `3e04743f...`: 25
+  changed paths, 10 added paths and 24 business ChangedFiles. The only hash
+  mismatch is the contract file after a trailing-whitespace cleanup performed
+  after Manifest hash finalization.
+- `QM2-R1-005F` links to the original through `corrects`. Together they are
+  the supported `completed_corrected` Ledger representation; never modify the
+  historical Run to make it appear valid.
+- Research behavior and results are unchanged. Correction execution has zero
+  Agent, Factor/Strategy Optimization, Qlib, network, Promotion, Candidate
+  mutation, new research Artifact and new research Blob counts.
+- No successor task is authorized by this evidence-only correction.
+
 ## QM2-R1-005 handoff
 
 - Read `PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md`, the R1-005

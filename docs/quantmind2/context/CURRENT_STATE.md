@@ -1,5 +1,23 @@
 # Current Implementation State
 
+## Parameter Optimization Ablation Git evidence correction (QM2-R1-005F)
+
+- The original `QM2-R1-005-20260722T052636Z-82f13f9` Run remains immutable,
+  `validated=false`, `indexable=false`, with mandatory failures
+  `changed_file_hashes` and `source_bundle_hash`.
+- Commit `3e04743f...` proves 25 changed paths, 10 added paths and 24 business
+  ChangedFiles. Exactly one committed blob differs from the pre-commit
+  Manifest evidence: the parameter-ablation contract after removal of one
+  trailing whitespace sequence.
+- `QM2-R1-005F` records the commit-derived hashes and source-bundle identity
+  as independent `GitEvidenceCorrectionV1` evidence and relates the new Run
+  to the original with `corrects`. The supported Ledger interpretation is
+  `completed_corrected`; the original Run is not rewritten.
+- No Agent, Factor Optimization, Strategy Optimization, Qlib, network,
+  Promotion, Candidate-state, research Artifact or research Blob action is
+  performed. All ablation results and Framework Decision remain unchanged.
+- Current task: `QM2-R1-005F`. No successor task is authorized here.
+
 ## Parameter Optimization Overfit Ablation v1 (QM2-R1-005)
 
 - The immutable R1-003 defaults, full search spaces, two Candidate Locks and
