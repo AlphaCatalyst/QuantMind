@@ -92,6 +92,13 @@ def collection_destination(cache_root: Path, artifact_kind: str, artifact_id: st
         "default_first_momentum_report": ("default-first-momentum", "reports"),
         "default_first_momentum_assessment": ("default-first-momentum", "assessments"),
         "default_first_momentum_experiment": ("default-first-momentum", "experiments"),
+        "low_frequency_momentum_signal_spec": ("low-frequency-momentum", "signal-specs"),
+        "low_frequency_execution_protocol": ("low-frequency-momentum", "protocols"),
+        "low_frequency_momentum_annual_result": ("low-frequency-momentum", "annual-results"),
+        "low_frequency_momentum_candidate_lock": ("low-frequency-momentum", "candidates"),
+        "low_frequency_momentum_report": ("low-frequency-momentum", "reports"),
+        "low_frequency_momentum_assessment": ("low-frequency-momentum", "assessments"),
+        "low_frequency_momentum_study": ("low-frequency-momentum", "studies"),
         "tushare_historical_round_lock": ("tushare-round-lock",),
         "tushare_qlib_backtest_result": ("tushare-qlib-results",),
     }

@@ -1,5 +1,11 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R1-008` is completed. Four fixed low-frequency
+momentum signals were compared under B0/L1 with 40 formal Qlib calls. L1
+reduced median annual turnover and cost by 34.54%/33.21%, but zero signals
+passed all frozen eligibility gates. The result is
+`stock_selection_signal_only`; no successor task is authorized.
+
 Current governance task: `QM2-R1-006` applies the corrected R1-005 decision as
 default-first Factor/Strategy policy and suspends combined optimization. It
 changes no historical research object and authorizes no successor.

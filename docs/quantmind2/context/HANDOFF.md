@@ -1,5 +1,23 @@
 # Codex Handoff
 
+## QM2-R1-008 low-frequency momentum handoff
+
+QM2-R1-008 completed the pre-registered comparison with 40 formal Qlib calls:
+four signals times B0/L1 times four years, plus eight full-period runs. No
+Agent or Factor/Strategy/Combined Optimization was called. L1's ten-session
+protocol reduced median annual turnover by 34.54% and costs by 33.21%; it
+improved median net return for every signal but did not make any signal pass
+all frozen RankIC and stability gates.
+
+The assessment is `stock_selection_signal_only`. There are zero Candidate Locks,
+so chronology correctly produces zero 2025/2026H1 reports and no
+Registry or Promotion write. Study `lfmsta1_18f3a4ad...65ff80`, assessment
+`lfma1_de242a62...319f3` and inventory `sai_06ee449c...28be` are immutable and
+healthy. Cold recovery restored 39 objects; exact replay used zero calls and
+created zero artifacts or blobs. The new Codex should read
+`LOW_FREQUENCY_MOMENTUM_STUDY_V1.md` and the QM2-R1-008 Implementation Run.
+No successor task is authorized.
+
 ## QM2-R1-007 default-first momentum handoff
 
 - Read `DEFAULT_FIRST_MOMENTUM_STRUCTURE_SEARCH_V2.md`, the R1-006 policy

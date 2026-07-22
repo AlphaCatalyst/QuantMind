@@ -1,5 +1,10 @@
 # Known Issues
 
+| ID | Severity | Status | Summary |
+|---|---|---|---|
+| QM2-KI-051 | medium | resolved | QM2-R1-008 proves fixed ten-session rebalancing reduces median annual turnover 34.54% and cost 33.21%, but none of four pre-registered signals passes all frozen RankIC/stability gates; the result is `stock_selection_signal_only` with zero Candidate Locks. |
+| QM2-KI-052 | low | open | The isolated Redis-disabled formal Qlib result persists daily positions but an empty trade list. R1-008 derives holding transitions from positions and turnover/cost from the existing CnExchange collector; per-trade execution audit remains unavailable. |
+
 ## QM2-KI-046 — Skip-recent signals are not standalone Alpha evidence
 
 Open, medium. `QM2-R1-004` finds positive but weak 2025 RankIC followed by

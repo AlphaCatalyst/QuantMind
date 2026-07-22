@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T15:10:49Z",
-  "source_commit": "54c718431f9532d88057006c203bec2d937a1055",
+  "generated_at": "2026-07-22T15:52:15Z",
+  "source_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "54c718431f9532d88057006c203bec2d937a1055",
+  "base_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R1-007",
+  "current_task": "QM2-R1-008",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R1-007-20260722T151049Z-54c7184",
+  "latest_implementation_run": "QM2-R1-008-20260722T155215Z-23b21c4",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
@@ -72,6 +72,7 @@
     ,"docs/quantmind2/contracts/MOMENTUM_SIGNAL_SEMANTIC_AUDIT_AND_ALPHA_DECOMPOSITION_V1.md"
     ,"docs/quantmind2/contracts/PARAMETER_OPTIMIZATION_OVERFIT_ABLATION_V1.md"
     ,"docs/quantmind2/contracts/DEFAULT_FIRST_MOMENTUM_STRUCTURE_SEARCH_V2.md"
+    ,"docs/quantmind2/contracts/LOW_FREQUENCY_MOMENTUM_STUDY_V1.md"
   ],
   "uncommitted_work": true
 }

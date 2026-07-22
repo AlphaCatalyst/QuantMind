@@ -1,0 +1,480 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r1-008-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "0601013c9a2e5be031364ccc6d55bdaa49b12085980a47404389cc81e1117cf1",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 10073
+    },
+    {
+      "artifact_id": "artifact-qm2-r1-008-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "lfmsta1_18f3a4add9e0e224a7a8d35133af2dbfa9a23181edc94134d9c2c3738965ff80",
+      "artifact_type": "low_frequency_momentum_study",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:lfmsta1_18f3a4add9e0e224a7a8d35133af2dbfa9a23181edc94134d9c2c3738965ff80",
+      "schema_version": "low-frequency-momentum-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "lfma1_de242a62775b3ed793c17ae48cc3eee48e478e91974b982ea48d8c9f768319f3",
+      "artifact_type": "low_frequency_momentum_assessment",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:lfma1_de242a62775b3ed793c17ae48cc3eee48e478e91974b982ea48d8c9f768319f3",
+      "schema_version": "low-frequency-momentum-artifact-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "sai_06ee449cdc0a81fa619d965ca7e343ce04f89ef89aecf6c0cdaef033fd7628be",
+      "artifact_type": "artifact_store_inventory",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:sai_06ee449cdc0a81fa619d965ca7e343ce04f89ef89aecf6c0cdaef033fd7628be",
+      "schema_version": "artifact-store-inventory-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "407401c439ce4357aecf841ddb23cf14506b43fdb0c694993a1c245afaa3116a",
+      "before_hash": "98ae335222b34c4118d459ebbb12b4e476296bebbda6e4812b2d37d6164eb017",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_runtime/cache.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "65c67da13c78cbc4e5eb598b80f87830798005056a601519bd8eecb943f34e19",
+      "before_hash": "646122f0e00e2cc64e9b153421b2babf8316e2207867ccb7938f6d1528effe90",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e2b654f93d6eaad2e1c59cf915c7dbb1176b92601a5e75410103bb6122ee61ae",
+      "before_hash": "d3c83290aed326d4fea3ffa730bf29c79c99c4127f0ea85320a7bf00bb98d128",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "561b6f8c9b2dc66aa49325f89984fb43078d8a2a9ac050cfdc1888ac5c3af221",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/low_frequency_momentum/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "aad1cc3ffe33e4cb0d6d7eeb67f296fce654e840227c92a26529a40dd96009b4",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/low_frequency_momentum/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "87845869cc8f08edf940192b264cad6370c3337257b5bd1a29189c720d79de20",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/low_frequency_momentum/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "13fa52ebac029ff09901d71113cb55c4ce121ce35832c65b325acb05aa900d93",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/low_frequency_momentum/protocol.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f4f136d7a0c03a7c612827e42a15883800d192bbbaaf216777526d76d050c89a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_low_frequency_momentum.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2723edb932b4563b47b17f8591dea2bedc8477074be05fc272459d249a874c86",
+      "before_hash": "8abe9c8189bad6f022649952e80b1a558090c813861387d32b285c364817d901",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2f1c401a777ba037638f322e119575413531f4af60c9a593915755e50221f4ca",
+      "before_hash": "64f18b2bfb99bc7529520eebd1c6132c9deb3531daa1a1b5d3411e9cf8a83358",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4a0e4994fbb8f03dda23093bcf21cadfb684319509a13841f992a640262ee52a",
+      "before_hash": "bb61adb8692831266ad66d11604151eade1c8f1a7f6bc3d7628ea34ab03b5c1b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9bcf646835abe94dc2dff917c32bd4122650f1d3f603218fc1572e6cbee2775a",
+      "before_hash": "e01281e1ba0cf8f98df8170807e9dd23417691e477210e1d62920b5f8cfdf2de",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cdffdf24c3c41bb5cc21e357e8e85301f5852c37d84fdfc8ec874eea3f561b0c",
+      "before_hash": "c2935af4ef643b15cfcac14b8ea7a767b21a24a1b7e427d0ba68bf019fce62a0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "63385a3c8d0c6fdeb2546f024c8f41206c98de74f8ac131c53acac2fea828c3f",
+      "before_hash": "ec857774a267541d8bd3defd83f27aea1a2820fa77c4cda5a001b5218ac003b8",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "eee9216aba46b6b8daf0054f1224911f978d7c453086729cefe67a3378e63785",
+      "before_hash": "5d35a299b38375c56b7a3165afb61fb255d73fb99910aaf51663a931ad6ecd57",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "343b521b8c9327e0e976b75410db12a9b6bac32555b922fd6bee5dee70a449d2",
+      "before_hash": "2ded987fa8f87fdbdb99d3dbde154e4ce69e61b4683b3e63760254c90a73ef65",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7305412b7f1660a3dafeb77011b0454f74c17178a929cca61c57a467cde9faf6",
+      "before_hash": "38e75198604596f31a29c62a215a11713b737ecc55759e24a821e7bd0ff3690c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cdf489d4f392eeec2d75c4451607db5ce49646766ad69144b7c36e82e9084fd1",
+      "before_hash": "dabda4e8055c5ccc4abf3bc2571d385db64e52f0ddc7c14a112fcd955db93a4c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e866cb7aacda7b7fa1136711e25e6b7ae6dee64218be5ba8595a6dbafd534c33",
+      "before_hash": "1c6ab2222d2af0af0ef34b6e9720fb56cf58e9d0c9e081eb2a0251973da7be86",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9d74d72dc2a0697dc0f02949d5f50c08d37320811439619403f35e1a684775c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/LOW_FREQUENCY_MOMENTUM_STUDY_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0601013c9a2e5be031364ccc6d55bdaa49b12085980a47404389cc81e1117cf1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9e418f17ca52854d218ee598e132655d6470d5fd8f16646ccb9bd54dcf2539d9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_low_frequency_momentum_study.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "98f1597d4c628c71409e24987626b469bd5b520838f128e1108699f100667296",
+      "before_hash": "a9d0e496aa1c71a6bffffc779f8db90c29e11ddc886e614db5e5918c6c620496",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/low_frequency_momentum/engine.py",
+      "qualified_name": "execute_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/low_frequency_momentum/engine.py",
+      "qualified_name": "replay_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/low_frequency_momentum/protocol.py",
+      "qualified_name": "signal_specs",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/low_frequency_momentum/artifact.py",
+      "qualified_name": "validate_artifact",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.low_frequency_momentum",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.momentum_factor_iteration",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r1-008-report",
+        "sha256": "0601013c9a2e5be031364ccc6d55bdaa49b12085980a47404389cc81e1117cf1"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/low_frequency_momentum/__init__.py",
+      "backend/services/engine/low_frequency_momentum/artifact.py",
+      "backend/services/engine/low_frequency_momentum/engine.py",
+      "backend/services/engine/low_frequency_momentum/protocol.py",
+      "backend/services/tests/test_low_frequency_momentum.py",
+      "docs/quantmind2/contracts/LOW_FREQUENCY_MOMENTUM_STUDY_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/report.md",
+      "tools/quantmind2/run_low_frequency_momentum_study.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_runtime/cache.py",
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/low_frequency_momentum/__init__.py",
+      "backend/services/engine/low_frequency_momentum/artifact.py",
+      "backend/services/engine/low_frequency_momentum/engine.py",
+      "backend/services/engine/low_frequency_momentum/protocol.py",
+      "backend/services/tests/test_low_frequency_momentum.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/LOW_FREQUENCY_MOMENTUM_STUDY_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/report.md",
+      "tools/quantmind2/run_low_frequency_momentum_study.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "4c1dc7489f76188e5376cb5f3cc9e458e4f1754d3178ffa11cf33c923c405f14",
+    "manifest_payload_sha256": "59ae2428a2f6f8e90257edf491e9842ef728405ccb9e5fa3efccd33d61ce138e",
+    "report_sha256": "0601013c9a2e5be031364ccc6d55bdaa49b12085980a47404389cc81e1117cf1",
+    "source_bundle_sha256": "4aa60899786ec1ad5ad82ecec056829dce237422c3a2645b2f394798d8acbd59"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.low_frequency_momentum",
+      "description": "All evidence is retrospective and cannot support Fresh Validation, Promotion or production claims.",
+      "limitation_id": "limit-r1-008-retrospective",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.low_frequency_momentum",
+      "description": "No signal passed all frozen gates, so Candidate Locks and 2025/2026H1 reports are absent by design.",
+      "limitation_id": "limit-r1-008-zero-locks",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.low_frequency_momentum",
+      "description": "The isolated formal Qlib result exposes positions but no trade rows; holding transitions use positions while turnover and cost use the CnExchange collector.",
+      "limitation_id": "limit-r1-008-trades",
+      "severity": "low",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-22T15:52:15Z",
+      "reason": "Test the frozen low-frequency hypothesis after default-first daily momentum structures failed.",
+      "relationship_id": "rel-qm2-r1-008-continues-r1-007",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R1-008-20260722T155215Z-23b21c4",
+      "target_run_id": "QM2-R1-007-20260722T151049Z-54c7184"
+    }
+  ],
+  "repository": {
+    "base_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-22T15:52:15Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "4c1dc7489f76188e5376cb5f3cc9e458e4f1754d3178ffa11cf33c923c405f14",
+    "implementation_run_id": "QM2-R1-008-20260722T155215Z-23b21c4",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R1-008-20260722T155215Z-23b21c4/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "4aa60899786ec1ad5ad82ecec056829dce237422c3a2645b2f394798d8acbd59",
+    "started_at": "2026-07-22T15:10:00Z",
+    "task_id": "QM2-R1-008",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-22T15:10:00Z",
+    "explicit_non_goals": [
+      "No Agent or new Factor generation",
+      "No Factor, Strategy or Combined optimization",
+      "No third frequency",
+      "No Tushare network",
+      "No report-period selection",
+      "No Promotion or production claim"
+    ],
+    "objective": "Test four pre-registered momentum signals under fixed five-session and ten-session formal Qlib protocols without parameter selection.",
+    "parent_task_id": null,
+    "scope": [
+      "Pre-registered signal and protocol contracts",
+      "Forty formal Qlib evaluations",
+      "Eligibility and diagnostics",
+      "Immutable Artifact Store publication",
+      "Cold recovery and exact replay",
+      "CLI, tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R1-008",
+    "title": "Low-Frequency Momentum and Turnover-Control Study v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -c /dev/null backend/services/tests/test_low_frequency_momentum.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 14,
+      "purpose": "Verify signal/protocol, quality, eligibility, Artifact and replay contracts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-008-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -c /dev/null <11 relevant Momentum/Store/Strategy/Context files> -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 126,
+      "purpose": "Verify directly relevant Momentum, Store, Strategy and Project Memory regression.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-008-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Verify Project Memory and machine-readable context.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r1-008-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_low_frequency_momentum.py backend/services/tests/test_quantmind2_context_bootstrap.py -q",
+      "failed_count": 0,
+      "not_run_reason": "Repository addopts requested unavailable pytest-cov plugin; corrected no-config invocations passed.",
+      "passed_count": 0,
+      "purpose": "Initial aggregate test attempt.",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-r1-008-initial-pytest"
+    }
+  ]
+}

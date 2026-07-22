@@ -112,6 +112,13 @@ class ArtifactKind(str, Enum):
     DEFAULT_FIRST_MOMENTUM_REPORT = "default_first_momentum_report"
     DEFAULT_FIRST_MOMENTUM_ASSESSMENT = "default_first_momentum_assessment"
     DEFAULT_FIRST_MOMENTUM_EXPERIMENT = "default_first_momentum_experiment"
+    LOW_FREQUENCY_MOMENTUM_SIGNAL_SPEC = "low_frequency_momentum_signal_spec"
+    LOW_FREQUENCY_EXECUTION_PROTOCOL = "low_frequency_execution_protocol"
+    LOW_FREQUENCY_MOMENTUM_ANNUAL_RESULT = "low_frequency_momentum_annual_result"
+    LOW_FREQUENCY_MOMENTUM_CANDIDATE_LOCK = "low_frequency_momentum_candidate_lock"
+    LOW_FREQUENCY_MOMENTUM_REPORT = "low_frequency_momentum_report"
+    LOW_FREQUENCY_MOMENTUM_ASSESSMENT = "low_frequency_momentum_assessment"
+    LOW_FREQUENCY_MOMENTUM_STUDY = "low_frequency_momentum_study"
 
 
 class IntegrityStatus(str, Enum):

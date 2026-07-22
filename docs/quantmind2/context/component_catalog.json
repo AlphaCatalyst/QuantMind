@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T14:13:43Z",
-  "source_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
+  "generated_at": "2026-07-22T15:52:15Z",
+  "source_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -10,6 +10,20 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "components": [
+    {
+      "component_id": "quantmind2.low_frequency_momentum",
+      "name": "Low-Frequency Momentum and Turnover-Control Study v1",
+      "status": "implemented",
+      "responsibility": "Pre-register four fixed Momentum signals and B0/L1 execution protocols, run complete annual/full-period formal Qlib evidence, apply frozen eligibility, and publish immutable Store-backed diagnostics with cold recovery and exact replay.",
+      "source_path": "backend/services/engine/low_frequency_momentum",
+      "target_path": "backend/services/engine/low_frequency_momentum",
+      "key_symbols": ["signal_specs", "execution_protocol", "execute_study", "replay_study", "validate_artifact"],
+      "dependencies": ["quantmind2.momentum_factor_iteration", "quantmind2.optimization_governance", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Evidence is retrospective, not Fresh Validation, Frozen Test, Promotion or production evidence.", "No signal passed all frozen eligibility gates, so Candidate Locks and later-period reports are absent by design.", "Formal Qlib positions are available but its isolated Redis-disabled trade list is empty; holding transitions use positions and cost/turnover use the CnExchange collector."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
     {
       "component_id": "quantmind2.skip_recent_momentum", "name": "Replayable Skip-Recent Momentum Research v1", "status": "implemented",
       "responsibility": "Persist complete Agent-to-candidate evidence and run bounded six-subfamily skip-recent research with four-Fold locks and formal Qlib evaluation.",

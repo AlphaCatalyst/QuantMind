@@ -1,5 +1,22 @@
 # Current Implementation State
 
+## Low-Frequency Momentum and Turnover-Control Study v1 (QM2-R1-008)
+
+- Four immutable, pre-registered Momentum signals were evaluated under B0
+  five-session and L1 ten-session protocols using 40 formal Qlib calls.
+- L1 reduced median annual turnover by 34.54% and transaction cost by 33.21%.
+  Median L1 annual net return improved for all four signals, but no signal
+  passed all frozen Candidate Eligibility gates.
+- Candidate Locks and 2025/2026H1 reports are both zero by chronology. The
+  terminal classification is `stock_selection_signal_only`: some annual
+  RankIC/group or net-excess evidence remains, but standalone Alpha is not
+  stable enough for registration.
+- Store inventory `sai_06ee449c...28be` is healthy with 715 Artifacts and
+  3,549 Blobs. Cold recovery restores 39 study objects and exact replay has
+  zero Agent, Optimization, Qlib, network, new Artifact/Blob and Promotion
+  calls.
+- Current task: `QM2-R1-008`; no successor task is authorized here.
+
 ## Default-first Momentum Structure Search v2 (QM2-R1-007)
 
 - R1-006 governance is now exercised by a real momentum research runtime:

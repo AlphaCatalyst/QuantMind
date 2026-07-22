@@ -1,5 +1,12 @@
 # Component Catalog
 
+## QM2-R1-008 addition
+
+- `quantmind2.low_frequency_momentum` — implemented at
+  `backend/services/engine/low_frequency_momentum`; pre-registers four fixed
+  signals and B0/L1 protocols, runs annual/full-period formal Qlib evidence,
+  applies frozen eligibility, and supports Store recovery and zero-call replay.
+
 ## QM2-R1-004 addition
 
 - `quantmind2.momentum_alpha_diagnostics` — implemented at

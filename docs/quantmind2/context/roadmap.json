@@ -1,12 +1,21 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T14:13:43Z",
-  "source_commit": "9a28a1cf363d221a6228335f3c5da4ab9782265a",
+  "generated_at": "2026-07-22T15:52:15Z",
+  "source_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "items": [
+    {
+      "task_id": "QM2-R1-008",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R1-007", "QM2-R1-006"],
+      "objective": "Test four pre-registered long-horizon Momentum signals under fixed five-session and ten-session formal Qlib protocols.",
+      "explicit_non_goals": ["Agent or new Factor generation", "Factor, Strategy or Combined optimization", "Third rebalance frequency", "Tushare network", "Promotion", "Use 2025 or 2026H1 for selection"],
+      "acceptance_summary": "Forty formal Qlib calls show 34.54% median annual turnover and 33.21% cost reduction, but zero signals pass all frozen gates; classification is stock_selection_signal_only and Store recovery/exact replay pass."
+    },
     {
       "task_id": "QM2-R1-007",
       "status": "completed_uncommitted",
