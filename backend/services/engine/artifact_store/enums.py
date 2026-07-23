@@ -151,6 +151,20 @@ class ArtifactKind(str, Enum):
     AUTONOMOUS_CAMPAIGN_V1_GENERALIZATION_ASSESSMENT = "autonomous_campaign_v1_generalization_assessment"
     AUTONOMOUS_CANDIDATE_FRESH_LOCK = "autonomous_candidate_fresh_lock"
     AUTONOMOUS_FACTOR_CAMPAIGN_REPORT_V2 = "autonomous_factor_campaign_report_v2"
+    AUTONOMOUS_FACTOR_RESEARCH_PROGRAM_SPEC = "autonomous_factor_research_program_spec"
+    RESEARCH_PROGRAM_EVIDENCE_PARTITION = "research_program_evidence_partition"
+    RESEARCH_PROGRAM_CLEAN_ROOM_SEED = "research_program_clean_room_seed"
+    AUTONOMOUS_FACTOR_PROGRAM = "autonomous_factor_program"
+    AUTONOMOUS_FACTOR_LANE = "autonomous_factor_lane"
+    AUTONOMOUS_LANE_SHORTLIST_LOCK = "autonomous_lane_shortlist_lock"
+    GLOBAL_RESEARCH_NOVELTY_INDEX = "global_research_novelty_index"
+    PROGRAM_SEARCH_EXPOSURE = "program_search_exposure"
+    AUTONOMOUS_PROGRAM_UNION_SHORTLIST_LOCK = "autonomous_program_union_shortlist_lock"
+    PROGRAM_LOCKED_VALIDATION = "program_locked_validation"
+    PROGRAM_MULTIPLE_TESTING_CONTROL = "program_multiple_testing_control"
+    PROGRAM_VALIDATION_FAILURE_REPORT = "program_validation_failure_report"
+    AUTONOMOUS_PROGRAM_CANDIDATE_FRESH_LOCK = "autonomous_program_candidate_fresh_lock"
+    AUTONOMOUS_FACTOR_PROGRAM_REPORT = "autonomous_factor_program_report"
 
 
 class IntegrityStatus(str, Enum):

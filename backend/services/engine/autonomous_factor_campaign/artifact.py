@@ -32,6 +32,20 @@ KINDS = {
     "autonomous_campaign_v1_generalization_assessment": ("v1_assessment_id", "acv1ga1_"),
     "autonomous_candidate_fresh_lock": ("fresh_lock_id", "acfl1_"),
     "autonomous_factor_campaign_report_v2": ("report_id", "afcr2_"),
+    "autonomous_factor_research_program_spec": ("program_spec_id", "afrp1_"),
+    "research_program_evidence_partition": ("evidence_partition_id", "rpep1_"),
+    "research_program_clean_room_seed": ("seed_id", "rpcs1_"),
+    "autonomous_factor_program": ("program_state_id", "afps1_"),
+    "autonomous_factor_lane": ("lane_state_id", "afls1_"),
+    "autonomous_lane_shortlist_lock": ("lane_shortlist_lock_id", "alsl1_"),
+    "global_research_novelty_index": ("novelty_index_id", "grni1_"),
+    "program_search_exposure": ("search_exposure_id", "pse1_"),
+    "autonomous_program_union_shortlist_lock": ("union_shortlist_lock_id", "apusl1_"),
+    "program_locked_validation": ("validation_id", "plv1_"),
+    "program_multiple_testing_control": ("multiple_testing_id", "pmtc1_"),
+    "program_validation_failure_report": ("validation_failure_id", "pvfr1_"),
+    "autonomous_program_candidate_fresh_lock": ("fresh_lock_id", "apfl1_"),
+    "autonomous_factor_program_report": ("report_id", "afpr1_"),
 }
 
 

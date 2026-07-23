@@ -1,5 +1,25 @@
 # Codex Handoff
 
+## QM2-R2-003 multi-Campaign Program handoff
+
+- Read `AUTONOMOUS_MULTI_CAMPAIGN_RESEARCH_PROGRAM_V1.md` before changing the
+  Program runtime. Formal Program is `afrp1_5ac295d3...a150b0`; Report is
+  `afpr1_d7368ad6...e4f508`.
+- The adaptive partition ends at 2020-12-31. Never expose 2021+ metrics,
+  validation state, historical ranks, contaminated reports or Fresh evidence
+  to an Agent, Lane/Program Planner, Failure Memory, parameter selection,
+  early stop or shortlist order.
+- Three Lanes completed 15 total Rounds and the minimum early-stop coverage.
+  Only trading confirmation produced a Lane shortlist. The single Union
+  object failed locked validation on median RankIC and BH FDR, so the legal
+  outcome is `completed_no_validation_survivor`.
+- Candidate Locks, Registry writes, 2025/2026H1 reports and Fresh Locks are
+  zero. Do not lower gates, retune after validation, rank using validation,
+  or turn the failed object into a Registry entry.
+- Store integrity is healthy; cold validation has zero gaps and exact replay
+  makes zero Agent/Qlib/optimization/network/Registry/Fresh/Promotion calls
+  and creates no objects. No successor is authorized.
+
 ## QM2-R2-002 locked-holdout Campaign handoff
 
 - Read `AUTONOMOUS_FACTOR_RESEARCH_CAMPAIGN_V2.md` before changing the

@@ -76,7 +76,10 @@ class CampaignRepository:
         rows = []
         for descriptor in self.store.list_by_kind(kind):
             identity = self.identity(descriptor.artifact_id)
-            if identity.get("campaign_spec_id") == campaign_spec_id:
+            if (
+                identity.get("campaign_spec_id") == campaign_spec_id
+                or identity.get("program_id") == campaign_spec_id
+            ):
                 rows.append(identity | {"artifact_id": descriptor.artifact_id})
         return rows
 

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-23T14:19:42Z",
-  "source_commit": "4fe8f434aab959afd6e2402d326ac288bf285bb8",
+  "generated_at": "2026-07-23T17:38:38Z",
+  "source_commit": "80c0527f83b2eaab7ad007bbb049f2e1f16ccd2d",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -10,6 +10,49 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "components": [
+    {
+      "component_id": "quantmind2.autonomous_factor_program",
+      "name": "Autonomous Multi-Campaign Research Program v1",
+      "status": "implemented",
+      "responsibility": "Orchestrate three performance-isolated Agent research Lanes on 2019-2020 adaptive evidence, enforce global novelty and budgets, freeze Lane and Union shortlists before 2021-2024 Pass/Fail validation, apply HAC and BH FDR, register only survivors, create Fresh Locks, and support cold validation and exact replay.",
+      "source_path": "backend/services/engine/autonomous_factor_program",
+      "target_path": "backend/services/engine/autonomous_factor_program",
+      "key_symbols": [
+        "AutonomousFactorResearchProgramSpecV1",
+        "ProgramBudget",
+        "create_program_spec",
+        "execute_program",
+        "resume_program",
+        "validate_program",
+        "replay_program",
+        "hac_mean_test",
+        "benjamini_hochberg"
+      ],
+      "dependencies": [
+        "quantmind2.autonomous_factor_campaign",
+        "quantmind2.factor_dsl",
+        "quantmind2.optimization_governance",
+        "quantmind.qlib_backtest",
+        "quantmind2.research_artifact_store"
+      ],
+      "architecture_decision_refs": [
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0005",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011"
+      ],
+      "current_limitations": [
+        "Single-process, single-host runtime; distributed scheduling remains out of scope.",
+        "Locked validation is retrospective and project-contaminated, not Fresh, Frozen Test or predictive evidence.",
+        "Historical novelty seeds expose structural fingerprints but do not contain historical signal fingerprints because the source artifacts do not provide a uniform signal materialization contract.",
+        "Formal Program 001 produced one Union object and zero validation survivors; Registry, report-period and Fresh-Lock outputs are therefore empty."
+      ],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
     {
       "component_id": "quantmind2.autonomous_factor_campaign",
       "name": "Autonomous Factor Research Campaign Orchestrator v2",

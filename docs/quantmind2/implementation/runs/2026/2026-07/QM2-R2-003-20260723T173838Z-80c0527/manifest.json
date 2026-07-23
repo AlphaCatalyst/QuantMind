@@ -1,0 +1,487 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r2-003-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "5b83269c45cbeb0a3ac54823489d745b8a74f0d5aad8fda0982fb9cd6f68c3bb",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 9679
+    },
+    {
+      "artifact_id": "artifact-qm2-r2-003-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "afrp1_5ac295d31336c174b8bb1728f819813b164b3a83093645db6483abf992a150b0",
+      "artifact_type": "autonomous_factor_research_program_spec",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:afrp1_5ac295d31336c174b8bb1728f819813b164b3a83093645db6483abf992a150b0",
+      "schema_version": "autonomous-factor-research-program-spec-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "afpr1_d7368ad6bb59c53303ddfa0ffbd9d82aae96c6f994e2cb978c16c5c4f8e4f508",
+      "artifact_type": "autonomous_factor_program_report",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:afpr1_d7368ad6bb59c53303ddfa0ffbd9d82aae96c6f994e2cb978c16c5c4f8e4f508",
+      "schema_version": "autonomous-factor-program-report-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "apusl1_ede68a496a317682aeb4b25148e1b2fc9de5e20a1f1172c0efb56a5bb842901c",
+      "artifact_type": "autonomous_program_union_shortlist_lock",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:apusl1_ede68a496a317682aeb4b25148e1b2fc9de5e20a1f1172c0efb56a5bb842901c",
+      "schema_version": "autonomous-program-union-shortlist-lock-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "grni1_7cc8116f69f2bcbea12c2a77cd242d6967631ab2ae4a956ecfc1c65abd3746da",
+      "artifact_type": "global_research_novelty_index",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:grni1_7cc8116f69f2bcbea12c2a77cd242d6967631ab2ae4a956ecfc1c65abd3746da",
+      "schema_version": "global-research-novelty-index-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "5c888479067069f7491566abc06296cf83c2165fb6f7d74ef549d9d68359722e",
+      "before_hash": "0b5e92fe85dd3983bcc81f77e632151b6a33ccfa557d3385d20420538a8e65f8",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fe9039899b2f47a93784c3193bdfee610567617430561d2ab7ed0d6fa51ca89f",
+      "before_hash": "bc0a6c03b9711c705d5ecb95bcbeb501dd230de92ff234d0963c059058017d3d",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2aa08b67cb04a8dc2cabf44fb5f0ad86597f05815ab19f5c5e70f6fecf586c76",
+      "before_hash": "35c7a9c4f2a42af3b0f758cf39565c30e94df2c231331a0e8f578a91e1188042",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "09a49e645659c0dc6afaf3ac9f775f7ecada541e289a3ec6f000ce3e20cda359",
+      "before_hash": "1adead264a73a598d34c42846eeb7a627e0b088a0cae7695f440003aad06f928",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/repository.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e3c311d0e2d229695ffac76ed2d18b8edaaacbb1e6af6c692a8df9532b0fdcd1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_factor_program/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e70b4a29f05bc17086783c64b7bc138be91931142afe0feb196e8ba7058f8fd3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_factor_program/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8aca04c136896927f59ae77117e8e411bca664eff5067f345d8dca11c2b2ef4b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_factor_program/orchestrator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1a728d070308ed4ee0f30170174a203fc20debd4f1ea4c04328482d991cfab6b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_factor_program/statistics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e2d2f8f5abf8b62adb45f6a700e987412c20563d4a6fd546fc7660999c18a17c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_autonomous_factor_program.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0fad66de6573233347ede88c0c824af76a9a384ae9271f2f6ab5c30c94eb41c7",
+      "before_hash": "6c537e095ff778dddf5500bc944aadfea920d1011a9a8b70b158a9c1581654e8",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0cd519078490a8fd24c086759134413a8ccf04ae5220b1e6f4ac71ccdac0a557",
+      "before_hash": "1bfa0643764315fcae915a6cbfe22311a4a597c4f95146d8621f6e27b7ae6c61",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2bdd607b431a8a89b716e27d61cba4b83f35fe393469aeb42c77b9448bcebcd9",
+      "before_hash": "7e38b22a00795c9b14330b8ca621f1b982f22b15b9f3e0d07150249e1fd69206",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "249de16fc50a6af964e033a3f508bb135e2f3dd3200d8897d308428a7c61fac8",
+      "before_hash": "ff3e88fe9d7f57bb558742cf3ab01049e556c4024f03ae2e85a707da7e7ba4d1",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4e6cd25fa5b771572b770df4f5b3d16d26c580354624dd94a49aabc7464902f0",
+      "before_hash": "1c421b5b00236ac00bc7ddc8018641944233042f368fac726867e225a867086f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3bf3290306b281021a1f17331166224ede5f36707cc3384b54b4f5f40d45bf10",
+      "before_hash": "0169b3323f685231ab1d1ccb4d066eb2f0d969c61aba4a161cdafd2cc1727241",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1fdaea8fdfa6880fd5ee933751c4b6229601675c5400099a81a82bc80b7fe8cf",
+      "before_hash": "dd914ec5dc5fb3ff5229e2f9213a64c5352c9212d37dcf8951e7e212562be338",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "73e28a852da9fdf3d918356c1d1dd7d4ee2aebcb220d92c41aca2e98d33461f3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/AUTONOMOUS_MULTI_CAMPAIGN_RESEARCH_PROGRAM_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5b83269c45cbeb0a3ac54823489d745b8a74f0d5aad8fda0982fb9cd6f68c3bb",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "91f6edc1289a609e031ac8a13b363414aa26d1a2685cfe64db620a8af92b8756",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_autonomous_factor_program.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3a94de76b98103a4b2ff2cf67fbf83c86682356face911ac671fa70e3e15e380",
+      "before_hash": "785ea6c577aa431d3284b9d0a53d740ed1bdcbd9fee808f38f8526c0f4c03ec8",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_factor_program/models.py",
+      "qualified_name": "AutonomousFactorResearchProgramSpecV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_factor_program/orchestrator.py",
+      "qualified_name": "execute_program",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_factor_program/orchestrator.py",
+      "qualified_name": "validate_program",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_factor_program/statistics.py",
+      "qualified_name": "hac_mean_test",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_factor_program/statistics.py",
+      "qualified_name": "benjamini_hochberg",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.autonomous_factor_program",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.autonomous_factor_campaign",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r2-003-report",
+        "sha256": "5b83269c45cbeb0a3ac54823489d745b8a74f0d5aad8fda0982fb9cd6f68c3bb"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/autonomous_factor_program/__init__.py",
+      "backend/services/engine/autonomous_factor_program/models.py",
+      "backend/services/engine/autonomous_factor_program/orchestrator.py",
+      "backend/services/engine/autonomous_factor_program/statistics.py",
+      "backend/services/tests/test_autonomous_factor_program.py",
+      "docs/quantmind2/contracts/AUTONOMOUS_MULTI_CAMPAIGN_RESEARCH_PROGRAM_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/report.md",
+      "tools/quantmind2/run_autonomous_factor_program.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "backend/services/engine/autonomous_factor_campaign/repository.py",
+      "backend/services/engine/autonomous_factor_program/__init__.py",
+      "backend/services/engine/autonomous_factor_program/models.py",
+      "backend/services/engine/autonomous_factor_program/orchestrator.py",
+      "backend/services/engine/autonomous_factor_program/statistics.py",
+      "backend/services/tests/test_autonomous_factor_program.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/contracts/AUTONOMOUS_MULTI_CAMPAIGN_RESEARCH_PROGRAM_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/report.md",
+      "tools/quantmind2/run_autonomous_factor_program.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "f80ef70bb1a44cb6adc43b19b1fe71b6ca38f95a3b37852b26b93881db5ef6c1",
+    "manifest_payload_sha256": "4d1f7c2a1fa8bf5863932e97f10bb91aff3d8df76c32046f0e234661245043ec",
+    "report_sha256": "5b83269c45cbeb0a3ac54823489d745b8a74f0d5aad8fda0982fb9cd6f68c3bb",
+    "source_bundle_sha256": "26b02167f003bbec5fe34b02bcefa161fb28fd6cfd7fa205e8cbcfb290d1400b"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.autonomous_factor_program",
+      "description": "Locked Validation is retrospective at project level and is not Fresh or Frozen Test evidence.",
+      "limitation_id": "limit-r2-003-1",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.autonomous_factor_program",
+      "description": "Historical novelty sources lack a uniform historical signal-materialization fingerprint contract.",
+      "limitation_id": "limit-r2-003-2",
+      "severity": "low",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.autonomous_factor_program",
+      "description": "Formal Program produced zero validation survivors, so survivor Registry/report/Fresh success paths have unit but no formal-run evidence.",
+      "limitation_id": "limit-r2-003-3",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "Historical temp-backed current-artifact reachability tests require missing /private/tmp QM2-P0-005 sources.",
+      "limitation_id": "limit-r2-003-4",
+      "severity": "low",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [],
+  "repository": {
+    "base_commit": "80c0527f83b2eaab7ad007bbb049f2e1f16ccd2d",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "80c0527f83b2eaab7ad007bbb049f2e1f16ccd2d",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-23T17:38:38Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "f80ef70bb1a44cb6adc43b19b1fe71b6ca38f95a3b37852b26b93881db5ef6c1",
+    "implementation_run_id": "QM2-R2-003-20260723T173838Z-80c0527",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-003-20260723T173838Z-80c0527/report.md",
+    "repository_id": "quantmind",
+    "result_commit": null,
+    "source_bundle_hash": "26b02167f003bbec5fe34b02bcefa161fb28fd6cfd7fa205e8cbcfb290d1400b",
+    "started_at": "2026-07-23T16:50:00Z",
+    "task_id": "QM2-R2-003",
+    "task_status": "completed_uncommitted",
+    "verification_level": "integration_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-23T17:38:38Z",
+    "explicit_non_goals": [
+      "No new terminal feature",
+      "No Strategy or Combined Optimization",
+      "No market-data network call",
+      "No Promotion",
+      "No second Program"
+    ],
+    "objective": "Run three isolated autonomous research Lanes under global novelty, budget, locked validation and multiple-testing control.",
+    "parent_task_id": null,
+    "scope": [
+      "Multi-Lane Program runtime",
+      "Global novelty and search exposure",
+      "Formal Program 001",
+      "Locked validation and FDR",
+      "Tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R2-003",
+    "title": "Autonomous Multi-Campaign Research Program and Global Search Control v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov test_autonomous_factor_program.py test_autonomous_factor_campaign*.py test_artifact_store_{blob,import,integrity}.py test_quantmind2_context_bootstrap.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 59,
+      "purpose": "Verify Program, Campaign compatibility, Store and Project Memory contracts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-003-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Verify bounded Project Context invariants.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-003-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:afpr1_d7368ad6bb59c53303ddfa0ffbd9d82aae96c6f994e2cb978c16c5c4f8e4f508",
+      "command": "run_autonomous_factor_program.py validate-program",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Cold materialization, lineage and Store validation.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-003-cold"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:afpr1_d7368ad6bb59c53303ddfa0ffbd9d82aae96c6f994e2cb978c16c5c4f8e4f508",
+      "command": "run_autonomous_factor_program.py replay-program",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Exact zero-call replay.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-003-replay"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_autonomous_factor_program.py -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 9,
+      "purpose": "First focused assertion run under default global coverage policy.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-r2-003-coverage-invocation"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov ... test_artifact_store_real_research.py -q",
+      "failed_count": 2,
+      "not_run_reason": null,
+      "passed_count": 38,
+      "purpose": "Broad Store regression including historical temp-backed current-artifact reachability.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-r2-003-historical-store-reachability"
+    }
+  ]
+}

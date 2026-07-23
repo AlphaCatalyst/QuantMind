@@ -1,5 +1,32 @@
 # Current Implementation State
 
+## Autonomous Multi-Campaign Research Program v1 (QM2-R2-003)
+
+- `quantmind2.autonomous_factor_program` orchestrates three pre-registered,
+  performance-isolated research Lanes over a shared structural/signal novelty
+  boundary and global budget. Adaptive research is physically limited to
+  2019–2020; 2021–2024 opens only after all Lane planners/memories and the
+  immutable Union Shortlist are frozen.
+- Formal Program `afrp1_5ac295d3...a150b0` completed 15 automatic Rounds:
+  15 Agent calls, 26 Proposals, 23 Admissions, 20 local-rescue Trials and 61
+  adaptive Qlib calls. All three Lanes completed five Rounds. Improvement stop
+  occurred only after 12-Round/12-call, six-Family, three-Lane and
+  16-Admission minimums were exceeded.
+- Recovery and trend Lanes produced no eligible shortlist. Trading
+  confirmation produced one object, locked globally by
+  `apusl1_ede68a49...2901c` before any validation read.
+- The single object completed unchanged 2021–2024 validation. It failed
+  median annual RankIC (0.002148 < 0.003) and BH FDR
+  (adjusted q-value 0.136976 > 0.10). Final state is
+  `completed_no_validation_survivor`; Registry, 2025/2026H1 report, Candidate
+  and Fresh-Lock writes are zero.
+- Report `afpr1_d7368ad6...e4f508`, cold validation and exact replay have zero
+  evidence gaps. Store integrity is healthy with Missing 0 and Unreferenced
+  0; replay has zero Agent/Qlib/optimization/network/mutation/new-object
+  counts.
+- Current task: `QM2-R2-003`. No successor task is authorized by this
+  implementation contract.
+
 ## Locked-Holdout Autonomous Campaign v2 (QM2-R2-002)
 
 - Campaign v2 physically restricts Agent, Planner, Failure Memory, parameter

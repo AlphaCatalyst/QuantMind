@@ -1,5 +1,14 @@
 # Component Catalog
 
+## QM2-R2-003 addition
+
+- `quantmind2.autonomous_factor_program` — implemented at
+  `backend/services/engine/autonomous_factor_program`; owns three-Lane
+  orchestration, Program evidence partitions, global novelty/search exposure,
+  minimum-coverage early stop, Lane and Union locks, 2021–2024 Pass/Fail
+  validation, HAC/BH control, survivor-only registration, Fresh Locks, cold
+  validation and exact replay.
+
 ## QM2-R2-001 addition
 
 - `quantmind2.autonomous_factor_campaign` — implemented at
