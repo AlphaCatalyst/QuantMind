@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-23T07:16:52Z",
-  "source_commit": "9e679a423358b3500e78e3606c6b2ebc3d0fb3f3",
+  "generated_at": "2026-07-23T14:19:42Z",
+  "source_commit": "4fe8f434aab959afd6e2402d326ac288bf285bb8",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -12,20 +12,25 @@
   "components": [
     {
       "component_id": "quantmind2.autonomous_factor_campaign",
-      "name": "Autonomous Factor Research Campaign Orchestrator v1",
+      "name": "Autonomous Factor Research Campaign Orchestrator v2",
       "status": "implemented",
-      "responsibility": "Freeze and execute bounded multi-round Agent factor research through static Admission, cheap screening, default-first evaluation, local rescue, annual evidence, failure memory, automatic planning, Candidate locking, checkpoint recovery and exact replay.",
+      "responsibility": "Execute bounded multi-round Agent research on physically isolated 2019-2022 evidence, freeze search exposure, Failure Memory and Discovery Shortlist, open a one-time 2023-2024 locked holdout as Pass/Fail, register survivors only, create no-backfill Fresh Locks, and support cold validation and exact replay.",
       "source_path": "backend/services/engine/autonomous_factor_campaign",
       "target_path": "backend/services/engine/autonomous_factor_campaign",
       "key_symbols": [
         "AutonomousFactorCampaignSpecV1",
+        "AutonomousFactorCampaignSpecV2",
         "create_campaign_spec",
         "execute_campaign",
         "resume_campaign",
         "validate_campaign",
         "replay_campaign",
         "CampaignEvaluator",
-        "plan_next_round"
+        "plan_next_round",
+        "LockedHoldoutAccessControllerV1",
+        "execute_campaign_v2",
+        "validate_campaign_v2",
+        "replay_campaign_v2"
       ],
       "dependencies": [
         "quantmind2.research_campaign",
@@ -44,9 +49,9 @@
         "ADR-0011"
       ],
       "current_limitations": [
-        "Single-process, single-host runtime; scheduling and distributed workers are outside v1.",
-        "Candidate Locks remain research_registered and all report-period evidence is retrospective and contaminated.",
-        "The first formal Campaign generated three eligible Candidates, not the five-Candidate capacity maximum."
+        "Single-process, single-host runtime; scheduling and distributed workers remain out of scope.",
+        "Locked Holdout is retrospective and contaminated at project level; it is not Fresh, Frozen Test or predictive evidence.",
+        "Formal Campaign 002 produced one Discovery shortlist object and zero Holdout survivors; zero Candidates and Fresh Locks is the governed outcome."
       ],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"

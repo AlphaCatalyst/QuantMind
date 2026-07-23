@@ -1,5 +1,26 @@
 # Current Implementation State
 
+## Locked-Holdout Autonomous Campaign v2 (QM2-R2-002)
+
+- Campaign v2 physically restricts Agent, Planner, Failure Memory, parameter
+  selection and shortlist ranking to 2019--2022. The 2023--2024 matrix is
+  opened once only after rounds stop, Memory freezes and immutable Shortlist
+  Lock `acsl1_3746253e...f0a4` is published with zero prior holdout reads.
+- Canonical Spec `afc2_f3ba310a...f17cb2` ran four autonomous rounds: four
+  Agent calls, 12 proposals, eight admissions, six local-rescue Trials and 17
+  Discovery Qlib calls. The stop reason was
+  `development_improvement_exhausted`; manual intervention/planning remained
+  zero.
+- One Discovery object reached Holdout. It passed all frozen gates except
+  positive RankIC in both years (2023 0.009854; 2024 -0.002376), so terminal
+  status is `completed_no_holdout_survivor`. Registry writes, candidate locks,
+  contaminated reports and Fresh Locks are all zero.
+- Report `afcr2_bbeee1e...cb4b0`, cold validation and exact replay have zero
+  evidence gaps. Store is healthy with Missing 0 and Unreferenced 0; replay
+  makes all external, computation and mutation counts zero.
+- The earlier v1 Campaign remains historically valid as autonomous execution
+  but not as generalization evidence. Its three Candidates remain immutable.
+
 ## Autonomous Factor Research Campaign Orchestrator v1 (QM2-R2-001)
 
 - `quantmind2.autonomous_factor_campaign` now composes the existing Agent,

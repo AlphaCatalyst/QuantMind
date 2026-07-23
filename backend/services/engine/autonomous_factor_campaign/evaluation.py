@@ -115,7 +115,9 @@ class CampaignEvaluator:
                 ],
             ))
 
-    def evaluate(self, proposal: dict, *, maximum_local_trials: int = 6) -> dict[str, Any]:
+    def evaluate(self, proposal: dict, *, maximum_local_trials: int = 6,
+                 annual_periods: dict[str, tuple[str, str]] | None = None,
+                 summary_mode: str = "v1") -> dict[str, Any]:
         template = parse_template(proposal["template"])
         defaults = proposal["default_parameters"]
         compiled, values = factor_values(template, self.contract, defaults, self.matrix)
@@ -191,13 +193,17 @@ class CampaignEvaluator:
                 "local_rescue_eligible": rescue_allowed, "signal_correlations": similarities, "values": values,
             }
         annual = []
-        for year, period in ANNUAL_PERIODS.items():
+        for year, period in (annual_periods or ANNUAL_PERIODS).items():
             metrics = split_metrics(selected["values"], self.matrix, *period, orientation)
             diagnostics = group_diagnostics(selected["values"], self.matrix, *period, orientation)
             signal = oriented_signal(selected["values"], orientation, self.work_root / "signals" / f"{selected['compiled'].factor_instance_id}-{year}.parquet")
             qlib = _clean_result(self.qlib.run(signal, *period, rebalance_days=10, lifecycle_policy=LIFECYCLE_POLICY))
             annual.append({"year": year, "metrics": metrics, "diagnostics": diagnostics, "qlib": qlib})
-        summary = self._annual_summary(annual, max_spearman)
+        summary = (
+            self._discovery_summary(annual, max_spearman)
+            if summary_mode == "v2_discovery"
+            else self._annual_summary(annual, max_spearman)
+        )
         self.known_values.append((selected["compiled"].factor_instance_id, selected["values"]))
         return {
             "stage": "eligibility", "passed": summary["eligible"],
@@ -264,3 +270,41 @@ class CampaignEvaluator:
         }
         return values | {"gate_results": checks, "eligible": all(checks.values()),
                          "gate_failure_reasons": [name for name, passed in checks.items() if not passed]}
+
+    @staticmethod
+    def _discovery_summary(rows: list[dict], max_correlation: float) -> dict:
+        rankic = [row["metrics"].get("mean_rank_ic") for row in rows]
+        excess = [row["qlib"].get("net_excess_csi300") for row in rows]
+        turnover = [row["qlib"].get("turnover") for row in rows]
+        concentration = [row["qlib"].get("best_10_days_contribution") for row in rows]
+        values = {
+            "complete_year_count": len(rows),
+            "positive_rankic_year_count": sum(value is not None and value > 0 for value in rankic),
+            "median_rankic": float(median(rankic)) if None not in rankic else None,
+            "worst_rankic": min(rankic) if None not in rankic else None,
+            "positive_excess_year_count": sum(value is not None and value > 0 for value in excess),
+            "median_excess": float(median(excess)) if None not in excess else None,
+            "worst_excess": min(excess) if None not in excess else None,
+            "median_turnover": float(median(turnover)) if None not in turnover else None,
+            "median_best10_contribution": float(median(concentration)) if None not in concentration else None,
+            "maximum_old_factor_correlation": max_correlation,
+        }
+        checks = {
+            "complete_years": len(rows) == 2,
+            "coverage": all((row["metrics"].get("factor_finite_coverage") or 0) >= .90 for row in rows),
+            "infinity": all(row.get("infinity_count", 0) == 0 for row in rows),
+            "pit": all(row.get("pit_violation_count", 0) == 0 for row in rows),
+            "positive_rankic_years": values["positive_rankic_year_count"] >= 1,
+            "median_rankic": values["median_rankic"] is not None and values["median_rankic"] >= .003,
+            "worst_rankic": values["worst_rankic"] is not None and values["worst_rankic"] >= -.008,
+            "positive_excess_years": values["positive_excess_year_count"] >= 1,
+            "median_excess": values["median_excess"] is not None and values["median_excess"] > 0,
+            "worst_excess": values["worst_excess"] is not None and values["worst_excess"] > -.10,
+            "turnover": values["median_turnover"] is not None and values["median_turnover"] <= 30,
+            "concentration": values["median_best10_contribution"] is not None and values["median_best10_contribution"] <= .35,
+            "independence": max_correlation < .85,
+        }
+        return values | {
+            "gate_results": checks, "eligible": all(checks.values()),
+            "gate_failure_reasons": [name for name, passed in checks.items() if not passed],
+        }

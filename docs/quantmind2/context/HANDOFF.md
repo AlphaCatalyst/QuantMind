@@ -1,5 +1,23 @@
 # Codex Handoff
 
+## QM2-R2-002 locked-holdout Campaign handoff
+
+- Read `AUTONOMOUS_FACTOR_RESEARCH_CAMPAIGN_V2.md` before changing the
+  Campaign runtime. Canonical Spec is `afc2_f3ba310a...f17cb2`; Report is
+  `afcr2_bbeee1e...cb4b0`.
+- Discovery ends physically and logically at 2022-12-30. Never expose 2023+
+  metrics, statuses or reports to Agent, Planner, Failure Memory, parameter
+  selection, early stopping, shortlist ranking, or budget changes.
+- The immutable shortlist had one object. It failed the two-positive-RankIC
+  Holdout gate, so the legal result is `completed_no_holdout_survivor`, zero
+  Registry candidates and zero Fresh Locks. Do not lower the gate, retune,
+  rank on Holdout, or rescue from 2025/2026.
+- v1's three candidates remain immutable retrospective v1 candidates.
+  Generalization assessment is isolated from v2 clean-room memory.
+- Store integrity is healthy; cold validation has zero gaps and exact replay
+  uses zero Agent/Qlib/network/optimization/Registry/Fresh/Promotion calls or
+  new objects.
+
 ## QM2-R2-001 autonomous factor campaign handoff
 
 - Read `AUTONOMOUS_FACTOR_RESEARCH_CAMPAIGN_V1.md` and the QM2-R2-001

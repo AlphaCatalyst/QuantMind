@@ -13,12 +13,19 @@ if str(ROOT) not in sys.path:
 
 from backend.services.engine.autonomous_factor_campaign import (  # noqa: E402
     AutonomousFactorCampaignSpecV1,
+    AutonomousFactorCampaignSpecV2,
     create_campaign_spec,
+    create_campaign_spec_v2,
     execute_campaign,
+    execute_campaign_v2,
     inspect_campaign,
+    inspect_campaign_v2,
     replay_campaign,
+    replay_campaign_v2,
     resume_campaign,
+    resume_campaign_v2,
     validate_campaign,
+    validate_campaign_v2,
 )
 from backend.services.engine.autonomous_factor_campaign.planner import plan_next_round  # noqa: E402
 from backend.services.engine.autonomous_factor_campaign.repository import CampaignRepository  # noqa: E402
@@ -32,8 +39,11 @@ def parser() -> argparse.ArgumentParser:
     value.add_argument("--work-root", type=Path, default=Path("/private/tmp/qm2-r2-001"))
     commands = value.add_subparsers(dest="command", required=True)
     commands.add_parser("create-spec")
+    commands.add_parser("create-v2-spec")
     validate_spec = commands.add_parser("validate-spec")
     validate_spec.add_argument("campaign_id")
+    validate_v2_spec = commands.add_parser("validate-v2-spec")
+    validate_v2_spec.add_argument("campaign_id")
     plan = commands.add_parser("plan")
     plan.add_argument("campaign_id")
     for name in ("execute", "resume", "pause", "inspect", "inspect-memory", "inspect-budget",
@@ -41,6 +51,14 @@ def parser() -> argparse.ArgumentParser:
         command = commands.add_parser(name)
         command.add_argument("--campaign-id", required=True)
     for name in ("inspect-round", "inspect-candidate", "inspect-near-miss"):
+        command = commands.add_parser(name)
+        command.add_argument("artifact_id")
+    for name in (
+        "inspect-evidence-partitions", "inspect-clean-room-memory",
+        "inspect-search-exposure", "inspect-shortlist", "open-holdout",
+        "inspect-holdout", "inspect-survivor", "inspect-holdout-failure",
+        "inspect-report", "inspect-fresh-lock",
+    ):
         command = commands.add_parser(name)
         command.add_argument("artifact_id")
     return value
@@ -62,15 +80,23 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "create-spec":
             result = create_campaign_spec(**common)
+        elif args.command == "create-v2-spec":
+            result = create_campaign_spec_v2(**common)
         elif args.command == "validate-spec":
             result = _repository(args).find_spec(args.campaign_id) | {"status": "valid"}
+        elif args.command == "validate-v2-spec":
+            result = _repository(args).find_spec_v2(args.campaign_id) | {"status": "valid"}
         elif args.command == "plan":
             state = inspect_campaign(campaign_id=args.campaign_id, **common)
             result = plan_next_round(state["memory"], state["budget_usage"]["rounds"] + 1)
         elif args.command == "execute":
-            result = execute_campaign(campaign_id=args.campaign_id, **common)
+            repository = _repository(args)
+            is_v2 = repository.store.find_by_artifact_id(args.campaign_id).artifact_kind == "autonomous_factor_campaign_spec_v2"
+            result = (execute_campaign_v2 if is_v2 else execute_campaign)(campaign_id=args.campaign_id, **common)
         elif args.command == "resume":
-            result = resume_campaign(campaign_id=args.campaign_id, **common)
+            repository = _repository(args)
+            is_v2 = repository.store.find_by_artifact_id(args.campaign_id).artifact_kind == "autonomous_factor_campaign_spec_v2"
+            result = (resume_campaign_v2 if is_v2 else resume_campaign)(campaign_id=args.campaign_id, **common)
         elif args.command == "pause":
             marker = args.work_root / "pause" / args.campaign_id
             marker.parent.mkdir(parents=True, exist_ok=True)
@@ -79,7 +105,9 @@ def main(argv: list[str] | None = None) -> int:
             result = {"status": "pause_requested", "campaign_state": state["state"],
                       "pause_marker": str(marker)}
         elif args.command == "inspect":
-            result = inspect_campaign(campaign_id=args.campaign_id, **common)
+            repository = _repository(args)
+            is_v2 = repository.store.find_by_artifact_id(args.campaign_id).artifact_kind == "autonomous_factor_campaign_spec_v2"
+            result = (inspect_campaign_v2 if is_v2 else inspect_campaign)(campaign_id=args.campaign_id, **common)
         elif args.command == "inspect-memory":
             state = inspect_campaign(campaign_id=args.campaign_id, **common)
             result = state["memory"]
@@ -90,9 +118,13 @@ def main(argv: list[str] | None = None) -> int:
             state = inspect_campaign(campaign_id=args.campaign_id, **common)
             result = _repository(args).identity(state["report_id"]) if state.get("report_id") else {"status": "not_available"}
         elif args.command == "validate-campaign":
-            result = validate_campaign(campaign_id=args.campaign_id, **common)
+            repository = _repository(args)
+            is_v2 = repository.store.find_by_artifact_id(args.campaign_id).artifact_kind == "autonomous_factor_campaign_spec_v2"
+            result = (validate_campaign_v2 if is_v2 else validate_campaign)(campaign_id=args.campaign_id, **common)
         elif args.command == "replay":
-            result = replay_campaign(campaign_id=args.campaign_id, **common)
+            repository = _repository(args)
+            is_v2 = repository.store.find_by_artifact_id(args.campaign_id).artifact_kind == "autonomous_factor_campaign_spec_v2"
+            result = (replay_campaign_v2 if is_v2 else replay_campaign)(campaign_id=args.campaign_id, **common)
         else:
             result = _inspect_artifact(args)
         print(json.dumps(result, ensure_ascii=False, sort_keys=True, default=str))

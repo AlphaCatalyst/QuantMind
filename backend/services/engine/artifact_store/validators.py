@@ -211,6 +211,17 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.AUTONOMOUS_FACTOR_NEAR_MISS,
         ArtifactKind.AUTONOMOUS_FACTOR_CAMPAIGN_REPORT,
         ArtifactKind.AUTONOMOUS_FACTOR_VALUE_MATERIALIZATION,
+        ArtifactKind.AUTONOMOUS_FACTOR_CAMPAIGN_SPEC_V2,
+        ArtifactKind.CAMPAIGN_EVIDENCE_PARTITION,
+        ArtifactKind.CLEAN_ROOM_CAMPAIGN_SEED_MEMORY,
+        ArtifactKind.CANDIDATE_SEARCH_EXPOSURE,
+        ArtifactKind.AUTONOMOUS_CAMPAIGN_SHORTLIST_LOCK,
+        ArtifactKind.CAMPAIGN_FAILURE_MEMORY_FREEZE,
+        ArtifactKind.LOCKED_HOLDOUT_EVALUATION,
+        ArtifactKind.AUTONOMOUS_HOLDOUT_FAILURE_REPORT,
+        ArtifactKind.AUTONOMOUS_CAMPAIGN_V1_GENERALIZATION_ASSESSMENT,
+        ArtifactKind.AUTONOMOUS_CANDIDATE_FRESH_LOCK,
+        ArtifactKind.AUTONOMOUS_FACTOR_CAMPAIGN_REPORT_V2,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

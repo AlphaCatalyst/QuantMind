@@ -140,6 +140,17 @@ class ArtifactKind(str, Enum):
     AUTONOMOUS_FACTOR_NEAR_MISS = "autonomous_factor_near_miss"
     AUTONOMOUS_FACTOR_CAMPAIGN_REPORT = "autonomous_factor_campaign_report"
     AUTONOMOUS_FACTOR_VALUE_MATERIALIZATION = "autonomous_factor_value_materialization"
+    AUTONOMOUS_FACTOR_CAMPAIGN_SPEC_V2 = "autonomous_factor_campaign_spec_v2"
+    CAMPAIGN_EVIDENCE_PARTITION = "campaign_evidence_partition"
+    CLEAN_ROOM_CAMPAIGN_SEED_MEMORY = "clean_room_campaign_seed_memory"
+    CANDIDATE_SEARCH_EXPOSURE = "candidate_search_exposure"
+    AUTONOMOUS_CAMPAIGN_SHORTLIST_LOCK = "autonomous_campaign_shortlist_lock"
+    CAMPAIGN_FAILURE_MEMORY_FREEZE = "campaign_failure_memory_freeze"
+    LOCKED_HOLDOUT_EVALUATION = "locked_holdout_evaluation"
+    AUTONOMOUS_HOLDOUT_FAILURE_REPORT = "autonomous_holdout_failure_report"
+    AUTONOMOUS_CAMPAIGN_V1_GENERALIZATION_ASSESSMENT = "autonomous_campaign_v1_generalization_assessment"
+    AUTONOMOUS_CANDIDATE_FRESH_LOCK = "autonomous_candidate_fresh_lock"
+    AUTONOMOUS_FACTOR_CAMPAIGN_REPORT_V2 = "autonomous_factor_campaign_report_v2"
 
 
 class IntegrityStatus(str, Enum):

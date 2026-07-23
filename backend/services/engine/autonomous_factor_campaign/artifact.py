@@ -21,6 +21,17 @@ KINDS = {
     "autonomous_factor_near_miss": ("near_miss_id", "afnm1_"),
     "autonomous_factor_campaign_report": ("report_id", "afcr1_"),
     "autonomous_factor_value_materialization": ("factor_values_id", "afcv1_"),
+    "autonomous_factor_campaign_spec_v2": ("campaign_spec_id", "afc2_"),
+    "campaign_evidence_partition": ("evidence_partition_id", "acep1_"),
+    "clean_room_campaign_seed_memory": ("seed_memory_id", "acsm1_"),
+    "candidate_search_exposure": ("search_exposure_id", "acse1_"),
+    "autonomous_campaign_shortlist_lock": ("shortlist_lock_id", "acsl1_"),
+    "campaign_failure_memory_freeze": ("memory_freeze_id", "acfmf1_"),
+    "locked_holdout_evaluation": ("holdout_evaluation_id", "ache1_"),
+    "autonomous_holdout_failure_report": ("holdout_failure_id", "achfr1_"),
+    "autonomous_campaign_v1_generalization_assessment": ("v1_assessment_id", "acv1ga1_"),
+    "autonomous_candidate_fresh_lock": ("fresh_lock_id", "acfl1_"),
+    "autonomous_factor_campaign_report_v2": ("report_id", "afcr2_"),
 }
 
 

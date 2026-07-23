@@ -58,6 +58,12 @@ class CampaignRepository:
             raise ValueError("Autonomous Campaign Spec is absent")
         return self.identity(campaign_spec_id) | {"campaign_spec_id": campaign_spec_id}
 
+    def find_spec_v2(self, campaign_spec_id: str) -> dict:
+        descriptor = self.store.find_by_artifact_id(campaign_spec_id)
+        if descriptor is None or descriptor.artifact_kind != "autonomous_factor_campaign_spec_v2":
+            raise ValueError("Autonomous Campaign v2 Spec is absent")
+        return self.identity(campaign_spec_id) | {"campaign_spec_id": campaign_spec_id}
+
     def latest_state(self, campaign_spec_id: str) -> dict | None:
         rows = []
         for descriptor in self.store.list_by_kind("autonomous_factor_campaign"):
