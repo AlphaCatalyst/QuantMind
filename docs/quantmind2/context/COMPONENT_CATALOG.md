@@ -1,5 +1,17 @@
 # Component Catalog
 
+## QM2-R2-001 addition
+
+- `quantmind2.autonomous_factor_campaign` — implemented at
+  `backend/services/engine/autonomous_factor_campaign`; owns the frozen
+  Campaign Spec, aggregate-memory Round Planner, static Admission, bounded
+  orchestration, checkpoints, terminal Candidate/Near-miss reporting, cold
+  recovery and exact replay.
+- It composes the existing Agent, Factor DSL, default-first governance,
+  formal Qlib and Artifact Store. It cannot use Fresh/report-period selection
+  evidence, run Strategy/Combined optimization, fetch market data, promote a
+  Candidate or claim production suitability.
+
 ## QM2-R1-010 addition
 
 - `quantmind2.breadth_gated_momentum` — implemented at

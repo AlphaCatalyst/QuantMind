@@ -1,5 +1,10 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R2-001` is completed. Twelve autonomous rounds
+produced 26 Proposals, 20 admissions and three research-only Candidate Locks
+under 74 formal Qlib calls. Store recovery and exact replay pass with no
+evidence gaps or prohibited calls. The Campaign authorizes no successor.
+
 Current research task: `QM2-R1-010` is completed with status
 `fresh_evidence_accumulating`. The fixed narrow/weak Gate and Fresh Lock were
 published before incremental collection; 20 completed return sessions remain
@@ -51,6 +56,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R2-001 Autonomous Factor Research Campaign Orchestrator v1 | completed_uncommitted | P0 | R1-003 through R1-010 | Run bounded multi-round Agent factor research without per-round human planning | No full Factor search, Strategy/Combined optimization, report/Fresh selection evidence, data network, Promotion or production claim | Twelve rounds, 26 Proposals, 20 admissions, three research-only locks, five near misses, healthy Store, cold recovery and zero-call replay |
 | QM2-R1-009 Momentum Tail-Alpha and Selection-Overlay Diagnostic v1 | completed_uncommitted | P0 | R1-008 | Classify immutable Signal D using full cross-section, tail, exposure, stability and report-period diagnostics | No new Factor, Agent/parameter optimization, Top-N selection, Candidate Lock, Registry write or Promotion | Formal-label/forward-return RankIC, deciles, fixed Top-N, 2023 attribution, exposure, stability and decay classify Signal D as regime-specific; recovery and replay pass |
 | QM2-R1-006 Default-first Optimization Governance v2 | completed_uncommitted | P0 | R1-005, R1-005F | Apply default-first Factor/Strategy evaluation, bounded local rescue and suspended combined optimization to new research | No Agent, Optimization Trial, Qlib, Tushare, network, Promotion, historical Artifact or Candidate-state change | Runtime policies, CLI gates, Candidate metadata, four Store artifacts, cold recovery and zero-call replay pass |
 | QM2-R1-007 Default-first Momentum Structure Search v2 | completed_uncommitted | P0 | R1-003, R1-004, R1-006 | Test whether new momentum structures survive with explicit defaults and at most one-hop factor rescue | No full/random/Bayesian, Strategy or Combined optimization; no Tushare network, Promotion or report-period selection | Six Agent calls, eight defaults, thirteen local Trials and 21 formal Qlib calls terminate with zero candidates under unchanged gates; Store recovery and exact replay pass |

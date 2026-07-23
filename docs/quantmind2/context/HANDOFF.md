@@ -1,5 +1,27 @@
 # Codex Handoff
 
+## QM2-R2-001 autonomous factor campaign handoff
+
+- Read `AUTONOMOUS_FACTOR_RESEARCH_CAMPAIGN_V1.md` and the QM2-R2-001
+  Implementation Run before changing research orchestration.
+- Canonical Spec is `afc1_5bae780e...a8034`; Report is
+  `afcr1_e5eea677...460f4`. Twelve automatic rounds used 12 Agent calls, 26
+  Proposals, 20 admissions, eight local-rescue Trials, 40 annual evaluations
+  and 74 formal Qlib calls without manual round planning.
+- Three locks are research-only:
+  `afcl1_6fddf98b...90f880`, `afcl1_da61b451...59ba3e` and
+  `afcl1_d54ef8d8...ac1c6`. Their 2025 and 2026H1 results are contaminated
+  reports, not selection, Fresh Validation, Frozen Test, Promotion or
+  production evidence.
+- Fresh Forward evidence, report-period feedback, Strategy/Combined
+  optimization, market-data network calls and Promotion writes are all
+  excluded. Do not weaken these boundaries or turn a Candidate Lock into
+  production state.
+- Store integrity is healthy with no missing or unreferenced object. Cold
+  recovery has no evidence gaps; exact replay and terminal execute use zero
+  Agent/Qlib/network/optimization/Registry/Promotion calls and create no
+  Artifact or Blob. No successor is authorized.
+
 ## QM2-R1-010 breadth-gated momentum forward handoff
 
 - Read `BREADTH_GATED_MOMENTUM_FORWARD_V1.md`, R1-009 and R1-008 before

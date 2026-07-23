@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T16:28:43Z",
-  "source_commit": "c071c0f02da89e1b5663a2fb32e26493bbe97ff9",
+  "generated_at": "2026-07-23T07:16:52Z",
+  "source_commit": "9e679a423358b3500e78e3606c6b2ebc3d0fb3f3",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "c071c0f02da89e1b5663a2fb32e26493bbe97ff9",
+  "base_commit": "9e679a423358b3500e78e3606c6b2ebc3d0fb3f3",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R1-010",
+  "current_task": "QM2-R2-001",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R1-010-20260722T173920Z-705033c",
+  "latest_implementation_run": "QM2-R2-001-20260723T071652Z-9e679a4",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Tushare incremental collection and late-data revision policy after 2026-06-23.",
@@ -75,6 +75,7 @@
     ,"docs/quantmind2/contracts/LOW_FREQUENCY_MOMENTUM_STUDY_V1.md"
     ,"docs/quantmind2/contracts/MOMENTUM_TAIL_ALPHA_DIAGNOSTIC_V1.md"
     ,"docs/quantmind2/contracts/BREADTH_GATED_MOMENTUM_FORWARD_V1.md"
+    ,"docs/quantmind2/contracts/AUTONOMOUS_FACTOR_RESEARCH_CAMPAIGN_V1.md"
   ],
   "uncommitted_work": true
 }

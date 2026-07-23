@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T16:28:43Z",
-  "source_commit": "c071c0f02da89e1b5663a2fb32e26493bbe97ff9",
+  "generated_at": "2026-07-23T07:16:52Z",
+  "source_commit": "9e679a423358b3500e78e3606c6b2ebc3d0fb3f3",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R1-010",
-  "latest_implementation_run": "QM2-R1-010-20260722T173920Z-705033c",
+  "current_task": "QM2-R2-001",
+  "latest_implementation_run": "QM2-R2-001-20260723T071652Z-9e679a4",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -36,6 +36,7 @@
       "quantmind2.low_frequency_momentum",
       "quantmind2.momentum_tail_alpha",
       "quantmind2.breadth_gated_momentum",
+      "quantmind2.autonomous_factor_campaign",
       "quantmind2.research_artifact_store",
       "quantmind2.artifact_runtime"
     ],

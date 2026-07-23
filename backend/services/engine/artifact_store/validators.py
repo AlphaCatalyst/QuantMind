@@ -34,6 +34,7 @@ ID_FIELDS = (
     "trial_detail_id", "fold_lock_id", "eligibility_evidence_id", "report_id",
     "gate_spec_id", "historical_diagnostic_id", "fresh_lock_id",
     "incremental_snapshot_id", "fresh_observation_id", "fresh_assessment_id",
+    "campaign_spec_id", "round_plan_id", "near_miss_id",
 )
 
 
@@ -199,6 +200,21 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         from backend.services.engine.breadth_gated_momentum.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)
         return "breadth_gated_momentum.validate_artifact"
+    if kind in {
+        ArtifactKind.AUTONOMOUS_FACTOR_CAMPAIGN_SPEC,
+        ArtifactKind.AUTONOMOUS_FACTOR_CAMPAIGN,
+        ArtifactKind.AUTONOMOUS_FACTOR_ROUND,
+        ArtifactKind.AUTONOMOUS_FACTOR_PROPOSAL,
+        ArtifactKind.AUTONOMOUS_FACTOR_FAILURE_MEMORY,
+        ArtifactKind.AUTONOMOUS_FACTOR_ROUND_PLAN,
+        ArtifactKind.AUTONOMOUS_FACTOR_CANDIDATE_LOCK,
+        ArtifactKind.AUTONOMOUS_FACTOR_NEAR_MISS,
+        ArtifactKind.AUTONOMOUS_FACTOR_CAMPAIGN_REPORT,
+        ArtifactKind.AUTONOMOUS_FACTOR_VALUE_MATERIALIZATION,
+    }:
+        from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
+        validate_artifact(source, artifact_id, kind.value)
+        return "autonomous_factor_campaign.validate_artifact"
     if kind in {
         ArtifactKind.UNIFIED_SIGNAL,
         ArtifactKind.PORTFOLIO_TARGET,

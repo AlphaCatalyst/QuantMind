@@ -130,6 +130,16 @@ class ArtifactKind(str, Enum):
     TUSHARE_INCREMENTAL_MARKET_SNAPSHOT = "tushare_incremental_market_snapshot"
     BREADTH_GATED_MOMENTUM_FRESH_OBSERVATION = "breadth_gated_momentum_fresh_observation"
     BREADTH_GATED_MOMENTUM_FRESH_ASSESSMENT = "breadth_gated_momentum_fresh_assessment"
+    AUTONOMOUS_FACTOR_CAMPAIGN_SPEC = "autonomous_factor_campaign_spec"
+    AUTONOMOUS_FACTOR_CAMPAIGN = "autonomous_factor_campaign"
+    AUTONOMOUS_FACTOR_ROUND = "autonomous_factor_round"
+    AUTONOMOUS_FACTOR_PROPOSAL = "autonomous_factor_proposal"
+    AUTONOMOUS_FACTOR_FAILURE_MEMORY = "autonomous_factor_failure_memory"
+    AUTONOMOUS_FACTOR_ROUND_PLAN = "autonomous_factor_round_plan"
+    AUTONOMOUS_FACTOR_CANDIDATE_LOCK = "autonomous_factor_candidate_lock"
+    AUTONOMOUS_FACTOR_NEAR_MISS = "autonomous_factor_near_miss"
+    AUTONOMOUS_FACTOR_CAMPAIGN_REPORT = "autonomous_factor_campaign_report"
+    AUTONOMOUS_FACTOR_VALUE_MATERIALIZATION = "autonomous_factor_value_materialization"
 
 
 class IntegrityStatus(str, Enum):

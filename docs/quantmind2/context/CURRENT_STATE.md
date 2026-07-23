@@ -1,5 +1,31 @@
 # Current Implementation State
 
+## Autonomous Factor Research Campaign Orchestrator v1 (QM2-R2-001)
+
+- `quantmind2.autonomous_factor_campaign` now composes the existing Agent,
+  canonical Factor DSL, default-first/local-rescue governance, formal Qlib
+  evaluator and filesystem Artifact Store into one bounded multi-round state
+  machine. It does not replace those components.
+- Formal Campaign Spec
+  `afc1_5bae780e...a8034` completed all 12 planned rounds with
+  `budget_exhausted`: 12 external Agent calls produced 26 Proposals, 20
+  admitted Templates, 20 default evaluations, eight local-rescue Trials, 40
+  annual evaluations and 74 formal Qlib calls.
+- Three independent Candidate Locks are `research_registered`:
+  `path_efficiency_acceleration`, `drawdown_distance_recovery_delta` and
+  `normalized_acceleration_quality`. Five rejected objects are retained only
+  in the Near-miss queue. Registry Promotion writes remain zero.
+- Selection ends at 2024-12-31. The 2025 and 2026H1 results are contaminated
+  report-only evidence and were not exposed to Agent Memory, Planner,
+  Candidate ranking, parameter selection or early stopping. R1-010 Fresh
+  Forward evidence remains completely isolated.
+- Campaign Report `afcr1_e5eea677...460f4` and all Store lineage validate with
+  zero evidence gaps; Store integrity is healthy, Missing 0, Unreferenced 0.
+  Cold replay and terminal re-execute have a 100% cache-hit rate and make
+  every external, computation, Registry, Promotion and new-object count zero.
+- Current task: `QM2-R2-001`. No successor task is authorized by this
+  implementation contract.
+
 ## Breadth-Gated Momentum Overlay and Fresh Forward Protocol v1 (QM2-R1-010)
 
 - Signal D, the R1-009 `regime_specific_factor` classification, the formal
