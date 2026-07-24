@@ -1,5 +1,21 @@
 # Known Issues
 
+## QM2-KI-054 — Autonomous technical/archetype search found no survivor
+
+Open, medium. `QM2-R2-004` expands the Terminal Feature space by two admitted
+research Features and tests both monotonic and top-tail Archetypes. Nine Union
+objects enter locked 2021–2024 Validation, but none passes the unchanged
+Archetype gate and global 10% BH FDR together. This is a valid negative
+retrospective result, not permission to relax gates or use report/Fresh data.
+
+## QM2-KI-053 — Optional Qlib service dependencies emit warnings
+
+Open, low. Formal local Qlib backtests complete through the real Strategy,
+Executor and Exchange chain, but the existing wrapper first probes unavailable
+PostgreSQL model registry and COS `/data`, then falls back to the supplied
+signal and local Qlib view. The warnings do not convert the run to mock
+evidence, but should remain visible.
+
 | ID | Severity | Status | Summary |
 |---|---|---|---|
 | QM2-KI-051 | medium | resolved | QM2-R1-008 proves fixed ten-session rebalancing reduces median annual turnover 34.54% and cost 33.21%, but none of four pre-registered signals passes all frozen RankIC/stability gates; the result is `stock_selection_signal_only` with zero Candidate Locks. |

@@ -1201,6 +1201,31 @@ No business-domain implementation was introduced by either task.
 next task. A real one-time evaluation is separately permitted only after 60
 post-lock label-complete dates exist.
 
+## Autonomous Technical Feature Factory and Archetype-aware Alpha
+
+- `QM2-R2-004` implements the bounded unlabeled Technical Terminal Feature
+  Factory under `backend/services/engine/autonomous_technical_feature_factory`
+  and the Archetype-aware Alpha Program under
+  `backend/services/engine/archetype_alpha_program`.
+- Formal Factory `technical_feature_factory_001` used eight external Agent
+  calls, proposed ten Features, admitted/materialized two and froze Catalog v2
+  `tfc2_229f19...cf5e6`. Label reads, Qlib, Tushare/network, manual planning
+  and Promotion were zero.
+- Formal `technical_alpha_program_002` revision 1.0.1 used 18 Agent calls, 36
+  Proposals, 19 Admissions, 11 local rescue Trials and 58 Adaptive Qlib calls.
+  Three Lanes, at least seven Families and both pre-registered Archetypes were
+  attempted.
+- Union Lock `aausl1_47e182...27d239` froze nine objects before Validation:
+  four monotonic and five top-tail. Locked Validation ran both test forms;
+  global BH FDR is `amtc1_fae10b...dd7d1`.
+- All nine objects failed the unchanged Archetype gate and/or FDR. Final
+  Report `aapr1_e344e1...f4f6e3` is
+  `completed_no_validation_survivor`. Registry, Fresh Locks, 2025/2026H1
+  reports and Promotion writes are zero.
+- Store integrity is healthy with Missing 0 and Unreferenced 0. Cold
+  inspection, resume and exact replay succeed with every external call/write
+  counter equal to zero.
+
 ## Factor Registry v1
 
 - `QM2-P0-007` implements strict Registry Entry, Promotion Policy and Decision,

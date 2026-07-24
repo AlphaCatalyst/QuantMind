@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-23T17:38:38Z",
-  "source_commit": "80c0527f83b2eaab7ad007bbb049f2e1f16ccd2d",
+  "generated_at": "2026-07-24T07:41:45Z",
+  "source_commit": "38af464809d2bec14ea9284a4e2ba6e634f61d3b",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -425,6 +425,34 @@
       "dependencies": ["quantmind2.optimization_governance", "quantmind2.momentum_factor_iteration", "quantmind2.factor_dsl", "quantmind2.research_campaign", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
       "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
       "current_limitations": ["The evidence is retrospective research, not Fresh Validation, Frozen Test, Promotion or production evidence.", "All eight default structures and thirteen legal local Trials failed the frozen development gate, so no Development Lock, annual locked evaluation, Candidate Lock or report-period result exists.", "Runtime is single-process and uses the existing local filesystem Artifact Store."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.technical_feature_factory",
+      "name": "Autonomous Technical Terminal Feature Factory v1",
+      "status": "implemented",
+      "responsibility": "Generate bounded unlabeled technical Terminal Feature structures, validate the authorized PIT grammar, apply quality and novelty admission, materialize research values and freeze Technical Feature Catalog v2.",
+      "source_path": "backend/services/engine/autonomous_technical_feature_factory",
+      "target_path": "backend/services/engine/autonomous_technical_feature_factory",
+      "key_symbols": ["AutonomousTechnicalFeatureFactorySpecV1", "audit_ast", "evaluate_ast", "quality_evidence", "execute_factory", "replay_factory"],
+      "dependencies": ["quantmind2.factor_dsl", "quantmind2.data_foundation", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0005", "ADR-0007", "ADR-0011"],
+      "current_limitations": ["Only existing formally executable PIT operators are authorized; rolling_sum, rolling_corr and log1p are explicitly unavailable.", "Research Terminal Features are not production-approved.", "Runtime is single-process and uses the local filesystem Store."],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.archetype_alpha_program",
+      "name": "Archetype-aware Autonomous Alpha Program v1",
+      "status": "implemented",
+      "responsibility": "Run three bounded Alpha Lanes with pre-registered monotonic or top-tail hypotheses, default-first evaluation, optional local rescue, locked Validation, global BH FDR and survivor-only Registry/Fresh boundaries.",
+      "source_path": "backend/services/engine/archetype_alpha_program",
+      "target_path": "backend/services/engine/archetype_alpha_program",
+      "key_symbols": ["AlphaArchetypeContractV1", "ArchetypeAwareAlphaProgramSpecV1", "tail_observations", "evaluate_locked", "execute_program", "replay_program"],
+      "dependencies": ["quantmind2.technical_feature_factory", "quantmind2.autonomous_factor_program", "quantmind2.optimization_governance", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
+      "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
+      "current_limitations": ["Formal QM2-R2-004 produced zero Validation Survivors.", "Evidence is retrospective, not Fresh, Frozen, predictive or production evidence.", "Existing Qlib wrappers emit optional PostgreSQL/COS resolution warnings before local execution."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     }

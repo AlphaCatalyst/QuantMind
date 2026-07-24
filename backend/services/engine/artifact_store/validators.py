@@ -35,6 +35,10 @@ ID_FIELDS = (
     "gate_spec_id", "historical_diagnostic_id", "fresh_lock_id",
     "incremental_snapshot_id", "fresh_observation_id", "fresh_assessment_id",
     "campaign_spec_id", "round_plan_id", "near_miss_id",
+    "factory_spec_id", "feature_proposal_id", "feature_admission_id",
+    "feature_materialization_id", "novelty_index_id", "feature_catalog_v2_id",
+    "archetype_contract_id", "program_spec_id", "union_shortlist_lock_id",
+    "validation_id", "multiple_testing_id", "validation_failure_id",
 )
 
 
@@ -236,6 +240,22 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.PROGRAM_VALIDATION_FAILURE_REPORT,
         ArtifactKind.AUTONOMOUS_PROGRAM_CANDIDATE_FRESH_LOCK,
         ArtifactKind.AUTONOMOUS_FACTOR_PROGRAM_REPORT,
+        ArtifactKind.AUTONOMOUS_TECHNICAL_FEATURE_FACTORY_SPEC,
+        ArtifactKind.TECHNICAL_FEATURE_PROPOSAL,
+        ArtifactKind.TECHNICAL_FEATURE_ADMISSION,
+        ArtifactKind.TECHNICAL_FEATURE_MATERIALIZATION,
+        ArtifactKind.TECHNICAL_FEATURE_NOVELTY_INDEX,
+        ArtifactKind.TECHNICAL_FEATURE_CATALOG_V2,
+        ArtifactKind.ALPHA_ARCHETYPE_CONTRACT,
+        ArtifactKind.ARCHETYPE_AWARE_PROGRAM_SPEC,
+        ArtifactKind.ARCHETYPE_AWARE_ALPHA_PROPOSAL,
+        ArtifactKind.ARCHETYPE_AWARE_UNION_SHORTLIST_LOCK,
+        ArtifactKind.MONOTONIC_ALPHA_VALIDATION,
+        ArtifactKind.TAIL_ALPHA_VALIDATION,
+        ArtifactKind.ARCHETYPE_MULTIPLE_TESTING_CONTROL,
+        ArtifactKind.ARCHETYPE_ALPHA_VALIDATION_FAILURE,
+        ArtifactKind.ARCHETYPE_ALPHA_FRESH_LOCK,
+        ArtifactKind.ARCHETYPE_AWARE_PROGRAM_REPORT,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

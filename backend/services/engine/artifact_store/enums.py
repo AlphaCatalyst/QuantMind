@@ -165,6 +165,22 @@ class ArtifactKind(str, Enum):
     PROGRAM_VALIDATION_FAILURE_REPORT = "program_validation_failure_report"
     AUTONOMOUS_PROGRAM_CANDIDATE_FRESH_LOCK = "autonomous_program_candidate_fresh_lock"
     AUTONOMOUS_FACTOR_PROGRAM_REPORT = "autonomous_factor_program_report"
+    AUTONOMOUS_TECHNICAL_FEATURE_FACTORY_SPEC = "autonomous_technical_feature_factory_spec"
+    TECHNICAL_FEATURE_PROPOSAL = "technical_feature_proposal"
+    TECHNICAL_FEATURE_ADMISSION = "technical_feature_admission"
+    TECHNICAL_FEATURE_MATERIALIZATION = "technical_feature_materialization"
+    TECHNICAL_FEATURE_NOVELTY_INDEX = "technical_feature_novelty_index"
+    TECHNICAL_FEATURE_CATALOG_V2 = "technical_feature_catalog_v2"
+    ALPHA_ARCHETYPE_CONTRACT = "alpha_archetype_contract"
+    ARCHETYPE_AWARE_PROGRAM_SPEC = "archetype_aware_program_spec"
+    ARCHETYPE_AWARE_ALPHA_PROPOSAL = "archetype_aware_alpha_proposal"
+    ARCHETYPE_AWARE_UNION_SHORTLIST_LOCK = "archetype_aware_union_shortlist_lock"
+    MONOTONIC_ALPHA_VALIDATION = "monotonic_alpha_validation"
+    TAIL_ALPHA_VALIDATION = "tail_alpha_validation"
+    ARCHETYPE_MULTIPLE_TESTING_CONTROL = "archetype_multiple_testing_control"
+    ARCHETYPE_ALPHA_VALIDATION_FAILURE = "archetype_alpha_validation_failure"
+    ARCHETYPE_ALPHA_FRESH_LOCK = "archetype_alpha_fresh_lock"
+    ARCHETYPE_AWARE_PROGRAM_REPORT = "archetype_aware_program_report"
 
 
 class IntegrityStatus(str, Enum):

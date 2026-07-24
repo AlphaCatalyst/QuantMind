@@ -38,6 +38,11 @@ alpha decomposition of the two locked R1-003 candidates and their ensemble.
 The evidence supports only `continue_as_stock_selection_overlay_only`; no
 successor is automatically authorized.
 
+Current research task: `QM2-R2-004` is completed with two admitted autonomous
+Terminal Features, frozen Catalog v2, 18-round three-Lane Archetype-aware Alpha
+research and nine-object locked Validation. There are zero Survivors under
+unchanged gates and global FDR; no successor is automatically authorized.
+
 Current research task: `QM2-R1-003` is completed with a replayable six-family
 skip-recent deep dive. Two research-only candidates pass independent
 eligibility; both and their ensemble underperform CSI300 in contaminated 2025

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-22T15:52:15Z",
-  "source_commit": "23b21c44abfac5553d5c3b768ee351ced1812273",
+  "generated_at": "2026-07-24T07:41:45Z",
+  "source_commit": "38af464809d2bec14ea9284a4e2ba6e634f61d3b",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -58,6 +58,8 @@
     {"issue_id": "QM2-KI-049", "severity": "medium", "status": "resolved_by_correction", "summary": "The immutable QM2-R1-005 Manifest froze hashes before one trailing-whitespace cleanup. The original Run remains Git-inconsistent and non-indexable; QM2-R1-005F records exact commit-derived ChangedFile and source-bundle evidence plus a corrects relationship without changing research results."},
     {"issue_id": "QM2-KI-050", "severity": "medium", "status": "resolved", "summary": "QM2-R1-007 found zero eligible default-first momentum structures: all defaults exceeded turnover 45 and lacked positive excess/group evidence, and none of thirteen one-hop Trials rescued them. Gates and search scope remained frozen and no Candidate or Promotion state was created."},
     {"issue_id": "QM2-KI-051", "severity": "medium", "status": "resolved", "summary": "QM2-R1-008 reduced median annual turnover 34.54% and cost 33.21% with fixed ten-session rebalancing, but none of four pre-registered signals passed every frozen RankIC/stability gate; classification is stock_selection_signal_only with zero Candidate Locks."},
-    {"issue_id": "QM2-KI-052", "severity": "low", "status": "open", "summary": "The isolated Redis-disabled formal Qlib result persists daily positions but an empty trade list; R1-008 derives holding transitions from positions and uses the CnExchange collector for turnover/cost, so per-trade execution audit is unavailable."}
+    {"issue_id": "QM2-KI-052", "severity": "low", "status": "open", "summary": "The isolated Redis-disabled formal Qlib result persists daily positions but an empty trade list; R1-008 derives holding transitions from positions and uses the CnExchange collector for turnover/cost, so per-trade execution audit is unavailable."},
+    {"issue_id": "QM2-KI-053", "severity": "low", "status": "open", "summary": "Formal local Qlib completes through the real chain but existing wrappers emit unavailable optional PostgreSQL model-registry and COS /data resolution warnings before using the supplied signal and local Qlib view."},
+    {"issue_id": "QM2-KI-054", "severity": "medium", "status": "open", "summary": "QM2-R2-004 admitted two research Terminal Features and locked nine Archetype-aware Validation objects, but none passed its unchanged Archetype gate and global 10% BH FDR together; no Survivor, Registry, Fresh Lock or Promotion exists."}
   ]
 }

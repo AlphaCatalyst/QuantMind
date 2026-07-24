@@ -46,6 +46,22 @@ KINDS = {
     "program_validation_failure_report": ("validation_failure_id", "pvfr1_"),
     "autonomous_program_candidate_fresh_lock": ("fresh_lock_id", "apfl1_"),
     "autonomous_factor_program_report": ("report_id", "afpr1_"),
+    "autonomous_technical_feature_factory_spec": ("factory_spec_id", "atffs1_"),
+    "technical_feature_proposal": ("feature_proposal_id", "tfp1_"),
+    "technical_feature_admission": ("feature_admission_id", "tfa1_"),
+    "technical_feature_materialization": ("feature_materialization_id", "tfm1_"),
+    "technical_feature_novelty_index": ("novelty_index_id", "tfni1_"),
+    "technical_feature_catalog_v2": ("feature_catalog_v2_id", "tfc2_"),
+    "alpha_archetype_contract": ("archetype_contract_id", "aac1_"),
+    "archetype_aware_program_spec": ("program_spec_id", "aap1_"),
+    "archetype_aware_alpha_proposal": ("proposal_artifact_id", "aaap1_"),
+    "archetype_aware_union_shortlist_lock": ("union_shortlist_lock_id", "aausl1_"),
+    "monotonic_alpha_validation": ("validation_id", "mav1_"),
+    "tail_alpha_validation": ("validation_id", "tav1_"),
+    "archetype_multiple_testing_control": ("multiple_testing_id", "amtc1_"),
+    "archetype_alpha_validation_failure": ("validation_failure_id", "aavf1_"),
+    "archetype_alpha_fresh_lock": ("fresh_lock_id", "aafl1_"),
+    "archetype_aware_program_report": ("report_id", "aapr1_"),
 }
 
 

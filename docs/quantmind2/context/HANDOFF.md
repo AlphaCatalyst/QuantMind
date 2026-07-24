@@ -762,3 +762,22 @@ Read `CONTEXT_INDEX.md`, Project Charter, Architecture v1, Current State, this
 Handoff, task-related ADRs, Component Catalog, the latest relevant
 Implementation Run, then current code, Git state, and tests. For research-loop
 tasks, also read ADR-0009 and `RESEARCH_DECISION_CONTRACT_V1.md`.
+
+## QM2-R2-004 handoff
+
+Task `QM2-R2-004` is completed uncommitted at base
+`38af464809d2bec14ea9284a4e2ba6e634f61d3b`. Read
+`AUTONOMOUS_TECHNICAL_FEATURE_FACTORY_AND_ARCHETYPE_ALPHA_V1.md` after the
+R2-003 Program contract.
+
+The authoritative new research objects are Catalog
+`tfc2_229f19...cf5e6`, Program Spec `aap1_30e59b...cd0100`, Union Lock
+`aausl1_47e182...27d239`, FDR `amtc1_fae10b...dd7d1` and terminal Report
+`aapr1_e344e1...f4f6e3`. The final result is zero Validation Survivor; do not
+describe any object as approved, active, production or Fresh validated.
+
+The first immutable Program attempt `aap1_dd9044...42f197` reached a zero
+shortlist with no Qlib because an implementation date-type boundary blocked
+admitted evaluations. It remains immutable diagnostic evidence. Revision
+1.0.1 fixes the general boundary and is the final formal result; it does not
+rewrite the earlier Store artifacts.
