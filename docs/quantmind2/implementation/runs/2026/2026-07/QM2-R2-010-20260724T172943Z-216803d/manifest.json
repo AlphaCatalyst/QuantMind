@@ -1,0 +1,557 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r2-010-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "001873bec548ecf222712273addadadf0f387e32e7bfd6213dd2cdfa1c5772c3",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 11088
+    },
+    {
+      "artifact_id": "artifact-qm2-r2-010-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-r2-010-scheduler-status",
+      "artifact_type": "fresh_heartbeat_scheduler_status",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "urn:quantmind:artifact:fhss1_9bbdf90ca010507ebd48234478710926a0397c1e95e23e8229dac235722f53d2",
+      "schema_version": "fresh-heartbeat-scheduler-status-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-qm2-r2-010-operational-run",
+      "artifact_type": "fresh_heartbeat_operational_run",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "urn:quantmind:artifact:fhor1_ebc673206f814ebad5126e56641522f2a475d59a42ecd3956ad16134efd8f5d4",
+      "schema_version": "fresh-heartbeat-operational-run-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "0be84f9303496068078c4e444c3db0f8dc2ed1422919f020e99bcb91f7994adc",
+      "before_hash": "3b96938556286743ada2eb535a0c1ec161641127451e0fc11edce0198650c05c",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a28bff4cf918f4c2c445a0b62401d52f728cd4c5b091f978fa55c2faa00a7593",
+      "before_hash": "b4bf1181d1d01aff31db9d53ee8748e423799e020e839861b366c81fb88d0ebc",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "210c31b3678da72bbb741a336a371a112e826df4a98d613f2d013e90c136618e",
+      "before_hash": "1d63aabef96acc470328f8485e494704bfa8c58d1fd959aa233bbcf8b211e831",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bd6157d60f8a265a369447b88abcda38e515f8183ec12ca11100cd924df17379",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_heartbeat_scheduler/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f9a6095385ddd17f8bcdceffbddf29590f59fd9616e03402522ae8972a98b1b8",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_heartbeat_scheduler/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2a449b1cad6da7b83d972c47917e66ebebce3e0f52486317167cfd783aa6eef1",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4f4168a7e161ff2a46e40c7539be303f7fcd2736bc8eb6e0706adfc8b4021a6c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_fresh_heartbeat_scheduler.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "df441fe93cab6777a3b14c46c3e3d4421f5a70c2477dc33914684a939e35f789",
+      "before_hash": "3c696ef56dfec512f63b7b4df69eab2e42da333e3200d2ec55a38c5dafec44ad",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "30f3aa488285aa8f85e1143065c10dba9bd3809ecd082f792c1b4843e7bbb81c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "deploy/launchd/com.quantmind.fresh-model-heartbeat.plist",
+      "previous_path": null
+    },
+    {
+      "after_hash": "18d9ca65a3e706b06330ea30108de530a1e4edc271ac20e980f0465808aa7345",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/architecture/FRESH_HEARTBEAT_LAUNCHAGENT_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6f8ed586e06ae038711d417dd8db3391f37317146495fb21b596308bed237f13",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/architecture/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bc2a6d34e54f69943ed6e66e3391736e4a25bb62b1a9ac303a866030769b64e4",
+      "before_hash": "74b757349c36eee6680a1369981db4ccae608a06b7629f9fc02283a445de9554",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cdaeb134a935cacc22f8036945b3cf7b23764f42b46e5457c75935fcdb04bd0c",
+      "before_hash": "50f89c3bbe270628dd5923c81594e3a1bfdd10a9f57be635816e7f31fa259f36",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "82e2c8bdaff367cc31d25608da6e4fa7d6af09e457edc3a1b12d461f96b65224",
+      "before_hash": "3bbbad8e01d731f01bffc29cafde836c72d191403660cbef27a6b969222a87dc",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3a48c492bd702668c80609257ce92d83de5a1cf443466f3828ffbf4fd5f0791d",
+      "before_hash": "8472c684ce483313eeab2a467f3f29d1f90f70865b19fc36e8c93ad25ba0a59e",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ca8dbf884c70d9cb8e66f4b013b3b03d611c6016ba198a140ed8580500849b7f",
+      "before_hash": "2707eb40c312370415961ed492f6b7226987de2f69624c8d85edf018732508a2",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d2dbad0b1928c29574008ba9a686b9d4a8ea421da4bdd6f009ac2319e1c197f4",
+      "before_hash": "2ab2c5ec484c74e800386c4e38860dd32174f949557d20aa2a5d9a0743dfefac",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "031572024d37c060b897d014dc4cb4b7e9548ab62a97827f8440d98eaa787759",
+      "before_hash": "393e23fede3a9b1aa6a49cadde8d1abbf7dd162bf93f819d8b666670253e0138",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d3d66491c10adea54869f797dd4b933d60ab5e9094321660548a5ffe2690b3d2",
+      "before_hash": "39a66dfd6df2a102238a5ee7ede961174cb5a8ee4e9b59c7023546dd86d43316",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "373f5a1bf12ebced633a1a0eb65c17214fe629479f7ca31edccd2cc5d8e4a4cd",
+      "before_hash": "f0176133c3adf5065ce89b7d0e179f2f47840699bc43eaeaff9c1835a75c066c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9710923ed40a4b7932a3751283d549c6538dce91f17be53dac6c9d409783c13f",
+      "before_hash": "4203864170794f07e644486b7ce8569e52b289fabbd998cf83d18f792e3ba359",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "001873bec548ecf222712273addadadf0f387e32e7bfd6213dd2cdfa1c5772c3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2cf42d29705d3b55676ded3c73e92dd93eb9475ededec19d1b4c21d94e08d4c4",
+      "before_hash": "23cbd7444aff89da7f5d8b7f8ba3efb0fc697f77ad01d24a7e7c4c4d05aa2330",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "307fe57f302daa6cba4ca722e8a099b4ebca8ee4e9eab44b60219103f8143822",
+      "before_hash": "ddc975007770802e1b4f984fc30caf4b12bf73eb79b755d4e9863a307057ef85",
+      "change_type": "modified",
+      "path": "docs/quantmind2/operations/FRESH_HEARTBEAT_OPERATIONS_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "dc0decdd01b558a17444662e4a026119aaf01401c7089a650a0d1e14a44438dd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/manage_fresh_heartbeat_launchagent.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "76dc478368bded99d91346ea573b599b29f0b04166b2df8e1ff23aa0d2a8fb9d",
+      "before_hash": "069713f4b2de9acf57ebe8300c132644c79ca26d36f768c5580daa289502188e",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "df8ebe60259445dffb7d7d60da6ec1a17bba93415ec84043a0c32900a7e7a086",
+      "before_hash": "8f79f2faed7bf04c27a1fe957512578f36485131ede9b8a63683cdf0a4538691",
+      "change_type": "modified",
+      "path": "tools/quantmind2/supervisor_fresh_heartbeat.sh",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_heartbeat_scheduler/models.py",
+      "qualified_name": "fresh_heartbeat_scheduler.FreshHeartbeatSchedulerStatusV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "qualified_name": "fresh_heartbeat_scheduler.run_scheduled_heartbeat",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "qualified_name": "fresh_heartbeat_scheduler.acquire_lock",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "qualified_name": "fresh_heartbeat_scheduler.cold_recover",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "qualified_name": "fresh_heartbeat_scheduler.replay_operational_run",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "tools/quantmind2/manage_fresh_heartbeat_launchagent.py",
+      "qualified_name": "manage_fresh_heartbeat_launchagent.main",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "qualified_name": "autonomous_factor_campaign.OPERATIONAL_KINDS",
+      "symbol_type": "constant"
+    },
+    {
+      "change_type": "added",
+      "file_path": "docs/quantmind2/architecture/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+      "qualified_name": "Fresh Heartbeat Scheduler Contracts v1",
+      "symbol_type": "schema"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.fresh_heartbeat_scheduler",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.fresh_model_cohort",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.autonomous_research_supervisor",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "documented"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r2-010-report",
+        "sha256": "001873bec548ecf222712273addadadf0f387e32e7bfd6213dd2cdfa1c5772c3"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/fresh_heartbeat_scheduler/__init__.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/models.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "backend/services/tests/test_fresh_heartbeat_scheduler.py",
+      "deploy/launchd/com.quantmind.fresh-model-heartbeat.plist",
+      "docs/quantmind2/architecture/FRESH_HEARTBEAT_LAUNCHAGENT_V1.md",
+      "docs/quantmind2/architecture/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/report.md",
+      "tools/quantmind2/manage_fresh_heartbeat_launchagent.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/__init__.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/models.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "backend/services/tests/test_fresh_heartbeat_scheduler.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "deploy/launchd/com.quantmind.fresh-model-heartbeat.plist",
+      "docs/quantmind2/architecture/FRESH_HEARTBEAT_LAUNCHAGENT_V1.md",
+      "docs/quantmind2/architecture/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/operations/FRESH_HEARTBEAT_OPERATIONS_V1.md",
+      "tools/quantmind2/manage_fresh_heartbeat_launchagent.py",
+      "tools/quantmind2/supervisor_fresh_heartbeat.sh",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "cd715a07affe71ba48d60426ba6a6608bedeb3a22e4e4b162514f9f48743aa74",
+    "manifest_payload_sha256": "aa148590c1156a9e3b67dffccf8fb57b168c0e4c0131a67a61d1e722a0652fd5",
+    "report_sha256": "001873bec548ecf222712273addadadf0f387e32e7bfd6213dd2cdfa1c5772c3",
+    "source_bundle_sha256": "d1b2878177ff552a9b115ec0e52e957238477b5f6d88ce5333e21d3a2fe7e350"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.fresh_heartbeat_scheduler",
+      "description": "macOS blocks background LaunchAgent access to the repository and Python runtime under ~/Documents; automatic scheduling is not active and the failed Agent was uninstalled.",
+      "limitation_id": "limit-qm2-r2-010-host-access",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.fresh_model_cohort",
+      "description": "Only one Fresh date and zero mature L1 Labels exist; both Candidates remain accumulating.",
+      "limitation_id": "limit-qm2-r2-010-immature-fresh",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-24T17:29:43Z",
+      "reason": "Operationalize the immutable Fresh Cohort heartbeat introduced by R2-009 without changing its research contract.",
+      "relationship_id": "rel-qm2-r2-010-continues-r2-009",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R2-010-20260724T172943Z-216803d",
+      "target_run_id": "QM2-R2-009-20260724T164634Z-dca8e42"
+    }
+  ],
+  "repository": {
+    "base_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-24T17:29:43Z",
+    "completion_level": "partial",
+    "consistency_status": "unverified",
+    "git_diff_hash": "cd715a07affe71ba48d60426ba6a6608bedeb3a22e4e4b162514f9f48743aa74",
+    "implementation_run_id": "QM2-R2-010-20260724T172943Z-216803d",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-010-20260724T172943Z-216803d/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "d1b2878177ff552a9b115ec0e52e957238477b5f6d88ce5333e21d3a2fe7e350",
+    "started_at": "2026-07-24T16:57:00Z",
+    "task_id": "QM2-R2-010",
+    "task_status": "partial_uncommitted",
+    "verification_level": "integration_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-24T16:57:00Z",
+    "explicit_non_goals": [
+      "No new research Cycle or business executor",
+      "No Candidate, Lock, Cohort, model, Label or strategy mutation",
+      "No Registry, Promotion, trading or root service",
+      "No dependency installation, lockfile or shell-profile change"
+    ],
+    "objective": "Deploy the existing Store-backed Fresh heartbeat as a recoverable, idempotent current-user macOS LaunchAgent.",
+    "parent_task_id": "QM2-R2-009",
+    "scope": [
+      "User LaunchAgent template and management CLI",
+      "Operational wrapper, lock, logs, status and notifications",
+      "Scheduler and operational Artifact contracts",
+      "Real install, run, replay, recovery and uninstall verification"
+    ],
+    "status": "partial",
+    "task_id": "QM2-R2-010",
+    "title": "Fresh Model Heartbeat LaunchAgent and Operations v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_fresh_heartbeat_scheduler.py -q --no-cov",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 28,
+      "purpose": "Verify plist, schedule, credential boundary, lock, logs, notifications, installation semantics, operational Artifacts, recovery and replay.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r2-010-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -o addopts='' backend/services/tests/test_fresh_heartbeat_scheduler.py backend/services/tests/test_fresh_model_cohort.py backend/services/tests/test_autonomous_research_supervisor.py backend/services/tests/test_artifact_store_blob.py backend/services/tests/test_artifact_store_import.py backend/services/tests/test_artifact_store_integrity.py backend/services/tests/test_artifact_runtime.py backend/services/tests/test_quantmind2_context_bootstrap.py -q",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 177,
+      "purpose": "Verify scheduler, existing Fresh Cohort, Supervisor, Artifact Store/Runtime and Project Memory integration.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r2-010-relevant-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_fresh_heartbeat_scheduler.py -q",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 28,
+      "purpose": "Record default repository pytest behavior for the focused suite.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-qm2-r2-010-default-coverage"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "urn:quantmind:artifact:fhor1_ebc673206f814ebad5126e56641522f2a475d59a42ecd3956ad16134efd8f5d4",
+      "command": "manage_fresh_heartbeat_launchagent.py run-now --trigger manual-idempotency",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Verify the real existing heartbeat and same-date idempotency.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r2-010-real-run"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "install -> launchctl bootstrap gui/501 -> RunAtLoad -> bootout -> uninstall",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Verify real current-user LaunchAgent activation and rollback.",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-qm2-r2-010-host-activation"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/artifact_store.py verify",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Verify immutable Artifact Store integrity after scheduler publications.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r2-010-store"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "py_compile; plutil -lint; JSON parse; context bootstrap; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 5,
+      "purpose": "Verify syntax, plist, machine-readable context, references and diff hygiene.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-qm2-r2-010-static"
+    }
+  ]
+}

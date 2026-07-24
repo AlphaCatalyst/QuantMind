@@ -1,5 +1,21 @@
 # Component Catalog
 
+## QM2-R2-010 addition
+
+`quantmind2.fresh_heartbeat_scheduler` is partial. Its repository
+implementation owns only scheduling and operations around the existing Fresh
+Cohort heartbeat: LaunchAgent template/management, atomic locking, bounded
+logs, local status/history, failure classification, local notification,
+operational Artifacts, cold recovery and replay. It does not own market data,
+monthly retraining, prediction, Label, strategy, Candidate, Registry, or
+Promotion decisions.
+
+Manual heartbeat and exact replay pass, and scheduler/operational Artifacts
+are healthy. Real host activation is blocked because macOS denies or blocks
+the background job when it reaches source and Python runtime paths below
+`~/Documents`. The failed Agent was uninstalled, so automatic scheduling is
+not active.
+
 ## QM2-R2-009 addition
 
 - `quantmind2.fresh_model_cohort` — implemented at

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T16:46:34Z",
-  "source_commit": "dca8e42494af418c7afe74bb92c4d1aaf1bc9f1d",
+  "generated_at": "2026-07-24T17:29:43Z",
+  "source_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R2-009",
-  "latest_implementation_run": "QM2-R2-009-20260724T164634Z-dca8e42",
+  "current_task": "QM2-R2-010",
+  "latest_implementation_run": "QM2-R2-010-20260724T172943Z-216803d",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -57,7 +57,8 @@
       "quantmind2.factor_registry",
       "quantmind2.research_campaign",
       "quantmind2.fresh_validation",
-      "quantmind2.corporate_actions"
+      "quantmind2.corporate_actions",
+      "quantmind2.fresh_heartbeat_scheduler"
     ],
     "planned": [
       "quantmind2.experiment_manager",
@@ -136,6 +137,23 @@
     "minimum_evidence_passed_count": 0,
     "multiple_testing_status": "awaiting_all_members_minimum_evidence",
     "status": "fresh_evidence_accumulating",
+    "registry_writes": 0,
+    "promotion_writes": 0
+  },
+  "fresh_heartbeat_scheduler": {
+    "launch_agent_label": "com.quantmind.fresh-model-heartbeat",
+    "repository_implementation": "implemented",
+    "host_activation": "blocked",
+    "blocker": "macos_background_access_to_documents_runtime",
+    "installed": false,
+    "loaded": false,
+    "scheduler_status_id": "fhss1_9bbdf90ca010507ebd48234478710926a0397c1e95e23e8229dac235722f53d2",
+    "operational_run_id": "fhor1_ebc673206f814ebad5126e56641522f2a475d59a42ecd3956ad16134efd8f5d4",
+    "latest_heartbeat_id": "fmhr1_224de05ef7b20675ec4227eaa0efa487de73918cf0a1a1f55297812927f9fe42",
+    "manual_run_status": "exact_replay",
+    "artifact_store_integrity": "healthy",
+    "artifact_store_missing": 0,
+    "artifact_store_unreferenced": 0,
     "registry_writes": 0,
     "promotion_writes": 0
   },

@@ -120,6 +120,19 @@ KINDS = {
     ),
     "fresh_model_candidate_assessment": ("fresh_model_candidate_assessment_id", "fmca1_"),
     "fresh_model_heartbeat_run": ("fresh_model_heartbeat_run_id", "fmhr1_"),
+    "fresh_heartbeat_scheduler_status": (
+        "fresh_heartbeat_scheduler_status_id",
+        "fhss1_",
+    ),
+    "fresh_heartbeat_operational_run": (
+        "fresh_heartbeat_operational_run_id",
+        "fhor1_",
+    ),
+}
+
+OPERATIONAL_KINDS = {
+    "fresh_heartbeat_scheduler_status",
+    "fresh_heartbeat_operational_run",
 }
 
 
@@ -135,7 +148,7 @@ def validate_artifact(root: Path, expected_id: str, expected_kind: str | None = 
         raise ValueError("autonomous campaign Artifact identity mismatch")
     if manifest.get(field) != expected_id:
         raise ValueError("autonomous campaign Artifact ID field mismatch")
-    if identity.get("provider_id") != "tushare-pro-v1":
+    if kind not in OPERATIONAL_KINDS and identity.get("provider_id") != "tushare-pro-v1":
         raise ValueError("autonomous campaign data authority mismatch")
     if identity.get("promotion_writes", 0) != 0:
         raise ValueError("autonomous campaign crossed Promotion boundary")

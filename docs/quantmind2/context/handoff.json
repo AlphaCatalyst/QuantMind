@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T16:46:34Z",
-  "source_commit": "dca8e42494af418c7afe74bb92c4d1aaf1bc9f1d",
+  "generated_at": "2026-07-24T17:29:43Z",
+  "source_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "dca8e42494af418c7afe74bb92c4d1aaf1bc9f1d",
+  "base_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,12 +24,12 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R2-009",
-  "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R2-009-20260724T164634Z-dca8e42",
+  "current_task": "QM2-R2-010",
+  "completion_status": "partial_uncommitted",
+  "latest_implementation_run": "QM2-R2-010-20260724T172943Z-216803d",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
-    "System-level scheduling for the project-local Fresh heartbeat is not installed or loaded.",
+    "The Fresh heartbeat LaunchAgent is not installed or loaded: real RunAtLoad was blocked by macOS background access to the repository and Python runtime under ~/Documents, then safely uninstalled.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
     "Stale adjacent 2025 feature sidecar reconciliation; exact Parquet bytes currently remain authoritative.",
     "Durable long-term location for the official Factor Lab source.",
@@ -84,6 +84,8 @@
     ,"docs/quantmind2/architecture/FIXED_CONFIGURATION_MODEL_ALPHA_PROGRAM_V1.md"
     ,"docs/quantmind2/architecture/MULTI_HORIZON_LABEL_ALIGNMENT_RESEARCH_V1.md"
     ,"docs/quantmind2/architecture/AUTOMATED_FRESH_MODEL_COHORT_V1.md"
+    ,"docs/quantmind2/architecture/FRESH_HEARTBEAT_LAUNCHAGENT_V1.md"
+    ,"docs/quantmind2/operations/FRESH_HEARTBEAT_OPERATIONS_V1.md"
   ],
   "uncommitted_work": true
 }

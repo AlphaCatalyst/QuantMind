@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T14:20:49Z",
-  "source_commit": "dff10cd71c5d25bcbd1dea9b1092ff16427aeacf",
+  "generated_at": "2026-07-24T17:29:43Z",
+  "source_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -68,6 +68,7 @@
     {"issue_id": "QM2-KI-059", "severity": "medium", "status": "open", "summary": "The formal Qlib service returns NAV and aggregate execution metrics but does not expose durable holdings/trade tables through the model-program consumer boundary; empty schema-bearing files explicitly mark the missing evidence."},
     {"issue_id": "QM2-KI-060", "severity": "medium", "status": "open", "summary": "QM2-R2-008 finds that expanded and de-correlated technical Bundles survive only under L1; L5/L10 pooled RankIC is negative and apparent 2024 improvement is not cross-year consistent."},
     {"issue_id": "QM2-KI-061", "severity": "high", "status": "resolved_by_successor", "summary": "QM2-R2-009 publishes the first immutable post-exposure Snapshot and predictions; this resolves the absence of any Fresh observation but does not imply support, Registry change, Promotion or production readiness."},
-    {"issue_id": "QM2-KI-062", "severity": "medium", "status": "open", "summary": "Only one official Fresh date and zero mature L1 Labels exist. Both frozen Model Candidates remain fresh_evidence_accumulating, and cohort HAC/BH is prohibited until both pass the unchanged minimum evidence gate."}
+    {"issue_id": "QM2-KI-062", "severity": "medium", "status": "open", "summary": "Only one official Fresh date and zero mature L1 Labels exist. Both frozen Model Candidates remain fresh_evidence_accumulating, and cohort HAC/BH is prohibited until both pass the unchanged minimum evidence gate."},
+    {"issue_id": "QM2-KI-063", "severity": "high", "status": "open", "summary": "QM2-R2-010 repository scheduling, manual heartbeat, exact replay, recovery and Artifact contracts pass, but macOS blocks the real LaunchAgent from reading the repository and Python runtime under ~/Documents. The failed Agent was uninstalled; automatic scheduling is not active."}
   ]
 }

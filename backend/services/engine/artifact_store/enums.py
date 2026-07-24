@@ -236,6 +236,8 @@ class ArtifactKind(str, Enum):
     FRESH_MODEL_COHORT_MULTIPLE_TESTING = "fresh_model_cohort_multiple_testing"
     FRESH_MODEL_CANDIDATE_ASSESSMENT = "fresh_model_candidate_assessment"
     FRESH_MODEL_HEARTBEAT_RUN = "fresh_model_heartbeat_run"
+    FRESH_HEARTBEAT_SCHEDULER_STATUS = "fresh_heartbeat_scheduler_status"
+    FRESH_HEARTBEAT_OPERATIONAL_RUN = "fresh_heartbeat_operational_run"
 
 
 class IntegrityStatus(str, Enum):

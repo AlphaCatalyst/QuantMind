@@ -869,3 +869,23 @@ healthy, and Registry/Promotion writes are zero.
 
 The project-local scheduling contract exists, but no system scheduler was
 installed or loaded. No successor task is authorized.
+
+## QM2-R2-010 handoff
+
+Read `FRESH_HEARTBEAT_LAUNCHAGENT_V1.md` and
+`FRESH_HEARTBEAT_OPERATIONS_V1.md` after the R2-009 contract. Repository
+implementation, manual heartbeat, exact replay, Store integrity, cold
+recovery, lock/log/status contracts and uninstall behavior are verified.
+
+Scheduler status `fhss1_9bbdf90c...22f53d2` and operational run
+`fhor1_ebc67320...d8f5d4` reference the unchanged Fresh heartbeat
+`fmhr1_224de05e...f9fe42`. Both Candidates and the Cohort remain
+`fresh_evidence_accumulating`; Registry and Promotion writes are zero.
+
+The host LaunchAgent is intentionally not installed or loaded. The real
+RunAtLoad drill showed macOS background denial/blocking when the job reached
+the repository and Python runtime under `~/Documents`. The failed Agent was
+booted out and uninstalled, preserving logs and Artifacts. Do not claim
+automatic scheduling until that host boundary is explicitly resolved and
+reverified. Do not silently copy the virtual environment or business source
+into Application Support as a workaround.

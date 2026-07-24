@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T14:20:49Z",
-  "source_commit": "dff10cd71c5d25bcbd1dea9b1092ff16427aeacf",
+  "generated_at": "2026-07-24T17:29:43Z",
+  "source_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -193,6 +193,15 @@
       "objective": "Accrue immutable no-backfill Fresh model predictions, mature Labels and fixed-strategy evidence for the exact two frozen L1 Candidates.",
       "explicit_non_goals": ["No new Feature, model/strategy optimization, Candidate/Registry mutation, Promotion, trading or system scheduler installation."],
       "acceptance_summary": "The Cohort freezes before market reads; formal calendar and first-seen Snapshot establish 2026-07-24, both Candidates receive one prediction and remain accumulating, and Store recovery/exact replay pass."
+    },
+    {
+      "task_id": "QM2-R2-010",
+      "status": "partial_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R2-009"],
+      "objective": "Deploy the existing Store-backed Fresh heartbeat as a recoverable, idempotent current-user macOS LaunchAgent.",
+      "explicit_non_goals": ["No new research Cycle, Candidate/Lock/Cohort/model/Label/strategy change, Promotion, trading, root service, dependency installation or second business executor."],
+      "acceptance_summary": "Repository scheduler, wrapper, lock, logs, status, operational Artifacts, manual exact replay, Store integrity, recovery and uninstall pass; host activation remains blocked by macOS background access to the Documents-hosted source and Python runtime."
     }
   ]
 }

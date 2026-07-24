@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+  "title": "QuantMind Fresh Heartbeat Scheduler Contracts v1",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "launch_agent_label",
+        "template_path",
+        "installed_path",
+        "template_checksum",
+        "installed_checksum",
+        "loaded",
+        "enabled",
+        "consecutive_failures",
+        "token_available_in_launch_context",
+        "repository_head_at_install",
+        "credential_persisted",
+        "promotion_writes"
+      ],
+      "properties": {
+        "schema_version": {"const": "fresh-heartbeat-scheduler-status-v1"},
+        "launch_agent_label": {"const": "com.quantmind.fresh-model-heartbeat"},
+        "template_path": {"type": "string", "minLength": 1},
+        "installed_path": {"type": "string", "minLength": 1},
+        "template_checksum": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "installed_checksum": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "loaded": {"type": "boolean"},
+        "enabled": {"type": "boolean"},
+        "last_exit_status": {"type": ["integer", "null"]},
+        "last_run_at": {"type": ["string", "null"]},
+        "last_success_at": {"type": ["string", "null"]},
+        "consecutive_failures": {"type": "integer", "minimum": 0},
+        "next_expected_run": {"type": ["string", "null"]},
+        "token_available_in_launch_context": {"type": "boolean"},
+        "repository_head_at_install": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "credential_persisted": {"const": false},
+        "promotion_writes": {"const": 0}
+      },
+      "additionalProperties": true
+    },
+    {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "launch_agent_label",
+        "fresh_model_heartbeat_run_id",
+        "heartbeat_status",
+        "exit_code",
+        "candidate_statuses",
+        "execution_counts",
+        "credential_persisted",
+        "promotion_writes"
+      ],
+      "properties": {
+        "schema_version": {"const": "fresh-heartbeat-operational-run-v1"},
+        "launch_agent_label": {"const": "com.quantmind.fresh-model-heartbeat"},
+        "scheduler_status_id": {"type": ["string", "null"]},
+        "fresh_model_heartbeat_run_id": {"type": ["string", "null"]},
+        "heartbeat_status": {"type": "string", "minLength": 1},
+        "exit_code": {"type": "integer"},
+        "candidate_statuses": {"type": "object", "additionalProperties": {"type": "string"}},
+        "execution_counts": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "error_class": {"type": ["string", "null"]},
+        "credential_persisted": {"const": false},
+        "promotion_writes": {"const": 0}
+      },
+      "additionalProperties": true
+    }
+  ]
+}

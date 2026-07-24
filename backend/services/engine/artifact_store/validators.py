@@ -54,6 +54,7 @@ ID_FIELDS = (
     "fresh_model_candidate_observation_id",
     "fresh_model_cohort_multiple_testing_id",
     "fresh_model_candidate_assessment_id", "fresh_model_heartbeat_run_id",
+    "fresh_heartbeat_scheduler_status_id", "fresh_heartbeat_operational_run_id",
 )
 
 
@@ -326,6 +327,8 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.FRESH_MODEL_COHORT_MULTIPLE_TESTING,
         ArtifactKind.FRESH_MODEL_CANDIDATE_ASSESSMENT,
         ArtifactKind.FRESH_MODEL_HEARTBEAT_RUN,
+        ArtifactKind.FRESH_HEARTBEAT_SCHEDULER_STATUS,
+        ArtifactKind.FRESH_HEARTBEAT_OPERATIONAL_RUN,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

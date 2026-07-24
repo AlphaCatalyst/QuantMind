@@ -1393,6 +1393,28 @@ post-lock label-complete dates exist.
   is healthy with Missing 0 and Unreferenced 0.
 - System-level scheduling remains uninstalled. No successor task is authorized.
 
+## Fresh Heartbeat LaunchAgent operations
+
+- Current task: `QM2-R2-010`.
+- The repository now contains the frozen 15-trigger LaunchAgent template,
+  management CLI, installed-wrapper contract, atomic lock, 10 MB / ten-file
+  log rotation, local status/history, failure classification, edge-triggered
+  notifications, and immutable scheduler/operational Artifact kinds.
+- Manual formal execution reuses Heartbeat
+  `fmhr1_224de05e...f9fe42`; the repeat is `exact_replay` with zero Tushare,
+  model, prediction, Label, strategy, Artifact, or Blob work. Both Candidates
+  and the Cohort remain `fresh_evidence_accumulating`.
+- Scheduler status `fhss1_9bbdf90c...22f53d2` and operational run
+  `fhor1_ebc67320...d8f5d4` are immutable Store evidence. Store integrity is
+  healthy with Missing 0 and Unreferenced 0.
+- Real current-user install/bootstrap and RunAtLoad were attempted. macOS
+  blocked background access to the repository and Python runtime below
+  `~/Documents`. The nonfunctional Agent was booted out and uninstalled;
+  operational logs and Artifacts were preserved.
+- Automatic scheduling is therefore not active. No Candidate, Lock, Cohort,
+  model, Label, strategy, Registry, Promotion, dependency, lockfile, shell
+  profile, power setting, or Factor Lab source was changed.
+
 ## External Agent Provider completion
 
 - `QM2-P0-008F` diagnosed the historical exit code 1 as Provider
