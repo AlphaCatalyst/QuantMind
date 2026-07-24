@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T13:09:20Z",
-  "source_commit": "e57696b977ee21fbca6d3e7fa01ce4bc434ef49f",
+  "generated_at": "2026-07-24T14:20:49Z",
+  "source_commit": "dff10cd71c5d25bcbd1dea9b1092ff16427aeacf",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -63,6 +63,8 @@
     {"issue_id": "QM2-KI-054", "severity": "medium", "status": "open", "summary": "QM2-R2-004 admitted two research Terminal Features and locked nine Archetype-aware Validation objects, but none passed its unchanged Archetype gate and global 10% BH FDR together; no Survivor, Registry, Fresh Lock or Promotion exists."},
     {"issue_id": "QM2-KI-055", "severity": "high", "status": "open", "summary": "All project-visible market evidence through 2026-07-23 is retrospective-only; no project-level mature Fresh Cohort, Fresh support or Promotion evidence exists."},
     {"issue_id": "QM2-KI-056", "severity": "medium", "status": "resolved_by_successor", "summary": "The first Supervisor Cycle reused the exhausted Catalog/Program revision and produced zero Retrospective Candidates; QM2-R2-006 supplied and evaluated a genuinely new authorized technical space without relaxing gates."},
-    {"issue_id": "QM2-KI-057", "severity": "medium", "status": "open", "summary": "QM2-R2-006 admitted 20 new unlabeled technical features, but 18 Alpha rounds and 68 formal Qlib calls produced zero Retrospective Candidates under unchanged archetype and FDR gates; no Fresh Lock, Cohort or Promotion exists."}
+    {"issue_id": "QM2-KI-057", "severity": "medium", "status": "open", "summary": "QM2-R2-006 admitted 20 new unlabeled technical features, but 18 Alpha rounds and 68 formal Qlib calls produced zero Retrospective Candidates under unchanged archetype and FDR gates; no Fresh Lock, Cohort or Promotion exists."},
+    {"issue_id": "QM2-KI-058", "severity": "medium", "status": "open", "summary": "Three preregistered fixed-configuration LightGBM Bundles completed four purged walk-forward Folds, but all failed the unchanged RankIC gate and global BH FDR; no Retrospective Model Candidate or Fresh Lock exists."},
+    {"issue_id": "QM2-KI-059", "severity": "medium", "status": "open", "summary": "The formal Qlib service returns NAV and aggregate execution metrics but does not expose durable holdings/trade tables through the model-program consumer boundary; empty schema-bearing files explicitly mark the missing evidence."}
   ]
 }

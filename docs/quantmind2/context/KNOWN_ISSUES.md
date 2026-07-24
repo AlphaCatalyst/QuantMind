@@ -1,5 +1,25 @@
 # Known Issues
 
+## QM2-KI-058 — Weak-Alpha model aggregation produced no Candidate
+
+Open, medium. Three preregistered fixed-configuration LightGBM Bundles
+completed four purged expanding Folds. Existing-core mean RankIC was only
+`0.000643`; expanded and combined Bundles were negative. All adjusted
+q-values were `0.917134`, so no Retrospective Model Candidate, Fresh Lock or
+Fresh Cohort exists. The model-concentration gates passed, but seed prediction
+correlations were materially below one and predictive RankIC was unstable.
+This negative result does not authorize hyperparameter search, report-period
+selection, gate relaxation, new technical Feature generation or Cycle 004.
+
+## QM2-KI-059 — Qlib does not expose durable model-program holdings/trades
+
+Open, medium. The existing formal Qlib consumer returns NAV, performance,
+turnover and aggregate CnExchange cost evidence but not durable daily holdings
+or trade tables through this service boundary. Model Fold Artifacts preserve
+explicit empty schemas rather than synthesizing executions. This does not
+affect formal Qlib aggregate metrics, but holdings/trade-level attribution is
+unavailable.
+
 ## QM2-KI-057 — Expanded technical space produced no candidate
 
 Open, medium. Factory 002 admitted and materialized 20 new unlabeled technical

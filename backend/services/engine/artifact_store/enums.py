@@ -202,6 +202,20 @@ class ArtifactKind(str, Enum):
     TECHNICAL_FEATURE_CATALOG_V3 = "technical_feature_catalog_v3"
     AUTONOMOUS_RESEARCH_CYCLE_V2 = "autonomous_research_cycle_v2"
     RESEARCH_SPACE_EXPANSION_REPORT = "research_space_expansion_report"
+    FIXED_CONFIGURATION_MODEL_SPEC = "fixed_configuration_model_spec"
+    MODEL_FEATURE_BUNDLE_SPEC = "model_feature_bundle_spec"
+    PURGED_WALK_FORWARD_SPEC = "purged_walk_forward_spec"
+    MODEL_TRAINING_LEAKAGE_AUDIT = "model_training_leakage_audit"
+    MODEL_FOLD_TRAINING = "model_fold_training"
+    MODEL_FOLD_PREDICTION = "model_fold_prediction"
+    MODEL_FOLD_RESULT = "model_fold_result"
+    MODEL_STABILITY_ASSESSMENT = "model_stability_assessment"
+    MODEL_MULTIPLE_TESTING_CONTROL = "model_multiple_testing_control"
+    RETROSPECTIVE_MODEL_CANDIDATE = "retrospective_model_candidate"
+    MODEL_FACTOR_DISTILLATION_QUEUE = "model_factor_distillation_queue"
+    PROJECT_MODEL_CANDIDATE_FRESH_LOCK = "project_model_candidate_fresh_lock"
+    MODEL_FRESH_OBSERVATION = "model_fresh_observation"
+    MODEL_FRESH_ASSESSMENT = "model_fresh_assessment"
 
 
 class IntegrityStatus(str, Enum):

@@ -295,6 +295,51 @@ def replay_supervisor(*, supervisor_spec_id: str, work_root: Path,
     return result | {"status": "exact_replay", "runtime_counts": runtime_counts()}
 
 
+def run_next_model_cycle(*, supervisor_spec_id: str, repository_root: Path,
+                         work_root: Path, store_root: Path | None = None) -> dict[str, Any]:
+    """Run Cycle 003 through the existing Supervisor control surface.
+
+    The model program owns its immutable fold artifacts.  The Supervisor only
+    dispatches the pre-registered research type and reports the resulting
+    terminal cycle; it does not create a parallel Supervisor or select a model.
+    """
+    repository = _repository(store_root, Path(work_root) / "supervisor-model")
+    supervisor = repository.identity(supervisor_spec_id)
+    if supervisor.get("schema_version") not in {
+        "autonomous-research-supervisor-spec-v1",
+        "autonomous-research-supervisor-v1",
+        "autonomous-research-supervisor-v2",
+    }:
+        raise ValueError("Supervisor identity is invalid")
+    from backend.services.engine.fixed_configuration_model_program import (
+        create_spec as create_model_spec,
+        execute_program as execute_model_program,
+    )
+
+    frozen = create_model_spec(
+        repository_root=repository_root,
+        work_root=Path(work_root) / "model-cycle",
+        store_root=store_root,
+    )
+    result = execute_model_program(
+        model_spec_id=frozen["model_spec_id"],
+        repository_root=repository_root,
+        work_root=Path(work_root) / "model-cycle",
+        store_root=store_root,
+    )
+    return result | {
+        "supervisor_spec_id": (
+            supervisor_spec_id
+            if supervisor.get("schema_version") == "autonomous-research-supervisor-spec-v1"
+            else supervisor.get("supervisor_spec_id")
+        ),
+        "research_cycle_name": "autonomous_research_cycle_003",
+        "research_type": "fixed_configuration_model_alpha",
+        "second_supervisor_created": False,
+        "automatic_cycle_004_created": False,
+    }
+
+
 def _v2_runtime_counts() -> dict[str, int]:
     return runtime_counts() | {
         "operator_writes": 0,

@@ -1,5 +1,11 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R2-007` is completed with no model Candidate.
+Three preregistered technical Feature Bundles completed four purged expanding
+walk-forward Folds, three fixed seeds and 18 real Qlib evaluations. All three
+failed the unchanged RankIC gate and 10% BH FDR. Cycle 003 records global
+authorized technical research-space exhaustion and does not create Cycle 004.
+
 Current research task: `QM2-R2-006` is completed. Six PIT rolling operators,
 six research-only primitives and Technical Feature Catalog v3 expand the
 bounded technical search space. Factory 002 admits 20 unlabeled features;
@@ -75,6 +81,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R2-007 Autonomous Weak-Alpha Aggregation and Walk-Forward Model Program v1 | completed_uncommitted | P0 | R2-004, R2-005, R2-006 | Test whether frozen low-correlation technical Features aggregate into stable Alpha through the existing LightGBM/Qlib chain | No new Feature/Primitive/Label, hyperparameter/strategy/combined optimization, report-period selection, Registry, Promotion or Cycle 004 | Three Bundles, four purged Folds, three seeds, 54 fits and 18 Qlib calls produce zero Candidates; Store/cold recovery/replay pass and global technical stop activates |
 | QM2-R2-006 Technical DSL Expansion and Novel Research Space Cycle v1 | completed_uncommitted | P0 | R2-004, R2-005 | Expand bounded PIT operators/primitives, publish Catalog v3 and run Cycle 002 | No new fields/network data, Strategy/Combined Optimization, Promotion or Cycle 003 | Six operators, six primitives, 20 new features, 18 Alpha rounds, 68 Qlib calls, zero Candidates and zero-call replay |
 | QM2-R2-001 Autonomous Factor Research Campaign Orchestrator v1 | completed_uncommitted | P0 | R1-003 through R1-010 | Run bounded multi-round Agent factor research without per-round human planning | No full Factor search, Strategy/Combined optimization, report/Fresh selection evidence, data network, Promotion or production claim | Twelve rounds, 26 Proposals, 20 admissions, three research-only locks, five near misses, healthy Store, cold recovery and zero-call replay |
 | QM2-R1-009 Momentum Tail-Alpha and Selection-Overlay Diagnostic v1 | completed_uncommitted | P0 | R1-008 | Classify immutable Signal D using full cross-section, tail, exposure, stability and report-period diagnostics | No new Factor, Agent/parameter optimization, Top-N selection, Candidate Lock, Registry write or Promotion | Formal-label/forward-return RankIC, deciles, fixed Top-N, 2023 attribution, exposure, stability and decay classify Signal D as regime-specific; recovery and replay pass |

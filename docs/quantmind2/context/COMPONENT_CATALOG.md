@@ -1,5 +1,18 @@
 # Component Catalog
 
+## QM2-R2-007 addition
+
+- `quantmind2.fixed_configuration_model_program` — implemented at
+  `backend/services/engine/fixed_configuration_model_program`; owns immutable
+  model/bundle/walk-forward contracts, train-only Bundle C de-correlation,
+  fixed three-seed LightGBM training, Fold predictions, formal Qlib,
+  importance/seed/fold stability, concentration gates, HAC/BH control,
+  conditional retrospective Model Candidates and zero-call replay.
+- It consumes Catalog v3 and Primitive Catalog v2 without generating new
+  Features or Labels. It cannot optimize hyperparameters or strategy, use
+  2025/2026 reports for selection, write Registry/Promotion, or create Cycle
+  004. Formal Cycle 003 produced zero Candidates.
+
 ## QM2-R2-003 addition
 
 - `quantmind2.autonomous_factor_program` — implemented at

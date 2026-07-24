@@ -17,6 +17,7 @@ from backend.services.engine.autonomous_factor_campaign.repository import Campai
 from backend.services.engine.autonomous_research_supervisor import (  # noqa: E402
     create_supervisor_spec,
     execute_supervisor,
+    run_next_model_cycle,
     replay_next_research_cycle,
     replay_supervisor,
     run_next_research_cycle,
@@ -32,6 +33,7 @@ COMMANDS = (
     "inspect-fresh-lock", "inspect-cohort", "inspect-fresh-status",
     "pause", "resume", "validate-supervisor", "replay",
     "run-next-research-cycle", "inspect-research-space",
+    "run-next-model-cycle", "inspect-model-candidate", "inspect-model-fresh-lock",
 )
 
 
@@ -46,6 +48,7 @@ def parser() -> argparse.ArgumentParser:
         "update-market-data", "update-fresh-observations",
         "evaluate-fresh-cohorts", "pause", "resume",
         "validate-supervisor", "replay", "run-next-research-cycle",
+        "run-next-model-cycle",
     ):
         command = commands.add_parser(name)
         command.add_argument(
@@ -56,6 +59,7 @@ def parser() -> argparse.ArgumentParser:
         "inspect-ledger", "inspect-research-queue", "inspect-candidate",
         "inspect-fresh-lock", "inspect-cohort", "inspect-fresh-status",
         "inspect-research-space",
+        "inspect-model-candidate", "inspect-model-fresh-lock",
     ):
         command = commands.add_parser(name)
         command.add_argument("artifact_id")
@@ -82,6 +86,10 @@ def main(argv: list[str] | None = None) -> int:
             result = execute_supervisor(supervisor_spec_id=args.supervisor_spec_id, **common)
         elif args.command == "run-next-research-cycle":
             result = run_next_research_cycle(
+                supervisor_spec_id=args.supervisor_spec_id, **common
+            )
+        elif args.command == "run-next-model-cycle":
+            result = run_next_model_cycle(
                 supervisor_spec_id=args.supervisor_spec_id, **common
             )
         elif args.command == "validate-supervisor":

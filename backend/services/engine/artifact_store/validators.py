@@ -45,6 +45,9 @@ ID_FIELDS = (
     "operator_extension_id", "operator_validation_id", "primitive_catalog_id",
     "primitive_materialization_id", "feature_catalog_v3_id",
     "research_space_report_id",
+    "model_spec_id", "bundle_id", "walk_forward_spec_id", "leakage_audit_id",
+    "fold_model_id", "prediction_artifact_id", "fold_result_id",
+    "stability_assessment_id", "distillation_queue_id",
 )
 
 
@@ -283,6 +286,20 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.TECHNICAL_FEATURE_CATALOG_V3,
         ArtifactKind.AUTONOMOUS_RESEARCH_CYCLE_V2,
         ArtifactKind.RESEARCH_SPACE_EXPANSION_REPORT,
+        ArtifactKind.FIXED_CONFIGURATION_MODEL_SPEC,
+        ArtifactKind.MODEL_FEATURE_BUNDLE_SPEC,
+        ArtifactKind.PURGED_WALK_FORWARD_SPEC,
+        ArtifactKind.MODEL_TRAINING_LEAKAGE_AUDIT,
+        ArtifactKind.MODEL_FOLD_TRAINING,
+        ArtifactKind.MODEL_FOLD_PREDICTION,
+        ArtifactKind.MODEL_FOLD_RESULT,
+        ArtifactKind.MODEL_STABILITY_ASSESSMENT,
+        ArtifactKind.MODEL_MULTIPLE_TESTING_CONTROL,
+        ArtifactKind.RETROSPECTIVE_MODEL_CANDIDATE,
+        ArtifactKind.MODEL_FACTOR_DISTILLATION_QUEUE,
+        ArtifactKind.PROJECT_MODEL_CANDIDATE_FRESH_LOCK,
+        ArtifactKind.MODEL_FRESH_OBSERVATION,
+        ArtifactKind.MODEL_FRESH_ASSESSMENT,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T13:09:20Z",
-  "source_commit": "e57696b977ee21fbca6d3e7fa01ce4bc434ef49f",
+  "generated_at": "2026-07-24T14:20:49Z",
+  "source_commit": "dff10cd71c5d25bcbd1dea9b1092ff16427aeacf",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -497,6 +497,49 @@
         ],
         "last_verified_commit": null,
         "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.fixed_configuration_model_program",
+      "name": "Fixed-configuration Weak-Alpha Model Program v1",
+      "status": "implemented",
+      "responsibility": "Aggregate frozen technical Feature Bundles through the existing LightGBM chain, purged expanding walk-forward, fixed seed ensemble, formal Qlib, stability/concentration audit, HAC/BH control and conditional retrospective Model Candidate/Fresh boundaries.",
+      "source_path": "backend/services/engine/fixed_configuration_model_program",
+      "target_path": "backend/services/engine/fixed_configuration_model_program",
+      "key_symbols": [
+        "FixedConfigurationModelSpecV1",
+        "ModelFeatureBundleSpecV1",
+        "PurgedWalkForwardSpecV1",
+        "ModelFoldResultV1",
+        "ModelStabilityAssessmentV1",
+        "select_bundle_c",
+        "execute_program",
+        "validate_program",
+        "replay_program"
+      ],
+      "dependencies": [
+        "quantmind.training",
+        "quantmind.qlib_backtest",
+        "quantmind2.technical_feature_factory",
+        "quantmind2.autonomous_research_supervisor",
+        "quantmind2.data_foundation",
+        "quantmind2.research_artifact_store"
+      ],
+      "architecture_decision_refs": [
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0005",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011"
+      ],
+      "current_limitations": [
+        "Formal Cycle 003 produced zero Retrospective Model Candidates under the unchanged RankIC gate and global BH FDR.",
+        "The existing Qlib service boundary does not persist durable holdings/trade tables; model Fold Artifacts preserve explicit empty schemas instead of synthetic evidence.",
+        "Evidence is retrospective only; 2025/2026H1 results are contaminated reports and cannot select or promote a model."
+      ],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
     }
   ]
 }

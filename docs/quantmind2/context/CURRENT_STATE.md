@@ -1,5 +1,35 @@
 # Current Implementation State
 
+## Fixed-configuration Weak-Alpha Model Cycle (QM2-R2-007)
+
+- The existing QuantMind LightGBM and formal Tushare `model_label` chain now
+  have a separate retrospective model-research boundary. No model score is
+  represented as a DSL Factor or Terminal Feature.
+- Model Spec `fcms1_27c710...7ad94` freezes one configuration, three seeds,
+  disabled early stopping, equal-weight seed aggregation and the unchanged
+  TopK20/drop5/ten-session/equal-weight/CSI300 strategy before Fold 1.
+- Bundle A freezes 36 pre-R2-006 technical Features. Bundle B freezes 20
+  R2-006 Features plus six primitives. Bundle C applies the same train-only,
+  label-free quality and `|Spearman| < 0.95` rule in every Fold and retained
+  49--50 Features.
+- All three Bundles completed four purged expanding outer Folds for 2021--2024
+  and contaminated report-only runs for 2025 and 2026H1: 54 fixed-seed model
+  fits, 18 prediction materializations and 18 real Qlib calls. Agent,
+  hyperparameter/strategy/combined optimization, Tushare/network, Registry
+  and Promotion calls were zero.
+- None passed both the frozen retrospective gate and global BH FDR. Combined
+  RankIC means were A `0.000643`, B `-0.004613`, C `-0.001247`; all adjusted
+  q-values were `0.917134`. Model Candidates, Fresh Locks and Fresh Cohorts
+  are zero.
+- Cycle 003 is `completed_no_model_candidate`. Both single-Factor and bounded
+  model-aggregation spaces are exhausted, so Supervisor status is
+  `global_authorized_technical_research_space_exhausted`; Cycle 004 was not
+  created.
+- Store integrity is healthy with Missing 0 and Unreferenced 0. Cold
+  validation, terminal resume, Supervisor replay and exact replay return zero
+  external/computation/mutation counters.
+- Current task: `QM2-R2-007`.
+
 ## Technical Research Space Cycle v2 (QM2-R2-006)
 
 - Factor DSL now has six accepted PIT rolling operators: sum, correlation,

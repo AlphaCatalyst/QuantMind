@@ -812,3 +812,23 @@ Candidate, Fresh Lock or Cohort. Historical evidence remains
 Terminal status is `waiting_for_fresh_data_or_novel_space`, Store integrity is
 healthy, and cold recovery/resume/exact replay return all call/write counters
 as zero. No successor task is authorized.
+
+## QM2-R2-007 handoff
+
+Read `FIXED_CONFIGURATION_MODEL_ALPHA_PROGRAM_V1.md` after the R2-004 through
+R2-006 contracts. Model Spec `fcms1_27c710...7ad94`, Walk-forward Spec
+`pwfs1_6a226e...0a7d9`, Leakage Audit `mtla1_cf3aec...c1f97` and global
+multiple-testing Artifact `mmtc1_659e9d...aef6f` are authoritative.
+
+All three preregistered Bundles completed four purged 2021--2024 outer Folds,
+three fixed seeds, 54 LightGBM training calls and 18 formal Qlib calls. The 2025/2026H1
+objects are contaminated reports only. All Bundles failed the unchanged
+RankIC gate and BH FDR; Candidates, Distillation entries, Fresh Locks, Fresh
+Cohorts, Registry writes and Promotions are zero.
+
+Cycle 003 is `completed_no_model_candidate`; global authorized technical
+research-space exhaustion is active and Cycle 004 was not created. Do not
+reinterpret the positive annual portfolio excess of some Folds as a model
+Candidate: the daily official-label RankIC and FDR contracts failed. Exact
+replay, Supervisor replay and cold validation are zero-call with healthy Store
+integrity. No successor task is authorized by this contract.

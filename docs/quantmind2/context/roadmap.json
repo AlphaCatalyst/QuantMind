@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T13:09:20Z",
-  "source_commit": "e57696b977ee21fbca6d3e7fa01ce4bc434ef49f",
+  "generated_at": "2026-07-24T14:20:49Z",
+  "source_commit": "dff10cd71c5d25bcbd1dea9b1092ff16427aeacf",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -166,6 +166,15 @@
             "No historical Fresh relabeling, automatic Promotion/trading, threshold relaxation, dependency or lockfile change."
         ],
         "acceptance_summary": "Sixteen Runs are ledgered through 2026-07-23; one automatic zero-call reuse Cycle completes with zero Candidate, healthy Store and exact replay."
+    },
+    {
+      "task_id": "QM2-R2-007",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R2-004", "QM2-R2-005", "QM2-R2-006"],
+      "objective": "Test whether frozen low-correlation technical Features aggregate into stable Alpha through the existing LightGBM and Qlib chains.",
+      "explicit_non_goals": ["No new Feature, Primitive or Label; no hyperparameter, Strategy or Combined Optimization; no report-period selection, Registry, Promotion or Cycle 004."],
+      "acceptance_summary": "Three Bundles, four purged Folds and three fixed seeds complete 54 fits and 18 real Qlib calls; all fail the unchanged gate/FDR, Store/cold recovery/replay pass and the global authorized technical-space stop activates."
     }
   ]
 }

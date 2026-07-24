@@ -83,6 +83,20 @@ KINDS = {
     "technical_feature_catalog_v3": ("feature_catalog_v3_id", "tfc3_"),
     "autonomous_research_cycle_v2": ("research_cycle_id", "arc2_"),
     "research_space_expansion_report": ("research_space_report_id", "rser1_"),
+    "fixed_configuration_model_spec": ("model_spec_id", "fcms1_"),
+    "model_feature_bundle_spec": ("bundle_id", "mfbs1_"),
+    "purged_walk_forward_spec": ("walk_forward_spec_id", "pwfs1_"),
+    "model_training_leakage_audit": ("leakage_audit_id", "mtla1_"),
+    "model_fold_training": ("fold_model_id", "mft1_"),
+    "model_fold_prediction": ("prediction_artifact_id", "mfp1_"),
+    "model_fold_result": ("fold_result_id", "mfr1_"),
+    "model_stability_assessment": ("stability_assessment_id", "msa1_"),
+    "model_multiple_testing_control": ("multiple_testing_id", "mmtc1_"),
+    "retrospective_model_candidate": ("candidate_id", "rmc1_"),
+    "model_factor_distillation_queue": ("distillation_queue_id", "mfdq1_"),
+    "project_model_candidate_fresh_lock": ("fresh_lock_id", "pmcfl1_"),
+    "model_fresh_observation": ("fresh_observation_id", "mfo1_"),
+    "model_fresh_assessment": ("fresh_assessment_id", "mfa1_"),
 }
 
 
