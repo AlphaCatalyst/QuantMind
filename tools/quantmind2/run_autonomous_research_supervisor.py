@@ -17,7 +17,10 @@ from backend.services.engine.autonomous_factor_campaign.repository import Campai
 from backend.services.engine.autonomous_research_supervisor import (  # noqa: E402
     create_supervisor_spec,
     execute_supervisor,
+    replay_next_research_cycle,
     replay_supervisor,
+    run_next_research_cycle,
+    validate_next_research_cycle,
     validate_supervisor,
 )
 
@@ -28,6 +31,7 @@ COMMANDS = (
     "inspect-ledger", "inspect-research-queue", "inspect-candidate",
     "inspect-fresh-lock", "inspect-cohort", "inspect-fresh-status",
     "pause", "resume", "validate-supervisor", "replay",
+    "run-next-research-cycle", "inspect-research-space",
 )
 
 
@@ -41,13 +45,17 @@ def parser() -> argparse.ArgumentParser:
         "validate-spec", "plan", "execute", "run-research-cycle",
         "update-market-data", "update-fresh-observations",
         "evaluate-fresh-cohorts", "pause", "resume",
-        "validate-supervisor", "replay",
+        "validate-supervisor", "replay", "run-next-research-cycle",
     ):
         command = commands.add_parser(name)
-        command.add_argument("--supervisor-spec-id", required=True)
+        command.add_argument(
+            "--supervisor-spec-id", "--supervisor-id",
+            dest="supervisor_spec_id", required=True,
+        )
     for name in (
         "inspect-ledger", "inspect-research-queue", "inspect-candidate",
         "inspect-fresh-lock", "inspect-cohort", "inspect-fresh-status",
+        "inspect-research-space",
     ):
         command = commands.add_parser(name)
         command.add_argument("artifact_id")
@@ -72,6 +80,10 @@ def main(argv: list[str] | None = None) -> int:
             }
         elif args.command in {"execute", "run-research-cycle", "resume"}:
             result = execute_supervisor(supervisor_spec_id=args.supervisor_spec_id, **common)
+        elif args.command == "run-next-research-cycle":
+            result = run_next_research_cycle(
+                supervisor_spec_id=args.supervisor_spec_id, **common
+            )
         elif args.command == "validate-supervisor":
             result = validate_supervisor(
                 supervisor_spec_id=args.supervisor_spec_id,
@@ -79,11 +91,16 @@ def main(argv: list[str] | None = None) -> int:
                 store_root=args.store_root,
             )
         elif args.command == "replay":
-            result = replay_supervisor(
-                supervisor_spec_id=args.supervisor_spec_id,
-                work_root=args.work_root,
-                store_root=args.store_root,
-            )
+            try:
+                result = replay_next_research_cycle(
+                    supervisor_spec_id=args.supervisor_spec_id, **common
+                )
+            except ValueError:
+                result = replay_supervisor(
+                    supervisor_spec_id=args.supervisor_spec_id,
+                    work_root=args.work_root,
+                    store_root=args.store_root,
+                )
         elif args.command == "plan":
             result = {
                 "status": "planned",

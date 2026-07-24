@@ -1,12 +1,18 @@
 # Known Issues
 
+## QM2-KI-057 — Expanded technical space produced no candidate
+
+Open, medium. Factory 002 admitted and materialized 20 new unlabeled technical
+features, but Supervisor Cycle 002 completed 18 Alpha rounds and 68 formal
+Qlib calls with zero Retrospective Candidates under unchanged archetype,
+default-first and global FDR gates. No Fresh Lock, Cohort or Promotion exists.
+
 ## QM2-KI-056 — Current authorized autonomous space produced no new candidate
 
-Open, medium. The first Supervisor Cycle reused the current immutable
+Resolved by successor. The first Supervisor Cycle reused the current immutable
 Feature-Catalog/Alpha-Program revision and correctly made zero repeated
-Agent/Qlib calls. It produced no Retrospective Candidate. A later Cycle
-requires genuinely new authorized research space, not repetition or relaxed
-gates.
+Agent/Qlib calls. QM2-R2-006 supplied and evaluated genuinely new authorized
+research space without repetition or relaxed gates.
 
 ## QM2-KI-055 — No project-level mature Fresh evidence
 

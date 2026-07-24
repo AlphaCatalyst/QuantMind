@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T11:10:10Z",
-  "source_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
+  "generated_at": "2026-07-24T13:09:20Z",
+  "source_commit": "e57696b977ee21fbca6d3e7fa01ce4bc434ef49f",
   "source_paths": ["docs/quantmind2/context/KNOWN_ISSUES.md"],
   "authority_level": "derived_issue_index",
   "freshness_status": "current_at_base_commit",
@@ -62,6 +62,7 @@
     {"issue_id": "QM2-KI-053", "severity": "low", "status": "open", "summary": "Formal local Qlib completes through the real chain but existing wrappers emit unavailable optional PostgreSQL model-registry and COS /data resolution warnings before using the supplied signal and local Qlib view."},
     {"issue_id": "QM2-KI-054", "severity": "medium", "status": "open", "summary": "QM2-R2-004 admitted two research Terminal Features and locked nine Archetype-aware Validation objects, but none passed its unchanged Archetype gate and global 10% BH FDR together; no Survivor, Registry, Fresh Lock or Promotion exists."},
     {"issue_id": "QM2-KI-055", "severity": "high", "status": "open", "summary": "All project-visible market evidence through 2026-07-23 is retrospective-only; no project-level mature Fresh Cohort, Fresh support or Promotion evidence exists."},
-    {"issue_id": "QM2-KI-056", "severity": "medium", "status": "open", "summary": "The first Supervisor Cycle reused the exhausted current Catalog/Program revision and produced zero Retrospective Candidates; later cycles require genuinely new authorized search space."}
+    {"issue_id": "QM2-KI-056", "severity": "medium", "status": "resolved_by_successor", "summary": "The first Supervisor Cycle reused the exhausted Catalog/Program revision and produced zero Retrospective Candidates; QM2-R2-006 supplied and evaluated a genuinely new authorized technical space without relaxing gates."},
+    {"issue_id": "QM2-KI-057", "severity": "medium", "status": "open", "summary": "QM2-R2-006 admitted 20 new unlabeled technical features, but 18 Alpha rounds and 68 formal Qlib calls produced zero Retrospective Candidates under unchanged archetype and FDR gates; no Fresh Lock, Cohort or Promotion exists."}
   ]
 }

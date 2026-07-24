@@ -14,7 +14,11 @@ MAX_ROLLING_WINDOW = 252
 NUMERIC_TYPES = {"double", "float", "float32", "float64", "int8", "int16", "int32", "int64", "uint8", "uint16", "uint32", "uint64"}
 BINARY = {NodeKind.ADD, NodeKind.SUBTRACT, NodeKind.MULTIPLY, NodeKind.DIVIDE}
 UNARY = {NodeKind.NEGATE, NodeKind.ABSOLUTE}
-ROLLING = {NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN, NodeKind.ROLLING_MAX}
+ROLLING = {
+    NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN,
+    NodeKind.ROLLING_MAX, NodeKind.ROLLING_SUM, NodeKind.ROLLING_MEDIAN,
+    NodeKind.ROLLING_SKEW, NodeKind.ROLLING_ARGMAX_AGE,
+}
 
 
 def _bind(template, overrides):
@@ -112,6 +116,26 @@ def compile_template(template: FactorTemplate, contract: SnapshotContract, param
             window = scalar(node.fields["window"], depth + 1)
             if not isinstance(window, int) or not 2 <= window <= MAX_ROLLING_WINDOW or window > contract.date_count:
                 raise AdmissionError(f"{kind.value} window must be integer in [2, min(252, dataset dates)]")
+            return shape, warmup + window - 1
+        if kind is NodeKind.ROLLING_CORR:
+            left, lw = visit(node.fields["left"], depth + 1)
+            right, rw = visit(node.fields["right"], depth + 1)
+            if left is not ValueKind.SERIES or right is not ValueKind.SERIES:
+                raise AdmissionError("rolling_corr requires two series operands")
+            window = scalar(node.fields["window"], depth + 1)
+            if not isinstance(window, int) or not 2 <= window <= MAX_ROLLING_WINDOW or window > contract.date_count:
+                raise AdmissionError("rolling_corr window must be integer in [2, min(252, dataset dates)]")
+            return ValueKind.SERIES, max(lw, rw) + window - 1
+        if kind is NodeKind.ROLLING_QUANTILE:
+            shape, warmup = visit(node.fields["operand"], depth + 1)
+            if shape is not ValueKind.SERIES:
+                raise AdmissionError("rolling_quantile requires a series operand")
+            window = scalar(node.fields["window"], depth + 1)
+            quantile = scalar(node.fields["quantile"], depth + 1)
+            if not isinstance(window, int) or not 2 <= window <= MAX_ROLLING_WINDOW or window > contract.date_count:
+                raise AdmissionError("rolling_quantile window must be integer in [2, min(252, dataset dates)]")
+            if quantile not in (0.20, 0.50, 0.80) or node.fields["quantile"].kind is not NodeKind.CONSTANT:
+                raise AdmissionError("rolling_quantile quantile must be a constant in {0.20, 0.50, 0.80}")
             return shape, warmup + window - 1
         if kind in (NodeKind.CS_RANK, NodeKind.CS_ZSCORE):
             shape, warmup = visit(node.fields["operand"], depth + 1)

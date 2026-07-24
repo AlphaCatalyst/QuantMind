@@ -1,5 +1,12 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R2-006` is completed. Six PIT rolling operators,
+six research-only primitives and Technical Feature Catalog v3 expand the
+bounded technical search space. Factory 002 admits 20 unlabeled features;
+Supervisor Cycle 002 completes 18 Alpha Agent rounds and 68 formal Qlib calls
+with zero Retrospective Candidates, Fresh Locks, Registry writes or Promotions.
+No successor or Cycle 003 is authorized.
+
 Current research task: `QM2-R2-005` is completed. Sixteen formal R1/R2 Runs
 are recorded in the project exposure Ledger through 2026-07-23, and all
 historical evidence is retrospective-only. The first Supervisor Cycle reuses
@@ -68,6 +75,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R2-006 Technical DSL Expansion and Novel Research Space Cycle v1 | completed_uncommitted | P0 | R2-004, R2-005 | Expand bounded PIT operators/primitives, publish Catalog v3 and run Cycle 002 | No new fields/network data, Strategy/Combined Optimization, Promotion or Cycle 003 | Six operators, six primitives, 20 new features, 18 Alpha rounds, 68 Qlib calls, zero Candidates and zero-call replay |
 | QM2-R2-001 Autonomous Factor Research Campaign Orchestrator v1 | completed_uncommitted | P0 | R1-003 through R1-010 | Run bounded multi-round Agent factor research without per-round human planning | No full Factor search, Strategy/Combined optimization, report/Fresh selection evidence, data network, Promotion or production claim | Twelve rounds, 26 Proposals, 20 admissions, three research-only locks, five near misses, healthy Store, cold recovery and zero-call replay |
 | QM2-R1-009 Momentum Tail-Alpha and Selection-Overlay Diagnostic v1 | completed_uncommitted | P0 | R1-008 | Classify immutable Signal D using full cross-section, tail, exposure, stability and report-period diagnostics | No new Factor, Agent/parameter optimization, Top-N selection, Candidate Lock, Registry write or Promotion | Formal-label/forward-return RankIC, deciles, fixed Top-N, 2023 attribution, exposure, stability and decay classify Signal D as regime-specific; recovery and replay pass |
 | QM2-R1-006 Default-first Optimization Governance v2 | completed_uncommitted | P0 | R1-005, R1-005F | Apply default-first Factor/Strategy evaluation, bounded local rescue and suspended combined optimization to new research | No Agent, Optimization Trial, Qlib, Tushare, network, Promotion, historical Artifact or Candidate-state change | Runtime policies, CLI gates, Candidate metadata, four Store artifacts, cold recovery and zero-call replay pass |

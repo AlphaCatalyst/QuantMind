@@ -42,6 +42,7 @@ REPORT_PERIODS = {
 TERMINAL_STATES = {
     "completed_with_survivors", "completed_no_new_feature",
     "completed_no_union_shortlist", "completed_no_validation_survivor",
+    "completed_with_retrospective_survivors",
 }
 
 
@@ -59,8 +60,10 @@ def create_program_spec(*, feature_catalog_v2_id: str, repository_root: Path,
                         spec: ArchetypeAwareAlphaProgramSpecV1 | None = None) -> dict:
     _, repository = _runtime(repository_root, work_root, store_root)
     catalog = repository.identity(feature_catalog_v2_id)
-    if catalog.get("schema_version") != "technical-feature-catalog-v2" or not catalog.get("frozen"):
-        raise ValueError("Technical Feature Catalog v2 must be frozen before Alpha Agent")
+    if catalog.get("schema_version") not in {
+        "technical-feature-catalog-v2", "technical-feature-catalog-v3",
+    } or not catalog.get("frozen"):
+        raise ValueError("Technical Feature Catalog v2/v3 must be frozen before Alpha Agent")
     contract = AlphaArchetypeContractV1().payload(feature_catalog_v2_id)
     contract_receipt = repository.publish(
         "alpha_archetype_contract", contract, {"alpha_archetype_contract.json": contract},
@@ -68,6 +71,7 @@ def create_program_spec(*, feature_catalog_v2_id: str, repository_root: Path,
     )
     chosen = spec or ArchetypeAwareAlphaProgramSpecV1(feature_catalog_v2_id=feature_catalog_v2_id)
     payload = chosen.payload()
+    payload["feature_catalog_version"] = catalog["schema_version"]
     payload["archetype_contract_id"] = contract_receipt["artifact_id"]
     # Program identity includes the immutable Contract reference.
     stable = {key: value for key, value in payload.items() if key != "program_spec_id"}
@@ -89,6 +93,9 @@ def _feature_matrix(repository, catalog: dict, bundle, work_root: Path) -> tuple
     family_features: dict[str, list[str]] = {name: [] for name in (
         "trend_geometry", "drawdown_recovery_geometry", "volatility_shape",
         "liquidity_amount_dynamics", "relative_strength", "path_asymmetry",
+        "price_volume_lead_lag", "intraday_overnight_decomposition",
+        "range_compression_expansion", "drawdown_age_recovery_timing",
+        "return_path_asymmetry", "robust_trend_location",
     )}
     for item in catalog["research_terminal_features"]:
         root = repository.materialize(item["materialized_artifact_id"])
@@ -110,9 +117,20 @@ def _allowed_features(lane_id: str, family_features: dict[str, list[str]], avail
         ) if name in available
     ]
     mapping = {
-        "trend_geometry_lane": ("trend_geometry", "drawdown_recovery_geometry"),
-        "trading_confirmation_lane": ("liquidity_amount_dynamics", "volatility_shape"),
-        "relative_asymmetric_lane": ("relative_strength", "path_asymmetry"),
+        "trend_geometry_lane": (
+            "trend_geometry", "drawdown_recovery_geometry",
+            "drawdown_age_recovery_timing", "robust_trend_location",
+            "range_compression_expansion",
+        ),
+        "trading_confirmation_lane": (
+            "liquidity_amount_dynamics", "volatility_shape",
+            "price_volume_lead_lag", "intraday_overnight_decomposition",
+            "range_compression_expansion",
+        ),
+        "relative_asymmetric_lane": (
+            "relative_strength", "path_asymmetry",
+            "return_path_asymmetry", "robust_trend_location",
+        ),
     }
     generated = [
         name for group in mapping[lane_id] for name in family_features[group] if name in available
@@ -242,7 +260,8 @@ def _local_spaces(proposal: dict) -> dict[str, list[Any]]:
 
 def execute_program(*, program_id: str, repository_root: Path, work_root: Path,
                     store_root: Path | None = None, agent_caller=call_structured_codex,
-                    stop_after_round: int | None = None) -> dict:
+                    stop_after_round: int | None = None,
+                    retrospective_only: bool = False) -> dict:
     bundle, repository = _runtime(repository_root, work_root, store_root)
     spec = repository.identity(program_id)
     if spec.get("schema_version") != "archetype-aware-alpha-program-spec-v1":
@@ -619,8 +638,30 @@ def execute_program(*, program_id: str, repository_root: Path, work_root: Path,
     survivors = sorted(survivors, key=lambda row: row[0]["union_adaptive_rank"])[
         :spec["budgets"]["maximum_final_survivors"]
     ]
-    candidate_ids, fresh_ids, report_rows = [], [], []
+    candidate_ids, fresh_ids, report_rows, retrospective_survivors = [], [], [], []
     for locked, result, validation_id, test in survivors:
+        if retrospective_only:
+            retrospective_survivors.append({
+                "lane_id": locked["lane_id"],
+                "primary_archetype": locked["primary_archetype"],
+                "primary_test_statistic": locked["primary_test_statistic"],
+                "factor_template_id": locked["factor_template_id"],
+                "factor_instance_id": result["factor_instance_id"],
+                "formula": locked["proposal"]["canonical_dsl"],
+                "canonical_ast": locked["proposal"]["canonical_ast"],
+                "parameters": locked["selected_parameters"],
+                "orientation": locked["orientation"],
+                "historical_metrics": result["summary"],
+                "validation_id": validation_id,
+                "adjusted_q_value": test["adjusted_q_value"],
+                "search_exposure": {
+                    "agent_calls": usage["agent_calls"],
+                    "proposals": usage["proposals"],
+                    "admissions": usage["admissions"],
+                    "local_rescue_trials": usage["local_rescue_trials"],
+                },
+            })
+            continue
         candidate = {
             "schema_version": "archetype-alpha-candidate-lock-v1",
             "provider_id": "tushare-pro-v1", "program_id": program_id,
@@ -687,8 +728,10 @@ def execute_program(*, program_id: str, repository_root: Path, work_root: Path,
             lineage=(program_id, receipt["artifact_id"]),
         )
         fresh_ids.append(fresh_receipt["artifact_id"])
-    usage["final_survivors"] = len(candidate_ids)
+    usage["final_survivors"] = len(retrospective_survivors) if retrospective_only else len(candidate_ids)
     state = (
+        "completed_with_retrospective_survivors" if retrospective_survivors
+        else
         "completed_with_survivors" if candidate_ids
         else "completed_no_union_shortlist" if not shortlist
         else "completed_no_validation_survivor"
@@ -707,6 +750,8 @@ def execute_program(*, program_id: str, repository_root: Path, work_root: Path,
             "multiple_testing_id": control_receipt["artifact_id"],
             "validation_failure_ids": failure_ids,
             "candidate_lock_ids": candidate_ids, "fresh_lock_ids": fresh_ids,
+            "retrospective_survivors": retrospective_survivors,
+            "retrospective_only": retrospective_only,
             "contaminated_reports": report_rows,
             "manual_intervention_count": 0,
             "manual_alpha_round_planning_count": 0,
@@ -723,6 +768,7 @@ def execute_program(*, program_id: str, repository_root: Path, work_root: Path,
         "multiple_testing_id": control_receipt["artifact_id"],
         "validation_failure_ids": failure_ids,
         "candidate_lock_ids": candidate_ids, "fresh_lock_ids": fresh_ids,
+        "retrospective_survivors": retrospective_survivors,
         "budget_usage": usage, "store_integrity": repository.integrity(),
     }
 

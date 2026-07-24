@@ -183,7 +183,7 @@ Statuses describe current implementation, not architectural intention.
 | `factor_lab.official_v7_source` | partial | Official V7 donor capabilities; not yet migrated |
 | `quantmind2.project_knowledge` | partial | Bootstrap, Ledger persistence/indexing, strict self-reference-free Manifest v2 production, immutable correction evidence and isolated replay exist; API/UI and production deployment do not |
 | `quantmind2.data_foundation` | implemented | Tushare-only fixed-500 raw/normalized/Feature/Label authority, fixed-100 Qlib view, Artifact Store recovery, purge governance and CLI are implemented; incremental updates are separate |
-| `quantmind2.factor_dsl` | partial | Closed typed AST, strict admission, canonical Template/Instance identities and dataset-aware compiler exist; optimization, Registry and Agent loop do not |
+| `quantmind2.factor_dsl` | partial | Closed typed AST, strict admission, canonical Template/Instance identities, dataset-aware compiler and six accepted PIT rolling operators exist; structure evolution, API and UI do not |
 | `quantmind2.factor_compute` | partial | Deterministic Snapshot-only executor and immutable Factor Values v1 exist; distributed compute, Registry, validation and production consumers do not |
 | `quantmind2.factor_optimization` | partial | Deterministic declared-parameter Study/Trial execution, budgets, mechanical metrics, eligibility, immutable artifacts and replay exist; predictive validation, random/Bayesian search, threshold, Registry/API and distributed execution do not |
 | `quantmind2.optimization_governance` | implemented | Default-first Factor/Strategy policies, one-hop rescue budgets, diagnostic-only full search, suspended combined optimization, Candidate metadata gates, Store artifacts and zero-call replay are enforced for new research |
@@ -199,9 +199,9 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.decision_validator` | planned | Contract/schema exists; no validation service or permission enforcement |
 | `quantmind2.code_orchestrator` | planned | Control responsibilities accepted; no v2 runtime implementation |
 | Remaining QuantMind 2.0 research/data components | planned | Frozen architecture only |
-| `quantmind2.technical_feature_factory` | implemented | Unlabeled bounded Feature Agent, formal PIT grammar, quality/novelty admission, full-period research materialization and immutable Catalog v2 |
-| `quantmind2.archetype_alpha_program` | implemented | Three-Lane default-first Alpha research with pre-registered monotonic/tail tests, locked validation, global BH FDR, recovery and zero-call replay |
-| `quantmind2.autonomous_research_supervisor` | implemented | Project exposure ledger, bounded research queue/cycles, retrospective-candidate boundary, no-backfill Fresh locks/cohorts, archetype-aware Fresh tests, BH FDR, state/cap/stop controls and zero-call replay |
+| `quantmind2.technical_feature_factory` | implemented | Factory v2 combines six accepted rolling operators and six PIT primitives with unlabeled bounded Agent generation, quality/novelty admission, research materialization and immutable Catalog v3 |
+| `quantmind2.archetype_alpha_program` | implemented | Three-Lane default-first Alpha research consumes Catalog v2/v3, freezes monotonic/tail tests, applies locked validation/global BH FDR, and supports retrospective-only survivor output |
+| `quantmind2.autonomous_research_supervisor` | implemented | Cycle 002 consumes the operator, primitive and Feature v3 catalogs, preserves retrospective/Fresh boundaries, applies stop controls, and provides cold recovery/resume/zero-call replay |
 
 `quantmind2.optimization_governance` applies the corrected R1-005 business
 decision without modifying the v1 optimization engines or historical objects.

@@ -1,5 +1,28 @@
 # Current Implementation State
 
+## Technical Research Space Cycle v2 (QM2-R2-006)
+
+- Factor DSL now has six accepted PIT rolling operators: sum, correlation,
+  median, fixed quantile, deterministic skew and most-recent-tie argmax age.
+  Seven wider operators remain explicitly rejected.
+- Primitive Catalog `tpc2_b9f611...7208` materializes six research-only
+  primitives from the existing Tushare authority with no new market request.
+- Factory `technical_feature_factory_002` used 10 Agent calls, emitted 26
+  proposals and admitted/materialized 20 unlabeled novel research features.
+  Frozen Catalog v3 is `tfc3_b903c8...23aea`.
+- Supervisor Cycle 002 `arc2_78b9b6...3266` then ran 18 Alpha Agent rounds
+  and 68 real Qlib calls under unchanged archetype, default-first, locked
+  validation and global FDR rules.
+- No object survived as a Retrospective Candidate, so no Fresh Lock, Cohort,
+  incremental market request, Registry write or Promotion occurred. Status is
+  `waiting_for_fresh_data_or_novel_space`; global stop is not yet active
+  because the Feature dimension was non-empty.
+- Store integrity, cold recovery, terminal resume and exact replay pass; replay
+  has zero Agent, Qlib, Tushare, network, artifact and domain writes.
+- Current task: `QM2-R2-006`.
+- Latest Implementation Run:
+  `QM2-R2-006-20260724T130920Z-e57696b`.
+
 ## Autonomous Research Supervisor v1 (QM2-R2-005)
 
 - All project-visible market evidence through 2026-07-23 is now classified

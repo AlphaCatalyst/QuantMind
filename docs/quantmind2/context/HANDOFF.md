@@ -796,3 +796,19 @@ Supervisor Fresh Locks, Cohorts, observations and Registry writes. Incremental
 data was not requested because no active Supervisor Fresh Candidate exists.
 R1-010 remains an independent Fresh protocol and is not pooled into Supervisor
 Cohort statistics. Promotion requires a separate human-authorized task.
+
+## QM2-R2-006 handoff
+
+Read `TECHNICAL_DSL_OPERATOR_EXTENSION_V1.md` after the R2-004 and R2-005
+contracts. Six rolling operators and six PIT primitives are now the accepted
+bounded technical extension. Factory 002 produced Catalog v3
+`tfc3_b903c85e...23aea` from 10 Agent calls, 26 proposals and 20 unlabeled
+admissions/materializations.
+
+Supervisor Cycle 002 `arc2_78b9b6c...3266` consumed Catalog v3 and completed
+18 Alpha Agent rounds plus 68 formal Qlib calls. It produced no Retrospective
+Candidate, Fresh Lock or Cohort. Historical evidence remains
+`retrospective_research_only`; no Registry or Promotion write occurred.
+Terminal status is `waiting_for_fresh_data_or_novel_space`, Store integrity is
+healthy, and cold recovery/resume/exact replay return all call/write counters
+as zero. No successor task is authorized.

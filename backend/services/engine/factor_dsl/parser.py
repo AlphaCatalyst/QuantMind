@@ -12,7 +12,11 @@ NAME_RE = re.compile(r"^[A-Za-z][A-Za-z0-9_.-]{0,127}$")
 SECRET_RE = re.compile(r"(?i)(password|passwd|api[_-]?key|access[_-]?token|private[_-]?key)\s*[:=]")
 BINARY = {NodeKind.ADD, NodeKind.SUBTRACT, NodeKind.MULTIPLY, NodeKind.DIVIDE}
 UNARY = {NodeKind.NEGATE, NodeKind.ABSOLUTE, NodeKind.CS_RANK, NodeKind.CS_ZSCORE}
-ROLLING = {NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN, NodeKind.ROLLING_MAX}
+ROLLING = {
+    NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN,
+    NodeKind.ROLLING_MAX, NodeKind.ROLLING_SUM, NodeKind.ROLLING_MEDIAN,
+    NodeKind.ROLLING_SKEW, NodeKind.ROLLING_ARGMAX_AGE,
+}
 PARAMETER_REQUIRED_FIELDS = frozenset({"name", "type", "default", "minimum", "maximum"})
 PARAMETER_OPTIONAL_FIELDS = frozenset({"step"})
 
@@ -75,6 +79,20 @@ def _parse_node(obj, active):
         if kind in ROLLING:
             _exact(obj, {"type", "operand", "window"}, where=kind.value)
             return ExpressionNode(kind, {"operand": _parse_node(obj["operand"], active), "window": _parse_node(obj["window"], active)})
+        if kind is NodeKind.ROLLING_CORR:
+            _exact(obj, {"type", "left", "right", "window"}, where=kind.value)
+            return ExpressionNode(kind, {
+                "left": _parse_node(obj["left"], active),
+                "right": _parse_node(obj["right"], active),
+                "window": _parse_node(obj["window"], active),
+            })
+        if kind is NodeKind.ROLLING_QUANTILE:
+            _exact(obj, {"type", "operand", "window", "quantile"}, where=kind.value)
+            return ExpressionNode(kind, {
+                "operand": _parse_node(obj["operand"], active),
+                "window": _parse_node(obj["window"], active),
+                "quantile": _parse_node(obj["quantile"], active),
+            })
         raise TemplateValidationError(f"unsupported node type: {kind.value}")
     finally:
         active.remove(marker)

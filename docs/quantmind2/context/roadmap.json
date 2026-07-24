@@ -1,12 +1,29 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T11:10:10Z",
-  "source_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
+  "generated_at": "2026-07-24T13:09:20Z",
+  "source_commit": "e57696b977ee21fbca6d3e7fa01ce4bc434ef49f",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "items": [
+    {
+      "task_id": "QM2-R2-006",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": [
+        "QM2-R2-004",
+        "QM2-R2-005"
+      ],
+      "objective": "Expand the bounded PIT technical DSL and primitive space, publish Feature Catalog v3, and execute Supervisor Research Cycle 002.",
+      "explicit_non_goals": [
+        "No new market fields or Tushare calls",
+        "No Strategy or Combined Optimization",
+        "No automatic Promotion",
+        "No Cycle 003"
+      ],
+      "acceptance_summary": "Six operators and six primitives are authorized, Factory 002 admits 20 unlabeled features, Cycle 002 completes 18 Alpha rounds and 68 Qlib calls with zero candidates, and recovery/resume/replay are clean."
+    },
     {
       "task_id": "QM2-R2-001",
       "status": "completed_uncommitted",

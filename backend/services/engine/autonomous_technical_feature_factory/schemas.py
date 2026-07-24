@@ -94,3 +94,42 @@ def feature_agent_schema() -> dict:
         },
         "required": ["decision_id", "proposals"], "$defs": {"node": node},
     }
+
+
+def feature_agent_schema_v2() -> dict:
+    schema = feature_agent_schema()
+    node = schema["$defs"]["node"]
+    base = {"type": "object", "additionalProperties": False}
+    node["anyOf"].extend([
+        *[
+            base | {
+                "properties": {
+                    "type": {"const": kind}, "operand": {"$ref": "#/$defs/node"},
+                    "window": {"type": "integer", "enum": [5, 10, 20, 40, 60, 120]},
+                },
+                "required": ["type", "operand", "window"],
+            }
+            for kind in (
+                "rolling_sum", "rolling_median", "rolling_skew", "rolling_argmax_age",
+            )
+        ],
+        base | {
+            "properties": {
+                "type": {"const": "rolling_corr"},
+                "left": {"$ref": "#/$defs/node"},
+                "right": {"$ref": "#/$defs/node"},
+                "window": {"type": "integer", "enum": [5, 10, 20, 40, 60, 120]},
+            },
+            "required": ["type", "left", "right", "window"],
+        },
+        base | {
+            "properties": {
+                "type": {"const": "rolling_quantile"},
+                "operand": {"$ref": "#/$defs/node"},
+                "window": {"type": "integer", "enum": [5, 10, 20, 40, 60, 120]},
+                "quantile": {"type": "number", "enum": [0.20, 0.50, 0.80]},
+            },
+            "required": ["type", "operand", "window", "quantile"],
+        },
+    ])
+    return schema

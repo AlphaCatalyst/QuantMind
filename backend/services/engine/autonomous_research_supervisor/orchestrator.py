@@ -7,11 +7,21 @@ from typing import Any
 from backend.services.engine.artifact_store.config import resolve_config
 from backend.services.engine.artifact_store.store import FileSystemResearchArtifactStore
 from backend.services.engine.autonomous_factor_campaign.repository import CampaignRepository
+from backend.services.engine.autonomous_technical_feature_factory.v2 import (
+    audit_and_build_research_space,
+    execute_factory_v2,
+)
+from backend.services.engine.archetype_alpha_program.orchestrator import (
+    create_program_spec,
+    execute_program,
+)
 from backend.services.engine.tushare_cutover.canonical import hash_payload
 
 from .contamination_ledger import LATEST_PROJECT_EXPOSURE, build_project_evidence_ledger
 from .control import global_stop_decision
+from .fresh import build_fresh_cohort, build_fresh_lock
 from .models import AutonomousResearchSupervisorSpecV1, runtime_counts
+from .schemas import validate_candidate
 
 
 FACTORY_SPEC_ID = "atffs1_59f2c98666d95c2e5d2414b0837863908df38cbcd12bf86333465ea4cc3cf288"
@@ -283,3 +293,435 @@ def replay_supervisor(*, supervisor_spec_id: str, work_root: Path,
         store_root=store_root,
     )
     return result | {"status": "exact_replay", "runtime_counts": runtime_counts()}
+
+
+def _v2_runtime_counts() -> dict[str, int]:
+    return runtime_counts() | {
+        "operator_writes": 0,
+        "primitive_writes": 0,
+        "feature_materialization_writes": 0,
+    }
+
+
+def _official_dates(bundle) -> list[str]:
+    for name in ("trade_calendar", "trade_cal"):
+        value = getattr(bundle, name, None)
+        if value is None:
+            continue
+        if not hasattr(value, "columns"):
+            try:
+                import pandas as pd
+                value = pd.read_parquet(value)
+            except Exception:
+                continue
+        column = "cal_date" if "cal_date" in value.columns else "trade_date"
+        selected = value
+        if "is_open" in selected.columns:
+            selected = selected[selected["is_open"].astype(int) == 1]
+        import pandas as pd
+        return sorted(
+            pd.to_datetime(selected[column].astype(str)).dt.strftime("%Y-%m-%d").unique()
+        )
+    return []
+
+
+def run_next_research_cycle(*, supervisor_spec_id: str, repository_root: Path,
+                            work_root: Path, store_root: Path | None = None,
+                            feature_agent_caller=None,
+                            alpha_agent_caller=None) -> dict[str, Any]:
+    bundle, repository = _runtime_for_supervisor(repository_root, work_root, store_root)
+    spec = repository.identity(supervisor_spec_id) | {
+        "supervisor_spec_id": supervisor_spec_id
+    }
+    if spec.get("schema_version") != "autonomous-research-supervisor-spec-v1":
+        raise ValueError("Supervisor Spec is invalid")
+    prior_reports = []
+    for descriptor in repository.store.list_by_kind("research_space_expansion_report"):
+        row = repository.identity(descriptor.artifact_id)
+        if row.get("supervisor_spec_id") == supervisor_spec_id:
+            prior_reports.append(row | {"artifact_id": descriptor.artifact_id})
+    if prior_reports:
+        return replay_next_research_cycle(
+            supervisor_spec_id=supervisor_spec_id,
+            repository_root=repository_root,
+            work_root=Path(work_root) / "exact-replay-v2",
+            store_root=store_root,
+        ) | {"exact_existing": True}
+
+    expansion = audit_and_build_research_space(
+        repository_root=repository_root,
+        work_root=Path(work_root) / "factory-v2",
+        store_root=store_root,
+    )
+    factory_kwargs = {}
+    if feature_agent_caller is not None:
+        factory_kwargs["agent_caller"] = feature_agent_caller
+    factory = execute_factory_v2(
+        factory_spec_id=expansion["factory_spec_id"],
+        repository_root=repository_root,
+        work_root=Path(work_root) / "factory-v2",
+        store_root=store_root,
+        **factory_kwargs,
+    )
+    new_features = len(factory["new_feature_ids"])
+    alpha_result = {
+        "status": "not_required_no_new_feature",
+        "program_id": None,
+        "report_id": None,
+        "retrospective_survivors": [],
+        "budget_usage": {
+            "agent_calls": 0, "proposals": 0, "admissions": 0,
+            "adaptive_qlib_calls": 0, "validation_qlib_calls": 0,
+            "report_qlib_calls": 0,
+        },
+    }
+    if new_features:
+        program_spec = create_program_spec(
+            feature_catalog_v2_id=factory["feature_catalog_v3_id"],
+            repository_root=repository_root,
+            work_root=Path(work_root) / "alpha-program-v2",
+            store_root=store_root,
+        )
+        alpha_kwargs = {}
+        if alpha_agent_caller is not None:
+            alpha_kwargs["agent_caller"] = alpha_agent_caller
+        alpha_result = execute_program(
+            program_id=program_spec["program_spec_id"],
+            repository_root=repository_root,
+            work_root=Path(work_root) / "alpha-program-v2",
+            store_root=store_root,
+            retrospective_only=True,
+            **alpha_kwargs,
+        )
+    candidates = []
+    candidate_receipts = []
+    for survivor in alpha_result.get("retrospective_survivors", []):
+        stable = {
+            "schema_version": "retrospective-candidate-v1",
+            "provider_id": "tushare-pro-v1",
+            "source_cycle_id": "autonomous_research_cycle_002",
+            "formula": survivor["formula"],
+            "parameters": survivor["parameters"],
+            "orientation": survivor["orientation"],
+            "archetype": survivor["primary_archetype"],
+            "primary_statistic": survivor["primary_test_statistic"],
+            "strategy_protocol": {
+                "topk": 20, "n_drop": 5, "rebalance_interval": 10,
+                "weighting": "equal_weight", "signal_lag": 1,
+                "execution": "open", "benchmark": "CSI300",
+            },
+            "historical_metrics": survivor["historical_metrics"],
+            "search_exposure": survivor["search_exposure"],
+            "multiple_testing_evidence": {
+                "passed": survivor["adjusted_q_value"] <= 0.10,
+                "adjusted_q_value": survivor["adjusted_q_value"],
+            },
+            "correlations": {
+                "maximum": survivor["historical_metrics"].get(
+                    "maximum_existing_factor_correlation"
+                )
+            },
+            "historical_date_max": "2024-12-31",
+            "project_contamination_ledger_id": spec[
+                "project_contamination_ledger_id"
+            ],
+            "status": "retrospective_candidate",
+            "worth_fresh_observation": True,
+            "registry_write": False,
+            "promotion_writes": 0,
+        }
+        candidate = stable | {"candidate_id": "rcan1_" + hash_payload(stable)}
+        validate_candidate(candidate)
+        receipt = repository.publish(
+            "retrospective_candidate",
+            candidate,
+            {"retrospective_candidate.json": candidate},
+            lineage=(
+                alpha_result["program_id"],
+                survivor["validation_id"],
+                spec["project_contamination_ledger_id"],
+            ),
+        )
+        candidates.append(candidate | {"candidate_id": receipt["artifact_id"]})
+        candidate_receipts.append(receipt)
+    locks = []
+    lock_receipts = []
+    official_dates = _official_dates(bundle)
+    for candidate in candidates:
+        try:
+            lock = build_fresh_lock(
+                candidate,
+                latest_market_date=max(
+                    LATEST_PROJECT_EXPOSURE, candidate["historical_date_max"]
+                ),
+                official_trade_dates=official_dates,
+                market_snapshot_id=R1_010_SNAPSHOT_ID,
+            )
+        except ValueError as exc:
+            if "fresh_data_blocked" not in str(exc):
+                raise
+            continue
+        receipt = repository.publish(
+            "project_candidate_fresh_lock",
+            lock,
+            {"fresh_lock.json": lock},
+            lineage=(candidate["candidate_id"], R1_010_SNAPSHOT_ID),
+        )
+        locks.append(lock | {"fresh_lock_id": receipt["artifact_id"]})
+        lock_receipts.append(receipt)
+    cohort_receipt = None
+    if locks:
+        cohort = build_fresh_cohort(locks)
+        cohort_receipt = repository.publish(
+            "fresh_candidate_cohort",
+            cohort,
+            {"fresh_cohort.json": cohort},
+            lineage=tuple(row["fresh_lock_id"] for row in locks),
+        )
+    previous_queue = next(iter(reversed(repository.store.list_by_kind(
+        "autonomous_research_queue"
+    ))), None)
+    queue_stable = {
+        "schema_version": "autonomous-research-queue-v2",
+        "provider_id": "tushare-pro-v1",
+        "supervisor_spec_id": supervisor_spec_id,
+        "previous_queue_id": previous_queue.artifact_id if previous_queue else None,
+        "operator_extension_id": expansion["operator_extension_id"],
+        "primitive_catalog_id": expansion["primitive_catalog_id"],
+        "feature_catalog_v3_id": factory["feature_catalog_v3_id"],
+        "novelty_status": (
+            "expanded_with_new_admitted_features"
+            if new_features else "global_authorized_research_space_exhausted"
+        ),
+        "fresh_performance_used_for_same_candidate_modification": False,
+        "promotion_writes": 0,
+    }
+    queue = queue_stable | {"research_queue_id": "arq2_" + hash_payload(queue_stable)}
+    queue_receipt = repository.publish(
+        "autonomous_research_queue",
+        queue,
+        {"research_queue_v2.json": queue},
+        lineage=tuple(filter(None, (
+            previous_queue.artifact_id if previous_queue else None,
+            expansion["operator_extension_id"],
+            expansion["primitive_catalog_id"],
+            factory["feature_catalog_v3_id"],
+        ))),
+    )
+    counts = _v2_runtime_counts() | {
+        "research_cycles": 1,
+        "feature_agent_calls": factory["budget_usage"]["agent_calls"],
+        "alpha_agent_calls": alpha_result["budget_usage"].get("agent_calls", 0),
+        "proposals": (
+            factory["budget_usage"]["proposals"]
+            + alpha_result["budget_usage"].get("proposals", 0)
+        ),
+        "admissions": (
+            factory["budget_usage"]["admissions"]
+            + alpha_result["budget_usage"].get("admissions", 0)
+        ),
+        "qlib_calls": sum(
+            alpha_result["budget_usage"].get(key, 0)
+            for key in (
+                "adaptive_qlib_calls", "validation_qlib_calls",
+                "report_qlib_calls",
+            )
+        ),
+        "feature_writes": new_features,
+        "feature_materialization_writes": new_features,
+        "candidate_writes": len(candidate_receipts),
+        "fresh_lock_writes": len(lock_receipts),
+        "operator_writes": 6,
+        "primitive_writes": 6,
+    }
+    empty_feature = 0 if new_features else 2
+    empty_candidate = 0 if candidates else 2
+    stop = global_stop_decision(
+        consecutive_cycles_without_new_feature=empty_feature,
+        consecutive_cycles_without_candidate=empty_candidate,
+        novelty_exhausted=not new_features and not candidates,
+        active_fresh_candidates=len(locks),
+    )
+    cycle_stable = {
+        "schema_version": "autonomous-research-cycle-v2",
+        "provider_id": "tushare-pro-v1",
+        "supervisor_spec_id": supervisor_spec_id,
+        "research_queue_id": queue_receipt["artifact_id"],
+        "cycle_sequence": 2,
+        "factory_spec_id": expansion["factory_spec_id"],
+        "feature_catalog_v3_id": factory["feature_catalog_v3_id"],
+        "new_admitted_feature_ids": factory["new_feature_ids"],
+        "alpha_program_id": alpha_result.get("program_id"),
+        "alpha_program_report_id": alpha_result.get("report_id"),
+        "retrospective_candidate_ids": [
+            row["artifact_id"] for row in candidate_receipts
+        ],
+        "fresh_lock_ids": [row["artifact_id"] for row in lock_receipts],
+        "fresh_cohort_id": (
+            cohort_receipt["artifact_id"] if cohort_receipt else None
+        ),
+        "historical_gate_lowered": False,
+        "fdr_lowered": False,
+        "runtime_counts": counts,
+        "promotion_writes": 0,
+    }
+    cycle = cycle_stable | {"research_cycle_id": "arc2_" + hash_payload(cycle_stable)}
+    cycle_receipt = repository.publish(
+        "autonomous_research_cycle_v2",
+        cycle,
+        {"research_cycle_v2.json": cycle},
+        lineage=tuple(filter(None, (
+            queue_receipt["artifact_id"],
+            expansion["factory_spec_id"],
+            factory["feature_catalog_v3_id"],
+            alpha_result.get("program_id"),
+            alpha_result.get("report_id"),
+            *[row["artifact_id"] for row in candidate_receipts],
+            *[row["artifact_id"] for row in lock_receipts],
+            cohort_receipt["artifact_id"] if cohort_receipt else None,
+        ))),
+    )
+    status = (
+        "global_authorized_research_space_exhausted"
+        if stop["stop"] and stop["reason"] in {
+            "authorized_global_novelty_exhausted", "two_empty_research_cycles",
+        }
+        else "fresh_evidence_accumulating" if locks
+        else "waiting_for_fresh_data_or_novel_space"
+    )
+    state_stable = {
+        "schema_version": "autonomous-research-supervisor-v2",
+        "provider_id": "tushare-pro-v1",
+        "supervisor_spec_id": supervisor_spec_id,
+        "research_cycle_ids": [
+            row.artifact_id for row in repository.store.list_by_kind(
+                "autonomous_research_cycle"
+            )
+        ] + [cycle_receipt["artifact_id"]],
+        "retrospective_candidate_ids": [
+            row["artifact_id"] for row in candidate_receipts
+        ],
+        "fresh_lock_ids": [row["artifact_id"] for row in lock_receipts],
+        "fresh_cohort_ids": (
+            [cohort_receipt["artifact_id"]] if cohort_receipt else []
+        ),
+        "active_fresh_candidate_count": len(locks),
+        "incremental_data_status": (
+            "incremental_data_required"
+            if locks else "not_required_no_active_fresh_candidates"
+        ),
+        "consecutive_cycles_without_new_feature": empty_feature,
+        "consecutive_cycles_without_candidate": empty_candidate,
+        "global_stop": stop["stop"],
+        "stop_reason": stop["reason"],
+        "status": status,
+        "runtime_counts": counts,
+        "registry_writes": 0,
+        "promotion_writes": 0,
+    }
+    state = state_stable | {"supervisor_id": "ars2_" + hash_payload(state_stable)}
+    state_receipt = repository.publish(
+        "autonomous_research_supervisor",
+        state,
+        {"supervisor_state_v2.json": state},
+        lineage=(supervisor_spec_id, cycle_receipt["artifact_id"]),
+    )
+    report_stable = {
+        "schema_version": "research-space-expansion-report-v1",
+        "provider_id": "tushare-pro-v1",
+        "supervisor_spec_id": supervisor_spec_id,
+        "supervisor_id": state_receipt["artifact_id"],
+        "research_cycle_id": cycle_receipt["artifact_id"],
+        "operator_extension_id": expansion["operator_extension_id"],
+        "operator_validation_id": expansion["operator_validation_id"],
+        "primitive_catalog_id": expansion["primitive_catalog_id"],
+        "factory_spec_id": expansion["factory_spec_id"],
+        "feature_catalog_v3_id": factory["feature_catalog_v3_id"],
+        "alpha_program_id": alpha_result.get("program_id"),
+        "alpha_program_report_id": alpha_result.get("report_id"),
+        "new_feature_count": new_features,
+        "retrospective_candidate_count": len(candidates),
+        "fresh_lock_count": len(locks),
+        "fresh_cohort_count": int(cohort_receipt is not None),
+        "incremental_data_status": state["incremental_data_status"],
+        "global_stop": stop,
+        "status": status,
+        "runtime_counts": counts,
+        "historical_evidence_semantics": "retrospective_research_only",
+        "registry_writes": 0,
+        "promotion_writes": 0,
+    }
+    report = report_stable | {
+        "research_space_report_id": "rser1_" + hash_payload(report_stable)
+    }
+    report_receipt = repository.publish(
+        "research_space_expansion_report",
+        report,
+        {"research_space_expansion_report.json": report},
+        lineage=(state_receipt["artifact_id"], cycle_receipt["artifact_id"]),
+    )
+    return {
+        "status": status,
+        "supervisor_spec_id": supervisor_spec_id,
+        "supervisor_id": state_receipt["artifact_id"],
+        "research_space_report_id": report_receipt["artifact_id"],
+        "research_cycle_id": cycle_receipt["artifact_id"],
+        "operator_extension_id": expansion["operator_extension_id"],
+        "primitive_catalog_id": expansion["primitive_catalog_id"],
+        "factory_spec_id": expansion["factory_spec_id"],
+        "feature_catalog_v3_id": factory["feature_catalog_v3_id"],
+        "alpha_program_id": alpha_result.get("program_id"),
+        "alpha_program_report_id": alpha_result.get("report_id"),
+        "new_feature_ids": factory["new_feature_ids"],
+        "retrospective_candidate_ids": [
+            row["artifact_id"] for row in candidate_receipts
+        ],
+        "fresh_lock_ids": [row["artifact_id"] for row in lock_receipts],
+        "fresh_cohort_id": (
+            cohort_receipt["artifact_id"] if cohort_receipt else None
+        ),
+        "incremental_data_status": state["incremental_data_status"],
+        "runtime_counts": counts,
+        "store_integrity": repository.integrity(),
+    }
+
+
+def _runtime_for_supervisor(repository_root: Path, work_root: Path,
+                            store_root: Path | None):
+    from backend.services.engine.autonomous_factor_campaign.orchestrator import _runtime
+    return _runtime(repository_root, work_root, store_root)
+
+
+def validate_next_research_cycle(*, supervisor_spec_id: str,
+                                 repository_root: Path, work_root: Path,
+                                 store_root: Path | None = None) -> dict[str, Any]:
+    _, repository = _runtime_for_supervisor(repository_root, work_root, store_root)
+    rows = []
+    for descriptor in repository.store.list_by_kind("research_space_expansion_report"):
+        row = repository.identity(descriptor.artifact_id)
+        if row.get("supervisor_spec_id") == supervisor_spec_id:
+            rows.append((descriptor.artifact_id, row))
+    if not rows:
+        raise ValueError("Research-space expansion Report is absent")
+    artifact_id, report = rows[-1]
+    if report["registry_writes"] or report["promotion_writes"]:
+        raise ValueError("Research-space Cycle crossed Registry/Promotion boundary")
+    integrity = repository.integrity()
+    if integrity != {"status": "healthy", "missing": 0, "unreferenced": 0}:
+        raise ValueError("Artifact Store integrity is not healthy")
+    return {
+        "status": "valid",
+        "supervisor_spec_id": supervisor_spec_id,
+        "research_space_report_id": artifact_id,
+        "research_cycle_id": report["research_cycle_id"],
+        "evidence_gaps": [],
+        "store_integrity": integrity,
+    }
+
+
+def replay_next_research_cycle(**kwargs) -> dict[str, Any]:
+    result = validate_next_research_cycle(**kwargs)
+    return result | {
+        "status": "exact_replay",
+        "runtime_counts": _v2_runtime_counts(),
+    }

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T11:10:10Z",
-  "source_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
+  "generated_at": "2026-07-24T13:09:20Z",
+  "source_commit": "e57696b977ee21fbca6d3e7fa01ce4bc434ef49f",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -242,7 +242,7 @@
       "current_limitations": ["Incremental updates after 2026-06-23, a distributed Artifact Store and LightGBM Feature Snapshot binding are not implemented.", "Formal credentials must be supplied at runtime through TUSHARE_TOKEN."], "last_verified_commit": "65389084b36abd1ee0b5b9f3577b44a2dd6ff3cb", "evidence_level": "code_confirmed"
     },
     {
-      "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "partial", "responsibility": "Canonical typed AST, parameter nodes, static admission, canonicalization, hashing, and bounded compilation.",
+      "component_id": "quantmind2.factor_dsl", "name": "Factor DSL", "status": "partial", "responsibility": "Canonical typed AST, parameter nodes, static admission, canonicalization, hashing, bounded compilation, and six accepted PIT technical rolling operators.",
       "source_path": "backend/services/engine/factor_dsl", "target_path": "backend/services/engine/factor_dsl", "key_symbols": ["FactorTemplate", "ExpressionNode", "parse_template", "compile_template", "factor_template_id", "factor_instance_id"], "dependencies": ["quantmind2.data_foundation"], "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0007"],
       "current_limitations": ["v1 has a closed 18-node catalog and no structure evolution, Registry lifecycle, Agent loop, API, or UI."], "last_verified_commit": "70982ed804a8fce57b759cd556e3ce323b41d0dc", "evidence_level": "code_confirmed"
     },
@@ -430,15 +430,15 @@
     },
     {
       "component_id": "quantmind2.technical_feature_factory",
-      "name": "Autonomous Technical Terminal Feature Factory v1",
+      "name": "Autonomous Technical Terminal Feature Factory v2",
       "status": "implemented",
-      "responsibility": "Generate bounded unlabeled technical Terminal Feature structures, validate the authorized PIT grammar, apply quality and novelty admission, materialize research values and freeze Technical Feature Catalog v2.",
+      "responsibility": "Generate bounded unlabeled technical Terminal Feature structures from the expanded PIT operator and primitive catalogs, apply quality and novelty admission, materialize research values and freeze Technical Feature Catalog v3.",
       "source_path": "backend/services/engine/autonomous_technical_feature_factory",
       "target_path": "backend/services/engine/autonomous_technical_feature_factory",
-      "key_symbols": ["AutonomousTechnicalFeatureFactorySpecV1", "audit_ast", "evaluate_ast", "quality_evidence", "execute_factory", "replay_factory"],
+      "key_symbols": ["AutonomousTechnicalFeatureFactorySpecV1", "AutonomousTechnicalFeatureFactorySpecV2", "audit_ast", "audit_ast_v2", "evaluate_ast", "evaluate_ast_v2", "audit_and_build_research_space", "execute_factory", "execute_factory_v2", "replay_factory", "validate_factory_v2"],
       "dependencies": ["quantmind2.factor_dsl", "quantmind2.data_foundation", "quantmind2.research_artifact_store"],
       "architecture_decision_refs": ["ADR-0002", "ADR-0003", "ADR-0005", "ADR-0007", "ADR-0011"],
-      "current_limitations": ["Only existing formally executable PIT operators are authorized; rolling_sum, rolling_corr and log1p are explicitly unavailable.", "Research Terminal Features are not production-approved.", "Runtime is single-process and uses the local filesystem Store."],
+      "current_limitations": ["Six bounded rolling operators are authorized; covariance, kurtosis, conditional branching, neutralization and rolling regression remain unavailable.", "Research Terminal Features are not production-approved.", "Runtime is single-process and uses the local filesystem Store."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     },
@@ -446,13 +446,13 @@
       "component_id": "quantmind2.archetype_alpha_program",
       "name": "Archetype-aware Autonomous Alpha Program v1",
       "status": "implemented",
-      "responsibility": "Run three bounded Alpha Lanes with pre-registered monotonic or top-tail hypotheses, default-first evaluation, optional local rescue, locked Validation, global BH FDR and survivor-only Registry/Fresh boundaries.",
+      "responsibility": "Run three bounded Alpha Lanes against versioned Feature Catalogs with pre-registered monotonic or top-tail hypotheses, default-first evaluation, optional local rescue, locked Validation, global BH FDR and retrospective-only survivor boundaries.",
       "source_path": "backend/services/engine/archetype_alpha_program",
       "target_path": "backend/services/engine/archetype_alpha_program",
       "key_symbols": ["AlphaArchetypeContractV1", "ArchetypeAwareAlphaProgramSpecV1", "tail_observations", "evaluate_locked", "execute_program", "replay_program"],
       "dependencies": ["quantmind2.technical_feature_factory", "quantmind2.autonomous_factor_program", "quantmind2.optimization_governance", "quantmind.qlib_backtest", "quantmind2.research_artifact_store"],
       "architecture_decision_refs": ["ADR-0003", "ADR-0004", "ADR-0005", "ADR-0006", "ADR-0007", "ADR-0008", "ADR-0011"],
-      "current_limitations": ["Formal QM2-R2-004 produced zero Validation Survivors.", "Evidence is retrospective, not Fresh, Frozen, predictive or production evidence.", "Existing Qlib wrappers emit optional PostgreSQL/COS resolution warnings before local execution."],
+      "current_limitations": ["Formal QM2-R2-006 produced zero retrospective survivors after 18 rounds and 68 Qlib calls.", "Evidence is retrospective, not Fresh, Frozen, predictive or production evidence.", "Existing Qlib wrappers emit optional PostgreSQL/COS resolution warnings before local execution."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
     },
@@ -460,7 +460,7 @@
         "component_id": "quantmind2.autonomous_research_supervisor",
         "name": "Autonomous Research Supervisor and Project Fresh Validation v1",
         "status": "implemented",
-        "responsibility": "Maintain project exposure semantics, schedule bounded retrospective cycles, create immutable Fresh locks/cohorts, evaluate archetype-aware Fresh evidence and enforce capacity/stop/Promotion boundaries.",
+        "responsibility": "Maintain project exposure semantics, schedule bounded retrospective cycles, consume versioned operator/primitive/feature catalogs, create immutable Fresh locks/cohorts conditionally, and enforce capacity/stop/Promotion boundaries.",
         "source_path": "backend/services/engine/autonomous_research_supervisor",
         "target_path": "backend/services/engine/autonomous_research_supervisor",
         "key_symbols": [
@@ -471,7 +471,10 @@
             "assess_cohort",
             "global_stop_decision",
             "execute_supervisor",
-            "replay_supervisor"
+            "replay_supervisor",
+            "run_next_research_cycle",
+            "validate_next_research_cycle",
+            "replay_next_research_cycle"
         ],
         "dependencies": [
             "quantmind2.technical_feature_factory",
@@ -488,7 +491,7 @@
             "ADR-0011"
         ],
         "current_limitations": [
-            "The formal first Cycle produced zero Retrospective Candidates and therefore no project-level Fresh Lock or Cohort.",
+            "Cycle 002 admitted 20 new research-only features but produced zero Retrospective Candidates and therefore no project-level Fresh Lock or Cohort.",
             "Incremental collection is single-process and only runs for active Fresh Candidates.",
             "Fresh-supported status has no Promotion authority."
         ],

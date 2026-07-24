@@ -18,6 +18,12 @@ class NodeKind(str, Enum):
     ROLLING_STD = "rolling_std"
     ROLLING_MIN = "rolling_min"
     ROLLING_MAX = "rolling_max"
+    ROLLING_SUM = "rolling_sum"
+    ROLLING_CORR = "rolling_corr"
+    ROLLING_MEDIAN = "rolling_median"
+    ROLLING_QUANTILE = "rolling_quantile"
+    ROLLING_SKEW = "rolling_skew"
+    ROLLING_ARGMAX_AGE = "rolling_argmax_age"
     CS_RANK = "cs_rank"
     CS_ZSCORE = "cs_zscore"
 

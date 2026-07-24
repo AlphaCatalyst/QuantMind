@@ -75,6 +75,14 @@ KINDS = {
     "fresh_cohort_multiple_testing": ("fresh_multiple_testing_id", "fcmt1_"),
     "fresh_candidate_assessment": ("fresh_assessment_id", "fca1_"),
     "autonomous_research_supervisor_report": ("supervisor_report_id", "arsr1_"),
+    "technical_dsl_operator_extension": ("operator_extension_id", "tdoe1_"),
+    "technical_dsl_operator_validation": ("operator_validation_id", "tdov1_"),
+    "technical_primitive_catalog": ("primitive_catalog_id", "tpc2_"),
+    "technical_primitive_materialization": ("primitive_materialization_id", "tpm2_"),
+    "autonomous_technical_feature_factory_spec_v2": ("factory_spec_id", "atffs2_"),
+    "technical_feature_catalog_v3": ("feature_catalog_v3_id", "tfc3_"),
+    "autonomous_research_cycle_v2": ("research_cycle_id", "arc2_"),
+    "research_space_expansion_report": ("research_space_report_id", "rser1_"),
 }
 
 

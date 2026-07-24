@@ -15,7 +15,16 @@ from backend.services.engine.artifact_store.config import resolve_config  # noqa
 from backend.services.engine.artifact_store.store import FileSystemResearchArtifactStore  # noqa: E402
 from backend.services.engine.autonomous_factor_campaign.repository import CampaignRepository  # noqa: E402
 from backend.services.engine.autonomous_technical_feature_factory import (  # noqa: E402
-    create_factory_spec, execute_factory, inspect_factory, replay_factory, validate_factory,
+    audit_and_build_research_space,
+    create_factory_spec,
+    execute_factory,
+    execute_factory_v2,
+    inspect_factory,
+    inspect_factory_v2,
+    replay_factory,
+    replay_factory_v2,
+    validate_factory,
+    validate_factory_v2,
 )
 
 
@@ -25,7 +34,13 @@ def parser() -> argparse.ArgumentParser:
     value.add_argument("--work-root", type=Path, default=Path("/private/tmp/qm2-r2-004-feature-factory"))
     commands = value.add_subparsers(dest="command", required=True)
     commands.add_parser("create-spec")
+    commands.add_parser("audit-operators")
+    commands.add_parser("build-primitives")
+    commands.add_parser("create-v2-factory-spec")
     for name in ("validate-spec", "plan", "execute", "resume", "validate-factory", "replay"):
+        command = commands.add_parser(name)
+        command.add_argument("--factory-spec-id", required=True)
+    for name in ("validate-operator", "execute-v2-factory", "inspect-catalog-v3"):
         command = commands.add_parser(name)
         command.add_argument("--factory-spec-id", required=True)
     for name in (
@@ -49,6 +64,16 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.command == "create-spec":
             result = create_factory_spec(**common)
+        elif args.command in {
+            "audit-operators", "build-primitives", "create-v2-factory-spec",
+        }:
+            result = audit_and_build_research_space(**common)
+        elif args.command == "execute-v2-factory":
+            result = execute_factory_v2(factory_spec_id=args.factory_spec_id, **common)
+        elif args.command == "validate-operator":
+            result = validate_factory_v2(factory_spec_id=args.factory_spec_id, **common)
+        elif args.command == "inspect-catalog-v3":
+            result = inspect_factory_v2(factory_spec_id=args.factory_spec_id, **common)
         elif args.command == "validate-spec":
             result = _repository(args).identity(args.factory_spec_id) | {"status": "valid"}
         elif args.command in {"execute", "resume"}:

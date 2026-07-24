@@ -10,6 +10,26 @@ from .models import ExecutionResult
 from .quality import factor_quality
 
 
+def _argmax_age(values):
+    finite = np.isfinite(values)
+    if not finite.all():
+        return np.nan
+    maximum = np.max(values)
+    positions = np.flatnonzero(values == maximum)
+    return float(len(values) - 1 - positions[-1])
+
+
+def _stable_skew(values):
+    values = np.asarray(values, dtype=float)
+    if not np.isfinite(values).all() or len(values) < 3:
+        return np.nan
+    centered = values - values.mean()
+    variance = np.mean(centered ** 2)
+    if variance <= 1e-24:
+        return np.nan
+    return float(np.mean(centered ** 3) / variance ** 1.5)
+
+
 def _evaluate(node, frame, parameters):
     kind = node.kind
     if kind is NodeKind.FEATURE:
@@ -42,7 +62,11 @@ def _evaluate(node, frame, parameters):
         periods = int(_evaluate(node.fields["periods"], frame, parameters))
         grouped = value.groupby(frame["symbol"], sort=False)
         return grouped.shift(periods) if kind is NodeKind.LAG else value - grouped.shift(periods)
-    if kind in (NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN, NodeKind.ROLLING_MAX):
+    if kind in (
+        NodeKind.ROLLING_MEAN, NodeKind.ROLLING_STD, NodeKind.ROLLING_MIN,
+        NodeKind.ROLLING_MAX, NodeKind.ROLLING_SUM, NodeKind.ROLLING_MEDIAN,
+        NodeKind.ROLLING_SKEW, NodeKind.ROLLING_ARGMAX_AGE,
+    ):
         value = _evaluate(node.fields["operand"], frame, parameters)
         window = int(_evaluate(node.fields["window"], frame, parameters))
         grouped = value.groupby(frame["symbol"], sort=False)
@@ -52,7 +76,44 @@ def _evaluate(node, frame, parameters):
             return grouped.transform(lambda x: x.rolling(window, min_periods=window).std(ddof=0))
         if kind is NodeKind.ROLLING_MIN:
             return grouped.transform(lambda x: x.rolling(window, min_periods=window).min())
-        return grouped.transform(lambda x: x.rolling(window, min_periods=window).max())
+        if kind is NodeKind.ROLLING_MAX:
+            return grouped.transform(lambda x: x.rolling(window, min_periods=window).max())
+        if kind is NodeKind.ROLLING_SUM:
+            return grouped.transform(lambda x: x.rolling(window, min_periods=window).sum())
+        if kind is NodeKind.ROLLING_MEDIAN:
+            return grouped.transform(lambda x: x.rolling(window, min_periods=window).median())
+        if kind is NodeKind.ROLLING_SKEW:
+            return grouped.transform(
+                lambda x: x.rolling(window, min_periods=window).apply(_stable_skew, raw=True)
+            )
+        return grouped.transform(
+            lambda x: x.rolling(window, min_periods=window).apply(_argmax_age, raw=True)
+        )
+    if kind is NodeKind.ROLLING_CORR:
+        left = _evaluate(node.fields["left"], frame, parameters)
+        right = _evaluate(node.fields["right"], frame, parameters)
+        window = int(_evaluate(node.fields["window"], frame, parameters))
+        pair = pd.DataFrame({"left": left, "right": right, "symbol": frame["symbol"]})
+        grouped = pair.groupby("symbol", sort=False)
+        result = grouped["left"].transform(
+            lambda values: values.rolling(window, min_periods=window).corr(
+                pair.loc[values.index, "right"]
+            )
+        )
+        left_std = grouped["left"].transform(
+            lambda values: values.rolling(window, min_periods=window).std(ddof=0)
+        )
+        right_std = grouped["right"].transform(
+            lambda values: values.rolling(window, min_periods=window).std(ddof=0)
+        )
+        return result.where((left_std > 1e-12) & (right_std > 1e-12))
+    if kind is NodeKind.ROLLING_QUANTILE:
+        value = _evaluate(node.fields["operand"], frame, parameters)
+        window = int(_evaluate(node.fields["window"], frame, parameters))
+        quantile = float(_evaluate(node.fields["quantile"], frame, parameters))
+        return value.groupby(frame["symbol"], sort=False).transform(
+            lambda x: x.rolling(window, min_periods=window).quantile(quantile, interpolation="linear")
+        )
     value = _evaluate(node.fields["operand"], frame, parameters)
     grouped = value.groupby(frame["trade_date"], sort=False)
     if kind is NodeKind.CS_RANK:

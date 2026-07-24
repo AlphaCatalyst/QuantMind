@@ -42,6 +42,9 @@ ID_FIELDS = (
     "exposure_ledger_id", "supervisor_spec_id", "supervisor_id",
     "research_queue_id", "research_cycle_id", "candidate_id",
     "fresh_cohort_id", "fresh_market_snapshot_id", "fresh_multiple_testing_id",
+    "operator_extension_id", "operator_validation_id", "primitive_catalog_id",
+    "primitive_materialization_id", "feature_catalog_v3_id",
+    "research_space_report_id",
 )
 
 
@@ -272,6 +275,14 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.FRESH_COHORT_MULTIPLE_TESTING,
         ArtifactKind.FRESH_CANDIDATE_ASSESSMENT,
         ArtifactKind.AUTONOMOUS_RESEARCH_SUPERVISOR_REPORT,
+        ArtifactKind.TECHNICAL_DSL_OPERATOR_EXTENSION,
+        ArtifactKind.TECHNICAL_DSL_OPERATOR_VALIDATION,
+        ArtifactKind.TECHNICAL_PRIMITIVE_CATALOG,
+        ArtifactKind.TECHNICAL_PRIMITIVE_MATERIALIZATION,
+        ArtifactKind.AUTONOMOUS_TECHNICAL_FEATURE_FACTORY_SPEC_V2,
+        ArtifactKind.TECHNICAL_FEATURE_CATALOG_V3,
+        ArtifactKind.AUTONOMOUS_RESEARCH_CYCLE_V2,
+        ArtifactKind.RESEARCH_SPACE_EXPANSION_REPORT,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

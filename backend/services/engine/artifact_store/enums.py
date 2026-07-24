@@ -194,6 +194,14 @@ class ArtifactKind(str, Enum):
     FRESH_COHORT_MULTIPLE_TESTING = "fresh_cohort_multiple_testing"
     FRESH_CANDIDATE_ASSESSMENT = "fresh_candidate_assessment"
     AUTONOMOUS_RESEARCH_SUPERVISOR_REPORT = "autonomous_research_supervisor_report"
+    TECHNICAL_DSL_OPERATOR_EXTENSION = "technical_dsl_operator_extension"
+    TECHNICAL_DSL_OPERATOR_VALIDATION = "technical_dsl_operator_validation"
+    TECHNICAL_PRIMITIVE_CATALOG = "technical_primitive_catalog"
+    TECHNICAL_PRIMITIVE_MATERIALIZATION = "technical_primitive_materialization"
+    AUTONOMOUS_TECHNICAL_FEATURE_FACTORY_SPEC_V2 = "autonomous_technical_feature_factory_spec_v2"
+    TECHNICAL_FEATURE_CATALOG_V3 = "technical_feature_catalog_v3"
+    AUTONOMOUS_RESEARCH_CYCLE_V2 = "autonomous_research_cycle_v2"
+    RESEARCH_SPACE_EXPANSION_REPORT = "research_space_expansion_report"
 
 
 class IntegrityStatus(str, Enum):

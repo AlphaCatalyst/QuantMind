@@ -25,7 +25,8 @@
     "node": {"oneOf": [
       {"$ref": "#/$defs/namedTerminal"}, {"$ref": "#/$defs/constant"},
       {"$ref": "#/$defs/binary"}, {"$ref": "#/$defs/unary"}, {"$ref": "#/$defs/clip"},
-      {"$ref": "#/$defs/periodic"}, {"$ref": "#/$defs/rolling"}
+      {"$ref": "#/$defs/periodic"}, {"$ref": "#/$defs/rolling"},
+      {"$ref": "#/$defs/rollingCorrelation"}, {"$ref": "#/$defs/rollingQuantile"}
     ]},
     "namedTerminal": {"type": "object", "additionalProperties": false, "required": ["type", "name"], "properties": {"type": {"enum": ["feature", "parameter"]}, "name": {"$ref": "#/$defs/name"}}},
     "constant": {"type": "object", "additionalProperties": false, "required": ["type", "value"], "properties": {"type": {"const": "constant"}, "value": {"$ref": "#/$defs/finiteNumber"}}},
@@ -33,6 +34,8 @@
     "unary": {"type": "object", "additionalProperties": false, "required": ["type", "operand"], "properties": {"type": {"enum": ["negate", "absolute", "cs_rank", "cs_zscore"]}, "operand": {"$ref": "#/$defs/node"}}},
     "clip": {"type": "object", "additionalProperties": false, "required": ["type", "operand", "lower", "upper"], "properties": {"type": {"const": "clip"}, "operand": {"$ref": "#/$defs/node"}, "lower": {"$ref": "#/$defs/node"}, "upper": {"$ref": "#/$defs/node"}}},
     "periodic": {"type": "object", "additionalProperties": false, "required": ["type", "operand", "periods"], "properties": {"type": {"enum": ["lag", "delta"]}, "operand": {"$ref": "#/$defs/node"}, "periods": {"$ref": "#/$defs/node"}}},
-    "rolling": {"type": "object", "additionalProperties": false, "required": ["type", "operand", "window"], "properties": {"type": {"enum": ["rolling_mean", "rolling_std", "rolling_min", "rolling_max"]}, "operand": {"$ref": "#/$defs/node"}, "window": {"$ref": "#/$defs/node"}}}
+    "rolling": {"type": "object", "additionalProperties": false, "required": ["type", "operand", "window"], "properties": {"type": {"enum": ["rolling_mean", "rolling_std", "rolling_min", "rolling_max", "rolling_sum", "rolling_median", "rolling_skew", "rolling_argmax_age"]}, "operand": {"$ref": "#/$defs/node"}, "window": {"$ref": "#/$defs/node"}}},
+    "rollingCorrelation": {"type": "object", "additionalProperties": false, "required": ["type", "left", "right", "window"], "properties": {"type": {"const": "rolling_corr"}, "left": {"$ref": "#/$defs/node"}, "right": {"$ref": "#/$defs/node"}, "window": {"$ref": "#/$defs/node"}}},
+    "rollingQuantile": {"type": "object", "additionalProperties": false, "required": ["type", "operand", "window", "quantile"], "properties": {"type": {"const": "rolling_quantile"}, "operand": {"$ref": "#/$defs/node"}, "window": {"$ref": "#/$defs/node"}, "quantile": {"$ref": "#/$defs/node"}}}
   }
 }

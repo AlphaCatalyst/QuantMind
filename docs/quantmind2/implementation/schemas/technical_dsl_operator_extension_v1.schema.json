@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/technical_dsl_operator_extension_v1.schema.json",
+  "title": "Technical DSL Operator Extension v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "provider_id", "base_dsl_version", "operators", "rejected_operators", "promotion_writes"],
+  "properties": {
+    "schema_version": {"const": "technical-dsl-operator-extension-v1"},
+    "provider_id": {"const": "tushare-pro-v1"},
+    "base_dsl_version": {"const": "quantmind-factor-dsl-v1"},
+    "operator_extension_id": {"type": "string", "pattern": "^tdoe1_[0-9a-f]{64}$"},
+    "operators": {"type": "array", "items": {"$ref": "#/$defs/operator"}},
+    "rejected_operators": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["operator_name", "status", "rejection_reason"],
+        "properties": {
+          "operator_name": {"type": "string"},
+          "status": {"const": "operator_rejected"},
+          "rejection_reason": {"type": "string"}
+        }
+      }
+    },
+    "promotion_writes": {"const": 0}
+  },
+  "$defs": {
+    "operator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operator_name", "status", "arity", "argument_types", "parameter_schema", "window_policy", "min_periods_policy", "nan_policy", "zero_variance_policy", "pit_semantics", "determinism_contract", "canonical_ast_form", "complexity_cost", "qlib_local_consistency"],
+      "properties": {
+        "operator_name": {"type": "string"},
+        "status": {"const": "authorized"},
+        "arity": {"type": "integer", "minimum": 1, "maximum": 2},
+        "argument_types": {"type": "array", "items": {"type": "string"}},
+        "parameter_schema": {"type": "object"},
+        "window_policy": {"type": "string"},
+        "min_periods_policy": {"type": "string"},
+        "nan_policy": {"type": "string"},
+        "zero_variance_policy": {"type": "string"},
+        "pit_semantics": {"type": "string"},
+        "determinism_contract": {"type": "string"},
+        "canonical_ast_form": {"type": "object"},
+        "complexity_cost": {"type": "integer", "minimum": 1},
+        "qlib_local_consistency": {"enum": ["passed", "not_applicable"]}
+      }
+    }
+  }
+}
