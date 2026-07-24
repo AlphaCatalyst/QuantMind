@@ -1,6 +1,12 @@
 # QuantMind 2.0 Initial Roadmap
 
-Current research task: `QM2-R2-007` is completed with no model Candidate.
+Current research task: `QM2-R2-008` is completed with two L1-only
+retrospective Model Candidates and no production Label change. The frozen
+three-Label matrix completed 108 fits, 36 predictions and 36 Qlib runs.
+L5/L10 do not survive the global nine-hypothesis FDR boundary. Two Fresh Locks
+await unexposed data; no Registry/Promotion or Cycle 005 exists.
+
+Previous research task: `QM2-R2-007` is completed with no model Candidate.
 Three preregistered technical Feature Bundles completed four purged expanding
 walk-forward Folds, three fixed seeds and 18 real Qlib evaluations. All three
 failed the unchanged RankIC gate and 10% BH FDR. Cycle 003 records global
@@ -81,6 +87,7 @@ replay. This task authorizes no successor.
 
 | Task | Status | Priority | Dependencies | Objective | Explicit non-goals | Acceptance summary |
 |---|---|---|---|---|---|---|
+| QM2-R2-008 Multi-Horizon Label Alignment and Technical Alpha Reassessment v1 | completed_uncommitted | P0 | R2-004, R2-005, R2-006, R2-007 | Audit executable Label semantics and test frozen L1/L5/L10 alignment against unchanged technical Bundles, LightGBM and Qlib | No production Label replacement, Feature/Bundle generation, optimization, report-period selection, network, Registry, Promotion or Cycle 005 | 108 fits, 36 predictions and 36 Qlib runs admit two L1 retrospective Candidates under one nine-hypothesis BH family; Fresh remains data-blocked |
 | QM2-R2-007 Autonomous Weak-Alpha Aggregation and Walk-Forward Model Program v1 | completed_uncommitted | P0 | R2-004, R2-005, R2-006 | Test whether frozen low-correlation technical Features aggregate into stable Alpha through the existing LightGBM/Qlib chain | No new Feature/Primitive/Label, hyperparameter/strategy/combined optimization, report-period selection, Registry, Promotion or Cycle 004 | Three Bundles, four purged Folds, three seeds, 54 fits and 18 Qlib calls produce zero Candidates; Store/cold recovery/replay pass and global technical stop activates |
 | QM2-R2-006 Technical DSL Expansion and Novel Research Space Cycle v1 | completed_uncommitted | P0 | R2-004, R2-005 | Expand bounded PIT operators/primitives, publish Catalog v3 and run Cycle 002 | No new fields/network data, Strategy/Combined Optimization, Promotion or Cycle 003 | Six operators, six primitives, 20 new features, 18 Alpha rounds, 68 Qlib calls, zero Candidates and zero-call replay |
 | QM2-R2-001 Autonomous Factor Research Campaign Orchestrator v1 | completed_uncommitted | P0 | R1-003 through R1-010 | Run bounded multi-round Agent factor research without per-round human planning | No full Factor search, Strategy/Combined optimization, report/Fresh selection evidence, data network, Promotion or production claim | Twelve rounds, 26 Proposals, 20 admissions, three research-only locks, five near misses, healthy Store, cold recovery and zero-call replay |

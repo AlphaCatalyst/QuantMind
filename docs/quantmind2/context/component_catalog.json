@@ -540,6 +540,46 @@
       ],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.multi_horizon_label_research",
+      "name": "Multi-Horizon Label Alignment Research v1",
+      "status": "implemented",
+      "responsibility": "Freeze and materialize official-session L1/L5/L10 adjusted return Labels, audit executable semantics, run the unchanged fixed-configuration LightGBM/Qlib matrix, assess horizon alignment, apply global HAC/BH control, and persist conditional retrospective Candidate/Fresh boundaries.",
+      "source_path": "backend/services/engine/multi_horizon_label_research",
+      "target_path": "backend/services/engine/multi_horizon_label_research",
+      "key_symbols": [
+        "TechnicalReturnLabelFamilyV1",
+        "ExecutableLabelAuditV1",
+        "create_label_family",
+        "execute_study",
+        "validate_study",
+        "replay_study"
+      ],
+      "dependencies": [
+        "quantmind.training",
+        "quantmind.qlib_backtest",
+        "quantmind2.fixed_configuration_model_program",
+        "quantmind2.autonomous_research_supervisor",
+        "quantmind2.data_foundation",
+        "quantmind2.research_artifact_store"
+      ],
+      "architecture_decision_refs": [
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0005",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011"
+      ],
+      "current_limitations": [
+        "Evidence is retrospective only and does not replace the production Label.",
+        "Two L1 Candidates await strictly post-2026-07-23 Fresh observations.",
+        "The existing Qlib boundary persists aggregate metrics but no durable order-level trades."
+      ],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
     }
   ]
 }

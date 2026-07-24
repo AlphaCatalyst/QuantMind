@@ -97,6 +97,16 @@ KINDS = {
     "project_model_candidate_fresh_lock": ("fresh_lock_id", "pmcfl1_"),
     "model_fresh_observation": ("fresh_observation_id", "mfo1_"),
     "model_fresh_assessment": ("fresh_assessment_id", "mfa1_"),
+    "technical_return_label_family": ("label_family_id", "trlf1_"),
+    "technical_return_label": ("label_id", "trl1_"),
+    "executable_label_audit": ("label_audit_id", "ela1_"),
+    "label_quality_assessment": ("quality_assessment_id", "lqa1_"),
+    "multi_horizon_model_fold_result": ("fold_result_id", "mhfr1_"),
+    "horizon_alignment_assessment": ("alignment_assessment_id", "haa1_"),
+    "multi_horizon_multiple_testing": ("multiple_testing_id", "mhmt1_"),
+    "multi_horizon_retrospective_model_candidate": ("candidate_id", "mhrmc1_"),
+    "multi_horizon_model_fresh_lock": ("fresh_lock_id", "mhmfl1_"),
+    "multi_horizon_label_research_report": ("research_report_id", "mhlrr1_"),
 }
 
 

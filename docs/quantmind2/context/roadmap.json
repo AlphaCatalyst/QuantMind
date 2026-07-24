@@ -175,6 +175,15 @@
       "objective": "Test whether frozen low-correlation technical Features aggregate into stable Alpha through the existing LightGBM and Qlib chains.",
       "explicit_non_goals": ["No new Feature, Primitive or Label; no hyperparameter, Strategy or Combined Optimization; no report-period selection, Registry, Promotion or Cycle 004."],
       "acceptance_summary": "Three Bundles, four purged Folds and three fixed seeds complete 54 fits and 18 real Qlib calls; all fail the unchanged gate/FDR, Store/cold recovery/replay pass and the global authorized technical-space stop activates."
+    },
+    {
+      "task_id": "QM2-R2-008",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R2-004", "QM2-R2-005", "QM2-R2-006", "QM2-R2-007"],
+      "objective": "Audit executable Label semantics and test frozen L1/L5/L10 alignment against the unchanged technical Bundles, LightGBM and Qlib protocol.",
+      "explicit_non_goals": ["No production Label replacement, Feature/Bundle generation, hyperparameter/Strategy/Combined Optimization, report-period selection, network call, Registry, Promotion or Cycle 005."],
+      "acceptance_summary": "Three Labels, three Bundles, four purged Folds and three seeds complete 108 fits, 36 predictions and 36 Qlib runs; global nine-hypothesis BH admits two L1 retrospective Candidates, Store/recovery/replay pass, and Fresh remains data-blocked."
     }
   ]
 }

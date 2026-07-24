@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/multi_horizon_label_alignment_research_v1.schema.json",
+  "title": "QuantMind Multi-Horizon Label Research Report v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "provider_id",
+    "label_family_id",
+    "label_ids",
+    "model_spec_id",
+    "bundle_ids",
+    "fold_result_ids",
+    "multiple_testing_id",
+    "label_support_classification",
+    "cycle",
+    "runtime_counts",
+    "promotion_writes"
+  ],
+  "properties": {
+    "schema_version": {"const": "multi-horizon-label-research-report-v1"},
+    "provider_id": {"const": "tushare-pro-v1"},
+    "label_family_id": {"type": "string", "pattern": "^trlf1_"},
+    "label_ids": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^trl1_"}
+    },
+    "model_spec_id": {"type": "string", "pattern": "^fcms1_"},
+    "bundle_ids": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true
+    },
+    "fold_result_ids": {"type": "object", "minProperties": 3},
+    "multiple_testing_id": {"type": "string", "pattern": "^mhmt1_"},
+    "candidate_ids": {"type": "array", "items": {"type": "string", "pattern": "^mhrmc1_"}},
+    "fresh_lock_ids": {"type": "array", "items": {"type": "string", "pattern": "^mhmfl1_"}},
+    "label_support_classification": {
+      "enum": [
+        "one_day_label_supported",
+        "five_day_label_supported",
+        "ten_day_label_supported",
+        "multiple_horizons_supported",
+        "no_horizon_supported"
+      ]
+    },
+    "cycle": {
+      "type": "object",
+      "required": ["cycle_name", "research_type", "automatic_cycle_005_created"],
+      "properties": {
+        "cycle_name": {"const": "autonomous_research_cycle_004"},
+        "research_type": {"const": "multi_horizon_model_alpha"},
+        "automatic_cycle_005_created": {"const": false}
+      }
+    },
+    "runtime_counts": {"type": "object"},
+    "legacy_label_modified": {"const": false},
+    "feature_writes": {"const": 0},
+    "registry_writes": {"const": 0},
+    "promotion_writes": {"const": 0}
+  },
+  "additionalProperties": true
+}

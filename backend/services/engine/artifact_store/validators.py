@@ -300,6 +300,16 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.PROJECT_MODEL_CANDIDATE_FRESH_LOCK,
         ArtifactKind.MODEL_FRESH_OBSERVATION,
         ArtifactKind.MODEL_FRESH_ASSESSMENT,
+        ArtifactKind.TECHNICAL_RETURN_LABEL_FAMILY,
+        ArtifactKind.TECHNICAL_RETURN_LABEL,
+        ArtifactKind.EXECUTABLE_LABEL_AUDIT,
+        ArtifactKind.LABEL_QUALITY_ASSESSMENT,
+        ArtifactKind.MULTI_HORIZON_MODEL_FOLD_RESULT,
+        ArtifactKind.HORIZON_ALIGNMENT_ASSESSMENT,
+        ArtifactKind.MULTI_HORIZON_MULTIPLE_TESTING,
+        ArtifactKind.MULTI_HORIZON_RETROSPECTIVE_MODEL_CANDIDATE,
+        ArtifactKind.MULTI_HORIZON_MODEL_FRESH_LOCK,
+        ArtifactKind.MULTI_HORIZON_LABEL_RESEARCH_REPORT,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

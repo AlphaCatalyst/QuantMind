@@ -832,3 +832,23 @@ reinterpret the positive annual portfolio excess of some Folds as a model
 Candidate: the daily official-label RankIC and FDR contracts failed. Exact
 replay, Supervisor replay and cold validation are zero-call with healthy Store
 integrity. No successor task is authorized by this contract.
+
+## QM2-R2-008 handoff
+
+Read `MULTI_HORIZON_LABEL_ALIGNMENT_RESEARCH_V1.md` after the R2-007
+contract. Label Family `trlf1_7370ec7d...04561c`, audit
+`ela1_c48a0518...274ff`, global test `mhmt1_9ba1acf8...c7ddc`, terminal
+Report `mhlrr1_53bae8de...b8550f`, two L1 retrospective Candidates and their
+two no-backfill Fresh Locks are authoritative.
+
+The complete formal matrix used the exact R2-007 Bundles, model parameters,
+three equal-weight seeds, four expanding Folds and fixed Qlib strategy. It
+completed 108 fits, 36 predictions and 36 Qlib runs. Only expanded and
+de-correlated L1 combinations pass both the retrospective gates and the
+single nine-hypothesis 10% BH FDR boundary. L5 and L10 are not supported;
+long-horizon apparent improvement is not cross-year consistent.
+
+This is retrospective evidence only. It does not replace the production
+Label, register/promote a model, or authorize trading. Fresh data strictly
+after 2026-07-23 is absent, so no Fresh Cohort result exists. Cycle 004 is
+complete, Cycle 005 was not created, and no successor task is authorized.

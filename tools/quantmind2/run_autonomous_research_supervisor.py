@@ -17,6 +17,7 @@ from backend.services.engine.autonomous_factor_campaign.repository import Campai
 from backend.services.engine.autonomous_research_supervisor import (  # noqa: E402
     create_supervisor_spec,
     execute_supervisor,
+    run_multi_horizon_model_cycle,
     run_next_model_cycle,
     replay_next_research_cycle,
     replay_supervisor,
@@ -34,6 +35,7 @@ COMMANDS = (
     "pause", "resume", "validate-supervisor", "replay",
     "run-next-research-cycle", "inspect-research-space",
     "run-next-model-cycle", "inspect-model-candidate", "inspect-model-fresh-lock",
+    "run-multi-horizon-model-cycle",
 )
 
 
@@ -49,6 +51,7 @@ def parser() -> argparse.ArgumentParser:
         "evaluate-fresh-cohorts", "pause", "resume",
         "validate-supervisor", "replay", "run-next-research-cycle",
         "run-next-model-cycle",
+        "run-multi-horizon-model-cycle",
     ):
         command = commands.add_parser(name)
         command.add_argument(
@@ -90,6 +93,10 @@ def main(argv: list[str] | None = None) -> int:
             )
         elif args.command == "run-next-model-cycle":
             result = run_next_model_cycle(
+                supervisor_spec_id=args.supervisor_spec_id, **common
+            )
+        elif args.command == "run-multi-horizon-model-cycle":
+            result = run_multi_horizon_model_cycle(
                 supervisor_spec_id=args.supervisor_spec_id, **common
             )
         elif args.command == "validate-supervisor":

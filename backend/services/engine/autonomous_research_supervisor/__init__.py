@@ -11,6 +11,7 @@ from .models import AutonomousResearchSupervisorSpecV1, SupervisorBudget
 from .orchestrator import (
     create_supervisor_spec,
     execute_supervisor,
+    run_multi_horizon_model_cycle,
     run_next_model_cycle,
     replay_next_research_cycle,
     replay_supervisor,
@@ -32,6 +33,7 @@ __all__ = [
     "execute_supervisor",
     "run_next_research_cycle",
     "run_next_model_cycle",
+    "run_multi_horizon_model_cycle",
     "validate_next_research_cycle",
     "replay_next_research_cycle",
     "first_trade_date_after",

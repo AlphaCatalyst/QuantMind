@@ -1,5 +1,36 @@
 # Current Implementation State
 
+## Multi-Horizon Label Alignment Cycle (QM2-R2-008)
+
+- Current task: `QM2-R2-008`.
+- Label Family `trlf1_7370ec7d...04561c` freezes L1/L5/L10 together
+  before training. All use adjusted prices, official sessions, Fixed-100
+  lifecycle, no replacement/fill, and same-date 5-MAD plus population
+  z-score. Quality coverage is 99.93%, 99.65%, and 99.34%; all quality/PIT
+  gates pass.
+- The executable audit confirms configured metadata does not drive the
+  training code, which executes
+  `adjusted_close[T+H]/adjusted_open[T+1]-1`. The old Label Artifact and
+  production Label remain unchanged.
+- The frozen 3 Label x 3 Bundle x 4 Fold x 3 Seed matrix completed 108
+  LightGBM fits, 36 ensemble predictions, and 36 formal Qlib runs. Feature,
+  hyperparameter, strategy, combined-optimization, network, Tushare,
+  Registry, and Promotion writes are zero.
+- Global nine-hypothesis BH at q=10% admits two L1 candidates: expanded
+  technical space and combined de-correlated technical. L5 and L10 produce
+  no survivor. Classification is `one_day_label_supported`; this does not
+  replace or promote the production Label.
+- Cycle 004 is `completed_with_label_aligned_candidate`. Two no-backfill
+  Fresh Locks exist, but no post-2026-07-23 official data is available, so
+  no Fresh result, Registry write, or Promotion exists. Cycle 005 was not
+  created.
+- Terminal Report: `mhlrr1_53bae8de...b8550f`; global test:
+  `mhmt1_9ba1acf8...c7ddc`. Store integrity is healthy with Missing 0 and
+  Unreferenced 0; cold validation, resume, Supervisor replay, and exact
+  replay are zero-call.
+- Latest Implementation Run:
+  `QM2-R2-008-20260724T155317Z-86b2496`.
+
 ## Fixed-configuration Weak-Alpha Model Cycle (QM2-R2-007)
 
 - The existing QuantMind LightGBM and formal Tushare `model_label` chain now

@@ -1,5 +1,17 @@
 # Component Catalog
 
+## QM2-R2-008 addition
+
+- `quantmind2.multi_horizon_label_research` — implemented at
+  `backend/services/engine/multi_horizon_label_research`; owns the immutable
+  L1/L5/L10 Label Family, executable-label audit, official-session adjusted
+  Label materialization, quality gate, frozen R2-007 model/Qlib matrix,
+  horizon comparison, global HAC/BH control, conditional retrospective
+  Candidates/Fresh Locks, recovery and exact replay.
+- It does not replace the legacy or production Label, generate Features,
+  select Bundle members with labels, tune model/strategy parameters, access
+  network data, write Registry/Promotion, or create Cycle 005.
+
 ## QM2-R2-007 addition
 
 - `quantmind2.fixed_configuration_model_program` — implemented at

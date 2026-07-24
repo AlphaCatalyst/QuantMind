@@ -1,5 +1,20 @@
 # Known Issues
 
+## QM2-KI-060 — Longer labels do not rescue expanded technical alpha
+
+Open, medium. `QM2-R2-008` completes the pre-registered L1/L5/L10 matrix.
+Expanded and de-correlated Bundles survive only with L1. Their L5/L10 pooled
+RankIC is negative and their apparent 2024 improvement is not cross-year
+consistent. This is a negative retrospective finding, not permission to tune
+or select another horizon.
+
+## QM2-KI-061 — Multi-horizon candidates await genuinely Fresh data
+
+Open, high. Two L1 retrospective Candidates have immutable no-backfill Fresh
+Locks, but the authority ends before the strictly post-2026-07-23 Fresh start.
+No Fresh observation, Cohort result, Registry state, Promotion, or production
+evidence exists.
+
 ## QM2-KI-058 — Weak-Alpha model aggregation produced no Candidate
 
 Open, medium. Three preregistered fixed-configuration LightGBM Bundles

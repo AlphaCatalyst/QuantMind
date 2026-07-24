@@ -216,6 +216,16 @@ class ArtifactKind(str, Enum):
     PROJECT_MODEL_CANDIDATE_FRESH_LOCK = "project_model_candidate_fresh_lock"
     MODEL_FRESH_OBSERVATION = "model_fresh_observation"
     MODEL_FRESH_ASSESSMENT = "model_fresh_assessment"
+    TECHNICAL_RETURN_LABEL_FAMILY = "technical_return_label_family"
+    TECHNICAL_RETURN_LABEL = "technical_return_label"
+    EXECUTABLE_LABEL_AUDIT = "executable_label_audit"
+    LABEL_QUALITY_ASSESSMENT = "label_quality_assessment"
+    MULTI_HORIZON_MODEL_FOLD_RESULT = "multi_horizon_model_fold_result"
+    HORIZON_ALIGNMENT_ASSESSMENT = "horizon_alignment_assessment"
+    MULTI_HORIZON_MULTIPLE_TESTING = "multi_horizon_multiple_testing"
+    MULTI_HORIZON_RETROSPECTIVE_MODEL_CANDIDATE = "multi_horizon_retrospective_model_candidate"
+    MULTI_HORIZON_MODEL_FRESH_LOCK = "multi_horizon_model_fresh_lock"
+    MULTI_HORIZON_LABEL_RESEARCH_REPORT = "multi_horizon_label_research_report"
 
 
 class IntegrityStatus(str, Enum):

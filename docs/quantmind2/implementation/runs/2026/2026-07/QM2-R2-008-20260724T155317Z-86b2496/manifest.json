@@ -1,0 +1,570 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r2-008-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "8917ca9a2e550c220a9c87dd70d6cd3ad1f3c0b44c2d23811c183502b45d01f3",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 12741
+    },
+    {
+      "artifact_id": "artifact-qm2-r2-008-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "trlf1_7370ec7d72191b2026985b25befd0322de6d77a4621a39e716c8f218ff04561c",
+      "artifact_type": "technical_return_label_family",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:trlf1_7370ec7d72191b2026985b25befd0322de6d77a4621a39e716c8f218ff04561c",
+      "schema_version": "technical-return-label-family-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "ela1_c48a0518d4f112cf21156dd6b0a168f11b8b78eac205299086db51d9b37274ff",
+      "artifact_type": "executable_label_audit",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:ela1_c48a0518d4f112cf21156dd6b0a168f11b8b78eac205299086db51d9b37274ff",
+      "schema_version": "executable-label-audit-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "mhmt1_9ba1acf883feb9c1425a7c23ed1ff4c2c86d0aa8548f163bae4db8584d2c7ddc",
+      "artifact_type": "multi_horizon_multiple_testing",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:mhmt1_9ba1acf883feb9c1425a7c23ed1ff4c2c86d0aa8548f163bae4db8584d2c7ddc",
+      "schema_version": "multi-horizon-multiple-testing-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "mhlrr1_53bae8ded2934c41025e6d2d5fb8721e4c899dd3e40d4b180d02412cc7b8550f",
+      "artifact_type": "multi_horizon_label_research_report",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:mhlrr1_53bae8ded2934c41025e6d2d5fb8721e4c899dd3e40d4b180d02412cc7b8550f",
+      "schema_version": "multi-horizon-label-research-report-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "mhrmc1_6b1a97e5b5a19052387ac06c64c3d1cea998a502542479b47c535b1eb24527c3",
+      "artifact_type": "multi_horizon_retrospective_model_candidate",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:mhrmc1_6b1a97e5b5a19052387ac06c64c3d1cea998a502542479b47c535b1eb24527c3",
+      "schema_version": "multi-horizon-retrospective-model-candidate-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "mhrmc1_83272b1d8093eccb6b3823d62fa618685c139497269bde5742006311ce856c23",
+      "artifact_type": "multi_horizon_retrospective_model_candidate",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:mhrmc1_83272b1d8093eccb6b3823d62fa618685c139497269bde5742006311ce856c23",
+      "schema_version": "multi-horizon-retrospective-model-candidate-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "8c0f162bb217146ae5285b0dfef3d24bd33ce7f54bf8d05f8c45827935886307",
+      "before_hash": "2a78c99f616ce3c6170af301f41eaa21dfe0da68de36a9f38fccead7d0d54c1e",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3a57829488a43be86260b5359b54965a3b98e0f2d702c2a08f4b281fca439ee8",
+      "before_hash": "412fcc81b5dd85d6597335d2afc0df1f218c70b7120d1a1b4211deb13f95dbde",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ef737afb56a799b1caa7262a4b764879a78368350c3cdc7a9cf586bb5591f732",
+      "before_hash": "9f592fd15a5b914f89119ba8d1197489455330c45afe74bedd36586a65f98497",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ec760d9455daf07b2969ba3270417bdddaa7421c9b308c69192d1cc00a0211f2",
+      "before_hash": "417be8900c022f4ef0b0dadd8831236b9265fa03a7c6b2f17a330feec04dadf8",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d837bba0cf426d24bf5edd3b8d55c3b8c8870838e6682f59758654221b4a6ea3",
+      "before_hash": "0faa127ea0ae272b1696d429f32ad67d8cbfc7d8553cad0a622db8c555cdabf2",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "74000dd7a563da10bcbf2d19e84cc72a7c23c0151e5785ae7ab05ea5d25d8fb7",
+      "before_hash": "8779f6c99eb7deb7354b41e31bde0e2a91281c9c20b089a1f11a8760afde13bc",
+      "change_type": "modified",
+      "path": "backend/services/engine/fixed_configuration_model_program/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8c1c292496d9e11e0c188c2b081f9c08255950eb6777adcd1e8b7d5889e11540",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/multi_horizon_label_research/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4a89ddddce07c7a56006c8f63f181f45146cdbb74eb1a08a79d489f32e756547",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/multi_horizon_label_research/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7f53e4e934b7d93ffb5c07ae00d1c2aa334c7a10989b49221ce6066022ff2984",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/multi_horizon_label_research/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "22d389135d0e5f4cfae263c65584a2a6628f323c60067eb23eda3b08afec2e94",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_multi_horizon_label_research.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a410433bdd951e086632f9eb14d9049cc1058e6c498da564054b0983d021020c",
+      "before_hash": "55d1bf566c258c54b6e3fd8d0302f943f8c167abdd766cad170454be22d65d4e",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "b4a35925612cab5095cb0c9fd9ead5f5d8622826435d3ad8ff8e504a26ddcf64",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/architecture/MULTI_HORIZON_LABEL_ALIGNMENT_RESEARCH_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1dc4386b7b46369c27911f4101a81ef7a174dd74ec05420f4a3afc4554a6d8ed",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/architecture/schemas/multi_horizon_label_alignment_research_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fa32d575b4523f79b511d584c7697c2f76eff66d78bb21244c4a43fdf76b6946",
+      "before_hash": "1926f260de176d1e195bf7ed4de05e58141859007d54e5e72e6615dee1118c2c",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0c4ba1d325dac1b789343d0aed666d297014b5a029ff623da34438f1e24f3b04",
+      "before_hash": "9e370cdabfebe42a343b40f36c48e64ab73ba63fe75dde93e76d7580a6d76dd6",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "157d5217b1d87d0f2d85ed7fa1c7b92c1de37d8d9d08505e314346a35bfb238f",
+      "before_hash": "38ae40e61492e15cbf9478f359b2e1d7bb33493020eea3c38807cffacb73c310",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "79c2f937b46e8c2cf5a407acec2af3676653c71705701f638bd973cd604a98cc",
+      "before_hash": "81767cc341f84c57edffd93d6ca6776db5935cf1809ab6ff90261e0e634346dd",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a6314f079e387d8e08ec611db9dd8e23c954d673edfc224db903233861f497bf",
+      "before_hash": "9d1f9dbd1552520c27948f67cedd2219f6b0262d557e6143167f3b4651330ade",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0488e2f165916bf762e478efa2591f82deb01ef6b5ac800b84e449a926f6c53d",
+      "before_hash": "668da57b24188920c5a10ce9af7d52e9076558dc96d0bdd585961da23a08c7c5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0b57e3daac01f7cff304be8f9f38c277264dc35a9c2622a0897d18bd0dc7fce1",
+      "before_hash": "db7a2b61f7e96b8b87110c692d2b8ed4c38a8994c9de9fd8c2acf6e7bdf26628",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "de45bc6d800ef19d0eef0028999e20d3971765719535cc98d47186781acc5031",
+      "before_hash": "c470f4acecf1f689c893c6c5942cf3dfda0ab3d41601df10c8af62039e2ff4e9",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d2e953b6a1977d70a6fa571a43c6db3126707cb8cb5e5258623480345f2b3788",
+      "before_hash": "f4c812053840e1d39910205b346665591c3309f0151e51d3e1645b0efcce6278",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "85b60a749dbce168a5766cb4d5417a196356b3a63e1bd25446851df2f2893c8e",
+      "before_hash": "4915b38bf85a5d9c6ca1985ca3945a972d783654790ec5ecb44922f707276200",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8917ca9a2e550c220a9c87dd70d6cd3ad1f3c0b44c2d23811c183502b45d01f3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a3f275e7210586cfb9fd1ae53791ababb00eb76fbb94a9129f13cfe8b789191e",
+      "before_hash": "8464286f877261131093742b8967918d5bf33ca25a8346cb7610e1007e98f6e5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "46d9157cf97f518800c99e45c245e257c07af33e0a43aa648d4293542c2152d9",
+      "before_hash": "76ed74bf55e63068486ec3735ce66fede9ac57c1bb35c401c861a5b90ad003d1",
+      "change_type": "modified",
+      "path": "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f80f1ad54f0bc1631a1938455caad8c812cfd85e425a0c936c498a1dd2b12616",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_multi_horizon_label_research.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0fa8bb3c0b1bdcba073671551dcbf3e4693bf39aabc87c95f1ac68dd967e5816",
+      "before_hash": "06df5a25d146b7e69fc0c36df47ce715c2a051ac3a132d8065a35f6f908d242d",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/multi_horizon_label_research/models.py",
+      "qualified_name": "TechnicalReturnLabelFamilyV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/multi_horizon_label_research/models.py",
+      "qualified_name": "ExecutableLabelAuditV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/multi_horizon_label_research/engine.py",
+      "qualified_name": "execute_study",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/multi_horizon_label_research/engine.py",
+      "qualified_name": "_label_values",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/fixed_configuration_model_program/engine.py",
+      "qualified_name": "_train_fold",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "qualified_name": "run_multi_horizon_model_cycle",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.multi_horizon_label_research",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.fixed_configuration_model_program",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.autonomous_research_supervisor",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r2-008-report",
+        "sha256": "8917ca9a2e550c220a9c87dd70d6cd3ad1f3c0b44c2d23811c183502b45d01f3"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/multi_horizon_label_research/__init__.py",
+      "backend/services/engine/multi_horizon_label_research/engine.py",
+      "backend/services/engine/multi_horizon_label_research/models.py",
+      "backend/services/tests/test_multi_horizon_label_research.py",
+      "docs/quantmind2/architecture/MULTI_HORIZON_LABEL_ALIGNMENT_RESEARCH_V1.md",
+      "docs/quantmind2/architecture/schemas/multi_horizon_label_alignment_research_v1.schema.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/report.md",
+      "tools/quantmind2/run_multi_horizon_label_research.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "backend/services/engine/fixed_configuration_model_program/engine.py",
+      "backend/services/engine/multi_horizon_label_research/__init__.py",
+      "backend/services/engine/multi_horizon_label_research/engine.py",
+      "backend/services/engine/multi_horizon_label_research/models.py",
+      "backend/services/tests/test_multi_horizon_label_research.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/architecture/MULTI_HORIZON_LABEL_ALIGNMENT_RESEARCH_V1.md",
+      "docs/quantmind2/architecture/schemas/multi_horizon_label_alignment_research_v1.schema.json",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "tools/quantmind2/run_multi_horizon_label_research.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "102069e299ca6f68671712a804426a70c540580ca9a80b8f49de98ed48f7d6ba",
+    "manifest_payload_sha256": "369354d455ef627cf8119647c8b02b7a2d024ae367415d297f1d9878d1f3d610",
+    "report_sha256": "8917ca9a2e550c220a9c87dd70d6cd3ad1f3c0b44c2d23811c183502b45d01f3",
+    "source_bundle_sha256": "d3b8e32ddf0d92a03dd5d6b7a029758fb250093c91dabd34a7f178667d31cfa2"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.multi_horizon_label_research",
+      "description": "No official observation exists strictly after project exposure through 2026-07-23, so no Fresh result or production evidence exists.",
+      "limitation_id": "limit-r2-008-fresh",
+      "severity": "high",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind.qlib_backtest",
+      "description": "The existing consumer boundary exposes aggregate Qlib evidence but no durable order-level trade table.",
+      "limitation_id": "limit-r2-008-qlib-detail",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.multi_horizon_label_research",
+      "description": "Completed Fold checkpoints replay exactly; interruption inside a Fold can repeat compute before immutable exact-existing publication.",
+      "limitation_id": "limit-r2-008-mid-fold",
+      "severity": "low",
+      "status": "accepted"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-24T15:53:17Z",
+      "reason": "Reassess the frozen R2-007 model program under three preregistered Label horizons.",
+      "relationship_id": "rel-qm2-r2-008-continues-r2-007",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R2-008-20260724T155317Z-86b2496",
+      "target_run_id": "QM2-R2-007-20260724T142049Z-dff10cd"
+    }
+  ],
+  "repository": {
+    "base_commit": "86b2496dab37201ced1481fa2d214ab322952a71",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "86b2496dab37201ced1481fa2d214ab322952a71",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-24T15:53:17Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "102069e299ca6f68671712a804426a70c540580ca9a80b8f49de98ed48f7d6ba",
+    "implementation_run_id": "QM2-R2-008-20260724T155317Z-86b2496",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-008-20260724T155317Z-86b2496/report.md",
+    "repository_id": "quantmind",
+    "result_commit": null,
+    "source_bundle_hash": "d3b8e32ddf0d92a03dd5d6b7a029758fb250093c91dabd34a7f178667d31cfa2",
+    "started_at": "2026-07-24T15:20:00Z",
+    "task_id": "QM2-R2-008",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-24T15:20:00Z",
+    "explicit_non_goals": [
+      "No production or legacy Label replacement",
+      "No Feature or Bundle generation",
+      "No model, strategy or combined optimization",
+      "No report-period selection or network collection",
+      "No Registry, Promotion, trading or Cycle 005"
+    ],
+    "objective": "Audit executable Label semantics and test frozen L1/L5/L10 alignment with unchanged technical Bundles, LightGBM, walk-forward and Qlib.",
+    "parent_task_id": null,
+    "scope": [
+      "Executable Label audit and frozen three-Label family",
+      "Official-session adjusted Label materialization and quality",
+      "Three Bundles, four Folds and three fixed seeds",
+      "Horizon alignment, HAC and global BH FDR",
+      "Conditional retrospective Candidate and Fresh Lock",
+      "Supervisor Cycle 004, Store recovery and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R2-008",
+    "title": "Multi-Horizon Label Alignment and Technical Alpha Reassessment v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q test_multi_horizon_label_research.py test_fixed_configuration_model_program.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 19,
+      "purpose": "Verify Label, calendar, transform, quality, purge, gate and model compatibility contracts.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-008-unit"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:mhlrr1_53bae8ded2934c41025e6d2d5fb8721e4c899dd3e40d4b180d02412cc7b8550f",
+      "command": "run_multi_horizon_label_research.py execute",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 180,
+      "purpose": "Execute the complete frozen formal matrix.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-008-formal"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:mhmt1_9ba1acf883feb9c1425a7c23ed1ff4c2c86d0aa8548f163bae4db8584d2c7ddc",
+      "command": "validate-study; replay; resume; run-multi-horizon-model-cycle",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Verify Store integrity, cold recovery, zero-call replay and Cycle 004.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-008-recovery"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest --no-cov -q <eight directly related test modules>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 80,
+      "purpose": "Run Artifact Store, Campaign, Supervisor, model, Label and context regressions.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-008-related"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "context bootstrap; JSON parse; py_compile; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Verify Project Memory, schemas, syntax and whitespace.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-008-static"
+    }
+  ]
+}

@@ -340,6 +340,48 @@ def run_next_model_cycle(*, supervisor_spec_id: str, repository_root: Path,
     }
 
 
+def run_multi_horizon_model_cycle(
+    *, supervisor_spec_id: str, repository_root: Path,
+    work_root: Path, store_root: Path | None = None
+) -> dict[str, Any]:
+    """Dispatch the explicitly authorized Cycle 004 without creating a Supervisor."""
+    repository = _repository(store_root, Path(work_root) / "supervisor-multi-horizon")
+    supervisor = repository.identity(supervisor_spec_id)
+    if supervisor.get("schema_version") not in {
+        "autonomous-research-supervisor-spec-v1",
+        "autonomous-research-supervisor-v1",
+        "autonomous-research-supervisor-v2",
+    }:
+        raise ValueError("Supervisor identity is invalid")
+    from backend.services.engine.multi_horizon_label_research import (
+        create_label_family,
+        execute_study,
+    )
+
+    family = create_label_family(
+        repository_root=repository_root,
+        work_root=Path(work_root) / "multi-horizon-cycle",
+        store_root=store_root,
+    )
+    result = execute_study(
+        label_family_id=family["label_family_id"],
+        repository_root=repository_root,
+        work_root=Path(work_root) / "multi-horizon-cycle",
+        store_root=store_root,
+    )
+    return result | {
+        "supervisor_spec_id": (
+            supervisor_spec_id
+            if supervisor.get("schema_version") == "autonomous-research-supervisor-spec-v1"
+            else supervisor.get("supervisor_spec_id")
+        ),
+        "research_cycle_name": "autonomous_research_cycle_004",
+        "research_type": "multi_horizon_model_alpha",
+        "second_supervisor_created": False,
+        "automatic_cycle_005_created": False,
+    }
+
+
 def _v2_runtime_counts() -> dict[str, int]:
     return runtime_counts() | {
         "operator_writes": 0,

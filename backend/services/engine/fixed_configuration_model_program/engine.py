@@ -378,7 +378,11 @@ def _seed_stability(predictions: list[np.ndarray], test: pd.DataFrame) -> dict:
 def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
                 matrix: pd.DataFrame, repository: CampaignRepository, qlib: FormalQlibRunner,
                 work_root: Path, *, report_only: bool = False,
-                checkpoints: list[dict] | None = None) -> dict[str, Any]:
+                checkpoints: list[dict] | None = None,
+                research_context: dict[str, Any] | None = None,
+                output_namespace: str | None = None,
+                fold_result_kind: str = "model_fold_result",
+                fold_result_id_prefix: str = "mfr1_") -> dict[str, Any]:
     import lightgbm as lgb
 
     for prior in checkpoints or ():
@@ -388,6 +392,10 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
             and prior.get("fold_id") == fold["fold_id"]
             and prior.get("report_only_contaminated") is report_only
             and prior.get("runtime_contract_revision") == 2
+            and (
+                research_context is None
+                or prior.get("research_context") == research_context
+            )
         ):
             return prior | {
                 "fold_result_id": prior["artifact_id"],
@@ -462,7 +470,8 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
         split = model.feature_importance(importance_type="split").astype(float)
         gain_rows.append(dict(zip(selected, gain, strict=True)))
         split_rows.append(dict(zip(selected, split, strict=True)))
-        model_path = work_root / "models" / bundle_spec["bundle_name"] / fold["fold_id"] / f"{seed}.txt"
+        namespace = output_namespace or bundle_spec["bundle_name"]
+        model_path = work_root / "models" / namespace / fold["fold_id"] / f"{seed}.txt"
         model_path.parent.mkdir(parents=True, exist_ok=True)
         model.save_model(str(model_path), num_iteration=spec["number_of_boosting_rounds"])
         training = {
@@ -492,6 +501,8 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
             "promotion_writes": 0,
             "runtime_contract_revision": 2,
         }
+        if research_context is not None:
+            training["research_context"] = research_context
         training["fold_model_id"] = "mft1_" + hash_payload(training)
         receipt = repository.publish(
             "model_fold_training", training,
@@ -507,7 +518,8 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
     predictions["raw_prediction"] = averaged
     predictions["score"] = predictions.groupby("trade_date")["raw_prediction"].rank(pct=True)
     predictions["pred"] = predictions["score"]
-    prediction_path = work_root / "predictions" / bundle_spec["bundle_name"] / f"{fold['fold_id']}.parquet"
+    namespace = output_namespace or bundle_spec["bundle_name"]
+    prediction_path = work_root / "predictions" / namespace / f"{fold['fold_id']}.parquet"
     prediction_path.parent.mkdir(parents=True, exist_ok=True)
     predictions.to_parquet(prediction_path, index=False, compression="zstd")
     prediction_identity = {
@@ -529,6 +541,8 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
         "promotion_writes": 0,
         "runtime_contract_revision": 2,
     }
+    if research_context is not None:
+        prediction_identity["research_context"] = research_context
     prediction_identity["prediction_artifact_id"] = "mfp1_" + hash_payload(prediction_identity)
     prediction_receipt = repository.publish(
         "model_fold_prediction", prediction_identity,
@@ -536,7 +550,7 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
         lineage=tuple(row["artifact_id"] for row in training_receipts),
     )
     metrics, daily_rankic, daily_metrics = _daily_statistics(predictions)
-    signal_path = work_root / "signals" / bundle_spec["bundle_name"] / f"{fold['fold_id']}.parquet"
+    signal_path = work_root / "signals" / namespace / f"{fold['fold_id']}.parquet"
     signal_path.parent.mkdir(parents=True, exist_ok=True)
     predictions[["symbol", "trade_date", "pred"]].to_parquet(
         signal_path, index=False, compression="zstd"
@@ -632,8 +646,10 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
         "strategy_protocol": spec["strategy_protocol"],
         "runtime_contract_revision": 2,
     }
+    if research_context is not None:
+        fold_result["research_context"] = research_context
     fold_result.pop("fold_result_id", None)
-    fold_result["fold_result_id"] = "mfr1_" + hash_payload(fold_result)
+    fold_result["fold_result_id"] = fold_result_id_prefix + hash_payload(fold_result)
     result_files: dict[str, Any] = {
         "model_fold_result.json": fold_result,
         "unified_signal.parquet": signal_path,
@@ -646,7 +662,7 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
     # schemas rather than synthesize portfolio evidence.
     empty_holdings = pd.DataFrame(columns=["trade_date", "symbol", "weight"])
     empty_trades = pd.DataFrame(columns=["trade_date", "symbol", "action", "value", "cost"])
-    holdings_path = work_root / "fold-output" / bundle_spec["bundle_name"] / fold["fold_id"] / "daily_holdings.parquet"
+    holdings_path = work_root / "fold-output" / namespace / fold["fold_id"] / "daily_holdings.parquet"
     trades_path = holdings_path.with_name("trades.parquet")
     holdings_path.parent.mkdir(parents=True, exist_ok=True)
     empty_holdings.to_parquet(holdings_path, index=False)
@@ -654,7 +670,7 @@ def _train_fold(spec: dict, bundle_spec: dict, walk: dict, fold: dict,
     result_files["daily_holdings.parquet"] = holdings_path
     result_files["trades.parquet"] = trades_path
     result_receipt = repository.publish(
-        "model_fold_result",
+        fold_result_kind,
         fold_result,
         result_files,
         lineage=(
