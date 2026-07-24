@@ -1,5 +1,24 @@
 # Current Implementation State
 
+## Autonomous Research Supervisor v1 (QM2-R2-005)
+
+- All project-visible market evidence through 2026-07-23 is now classified
+  `retrospective_research_only`. Exposure Ledger
+  `peel1_f96c3595...a7c7eb` backfills 16 formal R1/R2 Runs.
+- Supervisor Spec `arsv1_1d07cf5c...abd14e` freezes Cycle, Agent, Proposal,
+  Admission, Qlib, Candidate, Cohort and active-Fresh budgets. Research Queue
+  is `arq1_1982ce71...29e71f`.
+- The first automatic Cycle `arc1_58325bd9...cb2c8b` reused the existing
+  Feature Factory and Alpha Program implementation. It made zero new
+  Agent/Qlib calls and produced zero Retrospective Candidates.
+- With no Candidate there is no Supervisor Fresh Lock, Cohort, observation or
+  incremental request. Status is `waiting_for_fresh_data_or_novel_space`;
+  R1-010 remains statistically isolated.
+- Report `arsr1_3cc6becd...91666a` records autonomous execution operational,
+  historical robust Alpha Survivor none, Registry/Promotion writes zero and
+  healthy Store integrity. Cold recovery, resume and replay are zero-call.
+- Current task: `QM2-R2-005`.
+
 ## Autonomous Multi-Campaign Research Program v1 (QM2-R2-003)
 
 - `quantmind2.autonomous_factor_program` orchestrates three pre-registered,

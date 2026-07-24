@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T07:41:45Z",
-  "source_commit": "38af464809d2bec14ea9284a4e2ba6e634f61d3b",
+  "generated_at": "2026-07-24T11:10:10Z",
+  "source_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -455,6 +455,45 @@
       "current_limitations": ["Formal QM2-R2-004 produced zero Validation Survivors.", "Evidence is retrospective, not Fresh, Frozen, predictive or production evidence.", "Existing Qlib wrappers emit optional PostgreSQL/COS resolution warnings before local execution."],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
+    },
+    {
+        "component_id": "quantmind2.autonomous_research_supervisor",
+        "name": "Autonomous Research Supervisor and Project Fresh Validation v1",
+        "status": "implemented",
+        "responsibility": "Maintain project exposure semantics, schedule bounded retrospective cycles, create immutable Fresh locks/cohorts, evaluate archetype-aware Fresh evidence and enforce capacity/stop/Promotion boundaries.",
+        "source_path": "backend/services/engine/autonomous_research_supervisor",
+        "target_path": "backend/services/engine/autonomous_research_supervisor",
+        "key_symbols": [
+            "AutonomousResearchSupervisorSpecV1",
+            "build_project_evidence_ledger",
+            "build_fresh_lock",
+            "build_fresh_cohort",
+            "assess_cohort",
+            "global_stop_decision",
+            "execute_supervisor",
+            "replay_supervisor"
+        ],
+        "dependencies": [
+            "quantmind2.technical_feature_factory",
+            "quantmind2.archetype_alpha_program",
+            "quantmind2.data_foundation",
+            "quantmind2.research_artifact_store"
+        ],
+        "architecture_decision_refs": [
+            "ADR-0003",
+            "ADR-0005",
+            "ADR-0006",
+            "ADR-0007",
+            "ADR-0008",
+            "ADR-0011"
+        ],
+        "current_limitations": [
+            "The formal first Cycle produced zero Retrospective Candidates and therefore no project-level Fresh Lock or Cohort.",
+            "Incremental collection is single-process and only runs for active Fresh Candidates.",
+            "Fresh-supported status has no Promotion authority."
+        ],
+        "last_verified_commit": null,
+        "evidence_level": "code_confirmed"
     }
   ]
 }

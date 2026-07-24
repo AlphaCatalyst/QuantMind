@@ -1,5 +1,19 @@
 # Known Issues
 
+## QM2-KI-056 — Current authorized autonomous space produced no new candidate
+
+Open, medium. The first Supervisor Cycle reused the current immutable
+Feature-Catalog/Alpha-Program revision and correctly made zero repeated
+Agent/Qlib calls. It produced no Retrospective Candidate. A later Cycle
+requires genuinely new authorized research space, not repetition or relaxed
+gates.
+
+## QM2-KI-055 — No project-level mature Fresh evidence
+
+Open, high. All project-visible market evidence through 2026-07-23 is exposed
+and `retrospective_research_only`. The Supervisor has no Candidate, Fresh
+Lock, Cohort, mature observation, Fresh support or Promotion evidence.
+
 ## QM2-KI-054 — Autonomous technical/archetype search found no survivor
 
 Open, medium. `QM2-R2-004` expands the Terminal Feature space by two admitted

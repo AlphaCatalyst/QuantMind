@@ -181,6 +181,19 @@ class ArtifactKind(str, Enum):
     ARCHETYPE_ALPHA_VALIDATION_FAILURE = "archetype_alpha_validation_failure"
     ARCHETYPE_ALPHA_FRESH_LOCK = "archetype_alpha_fresh_lock"
     ARCHETYPE_AWARE_PROGRAM_REPORT = "archetype_aware_program_report"
+    PROJECT_EVIDENCE_EXPOSURE_LEDGER = "project_evidence_exposure_ledger"
+    AUTONOMOUS_RESEARCH_SUPERVISOR_SPEC = "autonomous_research_supervisor_spec"
+    AUTONOMOUS_RESEARCH_SUPERVISOR = "autonomous_research_supervisor"
+    AUTONOMOUS_RESEARCH_QUEUE = "autonomous_research_queue"
+    AUTONOMOUS_RESEARCH_CYCLE = "autonomous_research_cycle"
+    RETROSPECTIVE_CANDIDATE = "retrospective_candidate"
+    PROJECT_CANDIDATE_FRESH_LOCK = "project_candidate_fresh_lock"
+    FRESH_CANDIDATE_COHORT = "fresh_candidate_cohort"
+    FRESH_MARKET_SNAPSHOT = "fresh_market_snapshot"
+    FRESH_CANDIDATE_OBSERVATION = "fresh_candidate_observation"
+    FRESH_COHORT_MULTIPLE_TESTING = "fresh_cohort_multiple_testing"
+    FRESH_CANDIDATE_ASSESSMENT = "fresh_candidate_assessment"
+    AUTONOMOUS_RESEARCH_SUPERVISOR_REPORT = "autonomous_research_supervisor_report"
 
 
 class IntegrityStatus(str, Enum):

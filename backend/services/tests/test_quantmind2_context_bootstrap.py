@@ -248,7 +248,7 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertIn("fubc_e1885a79", text)
         self.assertIn("TUSHARE_CORPORATE_ACTION_EVIDENCE_INSUFFICIENT", text)
         self.assertIn("No benchmark revision", text)
-        self.assertEqual(handoff["current_task"], "QM2-R2-004")
+        self.assertEqual(handoff["current_task"], "QM2-R2-005")
         self.assertEqual(handoff["completion_status"], "completed_uncommitted")
         self.assertEqual(handoff["next_recommended_tasks"], [])
         self.assertIn("mfi1_87177b7c", text)
@@ -269,6 +269,11 @@ class QuantMind2ContextBootstrapTests(unittest.TestCase):
         self.assertIn("aausl1_47e182", text)
         self.assertIn("amtc1_fae10b", text)
         self.assertIn("zero Validation Survivor", text)
+        self.assertIn("peel1_f96c3595", text)
+        self.assertIn("arsv1_1d07cf5c", text)
+        self.assertIn("arsr1_3cc6becd", text)
+        self.assertIn("retrospective_research_only", text)
+        self.assertIn("2026-07-23", text)
 
     def test_persistence_audit_did_not_modify_accepted_adrs(self):
         root = Path(__file__).resolve().parents[3]

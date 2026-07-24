@@ -781,3 +781,18 @@ shortlist with no Qlib because an implementation date-type boundary blocked
 admitted evaluations. It remains immutable diagnostic evidence. Revision
 1.0.1 fixes the general boundary and is the final formal result; it does not
 rewrite the earlier Store artifacts.
+
+## QM2-R2-005 handoff
+
+Read `AUTONOMOUS_RESEARCH_SUPERVISOR_AND_PROJECT_FRESH_VALIDATION_V1.md`.
+Project evidence through 2026-07-23 is `retrospective_research_only`.
+Supervisor Spec `arsv1_1d07cf5c...abd14e`, Ledger
+`peel1_f96c3595...a7c7eb`, Queue `arq1_1982ce71...29e71f`, Cycle
+`arc1_58325bd9...cb2c8b` and Report `arsr1_3cc6becd...91666a` are the
+authoritative new objects.
+
+The first Cycle produced zero Retrospective Candidates and therefore zero
+Supervisor Fresh Locks, Cohorts, observations and Registry writes. Incremental
+data was not requested because no active Supervisor Fresh Candidate exists.
+R1-010 remains an independent Fresh protocol and is not pooled into Supervisor
+Cohort statistics. Promotion requires a separate human-authorized task.

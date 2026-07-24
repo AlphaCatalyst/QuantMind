@@ -201,6 +201,7 @@ Statuses describe current implementation, not architectural intention.
 | Remaining QuantMind 2.0 research/data components | planned | Frozen architecture only |
 | `quantmind2.technical_feature_factory` | implemented | Unlabeled bounded Feature Agent, formal PIT grammar, quality/novelty admission, full-period research materialization and immutable Catalog v2 |
 | `quantmind2.archetype_alpha_program` | implemented | Three-Lane default-first Alpha research with pre-registered monotonic/tail tests, locked validation, global BH FDR, recovery and zero-call replay |
+| `quantmind2.autonomous_research_supervisor` | implemented | Project exposure ledger, bounded research queue/cycles, retrospective-candidate boundary, no-backfill Fresh locks/cohorts, archetype-aware Fresh tests, BH FDR, state/cap/stop controls and zero-call replay |
 
 `quantmind2.optimization_governance` applies the corrected R1-005 business
 decision without modifying the v1 optimization engines or historical objects.

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T07:41:45Z",
-  "source_commit": "38af464809d2bec14ea9284a4e2ba6e634f61d3b",
+  "generated_at": "2026-07-24T11:10:10Z",
+  "source_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -136,6 +136,19 @@
     {"task_id": "QM2-R1-003", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-R1-002"], "objective": "Repair research artifact completeness and rerun a six-subfamily replayable skip-recent momentum deep dive.", "explicit_non_goals": ["No original-candidate reconstruction, Tushare network, strategy search, later-period selection, Promotion, production activation or LightGBM work."], "acceptance_summary": "Nine completed real Agent responses, 15 candidates, 50 unique Trials and 178 formal Qlib calls produced two research-only locks; 368 artifacts cold-recover and exact replay is zero-call."},
     {"task_id": "QM2-R1-004", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-R1-003"], "objective": "Audit locked momentum signal semantics and decompose later-period Alpha degradation without changing research inputs.", "explicit_non_goals": ["No new Factor, Agent, Optimization, Strategy change, Tushare network, Promotion or future-period selection."], "acceptance_summary": "Five immutable Store artifacts diagnose semantics, RankIC, quantiles, beta, style, concentration, contributions, costs, horizons, regimes and correlations; cold recovery and exact replay pass and the decision is stock-selection overlay only."},
     {"task_id": "QM2-R1-005", "status": "completed_committed", "priority": "P0", "dependencies": ["QM2-R1-003", "QM2-R1-004"], "objective": "Diagnose factor, strategy and combined parameter-optimization overfit under no, local and full search intensity.", "explicit_non_goals": ["No new Factor, Agent, network call, Candidate mutation, Promotion, optimizer-default change, Fresh Validation or predictive claim."], "acceptance_summary": "F0/F1/F2, S0/S1/S2 and O0/O1/O2 walk-forward diagnostics, report-period gaps, rank stability, Winner's Curse, Fold consistency, plateaus, costs, immutable Store recovery and exact replay complete without changing research state."},
-    {"task_id": "QM2-R2-004", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-R2-003"], "objective": "Generate bounded unlabeled technical Terminal Features and evaluate pre-registered monotonic and top-tail Alpha structures under one global Validation/FDR boundary.", "explicit_non_goals": ["No market-data network call, Full Factor Search, Strategy/Combined Optimization, post-hoc Archetype switch, Fresh evaluation, Promotion or production claim."], "acceptance_summary": "Factory admitted two Features; Program ran 18 calls, 19 Admissions, 58 Adaptive Qlib and nine locked Validation objects across both Archetypes, ending with zero Survivor under unchanged gates and exact zero-call replay."}
+    {"task_id": "QM2-R2-004", "status": "completed_uncommitted", "priority": "P0", "dependencies": ["QM2-R2-003"], "objective": "Generate bounded unlabeled technical Terminal Features and evaluate pre-registered monotonic and top-tail Alpha structures under one global Validation/FDR boundary.", "explicit_non_goals": ["No market-data network call, Full Factor Search, Strategy/Combined Optimization, post-hoc Archetype switch, Fresh evaluation, Promotion or production claim."], "acceptance_summary": "Factory admitted two Features; Program ran 18 calls, 19 Admissions, 58 Adaptive Qlib and nine locked Validation objects across both Archetypes, ending with zero Survivor under unchanged gates and exact zero-call replay."},
+    {
+        "task_id": "QM2-R2-005",
+        "status": "completed_uncommitted",
+        "priority": "P0",
+        "dependencies": [
+            "QM2-R2-004"
+        ],
+        "objective": "Establish project exposure semantics, bounded autonomous research supervision and no-backfill project Fresh Cohort validation.",
+        "explicit_non_goals": [
+            "No historical Fresh relabeling, automatic Promotion/trading, threshold relaxation, dependency or lockfile change."
+        ],
+        "acceptance_summary": "Sixteen Runs are ledgered through 2026-07-23; one automatic zero-call reuse Cycle completes with zero Candidate, healthy Store and exact replay."
+    }
   ]
 }

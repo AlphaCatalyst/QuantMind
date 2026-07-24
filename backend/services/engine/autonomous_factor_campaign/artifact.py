@@ -62,6 +62,19 @@ KINDS = {
     "archetype_alpha_validation_failure": ("validation_failure_id", "aavf1_"),
     "archetype_alpha_fresh_lock": ("fresh_lock_id", "aafl1_"),
     "archetype_aware_program_report": ("report_id", "aapr1_"),
+    "project_evidence_exposure_ledger": ("exposure_ledger_id", "peel1_"),
+    "autonomous_research_supervisor_spec": ("supervisor_spec_id", "arsv1_"),
+    "autonomous_research_supervisor": ("supervisor_id", "ars1_"),
+    "autonomous_research_queue": ("research_queue_id", "arq1_"),
+    "autonomous_research_cycle": ("research_cycle_id", "arc1_"),
+    "retrospective_candidate": ("candidate_id", "rcan1_"),
+    "project_candidate_fresh_lock": ("fresh_lock_id", "pcfl1_"),
+    "fresh_candidate_cohort": ("fresh_cohort_id", "fcc1_"),
+    "fresh_market_snapshot": ("fresh_market_snapshot_id", "fms1_"),
+    "fresh_candidate_observation": ("fresh_observation_id", "fco1_"),
+    "fresh_cohort_multiple_testing": ("fresh_multiple_testing_id", "fcmt1_"),
+    "fresh_candidate_assessment": ("fresh_assessment_id", "fca1_"),
+    "autonomous_research_supervisor_report": ("supervisor_report_id", "arsr1_"),
 }
 
 

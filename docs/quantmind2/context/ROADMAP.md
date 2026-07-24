@@ -1,5 +1,12 @@
 # QuantMind 2.0 Initial Roadmap
 
+Current research task: `QM2-R2-005` is completed. Sixteen formal R1/R2 Runs
+are recorded in the project exposure Ledger through 2026-07-23, and all
+historical evidence is retrospective-only. The first Supervisor Cycle reuses
+the current Factory/Program revision without repeated Agent/Qlib calls,
+produces zero Candidate, and waits for new authorized novelty or future Fresh
+data. No Promotion is authorized.
+
 Current research task: `QM2-R2-001` is completed. Twelve autonomous rounds
 produced 26 Proposals, 20 admissions and three research-only Candidate Locks
 under 74 formal Qlib calls. Store recovery and exact replay pass with no

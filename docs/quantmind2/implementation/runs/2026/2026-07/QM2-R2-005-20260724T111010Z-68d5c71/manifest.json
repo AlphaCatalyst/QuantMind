@@ -1,0 +1,565 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-qm2-r2-005-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "d63985dfb7ecf98c62b08c08ac25a2ac27b329498c279f8e11b375ddb4896850",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 8229
+    },
+    {
+      "artifact_id": "artifact-qm2-r2-005-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "peel1_f96c3595ab18f3d496fa216799347c33092c8e4b19b8effb126d28b0d0a7c7eb",
+      "artifact_type": "project_evidence_exposure_ledger",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:peel1_f96c3595ab18f3d496fa216799347c33092c8e4b19b8effb126d28b0d0a7c7eb",
+      "schema_version": "project-evidence-exposure-ledger-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "arsv1_1d07cf5c773e0fef1c7855b874235405e8c1e0e247caa1f4af51876aecabd14e",
+      "artifact_type": "autonomous_research_supervisor_spec",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:arsv1_1d07cf5c773e0fef1c7855b874235405e8c1e0e247caa1f4af51876aecabd14e",
+      "schema_version": "autonomous-research-supervisor-spec-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "arq1_1982ce71db80bff8cdabf266b2ab259c599a2eb2dcb4150f25ee548f1d29e71f",
+      "artifact_type": "autonomous_research_queue",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:arq1_1982ce71db80bff8cdabf266b2ab259c599a2eb2dcb4150f25ee548f1d29e71f",
+      "schema_version": "autonomous-research-queue-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "arc1_58325bd9f85a99d605dd185b7555220005b747132cb0ff456b130c0a3bcb2c8b",
+      "artifact_type": "autonomous_research_cycle",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:arc1_58325bd9f85a99d605dd185b7555220005b747132cb0ff456b130c0a3bcb2c8b",
+      "schema_version": "autonomous-research-cycle-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "ars1_57713f1cd561c8188c67eb21a8dbeb0b3e0a73da1c8d7851e8d88750f761545b",
+      "artifact_type": "autonomous_research_supervisor",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:ars1_57713f1cd561c8188c67eb21a8dbeb0b3e0a73da1c8d7851e8d88750f761545b",
+      "schema_version": "autonomous-research-supervisor-v1",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "arsr1_3cc6becdc5aa349f7ebe83c6814d5b1bb0b4367d5361b83261e54cf1db91666a",
+      "artifact_type": "autonomous_research_supervisor_report",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store:arsr1_3cc6becdc5aa349f7ebe83c6814d5b1bb0b4367d5361b83261e54cf1db91666a",
+      "schema_version": "autonomous-research-supervisor-report-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "4977f890f183293a1f1a16672b003fa19f45c9d15703ca1ad0eead9ef868c916",
+      "before_hash": "9b656ba9c792fb4874f8ce5cd2e73afb3736e2e3f35dc2a127dec7a3061a219a",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "30160f9dc113be9be58f39c80f68c938bb4cd0fee79f86bbf541c4319ff1d557",
+      "before_hash": "a2bc56b4edb4029d054a21690f6c905895df2fbda2211f9eefc70b9b06035ec7",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "37203ea4956027f32413268f424d44e8b536f4b20737eecb5403bf76c053b2ba",
+      "before_hash": "f9bb80d5488bb151a965a9fb9458d6779b6005d133ee3993baa8e9000afaaa40",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2ddffe6f852c592fc8e73d5c2aa0128a75dd17a31dfa137b82348a6853ce76f3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3e23723f82e4c4a4328bab0af70684acf0c496241a0fe7af54d3f3bcfaa55cdd",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/contamination_ledger.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8c4fa904b802418bdb7708732f02b00b54d0e9d11b71201dfdafca7b861c376b",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/control.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "07476d354297bfde53acdb7f885425660646a144382371afd61b885deec1ab97",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/fresh.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "683ec71c5ae5c4c687bb55c3978979fd12720969414d08edfd8ff5a1c2023f80",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ff8b1132fc05c320f71e113e49edabdabb9b072d5a9059dd49ebcadaf38a1422",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "94060e39b9426367c1ec2d2f03cb407df3467eaf291cfd7e1cba300b21a816b4",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/autonomous_research_supervisor/schemas.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c3edd457f0836be46f4d16fe13dd5d3c56cd7bc457b9730f45eebb89a7293162",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_autonomous_research_supervisor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "059875e5d5885d0800e3118807913f923cd31a26eb13edaf6df23b25108b1546",
+      "before_hash": "22e7276db7cb2f25c195976af9bf5d3dfeed5ecc67b58e040861c474390ffa79",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0cebedaa76b247c3802d8602d1186587a8ee7e0208db324679518870f3d97920",
+      "before_hash": "e161ec0d31ebeb466ce4c8035c9a18d40db90b1b4bf9958d07f7ebcb034b553d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2f3c7dcc530cf1f53b15094744cfa1ae5703573ec0f0bd74dcfc2e5663801f1b",
+      "before_hash": "8cf896e79e8175a96e081a97e68e0971de5533c20cbcc2cd71be2dfa7899563f",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "57fa4b7bb408d0b13d4576f029a3c194584248c5aa50d24061994553f23e3344",
+      "before_hash": "28f77400fb2f6c49c4ca8a493df891e1cd2acde3d914f11f9134655a6dc06dec",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "90e83a2115023f6fd017c08ba01aa3a3a47c62a2425fb637ff49e8878ede681b",
+      "before_hash": "d439bcb16d47cde2f39720a6ba989180cab803576dd573dd202a3bae384c2ca5",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6e1ce6db5fe18a1a114006d2c1be54ac2163d4b395c9af554899d85770ceb59d",
+      "before_hash": "559182431ae167e515a3d7409159d262a3032edad1fe77f9ca614549a2ce3b5d",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "74db315d50bc8fd90189aa55ec78c6ae8b72b57c97612317f4d14ee0ed349401",
+      "before_hash": "5180556a428077c04c60d597c8bde3c128ad85cd226c53d707d9db6def90a24b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "86a94ccae5ba37574f7cbb9e2468b9f716c5161c09893535180ea637f582e39e",
+      "before_hash": "7f904d766e56d13236e3c83e336e211c0ccaa4267d68a6192813159846974768",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "13d55786ba7d4be0aafe716dc2749c9f1cb74bf5f47115f6965891e2357018ce",
+      "before_hash": "2574773c3b41cb29440c5f2c048bfc370b3e28a76075034af45cb37e68085006",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8aea8fdddc21d00808a707005a0e574329106304618b8dd0f3a43779f0ec123e",
+      "before_hash": "4d48a01454e3db3749c4da4ba0bc301b03b6b7cfd12cfc5504944939f8309b74",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/known_issues.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f60227a7f89a79c5bde529d12b802388b470ee0df2cd50afec1842ebde265ce0",
+      "before_hash": "2c2fcb8998cad833394c942c3d6959f82c69697f7550aeda7c41821402b35fe3",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "c9c9188a968e47865de26260775bc587fc896d74c97fb608dc519ee161307dea",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/contracts/AUTONOMOUS_RESEARCH_SUPERVISOR_AND_PROJECT_FRESH_VALIDATION_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d63985dfb7ecf98c62b08c08ac25a2ac27b329498c279f8e11b375ddb4896850",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d821426df23446b22fecd5c74672f8998010fcb75549b264fe15ec5e6b1854c3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6db95c087a93b3ebee77f3a5ed12a8a9abecc9e81978b7b78c9acb4228807ec7",
+      "before_hash": "5629de4f1e80988c278ccb8bd358078485b18cc127a882acd5f9b95e9bcc97fc",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/models.py",
+      "qualified_name": "AutonomousResearchSupervisorSpecV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/contamination_ledger.py",
+      "qualified_name": "build_project_evidence_ledger",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/fresh.py",
+      "qualified_name": "build_fresh_lock",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/fresh.py",
+      "qualified_name": "assess_cohort",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/control.py",
+      "qualified_name": "global_stop_decision",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "qualified_name": "execute_supervisor",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "qualified_name": "replay_supervisor",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.autonomous_research_supervisor",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.archetype_alpha_program",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.technical_feature_factory",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-qm2-r2-005-report",
+        "sha256": "d63985dfb7ecf98c62b08c08ac25a2ac27b329498c279f8e11b375ddb4896850"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "backend/services/engine/autonomous_research_supervisor/contamination_ledger.py",
+      "backend/services/engine/autonomous_research_supervisor/control.py",
+      "backend/services/engine/autonomous_research_supervisor/fresh.py",
+      "backend/services/engine/autonomous_research_supervisor/models.py",
+      "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "backend/services/engine/autonomous_research_supervisor/schemas.py",
+      "backend/services/tests/test_autonomous_research_supervisor.py",
+      "docs/quantmind2/contracts/AUTONOMOUS_RESEARCH_SUPERVISOR_AND_PROJECT_FRESH_VALIDATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/report.md",
+      "tools/quantmind2/run_autonomous_research_supervisor.py"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "backend/services/engine/autonomous_research_supervisor/contamination_ledger.py",
+      "backend/services/engine/autonomous_research_supervisor/control.py",
+      "backend/services/engine/autonomous_research_supervisor/fresh.py",
+      "backend/services/engine/autonomous_research_supervisor/models.py",
+      "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "backend/services/engine/autonomous_research_supervisor/schemas.py",
+      "backend/services/tests/test_autonomous_research_supervisor.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/KNOWN_ISSUES.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/known_issues.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/contracts/AUTONOMOUS_RESEARCH_SUPERVISOR_AND_PROJECT_FRESH_VALIDATION_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/report.md",
+      "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "6ec7965950908032582e5f139843a2b617f03fc530cd58c714f8ca6673fd925d",
+    "manifest_payload_sha256": "9e91158f0ee38f444100fbf0a08c802bb886a094dc5605a489f529518546b091",
+    "report_sha256": "d63985dfb7ecf98c62b08c08ac25a2ac27b329498c279f8e11b375ddb4896850",
+    "source_bundle_sha256": "140b960b8d010ab4cb78a4adc0c0be105b86b85fd803b118663a37cf03172497"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.autonomous_research_supervisor",
+      "description": "No project-level mature Fresh Candidate or Cohort exists; formal Fresh support is zero.",
+      "limitation_id": "limit-r2-005-1",
+      "severity": "high",
+      "status": "open"
+    },
+    {
+      "component_id": "quantmind2.autonomous_research_supervisor",
+      "description": "The formal first Cycle produced zero Retrospective Candidates, so Fresh success paths have tests but no formal-run evidence.",
+      "limitation_id": "limit-r2-005-2",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "Supervisor incremental execution and Artifact Store remain local single-process and single-host.",
+      "limitation_id": "limit-r2-005-3",
+      "severity": "low",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [],
+  "repository": {
+    "base_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "68d5c7175390089db5827b9ce8f57b13761dfde1",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-24T11:10:10Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "6ec7965950908032582e5f139843a2b617f03fc530cd58c714f8ca6673fd925d",
+    "implementation_run_id": "QM2-R2-005-20260724T111010Z-68d5c71",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-005-20260724T111010Z-68d5c71/report.md",
+    "repository_id": "quantmind",
+    "result_commit": null,
+    "source_bundle_hash": "140b960b8d010ab4cb78a4adc0c0be105b86b85fd803b118663a37cf03172497",
+    "started_at": "2026-07-24T10:20:00Z",
+    "task_id": "QM2-R2-005",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-24T11:10:10Z",
+    "explicit_non_goals": [
+      "No historical Fresh relabeling",
+      "No automatic Promotion or trading",
+      "No threshold or FDR relaxation",
+      "No dependency or lockfile change"
+    ],
+    "objective": "Establish project exposure semantics, bounded autonomous research supervision and no-backfill project Fresh Cohort validation.",
+    "parent_task_id": null,
+    "scope": [
+      "Project Evidence Exposure Ledger",
+      "Supervisor Spec and Research Queue",
+      "Retrospective Candidate and Fresh contracts",
+      "Formal first Supervisor Cycle",
+      "Store recovery and replay",
+      "Tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R2-005",
+    "title": "Autonomous Research Supervisor and Project-Level Fresh Validation v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q --no-cov test_autonomous_research_supervisor.py test_autonomous_technical_feature_factory.py test_archetype_alpha_program.py test_autonomous_factor_program.py test_artifact_store_integrity.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 73,
+      "purpose": "Verify Supervisor and reused R2 research foundations.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-005-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q --no-cov test_autonomous_research_supervisor.py test_quantmind2_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 45,
+      "purpose": "Verify Supervisor states, Fresh controls and Project Memory.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-005-context-focused"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q --no-cov <Supervisor, R2, R1-010, Tushare, Store, Context suite>",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 142,
+      "purpose": "Full relevant regression.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-005-relevant"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Verify bounded Project Context invariants.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-005-context"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store:arsr1_3cc6becdc5aa349f7ebe83c6814d5b1bb0b4367d5361b83261e54cf1db91666a",
+      "command": "run_autonomous_research_supervisor.py create-spec/plan/execute/update-market-data/validate-supervisor/resume/replay",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 7,
+      "purpose": "Formal Supervisor run, Store recovery and zero-call replay.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-005-formal"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "py_compile new modules and CLI; parse Project Context JSON; git diff --check",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 3,
+      "purpose": "Verify syntax, machine context and patch whitespace.",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-005-static"
+    }
+  ]
+}

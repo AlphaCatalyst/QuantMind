@@ -39,6 +39,9 @@ ID_FIELDS = (
     "feature_materialization_id", "novelty_index_id", "feature_catalog_v2_id",
     "archetype_contract_id", "program_spec_id", "union_shortlist_lock_id",
     "validation_id", "multiple_testing_id", "validation_failure_id",
+    "exposure_ledger_id", "supervisor_spec_id", "supervisor_id",
+    "research_queue_id", "research_cycle_id", "candidate_id",
+    "fresh_cohort_id", "fresh_market_snapshot_id", "fresh_multiple_testing_id",
 )
 
 
@@ -256,6 +259,19 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.ARCHETYPE_ALPHA_VALIDATION_FAILURE,
         ArtifactKind.ARCHETYPE_ALPHA_FRESH_LOCK,
         ArtifactKind.ARCHETYPE_AWARE_PROGRAM_REPORT,
+        ArtifactKind.PROJECT_EVIDENCE_EXPOSURE_LEDGER,
+        ArtifactKind.AUTONOMOUS_RESEARCH_SUPERVISOR_SPEC,
+        ArtifactKind.AUTONOMOUS_RESEARCH_SUPERVISOR,
+        ArtifactKind.AUTONOMOUS_RESEARCH_QUEUE,
+        ArtifactKind.AUTONOMOUS_RESEARCH_CYCLE,
+        ArtifactKind.RETROSPECTIVE_CANDIDATE,
+        ArtifactKind.PROJECT_CANDIDATE_FRESH_LOCK,
+        ArtifactKind.FRESH_CANDIDATE_COHORT,
+        ArtifactKind.FRESH_MARKET_SNAPSHOT,
+        ArtifactKind.FRESH_CANDIDATE_OBSERVATION,
+        ArtifactKind.FRESH_COHORT_MULTIPLE_TESTING,
+        ArtifactKind.FRESH_CANDIDATE_ASSESSMENT,
+        ArtifactKind.AUTONOMOUS_RESEARCH_SUPERVISOR_REPORT,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)
