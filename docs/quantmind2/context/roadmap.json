@@ -184,6 +184,15 @@
       "objective": "Audit executable Label semantics and test frozen L1/L5/L10 alignment against the unchanged technical Bundles, LightGBM and Qlib protocol.",
       "explicit_non_goals": ["No production Label replacement, Feature/Bundle generation, hyperparameter/Strategy/Combined Optimization, report-period selection, network call, Registry, Promotion or Cycle 005."],
       "acceptance_summary": "Three Labels, three Bundles, four purged Folds and three seeds complete 108 fits, 36 predictions and 36 Qlib runs; global nine-hypothesis BH admits two L1 retrospective Candidates, Store/recovery/replay pass, and Fresh remains data-blocked."
+    },
+    {
+      "task_id": "QM2-R2-009",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R2-008"],
+      "objective": "Accrue immutable no-backfill Fresh model predictions, mature Labels and fixed-strategy evidence for the exact two frozen L1 Candidates.",
+      "explicit_non_goals": ["No new Feature, model/strategy optimization, Candidate/Registry mutation, Promotion, trading or system scheduler installation."],
+      "acceptance_summary": "The Cohort freezes before market reads; formal calendar and first-seen Snapshot establish 2026-07-24, both Candidates receive one prediction and remain accumulating, and Store recovery/exact replay pass."
     }
   ]
 }

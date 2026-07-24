@@ -852,3 +852,20 @@ This is retrospective evidence only. It does not replace the production
 Label, register/promote a model, or authorize trading. Fresh data strictly
 after 2026-07-23 is absent, so no Fresh Cohort result exists. Cycle 004 is
 complete, Cycle 005 was not created, and no successor task is authorized.
+
+## QM2-R2-009 handoff
+
+Read `AUTOMATED_FRESH_MODEL_COHORT_V1.md` after the R2-008 contract. Cohort
+`mfcc1_faab1ee6...7bde6dc`, first-seen Snapshot
+`fms1_e0aaaf86...9f83e3`, and Heartbeat
+`fmhr1_224de05e...f9fe42` are authoritative.
+
+The formal calendar establishes 2026-07-24 as the Fresh start. Both frozen L1
+Candidates have one prediction and no mature Label yet, so both remain
+`fresh_evidence_accumulating`; the cohort-wide HAC/BH test is legally waiting.
+The interrupted post-Snapshot run recovered without another Tushare request.
+Exact replay and cold recovery have zero calls/writes, Store integrity is
+healthy, and Registry/Promotion writes are zero.
+
+The project-local scheduling contract exists, but no system scheduler was
+installed or loaded. No successor task is authorized.

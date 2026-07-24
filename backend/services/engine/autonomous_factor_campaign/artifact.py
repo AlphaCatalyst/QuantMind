@@ -107,6 +107,19 @@ KINDS = {
     "multi_horizon_retrospective_model_candidate": ("candidate_id", "mhrmc1_"),
     "multi_horizon_model_fresh_lock": ("fresh_lock_id", "mhmfl1_"),
     "multi_horizon_label_research_report": ("research_report_id", "mhlrr1_"),
+    "model_fresh_candidate_cohort": ("model_fresh_candidate_cohort_id", "mfcc1_"),
+    "fresh_model_training_event": ("fresh_model_training_event_id", "fmte1_"),
+    "fresh_model_bundle_membership": ("fresh_model_bundle_membership_id", "fmbm1_"),
+    "fresh_model_prediction": ("fresh_model_prediction_id", "fmp1_"),
+    "fresh_model_label_observation": ("fresh_model_label_observation_id", "fmlo1_"),
+    "fresh_model_strategy_observation": ("fresh_model_strategy_observation_id", "fmso1_"),
+    "fresh_model_candidate_observation": ("fresh_model_candidate_observation_id", "fmco1_"),
+    "fresh_model_cohort_multiple_testing": (
+        "fresh_model_cohort_multiple_testing_id",
+        "fmcmt1_",
+    ),
+    "fresh_model_candidate_assessment": ("fresh_model_candidate_assessment_id", "fmca1_"),
+    "fresh_model_heartbeat_run": ("fresh_model_heartbeat_run_id", "fmhr1_"),
 }
 
 

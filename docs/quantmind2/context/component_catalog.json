@@ -580,6 +580,44 @@
       ],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
+    },
+    {
+      "component_id": "quantmind2.fresh_model_cohort",
+      "name": "Automated Fresh Model Cohort Observation v1",
+      "status": "implemented",
+      "responsibility": "Freeze and observe the exact two R2-008 L1 Model Candidates through first-seen incremental Tushare data, fixed Bundle and LightGBM contracts, predictions, mature Labels, fixed strategy, minimum-evidence gating, cohort HAC/BH, heartbeat, recovery and exact replay.",
+      "source_path": "backend/services/engine/fresh_model_cohort",
+      "target_path": "backend/services/engine/fresh_model_cohort",
+      "key_symbols": [
+        "ModelFreshCandidateCohortV1",
+        "freeze_cohort",
+        "run_fresh_heartbeat",
+        "replay_heartbeat",
+        "validate_cohort"
+      ],
+      "dependencies": [
+        "quantmind.training",
+        "quantmind2.multi_horizon_label_research",
+        "quantmind2.fixed_configuration_model_program",
+        "quantmind2.data_foundation",
+        "quantmind2.research_artifact_store"
+      ],
+      "architecture_decision_refs": [
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0005",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011"
+      ],
+      "current_limitations": [
+        "Only one Fresh trading day and zero mature L1 Labels exist, so both Candidates remain fresh_evidence_accumulating.",
+        "Cohort HAC/BH cannot run until both members satisfy the unchanged minimum evidence gate.",
+        "System-level scheduling is deliberately not installed."
+      ],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
     }
   ]
 }

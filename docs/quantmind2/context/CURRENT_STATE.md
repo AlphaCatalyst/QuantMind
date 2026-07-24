@@ -1376,6 +1376,23 @@ post-lock label-complete dates exist.
 - Latest Implementation Run:
   `QM2-P0-008-20260717T072210Z-0374aac`.
 
+## Automated Fresh Model Cohort observation
+
+- Current task: `QM2-R2-009`.
+- Cohort `mfcc1_faab1ee6...7bde6dc` contains exactly the two immutable
+  `QM2-R2-008` L1 Model Candidates and Fresh Locks.
+- Formal Tushare calendar evidence derives `2026-07-24` as the first open date
+  strictly after the project exposure cutoff `2026-07-23`.
+- First-seen Snapshot `fms1_e0aaaf86...9f83e3` contains one Fresh trading day.
+  Both Candidates have one prediction, zero mature L1 observations, zero
+  monthly retraining events, and remain `fresh_evidence_accumulating`.
+- Cohort HAC/BH testing is waiting for both members to satisfy the unchanged
+  minimum evidence gate. Registry writes and Promotion writes are zero.
+- Heartbeat `fmhr1_224de05e...f9fe42` is Store-backed. Cold recovery and exact
+  replay return all external-call and write counters as zero. Store integrity
+  is healthy with Missing 0 and Unreferenced 0.
+- System-level scheduling remains uninstalled. No successor task is authorized.
+
 ## External Agent Provider completion
 
 - `QM2-P0-008F` diagnosed the historical exit code 1 as Provider

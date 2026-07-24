@@ -10,10 +10,10 @@ or select another horizon.
 
 ## QM2-KI-061 — Multi-horizon candidates await genuinely Fresh data
 
-Open, high. Two L1 retrospective Candidates have immutable no-backfill Fresh
-Locks, but the authority ends before the strictly post-2026-07-23 Fresh start.
-No Fresh observation, Cohort result, Registry state, Promotion, or production
-evidence exists.
+Resolved by successor, high. `QM2-R2-009` publishes the first immutable
+post-exposure Snapshot and predictions. This resolves the absence of any Fresh
+observation but does not imply support, rejection, Registry change, Promotion,
+or production readiness.
 
 ## QM2-KI-058 — Weak-Alpha model aggregation produced no Candidate
 
@@ -83,6 +83,14 @@ negative 2026H1 RankIC and negative stock-selection residual. Costs and
 holding concentration do not explain the failure. The two signals remain
 research-only and may be studied only as stock-selection overlays; this is not
 Fresh Validation or Promotion evidence.
+
+## QM2-KI-062 — Model Fresh Cohort evidence is immature
+
+Open, medium. `QM2-R2-009` establishes one official Fresh date (2026-07-24)
+and one prediction per frozen L1 Model Candidate, but zero L1 Labels are mature.
+Both Candidates remain `fresh_evidence_accumulating`; HAC/BH, supported,
+rejected, and inconclusive conclusions are prohibited until both members pass
+the unchanged minimum evidence gate.
 
 ## QM2-KI-045 — Skip-recent continuation is negative
 

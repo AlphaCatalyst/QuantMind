@@ -226,6 +226,16 @@ class ArtifactKind(str, Enum):
     MULTI_HORIZON_RETROSPECTIVE_MODEL_CANDIDATE = "multi_horizon_retrospective_model_candidate"
     MULTI_HORIZON_MODEL_FRESH_LOCK = "multi_horizon_model_fresh_lock"
     MULTI_HORIZON_LABEL_RESEARCH_REPORT = "multi_horizon_label_research_report"
+    MODEL_FRESH_CANDIDATE_COHORT = "model_fresh_candidate_cohort"
+    FRESH_MODEL_TRAINING_EVENT = "fresh_model_training_event"
+    FRESH_MODEL_BUNDLE_MEMBERSHIP = "fresh_model_bundle_membership"
+    FRESH_MODEL_PREDICTION = "fresh_model_prediction"
+    FRESH_MODEL_LABEL_OBSERVATION = "fresh_model_label_observation"
+    FRESH_MODEL_STRATEGY_OBSERVATION = "fresh_model_strategy_observation"
+    FRESH_MODEL_CANDIDATE_OBSERVATION = "fresh_model_candidate_observation"
+    FRESH_MODEL_COHORT_MULTIPLE_TESTING = "fresh_model_cohort_multiple_testing"
+    FRESH_MODEL_CANDIDATE_ASSESSMENT = "fresh_model_candidate_assessment"
+    FRESH_MODEL_HEARTBEAT_RUN = "fresh_model_heartbeat_run"
 
 
 class IntegrityStatus(str, Enum):

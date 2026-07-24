@@ -48,6 +48,12 @@ ID_FIELDS = (
     "model_spec_id", "bundle_id", "walk_forward_spec_id", "leakage_audit_id",
     "fold_model_id", "prediction_artifact_id", "fold_result_id",
     "stability_assessment_id", "distillation_queue_id",
+    "model_fresh_candidate_cohort_id", "fresh_model_training_event_id",
+    "fresh_model_bundle_membership_id", "fresh_model_prediction_id",
+    "fresh_model_label_observation_id", "fresh_model_strategy_observation_id",
+    "fresh_model_candidate_observation_id",
+    "fresh_model_cohort_multiple_testing_id",
+    "fresh_model_candidate_assessment_id", "fresh_model_heartbeat_run_id",
 )
 
 
@@ -310,6 +316,16 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.MULTI_HORIZON_RETROSPECTIVE_MODEL_CANDIDATE,
         ArtifactKind.MULTI_HORIZON_MODEL_FRESH_LOCK,
         ArtifactKind.MULTI_HORIZON_LABEL_RESEARCH_REPORT,
+        ArtifactKind.MODEL_FRESH_CANDIDATE_COHORT,
+        ArtifactKind.FRESH_MODEL_TRAINING_EVENT,
+        ArtifactKind.FRESH_MODEL_BUNDLE_MEMBERSHIP,
+        ArtifactKind.FRESH_MODEL_PREDICTION,
+        ArtifactKind.FRESH_MODEL_LABEL_OBSERVATION,
+        ArtifactKind.FRESH_MODEL_STRATEGY_OBSERVATION,
+        ArtifactKind.FRESH_MODEL_CANDIDATE_OBSERVATION,
+        ArtifactKind.FRESH_MODEL_COHORT_MULTIPLE_TESTING,
+        ArtifactKind.FRESH_MODEL_CANDIDATE_ASSESSMENT,
+        ArtifactKind.FRESH_MODEL_HEARTBEAT_RUN,
     }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

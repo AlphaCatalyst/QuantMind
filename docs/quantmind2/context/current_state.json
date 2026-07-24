@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T15:53:17Z",
-  "source_commit": "86b2496dab37201ced1481fa2d214ab322952a71",
+  "generated_at": "2026-07-24T16:46:34Z",
+  "source_commit": "dca8e42494af418c7afe74bb92c4d1aaf1bc9f1d",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R2-008",
-  "latest_implementation_run": "QM2-R2-008-20260724T155317Z-86b2496",
+  "current_task": "QM2-R2-009",
+  "latest_implementation_run": "QM2-R2-009-20260724T164634Z-dca8e42",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -43,6 +43,7 @@
       "quantmind2.autonomous_research_supervisor",
       "quantmind2.fixed_configuration_model_program",
       "quantmind2.multi_horizon_label_research",
+      "quantmind2.fresh_model_cohort",
       "quantmind2.research_artifact_store",
       "quantmind2.artifact_runtime"
     ],
@@ -122,6 +123,21 @@
     "label_support_classification": "one_day_label_supported",
     "status": "completed_with_label_aligned_candidate",
     "automatic_cycle_005_created": false
+  },
+  "fresh_model_cohort": {
+    "cohort_id": "mfcc1_faab1ee6f07fe1ce46bb13ab8403e104433c5781058d3e8c6720e6ffd7bde6dc",
+    "fresh_market_snapshot_id": "fms1_e0aaaf867bea7ac11fa754d11ef9122be94dd48f2b1d048355585deeea9f83e3",
+    "heartbeat_id": "fmhr1_224de05ef7b20675ec4227eaa0efa487de73918cf0a1a1f55297812927f9fe42",
+    "fresh_start_date": "2026-07-24",
+    "data_as_of_date": "2026-07-24",
+    "candidate_count": 2,
+    "prediction_count": 2,
+    "mature_label_count": 0,
+    "minimum_evidence_passed_count": 0,
+    "multiple_testing_status": "awaiting_all_members_minimum_evidence",
+    "status": "fresh_evidence_accumulating",
+    "registry_writes": 0,
+    "promotion_writes": 0
   },
   "next_task_candidates": []
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T15:53:17Z",
-  "source_commit": "86b2496dab37201ced1481fa2d214ab322952a71",
+  "generated_at": "2026-07-24T16:46:34Z",
+  "source_commit": "dca8e42494af418c7afe74bb92c4d1aaf1bc9f1d",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "86b2496dab37201ced1481fa2d214ab322952a71",
+  "base_commit": "dca8e42494af418c7afe74bb92c4d1aaf1bc9f1d",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,12 +24,12 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R2-008",
+  "current_task": "QM2-R2-009",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R2-008-20260724T155317Z-86b2496",
+  "latest_implementation_run": "QM2-R2-009-20260724T164634Z-dca8e42",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
-    "Tushare incremental collection and late-data revision policy after 2026-06-23.",
+    "System-level scheduling for the project-local Fresh heartbeat is not installed or loaded.",
     "Active production database feature allowlist parity with the checked-in 152-key catalog.",
     "Stale adjacent 2025 feature sidecar reconciliation; exact Parquet bytes currently remain authoritative.",
     "Durable long-term location for the official Factor Lab source.",
@@ -83,6 +83,7 @@
     ,"docs/quantmind2/contracts/TECHNICAL_DSL_OPERATOR_EXTENSION_V1.md"
     ,"docs/quantmind2/architecture/FIXED_CONFIGURATION_MODEL_ALPHA_PROGRAM_V1.md"
     ,"docs/quantmind2/architecture/MULTI_HORIZON_LABEL_ALIGNMENT_RESEARCH_V1.md"
+    ,"docs/quantmind2/architecture/AUTOMATED_FRESH_MODEL_COHORT_V1.md"
   ],
   "uncommitted_work": true
 }

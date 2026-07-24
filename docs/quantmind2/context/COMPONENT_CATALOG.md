@@ -1,5 +1,18 @@
 # Component Catalog
 
+## QM2-R2-009 addition
+
+- `quantmind2.fresh_model_cohort` — implemented at
+  `backend/services/engine/fresh_model_cohort`; owns the immutable two-member
+  Model Fresh Cohort, executable L1 guard, first-seen incremental Tushare
+  Snapshot, frozen Bundle B and train-only Bundle C materialization, fixed
+  three-seed LightGBM training, predictions, mature Labels, fixed-strategy
+  observations, minimum-evidence gating, cohort-wide HAC/BH, Store recovery,
+  heartbeat, inspection, and exact replay.
+- It cannot generate Features, tune model/strategy parameters, change
+  Candidates or Fresh Locks, write Registry/Promotion state, trade, or install
+  a system scheduler.
+
 ## QM2-R2-008 addition
 
 - `quantmind2.multi_horizon_label_research` — implemented at

@@ -25,6 +25,11 @@ from backend.services.engine.autonomous_research_supervisor import (  # noqa: E4
     validate_next_research_cycle,
     validate_supervisor,
 )
+from backend.services.engine.fresh_model_cohort import (  # noqa: E402
+    inspect_artifact as inspect_fresh_model_artifact,
+    replay_heartbeat as replay_fresh_model_heartbeat,
+    run_fresh_heartbeat,
+)
 
 
 COMMANDS = (
@@ -36,6 +41,10 @@ COMMANDS = (
     "run-next-research-cycle", "inspect-research-space",
     "run-next-model-cycle", "inspect-model-candidate", "inspect-model-fresh-lock",
     "run-multi-horizon-model-cycle",
+    "run-fresh-heartbeat", "replay-fresh-heartbeat",
+    "inspect-model-cohort", "inspect-fresh-model",
+    "inspect-fresh-predictions", "inspect-fresh-labels",
+    "inspect-fresh-strategy", "inspect-fresh-multiple-testing",
 )
 
 
@@ -45,6 +54,9 @@ def parser() -> argparse.ArgumentParser:
     value.add_argument("--work-root", type=Path, default=Path("/private/tmp/qm2-r2-005-supervisor"))
     commands = value.add_subparsers(dest="command", required=True)
     commands.add_parser("create-spec")
+    heartbeat = commands.add_parser("run-fresh-heartbeat")
+    heartbeat.add_argument("--requested-through-date")
+    commands.add_parser("replay-fresh-heartbeat")
     for name in (
         "validate-spec", "plan", "execute", "run-research-cycle",
         "update-market-data", "update-fresh-observations",
@@ -63,6 +75,9 @@ def parser() -> argparse.ArgumentParser:
         "inspect-fresh-lock", "inspect-cohort", "inspect-fresh-status",
         "inspect-research-space",
         "inspect-model-candidate", "inspect-model-fresh-lock",
+        "inspect-model-cohort", "inspect-fresh-model",
+        "inspect-fresh-predictions", "inspect-fresh-labels",
+        "inspect-fresh-strategy", "inspect-fresh-multiple-testing",
     ):
         command = commands.add_parser(name)
         command.add_argument("artifact_id")
@@ -99,6 +114,13 @@ def main(argv: list[str] | None = None) -> int:
             result = run_multi_horizon_model_cycle(
                 supervisor_spec_id=args.supervisor_spec_id, **common
             )
+        elif args.command == "run-fresh-heartbeat":
+            result = run_fresh_heartbeat(
+                requested_through_date=args.requested_through_date,
+                **common,
+            )
+        elif args.command == "replay-fresh-heartbeat":
+            result = replay_fresh_model_heartbeat(**common)
         elif args.command == "validate-supervisor":
             result = validate_supervisor(
                 supervisor_spec_id=args.supervisor_spec_id,
@@ -139,6 +161,15 @@ def main(argv: list[str] | None = None) -> int:
                 "network_calls": 0,
                 "fresh_observation_writes": 0,
             }
+        elif args.command in {
+            "inspect-model-cohort", "inspect-fresh-model",
+            "inspect-fresh-predictions", "inspect-fresh-labels",
+            "inspect-fresh-strategy", "inspect-fresh-multiple-testing",
+        }:
+            result = inspect_fresh_model_artifact(
+                artifact_id=args.artifact_id,
+                **common,
+            )
         else:
             result = _repository(args).identity(args.artifact_id) | {"artifact_id": args.artifact_id}
         print(json.dumps(result, ensure_ascii=False, sort_keys=True, default=str))

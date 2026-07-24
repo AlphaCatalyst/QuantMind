@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/automated_fresh_model_cohort_v1.schema.json",
+  "title": "QuantMind Model Fresh Candidate Cohort v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "provider_id",
+    "candidate_membership",
+    "fresh_lock_ids",
+    "label_id",
+    "model_spec_id",
+    "walk_forward_spec_id",
+    "primary_statistic",
+    "hac_lag",
+    "bh_fdr_q",
+    "minimum_evidence_policy",
+    "strategy_protocol",
+    "project_exposure_date",
+    "no_backfill",
+    "membership_frozen",
+    "configuration_frozen",
+    "registry_writes",
+    "promotion_writes"
+  ],
+  "properties": {
+    "schema_version": {"const": "model-fresh-candidate-cohort-v1"},
+    "provider_id": {"const": "tushare-pro-v1"},
+    "candidate_membership": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^mhrmc1_[0-9a-f]{64}$"}
+    },
+    "fresh_lock_ids": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^mhmfl1_[0-9a-f]{64}$"}
+    },
+    "label_id": {"type": "string", "pattern": "^trl1_[0-9a-f]{64}$"},
+    "model_spec_id": {"type": "string", "pattern": "^fcms1_[0-9a-f]{64}$"},
+    "walk_forward_spec_id": {"type": "string", "pattern": "^pwfs1_[0-9a-f]{64}$"},
+    "primary_statistic": {"const": "daily official-label RankIC"},
+    "hac_lag": {"const": 10},
+    "bh_fdr_q": {"const": 0.1},
+    "minimum_evidence_policy": {"type": "object"},
+    "strategy_protocol": {"type": "object"},
+    "project_exposure_date": {"const": "2026-07-23"},
+    "no_backfill": {"const": true},
+    "membership_frozen": {"const": true},
+    "configuration_frozen": {"const": true},
+    "registry_writes": {"const": 0},
+    "promotion_writes": {"const": 0}
+  },
+  "additionalProperties": true
+}
