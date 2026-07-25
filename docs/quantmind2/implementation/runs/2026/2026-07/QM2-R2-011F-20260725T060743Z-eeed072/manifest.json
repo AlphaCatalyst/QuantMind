@@ -1,0 +1,268 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-r2-011f-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "34c20e1bcef8313a7c2fdef75d0aa1c179e0bf9d06cfa4842888d82b8a081df9",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 6448
+    },
+    {
+      "artifact_id": "artifact-r2-011f-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-r2-011f-correction",
+      "artifact_type": "implementation_git_evidence_correction",
+      "content_hash": "a568cc040de3ad0ef76c8cac66cf9aa40906f6a57252180eebdf52741d48373e",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/corrections/QM2-R2-011-git-evidence-correction-v1.json",
+      "schema_version": "1.0.0",
+      "size_bytes": 32895
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "a568cc040de3ad0ef76c8cac66cf9aa40906f6a57252180eebdf52741d48373e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/corrections/QM2-R2-011-git-evidence-correction-v1.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "34c20e1bcef8313a7c2fdef75d0aa1c179e0bf9d06cfa4842888d82b8a081df9",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/report.md",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [],
+  "component_references": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.fresh_runtime_deployment",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "verified"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-r2-011f-correction",
+        "sha256": "a568cc040de3ad0ef76c8cac66cf9aa40906f6a57252180eebdf52741d48373e"
+      },
+      {
+        "artifact_id": "artifact-r2-011f-report",
+        "sha256": "34c20e1bcef8313a7c2fdef75d0aa1c179e0bf9d06cfa4842888d82b8a081df9"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "docs/quantmind2/implementation/corrections/QM2-R2-011-git-evidence-correction-v1.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/report.md"
+    ],
+    "git_changed_paths": [
+      "docs/quantmind2/implementation/corrections/QM2-R2-011-git-evidence-correction-v1.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/report.md"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "fdaa6c3414bb9b7dd325282f85a89e2dd4209242149d903e65f0611d7c8a711d",
+    "manifest_payload_sha256": "58d240e4e0a6fe27d58dea6f97c030cbeba5fb8482fd09ac3cd72241e331f078",
+    "report_sha256": "34c20e1bcef8313a7c2fdef75d0aa1c179e0bf9d06cfa4842888d82b8a081df9",
+    "source_bundle_sha256": "8caf85ad017d9252f376af86f69502e60bbd4818fd34fc209e8b13d0bd1ee617"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "description": "The immutable target Run remains partial_committed validated false and indexable false; corrected Git evidence resolves through this correction Run and its corrects relationship.",
+      "limitation_id": "limit-r2-011f-target-inconsistent",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.fresh_runtime_deployment",
+      "description": "Temporary-directory automatic cleanup and the historical session diagnostic exposure remain pending runtime-hardening issues outside this evidence correction.",
+      "limitation_id": "limit-r2-011f-runtime-hardening-pending",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-25T06:07:43Z",
+      "reason": "Adds exact commit-derived path classification ChangedFile hashes and source-bundle evidence while preserving the immutable Git-inconsistent original Run.",
+      "relationship_id": "rel-r2-011f-corrects-r2-011",
+      "relationship_type": "corrects",
+      "source_run_id": "QM2-R2-011F-20260725T060743Z-eeed072",
+      "target_run_id": "QM2-R2-011-20260725T042741Z-6b2a839"
+    }
+  ],
+  "repository": {
+    "base_commit": "eeed072ecda43ae1894d61e76fc099863a58a306",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "eeed072ecda43ae1894d61e76fc099863a58a306",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-25T06:13:09Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "fdaa6c3414bb9b7dd325282f85a89e2dd4209242149d903e65f0611d7c8a711d",
+    "implementation_run_id": "QM2-R2-011F-20260725T060743Z-eeed072",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-011F-20260725T060743Z-eeed072/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "8caf85ad017d9252f376af86f69502e60bbd4818fd34fc209e8b13d0bd1ee617",
+    "started_at": "2026-07-25T06:07:43Z",
+    "task_id": "QM2-R2-011F",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-25T06:07:43Z",
+    "explicit_non_goals": [
+      "No edit amend reset rewrite or supersession of the original Run",
+      "No runtime deployment LaunchAgent Scheduler Heartbeat environment state or symlink mutation",
+      "No Agent model Qlib Tushare network Candidate Lock Cohort Registry or Promotion action",
+      "No runtime-hardening fix in this evidence-only task"
+    ],
+    "objective": "Publish exact immutable commit-derived Git evidence correction for QM2-R2-011 without rerunning or changing deployment behavior.",
+    "parent_task_id": "QM2-R2-011",
+    "scope": [
+      "Target commit Git path and blob reconstruction",
+      "Independent GitEvidenceCorrectionV1 Artifact",
+      "Manifest v2 correction Run and corrects relationship",
+      "Read-only Store Fresh-object cold recovery and exact replay verification"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R2-011F",
+    "title": "Immutable Fresh Runtime Deployment Git Evidence Correction"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "Python 3.12 bounded correction schema Git inventory hash source-bundle side-effect and secret assertions",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 17,
+      "purpose": "Verify target Git evidence and zero-side-effect correction contract",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-011f-evidence"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/validate_context_bootstrap.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 42,
+      "purpose": "Validate Project Context and historical Implementation Runs",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-011f-bootstrap"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "Read-only Artifact Store integrity and Deployment Status identity scan",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 1,
+      "purpose": "Prove Store is healthy and original deployment Artifact is unchanged",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-011f-store"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "QuantMind2 JSON parse py_compile git diff check and secret scan",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Validate machine documents syntax whitespace and secret boundary",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-011f-static"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python tools/quantmind2/index_implementation_runs.py plan --run-id QM2-R2-011F-20260725T060743Z-eeed072",
+      "failed_count": 0,
+      "not_run_reason": "requires the correction containing commit",
+      "passed_count": 0,
+      "purpose": "Post-commit Planner correction admission and resolved Ledger recovery",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-r2-011f-postcommit"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "pytest Manifest and existing correction and Context regression selection",
+      "failed_count": 1,
+      "not_run_reason": null,
+      "passed_count": 54,
+      "purpose": "Run existing correction regressions; one historical test hard-codes the obsolete 65-Artifact Store inventory",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-r2-011f-existing-correction-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "pytest directly relevant Manifest changed-files parameter-correction and Context selection",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 50,
+      "purpose": "Verify directly relevant Manifest correction and Context contracts without the known stale historical Store assertion",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-011f-relevant-regression"
+    }
+  ]
+}
