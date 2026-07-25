@@ -2,12 +2,13 @@
 
 ## QM2-KI-063 — Fresh Heartbeat LaunchAgent host access is blocked
 
-Open, high. `QM2-R2-010` implements and verifies the repository scheduler,
+Resolved by successor, high. `QM2-R2-010` implements and verifies the repository scheduler,
 manual exact replay, recovery, Store evidence, and uninstall path. The real
 GUI-domain RunAtLoad cannot reliably read the repository and Python runtime
 below `~/Documents` under macOS background privacy enforcement. The Agent was
-booted out and uninstalled; automatic scheduling is not active. No runtime or
-dependency tree was copied as an ungoverned workaround.
+booted out and uninstalled. `QM2-R2-011` replaces that dependency through the
+accepted immutable Git/environment runtime contract; dynamic host activation
+requires Deployment Status and Scheduler evidence, never loaded state alone.
 
 ## QM2-KI-060 — Longer labels do not rescue expanded technical alpha
 

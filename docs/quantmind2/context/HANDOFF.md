@@ -889,3 +889,19 @@ booted out and uninstalled, preserving logs and Artifacts. Do not claim
 automatic scheduling until that host boundary is explicitly resolved and
 reverified. Do not silently copy the virtual environment or business source
 into Application Support as a workaround.
+
+## QM2-R2-011 handoff
+
+Read `IMMUTABLE_FRESH_RUNTIME_DEPLOYMENT_V1.md` and
+`IMMUTABLE_FRESH_RUNTIME_OPERATIONS_V1.md` after the R2-010 contracts. This
+task is the governed authorization to deploy immutable Git and validated
+environment snapshots below Application Support. It changes no Fresh research
+semantics.
+
+The existing Store below `~/.quantmind2` remains canonical and is not copied.
+Dynamic host truth must be recovered from
+`deployments/current-deployment.json`, the latest
+`fresh_runtime_deployment_status`, Scheduler Status and Operational Artifact.
+Candidate B `mhrmc1_6b1a97e5...527c3`, Candidate C
+`mhrmc1_83272b1d...56c23`, their Locks, Cohort
+`mfcc1_faab1ee6...7bde6dc`, Label, Bundles and strategy remain unchanged.

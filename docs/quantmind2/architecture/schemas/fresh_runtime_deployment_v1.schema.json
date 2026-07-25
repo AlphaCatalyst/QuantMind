@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://quantmind.local/schemas/fresh_runtime_deployment_v1.schema.json",
+  "title": "QuantMind Immutable Fresh Runtime Deployment v1",
+  "oneOf": [
+    {"$ref": "#/$defs/runtimeConfig"},
+    {"$ref": "#/$defs/pathAudit"},
+    {"$ref": "#/$defs/appSnapshot"},
+    {"$ref": "#/$defs/environmentSnapshot"},
+    {"$ref": "#/$defs/stateMigration"},
+    {"$ref": "#/$defs/deploymentStatus"}
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "absolutePath": {"type": "string", "pattern": "^/"},
+    "runtimeConfig": {
+      "type": "object",
+      "required": [
+        "schema_version", "app_root", "python_executable", "environment_root",
+        "libomp_root", "artifact_store_root", "market_data_root",
+        "checkpoint_root", "lock_root", "log_root", "temporary_root",
+        "repository_commit", "environment_fingerprint",
+        "credential_persisted"
+      ],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-config-v1"},
+        "app_root": {"$ref": "#/$defs/absolutePath"},
+        "python_executable": {"$ref": "#/$defs/absolutePath"},
+        "environment_root": {"$ref": "#/$defs/absolutePath"},
+        "libomp_root": {"$ref": "#/$defs/absolutePath"},
+        "artifact_store_root": {"$ref": "#/$defs/absolutePath"},
+        "market_data_root": {"$ref": "#/$defs/absolutePath"},
+        "checkpoint_root": {"$ref": "#/$defs/absolutePath"},
+        "lock_root": {"$ref": "#/$defs/absolutePath"},
+        "log_root": {"$ref": "#/$defs/absolutePath"},
+        "temporary_root": {"$ref": "#/$defs/absolutePath"},
+        "repository_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "environment_fingerprint": {"type": "string", "pattern": "^qmenv1_[0-9a-f]{64}$"},
+        "credential_persisted": {"const": false}
+      },
+      "additionalProperties": true
+    },
+    "pathAudit": {
+      "type": "object",
+      "required": ["schema_version", "fresh_runtime_path_audit_id", "paths"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-path-audit-v1"},
+        "fresh_runtime_path_audit_id": {"type": "string", "pattern": "^frpa1_[0-9a-f]{64}$"},
+        "paths": {"type": "array"}
+      },
+      "additionalProperties": true
+    },
+    "appSnapshot": {
+      "type": "object",
+      "required": ["schema_version", "fresh_runtime_app_snapshot_id", "git_commit", "source_bundle_hash", "immutable"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-app-snapshot-v1"},
+        "fresh_runtime_app_snapshot_id": {"type": "string", "pattern": "^fras1_[0-9a-f]{64}$"},
+        "git_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "source_bundle_hash": {"$ref": "#/$defs/sha256"},
+        "immutable": {"const": true}
+      },
+      "additionalProperties": true
+    },
+    "environmentSnapshot": {
+      "type": "object",
+      "required": ["schema_version", "fresh_runtime_environment_snapshot_id", "environment_fingerprint", "validation", "immutable"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-environment-snapshot-v1"},
+        "fresh_runtime_environment_snapshot_id": {"type": "string", "pattern": "^fres1_[0-9a-f]{64}$"},
+        "environment_fingerprint": {"type": "string", "pattern": "^qmenv1_[0-9a-f]{64}$"},
+        "validation": {"type": "object"},
+        "immutable": {"const": true}
+      },
+      "additionalProperties": true
+    },
+    "stateMigration": {
+      "type": "object",
+      "required": ["schema_version", "fresh_runtime_state_migration_id", "canonical_writable_store_count"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-state-migration-v1"},
+        "fresh_runtime_state_migration_id": {"type": "string", "pattern": "^frsm1_[0-9a-f]{64}$"},
+        "canonical_writable_store_count": {"const": 1}
+      },
+      "additionalProperties": true
+    },
+    "deploymentStatus": {
+      "type": "object",
+      "required": ["schema_version", "fresh_runtime_deployment_status_id", "deployment_id", "launch_agent_loaded", "launchd_trigger_verified", "idempotency_verified"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-deployment-status-v1"},
+        "fresh_runtime_deployment_status_id": {"type": "string", "pattern": "^frds1_[0-9a-f]{64}$"},
+        "deployment_id": {"type": "string"},
+        "launch_agent_loaded": {"type": "boolean"},
+        "launchd_trigger_verified": {"type": "boolean"},
+        "idempotency_verified": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

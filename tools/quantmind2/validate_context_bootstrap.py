@@ -979,10 +979,10 @@ def validate_bootstrap(root: Path = ROOT) -> list[str]:
     handoff_text = (QM2 / "context" / "HANDOFF.md").read_text(encoding="utf-8")
     if "QM2-P0-012" not in handoff_text or "truthful partial production dry run" not in handoff_text:
         raise ValidationError("human handoff does not record the QM2-P0-012 result")
-    if handoff["current_task"] != "QM2-R2-010":
-        raise ValidationError("machine handoff does not name current QM2-R2-010 task")
-    if handoff["completion_status"] != "partial_uncommitted":
-        raise ValidationError("machine handoff does not preserve the partial R2-010 result")
+    if handoff["current_task"] != "QM2-R2-011":
+        raise ValidationError("machine handoff does not name current QM2-R2-011 task")
+    if handoff["completion_status"] != "completed_uncommitted":
+        raise ValidationError("machine handoff does not preserve the R2-011 result")
     if handoff["next_recommended_tasks"]:
         raise ValidationError("machine handoff must not invent an unauthorized successor")
     for fact in (

@@ -238,6 +238,11 @@ class ArtifactKind(str, Enum):
     FRESH_MODEL_HEARTBEAT_RUN = "fresh_model_heartbeat_run"
     FRESH_HEARTBEAT_SCHEDULER_STATUS = "fresh_heartbeat_scheduler_status"
     FRESH_HEARTBEAT_OPERATIONAL_RUN = "fresh_heartbeat_operational_run"
+    FRESH_RUNTIME_PATH_AUDIT = "fresh_runtime_path_audit"
+    FRESH_RUNTIME_APP_SNAPSHOT = "fresh_runtime_app_snapshot"
+    FRESH_RUNTIME_ENVIRONMENT_SNAPSHOT = "fresh_runtime_environment_snapshot"
+    FRESH_RUNTIME_STATE_MIGRATION = "fresh_runtime_state_migration"
+    FRESH_RUNTIME_DEPLOYMENT_STATUS = "fresh_runtime_deployment_status"
 
 
 class IntegrityStatus(str, Enum):

@@ -1,5 +1,20 @@
 # QuantMind 2.0 Initial Roadmap
 
+## QM2-R2-011 — Immutable Fresh Runtime Deployment and LaunchAgent Activation v1
+
+- Status: completed_uncommitted before final commit; formal host activation is
+  post-commit and recorded by immutable external Deployment Status.
+- Priority: P0.
+- Dependencies: QM2-R2-009, QM2-R2-010.
+- Objective: deploy committed source and the validated Python/Native
+  environment outside protected directories and activate the existing
+  heartbeat through two launchd runs.
+- Explicit non-goals: no research object, Registry/Promotion, dependency,
+  shell, State deletion, schedule or execution-chain change.
+- Acceptance: audited Git-only app and environment snapshots, one canonical
+  Store, public config, atomic pointers, launchd/idempotency, rollback,
+  recovery, replay and immutable evidence.
+
 Current research task: `QM2-R2-008` is completed with two L1-only
 retrospective Model Candidates and no production Label change. The frozen
 three-Label matrix completed 108 fits, 36 predictions and 36 Qlib runs.

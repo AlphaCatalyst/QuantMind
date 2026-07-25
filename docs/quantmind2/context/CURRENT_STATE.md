@@ -1,5 +1,24 @@
 # Current Implementation State
 
+## Immutable Fresh runtime deployment (QM2-R2-011)
+
+- `quantmind2.fresh_runtime_deployment` versions committed Git source and the
+  validated Python/Native environment below
+  `~/Library/Application Support/QuantMind`; both current pointers switch
+  atomically and immutable snapshots are retained.
+- Runtime configuration, entrypoint, logs, locks, checkpoints, per-run
+  temporary paths, deployment history and the LaunchAgent require no path
+  below Documents, Desktop, Downloads, Mobile Documents or iCloud.
+- The existing Store at `~/.quantmind2/artifact-store/v1` is already external
+  and remains the only canonical writable Store; state relocation is false.
+- Five immutable runtime Artifact kinds capture path audit, Git app snapshot,
+  environment snapshot, state decision and deployment status. The existing
+  Scheduler and Supervisor remain the only executors.
+- Formal host activation occurs only after the containing commit. Dynamic host
+  truth is authoritative in
+  `~/Library/Application Support/QuantMind/deployments/current-deployment.json`
+  and the latest `fresh_runtime_deployment_status`, never loaded state alone.
+
 ## Multi-Horizon Label Alignment Cycle (QM2-R2-008)
 
 - Current task: `QM2-R2-008`.

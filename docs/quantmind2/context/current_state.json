@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T17:29:43Z",
-  "source_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
+  "generated_at": "2026-07-25T04:27:41Z",
+  "source_commit": "6b2a83904c3bcc04f95410a977ae4ec847b77c17",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R2-010",
-  "latest_implementation_run": "QM2-R2-010-20260724T172943Z-216803d",
+  "current_task": "QM2-R2-011",
+  "latest_implementation_run": "QM2-R2-011-20260725T042741Z-6b2a839",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -44,6 +44,8 @@
       "quantmind2.fixed_configuration_model_program",
       "quantmind2.multi_horizon_label_research",
       "quantmind2.fresh_model_cohort",
+      "quantmind2.fresh_runtime_deployment",
+      "quantmind2.fresh_heartbeat_scheduler",
       "quantmind2.research_artifact_store",
       "quantmind2.artifact_runtime"
     ],
@@ -57,8 +59,7 @@
       "quantmind2.factor_registry",
       "quantmind2.research_campaign",
       "quantmind2.fresh_validation",
-      "quantmind2.corporate_actions",
-      "quantmind2.fresh_heartbeat_scheduler"
+      "quantmind2.corporate_actions"
     ],
     "planned": [
       "quantmind2.experiment_manager",
@@ -154,6 +155,18 @@
     "artifact_store_integrity": "healthy",
     "artifact_store_missing": 0,
     "artifact_store_unreferenced": 0,
+    "registry_writes": 0,
+    "promotion_writes": 0
+  },
+  "fresh_runtime_deployment": {
+    "runtime_root": "~/Library/Application Support/QuantMind",
+    "artifact_store_root": "~/.quantmind2/artifact-store/v1",
+    "repository_implementation": "implemented",
+    "state_relocation_required": false,
+    "app_snapshot_source": "git_archive_committed_object",
+    "environment_snapshot_method": "apfs_clone_preferred",
+    "runtime_protected_path_dependency_policy": "zero",
+    "host_activation_evidence": "external_deployment_status_after_commit",
     "registry_writes": 0,
     "promotion_writes": 0
   },

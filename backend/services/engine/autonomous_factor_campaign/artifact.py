@@ -128,11 +128,30 @@ KINDS = {
         "fresh_heartbeat_operational_run_id",
         "fhor1_",
     ),
+    "fresh_runtime_path_audit": ("fresh_runtime_path_audit_id", "frpa1_"),
+    "fresh_runtime_app_snapshot": ("fresh_runtime_app_snapshot_id", "fras1_"),
+    "fresh_runtime_environment_snapshot": (
+        "fresh_runtime_environment_snapshot_id",
+        "fres1_",
+    ),
+    "fresh_runtime_state_migration": (
+        "fresh_runtime_state_migration_id",
+        "frsm1_",
+    ),
+    "fresh_runtime_deployment_status": (
+        "fresh_runtime_deployment_status_id",
+        "frds1_",
+    ),
 }
 
 OPERATIONAL_KINDS = {
     "fresh_heartbeat_scheduler_status",
     "fresh_heartbeat_operational_run",
+    "fresh_runtime_path_audit",
+    "fresh_runtime_app_snapshot",
+    "fresh_runtime_environment_snapshot",
+    "fresh_runtime_state_migration",
+    "fresh_runtime_deployment_status",
 }
 
 

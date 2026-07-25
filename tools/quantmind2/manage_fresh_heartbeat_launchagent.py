@@ -135,8 +135,13 @@ def validate_template() -> dict[str, Any]:
         raise SchedulerError("LaunchAgent label mismatch")
     if value["ProgramArguments"][:2] != ["/bin/zsh", "-lc"]:
         raise SchedulerError("LaunchAgent must use /bin/zsh -lc")
-    if "Library/Application Support/QuantMind/bin/supervisor_fresh_heartbeat.sh" not in value["ProgramArguments"][2]:
-        raise SchedulerError("LaunchAgent must execute the installed operational wrapper")
+    allowed_entrypoints = (
+        "Library/Application Support/QuantMind/bin/supervisor_fresh_heartbeat.sh",
+        "Library/Application Support/QuantMind/runtime/current-app/"
+        "tools/quantmind2/deployed_fresh_heartbeat.sh",
+    )
+    if not any(path in value["ProgramArguments"][2] for path in allowed_entrypoints):
+        raise SchedulerError("LaunchAgent must execute an approved operational entrypoint")
     if not Path(value["WorkingDirectory"]).is_absolute():
         raise SchedulerError("WorkingDirectory must be absolute")
     if value["StartCalendarInterval"] != list(SCHEDULE):

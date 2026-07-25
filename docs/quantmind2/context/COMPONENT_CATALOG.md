@@ -1,5 +1,18 @@
 # Component Catalog
 
+## QM2-R2-011 addition
+
+`quantmind2.fresh_runtime_deployment` is implemented at
+`backend/services/engine/fresh_runtime_deployment`. It owns protected-path and
+storage audits, immutable Git app snapshots, reproducible environment
+fingerprints and APFS-cloned environment snapshots, public runtime
+configuration, atomic pointers, conditional state migration, LaunchAgent
+activation, deployment status, rollback, cold recovery and exact replay. It
+delegates every heartbeat to `quantmind2.fresh_heartbeat_scheduler`.
+
+It cannot modify research objects, install dependencies, persist credentials,
+create a second writable Store, or delete retained snapshots and backups.
+
 ## QM2-R2-010 addition
 
 `quantmind2.fresh_heartbeat_scheduler` is partial. Its repository

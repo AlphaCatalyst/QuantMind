@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-24T17:29:43Z",
-  "source_commit": "216803d23a62fdca81d700a760eba366eb3e8e4a",
+  "generated_at": "2026-07-25T04:27:41Z",
+  "source_commit": "6b2a83904c3bcc04f95410a977ae4ec847b77c17",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
@@ -202,6 +202,15 @@
       "objective": "Deploy the existing Store-backed Fresh heartbeat as a recoverable, idempotent current-user macOS LaunchAgent.",
       "explicit_non_goals": ["No new research Cycle, Candidate/Lock/Cohort/model/Label/strategy change, Promotion, trading, root service, dependency installation or second business executor."],
       "acceptance_summary": "Repository scheduler, wrapper, lock, logs, status, operational Artifacts, manual exact replay, Store integrity, recovery and uninstall pass; host activation remains blocked by macOS background access to the Documents-hosted source and Python runtime."
+    },
+    {
+      "task_id": "QM2-R2-011",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R2-009", "QM2-R2-010"],
+      "objective": "Deploy immutable committed source and the validated Python/Native environment outside protected paths and formally activate the existing Fresh Heartbeat LaunchAgent.",
+      "explicit_non_goals": ["No research object, schedule, Registry, Promotion, dependency, shell, State deletion or execution-chain change."],
+      "acceptance_summary": "Git app and APFS environment snapshots, one canonical Store, public configuration, atomic pointers, two launchd runs, idempotency, rollback, recovery, replay and immutable deployment evidence."
     }
   ]
 }
