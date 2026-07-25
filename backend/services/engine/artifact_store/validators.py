@@ -58,6 +58,9 @@ ID_FIELDS = (
     "fresh_runtime_path_audit_id", "fresh_runtime_app_snapshot_id",
     "fresh_runtime_environment_snapshot_id", "fresh_runtime_state_migration_id",
     "fresh_runtime_deployment_status_id",
+    "tmp_cleanup_assessment_id", "diagnostic_whitelist_id",
+    "redaction_guard_id", "exposure_record_id",
+    "fresh_runtime_hardening_status_id",
 )
 
 
@@ -336,8 +339,13 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
         ArtifactKind.FRESH_RUNTIME_APP_SNAPSHOT,
         ArtifactKind.FRESH_RUNTIME_ENVIRONMENT_SNAPSHOT,
         ArtifactKind.FRESH_RUNTIME_STATE_MIGRATION,
-        ArtifactKind.FRESH_RUNTIME_DEPLOYMENT_STATUS,
-    }:
+            ArtifactKind.FRESH_RUNTIME_DEPLOYMENT_STATUS,
+            ArtifactKind.FRESH_HEARTBEAT_TMP_CLEANUP_ASSESSMENT,
+            ArtifactKind.RUNTIME_DIAGNOSTIC_WHITELIST,
+            ArtifactKind.RUNTIME_DIAGNOSTIC_REDACTION_GUARD,
+            ArtifactKind.HISTORICAL_SESSION_DIAGNOSTIC_EXPOSURE_RECORD,
+            ArtifactKind.FRESH_RUNTIME_HARDENING_STATUS,
+        }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)
         return "autonomous_factor_campaign.validate_artifact"

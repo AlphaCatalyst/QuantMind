@@ -13,11 +13,16 @@ from backend.services.engine.artifact_store.integrity import scan_store_integrit
 from backend.services.engine.artifact_store.store import FileSystemResearchArtifactStore
 from backend.services.engine.fresh_heartbeat_scheduler.models import SCHEDULE
 from backend.services.engine.fresh_runtime_deployment.models import (
+    FreshHeartbeatTemporaryDirectoryDefectAssessmentV1,
     FreshRuntimeAppSnapshotV1,
+    FreshRuntimeDiagnosticWhitelistV1,
     FreshRuntimeDeploymentStatusV1,
     FreshRuntimeEnvironmentSnapshotV1,
+    FreshRuntimeHardeningStatusV1,
     FreshRuntimePathAuditV1,
     FreshRuntimeStateMigrationV1,
+    HistoricalSessionDiagnosticExposureRecordV1,
+    RuntimeDiagnosticRedactionGuardRecordV1,
 )
 from backend.services.engine.fresh_runtime_deployment.service import (
     FreshRuntimeDeploymentService,
@@ -414,9 +419,46 @@ def test_runtime_artifact_kinds_publish_and_verify(tmp_path: Path) -> None:
                 True,
             ).payload(),
         ),
+        (
+            "fresh_heartbeat_tmp_cleanup_assessment",
+            FreshHeartbeatTemporaryDirectoryDefectAssessmentV1(
+                "entrypoint", "a" * 40, "exec replaced shell", 0, False
+            ).payload(),
+        ),
+        (
+            "runtime_diagnostic_whitelist",
+            FreshRuntimeDiagnosticWhitelistV1(
+                "2026-01-01T00:00:00Z", ("label", "loaded")
+            ).payload(),
+        ),
+        (
+            "runtime_diagnostic_redaction_guard",
+            RuntimeDiagnosticRedactionGuardRecordV1(
+                "2026-01-01T00:00:00Z", True, ("stdout",), 0
+            ).payload(),
+        ),
+        (
+            "historical_session_diagnostic_exposure_record",
+            HistoricalSessionDiagnosticExposureRecordV1("incident").payload(),
+        ),
+        (
+            "fresh_runtime_hardening_status",
+            FreshRuntimeHardeningStatusV1(
+                "2026-01-01T00:00:00Z",
+                "QM2-R2-012-20260101T000000Z-abcdef0",
+                "a" * 40,
+                "fras1_x",
+                "qmenv1_x",
+                True,
+                True,
+                True,
+                0,
+                True,
+            ).payload(),
+        ),
     )
     ids = [service._publish(kind, payload)["artifact_id"] for kind, payload in payloads]
-    assert len(ids) == len(set(ids)) == 5
+    assert len(ids) == len(set(ids)) == 10
     result = scan_store_integrity(service._repository().store)
     assert result.status == "healthy"
     assert not result.issues
@@ -513,3 +555,136 @@ def test_plist_lints() -> None:
         text=True,
     )
     assert result.returncode == 0
+
+
+def _prepare_cutover_service(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> tuple[FreshRuntimeDeploymentService, Path, Path, Path, dict[str, bool]]:
+    service = _service(tmp_path)
+    service.ensure_layout()
+    old_app = service.apps_root / ("a" * 40)
+    new_app = service.apps_root / ("b" * 40)
+    env = service.envs_root / ("qmenv1_" + "c" * 64)
+    old_app.mkdir()
+    new_app.mkdir()
+    env.mkdir()
+    _atomic_symlink(old_app, service.current_app)
+    _atomic_symlink(env, service.current_env)
+    service.runtime_config_path.write_text('{"old":true}\n')
+    service.installed_plist.write_text("old-plist")
+    state = {"loaded": True}
+
+    def runner(command, **kwargs):
+        if "bootout" in command:
+            state["loaded"] = False
+        if "bootstrap" in command:
+            state["loaded"] = True
+        return subprocess.CompletedProcess(command, 0, "", "")
+
+    monkeypatch.setattr(service, "loaded", lambda: state["loaded"])
+    monkeypatch.setattr(service, "_run", runner)
+
+    def build(*, publish):
+        _atomic_symlink(new_app, service.current_app)
+        return {
+            "fresh_runtime_app_snapshot_id": "fras1_test",
+            "artifact_receipt": {"artifact_id": "fras1_test"},
+        }
+
+    monkeypatch.setattr(service, "build_app_snapshot", build)
+    monkeypatch.setattr(
+        service, "validate_environment", lambda *args: {"valid": True}
+    )
+    return service, old_app, new_app, env, state
+
+
+def test_hardened_cutover_reuses_environment_and_preserves_old_snapshot(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    service, old_app, new_app, env, state = _prepare_cutover_service(
+        tmp_path, monkeypatch
+    )
+    monkeypatch.setattr(
+        service, "render_runtime_config", lambda: {"repository_commit": new_app.name}
+    )
+    monkeypatch.setattr(service, "validate_runtime", lambda: {"valid": True})
+    monkeypatch.setattr(service, "install_launchagent", lambda: {"installed": True})
+    monkeypatch.setattr(
+        service,
+        "activate",
+        lambda: state.update(loaded=True) or {"loaded": True},
+    )
+    runs = [
+        {
+            "launchd_trigger_verified": True,
+            "last_launchd_exit_status": 0,
+            "cohort_status": "fresh_evidence_accumulating",
+        },
+        {
+            "launchd_trigger_verified": True,
+            "last_launchd_exit_status": 0,
+            "cohort_status": "fresh_evidence_accumulating",
+            "new_artifacts": 0,
+            "new_blobs": 0,
+        },
+    ]
+    monkeypatch.setattr(service, "run_now", lambda **kwargs: runs.pop(0))
+    monkeypatch.setattr(
+        service,
+        "publish_scheduler_status",
+        lambda: {"artifact_receipt": {"artifact_id": "fhss1_test"}},
+    )
+    hardening = {
+        kind: {"artifact_receipt": {"artifact_id": artifact_id}}
+        for kind, artifact_id in (
+            ("fresh_heartbeat_tmp_cleanup_assessment", "fhtca1_test"),
+            ("runtime_diagnostic_whitelist", "rdw1_test"),
+            ("runtime_diagnostic_redaction_guard", "rdrg1_test"),
+            ("historical_session_diagnostic_exposure_record", "hsder1_test"),
+            ("fresh_runtime_hardening_status", "frhs1_test"),
+        )
+    }
+    monkeypatch.setattr(service, "publish_hardening_artifacts", lambda **kwargs: hardening)
+    monkeypatch.setattr(
+        service,
+        "record_deployment",
+        lambda **kwargs: {
+            "launch_agent_loaded": True,
+            "launchd_trigger_verified": True,
+            "launchd_exit_status": 0,
+            "idempotency_verified": True,
+            "tmp_cleanup_verified": True,
+            "diagnostic_whitelist_enabled": True,
+            "redaction_guard_enabled": True,
+            "redaction_violation_count": 0,
+        },
+    )
+    result = service.hardened_cutover(
+        implementation_run_id="QM2-R2-012-20260101T000000Z-abcdef0"
+    )
+    assert result["status"] == "completed"
+    assert service.current_app.resolve() == new_app
+    assert service.current_env.resolve() == env
+    assert old_app.is_dir()
+    assert not (service.state_root / "locks/fresh-runtime-deployment.lock").exists()
+
+
+def test_hardened_cutover_failure_restores_old_runtime(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    service, old_app, _, env, state = _prepare_cutover_service(tmp_path, monkeypatch)
+    old_config = service.runtime_config_path.read_bytes()
+    monkeypatch.setattr(
+        service,
+        "render_runtime_config",
+        lambda: (_ for _ in ()).throw(RuntimeDeploymentError("injected failure")),
+    )
+    with pytest.raises(RuntimeDeploymentError, match="injected failure"):
+        service.hardened_cutover(
+            implementation_run_id="QM2-R2-012-20260101T000000Z-abcdef0"
+        )
+    assert service.current_app.resolve() == old_app
+    assert service.current_env.resolve() == env
+    assert service.runtime_config_path.read_bytes() == old_config
+    assert state["loaded"] is True
+    assert not (service.state_root / "locks/fresh-runtime-deployment.lock").exists()

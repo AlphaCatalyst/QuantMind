@@ -243,6 +243,11 @@ class ArtifactKind(str, Enum):
     FRESH_RUNTIME_ENVIRONMENT_SNAPSHOT = "fresh_runtime_environment_snapshot"
     FRESH_RUNTIME_STATE_MIGRATION = "fresh_runtime_state_migration"
     FRESH_RUNTIME_DEPLOYMENT_STATUS = "fresh_runtime_deployment_status"
+    FRESH_HEARTBEAT_TMP_CLEANUP_ASSESSMENT = "fresh_heartbeat_tmp_cleanup_assessment"
+    RUNTIME_DIAGNOSTIC_WHITELIST = "runtime_diagnostic_whitelist"
+    RUNTIME_DIAGNOSTIC_REDACTION_GUARD = "runtime_diagnostic_redaction_guard"
+    HISTORICAL_SESSION_DIAGNOSTIC_EXPOSURE_RECORD = "historical_session_diagnostic_exposure_record"
+    FRESH_RUNTIME_HARDENING_STATUS = "fresh_runtime_hardening_status"
 
 
 class IntegrityStatus(str, Enum):

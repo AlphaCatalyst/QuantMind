@@ -13,6 +13,9 @@ from typing import Any, Callable
 from backend.services.engine.autonomous_factor_campaign.orchestrator import _runtime
 
 from .models import LAUNCH_AGENT_LABEL
+from backend.services.engine.runtime_diagnostics import (
+    RuntimeDiagnosticRedactionGuardV1,
+)
 
 
 MAX_LOG_BYTES = 10 * 1024 * 1024
@@ -84,6 +87,7 @@ def acquire_lock(lock_path: Path, command: str) -> dict[str, Any]:
         "started_at": utcnow(),
         "hostname": socket.gethostname(),
         "command": command,
+        "runtime_run_id": os.environ.get("QM2_RUNTIME_RUN_ID"),
     }
     atomic_json(lock_path / "owner.json", owner)
     return {
@@ -265,8 +269,11 @@ def run_scheduled_heartbeat(
             check=False,
             timeout=60 * 60,
         )
-        stdout = completed.stdout.strip()
-        stderr = completed.stderr.strip()
+        guard = RuntimeDiagnosticRedactionGuardV1()
+        stdout_result = guard.redact(completed.stdout.strip())
+        stderr_result = guard.redact(completed.stderr.strip())
+        stdout = stdout_result.text
+        stderr = stderr_result.text
         try:
             result = json.loads(stdout) if stdout else {}
         except json.JSONDecodeError:
@@ -331,6 +338,12 @@ def run_scheduled_heartbeat(
             "credential_persisted": False,
             "registry_writes": 0,
             "promotion_writes": 0,
+            "redaction_count": (
+                stdout_result.redaction_count + stderr_result.redaction_count
+            ),
+            "redaction_event_categories": sorted(
+                set(stdout_result.categories) | set(stderr_result.categories)
+            ),
         }
         operational = _publish_operational_run(
             repository,
@@ -370,6 +383,12 @@ def run_scheduled_heartbeat(
                 "fresh_heartbeat_operational_run_id"
             ],
             "credential_persisted": False,
+            "redaction_count": (
+                stdout_result.redaction_count + stderr_result.redaction_count
+            ),
+            "redaction_event_categories": sorted(
+                set(stdout_result.categories) | set(stderr_result.categories)
+            ),
         }
         atomic_json(state_path, local_status)
         history_path.parent.mkdir(parents=True, exist_ok=True)

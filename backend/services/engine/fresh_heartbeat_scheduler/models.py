@@ -42,6 +42,15 @@ class FreshHeartbeatSchedulerStatusV1:
     token_available_in_launch_context: bool
     repository_head_at_install: str
     latest_heartbeat_id: str | None = None
+    source_commit: str | None = None
+    app_snapshot_id: str | None = None
+    runtime_config_checksum: str | None = None
+    launchd_trigger_verified: bool = False
+    idempotency_verified: bool = False
+    tmp_cleanup_verified: bool = False
+    diagnostic_whitelist_enabled: bool = False
+    redaction_guard_enabled: bool = False
+    redaction_violation_count: int = 0
 
     def payload(self) -> dict[str, Any]:
         value = asdict(self) | {

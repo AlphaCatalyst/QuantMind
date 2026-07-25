@@ -123,6 +123,10 @@ class FreshRuntimeDeploymentStatusV1:
     scheduler_status_id: str | None = None
     operational_run_id: str | None = None
     artifact_refs: tuple[str, ...] = field(default_factory=tuple)
+    tmp_cleanup_verified: bool = False
+    diagnostic_whitelist_enabled: bool = False
+    redaction_guard_enabled: bool = False
+    redaction_violation_count: int = 0
 
     def payload(self) -> dict[str, Any]:
         value = asdict(self) | {
@@ -133,3 +137,97 @@ class FreshRuntimeDeploymentStatusV1:
             "promotion_writes": 0,
         }
         return _identified("frds1_", "fresh_runtime_deployment_status_id", value)
+
+
+@dataclass(frozen=True)
+class FreshHeartbeatTemporaryDirectoryDefectAssessmentV1:
+    affected_script: str
+    affected_commit: str
+    root_cause: str
+    observed_leftover_paths: int
+    manual_cleanup_performed: bool
+    fresh_artifacts_affected: bool = False
+    store_affected: bool = False
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "fresh-heartbeat-tmp-cleanup-assessment-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("fhtca1_", "tmp_cleanup_assessment_id", value)
+
+
+@dataclass(frozen=True)
+class FreshRuntimeDiagnosticWhitelistV1:
+    created_at: str
+    allowed_fields: tuple[str, ...]
+    raw_environment_output_disabled: bool = True
+    raw_launchctl_output_disabled: bool = True
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "runtime-diagnostic-whitelist-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("rdw1_", "diagnostic_whitelist_id", value)
+
+
+@dataclass(frozen=True)
+class RuntimeDiagnosticRedactionGuardRecordV1:
+    created_at: str
+    enabled: bool
+    guarded_sinks: tuple[str, ...]
+    redaction_violation_count: int
+    secret_hashes_persisted: bool = False
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "runtime-diagnostic-redaction-guard-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("rdrg1_", "redaction_guard_id", value)
+
+
+@dataclass(frozen=True)
+class HistoricalSessionDiagnosticExposureRecordV1:
+    incident_id: str
+    source_task: str = "QM2-R2-011"
+    persistence_to_repo: bool = False
+    persistence_to_config: bool = False
+    persistence_to_artifact: bool = False
+    credential_rotation_status: str = "user_governed"
+    future_raw_environment_output_disabled: bool = True
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "historical-session-diagnostic-exposure-record-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("hsder1_", "exposure_record_id", value)
+
+
+@dataclass(frozen=True)
+class FreshRuntimeHardeningStatusV1:
+    created_at: str
+    implementation_run_id: str
+    source_commit: str
+    app_snapshot_id: str
+    environment_fingerprint: str
+    tmp_cleanup_verified: bool
+    diagnostic_whitelist_enabled: bool
+    redaction_guard_enabled: bool
+    redaction_violation_count: int
+    rollback_available: bool
+    artifact_refs: tuple[str, ...] = field(default_factory=tuple)
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "fresh-runtime-hardening-status-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("frhs1_", "fresh_runtime_hardening_status_id", value)

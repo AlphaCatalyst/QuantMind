@@ -142,6 +142,20 @@ KINDS = {
         "fresh_runtime_deployment_status_id",
         "frds1_",
     ),
+    "fresh_heartbeat_tmp_cleanup_assessment": (
+        "tmp_cleanup_assessment_id",
+        "fhtca1_",
+    ),
+    "runtime_diagnostic_whitelist": ("diagnostic_whitelist_id", "rdw1_"),
+    "runtime_diagnostic_redaction_guard": ("redaction_guard_id", "rdrg1_"),
+    "historical_session_diagnostic_exposure_record": (
+        "exposure_record_id",
+        "hsder1_",
+    ),
+    "fresh_runtime_hardening_status": (
+        "fresh_runtime_hardening_status_id",
+        "frhs1_",
+    ),
 }
 
 OPERATIONAL_KINDS = {
@@ -152,6 +166,11 @@ OPERATIONAL_KINDS = {
     "fresh_runtime_environment_snapshot",
     "fresh_runtime_state_migration",
     "fresh_runtime_deployment_status",
+    "fresh_heartbeat_tmp_cleanup_assessment",
+    "runtime_diagnostic_whitelist",
+    "runtime_diagnostic_redaction_guard",
+    "historical_session_diagnostic_exposure_record",
+    "fresh_runtime_hardening_status",
 }
 
 

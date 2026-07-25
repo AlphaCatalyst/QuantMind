@@ -1,5 +1,29 @@
 # Current Implementation State
 
+## Fresh runtime cleanup and diagnostic hardening (QM2-R2-012)
+
+- The deployed heartbeat entrypoint no longer replaces its trap-owning shell.
+  It propagates the heartbeat exit code and cleans its exact per-run temporary
+  directory on success, failure, HUP, INT and TERM.
+- Runtime temporary directories use validated run IDs, owner metadata and
+  user-only permissions. Bounded stale cleanup requires a dead owner, age
+  greater than 24 hours and no live Scheduler-lock reference.
+- LaunchAgent diagnostics now cross a fixed field whitelist. Raw launchctl
+  output is parsed only in memory; credential diagnostics expose only a
+  boolean. A fail-closed redaction guard covers runtime stdout, stderr,
+  status/history and notification inputs without storing secret hashes.
+- Five operational Artifact kinds record the cleanup defect, whitelist,
+  redaction guard, historical session exposure and hardening status. The
+  historical event remains acknowledged; no claim is made that platform
+  session history was deleted and credential rotation remains user-governed.
+- Immutable post-commit App cutover is a deployment-locked operation with
+  old-pointer/config/plist recovery. It reuses the existing environment and
+  canonical Store; dynamic activation truth remains authoritative only in the
+  external Deployment and Hardening Status records.
+- Current task: `QM2-R2-012`.
+- Latest Implementation Run:
+  `QM2-R2-012-20260725T063951Z-4a12e40`.
+
 ## Immutable Fresh runtime deployment (QM2-R2-011)
 
 - `quantmind2.fresh_runtime_deployment` versions committed Git source and the

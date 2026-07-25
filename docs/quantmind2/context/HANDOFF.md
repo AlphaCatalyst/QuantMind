@@ -1,5 +1,27 @@
 # Codex Handoff
 
+## QM2-R2-012 runtime-hardening handoff
+
+- Read the R2-012 Implementation Run and
+  `FRESH_HEARTBEAT_OPERATIONS_V1.md` before changing the deployed heartbeat.
+- The only supported runtime diagnostics are `safe-status`,
+  `safe-launchctl-status`, `safe-credential-check` and
+  `safe-runtime-diagnostics`. Never persist or return raw launchctl output,
+  environment dictionaries, process environments or credential material.
+- Per-run temporary ownership and stale cleanup live in
+  `fresh_runtime_deployment/temporary_directory.py`. Never replace the exact
+  owner/PID/age/lock checks with wildcard deletion.
+- `hardened-cutover` is the deployment-locked post-commit transition. It
+  preserves the old App Snapshot, reuses the active environment and canonical
+  Store, performs two LaunchAgent runs and rolls back pointer/config/plist on
+  failure.
+- The R2-011 session diagnostic exposure is acknowledged, not erased.
+  Repository/config/Artifact persistence is false; credential rotation is
+  user-governed.
+- Dynamic runtime truth is in the external current Deployment Status and
+  `fresh_runtime_hardening_status` bound to
+  `QM2-R2-012-20260725T063951Z-4a12e40`.
+
 ## QM2-R2-003 multi-Campaign Program handoff
 
 - Read `AUTONOMOUS_MULTI_CAMPAIGN_RESEARCH_PROGRAM_V1.md` before changing the

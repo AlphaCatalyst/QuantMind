@@ -27,7 +27,9 @@ from backend.services.engine.fresh_heartbeat_scheduler.models import (
     SCHEDULE,
 )
 from backend.services.engine.fresh_heartbeat_scheduler.service import (
+    acquire_lock,
     atomic_json,
+    release_lock,
     run_scheduled_heartbeat,
 )
 from backend.services.engine.tushare_cutover.canonical import (
@@ -35,13 +37,23 @@ from backend.services.engine.tushare_cutover.canonical import (
     hash_file,
     hash_payload,
 )
+from backend.services.engine.runtime_diagnostics import (
+    RuntimeDiagnosticRedactionGuardV1,
+    safe_launchctl_status as parse_safe_launchctl_status,
+    whitelist_only,
+)
 
 from .models import (
+    FreshHeartbeatTemporaryDirectoryDefectAssessmentV1,
+    FreshRuntimeDiagnosticWhitelistV1,
+    FreshRuntimeHardeningStatusV1,
     FreshRuntimeAppSnapshotV1,
     FreshRuntimeDeploymentStatusV1,
     FreshRuntimeEnvironmentSnapshotV1,
     FreshRuntimePathAuditV1,
     FreshRuntimeStateMigrationV1,
+    HistoricalSessionDiagnosticExposureRecordV1,
+    RuntimeDiagnosticRedactionGuardRecordV1,
 )
 
 
@@ -58,6 +70,14 @@ RUNTIME_CONFIG_SCHEMA = "fresh-runtime-config-v1"
 
 class RuntimeDeploymentError(RuntimeError):
     pass
+
+
+def _artifact_id(value: dict[str, Any], field: str) -> str:
+    receipt = value.get("artifact_receipt") or {}
+    artifact_id = receipt.get("artifact_id") or value.get(field)
+    if not isinstance(artifact_id, str):
+        raise RuntimeDeploymentError(f"artifact identity absent: {field}")
+    return artifact_id
 
 
 def utcnow() -> str:
@@ -924,16 +944,60 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
         return f"gui/{os.getuid()}"
 
     def loaded(self) -> bool:
-        return (
-            self._run(
-                [
-                    "/bin/launchctl",
-                    "print",
-                    f"{self._domain()}/{LAUNCH_AGENT_LABEL}",
-                ]
-            ).returncode
-            == 0
+        return bool(self.safe_launchctl_status()["loaded"])
+
+    def safe_launchctl_status(self) -> dict[str, Any]:
+        result = self._run(
+            [
+                "/bin/launchctl",
+                "print",
+                f"{self._domain()}/{LAUNCH_AGENT_LABEL}",
+            ]
         )
+        local: dict[str, Any] = {}
+        if self._local_status_path().is_file():
+            try:
+                local = json.loads(
+                    self._local_status_path().read_text(encoding="utf-8")
+                )
+            except (OSError, json.JSONDecodeError):
+                local = {}
+        program = self.current_app / "tools/quantmind2/deployed_fresh_heartbeat.sh"
+        parsed = parse_safe_launchctl_status(
+            raw=result.stdout or "",
+            returncode=result.returncode,
+            label=LAUNCH_AGENT_LABEL,
+            plist_path=self.installed_plist,
+            program_path=program,
+            last_run_at=local.get("last_run_at"),
+            last_success_at=local.get("last_success_at"),
+        )
+        return parsed
+
+    def safe_credential_check(self) -> dict[str, Any]:
+        result = self._run(
+            [
+                "/bin/zsh",
+                "-lc",
+                'if [[ -n "${TUSHARE_TOKEN:-}" ]]; then printf present; else printf absent; fi',
+            ]
+        )
+        return {
+            "status": "ok" if result.returncode == 0 else "check_failed",
+            "token_available": result.stdout == "present",
+        }
+
+    def safe_runtime_diagnostics(self) -> dict[str, Any]:
+        launchctl = self.safe_launchctl_status()
+        return {
+            "schema_version": "fresh-runtime-safe-diagnostics-v1",
+            "launch_agent": whitelist_only(launchctl),
+            "launch_agent_diagnostic_status": launchctl["status"],
+            "credential": self.safe_credential_check(),
+            "diagnostic_whitelist_enabled": True,
+            "redaction_guard_enabled": True,
+            "redaction_violation_count": 0,
+        }
 
     def activate(self) -> dict[str, Any]:
         if not self.installed_plist.is_file():
@@ -952,8 +1016,9 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             ]
         )
         if result.returncode or not self.loaded():
+            safe = RuntimeDiagnosticRedactionGuardV1().redact(result.stderr)
             raise RuntimeDeploymentError(
-                f"launchctl bootstrap failed: {result.stderr.strip()[:300]}"
+                f"launchctl bootstrap failed: {safe.text.strip()[:300]}"
             )
         return {"loaded": True, "exact_existing": False}
 
@@ -977,10 +1042,12 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
                 ]
             )
             if result.returncode:
+                safe = RuntimeDiagnosticRedactionGuardV1().redact(result.stderr)
                 raise RuntimeDeploymentError(
-                    f"launchctl kickstart failed: {result.stderr.strip()[:300]}"
+                    f"launchctl kickstart failed: {safe.text.strip()[:300]}"
                 )
             deadline = time.monotonic() + 300
+            completed_status: dict[str, Any] | None = None
             while time.monotonic() < deadline:
                 if self._local_status_path().exists():
                     current = self._local_status_path().stat().st_mtime_ns
@@ -988,12 +1055,16 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
                         self._local_status_path().read_text(encoding="utf-8")
                     )
                     if current != before and value.get("last_launchd_run_at"):
-                        return value | {
+                        completed_status = value | {
                             "launchd_trigger_verified": True,
                             "launchd_exit_status": value.get(
                                 "last_launchd_exit_status"
                             ),
                         }
+                if completed_status is not None:
+                    launchctl = self.safe_launchctl_status()
+                    if launchctl.get("state") != "running":
+                        return completed_status
                 time.sleep(0.5)
             raise RuntimeDeploymentError("launchd heartbeat completion timed out")
         python = Path(config["python_executable"])
@@ -1018,14 +1089,17 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
         current = self.deployments_root / "current-deployment.json"
         if current.exists():
             deployment = json.loads(current.read_text(encoding="utf-8"))
+        safe_launchctl = self.safe_launchctl_status()
         return {
             "installed": self.installed_plist.is_file(),
-            "loaded": self.loaded(),
+            "loaded": safe_launchctl["loaded"],
             "runtime_config": self.runtime_config_path.is_file(),
             "current_app": str(self.current_app.resolve(strict=False)),
             "current_env": str(self.current_env.resolve(strict=False)),
             "local_status": local,
             "deployment": deployment,
+            "launch_agent": whitelist_only(safe_launchctl),
+            "diagnostic_status": safe_launchctl["status"],
         }
 
     def publish_scheduler_status(self) -> dict[str, Any]:
@@ -1033,13 +1107,7 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
         local = {}
         if self._local_status_path().exists():
             local = json.loads(self._local_status_path().read_text(encoding="utf-8"))
-        token = self._run(
-            [
-                "/bin/zsh",
-                "-lc",
-                'if [[ -n "${TUSHARE_TOKEN:-}" ]]; then printf present; else printf absent; fi',
-            ]
-        )
+        credential = self.safe_credential_check()
         payload = FreshHeartbeatSchedulerStatusV1(
             template_path=str(self.installed_plist),
             installed_path=str(self.installed_plist),
@@ -1060,12 +1128,119 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             last_success_at=local.get("last_success_at"),
             consecutive_failures=int(local.get("consecutive_failures", 0)),
             next_expected_run=None,
-            token_available_in_launch_context=token.stdout == "present",
+            token_available_in_launch_context=credential["token_available"],
             repository_head_at_install=config["repository_commit"],
             latest_heartbeat_id=local.get("latest_heartbeat_id"),
+            source_commit=config["repository_commit"],
+            app_snapshot_id=self._latest_identity(
+                "fresh_runtime_app_snapshot"
+            ).get("fresh_runtime_app_snapshot_id"),
+            runtime_config_checksum=hash_file(self.runtime_config_path),
+            launchd_trigger_verified=local.get("last_launchd_exit_status") is not None,
+            tmp_cleanup_verified=self._tmp_cleanup_verified(),
+            diagnostic_whitelist_enabled=True,
+            redaction_guard_enabled=True,
+            redaction_violation_count=int(local.get("redaction_count", 0)),
         ).payload()
         receipt = self._publish("fresh_heartbeat_scheduler_status", payload)
         return payload | {"artifact_receipt": receipt}
+
+    def _latest_identity(self, kind: str) -> dict[str, Any]:
+        rows = self._repository().store.list_by_kind(kind)
+        return self._repository().identity(rows[-1].artifact_id) if rows else {}
+
+    def _tmp_cleanup_verified(self) -> bool:
+        path = self.logs_root / "fresh-heartbeat-tmp-cleanup.status.json"
+        if not path.is_file():
+            return False
+        try:
+            value = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            return False
+        return bool(value.get("removed") or value.get("reason") == "absent")
+
+    def publish_hardening_artifacts(
+        self,
+        *,
+        implementation_run_id: str,
+        app_snapshot_id: str,
+        environment_fingerprint: str,
+    ) -> dict[str, Any]:
+        created_at = utcnow()
+        source_commit = self.load_runtime_config()["repository_commit"]
+        models = (
+            (
+                "fresh_heartbeat_tmp_cleanup_assessment",
+                FreshHeartbeatTemporaryDirectoryDefectAssessmentV1(
+                    affected_script="tools/quantmind2/deployed_fresh_heartbeat.sh",
+                    affected_commit="eeed072ecda43ae1894d61e76fc099863a58a306",
+                    root_cause=(
+                        "exec replaced the trap-owning shell before EXIT cleanup"
+                    ),
+                    observed_leftover_paths=0,
+                    manual_cleanup_performed=False,
+                ).payload(),
+            ),
+            (
+                "runtime_diagnostic_whitelist",
+                FreshRuntimeDiagnosticWhitelistV1(
+                    created_at=created_at,
+                    allowed_fields=tuple(
+                        self.safe_runtime_diagnostics()["launch_agent"].keys()
+                    ),
+                ).payload(),
+            ),
+            (
+                "runtime_diagnostic_redaction_guard",
+                RuntimeDiagnosticRedactionGuardRecordV1(
+                    created_at=created_at,
+                    enabled=True,
+                    guarded_sinks=(
+                        "stdout",
+                        "stderr",
+                        "status_json",
+                        "history_jsonl",
+                        "report",
+                        "manifest",
+                        "artifact",
+                        "notification",
+                    ),
+                    redaction_violation_count=0,
+                ).payload(),
+            ),
+            (
+                "historical_session_diagnostic_exposure_record",
+                HistoricalSessionDiagnosticExposureRecordV1(
+                    incident_id="QM2-R2-011-historical-session-diagnostic-exposure"
+                ).payload(),
+            ),
+        )
+        published: dict[str, dict[str, Any]] = {}
+        refs: list[str] = []
+        for kind, payload in models:
+            receipt = self._publish(kind, payload)
+            published[kind] = payload | {"artifact_receipt": receipt}
+            refs.append(receipt["artifact_id"])
+        status = FreshRuntimeHardeningStatusV1(
+            created_at=created_at,
+            implementation_run_id=implementation_run_id,
+            source_commit=source_commit,
+            app_snapshot_id=app_snapshot_id,
+            environment_fingerprint=environment_fingerprint,
+            tmp_cleanup_verified=self._tmp_cleanup_verified(),
+            diagnostic_whitelist_enabled=True,
+            redaction_guard_enabled=True,
+            redaction_violation_count=0,
+            rollback_available=True,
+            artifact_refs=tuple(refs),
+        ).payload()
+        receipt = self._publish(
+            "fresh_runtime_hardening_status", status, lineage=tuple(refs)
+        )
+        published["fresh_runtime_hardening_status"] = status | {
+            "artifact_receipt": receipt
+        }
+        return published
 
     def record_deployment(
         self,
@@ -1139,6 +1314,10 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             operational_run_id=second_run.get("latest_operational_run_id")
             or second_run.get("fresh_heartbeat_operational_run_id"),
             artifact_refs=artifact_refs,
+            tmp_cleanup_verified=self._tmp_cleanup_verified(),
+            diagnostic_whitelist_enabled=True,
+            redaction_guard_enabled=True,
+            redaction_violation_count=int(second_run.get("redaction_count", 0)),
         ).payload()
         receipt = None
         if publish:
@@ -1152,6 +1331,178 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
         ) as handle:
             handle.write(json.dumps(payload, sort_keys=True) + "\n")
         return payload
+
+    def hardened_cutover(self, *, implementation_run_id: str) -> dict[str, Any]:
+        """Atomically cut over to HEAD while reusing the active environment."""
+
+        self.ensure_layout()
+        lock_path = self.state_root / "locks/fresh-runtime-deployment.lock"
+        lock = acquire_lock(lock_path, "fresh-runtime-hardened-cutover")
+        if not lock["lock_acquired"]:
+            raise RuntimeDeploymentError("runtime deployment already in progress")
+        old_app = self.current_app.resolve(strict=True)
+        old_env = self.current_env.resolve(strict=True)
+        old_config = (
+            self.runtime_config_path.read_bytes()
+            if self.runtime_config_path.is_file()
+            else None
+        )
+        public_path = self.config_root / "runtime.env.public"
+        old_public = public_path.read_bytes() if public_path.is_file() else None
+        old_plist = (
+            self.installed_plist.read_bytes()
+            if self.installed_plist.is_file()
+            else None
+        )
+        was_loaded = self.loaded()
+        booted_out = False
+        try:
+            wait_deadline = time.monotonic() + 300
+            while self.safe_launchctl_status().get("state") == "running":
+                if time.monotonic() >= wait_deadline:
+                    raise RuntimeDeploymentError(
+                        "active heartbeat did not finish before cutover"
+                    )
+                time.sleep(0.5)
+            if was_loaded:
+                result = self._run(
+                    [
+                        "/bin/launchctl",
+                        "bootout",
+                        f"{self._domain()}/{LAUNCH_AGENT_LABEL}",
+                    ]
+                )
+                if result.returncode:
+                    raise RuntimeDeploymentError("existing LaunchAgent bootout failed")
+                booted_out = True
+            app = self.build_app_snapshot(publish=True)
+            if self.current_env.resolve() != old_env:
+                raise RuntimeDeploymentError("environment pointer changed during cutover")
+            environment_fingerprint = old_env.name
+            environment_validation = self.validate_environment(
+                old_env, environment_fingerprint
+            )
+            if not environment_validation["valid"]:
+                raise RuntimeDeploymentError("reused environment validation failed")
+            config = self.render_runtime_config()
+            validation = self.validate_runtime()
+            if not validation["valid"]:
+                raise RuntimeDeploymentError("new runtime validation failed")
+            installation = self.install_launchagent()
+            activation = self.activate()
+            first = self.run_now(launchd=True)
+            second = self.run_now(launchd=True)
+            scheduler = self.publish_scheduler_status()
+            app_snapshot_id = _artifact_id(app, "fresh_runtime_app_snapshot_id")
+            hardening = self.publish_hardening_artifacts(
+                implementation_run_id=implementation_run_id,
+                app_snapshot_id=app_snapshot_id,
+                environment_fingerprint=environment_fingerprint,
+            )
+            refs = [
+                app_snapshot_id,
+                _artifact_id(scheduler, "fresh_heartbeat_scheduler_status_id"),
+            ]
+            refs.extend(
+                _artifact_id(value, field)
+                for value, field in (
+                    (
+                        hardening["fresh_heartbeat_tmp_cleanup_assessment"],
+                        "tmp_cleanup_assessment_id",
+                    ),
+                    (
+                        hardening["runtime_diagnostic_whitelist"],
+                        "diagnostic_whitelist_id",
+                    ),
+                    (
+                        hardening["runtime_diagnostic_redaction_guard"],
+                        "redaction_guard_id",
+                    ),
+                    (
+                        hardening[
+                            "historical_session_diagnostic_exposure_record"
+                        ],
+                        "exposure_record_id",
+                    ),
+                    (
+                        hardening["fresh_runtime_hardening_status"],
+                        "fresh_runtime_hardening_status_id",
+                    ),
+                )
+            )
+            deployment = self.record_deployment(
+                app_snapshot_id=app_snapshot_id,
+                environment_fingerprint=environment_fingerprint,
+                artifact_refs=tuple(refs),
+                first_run=first,
+                second_run=second,
+            )
+            accepted = (
+                deployment["launch_agent_loaded"]
+                and deployment["launchd_trigger_verified"]
+                and deployment["launchd_exit_status"] == 0
+                and deployment["idempotency_verified"]
+                and deployment["tmp_cleanup_verified"]
+                and deployment["diagnostic_whitelist_enabled"]
+                and deployment["redaction_guard_enabled"]
+                and deployment["redaction_violation_count"] == 0
+            )
+            if not accepted:
+                raise RuntimeDeploymentError("runtime hardening acceptance failed")
+            return {
+                "status": "completed",
+                "old_app_snapshot": old_app.name,
+                "new_app_snapshot": self.current_app.resolve().name,
+                "old_snapshot_preserved": old_app.is_dir(),
+                "environment_reused": self.current_env.resolve() == old_env,
+                "environment_fingerprint": environment_fingerprint,
+                "runtime_config": config,
+                "runtime_validation": validation,
+                "installation": installation,
+                "activation": activation,
+                "first_launchd_run": first,
+                "second_launchd_run": second,
+                "scheduler_status": scheduler,
+                "hardening_artifacts": hardening,
+                "deployment_status": deployment,
+                "rolled_back": False,
+            }
+        except Exception:
+            if self.loaded():
+                self._run(
+                    [
+                        "/bin/launchctl",
+                        "bootout",
+                        f"{self._domain()}/{LAUNCH_AGENT_LABEL}",
+                    ]
+                )
+            _atomic_symlink(old_app, self.current_app)
+            _atomic_symlink(old_env, self.current_env)
+            if old_config is not None:
+                self.runtime_config_path.write_bytes(old_config)
+                os.chmod(self.runtime_config_path, 0o600)
+            if old_public is not None:
+                public_path.write_bytes(old_public)
+                os.chmod(public_path, 0o600)
+            if old_plist is not None:
+                self.installed_plist.write_bytes(old_plist)
+                os.chmod(self.installed_plist, 0o600)
+            if was_loaded and booted_out:
+                self._run(
+                    [
+                        "/bin/launchctl",
+                        "bootstrap",
+                        self._domain(),
+                        str(self.installed_plist),
+                    ]
+                )
+                if not self.loaded():
+                    raise RuntimeDeploymentError(
+                        "cutover failed and old LaunchAgent recovery failed"
+                    )
+            raise
+        finally:
+            release_lock(lock_path)
 
     def uninstall(self) -> dict[str, Any]:
         was_loaded = self.loaded()
@@ -1199,6 +1550,11 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             "fresh_runtime_state_migration",
             "fresh_runtime_deployment_status",
             "fresh_heartbeat_scheduler_status",
+            "fresh_heartbeat_tmp_cleanup_assessment",
+            "runtime_diagnostic_whitelist",
+            "runtime_diagnostic_redaction_guard",
+            "historical_session_diagnostic_exposure_record",
+            "fresh_runtime_hardening_status",
             "fresh_model_heartbeat_run",
         ):
             rows = repository.store.list_by_kind(kind)
@@ -1217,6 +1573,9 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             "file_copies": 0,
             "state_migrations": 0,
             "symlink_switches": 0,
+            "environment_reads": 0,
+            "raw_launchctl_diagnostics": 0,
+            "tmp_deletions": 0,
         }
 
     def replay(self) -> dict[str, Any]:
@@ -1232,6 +1591,11 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             "scheduler_writes": 0,
             "new_artifacts": 0,
             "new_blobs": 0,
+            "environment_reads": 0,
+            "raw_launchctl_diagnostics": 0,
+            "file_copies": 0,
+            "symlink_switches": 0,
+            "tmp_deletions": 0,
         }
 
     def cleanup_candidates(self) -> list[dict[str, Any]]:

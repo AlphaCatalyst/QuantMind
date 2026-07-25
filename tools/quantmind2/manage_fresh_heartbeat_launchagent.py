@@ -79,7 +79,9 @@ def _domain() -> str:
 
 
 def _loaded() -> bool:
-    return _run(["/bin/launchctl", "print", f"{_domain()}/{LAUNCH_AGENT_LABEL}"]).returncode == 0
+    # `launchctl list <label>` exposes only the selected job summary and avoids
+    # capturing the full launchd environment block.
+    return _run(["/bin/launchctl", "list", LAUNCH_AGENT_LABEL]).returncode == 0
 
 
 def _login_token_available() -> bool:
