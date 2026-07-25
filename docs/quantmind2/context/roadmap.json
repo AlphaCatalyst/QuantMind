@@ -8,6 +8,15 @@
   "verification_status": "verified",
   "items": [
     {
+      "task_id": "QM2-R3-001",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": ["QM2-R2-005", "QM2-R2-006", "QM2-R2-007"],
+      "objective": "Extend the existing Supervisor with isolated rolling historical Blind validation and execute formal autonomous Alpha Discovery Batch 001.",
+      "explicit_non_goals": ["No real Fresh claim, full/model/strategy/combined optimization, Blind feedback, Promotion, trading, dependency change or automatic Batch 002."],
+      "acceptance_summary": "Eighteen Agent calls, six fixed model hypotheses, two locks and 36 complete-window Qlib evaluations finish; both objects fail unchanged gate/BH, zero Survivor is preserved, and Store recovery/exact replay pass."
+    },
+    {
       "task_id": "QM2-R2-006",
       "status": "completed_uncommitted",
       "priority": "P0",

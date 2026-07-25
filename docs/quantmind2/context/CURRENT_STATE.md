@@ -1,5 +1,33 @@
 # Current Implementation State
 
+## Rolling Blind Alpha Discovery Batch 001 (QM2-R3-001)
+
+- `quantmind2.rolling_blind_alpha_discovery` extends the existing Supervisor
+  with frozen 60-session historical rolling Blind windows, strict
+  Agent/Planner/Failure-Memory isolation, Candidate Batch Lock, full-window
+  evaluation, global BH, Search Exposure, Survivor/no-backfill Fresh contracts,
+  checkpoint recovery and zero-call exact replay.
+- Formal Batch
+  `rbdb1_6ca989dfab231a2b57fb3679d2dbca8006a370bc082d1b6b2f55840479f88851`
+  completed 24 rounds, 18 Agent calls, 42 proposals, 24 admissions, four local
+  rescues, six fixed LightGBM hypotheses and 64 formal Qlib calls.
+- The canonical calendar produced 18 complete non-overlapping windows from
+  `2022-01-04` through `2026-06-23`; one available `2026-06-24` session was
+  excluded as an incomplete tail. The requested upper bound is `2026-07-23`,
+  but no canonical sessions after `2026-06-24` existed.
+- Two fixed-model objects passed Discovery and completed all 18 Blind windows.
+  Both failed the unchanged rolling gate and global BH, so the terminal status
+  is `completed_no_blind_survivor`.
+- Survivor, new Fresh Lock, Registry, Promotion, Strategy/Combined
+  Optimization, network, Tushare and manual intervention/planning writes are
+  zero. Existing Fresh objects and runtime deployment are unchanged.
+- Cold validation has zero gaps; exact replay and terminal resume report zero
+  calls/writes. Store integrity is healthy with zero missing/unreferenced
+  Blobs.
+- Current task: `QM2-R3-001`.
+- Latest Implementation Run:
+  `QM2-R3-001-20260725T112004Z-addae39`.
+
 ## Fresh runtime state consistency and recovery completion (QM2-R2-013)
 
 - Environment relocation smoke now owns a validated run-scoped tmp child and

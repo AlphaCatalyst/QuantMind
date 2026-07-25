@@ -283,6 +283,7 @@ Statuses describe current implementation, not architectural intention.
 | `quantmind2.technical_feature_factory` | implemented | Factory v2 combines six accepted rolling operators and six PIT primitives with unlabeled bounded Agent generation, quality/novelty admission, research materialization and immutable Catalog v3 |
 | `quantmind2.archetype_alpha_program` | implemented | Three-Lane default-first Alpha research consumes Catalog v2/v3, freezes monotonic/tail tests, applies locked validation/global BH FDR, and supports retrospective-only survivor output |
 | `quantmind2.autonomous_research_supervisor` | implemented | Cycle 002 consumes the operator, primitive and Feature v3 catalogs, preserves retrospective/Fresh boundaries, applies stop controls, and provides cold recovery/resume/zero-call replay |
+| `quantmind2.rolling_blind_alpha_discovery` | implemented | Extends the Supervisor with frozen non-overlapping 60-session historical Blind windows, isolated two-lane Discovery, immutable candidate locks, full-window LightGBM/Qlib evaluation, global BH, Search Exposure, conservative Survivor/Fresh boundaries and exact replay |
 
 `quantmind2.optimization_governance` applies the corrected R1-005 business
 decision without modifying the v1 optimization engines or historical objects.

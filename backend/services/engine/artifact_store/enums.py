@@ -252,6 +252,15 @@ class ArtifactKind(str, Enum):
     FRESH_RUNTIME_STATUS_CONSISTENCY_VALIDATION = "fresh_runtime_status_consistency_validation"
     CANONICAL_RUNTIME_ARTIFACT_RESOLUTION = "canonical_runtime_artifact_resolution"
     FRESH_RUNTIME_HARDENING_COMPLETION = "fresh_runtime_hardening_completion"
+    ROLLING_BLIND_WINDOW_SET = "rolling_blind_window_set"
+    ROLLING_BLIND_DISCOVERY_BATCH = "rolling_blind_discovery_batch"
+    ROLLING_BLIND_CANDIDATE_BATCH_LOCK = "rolling_blind_candidate_batch_lock"
+    ROLLING_BLIND_CANDIDATE_RESULT = "rolling_blind_candidate_result"
+    ROLLING_BLIND_MULTIPLE_TESTING = "rolling_blind_multiple_testing"
+    ROLLING_BLIND_SEARCH_EXPOSURE = "rolling_blind_search_exposure"
+    ROLLING_BLIND_ALPHA_SURVIVOR = "rolling_blind_alpha_survivor"
+    ROLLING_BLIND_SUBMISSION_LEDGER = "rolling_blind_submission_ledger"
+    ROLLING_BLIND_RESEARCH_REPORT = "rolling_blind_research_report"
 
 
 class IntegrityStatus(str, Enum):

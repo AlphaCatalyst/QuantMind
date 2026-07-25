@@ -1,5 +1,26 @@
 # Codex Handoff
 
+## QM2-R3-001 rolling Blind discovery handoff
+
+- Read `ROLLING_BLIND_ALPHA_DISCOVERY_V1.md` and Run
+  `QM2-R3-001-20260725T112004Z-addae39` before changing rolling research.
+- Formal Batch is
+  `rbdb1_6ca989dfab231a2b57fb3679d2dbca8006a370bc082d1b6b2f55840479f88851`;
+  terminal Report is
+  `rbrr1_8c19f12bca2e6f78256054b000b9af19e254ec9032389af609f4fa057d2a4121`.
+- The 18-window set is immutable and was frozen before Agent calls. Do not
+  extend it with synthetic dates or call the evidence real Fresh.
+- Blind metrics and failure reasons must remain invisible to Agent, Planner and
+  Failure Memory. Future research may see only submitted structures and
+  consumed Blind-submission budget.
+- Batch 001 legally ended with zero Survivor. Do not lower gates, increase its
+  budget, retune either locked model, feed failures back into formulas, or
+  automatically create Batch 002.
+- Exact replay is zero-call/zero-write and Store integrity is healthy. Existing
+  Fresh identities and LaunchAgent/runtime state were not changed.
+- The formal LightGBM runtime needs its already-versioned native OpenMP
+  directory on `DYLD_LIBRARY_PATH`; no dependency installation is required.
+
 ## QM2-R2-013 runtime-state completion handoff
 
 - Read `FRESH_RUNTIME_STATE_CONSISTENCY_AND_RECOVERY_V1.md` before changing

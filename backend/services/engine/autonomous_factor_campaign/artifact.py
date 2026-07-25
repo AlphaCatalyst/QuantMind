@@ -172,6 +172,39 @@ KINDS = {
         "fresh_runtime_hardening_completion_id",
         "frhc1_",
     ),
+    "rolling_blind_window_set": ("rolling_blind_window_set_id", "rbws1_"),
+    "rolling_blind_discovery_batch": (
+        "rolling_blind_discovery_batch_id",
+        "rbdb1_",
+    ),
+    "rolling_blind_candidate_batch_lock": (
+        "rolling_blind_candidate_batch_lock_id",
+        "rbcbl1_",
+    ),
+    "rolling_blind_candidate_result": (
+        "rolling_blind_candidate_result_id",
+        "rbcr1_",
+    ),
+    "rolling_blind_multiple_testing": (
+        "rolling_blind_multiple_testing_id",
+        "rbmt1_",
+    ),
+    "rolling_blind_search_exposure": (
+        "rolling_blind_search_exposure_id",
+        "rbse1_",
+    ),
+    "rolling_blind_alpha_survivor": (
+        "rolling_blind_alpha_survivor_id",
+        "rbas1_",
+    ),
+    "rolling_blind_submission_ledger": (
+        "rolling_blind_submission_ledger_id",
+        "rbsl1_",
+    ),
+    "rolling_blind_research_report": (
+        "rolling_blind_research_report_id",
+        "rbrr1_",
+    ),
 }
 
 OPERATIONAL_KINDS = {

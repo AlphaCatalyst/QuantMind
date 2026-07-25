@@ -353,6 +353,15 @@ def _formal_validate(kind: ArtifactKind, source: Path, artifact_id: str,
             ArtifactKind.FRESH_RUNTIME_STATUS_CONSISTENCY_VALIDATION,
             ArtifactKind.CANONICAL_RUNTIME_ARTIFACT_RESOLUTION,
             ArtifactKind.FRESH_RUNTIME_HARDENING_COMPLETION,
+            ArtifactKind.ROLLING_BLIND_WINDOW_SET,
+            ArtifactKind.ROLLING_BLIND_DISCOVERY_BATCH,
+            ArtifactKind.ROLLING_BLIND_CANDIDATE_BATCH_LOCK,
+            ArtifactKind.ROLLING_BLIND_CANDIDATE_RESULT,
+            ArtifactKind.ROLLING_BLIND_MULTIPLE_TESTING,
+            ArtifactKind.ROLLING_BLIND_SEARCH_EXPOSURE,
+            ArtifactKind.ROLLING_BLIND_ALPHA_SURVIVOR,
+            ArtifactKind.ROLLING_BLIND_SUBMISSION_LEDGER,
+            ArtifactKind.ROLLING_BLIND_RESEARCH_REPORT,
         }:
         from backend.services.engine.autonomous_factor_campaign.artifact import validate_artifact
         validate_artifact(source, artifact_id, kind.value)

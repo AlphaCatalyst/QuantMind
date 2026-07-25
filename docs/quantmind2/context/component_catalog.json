@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-25T07:35:31Z",
-  "source_commit": "9913214826796295f7027756ff2bdf0eb703846f",
+  "generated_at": "2026-07-25T11:20:04Z",
+  "source_commit": "addae3914c45089a5cb33e7a5a1e7c7151af05c6",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -10,6 +10,47 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "components": [
+    {
+      "component_id": "quantmind2.rolling_blind_alpha_discovery",
+      "name": "Rolling 60-Day Blind Alpha Discovery v1",
+      "status": "implemented",
+      "responsibility": "Freeze historical 60-session windows before Agent calls, run isolated DSL and fixed-LightGBM Discovery lanes, lock candidates, evaluate every Blind window with formal Qlib, apply one global BH family, persist Search Exposure and conservative Survivor/Fresh boundaries, and support cold recovery and exact replay.",
+      "source_path": "backend/services/engine/rolling_blind_alpha_discovery",
+      "target_path": "backend/services/engine/rolling_blind_alpha_discovery",
+      "key_symbols": [
+        "RollingBlindBudgetV1",
+        "RollingBlindDiscoveryBatchSpecV1",
+        "create_batch",
+        "run_batch",
+        "validate_batch",
+        "replay_batch"
+      ],
+      "dependencies": [
+        "quantmind2.autonomous_research_supervisor",
+        "quantmind2.archetype_alpha_program",
+        "quantmind2.fixed_configuration_model_program",
+        "quantmind2.factor_dsl",
+        "quantmind.qlib_backtest",
+        "quantmind2.research_artifact_store"
+      ],
+      "architecture_decision_refs": [
+        "ADR-0003",
+        "ADR-0004",
+        "ADR-0005",
+        "ADR-0006",
+        "ADR-0007",
+        "ADR-0008",
+        "ADR-0011"
+      ],
+      "current_limitations": [
+        "Batch 001 produced zero Survivor under the unchanged rolling gate and global BH.",
+        "The canonical calendar available to Batch 001 ends on 2026-06-24, so the requested Blind Pool through 2026-07-23 is not fully present.",
+        "Evidence is historical pseudo-Fresh, not real Fresh or production evidence.",
+        "The existing Qlib wrapper emits non-blocking optional PostgreSQL and COS resolution warnings before local formal execution."
+      ],
+      "last_verified_commit": null,
+      "evidence_level": "code_confirmed"
+    },
     {
       "component_id": "quantmind2.fresh_runtime_deployment",
       "name": "Immutable Fresh Runtime Deployment v1",

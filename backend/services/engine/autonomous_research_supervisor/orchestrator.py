@@ -382,6 +382,35 @@ def run_multi_horizon_model_cycle(
     }
 
 
+def run_next_rolling_blind_batch(
+    *, supervisor_spec_id: str, repository_root: Path,
+    work_root: Path, store_root: Path | None = None,
+) -> dict[str, Any]:
+    """Dispatch one complete Rolling Blind Batch through the existing Supervisor."""
+    repository = _repository(store_root, Path(work_root) / "supervisor-rolling-blind")
+    supervisor = repository.identity(supervisor_spec_id)
+    if supervisor.get("schema_version") not in {
+        "autonomous-research-supervisor-spec-v1",
+        "autonomous-research-supervisor-v1",
+        "autonomous-research-supervisor-v2",
+    }:
+        raise ValueError("Supervisor identity is invalid")
+    from backend.services.engine.rolling_blind_alpha_discovery import run_batch
+
+    result = run_batch(
+        supervisor_id=supervisor_spec_id,
+        repository_root=repository_root,
+        work_root=Path(work_root) / "rolling-blind-batch-001",
+        store_root=store_root,
+    )
+    return result | {
+        "supervisor_id": supervisor_spec_id,
+        "research_type": "rolling_blind_alpha_discovery",
+        "batch_name": "rolling_blind_discovery_batch_001",
+        "automatic_batch_002_created": False,
+    }
+
+
 def _v2_runtime_counts() -> dict[str, int]:
     return runtime_counts() | {
         "operator_writes": 0,

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-25T07:35:31Z",
-  "source_commit": "9913214826796295f7027756ff2bdf0eb703846f",
+  "generated_at": "2026-07-25T11:20:04Z",
+  "source_commit": "addae3914c45089a5cb33e7a5a1e7c7151af05c6",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R2-013",
-  "latest_implementation_run": "QM2-R2-013-20260725T073531Z-9913214",
+  "current_task": "QM2-R3-001",
+  "latest_implementation_run": "QM2-R3-001-20260725T112004Z-addae39",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -46,6 +46,7 @@
       "quantmind2.fresh_model_cohort",
       "quantmind2.fresh_runtime_deployment",
       "quantmind2.fresh_heartbeat_scheduler",
+      "quantmind2.rolling_blind_alpha_discovery",
       "quantmind2.research_artifact_store",
       "quantmind2.artifact_runtime"
     ],
