@@ -231,3 +231,89 @@ class FreshRuntimeHardeningStatusV1:
             "promotion_writes": 0,
         }
         return _identified("frhs1_", "fresh_runtime_hardening_status_id", value)
+
+
+@dataclass(frozen=True)
+class EnvironmentValidationTemporaryDirectoryAssessmentV1:
+    created_at: str
+    creator: str
+    purpose: str
+    previous_path: str
+    run_scoped: bool
+    success_cleanup_verified: bool
+    failure_cleanup_verified: bool
+    signal_cleanup_verified: bool
+    historical_empty_directory_removed: bool
+    concurrent_use_detected: bool = False
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "environment-validation-tmp-assessment-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("evta1_", "environment_validation_tmp_assessment_id", value)
+
+
+@dataclass(frozen=True)
+class FreshRuntimeStatusConsistencyValidationV1:
+    created_at: str
+    scheduler_status_id: str
+    deployment_status_id: str
+    consistent: bool
+    mismatch_code: str | None
+    checked_fields: tuple[str, ...]
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "fresh-runtime-status-consistency-validation-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified(
+            "frscv1_", "fresh_runtime_status_consistency_validation_id", value
+        )
+
+
+@dataclass(frozen=True)
+class CanonicalRuntimeArtifactResolutionV1:
+    created_at: str
+    resolution_source: str
+    app_snapshot_id: str
+    deployment_status_id: str
+    scheduler_status_id: str
+    source_commit: str
+    historical_artifact_count: int
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "canonical-runtime-artifact-resolution-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified(
+            "crar1_", "canonical_runtime_artifact_resolution_id", value
+        )
+
+
+@dataclass(frozen=True)
+class FreshRuntimeHardeningCompletionV1:
+    created_at: str
+    implementation_run_id: str
+    source_commit: str
+    app_snapshot_id: str
+    deployment_status_id: str
+    scheduler_status_id: str
+    consistency_validation_id: str
+    resolution_id: str
+    tmp_before_hash: str
+    tmp_after_hash: str
+    completed: bool
+
+    def payload(self) -> dict[str, Any]:
+        value = asdict(self) | {
+            "schema_version": "fresh-runtime-hardening-completion-v1",
+            "registry_writes": 0,
+            "promotion_writes": 0,
+        }
+        return _identified("frhc1_", "fresh_runtime_hardening_completion_id", value)

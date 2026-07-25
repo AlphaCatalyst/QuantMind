@@ -248,6 +248,10 @@ class ArtifactKind(str, Enum):
     RUNTIME_DIAGNOSTIC_REDACTION_GUARD = "runtime_diagnostic_redaction_guard"
     HISTORICAL_SESSION_DIAGNOSTIC_EXPOSURE_RECORD = "historical_session_diagnostic_exposure_record"
     FRESH_RUNTIME_HARDENING_STATUS = "fresh_runtime_hardening_status"
+    ENVIRONMENT_VALIDATION_TMP_ASSESSMENT = "environment_validation_tmp_assessment"
+    FRESH_RUNTIME_STATUS_CONSISTENCY_VALIDATION = "fresh_runtime_status_consistency_validation"
+    CANONICAL_RUNTIME_ARTIFACT_RESOLUTION = "canonical_runtime_artifact_resolution"
+    FRESH_RUNTIME_HARDENING_COMPLETION = "fresh_runtime_hardening_completion"
 
 
 class IntegrityStatus(str, Enum):

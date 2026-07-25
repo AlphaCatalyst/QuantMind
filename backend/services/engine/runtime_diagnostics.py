@@ -3,8 +3,9 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
+from backend.services.engine.autonomous_factor_campaign.artifact import KINDS
 from backend.services.engine.tushare_cutover.canonical import hash_file
 
 
@@ -33,39 +34,51 @@ class RedactionResult:
 
 
 class RuntimeDiagnosticRedactionGuardV1:
-    """Fail-closed redaction for text crossing an operational boundary."""
+    """Context-aware redaction for text crossing an operational boundary."""
 
     _patterns = (
-        (
-            "credential_assignment",
-            re.compile(
-                r"(?im)\b(?:TUSHARE_TOKEN|ACCESS_TOKEN|API_KEY|PRIVATE_KEY|PASSWORD)"
-                r"\s*[:=]\s*[^\s,;}\]]+"
-            ),
-        ),
         (
             "authorization_header",
             re.compile(r"(?im)\bAuthorization\s*:\s*[^\r\n]+"),
         ),
         (
-            "bearer_value",
-            re.compile(r"(?i)\bBearer\s+[A-Za-z0-9._~+/=-]{12,}"),
+            "bearer_token",
+            re.compile(r"(?i)\bBearer\s+[^\s,;}\]]+"),
         ),
         (
-            "launchd_environment",
+            "launchd_environment_block",
             re.compile(r"(?is)\benvironment(?:variables)?\s*=\s*\{.*?\}"),
         ),
         (
-            "environment_assignment",
-            re.compile(r"(?m)^[A-Z][A-Z0-9_]{2,}\s*=\s*[^\r\n]+$"),
+            "credential_assignment",
+            re.compile(
+                r"(?im)\b(?:token|secret|password|passwd|authorization|api_key|"
+                r"apikey|credential|tushare_token|access_token|private_key)"
+                r"\s*[:=]\s*(?!true\b|false\b|null\b)[^\s,;}\]]+"
+            ),
         ),
     )
-    _token_pattern = re.compile(
-        r"(?<![A-Za-z0-9])[A-Za-z0-9+/=_-]{40,}(?![A-Za-z0-9])"
+    _environment_assignment = re.compile(
+        r"(?m)^[A-Z][A-Z0-9_]{2,}\s*=\s*[^\r\n]+$"
     )
-    _public_identity = re.compile(
-        r"^(?:[a-z][a-z0-9]{1,12}\d?_)[0-9a-f]{32,64}$"
-    )
+    _safe_hex = re.compile(r"^[0-9a-fA-F]{40}$|^[0-9a-fA-F]{64}$")
+    _safe_schema = re.compile(r"^[A-Za-z0-9_.:-]+$")
+    _artifact_prefixes = tuple(sorted({prefix for _, prefix in KINDS.values()}))
+
+    def __init__(self, *, known_secrets: Iterable[str] = ()) -> None:
+        self._known_secrets = tuple(
+            value for value in known_secrets if isinstance(value, str) and value
+        )
+
+    @classmethod
+    def is_safe_public_value(cls, value: str) -> bool:
+        if cls._safe_hex.fullmatch(value) or cls._safe_schema.fullmatch(value):
+            return True
+        return any(
+            value.startswith(prefix)
+            and re.fullmatch(r"[0-9a-f]{32,64}", value[len(prefix) :])
+            for prefix in cls._artifact_prefixes
+        )
 
     def redact(self, value: str | None) -> RedactionResult:
         text = value or ""
@@ -76,18 +89,17 @@ class RuntimeDiagnosticRedactionGuardV1:
             if replacements:
                 count += replacements
                 categories.add(category)
-        def replace_token(match: re.Match[str]) -> str:
-            nonlocal count
-            candidate = match.group(0)
-            if re.fullmatch(r"[0-9a-fA-F]{40,64}", candidate):
-                return candidate
-            if self._public_identity.fullmatch(candidate):
-                return candidate
-            count += 1
-            categories.add("token_like_value")
-            return REDACTED
-
-        text = self._token_pattern.sub(replace_token, text)
+        environment_rows = self._environment_assignment.findall(text)
+        if len(environment_rows) >= 3:
+            text = self._environment_assignment.sub(REDACTED, text)
+            count += len(environment_rows)
+            categories.add("unsafe_environment_dump")
+        for secret in self._known_secrets:
+            replacements = text.count(secret)
+            if replacements:
+                text = text.replace(secret, REDACTED)
+                count += replacements
+                categories.add("known_secret_value")
         return RedactionResult(text, count, tuple(sorted(categories)))
 
 

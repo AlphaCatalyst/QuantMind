@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-25T06:39:51Z",
-  "source_commit": "4a12e400c24c45d6846c93e447683f5747a0cbef",
+  "generated_at": "2026-07-25T07:35:31Z",
+  "source_commit": "9913214826796295f7027756ff2bdf0eb703846f",
   "source_paths": [
     "docs/quantmind2/context/CURRENT_STATE.md",
     "docs/quantmind2/context/component_catalog.json",
@@ -12,8 +12,8 @@
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "architecture_version": "v1",
-  "current_task": "QM2-R2-012",
-  "latest_implementation_run": "QM2-R2-012-20260725T063951Z-4a12e40",
+  "current_task": "QM2-R2-013",
+  "latest_implementation_run": "QM2-R2-013-20260725T073531Z-9913214",
   "current_canonical_registry_snapshot_id": "trg_0e23d0c7255a570a5f72f132d7db46d00842e55c794162ad6b04b15e7c61d309",
   "components_by_status": {
     "implemented": [
@@ -174,6 +174,11 @@
     "redaction_guard": "implemented",
     "historical_session_exposure_record": "implemented",
     "post_commit_activation_authority": "external_deployment_and_hardening_status"
+    ,"environment_validation_tmp_scope": "run_scoped_exact_cleanup"
+    ,"scheduler_deployment_consistency": "implemented"
+    ,"canonical_recovery": "explicit_current_deployment_pointer_first"
+    ,"artifact_id_time_ordering": "forbidden"
+    ,"redaction_policy": "context_aware"
   },
   "next_task_candidates": []
 }

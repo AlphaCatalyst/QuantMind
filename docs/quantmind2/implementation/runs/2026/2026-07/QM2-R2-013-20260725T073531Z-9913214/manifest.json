@@ -1,0 +1,467 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-r2-013-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "82db657d579ba54f46c54ff960877737cfdf564213fd2088a0093aa7c3f1ca60",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 8174
+    },
+    {
+      "artifact_id": "artifact-r2-013-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "ba42afbe70ab3c96982b6a2c2958da4a04c35355986a6bc087b2211f78835f78",
+      "before_hash": "4254ead440c47677bf4f53eecd17cd5f4bb6e92ff8c986850e49f0ff494dee44",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "bdc42d7bac94ddbbda8fc953430ee2865167af6d6f64bc3a658dadcd01096aad",
+      "before_hash": "747eb0cdc2b5e429eed50aa18de6e56ef83b13be49a6c765f258e5f547898fd0",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7710ffbb694693f1b47bb97b20b84a1bd05d8c085708ed20b9bc33a56a150acc",
+      "before_hash": "be439482c1ed0a3ca69035410275c2d58fe9ae785d9f18399b55e964f1a3a574",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0d331cb82d4a11319d3ddce4003cc2eb507602d01e681cccf676b2789da43529",
+      "before_hash": "9a3a31d641d4ce198e465e6c1aacea937b80c4531a2bd723b0f049bde04fc58c",
+      "change_type": "modified",
+      "path": "backend/services/engine/fresh_heartbeat_scheduler/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "95d084aee8998603e851a47c062d459a3c7638f4ab7699fb7c97c49a0fe52186",
+      "before_hash": "0ba22a62f272fde432209417658cd92e538dc6a23d11c3a7305c1cf844ccb590",
+      "change_type": "modified",
+      "path": "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cd63f9077482ecfa2e44301511e021bfd91491f6857b8c51e1c6eb5e6483c111",
+      "before_hash": "9c3829c6c3b09f149a70457fb9dc546bf8ecede60a22bfd2843318ff23196658",
+      "change_type": "modified",
+      "path": "backend/services/engine/fresh_runtime_deployment/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "5d870cff3de1311af9dcf7279905cb76a489a5c5f86686923e833ea724493a33",
+      "before_hash": "3e38e9e85f4e95e2b2ad9984274188158978f4a3ce5fd6607f922a0910a7ade6",
+      "change_type": "modified",
+      "path": "backend/services/engine/fresh_runtime_deployment/service.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "decfc0db418028a3b0dc12b7f785b1f05863d08b8f0d95a99f1a2774b4c77856",
+      "before_hash": "260fafd40e4a1aa7ab27bc054145868ceeabb13e6f264ae1da764ba239304b54",
+      "change_type": "modified",
+      "path": "backend/services/engine/fresh_runtime_deployment/temporary_directory.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cf8dc9fa48859d014c2e148ccfcd9998794f3b3c110547fa0cdbfa046770d7eb",
+      "before_hash": "c068969fd27f1b21ed20bd94347e66c8a073afd3fca8956fdf8835e401113731",
+      "change_type": "modified",
+      "path": "backend/services/engine/runtime_diagnostics.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d34eba7420044ee11d7ecbfced48ec1fc01acc713d2b28a11ae069a4edc113a6",
+      "before_hash": "acaa4e3db1d30288f108cefbbf358a06bb52edd51934d3ebacff2b038aaf7617",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_fresh_runtime_deployment.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1bd68ab46c527fb981a40d32faa12ccf142095ee1e53e287a3d35729b1173f97",
+      "before_hash": "1bd30e63cfb061a83e435b39ab2d03ad8fff6b934faa30d156f5dd7c638fee02",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_fresh_runtime_hardening.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "cb9ff0ff6bef036d19bbe6cbc7ff155383a7e09f052e0bc9b5561d62d1e4ba74",
+      "before_hash": "f915341217d5b48a64778f33b2cf4713baa546c52f985e8969be66dccc947c53",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "85ed3e2db75d1801c2bbe704aa161cc74e6d8ce365d3adcbee1fa71f44aa2761",
+      "before_hash": "6f8ed586e06ae038711d417dd8db3391f37317146495fb21b596308bed237f13",
+      "change_type": "modified",
+      "path": "docs/quantmind2/architecture/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "96c9e70e7bf3e4d08a663f64d707d718926328554ea4656a7292fe86420585a6",
+      "before_hash": "75371508a12f4f63bde873b79e767b2bba72aed33680b33fdd06ed491b78d146",
+      "change_type": "modified",
+      "path": "docs/quantmind2/architecture/schemas/fresh_runtime_deployment_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f0a785295a57f6c80af74d7f667617e39494592f320cb4a0a0b6b3fd9510376f",
+      "before_hash": "e55464d133f8f7a03ca667cb474b0d4beba2e6bcdc547ebe478e3ebfe686df09",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "4d61422c2ee2ba6b815c3b84e4a79b11db58fc1777df7611181652dc9800a616",
+      "before_hash": "b30930f76e5791b47841a00fd3d9573363ac13b66e12177fc0f5491b1293d615",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a8042df6d0350fc96506bef9f3be7684a4710d22a971332e97b0a90b40a5fa48",
+      "before_hash": "a32df5a0784e252d3ac40e1a19e5b432c47a917f289eae391c9963bfb4830cee",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f9113b5f9847f5fa9bd5ffcd707c41225554543160badcfbc43ce1795795df09",
+      "before_hash": "3ec487ee751ed437ef4d66c80e52324f1da4a89addf381f15202befec3fd3f48",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ae0263f1856aa6fb21bfe3ea2622f623d560e88b013a83b48d49510fa860299d",
+      "before_hash": "fded389cea1a1b61bef9d3b353d6e7ef47414359853c895cab9a341842542fa4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e1b727943fe49fb0d035c3bdc5a69a89b3885480a136fe6cd50ea1a100895869",
+      "before_hash": "5f1b6b3e5f4a4ecbc1227c22be13c6d3ce42ee98ca58fce33e96155d8dbc4d24",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e9577d5273f91f194691fdd1eb0deeb6e6926d5e07ada4a5cc4219a488a8c979",
+      "before_hash": "96835c431a9cb9f835b903b137261db186dcedb5e86f3a84a08f344b92814fc9",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "d9982c4ab8862fc0e8cba3764f0370b4420be6d8f7cc18c7299c0f53ac9c6dca",
+      "before_hash": "307fe57f302daa6cba4ca722e8a099b4ebca8ee4e9eab44b60219103f8143822",
+      "change_type": "modified",
+      "path": "docs/quantmind2/operations/FRESH_HEARTBEAT_OPERATIONS_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a811e8337d2e28970d472fed382782a35c9fc48638f584299bbcdb2b07491308",
+      "before_hash": "189d5d59ed0e262ba48e9c21d78e4cbcb1d1f8219a71aeffaa89b49cf83c1186",
+      "change_type": "modified",
+      "path": "tools/quantmind2/manage_fresh_runtime_deployment.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a0b17f3cb42f61ab7df2abf76b5430af324bdfd72664f4dc0f8293bd0998ab13",
+      "before_hash": "58ffae28c97bd6498ab5162e440317f3afb0185dcb6a7a2f99f63ec96f87d237",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "024956c2fd567e4672718f0692bdd4a6ccaa3732bf7c0d6c777d1974d4a1072e",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_runtime_deployment/resolver.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3080676ff57c8683324781613ae46ea3af21585d547e3c448890a4c33930f24c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/fresh_runtime_deployment/status_consistency.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "e85769d05e9fb6bbdb701efb0d987b6045f8d4d7b46f05f7dd3ba200603b11b3",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_fresh_runtime_state_completion.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1e89a9ae17ee795391e770c43faeca29fe75031ba3e929ea909f24a82660374c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/architecture/FRESH_RUNTIME_STATE_CONSISTENCY_AND_RECOVERY_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "82db657d579ba54f46c54ff960877737cfdf564213fd2088a0093aa7c3f1ca60",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/report.md",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_runtime_deployment/temporary_directory.py",
+      "qualified_name": "runtime_tmp_directory",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_runtime_deployment/resolver.py",
+      "qualified_name": "CanonicalRuntimeArtifactResolverV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/fresh_runtime_deployment/status_consistency.py",
+      "qualified_name": "FreshRuntimeStatusConsistencyValidatorV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/fresh_runtime_deployment/service.py",
+      "qualified_name": "FreshRuntimeDeploymentService.hardened_cutover",
+      "symbol_type": "method"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/runtime_diagnostics.py",
+      "qualified_name": "RuntimeDiagnosticRedactionGuardV1",
+      "symbol_type": "class"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.fresh_runtime_deployment",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.fresh_heartbeat_scheduler",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.fresh_model_cohort",
+      "impact_type": "unaffected"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-r2-013-report",
+        "sha256": "82db657d579ba54f46c54ff960877737cfdf564213fd2088a0093aa7c3f1ca60"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/fresh_runtime_deployment/resolver.py",
+      "backend/services/engine/fresh_runtime_deployment/status_consistency.py",
+      "backend/services/tests/test_fresh_runtime_state_completion.py",
+      "docs/quantmind2/architecture/FRESH_RUNTIME_STATE_CONSISTENCY_AND_RECOVERY_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/report.md"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/models.py",
+      "backend/services/engine/fresh_heartbeat_scheduler/service.py",
+      "backend/services/engine/fresh_runtime_deployment/models.py",
+      "backend/services/engine/fresh_runtime_deployment/resolver.py",
+      "backend/services/engine/fresh_runtime_deployment/service.py",
+      "backend/services/engine/fresh_runtime_deployment/status_consistency.py",
+      "backend/services/engine/fresh_runtime_deployment/temporary_directory.py",
+      "backend/services/engine/runtime_diagnostics.py",
+      "backend/services/tests/test_fresh_runtime_deployment.py",
+      "backend/services/tests/test_fresh_runtime_hardening.py",
+      "backend/services/tests/test_fresh_runtime_state_completion.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/architecture/FRESH_RUNTIME_STATE_CONSISTENCY_AND_RECOVERY_V1.md",
+      "docs/quantmind2/architecture/schemas/fresh_heartbeat_scheduler_v1.schema.json",
+      "docs/quantmind2/architecture/schemas/fresh_runtime_deployment_v1.schema.json",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "docs/quantmind2/operations/FRESH_HEARTBEAT_OPERATIONS_V1.md",
+      "tools/quantmind2/manage_fresh_runtime_deployment.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "117b67ecca2be9dae4cd8f6a2e6ee1abcc476a29202c93ee99156d9a1681a203",
+    "manifest_payload_sha256": "db5b7e068f7e054b70726d5bc33c507ecb27dde89d9a86cbfe03b3ddf0af5d45",
+    "report_sha256": "82db657d579ba54f46c54ff960877737cfdf564213fd2088a0093aa7c3f1ca60",
+    "source_bundle_sha256": "51a2aa007d58a9eea0143aa2525aef41f2f9c2b8305f712757475adfa5c7436d"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.fresh_runtime_deployment",
+      "description": "Dynamic activation truth is machine-local operational evidence and cannot be embedded in a truthful pre-commit Manifest.",
+      "limitation_id": "limit-r2-013-dynamic-host-evidence",
+      "severity": "low",
+      "status": "accepted"
+    },
+    {
+      "component_id": "factor_lab.official_v7_source",
+      "description": "The official Factor Lab source path exists but contained zero files at preflight; this task did not modify it.",
+      "limitation_id": "limit-r2-013-factor-lab-source-empty",
+      "severity": "medium",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-25T07:35:31Z",
+      "reason": "Closes the dynamic state, recovery, tmp and redaction gaps discovered during R2-012 post-commit verification.",
+      "relationship_id": "rel-r2-013-continues-r2-012",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R2-013-20260725T073531Z-9913214",
+      "target_run_id": "QM2-R2-012-20260725T063951Z-4a12e40"
+    }
+  ],
+  "repository": {
+    "base_commit": "9913214826796295f7027756ff2bdf0eb703846f",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "9913214826796295f7027756ff2bdf0eb703846f",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-25T07:35:31Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "117b67ecca2be9dae4cd8f6a2e6ee1abcc476a29202c93ee99156d9a1681a203",
+    "implementation_run_id": "QM2-R2-013-20260725T073531Z-9913214",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R2-013-20260725T073531Z-9913214/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "51a2aa007d58a9eea0143aa2525aef41f2f9c2b8305f712757475adfa5c7436d",
+    "started_at": "2026-07-25T07:10:00Z",
+    "task_id": "QM2-R2-013",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-25T07:35:31Z",
+    "explicit_non_goals": [
+      "No Feature or Alpha Agent research",
+      "No Factor model strategy combined optimization or Qlib research",
+      "No Candidate Fresh Lock Cohort Label Bundle model strategy Registry or Promotion mutation",
+      "No dependency lockfile environment Store or historical Run change"
+    ],
+    "objective": "Close Fresh Runtime temporary state Scheduler consistency canonical recovery and redaction false-positive gaps without changing Fresh research behavior.",
+    "parent_task_id": "QM2-R2-012",
+    "scope": [
+      "Run-scoped environment validation cleanup",
+      "Final Scheduler and Deployment consistency",
+      "Atomic Current Deployment Pointer",
+      "Canonical pointer-first Cold Recovery",
+      "Context-aware runtime redaction",
+      "Operational Artifact contracts tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R2-013",
+    "title": "Fresh Runtime State Consistency and Recovery Completion v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q -o addopts='' backend/services/tests/test_fresh_runtime_hardening.py backend/services/tests/test_fresh_runtime_deployment.py backend/services/tests/test_fresh_runtime_state_completion.py backend/services/tests/test_fresh_heartbeat_scheduler.py",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 82,
+      "purpose": "Verify tmp lifecycle status consistency pointer recovery redaction and cutover rollback",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-013-targeted"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "relevant Artifact Store Runtime Campaign Fresh Cohort Scheduler Deployment and Context pytest suite",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 227,
+      "purpose": "Relevant regression coverage",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r2-013-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "hardened-cutover plus two real LaunchAgent runs Store integrity Cold Recovery replay and Planner",
+      "failed_count": 0,
+      "not_run_reason": "Requires the containing commit; external operational Artifacts are authoritative after commit",
+      "passed_count": 0,
+      "purpose": "Verify committed host activation and exact idempotency",
+      "skipped_count": 0,
+      "status": "not_run",
+      "test_execution_id": "test-r2-013-postcommit"
+    }
+  ]
+}

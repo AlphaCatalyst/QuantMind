@@ -156,6 +156,22 @@ KINDS = {
         "fresh_runtime_hardening_status_id",
         "frhs1_",
     ),
+    "environment_validation_tmp_assessment": (
+        "environment_validation_tmp_assessment_id",
+        "evta1_",
+    ),
+    "fresh_runtime_status_consistency_validation": (
+        "fresh_runtime_status_consistency_validation_id",
+        "frscv1_",
+    ),
+    "canonical_runtime_artifact_resolution": (
+        "canonical_runtime_artifact_resolution_id",
+        "crar1_",
+    ),
+    "fresh_runtime_hardening_completion": (
+        "fresh_runtime_hardening_completion_id",
+        "frhc1_",
+    ),
 }
 
 OPERATIONAL_KINDS = {
@@ -171,6 +187,10 @@ OPERATIONAL_KINDS = {
     "runtime_diagnostic_redaction_guard",
     "historical_session_diagnostic_exposure_record",
     "fresh_runtime_hardening_status",
+    "environment_validation_tmp_assessment",
+    "fresh_runtime_status_consistency_validation",
+    "canonical_runtime_artifact_resolution",
+    "fresh_runtime_hardening_completion",
 }
 
 

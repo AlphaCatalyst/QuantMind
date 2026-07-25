@@ -44,7 +44,12 @@ class FreshHeartbeatSchedulerStatusV1:
     latest_heartbeat_id: str | None = None
     source_commit: str | None = None
     app_snapshot_id: str | None = None
+    environment_fingerprint: str | None = None
     runtime_config_checksum: str | None = None
+    program_path_checksum: str | None = None
+    plist_checksum: str | None = None
+    deployment_status_id: str | None = None
+    operational_run_id: str | None = None
     launchd_trigger_verified: bool = False
     idempotency_verified: bool = False
     tmp_cleanup_verified: bool = False

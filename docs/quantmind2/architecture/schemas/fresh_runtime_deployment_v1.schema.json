@@ -8,7 +8,10 @@
     {"$ref": "#/$defs/appSnapshot"},
     {"$ref": "#/$defs/environmentSnapshot"},
     {"$ref": "#/$defs/stateMigration"},
-    {"$ref": "#/$defs/deploymentStatus"}
+    {"$ref": "#/$defs/deploymentStatus"},
+    {"$ref": "#/$defs/currentDeploymentPointer"},
+    {"$ref": "#/$defs/statusConsistency"},
+    {"$ref": "#/$defs/canonicalResolution"}
   ],
   "$defs": {
     "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
@@ -94,6 +97,46 @@
         "launch_agent_loaded": {"type": "boolean"},
         "launchd_trigger_verified": {"type": "boolean"},
         "idempotency_verified": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    },
+    "currentDeploymentPointer": {
+      "type": "object",
+      "required": ["schema_version", "deployment_status_id", "scheduler_status_id", "app_snapshot_id", "source_commit", "environment_fingerprint", "runtime_config_checksum", "activated_at"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-current-deployment-pointer-v1"},
+        "deployment_status_id": {"type": "string", "pattern": "^frds1_[0-9a-f]{64}$"},
+        "scheduler_status_id": {"type": "string", "pattern": "^fhss1_[0-9a-f]{64}$"},
+        "app_snapshot_id": {"type": "string", "pattern": "^fras1_[0-9a-f]{64}$"},
+        "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "environment_fingerprint": {"type": "string", "pattern": "^qmenv1_[0-9a-f]{64}$"},
+        "runtime_config_checksum": {"$ref": "#/$defs/sha256"},
+        "activated_at": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "statusConsistency": {
+      "type": "object",
+      "required": ["schema_version", "fresh_runtime_status_consistency_validation_id", "scheduler_status_id", "deployment_status_id", "consistent"],
+      "properties": {
+        "schema_version": {"const": "fresh-runtime-status-consistency-validation-v1"},
+        "fresh_runtime_status_consistency_validation_id": {"type": "string", "pattern": "^frscv1_[0-9a-f]{64}$"},
+        "scheduler_status_id": {"type": "string"},
+        "deployment_status_id": {"type": "string"},
+        "consistent": {"const": true}
+      },
+      "additionalProperties": true
+    },
+    "canonicalResolution": {
+      "type": "object",
+      "required": ["schema_version", "canonical_runtime_artifact_resolution_id", "resolution_source", "app_snapshot_id", "deployment_status_id", "scheduler_status_id"],
+      "properties": {
+        "schema_version": {"const": "canonical-runtime-artifact-resolution-v1"},
+        "canonical_runtime_artifact_resolution_id": {"type": "string", "pattern": "^crar1_[0-9a-f]{64}$"},
+        "resolution_source": {"enum": ["explicit_current_deployment_pointer", "immutable_revision_metadata"]},
+        "app_snapshot_id": {"type": "string"},
+        "deployment_status_id": {"type": "string"},
+        "scheduler_status_id": {"type": "string"}
       },
       "additionalProperties": true
     }

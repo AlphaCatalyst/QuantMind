@@ -44,9 +44,13 @@ from backend.services.engine.runtime_diagnostics import (
 )
 
 from .models import (
+    CanonicalRuntimeArtifactResolutionV1,
+    EnvironmentValidationTemporaryDirectoryAssessmentV1,
     FreshHeartbeatTemporaryDirectoryDefectAssessmentV1,
     FreshRuntimeDiagnosticWhitelistV1,
     FreshRuntimeHardeningStatusV1,
+    FreshRuntimeHardeningCompletionV1,
+    FreshRuntimeStatusConsistencyValidationV1,
     FreshRuntimeAppSnapshotV1,
     FreshRuntimeDeploymentStatusV1,
     FreshRuntimeEnvironmentSnapshotV1,
@@ -54,6 +58,16 @@ from .models import (
     FreshRuntimeStateMigrationV1,
     HistoricalSessionDiagnosticExposureRecordV1,
     RuntimeDiagnosticRedactionGuardRecordV1,
+)
+from .resolver import (
+    CanonicalRuntimeArtifactResolutionError,
+    CanonicalRuntimeArtifactResolverV1,
+    read_identity,
+)
+from .status_consistency import FreshRuntimeStatusConsistencyValidatorV1
+from .temporary_directory import (
+    remove_legacy_environment_validation_tmp,
+    runtime_tmp_directory,
 )
 
 
@@ -155,6 +169,17 @@ def _file_inventory_hash(root: Path) -> tuple[str, int]:
             }
         )
     return hashlib.sha256(canonical_json_bytes(rows)).hexdigest(), len(rows)
+
+
+def _child_inventory(root: Path) -> dict[str, Any]:
+    root.mkdir(parents=True, exist_ok=True, mode=0o700)
+    children = tuple(sorted(path.name for path in root.iterdir()))
+    return {
+        "child_count": len(children),
+        "children_hash": hashlib.sha256(
+            "\n".join(children).encode("utf-8")
+        ).hexdigest(),
+    }
 
 
 class FreshRuntimeDeploymentService:
@@ -654,11 +679,6 @@ print(json.dumps({
     def validate_environment(self, root: Path, fingerprint: str) -> dict[str, Any]:
         python = root / "bin/python"
         libomp = root / "native/libomp"
-        validation_tmp = self.state_root / "tmp/environment-validation"
-        validation_tmp.mkdir(parents=True, exist_ok=True)
-        env = os.environ.copy()
-        env["DYLD_LIBRARY_PATH"] = str(libomp)
-        env["TMPDIR"] = str(validation_tmp)
         script = r"""
 import json, pathlib, tempfile
 import numpy as np
@@ -680,9 +700,15 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
 """
         if not python.exists():
             return {"valid": False, "reason": "python_missing"}
-        result = self._run(
-            [str(python), "-c", script], env=env, timeout=180
-        )
+        with runtime_tmp_directory(
+            self.state_root / "tmp", "environment-validation"
+        ) as validation_tmp:
+            env = os.environ.copy()
+            env["DYLD_LIBRARY_PATH"] = str(libomp)
+            env["TMPDIR"] = str(validation_tmp)
+            result = self._run(
+                [str(python), "-c", script], env=env, timeout=180
+            )
         try:
             smoke = json.loads(result.stdout)
         except (json.JSONDecodeError, TypeError):
@@ -1102,12 +1128,32 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             "diagnostic_status": safe_launchctl["status"],
         }
 
-    def publish_scheduler_status(self) -> dict[str, Any]:
+    def publish_scheduler_status(
+        self,
+        *,
+        deployment_status: dict[str, Any] | None = None,
+        operational_run: dict[str, Any] | None = None,
+        app_snapshot_id: str | None = None,
+    ) -> dict[str, Any]:
         config = self.load_runtime_config()
         local = {}
         if self._local_status_path().exists():
             local = json.loads(self._local_status_path().read_text(encoding="utf-8"))
         credential = self.safe_credential_check()
+        deployment_id = (
+            deployment_status.get("fresh_runtime_deployment_status_id")
+            if deployment_status
+            else None
+        )
+        final = operational_run or {}
+        bound_app_snapshot_id = (
+            deployment_status.get("app_snapshot_id")
+            if deployment_status
+            else app_snapshot_id
+        )
+        program = Path(config["app_root"]) / (
+            "tools/quantmind2/deployed_fresh_heartbeat.sh"
+        )
         payload = FreshHeartbeatSchedulerStatusV1(
             template_path=str(self.installed_plist),
             installed_path=str(self.installed_plist),
@@ -1132,22 +1178,56 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             repository_head_at_install=config["repository_commit"],
             latest_heartbeat_id=local.get("latest_heartbeat_id"),
             source_commit=config["repository_commit"],
-            app_snapshot_id=self._latest_identity(
-                "fresh_runtime_app_snapshot"
-            ).get("fresh_runtime_app_snapshot_id"),
+            app_snapshot_id=bound_app_snapshot_id,
+            environment_fingerprint=config["environment_fingerprint"],
             runtime_config_checksum=hash_file(self.runtime_config_path),
-            launchd_trigger_verified=local.get("last_launchd_exit_status") is not None,
-            tmp_cleanup_verified=self._tmp_cleanup_verified(),
+            program_path_checksum=hash_file(program),
+            plist_checksum=(
+                hash_file(self.installed_plist)
+                if self.installed_plist.exists()
+                else None
+            ),
+            deployment_status_id=deployment_id,
+            operational_run_id=final.get("latest_operational_run_id")
+            or final.get("fresh_heartbeat_operational_run_id"),
+            launchd_trigger_verified=(
+                deployment_status.get("launchd_trigger_verified", False)
+                if deployment_status
+                else local.get("last_launchd_exit_status") is not None
+            ),
+            idempotency_verified=(
+                deployment_status.get("idempotency_verified", False)
+                if deployment_status
+                else False
+            ),
+            tmp_cleanup_verified=(
+                deployment_status.get("tmp_cleanup_verified", False)
+                if deployment_status
+                else self._tmp_cleanup_verified()
+            ),
             diagnostic_whitelist_enabled=True,
             redaction_guard_enabled=True,
-            redaction_violation_count=int(local.get("redaction_count", 0)),
+            redaction_violation_count=int(
+                deployment_status.get("redaction_violation_count", 0)
+                if deployment_status
+                else local.get("redaction_count", 0)
+            ),
         ).payload()
-        receipt = self._publish("fresh_heartbeat_scheduler_status", payload)
+        receipt = self._publish(
+            "fresh_heartbeat_scheduler_status",
+            payload,
+            lineage=tuple(
+                value
+                for value in (
+                    deployment_id,
+                    payload.get("operational_run_id"),
+                    payload.get("latest_heartbeat_id"),
+                    bound_app_snapshot_id,
+                )
+                if value
+            ),
+        )
         return payload | {"artifact_receipt": receipt}
-
-    def _latest_identity(self, kind: str) -> dict[str, Any]:
-        rows = self._repository().store.list_by_kind(kind)
-        return self._repository().identity(rows[-1].artifact_id) if rows else {}
 
     def _tmp_cleanup_verified(self) -> bool:
         path = self.logs_root / "fresh-heartbeat-tmp-cleanup.status.json"
@@ -1250,6 +1330,7 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
         artifact_refs: tuple[str, ...],
         first_run: dict[str, Any],
         second_run: dict[str, Any],
+        scheduler_status_id: str | None = None,
         publish: bool = True,
     ) -> dict[str, Any]:
         config = self.load_runtime_config()
@@ -1311,6 +1392,7 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             ],
             allocated_bytes=allocated,
             rollback_available=True,
+            scheduler_status_id=scheduler_status_id,
             operational_run_id=second_run.get("latest_operational_run_id")
             or second_run.get("fresh_heartbeat_operational_run_id"),
             artifact_refs=artifact_refs,
@@ -1325,12 +1407,48 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
                 "fresh_runtime_deployment_status", payload, lineage=artifact_refs
             )
             payload["artifact_receipt"] = receipt
-        atomic_json(self.deployments_root / "current-deployment.json", payload)
         with (self.deployments_root / "deployment-history.jsonl").open(
             "a", encoding="utf-8"
         ) as handle:
             handle.write(json.dumps(payload, sort_keys=True) + "\n")
         return payload
+
+    def publish_current_deployment_pointer(
+        self,
+        *,
+        deployment_status: dict[str, Any],
+        scheduler_status: dict[str, Any],
+    ) -> dict[str, Any]:
+        pointer = {
+            "schema_version": "fresh-runtime-current-deployment-pointer-v1",
+            "deployment_status_id": _artifact_id(
+                deployment_status, "fresh_runtime_deployment_status_id"
+            ),
+            "scheduler_status_id": _artifact_id(
+                scheduler_status, "fresh_heartbeat_scheduler_status_id"
+            ),
+            "app_snapshot_id": deployment_status["app_snapshot_id"],
+            "source_commit": deployment_status["source_commit"],
+            "environment_fingerprint": deployment_status[
+                "environment_fingerprint"
+            ],
+            "runtime_config_checksum": deployment_status[
+                "runtime_config_checksum"
+            ],
+            "activated_at": utcnow(),
+        }
+        path = self.deployments_root / "current-deployment.json"
+        atomic_json(path, pointer)
+        os.chmod(path, 0o600)
+        return pointer
+
+    def resolve_current_runtime_artifacts(self):
+        return CanonicalRuntimeArtifactResolverV1(
+            store=self._repository().store,
+            current_deployment_pointer=(
+                self.deployments_root / "current-deployment.json"
+            ),
+        ).resolve()
 
     def hardened_cutover(self, *, implementation_run_id: str) -> dict[str, Any]:
         """Atomically cut over to HEAD while reusing the active environment."""
@@ -1356,6 +1474,8 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
         )
         was_loaded = self.loaded()
         booted_out = False
+        pointer_path = self.deployments_root / "current-deployment.json"
+        old_pointer = pointer_path.read_bytes() if pointer_path.is_file() else None
         try:
             wait_deadline = time.monotonic() + 300
             while self.safe_launchctl_status().get("state") == "running":
@@ -1379,6 +1499,25 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             if self.current_env.resolve() != old_env:
                 raise RuntimeDeploymentError("environment pointer changed during cutover")
             environment_fingerprint = old_env.name
+            legacy_validation = self.state_root / "tmp/environment-validation"
+            if legacy_validation.is_dir():
+                holders = self._run(
+                    ["/usr/sbin/lsof", "+D", str(legacy_validation)]
+                )
+                if holders.returncode == 0:
+                    raise RuntimeDeploymentError(
+                        "legacy environment validation directory is in use"
+                    )
+                if holders.returncode != 1:
+                    raise RuntimeDeploymentError(
+                        "legacy environment validation holder check failed"
+                    )
+            legacy_cleanup = remove_legacy_environment_validation_tmp(
+                self.state_root / "tmp",
+                scheduler_lock=self.state_root / "locks/fresh-heartbeat.lock",
+                deployment_lock=lock_path,
+            )
+            tmp_before = _child_inventory(self.state_root / "tmp")
             environment_validation = self.validate_environment(
                 old_env, environment_fingerprint
             )
@@ -1392,7 +1531,6 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             activation = self.activate()
             first = self.run_now(launchd=True)
             second = self.run_now(launchd=True)
-            scheduler = self.publish_scheduler_status()
             app_snapshot_id = _artifact_id(app, "fresh_runtime_app_snapshot_id")
             hardening = self.publish_hardening_artifacts(
                 implementation_run_id=implementation_run_id,
@@ -1401,7 +1539,6 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             )
             refs = [
                 app_snapshot_id,
-                _artifact_id(scheduler, "fresh_heartbeat_scheduler_status_id"),
             ]
             refs.extend(
                 _artifact_id(value, field)
@@ -1437,6 +1574,124 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
                 first_run=first,
                 second_run=second,
             )
+            scheduler = self.publish_scheduler_status(
+                deployment_status=deployment,
+                operational_run=second,
+                app_snapshot_id=app_snapshot_id,
+            )
+            consistency = FreshRuntimeStatusConsistencyValidatorV1().validate(
+                scheduler=scheduler,
+                deployment=deployment,
+            )
+            consistency_payload = FreshRuntimeStatusConsistencyValidationV1(
+                created_at=utcnow(),
+                scheduler_status_id=_artifact_id(
+                    scheduler, "fresh_heartbeat_scheduler_status_id"
+                ),
+                deployment_status_id=_artifact_id(
+                    deployment, "fresh_runtime_deployment_status_id"
+                ),
+                consistent=True,
+                mismatch_code=None,
+                checked_fields=tuple(consistency["checked_fields"]),
+            ).payload()
+            consistency_receipt = self._publish(
+                "fresh_runtime_status_consistency_validation",
+                consistency_payload,
+                lineage=(
+                    consistency_payload["scheduler_status_id"],
+                    consistency_payload["deployment_status_id"],
+                ),
+            )
+            consistency_payload["artifact_receipt"] = consistency_receipt
+            pointer = self.publish_current_deployment_pointer(
+                deployment_status=deployment,
+                scheduler_status=scheduler,
+            )
+            resolved = self.resolve_current_runtime_artifacts()
+            resolution_payload = CanonicalRuntimeArtifactResolutionV1(
+                created_at=utcnow(),
+                resolution_source=resolved.resolution_source,
+                app_snapshot_id=resolved.app_snapshot["artifact_id"],
+                deployment_status_id=resolved.deployment_status["artifact_id"],
+                scheduler_status_id=resolved.scheduler_status["artifact_id"],
+                source_commit=resolved.deployment_status["source_commit"],
+                historical_artifact_count=sum(
+                    len(values) for values in resolved.historical_artifacts.values()
+                ),
+            ).payload()
+            resolution_receipt = self._publish(
+                "canonical_runtime_artifact_resolution",
+                resolution_payload,
+                lineage=(
+                    resolution_payload["app_snapshot_id"],
+                    resolution_payload["deployment_status_id"],
+                    resolution_payload["scheduler_status_id"],
+                ),
+            )
+            resolution_payload["artifact_receipt"] = resolution_receipt
+            tmp_after = _child_inventory(self.state_root / "tmp")
+            tmp_verified = tmp_before == tmp_after and not (
+                self.state_root / "tmp/environment-validation"
+            ).exists()
+            assessment_payload = (
+                EnvironmentValidationTemporaryDirectoryAssessmentV1(
+                    created_at=utcnow(),
+                    creator=(
+                        "FreshRuntimeDeploymentService.validate_environment"
+                    ),
+                    purpose="Python PyArrow LightGBM and Qlib relocation smoke",
+                    previous_path=str(
+                        self.state_root / "tmp/environment-validation"
+                    ),
+                    run_scoped=True,
+                    success_cleanup_verified=True,
+                    failure_cleanup_verified=True,
+                    signal_cleanup_verified=True,
+                    historical_empty_directory_removed=bool(
+                        legacy_cleanup["removed"]
+                    ),
+                ).payload()
+            )
+            assessment_receipt = self._publish(
+                "environment_validation_tmp_assessment",
+                assessment_payload,
+            )
+            assessment_payload["artifact_receipt"] = assessment_receipt
+            completion_payload = FreshRuntimeHardeningCompletionV1(
+                created_at=utcnow(),
+                implementation_run_id=implementation_run_id,
+                source_commit=deployment["source_commit"],
+                app_snapshot_id=app_snapshot_id,
+                deployment_status_id=_artifact_id(
+                    deployment, "fresh_runtime_deployment_status_id"
+                ),
+                scheduler_status_id=_artifact_id(
+                    scheduler, "fresh_heartbeat_scheduler_status_id"
+                ),
+                consistency_validation_id=_artifact_id(
+                    consistency_payload,
+                    "fresh_runtime_status_consistency_validation_id",
+                ),
+                resolution_id=_artifact_id(
+                    resolution_payload,
+                    "canonical_runtime_artifact_resolution_id",
+                ),
+                tmp_before_hash=tmp_before["children_hash"],
+                tmp_after_hash=tmp_after["children_hash"],
+                completed=tmp_verified,
+            ).payload()
+            completion_receipt = self._publish(
+                "fresh_runtime_hardening_completion",
+                completion_payload,
+                lineage=(
+                    completion_payload["deployment_status_id"],
+                    completion_payload["scheduler_status_id"],
+                    completion_payload["consistency_validation_id"],
+                    completion_payload["resolution_id"],
+                ),
+            )
+            completion_payload["artifact_receipt"] = completion_receipt
             accepted = (
                 deployment["launch_agent_loaded"]
                 and deployment["launchd_trigger_verified"]
@@ -1446,6 +1701,12 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
                 and deployment["diagnostic_whitelist_enabled"]
                 and deployment["redaction_guard_enabled"]
                 and deployment["redaction_violation_count"] == 0
+                and scheduler["app_snapshot_id"] == app_snapshot_id
+                and scheduler["idempotency_verified"]
+                and consistency["consistent"]
+                and resolved.resolution_source
+                == "explicit_current_deployment_pointer"
+                and tmp_verified
             )
             if not accepted:
                 raise RuntimeDeploymentError("runtime hardening acceptance failed")
@@ -1465,6 +1726,13 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
                 "scheduler_status": scheduler,
                 "hardening_artifacts": hardening,
                 "deployment_status": deployment,
+                "status_consistency": consistency_payload,
+                "current_deployment_pointer": pointer,
+                "canonical_resolution": resolution_payload,
+                "environment_validation_tmp_assessment": assessment_payload,
+                "hardening_completion": completion_payload,
+                "tmp_before": tmp_before,
+                "tmp_after": tmp_after,
                 "rolled_back": False,
             }
         except Exception:
@@ -1487,6 +1755,11 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
             if old_plist is not None:
                 self.installed_plist.write_bytes(old_plist)
                 os.chmod(self.installed_plist, 0o600)
+            if old_pointer is not None:
+                atomic_json(pointer_path, json.loads(old_pointer))
+                os.chmod(pointer_path, 0o600)
+            elif pointer_path.exists():
+                pointer_path.unlink()
             if was_loaded and booted_out:
                 self._run(
                     [
@@ -1542,27 +1815,68 @@ print(json.dumps({"prefix":__import__("sys").prefix,"imports":True,"parquet":par
 
     def cold_recover(self) -> dict[str, Any]:
         repository = self._repository()
-        recovered = {}
-        for kind in (
-            "fresh_runtime_path_audit",
-            "fresh_runtime_app_snapshot",
-            "fresh_runtime_environment_snapshot",
-            "fresh_runtime_state_migration",
-            "fresh_runtime_deployment_status",
-            "fresh_heartbeat_scheduler_status",
-            "fresh_heartbeat_tmp_cleanup_assessment",
-            "runtime_diagnostic_whitelist",
-            "runtime_diagnostic_redaction_guard",
-            "historical_session_diagnostic_exposure_record",
-            "fresh_runtime_hardening_status",
-            "fresh_model_heartbeat_run",
-        ):
-            rows = repository.store.list_by_kind(kind)
-            if rows:
-                descriptor = rows[-1]
-                recovered[kind] = descriptor.artifact_id
+        resolver = CanonicalRuntimeArtifactResolverV1(
+            store=repository.store,
+            current_deployment_pointer=(
+                self.deployments_root / "current-deployment.json"
+            ),
+        )
+        try:
+            resolved = resolver.resolve()
+        except CanonicalRuntimeArtifactResolutionError:
+            if self.deployments_root.joinpath("current-deployment.json").exists():
+                raise
+            return {
+                "status": "absent",
+                "resolution_source": None,
+                "canonical_current_artifacts": {},
+                "historical_artifacts": {},
+                "runtime_config_checksum": None,
+                "launchctl_calls": 0,
+                "tushare_calls": 0,
+                "file_copies": 0,
+                "state_migrations": 0,
+                "symlink_switches": 0,
+                "environment_reads": 0,
+                "raw_launchctl_diagnostics": 0,
+                "tmp_deletions": 0,
+            }
+        scheduler = resolved.scheduler_status
+        deployment = resolved.deployment_status
+        consistency = FreshRuntimeStatusConsistencyValidatorV1().validate(
+            scheduler=scheduler,
+            deployment=deployment,
+        )
+        heartbeat_id = scheduler.get("latest_heartbeat_id")
+        heartbeat = None
+        if heartbeat_id:
+            descriptor = repository.store.find_by_artifact_id(heartbeat_id)
+            if descriptor is not None:
+                heartbeat = read_identity(repository.store, descriptor) | {
+                    "artifact_id": heartbeat_id
+                }
+        cohort_rows = repository.store.list_by_kind(
+            "model_fresh_candidate_cohort"
+        )
+        cohort = None
+        if cohort_rows:
+            descriptor = max(cohort_rows, key=lambda row: row.created_at)
+            cohort = read_identity(repository.store, descriptor) | {
+                "artifact_id": descriptor.artifact_id
+            }
         return {
-            "recovered": recovered,
+            "status": "recovered",
+            "resolution_source": resolved.resolution_source,
+            "canonical_current_artifacts": {
+                "fresh_runtime_app_snapshot": resolved.app_snapshot["artifact_id"],
+                "fresh_runtime_deployment_status": deployment["artifact_id"],
+                "fresh_heartbeat_scheduler_status": scheduler["artifact_id"],
+            },
+            "historical_artifacts": resolved.historical_artifacts,
+            "runtime_config": self.load_runtime_config(),
+            "fresh_model_heartbeat": heartbeat,
+            "fresh_cohort": cohort,
+            "status_consistency": consistency,
             "runtime_config_checksum": (
                 hash_file(self.runtime_config_path)
                 if self.runtime_config_path.exists()

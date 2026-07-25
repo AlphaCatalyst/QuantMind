@@ -1,5 +1,19 @@
 # Component Catalog
 
+## QM2-R2-013 completion
+
+`quantmind2.fresh_runtime_deployment` now uses run-scoped environment
+validation temporary directories, publishes the final Scheduler revision from
+the immutable Deployment and second operational run, validates their shared
+state, atomically switches a non-secret Current Deployment Pointer, and
+recovers canonical current objects without Artifact-ID ordering. Context-aware
+redaction preserves public runtime identities while retaining credential,
+authorization, environment-block and in-memory known-secret protection.
+
+Cold Recovery separates canonical current objects from historical Artifacts
+and has no launchctl, environment, network, copy, symlink, tmp or business
+mutation. This completion does not change Fresh research objects.
+
 ## QM2-R2-011 addition
 
 `quantmind2.fresh_runtime_deployment` is implemented at

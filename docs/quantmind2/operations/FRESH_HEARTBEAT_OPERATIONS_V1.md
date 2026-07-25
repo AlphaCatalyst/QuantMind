@@ -1,8 +1,9 @@
 # Fresh Model Heartbeat Operations v1
 
-Status: repository implementation complete; user LaunchAgent activation is
-blocked on this host by macOS background access to the repository and Python
-runtime under `~/Documents`.
+Status: automatically active through the immutable Application Support runtime.
+The current activation and recovery authority is
+`deployments/current-deployment.json`, not repository paths or Artifact ID
+ordering.
 
 ## Boundary
 
@@ -19,18 +20,11 @@ Registry write, Promotion, or trading is authorized.
 
 ## Current installation status
 
-The formal install/load drill on 2026-07-25 proved plist and wrapper
-installation, GUI-domain bootstrap, checksum parity, and RunAtLoad dispatch.
-macOS then denied or blocked background access to the repository script and
-Python virtual environment because both reside below `~/Documents`. The
-nonfunctional Agent was booted out and uninstalled. Operational logs and
-immutable scheduler/heartbeat Artifacts were retained.
-
-Do not describe the current host as automatically scheduled. A future
-activation requires either an explicit macOS privacy grant for the exact
-background executables or a separately approved immutable runtime-deployment
-contract. This task does not copy the 1.4 GB virtual environment or business
-source into Application Support.
+R2-011 introduced the immutable Application Support runtime and R2-012
+activated it. R2-013 requires the final Scheduler revision to bind the current
+App, Deployment and second operational run, then atomically publishes the
+Current Deployment Pointer. Cold Recovery resolves this explicit pointer and
+keeps historical runtime Artifacts separately browsable.
 
 ## Schedule
 
@@ -66,9 +60,9 @@ python tools/quantmind2/manage_fresh_heartbeat_launchagent.py show-next-runs
 python tools/quantmind2/manage_fresh_heartbeat_launchagent.py run-now
 ```
 
-On this host, do not run `load` until the macOS background-access blocker is
-resolved and verified. `run-now` from the authorized interactive environment
-is currently the supported operational path.
+Use the deployed management command for activation and recovery. The legacy
+repository-local manager remains a development surface and is not the current
+runtime authority.
 
 `validate` is intentionally stricter than `launchctl print`: it requires a
 loaded Agent, matching plist/wrapper checksums, and a completed zero-exit
@@ -173,3 +167,6 @@ reference, Candidate statuses, and Cohort status without launchctl, network,
 model, prediction, label, strategy, scheduler, Artifact, or Blob writes.
 Replay returns the latest immutable operational result with the same zero
 mutation contract.
+
+Recovery must not select the last lexically sorted Artifact ID. See
+`FRESH_RUNTIME_STATE_CONSISTENCY_AND_RECOVERY_V1.md`.

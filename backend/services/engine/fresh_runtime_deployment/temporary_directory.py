@@ -5,7 +5,10 @@ import json
 import os
 import re
 import shutil
+import signal
 import time
+import uuid
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -16,6 +19,10 @@ OWNER_FILE = "owner.json"
 
 
 class RuntimeTemporaryDirectoryError(RuntimeError):
+    pass
+
+
+class RuntimeTemporaryDirectorySignal(RuntimeTemporaryDirectoryError):
     pass
 
 
@@ -77,6 +84,78 @@ def remove_runtime_tmp(root: Path, run_id: str) -> dict[str, Any]:
         raise RuntimeTemporaryDirectoryError("runtime temporary child is unsafe")
     shutil.rmtree(child)
     return {"removed": True, "run_id": run_id}
+
+
+@contextmanager
+def runtime_tmp_directory(
+    root: Path,
+    purpose: str,
+    *,
+    owner_pid: int | None = None,
+):
+    """Own one run-scoped temporary directory and remove it on every exit."""
+
+    run_id = f"{purpose}-{os.getpid()}-{uuid.uuid4().hex}"
+    create_runtime_tmp(root, run_id, owner_pid=owner_pid or os.getpid())
+    previous_handlers: dict[int, Any] = {}
+
+    def interrupted(signum: int, _frame: Any) -> None:
+        raise RuntimeTemporaryDirectorySignal(
+            f"runtime temporary operation interrupted by signal {signum}"
+        )
+
+    if hasattr(signal, "SIGTERM"):
+        for signum in (signal.SIGTERM, signal.SIGINT, signal.SIGHUP):
+            try:
+                previous_handlers[signum] = signal.getsignal(signum)
+                signal.signal(signum, interrupted)
+            except (ValueError, OSError):
+                previous_handlers.clear()
+                break
+    try:
+        yield _validated_child(root, run_id)
+    finally:
+        for signum, handler in previous_handlers.items():
+            signal.signal(signum, handler)
+        remove_runtime_tmp(root, run_id)
+
+
+def remove_legacy_environment_validation_tmp(
+    root: Path,
+    *,
+    scheduler_lock: Path,
+    deployment_lock: Path,
+) -> dict[str, Any]:
+    """Remove only the historical fixed validation directory when provably empty."""
+
+    root = root.expanduser().resolve()
+    legacy = root / "environment-validation"
+    if not legacy.exists():
+        return {"status": "absent", "removed": False}
+    if legacy.is_symlink() or not legacy.is_dir():
+        raise RuntimeTemporaryDirectoryError(
+            "legacy environment validation path is unsafe"
+        )
+    if any(legacy.iterdir()):
+        raise RuntimeTemporaryDirectoryError(
+            "legacy environment validation directory is not empty"
+        )
+    for lock_path in (scheduler_lock, deployment_lock):
+        owner_path = lock_path / OWNER_FILE
+        if not owner_path.is_file():
+            continue
+        try:
+            owner = json.loads(owner_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            raise RuntimeTemporaryDirectoryError(
+                "runtime lock owner is unreadable"
+            ) from exc
+        if owner.get("runtime_run_id") == "environment-validation":
+            raise RuntimeTemporaryDirectoryError(
+                "legacy environment validation directory is lock-referenced"
+            )
+    legacy.rmdir()
+    return {"status": "removed", "removed": True}
 
 
 def cleanup_stale_runtime_tmp(

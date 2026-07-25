@@ -1,5 +1,30 @@
 # Current Implementation State
 
+## Fresh runtime state consistency and recovery completion (QM2-R2-013)
+
+- Environment relocation smoke now owns a validated run-scoped tmp child and
+  removes it on success, failure, HUP, INT and TERM. The historical fixed
+  `environment-validation` directory is eligible for one exact empty-directory
+  cleanup only after lock and holder checks.
+- Final Scheduler Status is generated from the immutable Deployment Status and
+  second operational run. A cross-Artifact validator rejects source, App,
+  runtime checksum, idempotency, tmp cleanup, redaction or Deployment-reference
+  disagreement.
+- `current-deployment.json` is a non-secret atomic pointer written only after
+  final consistency. Cold Recovery resolves it before immutable revision
+  metadata and never interprets an Artifact ID as time.
+- Runtime redaction is context-aware. Public commits, hashes, registered
+  Artifact IDs, schemas, approved paths, enums and timestamps remain visible;
+  credential contexts, authorization/Bearer values, environment dumps and
+  explicit in-memory known secrets remain protected without stored hashes.
+- Repository implementation and isolated regression are complete. Dynamic
+  truth for the containing commit, two real LaunchAgent runs, tmp equality,
+  final Scheduler/Deployment IDs and Store integrity will be recorded only in
+  post-commit operational Artifacts and the Current Deployment Pointer.
+- Current task: `QM2-R2-013`.
+- Latest Implementation Run:
+  `QM2-R2-013-20260725T073531Z-9913214`.
+
 ## Fresh runtime cleanup and diagnostic hardening (QM2-R2-012)
 
 - The deployed heartbeat entrypoint no longer replaces its trap-owning shell.

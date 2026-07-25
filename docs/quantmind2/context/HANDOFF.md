@@ -1,5 +1,27 @@
 # Codex Handoff
 
+## QM2-R2-013 runtime-state completion handoff
+
+- Read `FRESH_RUNTIME_STATE_CONSISTENCY_AND_RECOVERY_V1.md` before changing
+  deployment, Scheduler status, Current Deployment Pointer, recovery or
+  diagnostic redaction.
+- Environment validation must remain run-scoped and exact-cleanup. Never
+  recreate a global `state/tmp/environment-validation` directory or wildcard
+  delete `state/tmp`.
+- Final Scheduler Status is derived from one Deployment Status and the second
+  operational run. Cross-Artifact mismatch is
+  `RUNTIME_STATUS_CROSS_ARTIFACT_MISMATCH` and is never healthy.
+- Canonical recovery resolves `current-deployment.json` first. Artifact IDs
+  are content identities, not clocks. Historical Artifacts remain immutable
+  and separately browsable.
+- Redaction is contextual. Do not restore generic length-based token
+  suppression, persist known-secret material or expose raw launchctl/Shell
+  environments.
+- The code/contract Run is
+  `QM2-R2-013-20260725T073531Z-9913214`. Dynamic activation evidence is
+  authoritative only after the containing commit in external operational
+  Artifacts and the Current Deployment Pointer.
+
 ## QM2-R2-012 runtime-hardening handoff
 
 - Read the R2-012 Implementation Run and

@@ -4,6 +4,7 @@ import json
 import os
 import plistlib
 import subprocess
+from types import SimpleNamespace
 from pathlib import Path
 
 import pytest
@@ -632,7 +633,17 @@ def test_hardened_cutover_reuses_environment_and_preserves_old_snapshot(
     monkeypatch.setattr(
         service,
         "publish_scheduler_status",
-        lambda: {"artifact_receipt": {"artifact_id": "fhss1_test"}},
+        lambda **kwargs: {
+            "fresh_heartbeat_scheduler_status_id": "fhss1_test",
+            "artifact_receipt": {"artifact_id": "fhss1_test"},
+            "source_commit": new_app.name,
+            "app_snapshot_id": "fras1_test",
+            "runtime_config_checksum": "d" * 64,
+            "idempotency_verified": True,
+            "tmp_cleanup_verified": True,
+            "redaction_violation_count": 0,
+            "deployment_status_id": "frds1_test",
+        },
     )
     hardening = {
         kind: {"artifact_receipt": {"artifact_id": artifact_id}}
@@ -649,6 +660,11 @@ def test_hardened_cutover_reuses_environment_and_preserves_old_snapshot(
         service,
         "record_deployment",
         lambda **kwargs: {
+            "fresh_runtime_deployment_status_id": "frds1_test",
+            "source_commit": new_app.name,
+            "app_snapshot_id": "fras1_test",
+            "environment_fingerprint": env.name,
+            "runtime_config_checksum": "d" * 64,
             "launch_agent_loaded": True,
             "launchd_trigger_verified": True,
             "launchd_exit_status": 0,
@@ -658,6 +674,35 @@ def test_hardened_cutover_reuses_environment_and_preserves_old_snapshot(
             "redaction_guard_enabled": True,
             "redaction_violation_count": 0,
         },
+    )
+    monkeypatch.setattr(
+        service,
+        "_publish",
+        lambda kind, payload, **kwargs: {
+            "artifact_id": next(
+                value
+                for key, value in payload.items()
+                if key.endswith("_id") and key != "schema_version"
+            )
+        },
+    )
+    monkeypatch.setattr(
+        service,
+        "resolve_current_runtime_artifacts",
+        lambda: SimpleNamespace(
+            resolution_source="explicit_current_deployment_pointer",
+            app_snapshot={"artifact_id": "fras1_test"},
+            deployment_status={
+                "artifact_id": "frds1_test",
+                "source_commit": new_app.name,
+            },
+            scheduler_status={"artifact_id": "fhss1_test"},
+            historical_artifacts={
+                "fresh_runtime_app_snapshot": ("fras1_test",),
+                "fresh_runtime_deployment_status": ("frds1_test",),
+                "fresh_heartbeat_scheduler_status": ("fhss1_test",),
+            },
+        ),
     )
     result = service.hardened_cutover(
         implementation_run_id="QM2-R2-012-20260101T000000Z-abcdef0"
@@ -688,3 +733,19 @@ def test_hardened_cutover_failure_restores_old_runtime(
     assert service.runtime_config_path.read_bytes() == old_config
     assert state["loaded"] is True
     assert not (service.state_root / "locks/fresh-runtime-deployment.lock").exists()
+
+
+def test_hardened_cutover_refuses_legacy_validation_directory_with_holder(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    service, old_app, _, env, state = _prepare_cutover_service(
+        tmp_path, monkeypatch
+    )
+    (service.state_root / "tmp/environment-validation").mkdir()
+    with pytest.raises(RuntimeDeploymentError, match="is in use"):
+        service.hardened_cutover(
+            implementation_run_id="QM2-R2-013-20260101T000000Z-abcdef0"
+        )
+    assert service.current_app.resolve() == old_app
+    assert service.current_env.resolve() == env
+    assert state["loaded"] is True

@@ -73,13 +73,11 @@ def deploy(service: FreshRuntimeDeploymentService) -> dict[str, Any]:
     activation = service.activate()
     first = service.run_now(launchd=True)
     second = service.run_now(launchd=True)
-    scheduler = service.publish_scheduler_status()
     refs = (
         _id(audit, "fresh_runtime_path_audit_id"),
         _id(app, "fresh_runtime_app_snapshot_id"),
         _id(environment, "fresh_runtime_environment_snapshot_id"),
         _id(state, "fresh_runtime_state_migration_id"),
-        _id(scheduler, "fresh_heartbeat_scheduler_status_id"),
     )
     deployment = service.record_deployment(
         app_snapshot_id=refs[1],
@@ -87,6 +85,15 @@ def deploy(service: FreshRuntimeDeploymentService) -> dict[str, Any]:
         artifact_refs=refs,
         first_run=first,
         second_run=second,
+    )
+    scheduler = service.publish_scheduler_status(
+        deployment_status=deployment,
+        operational_run=second,
+        app_snapshot_id=refs[1],
+    )
+    service.publish_current_deployment_pointer(
+        deployment_status=deployment,
+        scheduler_status=scheduler,
     )
     if not (
         deployment["launch_agent_loaded"]
@@ -236,7 +243,14 @@ def main() -> int:
     try:
         result = operations[args.command]()
     except (RuntimeDeploymentError, RuntimeTemporaryDirectoryError) as exc:
-        safe = RuntimeDiagnosticRedactionGuardV1().redact(str(exc))
+        known = (
+            ()
+            if args.command in {"cold-recover", "replay"}
+            else (os.environ.get("TUSHARE_TOKEN", ""),)
+        )
+        safe = RuntimeDiagnosticRedactionGuardV1(
+            known_secrets=known
+        ).redact(str(exc))
         print(
             json.dumps(
                 {
@@ -251,7 +265,14 @@ def main() -> int:
         )
         return 2
     serialized = json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2)
-    safe = RuntimeDiagnosticRedactionGuardV1().redact(serialized)
+    known = (
+        ()
+        if args.command in {"cold-recover", "replay"}
+        else (os.environ.get("TUSHARE_TOKEN", ""),)
+    )
+    safe = RuntimeDiagnosticRedactionGuardV1(
+        known_secrets=known
+    ).redact(serialized)
     value = json.loads(safe.text)
     if safe.redaction_count:
         value["redaction_count"] = safe.redaction_count

@@ -269,7 +269,9 @@ def run_scheduled_heartbeat(
             check=False,
             timeout=60 * 60,
         )
-        guard = RuntimeDiagnosticRedactionGuardV1()
+        guard = RuntimeDiagnosticRedactionGuardV1(
+            known_secrets=(os.environ.get("TUSHARE_TOKEN", ""),)
+        )
         stdout_result = guard.redact(completed.stdout.strip())
         stderr_result = guard.redact(completed.stderr.strip())
         stdout = stdout_result.text
@@ -413,15 +415,43 @@ def cold_recover(
         for row in repository.store.list_by_kind("fresh_heartbeat_scheduler_status")
     ]
     operational = [
-        repository.identity(row.artifact_id) | {"artifact_id": row.artifact_id}
+        (
+            repository.identity(row.artifact_id)
+            | {
+                "artifact_id": row.artifact_id,
+                "_descriptor_created_at": getattr(row, "created_at", ""),
+            }
+        )
         for row in repository.store.list_by_kind("fresh_heartbeat_operational_run")
     ]
     candidates, cohort, heartbeat = _fresh_state(repository)
+    latest_operational = (
+        max(
+            operational,
+            key=lambda item: (
+                item.get("completed_at")
+                or item.get("started_at")
+                or item["_descriptor_created_at"]
+            ),
+        )
+        if operational
+        else None
+    )
+    if latest_operational is not None:
+        latest_operational = {
+            key: value
+            for key, value in latest_operational.items()
+            if key != "_descriptor_created_at"
+        }
     return {
         "status": "recovered",
-        "scheduler_status": scheduler[-1] if scheduler else None,
+        "scheduler_status": (
+            max(scheduler, key=lambda item: item.get("last_run_at") or "")
+            if scheduler
+            else None
+        ),
         "local_status": local,
-        "latest_operational_run": operational[-1] if operational else None,
+        "latest_operational_run": latest_operational,
         "fresh_model_heartbeat_run_id": heartbeat,
         "candidate_statuses": candidates,
         "cohort_status": cohort,
@@ -447,9 +477,10 @@ def replay_operational_run(
     rows = repository.store.list_by_kind("fresh_heartbeat_operational_run")
     if not rows:
         raise RuntimeError("FRESH_HEARTBEAT_OPERATIONAL_RUN_ABSENT")
-    latest = repository.identity(rows[-1].artifact_id)
+    descriptor = max(rows, key=lambda row: getattr(row, "created_at", ""))
+    latest = repository.identity(descriptor.artifact_id)
     return latest | {
-        "fresh_heartbeat_operational_run_id": rows[-1].artifact_id,
+        "fresh_heartbeat_operational_run_id": descriptor.artifact_id,
         "status": "exact_replay",
         "execution_counts": {
             "launchctl_mutations": 0,

@@ -11,10 +11,13 @@ import pytest
 
 from backend.services.engine.fresh_runtime_deployment.temporary_directory import (
     RuntimeTemporaryDirectoryError,
+    RuntimeTemporaryDirectorySignal,
     cleanup_owned_scheduler_lock,
     cleanup_stale_runtime_tmp,
     create_runtime_tmp,
+    remove_legacy_environment_validation_tmp,
     remove_runtime_tmp,
+    runtime_tmp_directory,
 )
 from backend.services.engine.runtime_diagnostics import (
     LAUNCHCTL_WHITELIST,
@@ -43,6 +46,45 @@ def test_redaction_guard_covers_canary_and_headers() -> None:
     assert result.redaction_count >= 4
     assert "authorization_header" in result.categories
     assert not hasattr(result, "secret_hash")
+
+
+def test_redaction_guard_preserves_public_runtime_values() -> None:
+    values = (
+        "a" * 40,
+        "b" * 64,
+        "fras1_" + "c" * 64,
+        "fresh-runtime-status-consistency-validation-v1",
+        "/Users/test/Library/Application Support/QuantMind/runtime/current-app",
+        "fresh_evidence_accumulating",
+        "2026-07-25T08:00:00Z",
+    )
+    raw = "\n".join(values)
+    result = RuntimeDiagnosticRedactionGuardV1().redact(raw)
+    assert result.text == raw
+    assert result.redaction_count == 0
+    assert result.categories == ()
+
+
+def test_redaction_guard_uses_known_secret_only_in_memory() -> None:
+    canary = "CANARY_VALUE_NOT_FOR_PERSISTENCE"
+    result = RuntimeDiagnosticRedactionGuardV1(
+        known_secrets=(canary,)
+    ).redact(f"value={canary}")
+    assert canary not in result.text
+    assert result.categories == ("known_secret_value",)
+    assert not hasattr(result, "secret_hash")
+
+
+def test_redaction_guard_classifies_environment_blocks_without_values() -> None:
+    launchd = RuntimeDiagnosticRedactionGuardV1().redact(
+        "environment = { SAFE=one; TUSHARE_TOKEN=CANARY_VALUE; }"
+    )
+    assert "launchd_environment_block" in launchd.categories
+    shell = RuntimeDiagnosticRedactionGuardV1().redact(
+        "FIRST=value\nSECOND=value\nTHIRD=value\n"
+    )
+    assert shell.redaction_count == 3
+    assert shell.categories == ("unsafe_environment_dump",)
 
 
 def test_launchctl_parser_emits_only_whitelist_and_no_raw_secret(
@@ -105,6 +147,34 @@ def test_runtime_tmp_create_and_remove(tmp_path: Path) -> None:
     assert json.loads((child / "owner.json").read_text())["owner_pid"] == os.getpid()
     assert remove_runtime_tmp(root, "run-1")["removed"] is True
     assert not child.exists()
+
+
+def test_runtime_tmp_context_cleans_failure_and_signal(tmp_path: Path) -> None:
+    root = tmp_path / "tmp"
+    with pytest.raises(RuntimeError, match="failure"):
+        with runtime_tmp_directory(root, "environment-validation"):
+            raise RuntimeError("failure")
+    assert list(root.iterdir()) == []
+    with pytest.raises(RuntimeTemporaryDirectorySignal):
+        with runtime_tmp_directory(root, "environment-validation"):
+            os.kill(os.getpid(), signal.SIGTERM)
+    assert list(root.iterdir()) == []
+
+
+def test_legacy_environment_validation_cleanup_is_exact(tmp_path: Path) -> None:
+    root = tmp_path / "tmp"
+    legacy = root / "environment-validation"
+    other = root / "other-run"
+    legacy.mkdir(parents=True)
+    other.mkdir()
+    result = remove_legacy_environment_validation_tmp(
+        root,
+        scheduler_lock=tmp_path / "locks/scheduler",
+        deployment_lock=tmp_path / "locks/deployment",
+    )
+    assert result["removed"] is True
+    assert not legacy.exists()
+    assert other.is_dir()
 
 
 def _age(path: Path, seconds: int) -> None:

@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-25T04:27:41Z",
-  "source_commit": "6b2a83904c3bcc04f95410a977ae4ec847b77c17",
+  "generated_at": "2026-07-25T07:35:31Z",
+  "source_commit": "9913214826796295f7027756ff2bdf0eb703846f",
   "source_paths": [
     "docs/quantmind2/context/COMPONENT_CATALOG.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md"
@@ -14,7 +14,7 @@
       "component_id": "quantmind2.fresh_runtime_deployment",
       "name": "Immutable Fresh Runtime Deployment v1",
       "status": "implemented",
-      "responsibility": "Audit runtime dependencies and storage, deploy immutable Git app and validated Python environment snapshots outside protected paths, bind public runtime configuration and atomic pointers, conditionally migrate state, activate the existing LaunchAgent, record immutable deployment evidence, and provide rollback, cold recovery and exact replay.",
+      "responsibility": "Audit runtime dependencies and storage, deploy immutable Git app and validated Python environment snapshots outside protected paths, own run-scoped validation cleanup, bind final Scheduler and Deployment state, atomically publish the Current Deployment Pointer, recover canonical current objects without Artifact-ID ordering, and provide rollback and exact replay.",
       "source_path": "backend/services/engine/fresh_runtime_deployment",
       "target_path": "backend/services/engine/fresh_runtime_deployment",
       "key_symbols": [
@@ -23,7 +23,11 @@
         "FreshRuntimeAppSnapshotV1",
         "FreshRuntimeEnvironmentSnapshotV1",
         "FreshRuntimeStateMigrationV1",
-        "FreshRuntimeDeploymentStatusV1"
+        "FreshRuntimeDeploymentStatusV1",
+        "CanonicalRuntimeArtifactResolverV1",
+        "FreshRuntimeStatusConsistencyValidatorV1",
+        "EnvironmentValidationTemporaryDirectoryAssessmentV1",
+        "FreshRuntimeHardeningCompletionV1"
       ],
       "dependencies": [
         "quantmind2.fresh_heartbeat_scheduler",
@@ -41,7 +45,8 @@
       ],
       "current_limitations": [
         "Runtime snapshots are single-host and retain old versions until separately authorized cleanup.",
-        "Dynamic LaunchAgent truth is external operational evidence and is not inferred from committed Project Memory."
+        "Dynamic LaunchAgent truth is external operational evidence and is not inferred from committed Project Memory.",
+        "The official Factor Lab source path currently exists but contains no files; no Factor Lab content was modified by QM2-R2-013."
       ],
       "last_verified_commit": null,
       "evidence_level": "code_confirmed"
