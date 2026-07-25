@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-25T11:20:04Z",
-  "source_commit": "addae3914c45089a5cb33e7a5a1e7c7151af05c6",
+  "generated_at": "2026-07-25T14:08:10Z",
+  "source_commit": "4cc7ca5afbece6bd23fec8eed27b943592830f74",
   "source_paths": [
     "docs/quantmind2/context/CONTEXT_INDEX.md",
     "docs/quantmind2/architecture/QUANTMIND_2_ARCHITECTURE_V1.md",
@@ -13,7 +13,7 @@
   "verification_status": "verified",
   "repository": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com/",
   "branch": "master",
-  "base_commit": "addae3914c45089a5cb33e7a5a1e7c7151af05c6",
+  "base_commit": "4cc7ca5afbece6bd23fec8eed27b943592830f74",
   "workspace_dirty": true,
   "unrelated_dirty_files": [],
   "factor_lab_source": {
@@ -24,9 +24,9 @@
     "read_only": true
   },
   "architecture_version": "v1",
-  "current_task": "QM2-R3-001",
+  "current_task": "QM2-R3-002",
   "completion_status": "completed_uncommitted",
-  "latest_implementation_run": "QM2-R3-001-20260725T112004Z-addae39",
+  "latest_implementation_run": "QM2-R3-002-20260725T140810Z-4cc7ca5",
   "next_recommended_tasks": [],
   "unconfirmed_facts": [
     "Dynamic Fresh runtime installation and activation state is authoritative only in the post-commit external current-deployment record and immutable Deployment Status Artifact.",
@@ -42,6 +42,7 @@
     ,"The official Factor Lab source path exists but currently contains zero files; QM2-R2-013 did not modify it."
     ,"The live Tushare account cannot access issuer announcements or structured merger endpoints, and available Tushare tables contain no governed cash, conversion, merger-exchange or write-off evidence for the two 2025 terminations."
     ,"The Batch 001 canonical Qlib calendar ends at 2026-06-24, earlier than the requested 2026-07-23 Blind Pool upper bound; 18 complete windows and one excluded tail session are authoritative."
+    ,"Batch 002 produced zero Survivor: all residual DSL candidates failed Discovery and both ranking hypotheses failed the unchanged rolling gate and global BH."
   ],
   "protected_constraints": [
     "Do not replace existing LightGBM or Qlib.",
@@ -91,6 +92,7 @@
     ,"docs/quantmind2/architecture/IMMUTABLE_FRESH_RUNTIME_DEPLOYMENT_V1.md"
     ,"docs/quantmind2/operations/IMMUTABLE_FRESH_RUNTIME_OPERATIONS_V1.md"
     ,"docs/quantmind2/architecture/ROLLING_BLIND_ALPHA_DISCOVERY_V1.md"
+    ,"docs/quantmind2/architecture/CROSS_SECTIONAL_RANKING_AND_STYLE_RESIDUAL_ALPHA_V1.md"
   ],
   "uncommitted_work": true
 }

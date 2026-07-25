@@ -205,6 +205,32 @@ KINDS = {
         "rolling_blind_research_report_id",
         "rbrr1_",
     ),
+    "cross_sectional_style_residualization": (
+        "cross_sectional_style_residualization_id",
+        "cssr1_",
+    ),
+    "ranking_model_spec": ("ranking_model_spec_id", "rms1_"),
+    "ranking_relevance_label": ("ranking_relevance_label_id", "rrl1_"),
+    "rolling_blind_candidate_batch_lock_v2": (
+        "rolling_blind_candidate_batch_lock_v2_id",
+        "rbcbl2_",
+    ),
+    "rolling_style_residual_result": (
+        "rolling_style_residual_result_id",
+        "rsrr1_",
+    ),
+    "rolling_ranking_model_result": (
+        "rolling_ranking_model_result_id",
+        "rrmr1_",
+    ),
+    "rolling_evaluation_multiple_testing": (
+        "rolling_evaluation_multiple_testing_id",
+        "remt1_",
+    ),
+    "rolling_evaluation_alpha_survivor": (
+        "rolling_evaluation_alpha_survivor_id",
+        "reas1_",
+    ),
 }
 
 OPERATIONAL_KINDS = {

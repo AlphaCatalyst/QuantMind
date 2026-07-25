@@ -261,6 +261,14 @@ class ArtifactKind(str, Enum):
     ROLLING_BLIND_ALPHA_SURVIVOR = "rolling_blind_alpha_survivor"
     ROLLING_BLIND_SUBMISSION_LEDGER = "rolling_blind_submission_ledger"
     ROLLING_BLIND_RESEARCH_REPORT = "rolling_blind_research_report"
+    CROSS_SECTIONAL_STYLE_RESIDUALIZATION = "cross_sectional_style_residualization"
+    RANKING_MODEL_SPEC = "ranking_model_spec"
+    RANKING_RELEVANCE_LABEL = "ranking_relevance_label"
+    ROLLING_BLIND_CANDIDATE_BATCH_LOCK_V2 = "rolling_blind_candidate_batch_lock_v2"
+    ROLLING_STYLE_RESIDUAL_RESULT = "rolling_style_residual_result"
+    ROLLING_RANKING_MODEL_RESULT = "rolling_ranking_model_result"
+    ROLLING_EVALUATION_MULTIPLE_TESTING = "rolling_evaluation_multiple_testing"
+    ROLLING_EVALUATION_ALPHA_SURVIVOR = "rolling_evaluation_alpha_survivor"
 
 
 class IntegrityStatus(str, Enum):

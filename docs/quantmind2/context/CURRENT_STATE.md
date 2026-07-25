@@ -1,5 +1,36 @@
 # Current Implementation State
 
+## Cross-Sectional Ranking and Style-Residual Alpha Batch 002 (QM2-R3-002)
+
+- `quantmind2.cross_sectional_alpha_discovery` extends the existing Supervisor
+  and R3-001 rolling engine with two frozen mechanisms: daily
+  cross-sectional style residualization for DSL scores and fixed LightGBM
+  LambdaRank for technical feature bundles.
+- The four fixed PIT controls are the formal `log_circ_mv`, `style_beta_20`,
+  `style_idio_vol_20`, and `amount_ratio_20` Features. Residualization uses
+  daily finite-member filtering, control z-scores, deterministic OLS with an
+  intercept, zero-variance-control removal, residual z-scores, and a minimum
+  of 80 members. It does not read returns or labels.
+- Formal Batch
+  `rbdb1_6689b8ef15abd717047bf3914ac1f9e619f2dc26b9939d1dd986a3638c01b1aa`
+  used 18 Agent calls, 54 proposals, 15 admissions, one local rescue, two
+  fixed ranking hypotheses, 114 LightGBM fits and 54 formal Qlib calls.
+- All 15 residual DSL objects failed the 2019--2021 Discovery Gate, principally
+  on turnover; no residual object reached the immutable Lock. The two ranking
+  objects were locked and each completed all 18 historical rolling windows.
+- Ranking-B and Ranking-C both beat their random NDCG@20 baseline but failed
+  the unchanged cross-window return/RankIC gates and global BH. Terminal
+  status is `completed_no_survivor`; Survivor, new Fresh Lock, Registry,
+  Promotion and automatic Batch 003 writes are zero.
+- Validation recovers 47 immutable Batch artifacts including all 36 child
+  window results. Store integrity is healthy with zero missing/unreferenced
+  Blobs; terminal resume and exact replay have zero calls and writes.
+- Existing B/C Fresh Cohort, heartbeat, LaunchAgent and runtime deployment
+  identities and state are unchanged.
+- Current task: `QM2-R3-002`.
+- Latest Implementation Run:
+  `QM2-R3-002-20260725T140810Z-4cc7ca5`.
+
 ## Rolling Blind Alpha Discovery Batch 001 (QM2-R3-001)
 
 - `quantmind2.rolling_blind_alpha_discovery` extends the existing Supervisor

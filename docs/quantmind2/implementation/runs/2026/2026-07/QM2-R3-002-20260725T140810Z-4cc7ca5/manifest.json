@@ -1,0 +1,544 @@
+{
+  "adr_references": [
+    {
+      "adr_id": "ADR-0003",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0004",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0005",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0006",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0007",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0008",
+      "relation": "conforms_to"
+    },
+    {
+      "adr_id": "ADR-0011",
+      "relation": "conforms_to"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": "artifact-r3-002-report",
+      "artifact_type": "implementation_report",
+      "content_hash": "27490cff4983cf74e0165c6587f77811c8383d4c80f9c234a1d191662016fe19",
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/report.md",
+      "schema_version": "2.0.0",
+      "size_bytes": 15394
+    },
+    {
+      "artifact_id": "artifact-r3-002-manifest",
+      "artifact_type": "implementation_manifest",
+      "content_hash": null,
+      "location_kind": "repository_path",
+      "path_or_uri": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/manifest.json",
+      "schema_version": "2.0.0",
+      "size_bytes": null
+    },
+    {
+      "artifact_id": "artifact-r3-002-batch-report",
+      "artifact_type": "rolling_blind_research_report",
+      "content_hash": null,
+      "location_kind": "uri",
+      "path_or_uri": "artifact-store://rbrr1_c83019c48ad1edcfcd3fc68bb4eb829db3e78ca4144291ff43bd4ac8a5f3abdb",
+      "schema_version": "cross-sectional-alpha-research-report-v1",
+      "size_bytes": null
+    }
+  ],
+  "changed_files": [
+    {
+      "after_hash": "9e155340d4c3c6eb97ccb365371ca3ce0f49e29ca57bebf267651bf120ec171a",
+      "before_hash": "57603002e2b04d6ca57908ba5c27d046db532be85c2ecace27acd04ea9164df1",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/enums.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "415b0b6a0207950764425e32b297f81971db441320b8f65d7561bf0add1a5598",
+      "before_hash": "ac6b368ecf304c9f5d350b43a7f5d2f01f76658256a45646ad2086284287e36f",
+      "change_type": "modified",
+      "path": "backend/services/engine/artifact_store/validators.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "0094464ec1958c5ad43f2db62032c5f0ba1f744d4a1cc217b27468e4bb364475",
+      "before_hash": "a56bfe65474ccbfea4a9f4b3488d7591e7f0e06fc825eed1d255b09e0876cd2e",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "65b1b9f5b8e3129db26a6c385cc9fe7f34690fdd1642c030801c63db0963a645",
+      "before_hash": "aa6fceef85eef132809a267415544f8ef608d0e5a62dbedf213496963a05b41b",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "67b9eb34d7644c4531e813dfe9cb5ea1662f310d83d92988d199fa71e7141272",
+      "before_hash": "5f913bfa1283e4b782c21911f56c404b27ac280b835a57b238a1cc0b02b62f0a",
+      "change_type": "modified",
+      "path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "acc370c590e546c9bc84cda405b75eb25cf9180d0fc35290d677ac55ec8ee31a",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/cross_sectional_alpha_discovery/__init__.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7e606390c6922c930fdda1cc94b43275dde8c09dda08a8ca3ae73268ff85a2d7",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/cross_sectional_alpha_discovery/engine.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "7eb39aa7194e79e5372ca7405dd51280754b73e5e9bd621ba33fcb846698668f",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/cross_sectional_alpha_discovery/models.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "916477403d7d8a50fdde69d02218917fe76a1d6cc52a87e9af350ef859e71689",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/cross_sectional_alpha_discovery/ranking.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "ab8c56fec9f42fbeaff4960b7bb9d23f8dff0a11d557440025ee0f107a7ab753",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/engine/cross_sectional_alpha_discovery/residualization.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "df4117c8d8059a24f6f57825bacfa49584dea07c4695ed236242fcefcfea318c",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "backend/services/tests/test_cross_sectional_alpha_discovery.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "1b2cafe3d098d25da4e2b2e1937df84263212512687304356fc3431064758709",
+      "before_hash": "d96ef88da0669ca999279118676fb368ba0d58eb662a447c29c6bb63c99c1d0a",
+      "change_type": "modified",
+      "path": "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9e3bbe9bc4ee0f3be08bef657f5face8c46e8b5dde79910152cb575eade2a462",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/architecture/CROSS_SECTIONAL_RANKING_AND_STYLE_RESIDUAL_ALPHA_V1.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "35d199da9e5791494ba91f1b24c692767df4376a6b5dd472b915b917623f2a47",
+      "before_hash": "6a73656da3cede17eba189d13b9e380991141a81ead2698aaeb3e7b545230f69",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "6507b990b00c0df87a573ceed5575a591c51969bc03363da6bb02b4689306dde",
+      "before_hash": "54a02a2a2a409e758b93260781eaf754035c354d0aa6b8cc1a2e53d1d9389f32",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/CURRENT_STATE.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "73eb881c884eeca4759b96b351e5c5b0d83181424fcb9f4e630758224cc6ca02",
+      "before_hash": "d27d2fbaad6499f51864d41c888e681cd20f4b673989e105db02c36f7908515b",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/HANDOFF.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "8a66bdca11feaa7420ead5465c5d475b023ed71489e13fee28da02862a41aa92",
+      "before_hash": "2433d758b5a8646c410c848d02b64195b42f4cdc0a6880089c6ea81e306b0ce4",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/ROADMAP.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "3456f76d6f89b3b2a1c5986ead1a0a8252ccac7e8895c7fd6c2d6bd42bd90fc6",
+      "before_hash": "61f30f48efb1cdf6a6594898c158c492090babfbae743935e23e9461387162e0",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/component_catalog.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "fffd24314edc40eedf411d294364202ac2cc9147bc6c2ec419f3a79f8609fd12",
+      "before_hash": "6abf501469766675fb1a13760cd4e8479af86309ce37f90dc2b29478c70c0993",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/current_state.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "a5803d93f109132364ae990ee39a7bd3d5bda66d6b47f184cb5045bbeb2e9367",
+      "before_hash": "1945c926d3a0752e22ef7be86553bc8d40b19559c1c0efaf4f1acda220fa8f87",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/handoff.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "f02d86552ea36333c9f4f1e7deddcbc5a11c2b44f7a344de59e83ebef0965268",
+      "before_hash": "14886d2e96dcc981e9b84cea351f0a1844cc0b09364a60849ac857fd2b2ddbdd",
+      "change_type": "modified",
+      "path": "docs/quantmind2/context/roadmap.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "27490cff4983cf74e0165c6587f77811c8383d4c80f9c234a1d191662016fe19",
+      "before_hash": null,
+      "change_type": "added",
+      "path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/report.md",
+      "previous_path": null
+    },
+    {
+      "after_hash": "9185d974f5a51d0cba35f228555763f5d997b019f365bc8477e518c1711b7382",
+      "before_hash": "e9577d5273f91f194691fdd1eb0deeb6e6926d5e07ada4a5cc4219a488a8c979",
+      "change_type": "modified",
+      "path": "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "previous_path": null
+    },
+    {
+      "after_hash": "333275d486a4f21aceba91db71e49b7f36f449238b45fe26c180f2bd69f6740d",
+      "before_hash": "3390881b1827dffcff0a72ce8ad4e83813effa636fa45c318377ffe629396fad",
+      "change_type": "modified",
+      "path": "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "previous_path": null
+    },
+    {
+      "after_hash": "2fd900e6605fdf94e446fff05b8b3da405adb10f3a10b3253a5a5a2fd7320c60",
+      "before_hash": "c639d197cf28f2d81cf52a5290d0b824a0d0badbe92d8e76688e58973e18a5a3",
+      "change_type": "modified",
+      "path": "tools/quantmind2/validate_context_bootstrap.py",
+      "previous_path": null
+    }
+  ],
+  "changed_symbols": [
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/models.py",
+      "qualified_name": "CrossSectionalStyleResidualizationV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/models.py",
+      "qualified_name": "RankingRelevanceLabelV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/models.py",
+      "qualified_name": "RankingModelSpecV1",
+      "symbol_type": "class"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/residualization.py",
+      "qualified_name": "residualize_cross_section",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/ranking.py",
+      "qualified_name": "build_relevance_labels",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/engine.py",
+      "qualified_name": "run_batch",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/engine.py",
+      "qualified_name": "validate_batch",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "added",
+      "file_path": "backend/services/engine/cross_sectional_alpha_discovery/engine.py",
+      "qualified_name": "replay_batch",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "qualified_name": "run_next_cross_sectional_alpha_batch",
+      "symbol_type": "function"
+    },
+    {
+      "change_type": "modified",
+      "file_path": "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "qualified_name": "main",
+      "symbol_type": "function"
+    }
+  ],
+  "component_references": [
+    {
+      "component_id": "quantmind2.cross_sectional_alpha_discovery",
+      "impact_type": "introduced"
+    },
+    {
+      "component_id": "quantmind2.autonomous_research_supervisor",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.rolling_blind_alpha_discovery",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.factor_dsl",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.technical_feature_factory",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.fixed_configuration_model_program",
+      "impact_type": "verified"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.project_knowledge",
+      "impact_type": "modified"
+    },
+    {
+      "component_id": "quantmind2.fresh_model_cohort",
+      "impact_type": "unaffected"
+    }
+  ],
+  "identity_versions": {
+    "changed_file": "changed-file-v1",
+    "changed_symbol": "changed-symbol-v1"
+  },
+  "integrity": {
+    "artifact_hashes": [
+      {
+        "artifact_id": "artifact-r3-002-report",
+        "sha256": "27490cff4983cf74e0165c6587f77811c8383d4c80f9c234a1d191662016fe19"
+      }
+    ],
+    "canonicalization_version": "implementation-manifest-v2-canonical-json-v1",
+    "git_added_paths": [
+      "backend/services/engine/cross_sectional_alpha_discovery/__init__.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/engine.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/models.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/ranking.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/residualization.py",
+      "backend/services/tests/test_cross_sectional_alpha_discovery.py",
+      "docs/quantmind2/architecture/CROSS_SECTIONAL_RANKING_AND_STYLE_RESIDUAL_ALPHA_V1.md",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/report.md"
+    ],
+    "git_changed_paths": [
+      "backend/services/engine/artifact_store/enums.py",
+      "backend/services/engine/artifact_store/validators.py",
+      "backend/services/engine/autonomous_factor_campaign/artifact.py",
+      "backend/services/engine/autonomous_research_supervisor/__init__.py",
+      "backend/services/engine/autonomous_research_supervisor/orchestrator.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/__init__.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/engine.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/models.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/ranking.py",
+      "backend/services/engine/cross_sectional_alpha_discovery/residualization.py",
+      "backend/services/tests/test_cross_sectional_alpha_discovery.py",
+      "backend/services/tests/test_quantmind2_context_bootstrap.py",
+      "docs/quantmind2/architecture/CROSS_SECTIONAL_RANKING_AND_STYLE_RESIDUAL_ALPHA_V1.md",
+      "docs/quantmind2/context/COMPONENT_CATALOG.md",
+      "docs/quantmind2/context/CURRENT_STATE.md",
+      "docs/quantmind2/context/HANDOFF.md",
+      "docs/quantmind2/context/ROADMAP.md",
+      "docs/quantmind2/context/component_catalog.json",
+      "docs/quantmind2/context/current_state.json",
+      "docs/quantmind2/context/handoff.json",
+      "docs/quantmind2/context/roadmap.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/manifest.json",
+      "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/report.md",
+      "docs/quantmind2/implementation/schemas/current_state_v1.schema.json",
+      "tools/quantmind2/run_autonomous_research_supervisor.py",
+      "tools/quantmind2/validate_context_bootstrap.py"
+    ],
+    "git_deleted_paths": [],
+    "git_diff_sha256": "0d160c19e778a69219c5239b2c63e6f6606165d291e2f6ce8017972fa9575b31",
+    "manifest_payload_sha256": "ef0ba745a9b421bfed996b34fd19cec58f48e9e3f1b3e45f506d42fb1e7a0e67",
+    "report_sha256": "27490cff4983cf74e0165c6587f77811c8383d4c80f9c234a1d191662016fe19",
+    "source_bundle_sha256": "81e28e70ad2b5c0629c514f1d41153b738bb9ae36ef9d720d886cae3e1158337"
+  },
+  "limitations": [
+    {
+      "component_id": "quantmind2.cross_sectional_alpha_discovery",
+      "description": "All residual DSL objects failed the unchanged Discovery Gate, so no raw-versus-residual rolling comparison exists.",
+      "limitation_id": "limit-r3-002-no-residual-lock",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.cross_sectional_alpha_discovery",
+      "description": "Both ranking models beat random NDCG at 20 but failed RankIC tail, CSI300 excess consistency and global FDR.",
+      "limitation_id": "limit-r3-002-no-ranking-survivor",
+      "severity": "medium",
+      "status": "accepted"
+    },
+    {
+      "component_id": "quantmind2.research_artifact_store",
+      "description": "Two historical real-research import tests depend on a deleted private tmp QM2-P0-006 manifest and remain red outside this task scope.",
+      "limitation_id": "limit-r3-002-external-test-fixture",
+      "severity": "low",
+      "status": "open"
+    }
+  ],
+  "mapper_contract_version": "1.0.0",
+  "recommended_tasks": [],
+  "relationships": [
+    {
+      "created_at": "2026-07-25T14:08:10Z",
+      "reason": "Extends the immutable R3-001 window protocol with fixed style-residual and cross-sectional ranking mechanisms without modifying Batch 001 or existing Fresh evidence.",
+      "relationship_id": "rel-r3-002-continues-r3-001",
+      "relationship_type": "continues",
+      "source_run_id": "QM2-R3-002-20260725T140810Z-4cc7ca5",
+      "target_run_id": "QM2-R3-001-20260725T112004Z-addae39"
+    }
+  ],
+  "repository": {
+    "base_commit": "4cc7ca5afbece6bd23fec8eed27b943592830f74",
+    "branch": "master",
+    "execution_repository_path": "/Users/yj/Documents/Codex/2026-07-13/qusong0627-quantmind-git-https-github-com",
+    "repository_id": "quantmind-main"
+  },
+  "run": {
+    "agent_type": "codex",
+    "base_commit": "4cc7ca5afbece6bd23fec8eed27b943592830f74",
+    "branch": "master",
+    "canonical_status": "noncanonical",
+    "completed_at": "2026-07-25T14:08:10Z",
+    "completion_level": "complete",
+    "consistency_status": "unverified",
+    "git_diff_hash": "0d160c19e778a69219c5239b2c63e6f6606165d291e2f6ce8017972fa9575b31",
+    "implementation_run_id": "QM2-R3-002-20260725T140810Z-4cc7ca5",
+    "manifest_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/manifest.json",
+    "manifest_schema_version": "2.0.0",
+    "report_path": "docs/quantmind2/implementation/runs/2026/2026-07/QM2-R3-002-20260725T140810Z-4cc7ca5/report.md",
+    "repository_id": "quantmind-main",
+    "result_commit": null,
+    "source_bundle_hash": "81e28e70ad2b5c0629c514f1d41153b738bb9ae36ef9d720d886cae3e1158337",
+    "started_at": "2026-07-25T11:30:00Z",
+    "task_id": "QM2-R3-002",
+    "task_status": "completed_uncommitted",
+    "verification_level": "full_relevant_tests",
+    "workspace_dirty_after": true,
+    "workspace_dirty_before": false
+  },
+  "schema_version": "2.0.0",
+  "task": {
+    "created_at": "2026-07-25T14:08:10Z",
+    "explicit_non_goals": [
+      "No real Fresh claim or use of existing Fresh performance",
+      "No control search model Strategy or Combined Optimization",
+      "No rolling result feedback to Agent Planner or Failure Memory",
+      "No automatic Promotion trading or Batch 003",
+      "No Fresh Cohort heartbeat LaunchAgent runtime dependency lockfile or market-authority mutation"
+    ],
+    "objective": "Test fixed PIT style-residual DSL scores and fixed LambdaRank technical bundles through Discovery and the same 18-window historical rolling protocol.",
+    "parent_task_id": "QM2-R3-001",
+    "scope": [
+      "Fixed daily cross-sectional style residualization and PIT control audit",
+      "Fixed technical-return quintile relevance Label and LambdaRank model",
+      "Bounded Agent Discovery and Candidate Batch Lock V2",
+      "Complete 18-window historical rolling Qlib evaluation and global BH",
+      "Search Exposure Survivor Fresh boundaries cold recovery exact replay tests and Project Memory"
+    ],
+    "status": "completed",
+    "task_id": "QM2-R3-002",
+    "title": "Cross-Sectional Ranking and Style-Residual Alpha Discovery v1"
+  },
+  "tests": [
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest backend/services/tests/test_cross_sectional_alpha_discovery.py -q --no-cov",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 17,
+      "purpose": "Verify PIT controls OLS zero variance membership ranking contracts locks gates isolation artifacts recovery and replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r3-002-targeted"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q --no-cov cross sectional rolling supervisor feature factory multi-horizon artifact store and context suites",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 127,
+      "purpose": "Relevant research engine Artifact Store and Project Memory regression",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r3-002-regression"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "python -m pytest -q --no-cov backend/services/tests/test_artifact_store_real_research.py",
+      "failed_count": 2,
+      "not_run_reason": null,
+      "passed_count": 0,
+      "purpose": "Document the pre-existing deleted private tmp QM2-P0-006 fixture dependency without changing task scope",
+      "skipped_count": 0,
+      "status": "failed",
+      "test_execution_id": "test-r3-002-known-external-fixture"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": "artifact-store://rbrr1_c83019c48ad1edcfcd3fc68bb4eb829db3e78ca4144291ff43bd4ac8a5f3abdb",
+      "command": "run-next-cross-sectional-alpha-batch plus validate supervisor terminal resume and exact replay",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 4,
+      "purpose": "Formal Batch execution 47-Artifact cold recovery terminal resume and exact zero-call replay",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r3-002-formal-runtime"
+    },
+    {
+      "artifact_hash": null,
+      "artifact_uri": null,
+      "command": "validate_context_bootstrap JSON parse py_compile git inventory git diff dependency inventory and secret scan",
+      "failed_count": 0,
+      "not_run_reason": null,
+      "passed_count": 6,
+      "purpose": "Static contract Project Memory syntax scope and credential verification",
+      "skipped_count": 0,
+      "status": "passed",
+      "test_execution_id": "test-r3-002-static"
+    }
+  ]
+}

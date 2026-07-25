@@ -1,5 +1,29 @@
 # Codex Handoff
 
+## QM2-R3-002 cross-sectional Alpha discovery handoff
+
+- Read `CROSS_SECTIONAL_RANKING_AND_STYLE_RESIDUAL_ALPHA_V1.md`, the R3-001
+  rolling contract and Run `QM2-R3-002-20260725T140810Z-4cc7ca5` before
+  changing cross-sectional residual or ranking research.
+- Formal Batch is
+  `rbdb1_6689b8ef15abd717047bf3914ac1f9e619f2dc26b9939d1dd986a3638c01b1aa`;
+  terminal Report is
+  `rbrr1_c83019c48ad1edcfcd3fc68bb4eb829db3e78ca4144291ff43bd4ac8a5f3abdb`.
+- Lane A controls, daily OLS semantics and the 80-member boundary are fixed;
+  do not search controls, use labels in residualization, or treat the raw
+  diagnostic score as a separate hypothesis.
+- Lane B freezes LambdaRank, relevance quintiles, seeds and the two R2-008
+  bundles. Do not tune models, select seeds, change relevance levels or use
+  rolling-window results for Feature selection.
+- Batch 002 legally ended with zero Survivor. Do not relax the gates, re-rank
+  after the Lock, feed failures back to the Agent, or automatically create
+  Batch 003.
+- The 18 windows are `historical_rolling_evaluation`, not real Fresh.
+  Existing B/C Fresh Cohort, heartbeat, LaunchAgent and deployment state were
+  neither read for research decisions nor modified.
+- Cold recovery covers 47 Batch artifacts; exact replay and terminal resume
+  are zero-call/zero-write and Store integrity is healthy.
+
 ## QM2-R3-001 rolling Blind discovery handoff
 
 - Read `ROLLING_BLIND_ALPHA_DISCOVERY_V1.md` and Run

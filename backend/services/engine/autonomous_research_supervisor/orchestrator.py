@@ -411,6 +411,37 @@ def run_next_rolling_blind_batch(
     }
 
 
+def run_next_cross_sectional_alpha_batch(
+    *, supervisor_spec_id: str, repository_root: Path,
+    work_root: Path, store_root: Path | None = None,
+) -> dict[str, Any]:
+    """Dispatch the explicitly authorized Batch 002 through the Supervisor."""
+    repository = _repository(
+        store_root, Path(work_root) / "supervisor-cross-sectional-alpha"
+    )
+    supervisor = repository.identity(supervisor_spec_id)
+    if supervisor.get("schema_version") not in {
+        "autonomous-research-supervisor-spec-v1",
+        "autonomous-research-supervisor-v1",
+        "autonomous-research-supervisor-v2",
+    }:
+        raise ValueError("Supervisor identity is invalid")
+    from backend.services.engine.cross_sectional_alpha_discovery import run_batch
+
+    result = run_batch(
+        supervisor_id=supervisor_spec_id,
+        repository_root=repository_root,
+        work_root=Path(work_root) / "rolling-blind-batch-002",
+        store_root=store_root,
+    )
+    return result | {
+        "supervisor_id": supervisor_spec_id,
+        "research_type": "cross_sectional_alpha_discovery",
+        "batch_name": "rolling_blind_discovery_batch_002",
+        "automatic_batch_003_created": False,
+    }
+
+
 def _v2_runtime_counts() -> dict[str, int]:
     return runtime_counts() | {
         "operator_writes": 0,

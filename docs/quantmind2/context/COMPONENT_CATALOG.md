@@ -1,5 +1,27 @@
 # Component Catalog
 
+## `quantmind2.cross_sectional_alpha_discovery`
+
+- Status: implemented.
+- Source and target:
+  `backend/services/engine/cross_sectional_alpha_discovery`.
+- Responsibility: extend the existing autonomous Supervisor and rolling
+  evaluation chain with fixed daily style-residual DSL scoring, fixed
+  LightGBM LambdaRank hypotheses, immutable Candidate Batch Lock V2, full
+  18-window evaluation, global BH, Search Exposure, conservative
+  Survivor/Fresh boundaries, cold recovery and exact replay.
+- Key symbols: `CrossSectionalStyleResidualizationV1`,
+  `RankingRelevanceLabelV1`, `RankingModelSpecV1`,
+  `CrossSectionalAlphaDiscoveryEngine`, `run_batch`, `validate_batch`, and
+  `replay_batch`.
+- Dependencies: Supervisor, R3-001 rolling window contracts, Factor DSL,
+  Tushare Feature Catalog v3, existing LightGBM, formal Qlib and Artifact
+  Store.
+- Current limitations: Batch 002 produced no Survivor; all residual DSL
+  candidates failed Discovery and both locked ranking models failed the
+  unchanged rolling gate/global BH. The R3-001 windows are historical rolling
+  evidence rather than real Fresh evidence.
+
 ## QM2-R2-013 completion
 
 `quantmind2.fresh_runtime_deployment` now uses run-scoped environment

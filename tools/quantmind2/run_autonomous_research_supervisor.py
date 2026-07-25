@@ -18,6 +18,7 @@ from backend.services.engine.autonomous_research_supervisor import (  # noqa: E4
     create_supervisor_spec,
     execute_supervisor,
     run_multi_horizon_model_cycle,
+    run_next_cross_sectional_alpha_batch,
     run_next_rolling_blind_batch,
     run_next_model_cycle,
     replay_next_research_cycle,
@@ -47,6 +48,7 @@ COMMANDS = (
     "inspect-fresh-predictions", "inspect-fresh-labels",
     "inspect-fresh-strategy", "inspect-fresh-multiple-testing",
     "run-next-rolling-blind-batch", "inspect-blind-windows",
+    "run-next-cross-sectional-alpha-batch",
     "inspect-batch-lock", "inspect-blind-result", "inspect-blind-survivor",
     "inspect-search-exposure",
 )
@@ -69,6 +71,7 @@ def parser() -> argparse.ArgumentParser:
         "run-next-model-cycle",
         "run-multi-horizon-model-cycle",
         "run-next-rolling-blind-batch",
+        "run-next-cross-sectional-alpha-batch",
     ):
         command = commands.add_parser(name)
         command.add_argument(
@@ -123,6 +126,10 @@ def main(argv: list[str] | None = None) -> int:
             )
         elif args.command == "run-next-rolling-blind-batch":
             result = run_next_rolling_blind_batch(
+                supervisor_spec_id=args.supervisor_spec_id, **common
+            )
+        elif args.command == "run-next-cross-sectional-alpha-batch":
+            result = run_next_cross_sectional_alpha_batch(
                 supervisor_spec_id=args.supervisor_spec_id, **common
             )
         elif args.command == "run-fresh-heartbeat":

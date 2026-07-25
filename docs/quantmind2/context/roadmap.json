@@ -1,12 +1,27 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-07-25T04:27:41Z",
-  "source_commit": "6b2a83904c3bcc04f95410a977ae4ec847b77c17",
+  "generated_at": "2026-07-25T14:08:10Z",
+  "source_commit": "4cc7ca5afbece6bd23fec8eed27b943592830f74",
   "source_paths": ["docs/quantmind2/context/ROADMAP.md"],
   "authority_level": "approved_initial_roadmap",
   "freshness_status": "current_at_base_commit",
   "verification_status": "verified",
   "items": [
+    {
+      "task_id": "QM2-R3-002",
+      "status": "completed_uncommitted",
+      "priority": "P0",
+      "dependencies": [
+        "QM2-R3-001",
+        "QM2-R2-008",
+        "QM2-R2-009"
+      ],
+      "objective": "Test fixed PIT style-residual DSL scores and fixed LambdaRank technical bundles through Discovery and the same 18-window historical rolling protocol.",
+      "explicit_non_goals": [
+        "No real Fresh claim, model/strategy/combined optimization, control search, rolling feedback, Promotion, trading, dependency change or automatic Batch 003."
+      ],
+      "acceptance_summary": "Eighteen Agent calls produce 15 residual admissions that all fail Discovery; two fixed ranking hypotheses complete 36 rolling windows but fail the unchanged gate/global BH; zero Survivor is preserved and Store/recovery/replay pass."
+    },
     {
       "task_id": "QM2-R3-001",
       "status": "completed_uncommitted",
